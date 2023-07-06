@@ -18,7 +18,7 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/criar', [PedidoController::class, 'criarPedido'])->name('pedido.criar');
         Route::delete('/excluir/{id}', [PedidoController::class, 'excluirPedido'])->name('pedido.excluir');
     });
-    
+    // testando só 
     Route::get('/impressao', [SiteController::class, 'impressao'])->name('impressao');
     Route::get('/confeccao', [SiteController::class, 'confeccao'])->name('confeccao');
 });
