@@ -53,41 +53,49 @@ class PedidoController extends Controller
     }
     public function criarPedido(Request $request)
     {
-        $pedido = new Pedido();
-        $pedido->pedido = $request->input('pedido');
-        $pedido->data = $request->input('data');
-        $pedido->produto = $request->input('produto');
-        $pedido->material = $request->input('material');
-        $pedido->medida_linear = $request->input('medida_linear');
-        $pedido->observacoes = $request->input('observacoes');
-        $pedido->status = $request->input('status');
-        $pedido->designer = $request->input('designer');
-        $pedido->tipo_pedido = $request->input('tipo_pedido');
-        $pedido->checagem_final = $request->input('checagem_final');
-        $pedido->tiny = $request->input('tiny');
-        $pedido->etapa = 'A'; // Defina a etapa inicial do pedido
+        try {
+            $pedido = new Pedido();
+            $pedido->data = $request->input('data');
+            $pedido->produto = $request->input('produto');
+            $pedido->material = $request->input('material');
+            $pedido->medida_linear = $request->input('medida_linear');
+            $pedido->observacoes = $request->input('observacoes');
+            $pedido->status = $request->input('status');
+            $pedido->designer = $request->input('designer');
+            $pedido->tipo_pedido = $request->input('tipo_pedido');
+            $pedido->checagem_final = $request->input('checagem_final');
+            $pedido->tiny = $request->input('tiny');
+            $pedido->etapa = 'A'; // Defina a etapa inicial do pedido
 
-        $pedido->save();
+            $pedido->save();
 
-        return response()->json([
-            'message' => 'Pedido created successfully!',
-            'pedido' => $pedido // Retorna o objeto do pedido criado para atualização da tabela
-        ], 200);
+            return response()->json([
+                'message' => 'Pedido created successfully!',
+                'pedido' => $pedido // Retorna o objeto do pedido criado para atualização da tabela
+            ], 200);
+        } catch (\Exception $e) {
+            return response()->json(['message' => 'Erro ao criar o pedido: ' . $pedido . $e->getMessage()], 500);
+        }
     }
+
     public function excluirPedido($id)
     {
-        // Encontre o pedido pelo ID
-        $pedido = Pedido::find($id);
-    
-        // Verifique se o pedido foi encontrado
-        if (!$pedido) {
-            return redirect()->back()->with('error', 'Pedido não encontrado.');
+       try{
+            // Encontre o pedido pelo ID
+            $pedido = Pedido::find($id);
+        
+            // Verifique se o pedido foi encontrado
+            if (!$pedido) {
+                return redirect()->back()->with('error', 'Pedido não encontrado.');
+            }
+        
+            // Excluir o pedido
+            $pedido->delete();
+        
+            return redirect()->back()->with('message', 'Pedido excluído com sucesso.');
+        } catch (\Exception $e) {
+            return response()->json(['message' => 'Erro ao excluir o pedido: ' . $pedido . $e->getMessage()], 500);
         }
-    
-        // Excluir o pedido
-        $pedido->delete();
-    
-        return redirect()->back()->with('message', 'Pedido excluído com sucesso.');
     }
     
 }

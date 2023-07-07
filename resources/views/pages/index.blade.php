@@ -31,7 +31,7 @@ Inicio
                 <div class="card-body">
                     <h5 class="card-title">Arte Final</h5>
                     <p class="card-text">Descrição de arte final</p>
-                    <a href="{{ route('artefinal') }}" class="btn btn-outline-info">Acessar</a>
+                    <a href="{{ route('pedido') }}" class="btn btn-outline-info">Acessar</a>
                 </div>
             </div>
         </div>

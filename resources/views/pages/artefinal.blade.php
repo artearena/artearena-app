@@ -5,33 +5,52 @@ Consulta de Pedidos
 @endsection
 
 @section('style')
-
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/css/bootstrap.min.css">
 <style>
-    .col-md-10{
+    .col-md-10 {
         width: 100%;
     }
+
     table {
         border-collapse: collapse;
         width: 100%;
     }
-    th, td {
+
+    th,
+    td {
         text-align: left;
         padding: 8px;
         border-bottom: 1px solid #ddd;
     }
+
     th {
         background-color: #f2f2f2;
     }
+
     .form-row {
         margin-bottom: 10px;
     }
+
     .form-row label {
         font-weight: bold;
         margin-right: 10px;
     }
+
     .full-width {
         width: 100%;
+    }
+
+    .hidden-form {
+        display: none;
+        visibility: hidden;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    .visible-form {
+        display: block;
+        visibility: visible;
+        opacity: 1;
     }
 </style>
 @endsection
@@ -45,7 +64,8 @@ Consulta de Pedidos
             <div class="tab-content" id="v-pills-tabContent">
                 <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab" tabindex="0">
                     <h1>Consulta de Pedidos</h1>
-                    <form>
+                    <button id="toggle-button" class="btn btn-primary">Mostrar/Esconder Formulário</button>
+                    <form id="my-form" class="hidden-form">
                         @csrf
                         <div class="row">
                             <div class="col-md-6">
@@ -124,8 +144,9 @@ Consulta de Pedidos
                                     <input type="text" class="form-control" name="tiny" id="tiny">
                                 </div>
                             </div>
-                        </div>
-                        <button type="submit" class="btn btn-primary" id="cadastrarPedido">Cadastrar Pedido</button>
+                            </div>
+                            console
+                            <button type="submit" class="btn btn-primary" id="cadastrarPedido">Cadastrar Pedido</button>
                     </form>
                     <hr>
                     <h2>Pedidos existentes:</h2>
@@ -215,9 +236,8 @@ Consulta de Pedidos
                                 <td>
                                     <button type="button" class="btn btn-primary mover-pedido" data-id="{{ $pedido->id }}">Mover</button>
                                 </td>
-                                <td onclick="var tableRow = this.closest('tr'); tableRow.remove();>
-                                    <button type="button" class="btn btn-danger excluir-pedido" da
-                                    3ta-id="{{ $pedido->id }}">Excluir</button>
+                                <td>
+                                    <button type="button" class="btn btn-danger excluir-pedido" data-id="{{ $pedido->id }}">Excluir</button>
                                 </td>
                             </tr>
                             @endif
@@ -230,6 +250,16 @@ Consulta de Pedidos
         </main>
     </div>
 </div>
+
+<script>
+    var toggleButton = document.getElementById('toggle-button');
+    var form = document.getElementById('my-form');
+
+    toggleButton.addEventListener('click', function () {
+        form.classList.toggle('visible-form');
+    });
+</script>
+
 @endsection
 
 @section('extraScript')
@@ -245,7 +275,7 @@ $(document).ready(function(){
     // Função para cadastrar um novo pedido
     $('#cadastrarPedido').click(function(e) {
         e.preventDefault(); // Evita o comportamento padrão do formulário
-
+        
         // Obtenha os valores dos campos do formulário
         var data = $('#data').val();
         var produto = $('#produto').val();
@@ -258,7 +288,18 @@ $(document).ready(function(){
         var checagem_final = $('#checagem_final').val();
         var tiny = $('#tiny').val();
 
-        
+        console.log('Dados do Pedido:');
+    console.log('Data:', data);
+    console.log('Produto:', produto);
+    console.log('Material:', material);
+    console.log('Medida Linear:', medida_linear);
+    console.log('Observações:', observacoes);
+    console.log('Status:', status);
+    console.log('Designer:', designer);
+    console.log('Tipo de Pedido:', tipo_pedido);
+    console.log('Checagem Final:', checagem_final);
+    console.log('Tiny:', tiny);
+
         // Enviar a requisição AJAX para salvar o pedido
         $.ajax({
             url: '/pedido/criar', // Atualize o URL para '/pedido/criar'
@@ -331,20 +372,19 @@ $(document).ready(function(){
         $('.excluir-pedido').click(function() {
 
             var pedidoId = $(this).closest('td').siblings(':first-child').text();
-            console.log($(this));
             var row = $(this).closest('tr'); // Obter a linha da tabela
 
             // Enviar a requisição AJAX para excluir o pedido
 
             $.ajax({
-                url: "/pedido/excluir/" + pedidoId,
-                method: 'DELETE',
+                url: "/pedido/" + pedidoId,
+                method: 'delete',
                 data: {
                     "_token": "{{ csrf_token() }}",
                 },
                 success: function(response) {
                     row.remove();
-                    console.log(response);
+                    console.log('Excluido com sucesso');
                     // Atualize a tabela ou faça outras ações após a exclusão do pedido
                 }
             });

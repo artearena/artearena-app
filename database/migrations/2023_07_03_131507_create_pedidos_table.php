@@ -18,17 +18,17 @@ class CreatePedidosTable extends Migration
             $table->timestamp('data');
             $table->string('produto');
             $table->string('material');
-            $table->string('medida_linear');
+            $table->float('medida_linear')->nullable();
             $table->text('observacoes')->nullable();
             $table->string('dificuldade')->nullable();
             $table->string('status');
             $table->string('designer')->nullable();
-            $table->string('tipo_de_pedido');
+            $table->string('tipo_pedido');
             $table->string('checagem_final')->nullable();
             $table->string('tiny')->nullable();
-            $table->string('rolo');
+            $table->string('rolo')->default('');;
             $table->string('outros')->nullable();
-            $table->string('etapa');
+            $table->string('etapa')->default('A');;
             $table->unsignedBigInteger('created_by')->nullable();
             $table->unsignedBigInteger('updated_by')->nullable();
 

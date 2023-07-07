@@ -11,12 +11,12 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/frete', [SiteController::class, 'frete'])->name('frete');
     Route::get('/bandeira', [SiteController::class, 'bandeiras'])->name('bandeira');
     
-    Route::get('/artefinal', [PedidoController::class, 'artefinal'])->name('artefinal');
     Route::group(['prefix' => 'pedido'], function () {
+        Route::any('/', [PedidoController::class, 'artefinal'])->name('artefinal');
         Route::put('/{id}', [PedidoController::class, 'update'])->name('pedido.update');
         Route::put('/mover/{id}', [PedidoController::class, 'moverPedido'])->name('pedido.mover');
         Route::post('/criar', [PedidoController::class, 'criarPedido'])->name('pedido.criar');
-        Route::delete('/excluir/{id}', [PedidoController::class, 'excluirPedido'])->name('pedido.excluir');
+        Route::delete('/{id}', [PedidoController::class, 'excluirPedido'])->name('pedido.excluir');
     });
     // testando só 
     Route::get('/impressao', [SiteController::class, 'impressao'])->name('impressao');
