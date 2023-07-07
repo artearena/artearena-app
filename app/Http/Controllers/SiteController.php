@@ -22,8 +22,5 @@ class SiteController extends Controller
         return view('pages.frete', compact('produtos'));
     }
 
-    public function impressao()
-    {
-        return view('pages.impressao');
-    }
+
 }

@@ -17,7 +17,22 @@ class PedidoController extends Controller
 
         return view('pages.artefinal', compact('pedidos', 'designers', 'categoriasProduto'));
     }
+    public function impressaoprovisorio()
+    {
+        $pedidos = Pedido::all();
+        $designers = Usuario::where('permissoes', 2)->pluck('nome_usuario');
+        $categoriasProduto = CategoriaProduto::all(); // Buscar todas as categorias de produto
 
+        return view('pages.impressao', compact('pedidos', 'designers', 'categoriasProduto'));
+    }
+    public function confeccaoprovisorio()
+    {
+        $pedidos = Pedido::all();
+        $designers = Usuario::where('permissoes', 2)->pluck('nome_usuario');
+        $categoriasProduto = CategoriaProduto::all(); // Buscar todas as categorias de produto
+
+        return view('pages.confeccao', compact('pedidos', 'designers', 'categoriasProduto'));
+    }
     public function update(Request $request, $id)
 {
     $pedido = Pedido::find($id);

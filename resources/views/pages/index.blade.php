@@ -51,7 +51,7 @@ Inicio
                 <div class="card-body">
                     <h5 class="card-title">Controle de Confecções</h5>
                     <p class="card-text">Descrição de controle de confecção</p>
-                    <a href="#" class="btn btn-outline-dark">Acessar</a>
+                    <a href="{{ route('confeccao') }}" class="btn btn-outline-dark">Acessar</a>
                 </div>
             </div>
         </div>
