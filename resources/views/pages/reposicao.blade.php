@@ -101,6 +101,7 @@ Consulta de Pedidos
                                 <textarea class="form-control full-width" name="observacoes_reposicao" id="observacao_reposicao"></textarea>
                             </div>
                         </div>
+                 
                         <div class="col-md-6">
                             <div class="form-row">
                                 <label for="medida_linear">Medida Linear:</label>
