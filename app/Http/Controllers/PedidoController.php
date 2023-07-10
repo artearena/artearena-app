@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Pedido;
 use App\Models\Usuario;
+use App\Models\Material;
 use App\Models\CategoriaProduto;
 
 class PedidoController extends Controller
@@ -14,24 +15,40 @@ class PedidoController extends Controller
         $pedidos = Pedido::all();
         $designers = Usuario::where('permissoes', 2)->pluck('nome_usuario');
         $categoriasProduto = CategoriaProduto::all(); // Buscar todas as categorias de produto
+        $materiais = Material::all();
+        $pedidos = Pedido::orderBy('id', 'desc')->get();
 
-        return view('pages.artefinal', compact('pedidos', 'designers', 'categoriasProduto'));
+        return view('pages.artefinal', compact('pedidos', 'designers', 'categoriasProduto', 'materiais'));
     }
     public function impressaoprovisorio()
     {
         $pedidos = Pedido::all();
         $designers = Usuario::where('permissoes', 2)->pluck('nome_usuario');
         $categoriasProduto = CategoriaProduto::all(); // Buscar todas as categorias de produto
+        $materiais = Material::all();
+        $pedidos = Pedido::orderBy('id', 'desc')->get();
 
-        return view('pages.impressao', compact('pedidos', 'designers', 'categoriasProduto'));
+        return view('pages.impressao', compact('pedidos', 'categoriasProduto', 'materiais'));
+    }
+    public function reposicaoprovisorio ()
+    {
+        $pedidos = Pedido::all();
+        $designers = Usuario::where('permissoes', 2)->pluck('nome_usuario');
+        $categoriasProduto = CategoriaProduto::all(); // Buscar todas as categorias de produto
+        $materiais = Material::all();
+        $pedidos = Pedido::orderBy('id', 'desc')->get();
+
+        return view('pages.reposicao', compact('pedidos' , 'categoriasProduto', 'materiais'));
     }
     public function confeccaoprovisorio()
     {
         $pedidos = Pedido::all();
         $designers = Usuario::where('permissoes', 2)->pluck('nome_usuario');
         $categoriasProduto = CategoriaProduto::all(); // Buscar todas as categorias de produto
+        $materiais = Material::all();
+        $pedidos = Pedido::orderBy('id', 'desc')->get();
 
-        return view('pages.confeccao', compact('pedidos', 'designers', 'categoriasProduto'));
+        return view('pages.confeccao', compact('pedidos', 'designers', 'categoriasProduto', 'materiais'));
     }
     public function update(Request $request, $id)
 {
@@ -46,7 +63,9 @@ class PedidoController extends Controller
         'designer',
         'tipo_pedido',
         'checagem_final',
-        'tiny'
+        'tiny',
+        'rolo',
+        'observacao_reposicao'
     ]));
 
     return response()->json([
@@ -80,7 +99,9 @@ class PedidoController extends Controller
             $pedido->tipo_pedido = $request->input('tipo_pedido');
             $pedido->checagem_final = $request->input('checagem_final');
             $pedido->tiny = $request->input('tiny');
-            $pedido->etapa = 'A'; // Defina a etapa inicial do pedido
+            $pedido->etapa = $request->input('etapa'); // Defina a etapa inicial do pedido
+            $pedido->rolo = $request->input('rolo');
+            $pedido->observacao_reposicao = $request->input('observacao_reposicao');
 
             $pedido->save();
 

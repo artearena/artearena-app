@@ -5,13 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class Pedido extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'pedido',
+        'id',
         'data',
         'produto',
         'material',
@@ -27,11 +28,12 @@ class Pedido extends Model
         'rolo',
         'outros',
         'etapa',
+        'observacao_reposicao',
         'created_by',
         'updated_by'
     ];
 
-    public static function boot()
+    protected static function boot()
     {
         parent::boot();
 
@@ -42,5 +44,20 @@ class Pedido extends Model
         static::updating(function ($model) {
             $model->updated_by = Auth::id();
         });
+
+        static::created(function ($model) {
+            $model->setAutoIncrementStartValue();
+        });
+    }
+
+    protected function setAutoIncrementStartValue()
+    {
+        $startValue = 900000;
+
+        $table = $this->getTable();
+        $column = $this->getKeyName();
+
+        $query = "ALTER TABLE {$table} AUTO_INCREMENT = {$startValue}";
+        DB::statement($query);
     }
 }

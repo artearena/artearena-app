@@ -96,6 +96,10 @@ Consulta de Pedidos
                                 <label for="observacoes">Observações:</label>
                                 <textarea class="form-control full-width" name="observacoes" id="observacoes"></textarea>
                             </div>
+                            <div class="form-row">
+                                <label for="observacoes_reposicao">Observações de Reposição:</label>
+                                <textarea class="form-control full-width" name="observacoes_reposicao" id="observacao_reposicao"></textarea>
+                            </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-row">
@@ -122,6 +126,7 @@ Consulta de Pedidos
                     <button type="submit" class="btn btn-primary" id="cadastrarPedido">Cadastrar Pedido</button>
                 </form>
 
+
                     <hr>
                     <h2>Pedidos existentes:</h2>
                     <table id="tabela-pedidos" class="table table-striped">
@@ -135,11 +140,13 @@ Consulta de Pedidos
                                 <th>OBSERVAÇÕES</th>
                                 <th>STATUS</th>
                                 <th>ROLO</th>
+                                <th>OBS. DE REPOSIÇÃO</th>
+                                
                             </tr>
                         </thead>
                         <tbody>
                             @foreach($pedidos as $pedido)
-                            @if($pedido->etapa == 'I')
+                            @if($pedido->etapa == 'R')
                             <tr data-id="{{ $pedido->id }}">
                                 <td>{{ $pedido->id }}</td>
                                 <td class="col-1">{{ date('Y-m-d', strtotime($pedido->data)) }}</td>
@@ -171,19 +178,21 @@ Consulta de Pedidos
                                 <td>
                                     <select class="form-control" name="status" id="status">
                                         <option value="Pendente" {{ $pedido->status == 'Pendente' ? 'selected' : '' }}>Pendente</option>
-                                        <option value="Processando" {{ $pedido->status == 'Processando' ? 'selected' : '' }}>Processando</option>
+                                        <option value="Aguardando arquivo" {{ $pedido->status == 'Aguardando arquivo' ? 'selected' : '' }}>Aguardando arquivo</option>
                                         <option value="Renderizado" {{ $pedido->status == 'Renderizado' ? 'selected' : '' }}>Renderizado</option>
-                                        <option value="Impresso" {{ $pedido->status == 'Impresso' ? 'selected' : '' }}>Impresso</option>
                                         <option value="Em impressão" {{ $pedido->status == 'Em impressão' ? 'selected' : '' }}>Em impressão</option>
-                                        <option value="Separação" {{ $pedido->status == 'Separação' ? 'selected' : '' }}>Separação</option>
-                                        <option value="{{ $pedido->status }}" {{ !in_array($pedido->status, ['Pendente', 'Processando', 'Renderizado', 'Impresso', 'Em impressão', 'Separação']) ? 'selected' : '' }}>
+                                        <option value="Impresso" {{ $pedido->status == 'Impresso' ? 'selected' : '' }}>Impresso</option>
+                                        <option value="{{ $pedido->status }}" {{ !in_array($pedido->status, ['Pendente', 'Aguardando arquivo', 'Renderizado', 'Impresso', 'Em impressão']) ? 'selected' : '' }}>
                                             {{ $pedido->status }}
                                         </option>
                                     </select>
                                 </td>
+
                                
                                 
                                 <td><input type='text' class='form-control' name='rolo' value="{{ $pedido->rolo }}"></td>
+                                <td><input type='text' class='form-control' name='observacao_reposicao' value="{{ $pedido->observacao_reposicao }}"></td>
+
                                 <td>
                                     <button type="button" class="btn btn-primary mover-pedido" data-id="{{ $pedido->id }}">Mover</button>
                                 </td>
@@ -236,7 +245,8 @@ $(document).ready(function(){
         var observacoes = $('#observacoes').val();
         var status = $('#status').val();
         var rolo = $('#rolo').val();
-        var etapa = 'I';
+        var etapa = 'R';
+        var observacao_reposicao = $('#observacao_reposicao').val();
 
         console.log('Dados do Pedido:');
         console.log('Data:', data);
@@ -246,6 +256,7 @@ $(document).ready(function(){
         console.log('Observações:', observacoes);
         console.log('Status:', status);
         console.log('etapa:', etapa);
+        console.log('observacao_reposicao', observacao_reposicao);
         // Enviar a requisição AJAX para salvar o pedido
         $.ajax({
             url: '/pedido/criar', // Atualize o URL para '/pedido/criar'
@@ -259,6 +270,7 @@ $(document).ready(function(){
                 status: status,
                 etapa: etapa,
                 rolo: rolo,
+                observacao_reposicao: observacao_reposicao,
                 "_token": "{{ csrf_token() }}" // Adicione o token CSRF do Laravel para prevenir ataques CSRF
             },
             success: function(response) {
@@ -292,7 +304,7 @@ $(document).ready(function(){
         var id = $(this).closest('td').siblings(':first-child').text();
         var field = $(this).attr('name');
         var value = $(this).val();
-        console.log(field)
+
         $.ajax({
             url: '/pedido/' + id, // Atualize o URL para '/pedido/{id}'
             method: 'PUT',
@@ -312,7 +324,7 @@ $(document).ready(function(){
     $('.mover-pedido').click(function() {
         var pedidoId = $(this).closest('td').siblings(':first-child').text();
         var row = $(this).closest('tr'); // Obter a linha da tabela
-        var etapa = 'C';
+        var etapa = 'I';
 
         // Enviar a requisição AJAX para mover o pedido
         $.ajax({

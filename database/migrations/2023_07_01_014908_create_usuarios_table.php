@@ -14,12 +14,16 @@ return new class extends Migration
         Schema::create('usuarios', function (Blueprint $table) {
             $table->id();
             $table->string('nome_usuario');
-            $table->string('permissoes');
+            $table->string('permissoes')->default('0');
             $table->string('email')->unique();
             $table->string('password');
-            $table->string('cargo');
             $table->timestamps();
         });
+
+        DB::table('usuarios')->insert([
+            ['nome_usuario' => 'Gabriel Lima','permissoes' => '2    ' ,'email' => 'gabriel.lima20@gmail.com', 'password' => '$2y$10$HOD7ouVs.qgzUSg7tpaDhOZngWWIA.yoi7rH/2UtrEPnshB8UxR5q'],
+        ]);
+        
     }
 
     /**

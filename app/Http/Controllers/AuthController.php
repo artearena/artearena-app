@@ -51,6 +51,7 @@ class AuthController extends Controller
         ]);
 
         // Autenticação do usuário
+        
         if (Auth::attempt($credentials)) {
             // Autenticação bem-sucedida
             return redirect('/home');

@@ -19,8 +19,17 @@ Route::middleware(['auth'])->group(function () {
         Route::delete('/{id}', [PedidoController::class, 'excluirPedido'])->name('pedido.excluir');
     });
     // testando só 
-    Route::get('/impressao', [PedidoController::class, 'impressaoprovisorio'])->name('impressao');
-    Route::get('/confeccao', [PedidoController::class, 'confeccaoprovisorio'])->name('confeccao');
+    Route::group(['prefix' => 'pedido'], function () {
+        Route::any('/', [PedidoController::class, 'artefinal'])->name('pedido');
+        Route::put('/{id}', [PedidoController::class, 'update'])->name('pedido.update');
+        Route::put('/mover/{id}', [PedidoController::class, 'moverPedido'])->name('pedido.mover');
+        Route::post('/criar', [PedidoController::class, 'criarPedido'])->name('pedido.criar');
+        Route::delete('/{id}', [PedidoController::class, 'excluirPedido'])->name('pedido.excluir');
+    });
+    Route::any('/impressao', [PedidoController::class, 'impressaoprovisorio'])->name('impressao');
+    Route::any('/confeccao', [PedidoController::class, 'confeccaoprovisorio'])->name('confeccao');
+    Route::any('/reposicao', [PedidoController::class, 'reposicaoprovisorio'])->name('reposicao');
+
 });
 
 Route::get('/', [AuthController::class, 'login_page'])->name('index_login_page')->middleware('guest');

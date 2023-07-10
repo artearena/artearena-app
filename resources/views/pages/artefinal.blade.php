@@ -52,6 +52,9 @@ Consulta de Pedidos
         visibility: visible;
         opacity: 1;
     }
+    td {
+        text-align: center;
+    }
 </style>
 @endsection
 
@@ -83,10 +86,11 @@ Consulta de Pedidos
                                 </div>
                                 <div class="form-row">
                                     <label for="material">Material:</label>
+                                                
                                     <select class="form-control" name="material" id="material">
-                                        <option value="Material 1">Material 1</option>
-                                        <option value="Material 2">Material 2</option>
-                                        <option value="Material 3">Material 3</option>
+                                        @foreach ($materiais as $material)
+                                            <option value="{{ $material->id }}">{{ $material->descricao }}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                                 <div class="form-row">
@@ -145,12 +149,11 @@ Consulta de Pedidos
                                 </div>
                             </div>
                             </div>
-                            console
                             <button type="submit" class="btn btn-primary" id="cadastrarPedido">Cadastrar Pedido</button>
                     </form>
                     <hr>
                     <h2>Pedidos existentes:</h2>
-                    <table class="table table-striped">
+                    <table id="tabela-pedidos" class="table table-striped">
                         <thead>
                             <tr>
                                 <th>Pedido</th>
@@ -173,24 +176,31 @@ Consulta de Pedidos
                             @if($pedido->etapa == 'A')
                             <tr data-id="{{ $pedido->id }}">
                                 <td>{{ $pedido->id }}</td>
-                                <td>{{ $pedido->data }}</td>
+                                <td class="col-1">{{ date('Y-m-d', strtotime($pedido->data)) }}</td>
                                 <td>
                                     <select class='form-control' name='produto'>
                                         @foreach($categoriasProduto as $categoria)
-                                        <option value="{{ $categoria->descricao }}" {{ $pedido->produto == $categoria->descricao ? 'selected' : '' }}>{{ $categoria->descricao }}</option>
+                                        <option value="{{ $categoria->descricao }}" {{ $pedido->produto == $categoria->descricao ? 'selected' : '' }}>
+                                            {{ $categoria->descricao }}
+                                        </option>
                                         @endforeach
-                                        <option value="{{ $pedido->produto }}" {{ !in_array($pedido->produto, $categoriasProduto->pluck('descricao')->toArray()) ? 'selected' : '' }}>{{ $pedido->produto }}</option>
+                                        <option value="{{ $pedido->produto }}" {{ !in_array($pedido->produto, $categoriasProduto->pluck('descricao')->toArray()) ? 'selected' : '' }}>
+                                            {{ $pedido->produto }}
+                                        </option>
                                     </select>
                                 </td>
                                 <td>
-                                    <select class='form-control' name='material'>
-                                        <option value="Material 1" {{ $pedido->material == 'Material 1' ? 'selected' : '' }}>Material 1</option>
-                                        <option value="Material 2" {{ $pedido->material == 'Material 2' ? 'selected' : '' }}>Material 2</option>
-                                        <option value="Material 3" {{ $pedido->material == 'Material 3' ? 'selected' : '' }}>Material 3</option>
-                                        <option value="{{ $pedido->material }}" {{ !in_array($pedido->material, ['Material 1', 'Material 2', 'Material 3']) ? 'selected' : '' }}>{{ $pedido->material }}</option>
+                                    <select class="form-control" name="material">
+                                        <option value=""></option>
+                                        @foreach ($materiais as $material)
+                                        <option value="{{ $material->id }}" {{ $pedido->material == $material->id ? 'selected' : '' }}>
+                                            {{ $material->descricao }}
+                                        </option>
+                                        @endforeach
                                     </select>
                                 </td>
-                                <td><input type='number' step='0.01' class='form-control' name='medida_linear' value="{{ $pedido->medida_linear }}"></td>
+
+                                <td class="col-md-auto"><input type='number' step='0.01' class='form-control' name='medida_linear' value="{{ $pedido->medida_linear }}"></td>
                                 <td><input type='text' class='form-control' name='observacoes' value="{{ $pedido->observacoes }}"></td>
                                 <td>
                                     <select class='form-control' name='status'>
@@ -202,15 +212,21 @@ Consulta de Pedidos
                                         <option value="Cor teste" {{ $pedido->status == 'Cor teste' ? 'selected' : '' }}>Cor teste</option>
                                         <option value="Terceirizado" {{ $pedido->status == 'Terceirizado' ? 'selected' : '' }}>Terceirizado</option>
                                         <option value="Análise pendente" {{ $pedido->status == 'Análise pendente' ? 'selected' : '' }}>Análise pendente</option>
-                                        <option value="{{ $pedido->status }}" {{ !in_array($pedido->status, ['Pendente', 'Em andamento', 'Arte concluída', 'Em confirmação', 'Em espera', 'Cor teste', 'Terceirizado', 'Análise pendente']) ? 'selected' : '' }}>{{ $pedido->status }}</option>
+                                        <option value="{{ $pedido->status }}" {{ !in_array($pedido->status, ['Pendente', 'Em andamento', 'Arte concluída', 'Em confirmação', 'Em espera', 'Cor teste', 'Terceirizado', 'Análise pendente']) ? 'selected' : '' }}>
+                                            {{ $pedido->status }}
+                                        </option>
                                     </select>
                                 </td>
                                 <td>
                                     <select class='form-control' name='designer'>
                                         @foreach($designers as $designer)
-                                        <option value="{{ $designer }}" {{ $pedido->designer == $designer ? 'selected' : '' }}>{{ $designer }}</option>
+                                        <option value="{{ $designer }}" {{ $pedido->designer == $designer ? 'selected' : '' }}>
+                                            {{ $designer }}
+                                        </option>
                                         @endforeach
-                                        <option value="{{ $pedido->designer }}" {{ !in_array($pedido->designer, $designers->toArray()) ? 'selected' : '' }}>{{ $pedido->designer }}</option>
+                                        <option value="{{ $pedido->designer }}" {{ !in_array($pedido->designer, $designers->toArray()) ? 'selected' : '' }}>
+                                            {{ $pedido->designer }}
+                                        </option>
                                     </select>
                                 </td>
                                 <td>
@@ -220,16 +236,24 @@ Consulta de Pedidos
                                         <option value="Faturado" {{ $pedido->tipo_pedido == 'Faturado' ? 'selected' : '' }}>Faturado</option>
                                         <option value="Metade/Metade" {{ $pedido->tipo_pedido == 'Metade/Metade' ? 'selected' : '' }}>Metade/Metade</option>
                                         <option value="Amostra" {{ $pedido->tipo_pedido == 'Amostra' ? 'selected' : '' }}>Amostra</option>
-                                        <option value="{{ $pedido->tipo_pedido }}" {{ !in_array($pedido->tipo_pedido, ['Prazo normal', 'Antecipação', 'Faturado', 'Metade/Metade', 'Amostra']) ? 'selected' : '' }}>{{ $pedido->tipo_pedido }}</option>
+                                        <option value="{{ $pedido->tipo_pedido }}" {{ !in_array($pedido->tipo_pedido, ['Prazo normal', 'Antecipação', 'Faturado', 'Metade/Metade', 'Amostra']) ? 'selected' : '' }}>
+                                            {{ $pedido->tipo_pedido }}
+                                        </option>
                                     </select>
                                 </td>
-                                <td>
+                                <td class="@if($pedido->checagem_final == 'Pendente') table-warning
+                                            @elseif($pedido->checagem_final == 'Ajustado') table-info
+                                            @elseif($pedido->checagem_final == 'Erro') table-danger
+                                            @elseif($pedido->checagem_final == 'OK') table-success
+                                            @endif">
                                     <select class='form-control' name='checagem_final'>
                                         <option value="Pendente" {{ $pedido->checagem_final == 'Pendente' ? 'selected' : '' }}>Pendente</option>
                                         <option value="Ajustado" {{ $pedido->checagem_final == 'Ajustado' ? 'selected' : '' }}>Ajustado</option>
                                         <option value="Erro" {{ $pedido->checagem_final == 'Erro' ? 'selected' : '' }}>Erro</option>
                                         <option value="OK" {{ $pedido->checagem_final == 'OK' ? 'selected' : '' }}>OK</option>
-                                        <option value="{{ $pedido->checagem_final }}" {{ !in_array($pedido->checagem_final, ['Pendente', 'Ajustado', 'Erro', 'OK']) ? 'selected' : '' }}>{{ $pedido->checagem_final }}</option>
+                                        <option value="{{ $pedido->checagem_final }}" {{ !in_array($pedido->checagem_final, ['Pendente', 'Ajustado', 'Erro', 'OK']) ? 'selected' : '' }}>
+                                            {{ $pedido->checagem_final }}
+                                        </option>
                                     </select>
                                 </td>
                                 <td><input type='text' class='form-control' name='tiny' value="{{ $pedido->tiny }}"></td>
@@ -243,6 +267,7 @@ Consulta de Pedidos
                             @endif
                             @endforeach
                         </tbody>
+
                     </table>
 
                 </div>
@@ -287,18 +312,19 @@ $(document).ready(function(){
         var tipo_pedido = $('#tipo_pedido').val();
         var checagem_final = $('#checagem_final').val();
         var tiny = $('#tiny').val();
-
+        var etapa = 'A';
         console.log('Dados do Pedido:');
-    console.log('Data:', data);
-    console.log('Produto:', produto);
-    console.log('Material:', material);
-    console.log('Medida Linear:', medida_linear);
-    console.log('Observações:', observacoes);
-    console.log('Status:', status);
-    console.log('Designer:', designer);
-    console.log('Tipo de Pedido:', tipo_pedido);
-    console.log('Checagem Final:', checagem_final);
-    console.log('Tiny:', tiny);
+        console.log('Data:', data);
+        console.log('Produto:', produto);
+        console.log('Material:', material);
+        console.log('Medida Linear:', medida_linear);
+        console.log('Observações:', observacoes);
+        console.log('Status:', status);
+        console.log('Designer:', designer);
+        console.log('Tipo de Pedido:', tipo_pedido);
+        console.log('Checagem Final:', checagem_final);
+        console.log('Tiny:', tiny);
+        console.log('etapa:', etapa);
 
         // Enviar a requisição AJAX para salvar o pedido
         $.ajax({
@@ -315,11 +341,30 @@ $(document).ready(function(){
                 tipo_pedido: tipo_pedido,
                 checagem_final: checagem_final,
                 tiny: tiny,
+                etapa: etapa,
                 "_token": "{{ csrf_token() }}" // Adicione o token CSRF do Laravel para prevenir ataques CSRF
             },
             success: function(response) {
                 console.log(response.message);
-                // Atualize a tabela ou faça outras ações após o sucesso do pedido
+                
+                var newRow = '<tr>';
+                newRow += '<td>' + response.pedido.id + '</td>';
+                newRow += '<td>' + response.pedido.data + '</td>';
+                newRow += '<td>' + response.pedido.produto + '</td>';
+                newRow += '<td>' + response.pedido.material + '</td>';
+                newRow += '<td>' + response.pedido.medida_linear + '</td>';
+                newRow += '<td>' + response.pedido.observacoes + '</td>';
+                newRow += '<td>' + response.pedido.status + '</td>';
+                newRow += '<td>' + response.pedido.designer + '</td>';
+                newRow += '<td>' + response.pedido.tipo_pedido + '</td>';
+                newRow += '<td>' + response.pedido.checagem_final + '</td>';
+                newRow += '<td>' + response.pedido.tiny + '</td>';
+                newRow += '</tr>';
+                
+                // Insira a nova linha na tabela
+                $('tbody').prepend(newRow);
+                $('#tabela-pedidos').load(location.href + ' #tabela-pedidos');
+
             }
         });
 
@@ -340,6 +385,7 @@ $(document).ready(function(){
             },
             success: function(response) {
                 console.log(response.message);
+
             }
         });
 

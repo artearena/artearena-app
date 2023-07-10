@@ -55,6 +55,15 @@ Inicio
                 </div>
             </div>
         </div>
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Controle de Reposições</h5>
+                    <p class="card-text">Descrição de controle de confecção</p>
+                    <a href="{{ route('reposicao') }}" class="btn btn-outline-danger">Acessar</a>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 @endsection
