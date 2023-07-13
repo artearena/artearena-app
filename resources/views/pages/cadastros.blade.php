@@ -16,11 +16,12 @@
         <label for="permissoes" class="form-label">Permissões:</label>
         <select class="form-control" name="permissoes" id="permissoes" required>
             <option value="">Selecione uma permissão</option>
-            <option value="administrador">Administrador</option>
-            <option value="designer">Designer</option>
-            <option value="outro">Outro</option>
+            @foreach($permissoes as $permissao)
+                <option value="{{ $permissao->id }}">{{ $permissao->nome }}</option>
+            @endforeach
         </select>
     </div>
+
 
 
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Usuario;
+use App\Models\Permissao;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -13,8 +14,10 @@ class AuthController extends Controller
         return view('pages.login');
     }
     public function register_page(){
-        return view('pages.cadastros');
+        $permissoes = Permissao::all(); // Supondo que você tenha um modelo Permissao para a tabela 'permissoes'
+        return view('pages.cadastros', compact('permissoes'));
     }
+
     // Método para registro de usuários
     public function register(Request $request)
     {
@@ -51,7 +54,7 @@ class AuthController extends Controller
         ]);
 
         // Autenticação do usuário
-        
+
         if (Auth::attempt($credentials)) {
             // Autenticação bem-sucedida
             return redirect('/home');

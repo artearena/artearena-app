@@ -126,7 +126,11 @@ Calculadora de Bandeiras
 @section('extraScript')
 
   <script>
+
     function copiarValor(inputId) {
+      var altura = parseFloat(document.getElementById('altura').value);
+      var largura = parseFloat(document.getElementById('largura').value);
+
       let input = document.getElementById(inputId);
       let valor = input.value;
 
@@ -139,18 +143,18 @@ Calculadora de Bandeiras
       }
 
       // Acrescentar a informação sobre a face no valor copiado
-      let valorCopiado = '1 un - Bandeira Personalizada - 1 x 1 - ' + tipoFace + ' - ' + valor;
+      let valorCopiado = '1 un - Bandeira Personalizada - ' + (altura / 100).toFixed(2) + ' x ' + (largura / 100).toFixed(2) + ' - ' + tipoFace + ' - ' + valor;
 
       // Copiar o valor modificado para a área de transferência
       navigator.clipboard.writeText(valorCopiado);
 
       // Exibir uma mensagem de sucesso
-      alert('Valor copiado com sucesso: ' + valorCopiado);
+      alert('Copiado ' + valorCopiado);
     }
 
     function calcular() {
-      var altura = parseFloat(document.getElementById('altura').value);
-      var largura = parseFloat(document.getElementById('largura').value);
+    var altura = parseFloat(document.getElementById('altura').value);
+    var largura = parseFloat(document.getElementById('largura').value);
 
       if (isNaN(altura) || isNaN(largura)) {
         alert('Por favor, insira valores numéricos válidos para altura e largura.');

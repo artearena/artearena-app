@@ -51,7 +51,7 @@ class PedidoController extends Controller
         return view('pages.confeccao', compact('pedidos', 'designers', 'categoriasProduto', 'materiais'));
     }
     public function update(Request $request, $id)
-{
+    {
     $pedido = Pedido::find($id);
     $pedido->update($request->only([
         'data',
@@ -119,19 +119,19 @@ class PedidoController extends Controller
        try{
             // Encontre o pedido pelo ID
             $pedido = Pedido::find($id);
-        
+
             // Verifique se o pedido foi encontrado
             if (!$pedido) {
                 return redirect()->back()->with('error', 'Pedido não encontrado.');
             }
-        
+
             // Excluir o pedido
             $pedido->delete();
-        
+
             return redirect()->back()->with('message', 'Pedido excluído com sucesso.');
         } catch (\Exception $e) {
             return response()->json(['message' => 'Erro ao excluir o pedido: ' . $pedido . $e->getMessage()], 500);
         }
     }
-    
+
 }

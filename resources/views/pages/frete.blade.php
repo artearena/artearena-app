@@ -3,7 +3,6 @@
 Simulação de Frete
 @endsection
 @section('style')
-<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet">
 <style>
     .form-group {
         margin-bottom: 10px;
@@ -176,14 +175,14 @@ Simulação de Frete
       $('#peso').val('0.5');
     } else {
       // Realizar requisição AJAX para obter dados do produto do Tiny API
-      $.get('https://api-artearena.onrender.com/consultar-tiny', {
+      $.get('http://artearena.kinghost.net:21008/consultar-tiny', {
         token: 'bc3cdea243d8687963fa642580057531456d34fa',
         id: produto,
         formato: 'json'
       }, function(response) {
         var produtoData = response;
         console.log(response);
-        
+
         $('#valor').val(produtoData.retorno.produto.preco);
         $('#peso').val(produtoData.retorno.produto.peso_bruto);
 
@@ -268,7 +267,7 @@ Simulação de Frete
           $(function() {
     // Evento de clique no botão "Calcular frete"
     $('#calcularFrete').click(function() {
-      const url = "https://api-artearena.onrender.com/consultar-kangu";
+      const url = "http://artearena.kinghost.net:21008/consultar-kangu";
 
       const cepDestino = $('#cep').val();
       var peso_total = 0;
