@@ -41,10 +41,11 @@ class PermissaoController extends Controller
     // Criação da permissão no banco de dados
     $permissao = Permissao::create($validatedData);
 
-    return response()->json([
-        'message' => 'Permissão criada com sucesso!',
-        'permissao' => $permissao
-    ], 201);
+    $telas = tela::all();
+    $permissoes = Permissao::all();
+
+    return view('pages.permissao', compact('telas','permissoes'));
+
 }
 
 
@@ -74,8 +75,9 @@ class PermissaoController extends Controller
     {
         $permissao->delete();
 
-        return response()->json([
-            'message' => 'Permissão excluída com sucesso!'
-        ], 200);
+        $telas = tela::all();
+        $permissoes = Permissao::all();
+
+        return view('pages.permissao', compact('telas','permissoes'));
     }
 }
