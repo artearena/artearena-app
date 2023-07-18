@@ -18,8 +18,8 @@ Inicio
         <div class="col-md-6">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">Simulação de Frete</h5>
-                    <p class="card-text">Descrição da Simulação de Frete</p>
+                    <h5 class="card-title">Gerar Orçamentos</h5>
+                    <p class="card-text">Descrição de Gerar Orçamentos</p>
                     <a href="{{ route('frete') }}" class="btn btn-outline-warning">Acessar</a>
                 </div>
             </div>
