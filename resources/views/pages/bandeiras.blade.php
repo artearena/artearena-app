@@ -14,14 +14,20 @@ Calculadora de Bandeiras
           <label for="altura">Altura (cm):</label>
           <input type="text" class="form-control" id="altura" name="altura">
         </div>
+        <div>
+          <p>100 centímetros = 1 metro.</p>
+        </div>
       </div>
       <div class="col-md-6">
         <div class="form-group">
           <label for="largura">Largura (cm):</label>
           <input type="text" class="form-control" id="largura" name="largura">
         </div>
+        <div>
+          <p>100 centímetros = 1 metro</p>
+        </div>
       </div>
-    </div>
+    
 <br>
     <div class="text-center">
       <button type="button" class="btn btn-primary" onclick="calcular()">Calcular</button>

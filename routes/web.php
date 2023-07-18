@@ -19,7 +19,7 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/criar', [PedidoController::class, 'criarPedido'])->name('pedido.criar');
         Route::delete('/{id}', [PedidoController::class, 'excluirPedido'])->name('pedido.excluir');
     });
-    // testando só
+
     Route::group(['prefix' => 'pedido'], function () {
         Route::any('/', [PedidoController::class, 'artefinal'])->name('pedido');
         Route::put('/{id}', [PedidoController::class, 'update'])->name('pedido.update');
