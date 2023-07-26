@@ -20,6 +20,16 @@ class PedidoController extends Controller
 
         return view('pages.artefinal', compact('pedidos', 'designers', 'categoriasProduto', 'materiais'));
     }
+    public function artefinal2()
+    {
+        $pedidos = Pedido::all();
+        $designers = Usuario::where('permissoes', 2)->pluck('nome_usuario');
+        $categoriasProduto = CategoriaProduto::all(); // Buscar todas as categorias de produto
+        $materiais = Material::all();
+        $pedidos = Pedido::orderBy('id', 'desc')->get();
+
+        return view('pages.artefinal2', compact('pedidos', 'designers', 'categoriasProduto', 'materiais'));
+    }
     public function impressaoprovisorio()
     {
         $pedidos = Pedido::all();
@@ -54,11 +64,13 @@ class PedidoController extends Controller
     {
     $pedido = Pedido::find($id);
     $pedido->update($request->only([
+        'id',
         'data',
         'produto',
         'material',
         'medida_linear',
         'observacoes',
+        'dificuldade',
         'status',
         'designer',
         'tipo_pedido',
@@ -89,6 +101,10 @@ class PedidoController extends Controller
     {
         try {
             $pedido = new Pedido();
+            $id = $request->input('id');
+            if ($id !== null) {
+                $pedido->id = $id;
+            }
             $pedido->data = $request->input('data');
             $pedido->produto = $request->input('produto');
             $pedido->material = $request->input('material');
