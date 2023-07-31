@@ -95,7 +95,28 @@ Consulta de Pedidos
     td[data-color="red"], td[data-color="orange"], td[data-color="pink"], td[data-color="purple"], td[data-color="blue"] {
         color: white;
     }
+   
+    #tabela-pedidos thead th {
+        text-align: center;
+        vertical-align: middle;
+        background-color: black;
+        color: white;
+    }
 
+
+    /* Add borders to the table */
+    #tabela-pedidos {
+        border: 1px solid #ddd;
+    }
+    .dataTables_wrapper .dataTables_filter {
+        margin-bottom: 20px; /* Adjust the value as needed */
+    }
+    #tabela-pedidos thead th,
+    #tabela-pedidos tbody td {
+        border: 1px solid #ddd;
+        vertical-align: middle;
+        text-align: center;
+    }
     #tabela-pedidos input[type="text"],
     #tabela-pedidos input[type="number"],
     #tabela-pedidos select {
@@ -175,14 +196,14 @@ Consulta de Pedidos
                                 <div class="form-row">
                                     <label for="status">Status:</label>
                                     <select class="form-control" name="status" id="status">
-                                        <option value="Pendente">Pendente</option>
-                                        <option value="Em andamento">Em andamento</option>
-                                        <option value="Arte concluída">Arte concluída</option>
-                                        <option value="Em confirmação">Em confirmação</option>
-                                        <option value="Em espera">Em espera</option>
-                                        <option value="Cor teste">Cor teste</option>
-                                        <option value="Terceirizado">Terceirizado</option>
-                                        <option value="Análise pendente">Análise pendente</option>
+                                        <option value="Prensa / Calandra">Prensa / Calandra</option>
+                                        <option value="Checagem">Checagem</option>
+                                        <option value="Corte / Preparação">Corte / Preparação</option>
+                                        <option value="Prateleira / Pendente">Prateleira / Pendente</option>
+                                        <option value="Costura / Confecção">Costura / Confecção</option>
+                                        <option value="Conferencia Final">Conferencia Final</option>
+                                        <option value="Finalizado">Finalizado</option>
+                                        <option value="Reposição">Reposição</option>
                                     </select>
                                 </div>
                                 <div class="form-row">
@@ -257,18 +278,15 @@ Consulta de Pedidos
                                 </td>
 
                                 <td>
-                                    <select class='form-control' name='status'>
-                                        <option value="Pendente" {{ $pedido->status == 'Pendente' ? 'selected' : '' }}>Pendente</option>
-                                        <option value="Em andamento" {{ $pedido->status == 'Em andamento' ? 'selected' : '' }}>Em andamento</option>
-                                        <option value="Arte concluída" {{ $pedido->status == 'Arte concluída' ? 'selected' : '' }}>Arte concluída</option>
-                                        <option value="Em confirmação" {{ $pedido->status == 'Em confirmação' ? 'selected' : '' }}>Em confirmação</option>
-                                        <option value="Em espera" {{ $pedido->status == 'Em espera' ? 'selected' : '' }}>Em espera</option>
-                                        <option value="Cor teste" {{ $pedido->status == 'Cor teste' ? 'selected' : '' }}>Cor teste</option>
-                                        <option value="Terceirizado" {{ $pedido->status == 'Terceirizado' ? 'selected' : '' }}>Terceirizado</option>
-                                        <option value="Análise pendente" {{ $pedido->status == 'Análise pendente' ? 'selected' : '' }}>Análise pendente</option>
-                                        <option value="{{ $pedido->status }}" {{ !in_array($pedido->status, ['Pendente', 'Em andamento', 'Arte concluída', 'Em confirmação', 'Em espera', 'Cor teste', 'Terceirizado', 'Análise pendente']) ? 'selected' : '' }}>
-                                            {{ $pedido->status }}
-                                        </option>
+                                    <select class="form-control" name="status" id="status">
+                                        <option value="Prensa / Calandra" {{ $pedido->status == 'Prensa / Calandra' ? 'selected' : '' }}>Prensa / Calandra</option>
+                                        <option value="Checagem" {{ $pedido->status == 'Checagem' ? 'selected' : '' }}>Checagem</option>
+                                        <option value="Corte / Preparação" {{ $pedido->status == 'Corte / Preparação' ? 'selected' : '' }}>Corte / Preparação</option>
+                                        <option value="Prateleira / Pendente" {{ $pedido->status == 'Prateleira / Pendente' ? 'selected' : '' }}>Prateleira / Pendente</option>
+                                        <option value="Costura / Confecção" {{ $pedido->status == 'Costura / Confecção' ? 'selected' : '' }}>Costura / Confecção</option>
+                                        <option value="Conferencia Final" {{ $pedido->status == 'Conferencia Final' ? 'selected' : '' }}>Conferencia Final</option>
+                                        <option value="Finalizado" {{ $pedido->status == 'Finalizado' ? 'selected' : '' }}>Finalizado</option>
+                                        <option value="Reposição" {{ $pedido->status == 'Reposição' ? 'selected' : '' }}>Reposição</option>
                                     </select>
                                 </td>
                                 <td><input type='text' class='form-control' name='rolo' value="{{ $pedido->rolo }}"></td>
@@ -388,7 +406,7 @@ $(document).ready(function(){
             },
             {
                 "targets": [1],
-                "width": "70px"
+                "width": "80px"
             },
             {
                 "targets": [2],
@@ -558,7 +576,7 @@ $(document).ready(function(){
     if (field === 'data') {
         var dateParts = value.split('/');
         if (dateParts.length === 3) {
-            value = dateParts[2] + '-' + dateParts[0] + '-' + dateParts[1] + ' 00:00:00';
+            value = dateParts[2] + '-' + dateParts[1] + '-' + dateParts[0] + ' 00:00:00';
         } else {
             console.error('Formato de data inválido. Formato esperado: dd/mm/yyyy');
             return;
@@ -595,7 +613,7 @@ function reatribuirEventosChange() {
         if (field === 'data') {
             var dateParts = value.split('/');
             if (dateParts.length === 3) {
-                value = dateParts[2] + '-' + dateParts[0] + '-' + dateParts[1] + ' 00:00:00';
+                value = dateParts[2] + '-' + dateParts[1] + '-' + dateParts[0] + ' 00:00:00';
             } else {
                 console.error('Formato de data inválido. Formato esperado: dd/mm/yyyy');
                 return;
@@ -634,7 +652,9 @@ $('.mover-pedido').click(function () {
         // Abra o modal de confirmação
         $('#confirmMoverImpressaoModal').modal('show');
     });
-
+    $('#closeMoverImpressaoButton').click(function () {
+        $('#confirmMoverImpressaoModal').modal('hide');
+    });
     $('#cancelMoverImpressaoButton').click(function () {
         $('#confirmMoverImpressaoModal').modal('hide');
     });
@@ -726,26 +746,27 @@ $('.mover-pedido').click(function () {
 
         // Função para definir a cor de fundo do campo "Status"
         function setStatusColor(value, element) {
-            if (value === "Em andamento") {
+            if (value === "Prensa / Calandra") {
                 element.attr("data-color", "lightgreen");
-            } else if (value === "Pendente") {
+            } else if (value === "Checagem") {
                 element.attr("data-color", "yellow");
-            } else if (value === "Arte concluída") {
+            } else if (value === "Corte / Preparação") {
                 element.attr("data-color", "green");
-            } else if (value === "Em confirmação") {
+            } else if (value === "Prateleira / Pendente") {
                 element.attr("data-color", "orange");
-            } else if (value === "Em espera") {
+            } else if (value === "Costura / Confecção") {
                 element.attr("data-color", "yellow");
-            } else if (value === "Cor teste") {
+            } else if (value === "Conferencia Final") {
                 element.attr("data-color", "blue");
-            } else if (value === "Terceirizado") {
+            } else if (value === "Finalizado") {
                 element.attr("data-color", "purple");
-            } else if (value === "Análise pendente") {
+            } else if (value === "Reposição") {
                 element.attr("data-color", "pink");
             } else {
                 element.removeAttr("data-color");
             }
         }
+
          // Função para definir a cor de fundo do campo "Checagem Final"
          function setChecagemFinalColor(value, element) {
             if (value === "OK") {
@@ -813,8 +834,9 @@ $('.mover-pedido').click(function () {
         });
         // Inicialize o Datepicker para o campo de data
         $('.datepicker').datepicker({
-        dateFormat: 'dd/mm/yy',
-        onSelect: function (dateText, inst) {
+            dateFormat: 'dd/mm/yy',
+            language: 'pt-BR',
+            autoclose: true,        onSelect: function (dateText, inst) {
             // Quando uma data for selecionada no datepicker, atualizar o valor na célula da tabela
             let cell = table.cell($(this).closest('td'));
             cell.data(dateText).draw();

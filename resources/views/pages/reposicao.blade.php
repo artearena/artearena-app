@@ -95,7 +95,27 @@ Consulta de Pedidos
     td[data-color="red"], td[data-color="orange"], td[data-color="pink"], td[data-color="purple"], td[data-color="blue"] {
         color: white;
     }
+    #tabela-pedidos thead th {
+        text-align: center;
+        vertical-align: middle;
+        background-color: black;
+        color: white;
+    }
 
+
+    /* Add borders to the table */
+    #tabela-pedidos {
+        border: 1px solid #ddd;
+    }
+    .dataTables_wrapper .dataTables_filter {
+        margin-bottom: 20px; /* Adjust the value as needed */
+    }
+    #tabela-pedidos thead th,
+    #tabela-pedidos tbody td {
+        border: 1px solid #ddd;
+        vertical-align: middle;
+        text-align: center;
+    }
     #tabela-pedidos input[type="text"],
     #tabela-pedidos input[type="number"],
     #tabela-pedidos select {
@@ -176,13 +196,11 @@ Consulta de Pedidos
                                     <label for="status">Status:</label>
                                     <select class="form-control" name="status" id="status">
                                         <option value="Pendente">Pendente</option>
-                                        <option value="Em andamento">Em andamento</option>
-                                        <option value="Arte concluída">Arte concluída</option>
-                                        <option value="Em confirmação">Em confirmação</option>
-                                        <option value="Em espera">Em espera</option>
-                                        <option value="Cor teste">Cor teste</option>
-                                        <option value="Terceirizado">Terceirizado</option>
-                                        <option value="Análise pendente">Análise pendente</option>
+                                        <option value="Processando">Processando</option>
+                                        <option value="Renderizado">Renderizado</option>
+                                        <option value="Impresso">Impresso</option>
+                                        <option value="Em Impressão">Em Impressão</option>
+                                        <option value="Separação">Separação</option>
                                     </select>
                                 </div>
                                 <div class="form-row">
@@ -257,18 +275,13 @@ Consulta de Pedidos
                                 </td>
 
                                 <td>
-                                    <select class='form-control' name='status'>
+                                    <select class="form-control" name="status" id="status">
                                         <option value="Pendente" {{ $pedido->status == 'Pendente' ? 'selected' : '' }}>Pendente</option>
-                                        <option value="Em andamento" {{ $pedido->status == 'Em andamento' ? 'selected' : '' }}>Em andamento</option>
-                                        <option value="Arte concluída" {{ $pedido->status == 'Arte concluída' ? 'selected' : '' }}>Arte concluída</option>
-                                        <option value="Em confirmação" {{ $pedido->status == 'Em confirmação' ? 'selected' : '' }}>Em confirmação</option>
-                                        <option value="Em espera" {{ $pedido->status == 'Em espera' ? 'selected' : '' }}>Em espera</option>
-                                        <option value="Cor teste" {{ $pedido->status == 'Cor teste' ? 'selected' : '' }}>Cor teste</option>
-                                        <option value="Terceirizado" {{ $pedido->status == 'Terceirizado' ? 'selected' : '' }}>Terceirizado</option>
-                                        <option value="Análise pendente" {{ $pedido->status == 'Análise pendente' ? 'selected' : '' }}>Análise pendente</option>
-                                        <option value="{{ $pedido->status }}" {{ !in_array($pedido->status, ['Pendente', 'Em andamento', 'Arte concluída', 'Em confirmação', 'Em espera', 'Cor teste', 'Terceirizado', 'Análise pendente']) ? 'selected' : '' }}>
-                                            {{ $pedido->status }}
-                                        </option>
+                                        <option value="Processando" {{ $pedido->status == 'Processando' ? 'selected' : '' }}>Processando</option>
+                                        <option value="Renderizado" {{ $pedido->status == 'Renderizado' ? 'selected' : '' }}>Renderizado</option>
+                                        <option value="Impresso" {{ $pedido->status == 'Impresso' ? 'selected' : '' }}>Impresso</option>
+                                        <option value="Em Impressão" {{ $pedido->status == 'Em Impressão' ? 'selected' : '' }}>Em Impressão</option>
+                                        <option value="Separação" {{ $pedido->status == 'Separação' ? 'selected' : '' }}>Separação</option>
                                     </select>
                                 </td>
                                 <td><input type='text' class='form-control' name='rolo' value="{{ $pedido->rolo }}"></td>
@@ -383,13 +396,17 @@ $(document).ready(function(){
         "columnDefs": [
             // Definições das colunas, incluindo a função "render" para formatar a data
             {
-                "targets": [0, 4],
+                "targets": [0],
+                "width": "3px",
+            },
+            {
+                "targets": [4],
                 "width": "13px",
             },
             {
                 "targets": [1],
-                "width": "70px"
-            },
+                "width": "80px"
+            },  
             {
                 "targets": [2],
                 "width": "90px"
@@ -558,7 +575,7 @@ $(document).ready(function(){
     if (field === 'data') {
         var dateParts = value.split('/');
         if (dateParts.length === 3) {
-            value = dateParts[2] + '-' + dateParts[0] + '-' + dateParts[1] + ' 00:00:00';
+            value = dateParts[2] + '-' + dateParts[1] + '-' + dateParts[0] + ' 00:00:00';
         } else {
             console.error('Formato de data inválido. Formato esperado: dd/mm/yyyy');
             return;
@@ -595,7 +612,7 @@ function reatribuirEventosChange() {
         if (field === 'data') {
             var dateParts = value.split('/');
             if (dateParts.length === 3) {
-                value = dateParts[2] + '-' + dateParts[0] + '-' + dateParts[1] + ' 00:00:00';
+                value = dateParts[2] + '-' + dateParts[1] + '-' + dateParts[0] + ' 00:00:00';
             } else {
                 console.error('Formato de data inválido. Formato esperado: dd/mm/yyyy');
                 return;
@@ -634,7 +651,9 @@ $('.mover-pedido').click(function () {
         // Abra o modal de confirmação
         $('#confirmMoverImpressaoModal').modal('show');
     });
-
+    $('#closeMoverImpressaoButton').click(function () {
+        $('#confirmMoverImpressaoModal').modal('hide');
+    });
     $('#cancelMoverImpressaoButton').click(function () {
         $('#confirmMoverImpressaoModal').modal('hide');
     });
@@ -648,7 +667,7 @@ $('.mover-pedido').click(function () {
             url: "/pedido/mover/" + pedidoId,
             method: 'PUT',
             data: {
-                etapa: 'R', // Considerando 'R' como a etapa de "Reposição"
+                etapa: 'I', // Considerando 'R' como a etapa de "Reposição"
                 "_token": "{{ csrf_token() }}", // Adicione o token CSRF do Laravel para prevenir ataques CSRF
             },
             success: function(response) {
@@ -730,17 +749,15 @@ $('.mover-pedido').click(function () {
                 element.attr("data-color", "lightgreen");
             } else if (value === "Pendente") {
                 element.attr("data-color", "yellow");
-            } else if (value === "Arte concluída") {
-                element.attr("data-color", "green");
-            } else if (value === "Em confirmação") {
-                element.attr("data-color", "orange");
-            } else if (value === "Em espera") {
-                element.attr("data-color", "yellow");
-            } else if (value === "Cor teste") {
+            } else if (value === "Processando") {
                 element.attr("data-color", "blue");
-            } else if (value === "Terceirizado") {
+            } else if (value === "Renderizado") {
+                element.attr("data-color", "green");
+            } else if (value === "Impresso") {
                 element.attr("data-color", "purple");
-            } else if (value === "Análise pendente") {
+            } else if (value === "Em Impressão") {
+                element.attr("data-color", "orange");
+            } else if (value === "Separação") {
                 element.attr("data-color", "pink");
             } else {
                 element.removeAttr("data-color");
@@ -813,8 +830,9 @@ $('.mover-pedido').click(function () {
         });
         // Inicialize o Datepicker para o campo de data
         $('.datepicker').datepicker({
-        dateFormat: 'dd/mm/yy',
-        onSelect: function (dateText, inst) {
+            dateFormat: 'dd/mm/yy',
+            language: 'pt-BR',
+            autoclose: true,        onSelect: function (dateText, inst) {
             // Quando uma data for selecionada no datepicker, atualizar o valor na célula da tabela
             let cell = table.cell($(this).closest('td'));
             cell.data(dateText).draw();

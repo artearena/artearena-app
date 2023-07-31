@@ -26,7 +26,6 @@ class PedidoController extends Controller
         $designers = Usuario::where('permissoes', 2)->pluck('nome_usuario');
         $categoriasProduto = CategoriaProduto::all(); // Buscar todas as categorias de produto
         $materiais = Material::all();
-        $pedidos = Pedido::orderBy('id', 'desc')->get();
 
         return view('pages.artefinal2', compact('pedidos', 'designers', 'categoriasProduto', 'materiais'));
     }
@@ -36,7 +35,6 @@ class PedidoController extends Controller
         $designers = Usuario::where('permissoes', 2)->pluck('nome_usuario');
         $categoriasProduto = CategoriaProduto::all(); // Buscar todas as categorias de produto
         $materiais = Material::all();
-        $pedidos = Pedido::orderBy('id', 'desc')->get();
 
         return view('pages.impressao', compact('pedidos', 'categoriasProduto', 'materiais'));
     }
@@ -46,7 +44,6 @@ class PedidoController extends Controller
         $designers = Usuario::where('permissoes', 2)->pluck('nome_usuario');
         $categoriasProduto = CategoriaProduto::all(); // Buscar todas as categorias de produto
         $materiais = Material::all();
-        $pedidos = Pedido::orderBy('id', 'desc')->get();
 
         return view('pages.reposicao', compact('pedidos' , 'categoriasProduto', 'materiais'));
     }
@@ -56,7 +53,6 @@ class PedidoController extends Controller
         $designers = Usuario::where('permissoes', 2)->pluck('nome_usuario');
         $categoriasProduto = CategoriaProduto::all(); // Buscar todas as categorias de produto
         $materiais = Material::all();
-        $pedidos = Pedido::orderBy('id', 'desc')->get();
 
         return view('pages.confeccao', compact('pedidos', 'designers', 'categoriasProduto', 'materiais'));
     }
@@ -97,6 +93,7 @@ class PedidoController extends Controller
         // Retornar uma resposta de sucesso
         return response()->json(['message' => 'Pedido movido com sucesso']);
     }
+    
     public function criarPedido(Request $request)
     {
         try {

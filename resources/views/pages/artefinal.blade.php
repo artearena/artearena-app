@@ -64,38 +64,59 @@ Consulta de Pedidos
     }
     /* Estilização para os campos com cores */
     td[data-color="red"] {
-        background-color: #FF0000; /* Vermelho */
+        background-color: #ff0000; /* Vermelho */
     }
 
     td[data-color="yellow"] {
-        background-color: #FFFF00; /* Amarelo */
+        background-color: #ffff00; /* Amarelo */
     }
 
     td[data-color="green"] {
-        background-color: #00FF00; /* Verde */
+        background-color: #7DD100; /* Verde */
     }
 
     td[data-color="lightgreen"] {
-        background-color: #ADFF2F; /* Verde claro */
+        background-color: #BDFF43; /* Verde claro */
     }
 
     td[data-color="orange"] {
-        background-color: #FFA500; /* Laranja */
+        background-color: #FF8C00; /* Laranja */
     }
     td[data-color="pink"] {
-        background-color: #FFC0CB; /* rosa */
+        background-color: #F49BF4; /* rosa */
     }
     td[data-color="purple"] {
-        background-color: #800080; /* roxo */
+        background-color: #8B008B; /* roxo */
     }
     td[data-color="blue"] {
-        background-color: #0000FF; /* azul */
+        background-color: #007FFF; /* azul */
     }
     /* Definindo cores de texto para os campos */
     td[data-color="red"], td[data-color="orange"], td[data-color="pink"], td[data-color="purple"], td[data-color="blue"] {
         color: white;
     }
+   
+    #tabela-pedidos thead th {
+        text-align: center;
+        vertical-align: middle;
+        background-color: black;
+        color: white;
+    }
 
+
+    /* Add borders to the table */
+    #tabela-pedidos {
+        border: 1px solid #ddd;
+    }
+    .dataTables_wrapper .dataTables_filter {
+        margin-bottom: 20px; /* Adjust the value as needed */
+    }
+    #tabela-pedidos thead th,
+    #tabela-pedidos tbody td {
+        border: 1px solid #ddd;
+        vertical-align: middle;
+        text-align: center;
+    }
     #tabela-pedidos input[type="text"],
     #tabela-pedidos input[type="number"],
     #tabela-pedidos select {
@@ -447,508 +468,524 @@ $.ajaxSetup({
 });
 
 
-$(document).ready(function(){
-    configurarTabela();
-    atualizarQuantidadeRegistros();
-    updateColors(); // Função para atualizar as cores de fundo dos campos
-    reatribuirEventosChange(); // Função para reatribuir o evento "change" após a paginação ou ordenação
-    reatribuirEventosExcluir(); 
-    
-    function configurarTabela() {
-    let table = $('#tabela-pedidos').DataTable({
-        fixedHeader: true,
-        "lengthMenu": [[10, 25, 50, 100, 200], [10, 25, 50, 100, 200]],
-        "pageLength": 200,
-        "columnDefs": [
-            // Definições das colunas, incluindo a função "render" para formatar a data
-            {
-                "targets": [0, 4],
-                "width": "13px",
-            },
-            {
-                "targets": [1],
-                "width": "70px"
-            },
-            {
-                "targets": [2],
-                "width": "90px"
-            },
-            {
-                "targets": [7],
-                "width": "120px"
-            },
-            {
-                "targets": [9],
-                "width": "100px"
-            },
-            {
-                "targets": [1],
-                "type": "date-br",
-                "render": function(data, type, row) {
-                    if (type === "sort" || type === "type") {
-                        return row[1].replace(/(\d{2})\/(\d{2})\/(\d{4})/, "$3-$2-$1");
-                    }
-                    return data;
-                }
-            },
-            {
-                "targets": [11], "visible": false
-            }
-            
-            // Adicione mais definições de colunas conforme necessário
-        ],
-        "language": {
-            "sEmptyTable": "Nenhum registro encontrado",
-            "sInfo": "Mostrando de _START_ até _END_ de _TOTAL_ registros",
-            "sInfoEmpty": "Mostrando 0 até 0 de 0 registros",
-            "sInfoFiltered": "(Filtrados de _MAX_ registros)",
-            "sInfoPostFix": "",
-            "sInfoThousands": ".",
-            "sLengthMenu": "Mostrar _MENU_ resultados por página",
-            "sLoadingRecords": "Carregando...",
-            "sProcessing": "Processando...",
-            "sZeroRecords": "Nenhum registro encontrado",
-            "sSearch": "Pesquisar",
-            "oPaginate": {
-                "sNext": "Próximo",
-                "sPrevious": "Anterior",
-                "sFirst": "Primeiro",
-                "sLast": "Último"
-            },
-            "oAria": {
-                "sSortAscending": ": Ordenar colunas de forma ascendente",
-                "sSortDescending": ": Ordenar colunas de forma descendente"
-            },
-            "select": {
-                "rows": {
-                    "_": "%d linhas selecionadas",
-                    "0": "Nenhuma linha selecionada",
-                    "1": "1 linha selecionada"
-                }
-            }
-        },
-        "infoCallback": function(settings, start, end, max, total, pre) {
-            return '<span style="font-size: 1.2em; font-weight: bold;">Quantidade: ' + total + ' registros</span>';
-        },
-        "ordering": true
-    });
-
-    $('#tabela-pedidos tbody').on('mouseenter', 'td.expandir-observacoes', function() {
-        var inputField = $(this).find('.observacoes-field');
-        var fullText = inputField.val();
-        inputField.attr('title', fullText);
-    });
-
-    // Restante do código para configurar a tabela
-    // ...
-}
-
-    // Função para cadastrar um novo pedido
-    $('#cadastrarPedido').click(function(e) {
-        e.preventDefault(); // Evita o comportamento padrão do formulário
-        
-        // Obtenha os valores dos campos do formulário
-        var id = $('#id').val();
-        var data = $('#data').val();
-        var produto = $('#produto').val();
-        var material = $('#material').val();
-        var medida_linear = $('#medida_linear').val();
-        var observacoes = $('#observacoes').val();
-        var status = $('#status').val();
-        var designer = $('#designer').val();
-        var tipo_pedido = $('#tipo_pedido').val();
-        var checagem_final = $('#checagem_final').val();
-        var tiny = $('#tiny').val();
-        var etapa = 'A';
-
-
-        // Enviar a requisição AJAX para salvar o pedido
-        $.ajax({
-            url: '/pedido/criar', // Atualize o URL para '/pedido/criar'
-            method: 'POST',
-            data: {
-                id: id,
-                data: data,
-                produto: produto,
-                material: material,
-                medida_linear: medida_linear,
-                observacoes: observacoes,
-                status: status,
-                designer: designer,
-                tipo_pedido: tipo_pedido,
-                checagem_final: checagem_final,
-                tiny: tiny,
-                etapa: etapa,
-                "_token": "{{ csrf_token() }}" // Adicione o token CSRF do Laravel para prevenir ataques CSRF
-            },
-            success: function(response) {
-                console.log(response.message);
-                
-                var newRow = '<tr>';
-                newRow += '<td>' + response.pedido.id + '</td>';
-                newRow += '<td>' + response.pedido.data + '</td>';
-                newRow += '<td>' + response.pedido.produto + '</td>';
-                newRow += '<td>' + response.pedido.material + '</td>';
-                newRow += '<td>' + response.pedido.medida_linear + '</td>';
-                newRow += '<td>' + response.pedido.observacoes + '</td>';
-                newRow += '<td>' + response.pedido.status + '</td>';
-                newRow += '<td>' + response.pedido.designer + '</td>';
-                newRow += '<td>' + response.pedido.tipo_pedido + '</td>';
-                newRow += '<td>' + response.pedido.checagem_final + '</td>';
-                newRow += '<td>' + response.pedido.tiny + '</td>';
-                newRow += '</tr>';
-                
-                // Insira a nova linha na tabela
-                $('tbody').prepend(newRow);
-                $('#tabela-pedidos').load(location.href + ' #tabela-pedidos');
-
-            },
-             error: function(xhr, status, error) {
-                // Tratamento de erro: exibir pop-up com a mensagem de erro filtrada
-                var errorMessage = "Erro ao criar pedido: ";
-                if (xhr.responseJSON && xhr.responseJSON.message) {
-                    errorMessage += filtrarMensagemErro(xhr.responseJSON.message);
-                } else {
-                    errorMessage += "Ocorreu um erro inesperado.";
-                }
-                alert(errorMessage);
-            }
-        });
-
-    });
-    // Estilize o campo form-control com jQuery
-    $(".form-control").css({
-            "font-size": "15px",
-            "text-align": "center"
-    });
-    function filtrarMensagemErro(message) {
-        // Exemplo: verificar se a mensagem contém um erro de id duplicado
-        if (message.includes("Duplicate entry")) {
-            return "O ID fornecido já existe. Por favor, forneça um ID diferente.";
-        }
-
-        // Se nenhum filtro corresponder, retorne a mensagem original
-        return message;
-    }
-    $('#tabela-pedidos').on('draw.dt', function() {
+    $(document).ready(function(){
+        configurarTabela();
+        atualizarQuantidadeRegistros();
         updateColors(); // Função para atualizar as cores de fundo dos campos
         reatribuirEventosChange(); // Função para reatribuir o evento "change" após a paginação ou ordenação
-        reatribuirEventosExcluir(); // Função para reatribuir o evento de exclusão após a paginação ou ordenação
-    });
+        reatribuirEventosExcluir(); 
+        
+        function configurarTabela() {
+        let table = $('#tabela-pedidos').DataTable({
+            fixedHeader: true,
+            "lengthMenu": [[10, 25, 50, 100, 200], [10, 25, 50, 100, 200]],
+            "pageLength": 200,
+            "columnDefs": [
+                // Definições das colunas, incluindo a função "render" para formatar a data
+                
+                {
+                    "targets": [0],
+                    "width": "3px",
+                },
+                {
+                    "targets": [4],
+                    "width": "13px",
+                },
+                {
+                    "targets": [1],
+                    "width": "80px"
+                },
+                {
+                    "targets": [2],
+                    "width": "90px"
+                },
 
+                {
+                    "targets": [7],
+                    "width": "120px"
+                },
+                {
+                    "targets": [9],
+                    "width": "100px"
+                },
+                {
+                    "targets": [1],
+                    "type": "date-br",
+                    "render": function(data, type, row) {
+                        if (type === "sort" || type === "type") {
+                            return row[1].replace(/(\d{2})\/(\d{2})\/(\d{4})/, "$3-$2-$1");
+                        }
+                        return data;
+                    }
+                },
+                {
+                    "targets": [11], "visible": false
+                },
+                {
+                    "targets": [10], "visible": false
+                },
+                {
+                    "targets": [9], "visible": false
+                }
+                // Adicione mais definições de colunas conforme necessário
+            ],
+            "language": {
+                "sEmptyTable": "Nenhum registro encontrado",
+                "sInfo": "Mostrando de _START_ até _END_ de _TOTAL_ registros",
+                "sInfoEmpty": "Mostrando 0 até 0 de 0 registros",
+                "sInfoFiltered": "(Filtrados de _MAX_ registros)",
+                "sInfoPostFix": "",
+                "sInfoThousands": ".",
+                "sLengthMenu": "Mostrar _MENU_ resultados por página",
+                "sLoadingRecords": "Carregando...",
+                "sProcessing": "Processando...",
+                "sZeroRecords": "Nenhum registro encontrado",
+                "sSearch": "Pesquisar",
+                "oPaginate": {
+                    "sNext": "Próximo",
+                    "sPrevious": "Anterior",
+                    "sFirst": "Primeiro",
+                    "sLast": "Último"
+                },
+                "oAria": {
+                    "sSortAscending": ": Ordenar colunas de forma ascendente",
+                    "sSortDescending": ": Ordenar colunas de forma descendente"
+                },
+                "select": {
+                    "rows": {
+                        "_": "%d linhas selecionadas",
+                        "0": "Nenhuma linha selecionada",
+                        "1": "1 linha selecionada"
+                    }
+                }
+            },
+            "infoCallback": function(settings, start, end, max, total, pre) {
+                return '<span style="font-size: 1.2em; font-weight: bold;">Quantidade: ' + total + ' registros</span>';
+            },
+            "ordering": true
+        });
 
+        $('#tabela-pedidos tbody').on('mouseenter', 'td.expandir-observacoes', function() {
+            var inputField = $(this).find('.observacoes-field');
+            var fullText = inputField.val();
+            inputField.attr('title', fullText);
+        });
 
-    $('.table input, .table select').change(function() {
-    var id = $(this).closest('td').siblings(':first-child').text();
-    var field = $(this).attr('name');
-    var value = $(this).val();
-    console.log(id);
-    console.log(field);
-    console.log(value);
-
-    // Verifica se o campo é uma data e converte para o formato correto (YYYY-MM-DD HH:mm:ss)
-    if (field === 'data') {
-        var dateParts = value.split('/');
-        if (dateParts.length === 3) {
-            value = dateParts[2] + '-' + dateParts[0] + '-' + dateParts[1] + ' 00:00:00';
-        } else {
-            console.error('Formato de data inválido. Formato esperado: dd/mm/yyyy');
-            return;
-        }
+        // Restante do código para configurar a tabela
+        // ...
     }
-    console.log(value);
 
-    $.ajax({
-        url: '/pedido/' + id, // Atualize o URL para '/pedido/{id}'
-        method: 'PUT',
-        data: {
-            [field]: value,
-            "_token": "{{ csrf_token() }}", // Adicione o token CSRF do Laravel para prevenir ataques CSRF
-        },
-        success: function(response) {
-            console.log(response.message);
-        },
-        error: function(xhr, status, error) {
-            console.error(error); // Log any errors that occur during the AJAX request.
+        // Função para cadastrar um novo pedido
+        $('#cadastrarPedido').click(function(e) {
+            e.preventDefault(); // Evita o comportamento padrão do formulário
+            
+            // Obtenha os valores dos campos do formulário
+            var id = $('#id').val();
+            var data = $('#data').val();
+            var produto = $('#produto').val();
+            var material = $('#material').val();
+            var medida_linear = $('#medida_linear').val();
+            var observacoes = $('#observacoes').val();
+            var status = $('#status').val();
+            var designer = $('#designer').val();
+            var tipo_pedido = $('#tipo_pedido').val();
+            var checagem_final = $('#checagem_final').val();
+            var tiny = $('#tiny').val();
+            var etapa = 'A';
+
+
+            // Enviar a requisição AJAX para salvar o pedido
+            $.ajax({
+                url: '/pedido/criar', // Atualize o URL para '/pedido/criar'
+                method: 'POST',
+                data: {
+                    id: id,
+                    data: data,
+                    produto: produto,
+                    material: material,
+                    medida_linear: medida_linear,
+                    observacoes: observacoes,
+                    status: status,
+                    designer: designer,
+                    tipo_pedido: tipo_pedido,
+                    checagem_final: checagem_final,
+                    tiny: tiny,
+                    etapa: etapa,
+                    "_token": "{{ csrf_token() }}" // Adicione o token CSRF do Laravel para prevenir ataques CSRF
+                },
+                success: function(response) {
+                    console.log(response.message);
+                    
+                    var newRow = '<tr>';
+                    newRow += '<td>' + response.pedido.id + '</td>';
+                    newRow += '<td>' + response.pedido.data + '</td>';
+                    newRow += '<td>' + response.pedido.produto + '</td>';
+                    newRow += '<td>' + response.pedido.material + '</td>';
+                    newRow += '<td>' + response.pedido.medida_linear + '</td>';
+                    newRow += '<td>' + response.pedido.observacoes + '</td>';
+                    newRow += '<td>' + response.pedido.status + '</td>';
+                    newRow += '<td>' + response.pedido.designer + '</td>';
+                    newRow += '<td>' + response.pedido.tipo_pedido + '</td>';
+                    newRow += '<td>' + response.pedido.checagem_final + '</td>';
+                    newRow += '<td>' + response.pedido.tiny + '</td>';
+                    newRow += '</tr>';
+                    
+                    // Insira a nova linha na tabela
+                    $('tbody').prepend(newRow);
+                    $('#tabela-pedidos').load(location.href + ' #tabela-pedidos');
+
+                },
+                error: function(xhr, status, error) {
+                    // Tratamento de erro: exibir pop-up com a mensagem de erro filtrada
+                    var errorMessage = "Erro ao criar pedido: ";
+                    if (xhr.responseJSON && xhr.responseJSON.message) {
+                        errorMessage += filtrarMensagemErro(xhr.responseJSON.message);
+                    } else {
+                        errorMessage += "Ocorreu um erro inesperado.";
+                    }
+                    alert(errorMessage);
+                }
+            });
+
+        });
+        // Estilize o campo form-control com jQuery
+        $(".form-control").css({
+                "font-size": "15px",
+                "text-align": "center"
+        });
+        function filtrarMensagemErro(message) {
+            // Exemplo: verificar se a mensagem contém um erro de id duplicado
+            if (message.includes("Duplicate entry")) {
+                return "O ID fornecido já existe. Por favor, forneça um ID diferente.";
+            }
+
+            // Se nenhum filtro corresponder, retorne a mensagem original
+            return message;
         }
-    });
-});
+        $('#tabela-pedidos').on('draw.dt', function() {
+            updateColors(); // Função para atualizar as cores de fundo dos campos
+            reatribuirEventosChange(); // Função para reatribuir o evento "change" após a paginação ou ordenação
+            reatribuirEventosExcluir(); // Função para reatribuir o evento de exclusão após a paginação ou ordenação
+        });
 
-function reatribuirEventosChange() {
-    $('#tabela-pedidos').off('change', '.table input, .table select'); // Remover eventos "change" anteriores
-    $('#tabela-pedidos').on('change', '.table input, .table select', function() {
-        var id = $(this).closest('tr').find('td:first-child').text();
+
+
+        $('.table input, .table select').change(function() {
+        var id = $(this).closest('td').siblings(':first-child').text();
         var field = $(this).attr('name');
         var value = $(this).val();
-        var $this = $(this); // Salvar a referência do this aqui
+        console.log(id);
+        console.log(field);
         console.log(value);
-        
-        // Verifica se o campo é uma data e converte para o formato correto (yyyy-mm-dd HH:mm:ss)
+
+        // Verifica se o campo é uma data e converte para o formato correto (YYYY-MM-DD HH:mm:ss)
         if (field === 'data') {
             var dateParts = value.split('/');
             if (dateParts.length === 3) {
-                value = dateParts[2] + '-' + dateParts[0] + '-' + dateParts[1] + ' 00:00:00';
+                value = dateParts[2] + '-' + dateParts[1] + '-' + dateParts[0] + ' 00:00:00';
             } else {
                 console.error('Formato de data inválido. Formato esperado: dd/mm/yyyy');
                 return;
             }
         }
+        console.log(value);
 
         $.ajax({
-            url: '/pedido/' + id,
+            url: '/pedido/' + id, // Atualize o URL para '/pedido/{id}'
             method: 'PUT',
             data: {
                 [field]: value,
-                "_token": "{{ csrf_token() }}",
+                "_token": "{{ csrf_token() }}", // Adicione o token CSRF do Laravel para prevenir ataques CSRF
             },
             success: function(response) {
                 console.log(response.message);
-
-                // Atualize os dados na tabela após a requisição bem-sucedida
-                var table = $('#tabela-pedidos').DataTable();
-                var row = table.row($this.closest('tr')); // Usar a referência $this aqui
-                row.data(response.pedido);
-                row.draw();
             },
             error: function(xhr, status, error) {
                 console.error(error); // Log any errors that occur during the AJAX request.
             }
         });
     });
-}
 
-$('.mover-pedido').click(function () {
-        var pedidoId = $(this).attr('data-id');
-
-        // Defina o valor do atributo "data-id" no botão de confirmação para o id do pedido
-        $('#confirmMoverImpressaoButton').attr('data-id', pedidoId);
-
-        // Abra o modal de confirmação
-        $('#confirmMoverImpressaoModal').modal('show');
-    });
-
-    $('#cancelMoverImpressaoButton').click(function () {
-        $('#confirmMoverImpressaoModal').modal('hide');
-    });
-
-    // Script para processar a movimentação do pedido após a confirmação
-    $('#confirmMoverImpressaoButton').click(function () {
-        var pedidoId = $(this).attr('data-id');
-
-        // Enviar a requisição AJAX para mover o pedido para a etapa de "Impressão"
-        $.ajax({
-            url: "/pedido/mover/" + pedidoId,
-            method: 'PUT',
-            data: {
-                etapa: 'I', // Considerando 'I' como a etapa de "Impressão"
-                "_token": "{{ csrf_token() }}", // Adicione o token CSRF do Laravel para prevenir ataques CSRF
-            },
-            success: function(response) {
-                console.log(response.message);
-
-                var table = $('#tabela-pedidos').DataTable();
-                var row = table.row($('tr[data-id="' + pedidoId + '"]'));
-
-                // Remova a linha da tabela após o movimento bem-sucedido
-                row.remove().draw(false);
-
-                // Feche o modal após a confirmação
-                $('#confirmMoverImpressaoModal').modal('hide');
-            },
-            error: function (xhr, status, error) {
-                console.error(error); // Log any errors that occur during the AJAX request.
+    function reatribuirEventosChange() {
+        $('#tabela-pedidos').off('change', '.table input, .table select'); // Remover eventos "change" anteriores
+        $('#tabela-pedidos').on('change', '.table input, .table select', function() {
+            var id = $(this).closest('tr').find('td:first-child').text();
+            var field = $(this).attr('name');
+            var value = $(this).val();
+            var $this = $(this); // Salvar a referência do this aqui
+            console.log(value);
+            
+            // Verifica se o campo é uma data e converte para o formato correto (yyyy-mm-dd HH:mm:ss)
+            if (field === 'data') {
+                var dateParts = value.split('/');
+                if (dateParts.length === 3) {
+                    value = dateParts[2] + '-' + dateParts[1] + '-' + dateParts[0] + ' 00:00:00';
+                } else {
+                    console.error('Formato de data inválido. Formato esperado: dd/mm/yyyy');
+                    return;
+                }
             }
-        });
-    });
 
-
-        $('#cancelExcluirButton').click(function () {
-             $('#confirmDeleteModal').modal('hide');
-         });
-         $('#closeExcluirButton').click(function () {
-             $('#confirmDeleteModal').modal('hide');
-         });
-
-        // Vincule um evento de clique ao botão "Excluir" para abrir o modal de confirmação
-        $('.excluir-pedido').click(function() {
-            var pedidoId = $(this).closest('td').siblings(':first-child').text();
-            var row = $(this).closest('tr'); // Obter a linha da tabela
-
-            // Defina o valor do atributo "data-id" no botão de confirmação para o id do pedido
-            $('#confirmDeleteButton').attr('data-id', pedidoId);
-
-            // Abra o modal de confirmação
-            $('#confirmDeleteModal').modal('show');
-        });
-
-        // Vincule um evento de clique ao botão "Confirmar" do modal de confirmação
-        function reatribuirEventosExcluir() {
-        $('.excluir-pedido').off('click').on('click', function() {
-            var pedidoId = $(this).closest('td').siblings(':first-child').text();
-            var row = $(this).closest('tr'); // Obter a linha da tabela
-
-            // Defina o valor do atributo "data-id" no botão de confirmação para o id do pedido
-            $('#confirmDeleteButton').attr('data-id', pedidoId);
-
-            // Abra o modal de confirmação
-            $('#confirmDeleteModal').modal('show');
-        });
-
-        // Vincule um evento de clique ao botão "Confirmar" do modal de confirmação
-        $('#confirmDeleteButton').off('click').on('click', function() {
-            var pedidoId = $(this).attr('data-id');
-            var row = $('tr[data-id="' + pedidoId + '"]');
-
-            // Enviar a requisição AJAX para excluir o pedido
             $.ajax({
-                url: "/pedido/" + pedidoId,
-                method: 'DELETE',
+                url: '/pedido/' + id,
+                method: 'PUT',
                 data: {
+                    [field]: value,
                     "_token": "{{ csrf_token() }}",
                 },
                 success: function(response) {
-                    row.remove();
-                    console.log('Excluído com sucesso');
-                    // Feche o modal após a exclusão
-                    $('#confirmDeleteModal').modal('hide');
+                    console.log(response.message);
+
+                    // Atualize os dados na tabela após a requisição bem-sucedida
+                    var table = $('#tabela-pedidos').DataTable();
+                    var row = table.row($this.closest('tr')); // Usar a referência $this aqui
+                    row.data(response.pedido);
+                    row.draw();
+                },
+                error: function(xhr, status, error) {
+                    console.error(error); // Log any errors that occur during the AJAX request.
                 }
             });
         });
     }
-        function setDificuldadeColor(value, element) {
-            if (value === "Muito fácil") {
-                element.attr("data-color", "green");
-            } else if (value === "Fácil") {
-                element.attr("data-color", "lightgreen");
-            } else if (value === "Médio") {
-                element.attr("data-color", "yellow");
-            } else if (value === "Difícil") {
-                element.attr("data-color", "orange");
-            } else if (value === "Muito difícil") {
-                element.attr("data-color", "red");
-            } else {
-                element.removeAttr("data-color");
-            }
-        }
-        // Função para definir a cor de fundo do campo "Status"
-        function setStatusColor(value, element) {
-            if (value === "Em andamento") {
-                element.attr("data-color", "lightgreen");
-            } else if (value === "Pendente") {
-                element.attr("data-color", "yellow");
-            } else if (value === "Arte concluída") {
-                element.attr("data-color", "green");
-            } else if (value === "Em confirmação") {
-                element.attr("data-color", "orange");
-            } else if (value === "Em espera") {
-                element.attr("data-color", "yellow");
-            } else if (value === "Cor teste") {
-                element.attr("data-color", "blue");
-            } else if (value === "Terceirizado") {
-                element.attr("data-color", "purple");
-            } else if (value === "Análise pendente") {
-                element.attr("data-color", "pink");
-            } else {
-                element.removeAttr("data-color");
-            }
-        }
-         // Função para definir a cor de fundo do campo "Checagem Final"
-         function setChecagemFinalColor(value, element) {
-            if (value === "OK") {
-                element.attr("data-color", "green");
-            } else if (value === "Ajustado") {
-                element.attr("data-color", "lightgreen");
-            } else if (value === "Erro") {
-                element.attr("data-color", "red");
-            } else if (value === "Pendente") {
-                element.attr("data-color", "yellow");
-            } else {
-                element.removeAttr("data-color");
-            }
-        }
-        function setDataColor(value, element) {
-            var today = new Date();
-            
-            // Converta a string de data (dd/mm/yyyy) para um objeto Date reconhecível
-            var dateParts = value.split("/");
-            var data = new Date(dateParts[2], dateParts[1] - 1, dateParts[0]);
-            
-            var diffInDays = Math.floor((data - today) / (1000 * 60 * 60 * 24));
 
-            if (isNaN(data.getTime())) {
-                // Se a data for inválida, defina a cor como verde
-                element.attr("data-color", "green");
-            } else if (diffInDays <= 0) {
-                // Se a data for igual ou posterior ao dia atual, a cor será vermelha
-                element.attr("data-color", "red");
-            } else if (diffInDays <= 3) {
-                // Se estiver dentro dos três dias futuros a partir do dia atual, a cor será amarela
-                element.attr("data-color", "yellow");
-            } else {
-                // Caso contrário, a cor será verde
-                element.attr("data-color", "green");
-            }
-        }
+    $('.mover-pedido').click(function () {
+            var pedidoId = $(this).attr('data-id');
 
-        function setTipoPedidoColor(value, element) {
-            if (value === "Prazo normal") {
-                element.attr("data-color", "blue");
-            } else if (value === "Antecipação") {
-                element.attr("data-color", "purple");
-            } else if (value === "Faturado") {
-                element.attr("data-color", "green");
-            } else if (value === "Metade/Metade") {
-                element.attr("data-color", "orange");
-            } else if (value === "Amostra") {
-                element.attr("data-color", "pink");
-            } else {
-                element.removeAttr("data-color");
-            }
-        }
-        // Função para atualizar as cores de fundo dos campos
-        function updateColors() {
-            $("#tabela-pedidos tbody tr").each(function() {
-                var dificuldade = $(this).find("select[name='dificuldade']").val();
-                var status = $(this).find("select[name='status']").val();
-                var checagemFinal = $(this).find("select[name='checagem_final']").val();
-                var data = $(this).find("input[name='data']").val();
-                var tipoPedido = $(this).find("select[name='tipo_pedido']").val(); // Adicione essa linha
+            // Defina o valor do atributo "data-id" no botão de confirmação para o id do pedido
+            $('#confirmMoverImpressaoButton').attr('data-id', pedidoId);
 
-                setDificuldadeColor(dificuldade, $(this).find("td:nth-child(7)"));
-                setStatusColor(status, $(this).find("td:nth-child(8)"));
-                setChecagemFinalColor(checagemFinal, $(this).find("td:nth-child(11)"));
-                setDataColor(data, $(this).find("td:nth-child(2)"));
-                setTipoPedidoColor(tipoPedido, $(this).find("td:nth-child(10)")); // Adicione essa linha
+            // Abra o modal de confirmação
+            $('#confirmMoverImpressaoModal').modal('show');
+        });
 
+        $('#closeMoverImpressaoButton').click(function () {
+            $('#confirmMoverImpressaoModal').modal('hide');
+        });
+        $('#cancelMoverImpressaoButton').click(function () {
+            $('#confirmMoverImpressaoModal').modal('hide');
+        });
+
+        // Script para processar a movimentação do pedido após a confirmação
+        $('#confirmMoverImpressaoButton').click(function () {
+            var pedidoId = $(this).attr('data-id');
+
+            // Enviar a requisição AJAX para mover o pedido para a etapa de "Impressão"
+            $.ajax({
+                url: "/pedido/mover/" + pedidoId,
+                method: 'PUT',
+                data: {
+                    etapa: 'I', // Considerando 'I' como a etapa de "Impressão"
+                    "_token": "{{ csrf_token() }}", // Adicione o token CSRF do Laravel para prevenir ataques CSRF
+                },
+                success: function(response) {
+                    console.log(response.message);
+
+                    var table = $('#tabela-pedidos').DataTable();
+                    var row = table.row($('tr[data-id="' + pedidoId + '"]'));
+
+                    // Remova a linha da tabela após o movimento bem-sucedido
+                    row.remove().draw(false);
+
+                    // Feche o modal após a confirmação
+                    $('#confirmMoverImpressaoModal').modal('hide');
+                },
+                error: function (xhr, status, error) {
+                    console.error(error); // Log any errors that occur during the AJAX request.
+                }
+            });
+        });
+
+
+            $('#cancelExcluirButton').click(function () {
+                $('#confirmDeleteModal').modal('hide');
+            });
+            $('#closeExcluirButton').click(function () {
+                $('#confirmDeleteModal').modal('hide');
+            });
+
+            // Vincule um evento de clique ao botão "Excluir" para abrir o modal de confirmação
+            $('.excluir-pedido').click(function() {
+                var pedidoId = $(this).closest('td').siblings(':first-child').text();
+                var row = $(this).closest('tr'); // Obter a linha da tabela
+
+                // Defina o valor do atributo "data-id" no botão de confirmação para o id do pedido
+                $('#confirmDeleteButton').attr('data-id', pedidoId);
+
+                // Abra o modal de confirmação
+                $('#confirmDeleteModal').modal('show');
+            });
+
+            // Vincule um evento de clique ao botão "Confirmar" do modal de confirmação
+            function reatribuirEventosExcluir() {
+            $('.excluir-pedido').off('click').on('click', function() {
+                var pedidoId = $(this).closest('td').siblings(':first-child').text();
+                var row = $(this).closest('tr'); // Obter a linha da tabela
+
+                // Defina o valor do atributo "data-id" no botão de confirmação para o id do pedido
+                $('#confirmDeleteButton').attr('data-id', pedidoId);
+
+                // Abra o modal de confirmação
+                $('#confirmDeleteModal').modal('show');
+            });
+
+            // Vincule um evento de clique ao botão "Confirmar" do modal de confirmação
+            $('#confirmDeleteButton').off('click').on('click', function() {
+                var pedidoId = $(this).attr('data-id');
+                var row = $('tr[data-id="' + pedidoId + '"]');
+
+                // Enviar a requisição AJAX para excluir o pedido
+                $.ajax({
+                    url: "/pedido/" + pedidoId,
+                    method: 'DELETE',
+                    data: {
+                        "_token": "{{ csrf_token() }}",
+                    },
+                    success: function(response) {
+                        row.remove();
+                        console.log('Excluído com sucesso');
+                        // Feche o modal após a exclusão
+                        $('#confirmDeleteModal').modal('hide');
+                    }
+                });
             });
         }
-        function atualizarQuantidadeRegistros() {
-            let quantidadeRegistros = $('#tabela-pedidos').DataTable().data().count();
-            $('#quantidade-registros').text('Quantidade: ' + quantidadeRegistros + ' registros');
-        }
-        // Chamada inicial para atualizar as cores ao carregar a página
-        updateColors();
+            function setDificuldadeColor(value, element) {
+                if (value === "Muito fácil") {
+                    element.attr("data-color", "green");
+                } else if (value === "Fácil") {
+                    element.attr("data-color", "lightgreen");
+                } else if (value === "Médio") {
+                    element.attr("data-color", "orange");
+                } else if (value === "Difícil") {
+                    element.attr("data-color", "red");
+                } else if (value === "Muito difícil") {
+                    element.attr("data-color", "purple");
+                } else {
+                    element.removeAttr("data-color");
+                }
+            }
+            // Função para definir a cor de fundo do campo "Status"
+            function setStatusColor(value, element) {
+                if (value === "Em andamento") {
+                    element.attr("data-color", "lightgreen");
+                } else if (value === "Pendente") {
+                    element.attr("data-color", "yellow");
+                } else if (value === "Arte concluída") {
+                    element.attr("data-color", "green");
+                } else if (value === "Em confirmação") {
+                    element.attr("data-color", "orange");
+                } else if (value === "Em espera") {
+                    element.attr("data-color", "yellow");
+                } else if (value === "Cor teste") {
+                    element.attr("data-color", "blue");
+                } else if (value === "Terceirizado") {
+                    element.attr("data-color", "purple");
+                } else if (value === "Análise pendente") {
+                    element.attr("data-color", "pink");
+                } else {
+                    element.removeAttr("data-color");
+                }
+            }
+            // Função para definir a cor de fundo do campo "Checagem Final"
+            function setChecagemFinalColor(value, element) {
+                if (value === "OK") {
+                    element.attr("data-color", "green");
+                } else if (value === "Ajustado") {
+                    element.attr("data-color", "lightgreen");
+                } else if (value === "Erro") {
+                    element.attr("data-color", "red");
+                } else if (value === "Pendente") {
+                    element.attr("data-color", "yellow");
+                } else {
+                    element.removeAttr("data-color");
+                }
+            }
+            function setDataColor(value, element) {
+                var today = new Date();
+                
+                // Converta a string de data (dd/mm/yyyy) para um objeto Date reconhecível
+                var dateParts = value.split("/");
+                var data = new Date(dateParts[2], dateParts[1] - 1, dateParts[0]);
+                
+                var diffInDays = Math.floor((data - today) / (1000 * 60 * 60 * 24));
 
-        $("#tabela-pedidos").on("change", "select[name='dificuldade'], select[name='status'], select[name='checagem_final'], input[name='data'], select[name='tipo_pedido']", function() {
+                if (isNaN(data.getTime())) {
+                    // Se a data for inválida, defina a cor como verde
+                    element.attr("data-color", "green");
+                } else if (diffInDays <= 0) {
+                    // Se a data for igual ou posterior ao dia atual, a cor será vermelha
+                    element.attr("data-color", "red");
+                } else if (diffInDays <= 3) {
+                    // Se estiver dentro dos três dias futuros a partir do dia atual, a cor será amarela
+                    element.attr("data-color", "yellow");
+                } else {
+                    // Caso contrário, a cor será verde
+                    element.attr("data-color", "green");
+                }
+            }
+
+            function setTipoPedidoColor(value, element) {
+                if (value === "Prazo normal") {
+                    element.attr("data-color", "blue");
+                } else if (value === "Antecipação") {
+                    element.attr("data-color", "purple");
+                } else if (value === "Faturado") {
+                    element.attr("data-color", "green");
+                } else if (value === "Metade/Metade") {
+                    element.attr("data-color", "orange");
+                } else if (value === "Amostra") {
+                    element.attr("data-color", "pink");
+                } else {
+                    element.removeAttr("data-color");
+                }
+            }
+            // Função para atualizar as cores de fundo dos campos
+            function updateColors() {
+                $("#tabela-pedidos tbody tr").each(function() {
+                    var dificuldade = $(this).find("select[name='dificuldade']").val();
+                    var status = $(this).find("select[name='status']").val();
+                    var checagemFinal = $(this).find("select[name='checagem_final']").val();
+                    var data = $(this).find("input[name='data']").val();
+                    var tipoPedido = $(this).find("select[name='tipo_pedido']").val(); // Adicione essa linha
+
+                    setDificuldadeColor(dificuldade, $(this).find("td:nth-child(7)"));
+                    setStatusColor(status, $(this).find("td:nth-child(8)"));
+                    setChecagemFinalColor(checagemFinal, $(this).find("td:nth-child(11)"));
+                    setDataColor(data, $(this).find("td:nth-child(2)"));
+                    setTipoPedidoColor(tipoPedido, $(this).find("td:nth-child(10)")); // Adicione essa linha
+
+                });
+            }
+            function atualizarQuantidadeRegistros() {
+                let quantidadeRegistros = $('#tabela-pedidos').DataTable().data().count();
+                $('#quantidade-registros').text('Quantidade: ' + quantidadeRegistros + ' registros');
+            }
+            // Chamada inicial para atualizar as cores ao carregar a página
             updateColors();
+
+            $("#tabela-pedidos").on("change", "select[name='dificuldade'], select[name='status'], select[name='checagem_final'], input[name='data'], select[name='tipo_pedido']", function() {
+                updateColors();
+            });
+
+            // Evento "draw.dt" para manter as cores ao mudar de página
+            $('#tabela-pedidos').on('draw.dt', function() {
+                updateColors();
+            });
+            // Inicialize o Datepicker para o campo de data
+            $('.datepicker').datepicker({
+            dateFormat: 'dd/mm/yy',
+            language: 'pt-BR',
+            autoclose: true,
+            onSelect: function (dateText, inst) {
+                // Quando uma data for selecionada no datepicker, atualizar o valor na célula da tabela
+                let cell = table.cell($(this).closest('td'));
+                cell.data(dateText).draw();
+            }
+
+
         });
-
-        // Evento "draw.dt" para manter as cores ao mudar de página
-        $('#tabela-pedidos').on('draw.dt', function() {
-            updateColors();
-        });
-        // Inicialize o Datepicker para o campo de data
-        $('.datepicker').datepicker({
-        dateFormat: 'dd/mm/yy',
-        onSelect: function (dateText, inst) {
-            // Quando uma data for selecionada no datepicker, atualizar o valor na célula da tabela
-            let cell = table.cell($(this).closest('td'));
-            cell.data(dateText).draw();
-        }
-
-
     });
-});
 
-</script>
-@endsection
+    </script>
+    @endsection
