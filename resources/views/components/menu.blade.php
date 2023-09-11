@@ -1,8 +1,21 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="margin-bottom: 15px;">
     <div class="container-fluid">
-        <a class="navbar-brand" href="{{ route('home') }}">
-            <img src="./images/logo.png" alt="" class="logo-img" style="width: 15vh; margin-right: 10px;">
-        </a>
+                @guest
+                @if(request()->path() !== 'cadastro')
+                    <a class="navbar-brand" href="{{ route('home') }}">
+                        <img src="./images/logo.png" alt="" class="logo-img" style="width: 15vh; margin-right: 10px;">
+                    </a>
+                @endif
+                @if(request()->path() == 'cadastro')
+                    <img src="./images/logo.png" alt="" class="logo-img" style="width: 15vh; margin-right: 10px;">
+                @endif
+                
+                @else
+                    <a class="navbar-brand" href="{{ route('home') }}">
+                        <img src="./images/logo.png" alt="" class="logo-img" style="width: 15vh; margin-right: 10px;">
+                    </a>
+                @endguest
+        
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -37,7 +50,9 @@
   @endguest
             <span class="navbar-text" style="margin-right: 20px;">
                 @guest
-                <a href="{{ route('login_page') }}">Login</a>
+                @if(request()->path() !== 'cadastro')
+                    <a href="{{ route('login_page') }}">Login</a>
+                @endif
                 @else
                 Bem-vindo, <b class="text-white">{{ auth()->user()->nome_usuario }}</b>
                 <br>
@@ -47,6 +62,8 @@
                 </form>
                 @endguest
             </span>
+
+
         </div>
     </div>
 </nav>

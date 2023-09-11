@@ -605,7 +605,7 @@ $(document).ready(function(){
             var novoStatus = value;
             var mensagem = 'Pedido:' + pedidoId + ' teve o status alterado para: ' + novoStatus;
             
-           // var url = 'http://artearena.kinghost.net/enviarNotificacaoSlack?mensagem=' + mensagem;
+            var url = 'http://artearena.kinghost.net/enviarNotificacaoSlack?mensagem=' + mensagem;
             
             fetch(url, {
                 method: 'POST',
@@ -673,14 +673,14 @@ $(document).ready(function(){
                 return;
             }
 
-            if (field === 'status') {
-                var pedidoId = id;
+          /*  if (field === 'status') {
+              /*   var pedidoId = id;
                 var novoStatus = value;
                 var mensagem = 'Pedido:' + pedidoId + ' teve o status alterado para: ' + novoStatus;
+ */
+               // var url = 'http://artearena.kinghost.net/enviarNotificacaoSlack?mensagem=' + mensagem;
 
-                var url = 'http://artearena.kinghost.net/enviarNotificacaoSlack?mensagem=' + mensagem;
-
-                fetch(url, {
+              /*   fetch(url, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -695,8 +695,8 @@ $(document).ready(function(){
                 })
                 .catch(error => {
                     console.error('Erro ao enviar notificação para o servidor: ' + error.message);
-                });
-            }
+                }); 
+            } */
             
             $.ajax({
                 url: '/pedido/' + id,

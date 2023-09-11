@@ -600,6 +600,12 @@ $(document).ready(function(){
         var isLinearMeasurementField = ['medida_linear'].includes(field);
         console.log(medidaLinearValue);
 
+        // Se não for medida linear, verifique se o campo está preenchido
+        if (!isLinearMeasurementField && medidaLinearValue === '') {
+            // Mostra o aviso com o SweetAlert
+            Swal.fire('Atenção', 'O campo deve ser preenchido, os dados não serão salvos', 'warning');
+            return;
+        }
 
 
         console.log(value);
@@ -649,6 +655,11 @@ $(document).ready(function(){
                 var isLinearMeasurementField = ['medida_linear'].includes(field);
 
                 // Se não for medida linear, verifique se o campo está preenchido
+                if (!isLinearMeasurementField && value === '') {
+                // Mostra o aviso com o SweetAlert
+                swal('Atenção', 'O campo deve ser preenchido.', 'warning');
+                return;
+                }
 
                 // Verifica se o campo é uma medida linear e se o valor está no formato correto (número positivo com até duas casas decimais)
                 if (isLinearMeasurementField && !value.match(/^\d+(\.\d{1,2})?$/)) {

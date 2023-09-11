@@ -56,6 +56,7 @@ class PedidoController extends Controller
 
         return view('pages.confeccao', compact('pedidos', 'designers', 'categoriasProduto', 'materiais'));
     }
+    
     public function update(Request $request, $id)
     {
     $pedido = Pedido::find($id);

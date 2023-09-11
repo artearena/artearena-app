@@ -457,10 +457,9 @@ Consulta de Pedidos
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
       </div>
       <div class="modal-body">
-      <p><strong>Número do Pedido:</strong> <span id="numeroPedido"></span></p>
+        <p><strong>Número do Pedido de E-commerce:</strong> <span id="numeroPedido"></span></p>
         <p><strong>Data Prevista:</strong> <span id="dataPrevista"></span></p>
         <p><strong>Observação do Pedido:</strong> <span id="observacaoPedido"></span></p>
-        <p><strong>Vendedora:</strong> <span id="vendedoraPedido"></span></p>
         <h6><strong>Produtos do Pedido:</strong></h6>
         <ul id="listaProdutos"></ul>
         <p><strong>Transportadora:</strong> <span id="transportadora"></span></p>
@@ -728,15 +727,7 @@ $.ajaxSetup({
         var field = $(this).attr('name');
         var value = $(this).val();
         var medidaLinearValue = $(this).closest('tr').find('input[name="medida_linear"]').val();
-                if (field === 'data') {
-                    var dateParts = value.split('/');
-                    if (dateParts.length === 3) {
-                        value = dateParts[2] + '-' + dateParts[1] + '-' + dateParts[0] + ' 00:00:00';
-                    } else {
-                        console.error('Formato de data inválido. Formato esperado: dd/mm/yyyy');
-                        return;
-                    }
-                }
+        
         if (field === 'status') {
             // Enviar notificação para o servidor após a alteração do status
             var pedidoId = id;
@@ -744,7 +735,7 @@ $.ajaxSetup({
             var mensagem = 'Pedido:' + pedidoId + ' teve o status alterado para: ' + novoStatus;
             
             // Fazer a requisição para o servidor enviando a mensagem como parâmetro na URL
-            var url = 'http://artearena.kinghost.net/enviarNotificacaoSlack?mensagem=' + mensagem;
+            var url = 'https://artearena.kinghost.net/enviarNotificacaoSlack?mensagem=' + mensagem;
             console.log(url);
             fetch(url, {
                 method: 'POST',
@@ -799,13 +790,13 @@ $.ajaxSetup({
                 
                 // Verifique se o campo é uma data e converte para o formato correto (yyyy-mm-dd HH:mm:ss)
                 if (field === 'data') {
-                    var dateParts = value.split('/');
-                    if (dateParts.length === 3) {
-                        value = dateParts[2] + '-' + dateParts[1] + '-' + dateParts[0] + ' 00:00:00';
-                    } else {
-                        console.error('Formato de data inválido. Formato esperado: dd/mm/yyyy');
-                        return;
-                    }
+                var dateParts = value.split('/');
+                if (dateParts.length === 3) {
+                    value = dateParts[2] + '-' + dateParts[1] + '-' + dateParts[0] + ' 00:00:00';
+                } else {
+                    console.error('Formato de data inválido. Formato esperado: dd/mm/yyyy');
+                    return;
+                }
                 }
                 // Verifica se o campo é uma medida linear
                 var isLinearMeasurementField = ['medida_linear'].includes(field);
@@ -818,14 +809,14 @@ $.ajaxSetup({
                 return;
                 }
 
-                if (field === 'status') {
+               /*  if (field === 'status') {
                     // Enviar notificação para o servidor após a alteração do status
                     var pedidoId = id;
                     var novoStatus = value;
                     var mensagem = 'Pedido:' + pedidoId + ' teve o status alterado para: ' + novoStatus;
 
                     // Fazer a requisição para o servidor enviando a mensagem como parâmetro na URL
-                    var url = 'http://artearena.kinghost.net/enviarNotificacaoSlack?mensagem=' + mensagem;
+                    var url = 'https://artearena.kinghost.net/enviarNotificacaoSlack?mensagem=' + mensagem;
                     
                     fetch(url, {
                         method: 'POST',
@@ -843,7 +834,7 @@ $.ajaxSetup({
                     .catch(error => {
                         console.error('Erro ao enviar notificação para o servidor: ' + error.message);
                     });
-                }
+                } */
                 $.ajax({
                 url: '/pedido/' + id,
                 method: 'PUT',
@@ -1135,15 +1126,14 @@ $.ajaxSetup({
 
   // Função para preencher e exibir o modal com os dados do pedido
   function exibirModalPedido(idPedido) {
-    const apiUrl = `http://artearena.kinghost.net/consultar-pedido?numero=${idPedido}`;
+    const apiUrl = `https://artearena.kinghost.net/consultar-pedido?numero=${idPedido}`;
 
     // Realiza a requisição à sua própria API
     fetch(apiUrl)
     .then(response => response.json())
     .then(data => {
         console.log(data);
-        document.getElementById("numeroPedido").textContent = data.numeroPedido;
-        document.getElementById("vendedoraPedido").textContent = data.vendedoraPedido;
+        document.getElementById("numeroPedido").textContent = data.numeroPedidoEcommerce;
         document.getElementById("dataPrevista").textContent = data.dataPrevista;
         document.getElementById("observacaoPedido").textContent = data.observacaoPedido; // Exibe a observação do pedido
 
@@ -1151,7 +1141,7 @@ $.ajaxSetup({
         listaProdutos.innerHTML = "";
         data.produtos.forEach(produto => {
           const li = document.createElement("li");
-          li.innerHTML = `<strong>Descrição:</strong> ${produto.descricao}, <strong>Quantidade:</strong> ${produto.quantidade}`;
+          li.innerHTML = `<strong>Descrição:</strong> ${produto.descricao}, <strong>Código SKU:</strong> ${produto.codigoSku}, <strong>Quantidade:</strong> ${produto.quantidade}`;
           listaProdutos.appendChild(li);
         });
 
