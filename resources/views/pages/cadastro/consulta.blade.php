@@ -10,7 +10,6 @@ Consulta de Cadastros
 
 @section('content')
 <div class="container">
-    <h1>teste</h1>
     <div class="flex justify-center">
         <div class="w-full">
             <div class="bg-white shadow-md rounded-lg">
@@ -27,12 +26,9 @@ Consulta de Cadastros
                                 <th class="py-2">Email</th>
                                 <th class="py-2">CEP</th>
                                 <th class="py-2">Endereço</th>
-                                <th class="py-2">Número</th>
-                                <th class="py-2">Bairro</th>
-                                <th class="py-2">Cidade</th>
+                                <th class="py-2">Endereço de Entrega</th>
                                 <th class="py-2">Fone Fixo</th>
                                 <th class="py-2">Celular</th>
-                                <th class="py-2">Endereço de Entrega</th>
                                 <th class="py-2">Responsável Entrega</th>
                                 <th class="py-2">CPF Responsável Entrega</th>
                             </tr>
@@ -65,13 +61,10 @@ Consulta de Cadastros
                                     </td>
                                     <td class="py-2">{{ $cadastro->email }}</td>
                                     <td class="py-2">{{ $cadastro->cep }}</td>
-                                    <td class="py-2">{{ $cadastro->endereco }}</td>
-                                    <td class="py-2">{{ $cadastro->numero }}</td>
-                                    <td class="py-2">{{ $cadastro->bairro }}</td>
-                                    <td class="py-2">{{ $cadastro->cidade }}</td>
+                                    <td class="py-2">{{ $cadastro->endereco }}, {{ $cadastro->numero }}, {{ $cadastro->bairro }}, {{ $cadastro->cidade }}</td>
+                                    <td class="py-2">{{ $cadastro->endereco_entrega }}, {{ $cadastro->numero_entrega }}, {{ $cadastro->bairro_entrega }}, {{ $cadastro->cidade_entrega }}</td>
                                     <td class="py-2">{{ $cadastro->fone_fixo }}</td>
                                     <td class="py-2">{{ $cadastro->cell }}</td>
-                                    <td class="py-2">{{ $cadastro->endereco_entrega }}</td>
                                     <td class="py-2">{{ $cadastro->responsavel_entrega }}</td>
                                     <td class="py-2">{{ $cadastro->cpf_responsavel_entrega }}</td>
                                 </tr>
