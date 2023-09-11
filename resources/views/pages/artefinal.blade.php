@@ -9,6 +9,8 @@ Consulta de Pedidos
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
 <link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/jquery.dataTables.min.css">
 <link rel="stylesheet" href="https://cdn.datatables.net/fixedheader/3.2.0/css/fixedHeader.dataTables.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/colreorder/1.5.4/css/colReorder.dataTables.min.css">
 
 <style>
      .detalhe-expandido {
@@ -64,7 +66,7 @@ Consulta de Pedidos
     }
     /* Estilização para os campos com cores */
     td[data-color="red"] {
-        background-color: #ff0000; /* Vermelho */
+        background-color: #fa7f72; /* Vermelho */
     }
 
     td[data-color="yellow"] {
@@ -83,7 +85,10 @@ Consulta de Pedidos
         background-color: #FF8C00; /* Laranja */
     }
     td[data-color="pink"] {
-        background-color: #F49BF4; /* rosa */
+        background-color: #FFC8AA; /* rosa */
+    }
+    td[data-color="lightpink"] {
+        background-color: #FFCFC9; /* rosa claro*/
     }
     td[data-color="purple"] {
         background-color: #8B008B; /* roxo */
@@ -91,6 +96,17 @@ Consulta de Pedidos
     td[data-color="blue"] {
         background-color: #007FFF; /* azul */
     }
+    td[data-color="cyan"] {
+        background-color: #BFE1F6; /* ciano */
+    }
+    td[data-color="white"] {
+        background-color: white; /* branco */
+    }
+    td[data-color="gray"] {
+        background-color: #3D3D3D; /* cinza */
+    }
+    
+    
     /* Definindo cores de texto para os campos */
     td[data-color="red"], td[data-color="orange"], td[data-color="pink"], td[data-color="purple"], td[data-color="blue"] {
         color: white;
@@ -163,7 +179,7 @@ Consulta de Pedidos
                                 </div>
                                 <div class="form-row">
                                     <label for="data">Data:</label>
-                                    <input type="date" class="form-control" name="data" id="data">
+                                    <input class="form-control datepicker" name="data" id="data">
                                 </div>
                                 <div class="form-row">
                                     <label for="produto">Produto:</label>
@@ -198,7 +214,7 @@ Consulta de Pedidos
                                     <select class="form-control" name="status" id="status">
                                         <option value="Pendente">Pendente</option>
                                         <option value="Em andamento">Em andamento</option>
-                                        <option value="Arte concluída">Arte concluída</option>
+                                        <option value="Arte OK">Arte OK</option>
                                         <option value="Em confirmação">Em confirmação</option>
                                         <option value="Em espera">Em espera</option>
                                         <option value="Cor teste">Cor teste</option>
@@ -243,12 +259,13 @@ Consulta de Pedidos
                             <button type="submit" class="btn btn-primary" id="cadastrarPedido">Cadastrar Pedido</button>
                     </form>
                     <hr>
-                    <h2>Pedidos existentes:</h2>
                     <div class="tabela-container">
                     <div id="loading" class="text-center" style="display: none;">
                         <p>Carregando...</p>
                     </div>
-                    <table id="tabela-pedidos" class="table table-striped">
+                    <div id="recordsInfoContainer" style="font-size: 1.2em; font-weight: bold;"></div>
+
+                    <table id="tabela-pedidos" class="table table-striped table-colreorder">
                         <thead>
                             <tr>
                                 <th data-filter="true">Pedido</th>
@@ -262,9 +279,7 @@ Consulta de Pedidos
                                 <th data-filter="true">Designer</th>
                                 <th data-filter="true">Tipo de Pedido</th>
                                 <th data-filter="true">Checagem Final</th>
-                                <th>Tiny</th>
-                                <th>Mover</th>
-                                <th>Excluir</th>
+                                <th>Ações</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -321,13 +336,13 @@ Consulta de Pedidos
                                     <select class='form-control' name='status'>
                                         <option value="Pendente" {{ $pedido->status == 'Pendente' ? 'selected' : '' }}>Pendente</option>
                                         <option value="Em andamento" {{ $pedido->status == 'Em andamento' ? 'selected' : '' }}>Em andamento</option>
-                                        <option value="Arte concluída" {{ $pedido->status == 'Arte concluída' ? 'selected' : '' }}>Arte concluída</option>
+                                        <option value="Arte OK" {{ $pedido->status == 'Arte OK' ? 'selected' : '' }}>Arte OK</option>
                                         <option value="Em confirmação" {{ $pedido->status == 'Em confirmação' ? 'selected' : '' }}>Em confirmação</option>
                                         <option value="Em espera" {{ $pedido->status == 'Em espera' ? 'selected' : '' }}>Em espera</option>
                                         <option value="Cor teste" {{ $pedido->status == 'Cor teste' ? 'selected' : '' }}>Cor teste</option>
                                         <option value="Terceirizado" {{ $pedido->status == 'Terceirizado' ? 'selected' : '' }}>Terceirizado</option>
                                         <option value="Análise pendente" {{ $pedido->status == 'Análise pendente' ? 'selected' : '' }}>Análise pendente</option>
-                                        <option value="{{ $pedido->status }}" {{ !in_array($pedido->status, ['Pendente', 'Em andamento', 'Arte concluída', 'Em confirmação', 'Em espera', 'Cor teste', 'Terceirizado', 'Análise pendente']) ? 'selected' : '' }}>
+                                        <option value="{{ $pedido->status }}" {{ !in_array($pedido->status, ['Pendente', 'Em andamento', 'Arte OK', 'Em confirmação', 'Em espera', 'Cor teste', 'Terceirizado', 'Análise pendente']) ? 'selected' : '' }}>
                                             {{ $pedido->status }}
                                         </option>
                                     </select>
@@ -371,16 +386,18 @@ Consulta de Pedidos
                                         </option>
                                     </select>
                                 </td>
-                                <td><input type='text' class='form-control' name='tiny' value="{{ $pedido->tiny }}"></td>
                                 <td>
-                                    <button type="button" class="btn btn-primary mover-pedido" data-id="{{ $pedido->id }}">
-                                        <i class="bi bi-arrows-move"></i> <!-- Ícone de quatro setas do Bootstrap -->
-                                    </button>
-                                </td>
-                                <td>
-                                    <button type="button" class="btn btn-danger excluir-pedido" data-id="{{ $pedido->id }}">
-                                        <i class="fas fa-trash-alt"></i> <!-- Ícone de caixa de lixo do Font Awesome -->
-                                    </button>
+                                    <div class="btn-group" role="group">
+                                        <button class="btn btn-primary ms-1 abrir-modal" data-bs-toggle="modal" data-bs-target="#pedidoModal" data-id-pedido="{{ $pedido->id }}">
+                                            <i class="bi bi-eye"></i> <!-- Ícone do olho do Bootstrap Icons -->
+                                        </button>
+                                        <button type="button" class="btn btn-primary ms-1 mover-pedido" data-id="{{ $pedido->id }}">
+                                            <i class="bi bi-arrows-move"></i> <!-- Ícone de quatro setas do Bootstrap -->
+                                        </button>
+                                        <button type="button" class="btn btn-danger ms-1 excluir-pedido" data-id="{{ $pedido->id }}">
+                                            <i class="fas fa-trash-alt"></i> <!-- Ícone de caixa de lixo do Font Awesome -->
+                                        </button>
+                                    </div>
                                 </td>
                             </tr>
                             @endif
@@ -432,6 +449,28 @@ Consulta de Pedidos
         </div>
     </div>
 </div>
+<div class="modal" id="pedidoModal" tabindex="-1" aria-labelledby="pedidoModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="pedidoModalLabel">Detalhes do Pedido</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+      </div>
+      <div class="modal-body">
+      <p><strong>Número do Pedido:</strong> <span id="numeroPedido"></span></p>
+        <p><strong>Data Prevista:</strong> <span id="dataPrevista"></span></p>
+        <p><strong>Observação do Pedido:</strong> <span id="observacaoPedido"></span></p>
+        <p><strong>Vendedora:</strong> <span id="vendedoraPedido"></span></p>
+        <h6><strong>Produtos do Pedido:</strong></h6>
+        <ul id="listaProdutos"></ul>
+        <p><strong>Transportadora:</strong> <span id="transportadora"></span></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 <script>
     var toggleButton = document.getElementById('toggle-button');
@@ -459,6 +498,10 @@ Consulta de Pedidos
 <script src="//cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/fixedheader/3.2.0/js/dataTables.fixedHeader.min.js"></script>
 
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.js"></script>
+
+<script src="https://cdn.datatables.net/colreorder/1.5.4/js/dataTables.colReorder.min.js"></script>
 
 <script>
 $.ajaxSetup({
@@ -519,10 +562,10 @@ $.ajaxSetup({
                     }
                 },
                 {
-                    "targets": [11], "visible": false
+                    "targets": [11], "visible": true
                 },
                 {
-                    "targets": [10], "visible": false
+                    "targets": [10], "visible": true
                 },
                 {
                     "targets": [9], "visible": false
@@ -559,10 +602,16 @@ $.ajaxSetup({
                     }
                 }
             },
-            "infoCallback": function(settings, start, end, max, total, pre) {
-                return '<span style="font-size: 1.2em; font-weight: bold;">Quantidade: ' + total + ' registros</span>';
+            "infoCallback": function (settings, start, end, max, total, pre) {
+                // Update the content of the 'recordsInfoContainer' with the total record count
+                $('#recordsInfoContainer').html('Quantidade: ' + total + ' registros');
+                // Return an empty string to prevent the default info display
+                return '';
             },
-            "ordering": true
+
+            ordering: true,
+            columnResizing: true,
+            colReorder: true,
         });
 
         $('#tabela-pedidos tbody').on('mouseenter', 'td.expandir-observacoes', function() {
@@ -575,79 +624,83 @@ $.ajaxSetup({
         // ...
     }
 
-        // Função para cadastrar um novo pedido
-        $('#cadastrarPedido').click(function(e) {
-            e.preventDefault(); // Evita o comportamento padrão do formulário
-            
-            // Obtenha os valores dos campos do formulário
-            var id = $('#id').val();
-            var data = $('#data').val();
-            var produto = $('#produto').val();
-            var material = $('#material').val();
-            var medida_linear = $('#medida_linear').val();
-            var observacoes = $('#observacoes').val();
-            var status = $('#status').val();
-            var designer = $('#designer').val();
-            var tipo_pedido = $('#tipo_pedido').val();
-            var checagem_final = $('#checagem_final').val();
-            var tiny = $('#tiny').val();
-            var etapa = 'A';
+    $('#cadastrarPedido').click(function(e) {
+        e.preventDefault(); // Evita o comportamento padrão do formulário
+                
+        // Obtenha os valores dos campos do formulário
+        var id = $('#id').val();
+        var data = $('#data').val();
+        var partesData = data.split('/');
+        var data = partesData[2] + '-' + partesData[1] + '-' + partesData[0];
+        var produto = $('#produto').val();
+        var material = $('#material').val();
+        var medida_linear = $('#medida_linear').val();
+        var observacoes = $('#observacoes').val();
+        var status = $('#status').val();
+        var designer = $('#designer').val();
+        var tipo_pedido = $('#tipo_pedido').val();
+        var checagem_final = $('#checagem_final').val();
+        var tiny = $('#tiny').val();
+        var etapa = 'A';
+        // Enviar a requisição AJAX para salvar o pedido
+        $.ajax({
+            url: '/pedido/criar', // Atualize o URL para '/pedido/criar'
+            method: 'POST',
+            data: {
+                id: id,
+                data: data,
+                produto: produto,
+                material: material,
+                medida_linear: medida_linear,
+                observacoes: observacoes,
+                status: status,
+                designer: designer,
+                etapa: etapa,
+                "_token": "{{ csrf_token() }}" // Adicione o token CSRF do Laravel para prevenir ataques CSRF
+            },
+            success: function(response) {
+                Swal.fire({
+                    title: 'Sucesso!',
+                    text: 'Pedido criado com sucesso. atualize a página para que o registro entre em vigor',
+                    icon: 'success',
+                    timer: 3000, // Defina o tempo que o alerta será exibido (em milissegundos)
+                    showConfirmButton: false // Ocultar o botão "OK"
+                });
+                var data = new Date(response.pedido.data).toLocaleDateString('pt-BR');
+                // Obter referência à tabela DataTable
+                var tabelaPedidos = $('#tabela-pedidos').DataTable();
+                // Adicionar a nova linha no início da tabela
+                tabelaPedidos.row.add([
+                    id,
+                    data,
+                    response.pedido.produto,
+                    response.pedido.material,
+                    response.pedido.medida_linear,
+                    response.pedido.observacoes,
+                    "", // Dificuldade - Add missing data for this column (Column index 6)
+                    response.pedido.status,
+                    response.pedido.designer,
+                    "", // Tipo de Pedido - Add missing data for this column (Column index 8)
+                    "", // Checagem Final - Add missing data for this column (Column index 9)
+                    "", // Tiny - Add missing data for this column (Column index 10)
+                    '<button type="button" class="btn btn-primary mover-pedido" data-id="' + response.pedido.id + '"><i class="bi bi-arrows-move"></i></button>',
+                    '<button type="button" class="btn btn-danger excluir-pedido" data-id="' + response.pedido.id + '"><i class="fas fa-trash-alt"></i></button>'
+                ]).draw('prepend');
 
 
-            // Enviar a requisição AJAX para salvar o pedido
-            $.ajax({
-                url: '/pedido/criar', // Atualize o URL para '/pedido/criar'
-                method: 'POST',
-                data: {
-                    id: id,
-                    data: data,
-                    produto: produto,
-                    material: material,
-                    medida_linear: medida_linear,
-                    observacoes: observacoes,
-                    status: status,
-                    designer: designer,
-                    tipo_pedido: tipo_pedido,
-                    checagem_final: checagem_final,
-                    tiny: tiny,
-                    etapa: etapa,
-                    "_token": "{{ csrf_token() }}" // Adicione o token CSRF do Laravel para prevenir ataques CSRF
-                },
-                success: function(response) {
-                    console.log(response.message);
-                    
-                    var newRow = '<tr>';
-                    newRow += '<td>' + response.pedido.id + '</td>';
-                    newRow += '<td>' + response.pedido.data + '</td>';
-                    newRow += '<td>' + response.pedido.produto + '</td>';
-                    newRow += '<td>' + response.pedido.material + '</td>';
-                    newRow += '<td>' + response.pedido.medida_linear + '</td>';
-                    newRow += '<td>' + response.pedido.observacoes + '</td>';
-                    newRow += '<td>' + response.pedido.status + '</td>';
-                    newRow += '<td>' + response.pedido.designer + '</td>';
-                    newRow += '<td>' + response.pedido.tipo_pedido + '</td>';
-                    newRow += '<td>' + response.pedido.checagem_final + '</td>';
-                    newRow += '<td>' + response.pedido.tiny + '</td>';
-                    newRow += '</tr>';
-                    
-                    // Insira a nova linha na tabela
-                    $('tbody').prepend(newRow);
-                    $('#tabela-pedidos').load(location.href + ' #tabela-pedidos');
-
-                },
-                error: function(xhr, status, error) {
-                    // Tratamento de erro: exibir pop-up com a mensagem de erro filtrada
-                    var errorMessage = "Erro ao criar pedido: ";
-                    if (xhr.responseJSON && xhr.responseJSON.message) {
-                        errorMessage += filtrarMensagemErro(xhr.responseJSON.message);
-                    } else {
-                        errorMessage += "Ocorreu um erro inesperado.";
-                    }
-                    alert(errorMessage);
+            },
+            error: function(xhr, status, error) {
+                // Tratamento de erro: exibir pop-up com a mensagem de erro filtrada
+                var errorMessage = "Erro ao criar pedido: ";
+                if (xhr.responseJSON && xhr.responseJSON.message) {
+                    errorMessage += filtrarMensagemErro(xhr.responseJSON.message);
+                } else {
+                    errorMessage += "Ocorreu um erro inesperado.";
                 }
-            });
-
+                alert(errorMessage);
+            }
         });
+    });
         // Estilize o campo form-control com jQuery
         $(".form-control").css({
                 "font-size": "15px",
@@ -670,70 +723,135 @@ $.ajaxSetup({
 
 
 
-        $('.table input, .table select').change(function() {
-        var id = $(this).closest('td').siblings(':first-child').text();
+        $('.table input, .table select').change(function () {
+        var id = $(this).closest('tr').data('id'); // Obtenha o ID do registro a partir do atributo data-id da linha (tr)
         var field = $(this).attr('name');
         var value = $(this).val();
-        console.log(id);
-        console.log(field);
-        console.log(value);
-
-        // Verifica se o campo é uma data e converte para o formato correto (YYYY-MM-DD HH:mm:ss)
-        if (field === 'data') {
-            var dateParts = value.split('/');
-            if (dateParts.length === 3) {
-                value = dateParts[2] + '-' + dateParts[1] + '-' + dateParts[0] + ' 00:00:00';
-            } else {
-                console.error('Formato de data inválido. Formato esperado: dd/mm/yyyy');
-                return;
+        var medidaLinearValue = $(this).closest('tr').find('input[name="medida_linear"]').val();
+                if (field === 'data') {
+                    var dateParts = value.split('/');
+                    if (dateParts.length === 3) {
+                        value = dateParts[2] + '-' + dateParts[1] + '-' + dateParts[0] + ' 00:00:00';
+                    } else {
+                        console.error('Formato de data inválido. Formato esperado: dd/mm/yyyy');
+                        return;
+                    }
+                }
+        if (field === 'status') {
+            // Enviar notificação para o servidor após a alteração do status
+            var pedidoId = id;
+            var novoStatus = value;
+            var mensagem = 'Pedido:' + pedidoId + ' teve o status alterado para: ' + novoStatus;
+            
+            // Fazer a requisição para o servidor enviando a mensagem como parâmetro na URL
+            var url = 'http://artearena.kinghost.net/enviarNotificacaoSlack?mensagem=' + mensagem;
+            console.log(url);
+            fetch(url, {
+                method: 'POST',
+                headers: {
+                'Content-Type': 'application/json',
+                },
+            })
+            .then(response => {
+                if (response.ok) {
+                console.log('Notificação enviada para o servidor com sucesso!');
+                } else {
+                throw new Error('Erro ao enviar notificação para o servidor');
+                }
+            })
+            .catch(error => {
+                console.error('Erro ao enviar notificação para o servidor: ' + error.message);
+            });
             }
-        }
-        console.log(value);
+        // Verifica se o campo é uma medida linear
+        var isLinearMeasurementField = ['medida_linear'].includes(field);
+
 
         $.ajax({
             url: '/pedido/' + id, // Atualize o URL para '/pedido/{id}'
             method: 'PUT',
             data: {
-                [field]: value,
-                "_token": "{{ csrf_token() }}", // Adicione o token CSRF do Laravel para prevenir ataques CSRF
+            [field]: value,
+            "_token": "{{ csrf_token() }}", // Adicione o token CSRF do Laravel para prevenir ataques CSRF
             },
-            success: function(response) {
-                console.log(response.message);
+            success: function (response) {
+                Swal.fire({
+                    title: 'Sucesso!',
+                    text: 'Pedido atualizado com sucesso.',
+                    icon: 'success',
+                    timer: 1500, // Defina o tempo que o alerta será exibido (em milissegundos)
+                    showConfirmButton: false // Ocultar o botão "OK"
+                });
             },
-            error: function(xhr, status, error) {
-                console.error(error); // Log any errors that occur during the AJAX request.
+            error: function (xhr, status, error) {
+            console.error(error); // Registra quaisquer erros que ocorram durante a requisição AJAX.
             }
         });
-    });
+        });
 
-    function reatribuirEventosChange() {
-        $('#tabela-pedidos').off('change', '.table input, .table select'); // Remover eventos "change" anteriores
-        $('#tabela-pedidos').on('change', '.table input, .table select', function() {
-            var id = $(this).closest('tr').find('td:first-child').text();
-            var field = $(this).attr('name');
-            var value = $(this).val();
-            var $this = $(this); // Salvar a referência do this aqui
-            console.log(value);
-            
-            // Verifica se o campo é uma data e converte para o formato correto (yyyy-mm-dd HH:mm:ss)
-            if (field === 'data') {
-                var dateParts = value.split('/');
-                if (dateParts.length === 3) {
-                    value = dateParts[2] + '-' + dateParts[1] + '-' + dateParts[0] + ' 00:00:00';
-                } else {
-                    console.error('Formato de data inválido. Formato esperado: dd/mm/yyyy');
-                    return;
+        function reatribuirEventosChange() {
+            $('#tabela-pedidos').off('change', '.table input, .table select'); // Remover eventos "change" anteriores
+            $('#tabela-pedidos').on('change', '.table input, .table select', function () {
+                var id = $(this).closest('tr').find('td:first-child').text();
+                var field = $(this).attr('name');
+                var value = $(this).val();
+                var $this = $(this); // Salvar a referência do this aqui
+                
+                // Verifique se o campo é uma data e converte para o formato correto (yyyy-mm-dd HH:mm:ss)
+                if (field === 'data') {
+                    var dateParts = value.split('/');
+                    if (dateParts.length === 3) {
+                        value = dateParts[2] + '-' + dateParts[1] + '-' + dateParts[0] + ' 00:00:00';
+                    } else {
+                        console.error('Formato de data inválido. Formato esperado: dd/mm/yyyy');
+                        return;
+                    }
                 }
-            }
+                // Verifica se o campo é uma medida linear
+                var isLinearMeasurementField = ['medida_linear'].includes(field);
 
-            $.ajax({
+
+                // Verifica se o campo é uma medida linear e se o valor está no formato correto (número positivo com até duas casas decimais)
+                if (isLinearMeasurementField && !value.match(/^\d+(\.\d{1,2})?$/)) {
+                // Mostra o aviso com o SweetAlert
+                swal('Atenção', 'Insira um número positivo com até duas casas decimais.', 'warning');
+                return;
+                }
+
+                if (field === 'status') {
+                    // Enviar notificação para o servidor após a alteração do status
+                    var pedidoId = id;
+                    var novoStatus = value;
+                    var mensagem = 'Pedido:' + pedidoId + ' teve o status alterado para: ' + novoStatus;
+
+                    // Fazer a requisição para o servidor enviando a mensagem como parâmetro na URL
+                    var url = 'http://artearena.kinghost.net/enviarNotificacaoSlack?mensagem=' + mensagem;
+                    
+                    fetch(url, {
+                        method: 'POST',
+                        headers: {
+                        'Content-Type': 'application/json',
+                        },
+                    })
+                    .then(response => {
+                        if (response.ok) {
+                        console.log('Notificação enviada para o servidor com sucesso!');
+                        } else {
+                        throw new Error('Erro ao enviar notificação para o servidor');
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Erro ao enviar notificação para o servidor: ' + error.message);
+                    });
+                }
+                $.ajax({
                 url: '/pedido/' + id,
                 method: 'PUT',
                 data: {
                     [field]: value,
                     "_token": "{{ csrf_token() }}",
                 },
-                success: function(response) {
+                success: function (response) {
                     console.log(response.message);
 
                     // Atualize os dados na tabela após a requisição bem-sucedida
@@ -742,12 +860,12 @@ $.ajaxSetup({
                     row.data(response.pedido);
                     row.draw();
                 },
-                error: function(xhr, status, error) {
+                error: function (xhr, status, error) {
                     console.error(error); // Log any errors that occur during the AJAX request.
                 }
+                });
             });
-        });
-    }
+            }
 
     $('.mover-pedido').click(function () {
             var pedidoId = $(this).attr('data-id');
@@ -769,6 +887,19 @@ $.ajaxSetup({
         // Script para processar a movimentação do pedido após a confirmação
         $('#confirmMoverImpressaoButton').click(function () {
             var pedidoId = $(this).attr('data-id');
+            var medidaLinearValue = $('tr[data-id="' + pedidoId + '"]').find('input[name="medida_linear"]').val();
+
+            // Verifique se o campo "Medida Linear" está preenchido
+            if (medidaLinearValue === '') {
+                // Mostra o aviso com o SweetAlert
+                Swal.fire({
+                    title: 'Atenção',
+                    text: 'O campo "Medida Linear" deve ser preenchido antes de mover o pedido para a etapa de "Impressão".',
+                    icon: 'warning',
+                    confirmButtonText: 'OK'
+                });
+                return;
+            }
 
             // Enviar a requisição AJAX para mover o pedido para a etapa de "Impressão"
             $.ajax({
@@ -795,6 +926,7 @@ $.ajaxSetup({
                 }
             });
         });
+
 
 
             $('#cancelExcluirButton').click(function () {
@@ -856,9 +988,9 @@ $.ajaxSetup({
                 } else if (value === "Fácil") {
                     element.attr("data-color", "lightgreen");
                 } else if (value === "Médio") {
-                    element.attr("data-color", "orange");
+                    element.attr("data-color", "cyan");
                 } else if (value === "Difícil") {
-                    element.attr("data-color", "red");
+                    element.attr("data-color", "blue");
                 } else if (value === "Muito difícil") {
                     element.attr("data-color", "purple");
                 } else {
@@ -868,21 +1000,21 @@ $.ajaxSetup({
             // Função para definir a cor de fundo do campo "Status"
             function setStatusColor(value, element) {
                 if (value === "Em andamento") {
-                    element.attr("data-color", "lightgreen");
+                    element.attr("data-color", "cyan");
                 } else if (value === "Pendente") {
-                    element.attr("data-color", "yellow");
-                } else if (value === "Arte concluída") {
+                    element.attr("data-color", "white");
+                } else if (value === "Arte OK") {
                     element.attr("data-color", "green");
                 } else if (value === "Em confirmação") {
-                    element.attr("data-color", "orange");
+                    element.attr("data-color", "red");
                 } else if (value === "Em espera") {
-                    element.attr("data-color", "yellow");
+                    element.attr("data-color", "pink");
                 } else if (value === "Cor teste") {
-                    element.attr("data-color", "blue");
+                    element.attr("data-color", "lightpink");
                 } else if (value === "Terceirizado") {
                     element.attr("data-color", "purple");
                 } else if (value === "Análise pendente") {
-                    element.attr("data-color", "pink");
+                    element.attr("data-color", "gray");
                 } else {
                     element.removeAttr("data-color");
                 }
@@ -903,26 +1035,28 @@ $.ajaxSetup({
             }
             function setDataColor(value, element) {
                 var today = new Date();
-                
-                // Converta a string de data (dd/mm/yyyy) para um objeto Date reconhecível
+               // Converta a string de data (dd/mm/yyyy) para um objeto Date reconhecível
                 var dateParts = value.split("/");
-                var data = new Date(dateParts[2], dateParts[1] - 1, dateParts[0]);
-                
+                var data = new Date(dateParts[2], dateParts[1] -1, dateParts[0]);
+
                 var diffInDays = Math.floor((data - today) / (1000 * 60 * 60 * 24));
+
 
                 if (isNaN(data.getTime())) {
                     // Se a data for inválida, defina a cor como verde
                     element.attr("data-color", "green");
-                } else if (diffInDays <= 0) {
+                } else if (diffInDays < -1) {
                     // Se a data for igual ou posterior ao dia atual, a cor será vermelha
                     element.attr("data-color", "red");
-                } else if (diffInDays <= 3) {
-                    // Se estiver dentro dos três dias futuros a partir do dia atual, a cor será amarela
-                    element.attr("data-color", "yellow");
-                } else {
+                } 
+                else if(diffInDays > -1){
                     // Caso contrário, a cor será verde
+                    element.attr("data-color", "lightgreen");
+                } else if (diffInDays = -1) {
+                    // Se estiver dentro dos três dias futuros a partir do dia atual, a cor será amarela
                     element.attr("data-color", "green");
                 }
+                
             }
 
             function setTipoPedidoColor(value, element) {
@@ -951,9 +1085,9 @@ $.ajaxSetup({
 
                     setDificuldadeColor(dificuldade, $(this).find("td:nth-child(7)"));
                     setStatusColor(status, $(this).find("td:nth-child(8)"));
-                    setChecagemFinalColor(checagemFinal, $(this).find("td:nth-child(11)"));
+                    setChecagemFinalColor(checagemFinal, $(this).find("td:nth-child(10)"));
                     setDataColor(data, $(this).find("td:nth-child(2)"));
-                    setTipoPedidoColor(tipoPedido, $(this).find("td:nth-child(10)")); // Adicione essa linha
+                    //setTipoPedidoColor(tipoPedido, $(this).find("td:nth-child(10)")); // Adicione essa linha
 
                 });
             }
@@ -961,6 +1095,8 @@ $.ajaxSetup({
                 let quantidadeRegistros = $('#tabela-pedidos').DataTable().data().count();
                 $('#quantidade-registros').text('Quantidade: ' + quantidadeRegistros + ' registros');
             }
+            
+
             // Chamada inicial para atualizar as cores ao carregar a página
             updateColors();
 
@@ -986,6 +1122,53 @@ $.ajaxSetup({
 
         });
     });
+    document.addEventListener("DOMContentLoaded", function () {
+  const abrirModalButtons = document.querySelectorAll('.abrir-modal');
+  
+  abrirModalButtons.forEach(button => {
+    button.addEventListener("click", function () {
+      // Obtém o ID do pedido a partir da primeira coluna da linha da tabela
+      const idPedido = this.dataset.idPedido;
+      exibirModalPedido(idPedido);
+    });
+  });
+
+  // Função para preencher e exibir o modal com os dados do pedido
+  function exibirModalPedido(idPedido) {
+    const apiUrl = `http://artearena.kinghost.net/consultar-pedido?numero=${idPedido}`;
+
+    // Realiza a requisição à sua própria API
+    fetch(apiUrl)
+    .then(response => response.json())
+    .then(data => {
+        console.log(data);
+        document.getElementById("numeroPedido").textContent = data.numeroPedido;
+        document.getElementById("vendedoraPedido").textContent = data.vendedoraPedido;
+        document.getElementById("dataPrevista").textContent = data.dataPrevista;
+        document.getElementById("observacaoPedido").textContent = data.observacaoPedido; // Exibe a observação do pedido
+
+        const listaProdutos = document.getElementById("listaProdutos");
+        listaProdutos.innerHTML = "";
+        data.produtos.forEach(produto => {
+          const li = document.createElement("li");
+          li.innerHTML = `<strong>Descrição:</strong> ${produto.descricao}, <strong>Quantidade:</strong> ${produto.quantidade}`;
+          listaProdutos.appendChild(li);
+        });
+
+        document.getElementById("transportadora").textContent = data.transportadora;
+
+        // Exibe o modal
+        const modal = document.getElementById("pedidoModal");
+        modal.style.display = "block";
+    })
+    .catch(error => {
+      console.error("Erro na requisição:", error);
+    });
+  }
+});
+
+
+
 
     </script>
     @endsection

@@ -5,10 +5,12 @@ Consulta de Pedidos
 @endsection
 
 @section('style')
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
 <link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/jquery.dataTables.min.css">
 <link rel="stylesheet" href="https://cdn.datatables.net/fixedheader/3.2.0/css/fixedHeader.dataTables.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.css">
 
 <style>
      .detalhe-expandido {
@@ -64,7 +66,7 @@ Consulta de Pedidos
     }
     /* Estilização para os campos com cores */
     td[data-color="red"] {
-        background-color: #FF0000; /* Vermelho */
+        background-color: #fa7f72; /* Vermelho */
     }
 
     td[data-color="yellow"] {
@@ -83,13 +85,22 @@ Consulta de Pedidos
         background-color: #FFA500; /* Laranja */
     }
     td[data-color="pink"] {
-        background-color: #FFC0CB; /* rosa */
+        background-color: #FFCFC9; /* rosa */
     }
     td[data-color="purple"] {
         background-color: #800080; /* roxo */
     }
+    td[data-color="lightpurple"] {
+        background-color: #E6CFF2; /* roxo */
+    }
     td[data-color="blue"] {
         background-color: #0000FF; /* azul */
+    }
+    td[data-color="lightblue"] {
+        background-color: #BFE1F6; /* azul */
+    }
+    td[data-color="gray"] {
+        background-color: #E6E6E6; /* azul */
     }
     /* Definindo cores de texto para os campos */
     td[data-color="red"], td[data-color="orange"], td[data-color="pink"], td[data-color="purple"], td[data-color="blue"] {
@@ -216,11 +227,12 @@ Consulta de Pedidos
                             <button type="submit" class="btn btn-primary" id="cadastrarPedido">Cadastrar Pedido</button>
                     </form>
                     <hr>
-                    <h2>Pedidos existentes:</h2>
                     <div class="tabela-container">
                     <div id="loading" class="text-center" style="display: none;">
                         <p>Carregando...</p>
                     </div>
+                    <div id="recordsInfoContainer" style="font-size: 1.2em; font-weight: bold;"></div>
+
                     <table id="tabela-pedidos" class="table table-striped">
                         <thead>
                             <tr>
@@ -372,6 +384,8 @@ Consulta de Pedidos
 <script src="//cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/fixedheader/3.2.0/js/dataTables.fixedHeader.min.js"></script>
 
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.js"></script>
 
 <script>
 $.ajaxSetup({
@@ -458,8 +472,11 @@ $(document).ready(function(){
                 }
             }
         },
-        "infoCallback": function(settings, start, end, max, total, pre) {
-            return '<span style="font-size: 1.2em; font-weight: bold;">Quantidade: ' + total + ' registros</span>';
+        "infoCallback": function (settings, start, end, max, total, pre) {
+                // Update the content of the 'recordsInfoContainer' with the total record count
+                $('#recordsInfoContainer').html('Quantidade: ' + total + ' registros');
+                // Return an empty string to prevent the default info display
+                return '';
         },
         "ordering": true
     });
@@ -509,8 +526,14 @@ $(document).ready(function(){
                 "_token": "{{ csrf_token() }}" // Adicione o token CSRF do Laravel para prevenir ataques CSRF
             },
             success: function(response) {
-                console.log(response.message);
-                
+                Swal.fire({
+                    title: 'Sucesso!',
+                    text: 'Pedido criado com sucesso. atualize a página para que o registro entre em vigor',
+                    icon: 'success',
+                    timer: 1500, // Defina o tempo que o alerta será exibido (em milissegundos)
+                    showConfirmButton: false // Ocultar o botão "OK"
+                });
+
                 var newRow = '<tr>';
                 newRow += '<td>' + response.pedido.id + '</td>';
                 newRow += '<td>' + response.pedido.data + '</td>';
@@ -563,84 +586,103 @@ $(document).ready(function(){
 
 
 
-    $('.table input, .table select').change(function() {
-    var id = $(this).closest('td').siblings(':first-child').text();
-    var field = $(this).attr('name');
-    var value = $(this).val();
-    console.log(id);
-    console.log(field);
-    console.log(value);
-
-    // Verifica se o campo é uma data e converte para o formato correto (YYYY-MM-DD HH:mm:ss)
-    if (field === 'data') {
-        var dateParts = value.split('/');
-        if (dateParts.length === 3) {
-            value = dateParts[2] + '-' + dateParts[1] + '-' + dateParts[0] + ' 00:00:00';
-        } else {
-            console.error('Formato de data inválido. Formato esperado: dd/mm/yyyy');
-            return;
-        }
-    }
-    console.log(value);
-
-    $.ajax({
-        url: '/pedido/' + id, // Atualize o URL para '/pedido/{id}'
-        method: 'PUT',
-        data: {
-            [field]: value,
-            "_token": "{{ csrf_token() }}", // Adicione o token CSRF do Laravel para prevenir ataques CSRF
-        },
-        success: function(response) {
-            console.log(response.message);
-        },
-        error: function(xhr, status, error) {
-            console.error(error); // Log any errors that occur during the AJAX request.
-        }
-    });
-});
-
-function reatribuirEventosChange() {
-    $('#tabela-pedidos').off('change', '.table input, .table select'); // Remover eventos "change" anteriores
-    $('#tabela-pedidos').on('change', '.table input, .table select', function() {
-        var id = $(this).closest('tr').find('td:first-child').text();
+    $('.table input, .table select').change(function () {
+        var id = $(this).closest('tr').data('id'); // Obtenha o ID do registro a partir do atributo data-id da linha (tr)
         var field = $(this).attr('name');
         var value = $(this).val();
-        var $this = $(this); // Salvar a referência do this aqui
-        console.log(value);
+        var medidaLinearValue = $(this).closest('tr').find('input[name="medida_linear"]').val();
         
-        // Verifica se o campo é uma data e converte para o formato correto (yyyy-mm-dd HH:mm:ss)
-        if (field === 'data') {
-            var dateParts = value.split('/');
-            if (dateParts.length === 3) {
-                value = dateParts[2] + '-' + dateParts[1] + '-' + dateParts[0] + ' 00:00:00';
-            } else {
-                console.error('Formato de data inválido. Formato esperado: dd/mm/yyyy');
-                return;
-            }
-        }
+        console.log(id);
+        console.log(field);
+        console.log(value);
+
+        // Verifica se o campo é uma medida linear
+        var isLinearMeasurementField = ['medida_linear'].includes(field);
+        console.log(medidaLinearValue);
+
+
+
+        console.log(value);
 
         $.ajax({
-            url: '/pedido/' + id,
+            url: '/pedido/' + id, // Atualize o URL para '/pedido/{id}'
             method: 'PUT',
             data: {
-                [field]: value,
-                "_token": "{{ csrf_token() }}",
+            [field]: value,
+            "_token": "{{ csrf_token() }}", // Adicione o token CSRF do Laravel para prevenir ataques CSRF
             },
-            success: function(response) {
-                console.log(response.message);
-
-                // Atualize os dados na tabela após a requisição bem-sucedida
-                var table = $('#tabela-pedidos').DataTable();
-                var row = table.row($this.closest('tr')); // Usar a referência $this aqui
-                row.data(response.pedido);
-                row.draw();
+            success: function (response) {
+                Swal.fire({
+                    title: 'Sucesso!',
+                    text: 'Pedido atualizado com sucesso.',
+                    icon: 'success',
+                    timer: 1500, // Defina o tempo que o alerta será exibido (em milissegundos)
+                    showConfirmButton: false // Ocultar o botão "OK"
+                });
             },
-            error: function(xhr, status, error) {
-                console.error(error); // Log any errors that occur during the AJAX request.
+            error: function (xhr, status, error) {
+            console.error(error); // Registra quaisquer erros que ocorram durante a requisição AJAX.
             }
         });
-    });
-}
+        });
+
+        function reatribuirEventosChange() {
+            $('#tabela-pedidos').off('change', '.table input, .table select'); // Remover eventos "change" anteriores
+            $('#tabela-pedidos').on('change', '.table input, .table select', function () {
+                var id = $(this).closest('tr').find('td:first-child').text();
+                var field = $(this).attr('name');
+                var value = $(this).val();
+                var $this = $(this); // Salvar a referência do this aqui
+
+                // Verifique se o campo é uma data e converte para o formato correto (yyyy-mm-dd HH:mm:ss)
+                if (field === 'data') {
+                var dateParts = value.split('/');
+                if (dateParts.length === 3) {
+                    value = dateParts[2] + '-' + dateParts[1] + '-' + dateParts[0] + ' 00:00:00';
+                } else {
+                    console.error('Formato de data inválido. Formato esperado: dd/mm/yyyy');
+                    return;
+                }
+                }
+                console.log('passei aqui');
+                // Verifica se o campo é uma medida linear
+                var isLinearMeasurementField = ['medida_linear'].includes(field);
+
+                // Se não for medida linear, verifique se o campo está preenchido
+
+                // Verifica se o campo é uma medida linear e se o valor está no formato correto (número positivo com até duas casas decimais)
+                if (isLinearMeasurementField && !value.match(/^\d+(\.\d{1,2})?$/)) {
+                // Mostra o aviso com o SweetAlert
+                swal('Atenção', 'Insira um número positivo com até duas casas decimais.', 'warning');
+                return;
+                }
+
+                console.log('ID: ' + id);
+                console.log('Campo: ' + field);
+                console.log('Valor: ' + value);
+
+                $.ajax({
+                url: '/pedido/' + id,
+                method: 'PUT',
+                data: {
+                    [field]: value,
+                    "_token": "{{ csrf_token() }}",
+                },
+                success: function (response) {
+                    console.log(response.message);
+
+                    // Atualize os dados na tabela após a requisição bem-sucedida
+                    var table = $('#tabela-pedidos').DataTable();
+                    var row = table.row($this.closest('tr')); // Usar a referência $this aqui
+                    row.data(response.pedido);
+                    row.draw();
+                },
+                error: function (xhr, status, error) {
+                    console.error(error); // Log any errors that occur during the AJAX request.
+                }
+                });
+            });
+            }
 
 $('.mover-pedido').click(function () {
         var pedidoId = $(this).attr('data-id');
@@ -748,15 +790,15 @@ $('.mover-pedido').click(function () {
             if (value === "Em andamento") {
                 element.attr("data-color", "lightgreen");
             } else if (value === "Pendente") {
-                element.attr("data-color", "yellow");
+                element.attr("data-color", "gray");
             } else if (value === "Processando") {
-                element.attr("data-color", "blue");
+                element.attr("data-color", "lightpurple");
             } else if (value === "Renderizado") {
-                element.attr("data-color", "green");
+                element.attr("data-color", "lightblue");
             } else if (value === "Impresso") {
-                element.attr("data-color", "purple");
+                element.attr("data-color", "green");
             } else if (value === "Em Impressão") {
-                element.attr("data-color", "orange");
+                element.attr("data-color", "lightgreen");
             } else if (value === "Separação") {
                 element.attr("data-color", "pink");
             } else {
@@ -782,23 +824,25 @@ $('.mover-pedido').click(function () {
             
             // Converta a string de data (dd/mm/yyyy) para um objeto Date reconhecível
             var dateParts = value.split("/");
-            var data = new Date(dateParts[2], dateParts[1] - 1, dateParts[0]);
+            var data = new Date(dateParts[2], dateParts[1] -1, dateParts[0]);
             
             var diffInDays = Math.floor((data - today) / (1000 * 60 * 60 * 24));
 
             if (isNaN(data.getTime())) {
                 // Se a data for inválida, defina a cor como verde
                 element.attr("data-color", "green");
-            } else if (diffInDays <= 0) {
+            } else if (diffInDays < -1) {
                 // Se a data for igual ou posterior ao dia atual, a cor será vermelha
                 element.attr("data-color", "red");
-            } else if (diffInDays <= 3) {
-                // Se estiver dentro dos três dias futuros a partir do dia atual, a cor será amarela
-                element.attr("data-color", "yellow");
-            } else {
+            } 
+            else if(diffInDays > -1){
                 // Caso contrário, a cor será verde
+                element.attr("data-color", "lightgreen");
+            } else if (diffInDays = -1) {
+                // Se estiver dentro dos três dias futuros a partir do dia atual, a cor será amarela
                 element.attr("data-color", "green");
             }
+            
         }
 
 
@@ -813,6 +857,7 @@ $('.mover-pedido').click(function () {
 
             });
         }
+
         function atualizarQuantidadeRegistros() {
             let quantidadeRegistros = $('#tabela-pedidos').DataTable().data().count();
             $('#quantidade-registros').text('Quantidade: ' + quantidadeRegistros + ' registros');

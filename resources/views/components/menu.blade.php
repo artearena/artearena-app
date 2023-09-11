@@ -8,8 +8,12 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarText">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                @guest
+
+                @else
+              
                 <li class="nav-item">
-                    <a class="nav-link {{ request()->is('/') ? 'active' : '' }}" href="{{ route('home') }}">Recursos</a>
+                    <a class="nav-link {{ request()->is('/') ? 'active' : '' }}" href="{{ route('home') }}">Início</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link {{ request()->is('bandeira') ? 'active' : '' }}" href="{{ route('bandeira') }}">Bandeiras</a>
@@ -30,7 +34,7 @@
                     <a class="nav-link {{ request()->is('reposicao') ? 'active' : '' }}" href="{{ route('reposicao') }}">Controle de Reposições</a>
                 </li>
             </ul>
-
+  @endguest
             <span class="navbar-text" style="margin-right: 20px;">
                 @guest
                 <a href="{{ route('login_page') }}">Login</a>
