@@ -10,6 +10,7 @@ Consulta de Cadastros
 
 @section('content')
 <div class="container">
+    <h1>teste</h1>
     <div class="flex justify-center">
         <div class="w-full">
             <div class="bg-white shadow-md rounded-lg">
