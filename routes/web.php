@@ -23,6 +23,7 @@ Route::middleware(['auth'])->group(function () {
     Route::prefix('consultarcadastro')->group(function () {
         Route::any('/', [CadastroController::class, 'consultarCadastros'])->name('cadastro.consulta');
         Route::get('/data', [CadastroController::class, 'getData'])->name('cadastro.data');
+        Route::put('/{id}', [CadastroController::class, 'update'])->name('cadastro.update');
     });
 
     Route::any('/impressao', [PedidoController::class, 'impressaoprovisorio'])->name('impressao');
@@ -54,7 +55,6 @@ Route::prefix('cadastro')->group(function () {
     Route::get('/{id}/edit', [CadastroController::class, 'edit'])->name('cadastro.edit');
 
     // Rota para atualizar um registro de cadastro
-    Route::put('/{id}', [CadastroController::class, 'update'])->name('cadastro.update');
 
     // Rota para excluir um registro de cadastro
     Route::delete('/{id}', [CadastroController::class, 'destroy'])->name('cadastro.destroy');

@@ -72,7 +72,7 @@ class PedidoController extends Controller
         'designer',
         'tipo_pedido',
         'checagem_final',
-        'tiny',
+        'link_trello',
         'rolo',
         'observacao_reposicao'
     ]));
@@ -112,7 +112,7 @@ class PedidoController extends Controller
             $pedido->designer = $request->input('designer');
             $pedido->tipo_pedido = $request->input('tipo_pedido');
             $pedido->checagem_final = $request->input('checagem_final');
-            $pedido->tiny = $request->input('tiny');
+            $pedido->link_trello = $request->input('link_trello');
             $pedido->etapa = $request->input('etapa'); // Defina a etapa inicial do pedido
             $pedido->rolo = $request->input('rolo');
             $pedido->observacao_reposicao = $request->input('observacao_reposicao');

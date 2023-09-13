@@ -125,7 +125,7 @@
                         </div>
 
                         <!-- Checkbox para endereço de cobrança diferente -->
-                        <div class="form-check">
+                        <div id="divEnderecoCobranca" class="form-check" style="display: none;">
                             <input type="checkbox" class="form-check-input" id="endereco_cobranca_diferente" name="endereco_cobranca_diferente">
                             <label class="form-check-label" for="endereco_cobranca_diferente">Endereço de Cobrança diferente do Endereço de Entrega</label>
                         </div>
@@ -191,6 +191,7 @@
             if (pessoaJuridica.checked) {
                 document.getElementById('pessoa_juridica_campos').style.display = 'block';
                 document.getElementById('pessoa_fisica_campos').style.display = 'none';
+                divEnderecoCobranca.style.display = 'block';
             }
         });
 
@@ -198,6 +199,7 @@
             if (pessoaFisica.checked) {
                 document.getElementById('pessoa_fisica_campos').style.display = 'block';
                 document.getElementById('pessoa_juridica_campos').style.display = 'none';
+                divEnderecoCobranca.style.display = 'block';
             }
         });
 
@@ -271,6 +273,7 @@
         }
     });
     $(document).ready(function () {
+        
         // Máscara para CNPJ
         $('#cnpj').mask('00.000.000/0000-00');
 

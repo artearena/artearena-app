@@ -23,7 +23,7 @@ class Pedido extends Model
         'designer',
         'tipo_pedido',
         'checagem_final',
-        'tiny',
+        'link_trello',
         'situacao',
         'rolo',
         'outros',

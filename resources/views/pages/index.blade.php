@@ -4,6 +4,10 @@ Inicio
 @endsection
 
 @section('content')
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
 <div class="container">
     <div class="row">
         <div class="col-md-6">
@@ -65,5 +69,75 @@ Inicio
             </div>
         </div>
     </div>
+    <div class="row mt-4">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Encurtar Link</h5>
+                    <p class="card-text">Descrição de encurtar link</p>
+                    <button id="btn-encurtar-link" class="btn btn-outline-secondary">Encurtar Link</buton>                
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
+<div class="modal fade" id="modal-encurtar-link" tabindex="-1" role="dialog" aria-labelledby="modal-encurtar-link-label" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modal-encurtar-link-label">Encurtar Link</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="url-input">URL:</label>
+                    <input type="text" class="form-control" id="url-input" placeholder="Digite a URL">
+                    <label for="url-encurtada-input">URL Encurtada:</label>
+                    <input type="text" class="form-control" id="url-encurtada-input" placeholder="URL Encurtada">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="btn-encurtar">Encurtar</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" aria-label="Cerrar">Fechar</button>            </div>
+            </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        // Abrir o modal ao clicar no botão "Encurtar Link"
+        $('#btn-encurtar-link').on('click', function() {
+            $('#modal-encurtar-link').modal('show');
+        });
+
+        // Encurtar o link ao clicar no botão "Encurtar" dentro do modal
+        $('#btn-encurtar').on('click', function() {
+            var url = $('#url-input').val();
+            // Aqui você pode adicionar a lógica para encurtar o link da URL digitada
+            // Fechar o modal após encurtar o link
+            /* $('#modal-encurtar-link').modal('hide'); */
+        });
+        $(document).ready(function() {
+            // Encurtar o link ao clicar no botão "Encurtar"
+            $('#btn-encurtar').on('click', function() {
+                var url = $('#url-input').val();
+                // Fazer a requisição GET para sua API
+                $.get('https://artearena.kinghost.net/encurtar-link', { link: url })
+                .done(function(response) {
+                    var urlEncurtada = response.urlEncurtada;
+                    // Preencher o campo de URL encurtada com o valor retornado pela API
+                    $('#url-encurtada-input').val(urlEncurtada);
+                    console.log('URL encurtada:', urlEncurtada);
+                })
+                .fail(function(error) {
+                    console.log('Erro ao consultar a API:', error);
+                });
+            });
+        });
+    });
+</script>
+
 @endsection

@@ -149,8 +149,20 @@ class CadastroController extends Controller
     {
         $registro = Cadastro::findOrFail($id);
         $dados = $request->all();
+
+        // Verificar se o CNPJ ou RG já existe em outro cadastro
+        $cnpjExistente = Cadastro::where('cnpj', $dados['cnpj_cpf'])->where('id', '!=', $id)->exists();
+        $rgExistente = Cadastro::where('rg', $dados['ie_rg'])->where('id', '!=', $id)->exists();
+
+        if ($cnpjExistente || $rgExistente) {
+            // Cadastro já existe, mostrar uma pergunta para confirmar a atualização
+            return redirect()->route('cadastro.consulta')->with('confirmacao', 'Cadastro já existe. Deseja realmente atualizar?');
+        }
+
+        // Atualizar o registro
         $registro->update($dados);
-        return redirect()->route('pages.cadastro.index')->with('success', 'Registro atualizado com sucesso!');
+
+        return redirect()->route('cadastro.consulta')->with('success', 'Registro atualizado com sucesso!');
     }
 
     // Excluir um registro específico
