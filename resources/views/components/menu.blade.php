@@ -47,28 +47,26 @@
                     <a class="nav-link {{ request()->is('reposicao') ? 'active' : '' }}" href="{{ route('reposicao') }}">Controle de Reposições</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ request()->is('reposicao') ? 'active' : '' }}" href="{{ route('reposicao') }}">Controle de Reposições</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link {{ request()->is('nome_da_rota') ? 'active' : '' }}" href="{{ route('nome_da_rota') }}">Nome do Novo Item</a>
+                    <a class="nav-link {{ request()->is('trello.index') ? 'active' : '' }}" href="{{ route('trello.index') }}">Lista do Trello</a>
                 </li>
             </ul>
             @endguest
-            <span class="navbar-text" style="margin-right: 20px;">
+            <span class="navbar-text" style="margin-right: 40px;">
                 @guest
                 @if(request()->path() !== 'cadastro')
                     <a href="{{ route('login_page') }}">Login</a>
                 @endif
                 @else
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#linkShortenerModal">
-                    Encurtar Link
-                </button>
-                Bem-vindo, <b class="text-white">{{ auth()->user()->nome_usuario }}</b>
-                <br>
-                <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                    @csrf
-                </form>
+                
+                <div>
+                    Bem-vindo, <b class="text-white">{{ auth()->user()->nome_usuario }}</b>
+                    <br>
+                    <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
+                </div>
+
                 @endguest
             </span>
 

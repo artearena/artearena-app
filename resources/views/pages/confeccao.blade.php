@@ -149,7 +149,12 @@ Consulta de Pedidos
     #tabela-pedidos select::selection {
         background-color: rgba(255, 255, 255, 0.3); /* Define a cor da seleção */
     }
-
+    #metragem_total{
+        font-family: "Arial Narrow", Arial, sans-serif; /* Fonte compacta sugerida: Arial Narrow */
+        font-weight: bold;
+        font-size: 15px; 
+    }
+        /* Tamanho de fonte sugerido: 14 pixels */
 </style>
 @endsection
 
@@ -228,6 +233,8 @@ Consulta de Pedidos
                             </div>
                             <button type="submit" class="btn btn-primary" id="cadastrarPedido">Cadastrar Pedido</button>
                     </form>
+                    <hr>
+                    <div id="metragem_total"></div>
                     <hr>
                     <div class="tabela-container">
                     <div id="loading" class="text-center" style="display: none;">
@@ -927,5 +934,141 @@ $('.mover-pedido').click(function () {
     });
 });
 
+</script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const tabelaPedidos = document.getElementById('tabela-pedidos');
+  const metragemTotalDiv = document.getElementById('metragem_total');
+  // Função para calcular a metragem total
+  function calcularMetragemTotal() {
+    let metragemTotal = 0;
+    // Loop pelas linhas da tabela
+    for (let i = 0; i < tabelaPedidos.rows.length; i++) {
+        const linha = tabelaPedidos.rows[i];
+        // Seleciona o input
+        const inputMedida = linha.querySelector('input[name="medida_linear"]');
+        // Verifica se o input existe antes de tentar ler o value
+        if (inputMedida) {
+        const medidaLinear = parseFloat(inputMedida.value);
+        // Soma apenas se tiver uma medida válida
+        if (!isNaN(medidaLinear)) {
+            metragemTotal += medidaLinear; 
+        }
+        }
+    }
+    return metragemTotal.toFixed(2);
+    }
+    function converterTempo(tempoEmHoras) {
+    if (tempoEmHoras >= 24) {
+        const dias = Math.floor(tempoEmHoras / 24);
+        const horasRestantes = tempoEmHoras % 24;
+        return `${dias} dia(s) e ${horasRestantes} hora(s)`;
+    } else if (tempoEmHoras < 1) {
+        const minutos = Math.floor(tempoEmHoras * 60);
+        return `${minutos} minuto(s)`;
+    } else {
+        const horas = Math.floor(tempoEmHoras);
+        const minutosRestantes = Math.floor((tempoEmHoras - horas) * 60);
+        return `${horas} hora(s) e ${minutosRestantes} minuto(s)`;
+    }
+    }
+  // Função para calcular a metragem por hora
+    function calcularMetragemPorHora() {
+        const metragemTotal = calcularMetragemTotal();
+        const metrosPorHora = 60; // Altere o valor conforme necessário
+        const metragemPorHora = (metragemTotal / metrosPorHora).toFixed(2);
+        return converterTempo(metragemPorHora);
+    }
+  // Função para calcular a metragem por tipo de material
+  function calcularMetragemPorMaterial() {
+    const metragemPorMaterial = {};
+    // Loop pelas linhas da tabela
+    for (let i = 0; i < tabelaPedidos.rows.length; i++) {
+        const linha = tabelaPedidos.rows[i];
+        // Seleciona os elementos
+        const selectMaterial = linha.querySelector('select[name="material"]');
+        console.log(selectMaterial);
+        const inputMedida = linha.querySelector('input[name="medida_linear"]');
+        // Verifica se os elementos existem antes de tentar ler os valores
+        if (selectMaterial && inputMedida) {
+        const material = selectMaterial.options[selectMaterial.selectedIndex].text;
+        const medidaLinear = parseFloat(inputMedida.value);
+        // Faz validação extra da medida linear
+        if (!isNaN(medidaLinear)) {
+            // Soma no objeto de metragem por material
+            if (metragemPorMaterial[material]) {
+            metragemPorMaterial[material] += medidaLinear;
+            } else {
+            metragemPorMaterial[material] = medidaLinear;
+            }
+        }
+        }
+    }
+    for (const material in metragemPorMaterial) {
+        metragemPorMaterial[material] = metragemPorMaterial[material].toFixed(2);
+    }
+        return metragemPorMaterial;
+    }
+    // Função para calcular a quantidade de cada produto
+    function calcularQuantidadePorProduto() {
+        const quantidadePorProduto = {};
+        // Loop pelas linhas da tabela
+        for (let i = 0; i < tabelaPedidos.rows.length; i++) {
+            const linha = tabelaPedidos.rows[i];
+            // Seleciona o select de produto
+            const selectProduto = linha.querySelector('select[name="produto"]');
+            // Verifica se o select existe antes de tentar ler o value
+            if (selectProduto) {
+            const produto = selectProduto.value;
+            // Soma a quantidade apenas se tiver produto válido
+            if (produto) {
+                if (quantidadePorProduto[produto]) {
+                quantidadePorProduto[produto] += 1; 
+                } else {
+                quantidadePorProduto[produto] = 1;
+                }
+            }
+            }
+        }
+        
+        // Ordena o objeto de quantidadePorProduto por quantidade
+        const quantidadeOrdenada = Object.entries(quantidadePorProduto).sort((a, b) => b[1] - a[1]);
+        // Retorna o objeto de quantidadePorProduto ordenado
+        return quantidadeOrdenada;
+    }
+  // Função para atualizar as informações na div "metragem_total"
+  function atualizarMetragemTotal() {
+    const metragemTotal = calcularMetragemTotal();
+    const metragemPorHora = calcularMetragemPorHora();
+    const metragemPorMaterial = calcularMetragemPorMaterial();
+    const quantidadePorProduto = calcularQuantidadePorProduto();
+    console.log(metragemPorMaterial);
+
+    metragemTotalDiv.innerHTML = `
+      <p>Metragem Total: ${metragemTotal}M</p>
+      <p>Metragem por Hora: ${metragemPorHora}</p>
+      <p>Metragem por Material:</p>
+      <ul>
+        ${Object.entries(metragemPorMaterial)
+            .map(([material, metragem]) => `<li>${material ? material : 'Sem material definido'}: ${metragem}M</li>`)
+            .join('')}
+        </ul>
+        <p>Quantidade por Produto:</p>
+        <ul>
+        ${(() => {
+            let lista = '';
+            quantidadePorProduto.forEach(([produto, quantidade]) => {
+            lista += `<li>${produto}(s): ${quantidade} </li>`;
+            });
+            return lista;
+        })()}
+        </ul>
+    `;
+  }
+  // Atualizar as informações quando houver mudanças nos campos relevantes
+  tabelaPedidos.addEventListener('input', atualizarMetragemTotal);
+  // Atualizar as informações quando a página for carregada
+  atualizarMetragemTotal();
+});
 </script>
 @endsection

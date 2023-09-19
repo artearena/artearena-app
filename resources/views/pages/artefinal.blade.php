@@ -408,7 +408,7 @@ Consulta de Pedidos
                                         <button class="btn btn-primary ms-1 abrir-modal" data-bs-toggle="modal" data-bs-target="#pedidoModal" data-id-pedido="{{ $pedido->id }}">
                                             <i class="bi bi-eye"></i> <!-- Ícone do olho do Bootstrap Icons -->
                                         </button>
-                                        <a href="{{ $pedido->link_trello }}" class="btn btn-primary ms-1" data-id="{{ $pedido->id }}" onclick="return confirmarLink(this)">
+                                        <a href="{{ $pedido->link_trello }}" class="btn btn-primary ms-1" data-id="{{ $pedido->id }}" onclick="return confirmarLink(this)" target="_blank">
                                             <i class="fa-brands fa-trello"></i> <!-- Ícone de cadeado do Font Awesome -->
                                         </a>
                                         <button type="button" class="btn btn-primary ms-1 mover-pedido" data-id="{{ $pedido->id }}">

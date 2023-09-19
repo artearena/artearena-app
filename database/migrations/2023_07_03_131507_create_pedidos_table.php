@@ -25,7 +25,7 @@ class CreatePedidosTable extends Migration
             $table->string('designer')->nullable();
             $table->string('tipo_pedido')->nullable();
             $table->string('checagem_final')->nullable();
-            $table->string('link_trello')->nullable();
+            $table->string('tiny')->nullable();
             $table->string('rolo')->nullable();
             $table->string('outros')->nullable();
             $table->string('etapa');

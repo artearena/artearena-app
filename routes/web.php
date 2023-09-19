@@ -6,7 +6,8 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PedidoController;
 use App\Http\Controllers\PermissaoController;
 use App\Http\Controllers\CadastroController;
-
+use App\Http\Controllers\TrelloController;
+ 
 Route::middleware(['auth'])->group(function () {
     Route::get('/', [SiteController::class, 'index'])->name('index');
     Route::get('/home', [SiteController::class, 'index'])->name('home');
@@ -37,7 +38,9 @@ Route::middleware(['auth'])->group(function () {
 
     // Rota para as operações CRUD de cadastro
 });
-
+Route::prefix('trello')->group(function () {
+    Route::any('/', [TrelloController::class, 'index'])->name('trello.index');
+});
 Route::prefix('cadastro')->group(function () {
     // Rota para listar todos os registros de cadastro
     Route::any('/', [CadastroController::class, 'index'])->name('cadastro.index');

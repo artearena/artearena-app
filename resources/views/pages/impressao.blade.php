@@ -149,7 +149,11 @@ Consulta de Pedidos
     #tabela-pedidos select::selection {
         background-color: rgba(255, 255, 255, 0.3); /* Define a cor da seleção */
     }
-
+    #medida-linear-tabela {
+        font-family: "Arial Narrow", Arial, sans-serif; /* Fonte compacta sugerida: Arial Narrow */
+        font-weight: bold;
+        font-size: 30px; /* Tamanho de fonte sugerido: 14 pixels */
+    }
 </style>
 @endsection
 
@@ -227,12 +231,14 @@ Consulta de Pedidos
                             <button type="submit" class="btn btn-primary" id="cadastrarPedido">Cadastrar Pedido</button>
                     </form>
                     <hr>
+                    <div id="medida-linear-tabela"></div>
+                    <hr>
                     <div class="tabela-container">
                     <div id="loading" class="text-center" style="display: none;">
                         <p>Carregando...</p>
                     </div>
                     <div id="recordsInfoContainer" style="font-size: 1.2em; font-weight: bold;"></div>
-
+                
                     <table id="tabela-pedidos" class="table table-striped">
                         <thead>
                             <tr>
@@ -903,5 +909,33 @@ $('.mover-pedido').click(function () {
     });
 });
 
+</script>
+<script>
+    const linhasTabela = document.querySelectorAll('#tabela-pedidos tbody tr');
+    let somaMedidaLinear = 0;
+
+    linhasTabela.forEach((linha) => {
+    const medidaLinear = parseFloat(linha.querySelector('td:nth-child(5) input').value);
+
+    if (!isNaN(medidaLinear)) {
+        somaMedidaLinear += medidaLinear;
+    }
+    });
+
+    let tempoEstimado;
+    let tempoEstimadoTexto;
+
+    if (somaMedidaLinear < 60) {
+    tempoEstimado = somaMedidaLinear;
+    tempoEstimadoTexto = `Tempo estimado: ${tempoEstimado.toFixed(0)} minutos`;
+    } else {
+    tempoEstimado = somaMedidaLinear / 60;
+    tempoEstimadoTexto = `Tempo estimado: ${tempoEstimado.toFixed(2)} horas`;
+    }
+
+    const totalMedidaLinearTexto = `Total de medida linear: ${somaMedidaLinear.toFixed(2)}m`;
+    
+    const recordsInfoContainer = document.getElementById('medida-linear-tabela');
+    recordsInfoContainer.innerHTML = `${totalMedidaLinearTexto}<br>${tempoEstimadoTexto}`;
 </script>
 @endsection
