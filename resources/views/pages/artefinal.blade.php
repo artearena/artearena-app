@@ -544,7 +544,7 @@ $.ajaxSetup({
             fixedHeader: true,
             select: true,
             "lengthMenu": [[10, 25, 50, 100, 200, 300], [10, 25, 50, 100, 200, 300]],
-            "pageLength": 200,
+            "pageLength": 300,
             "columnDefs": [
                 // Definições das colunas, incluindo a função "render" para formatar a data
                 
