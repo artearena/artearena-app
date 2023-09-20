@@ -396,8 +396,7 @@
                 item.lista !== "Modelos" &&
                 item.lista !== "GABRIEL" &&
                 item.lista !== "ESBOÇO AGUARDANDO APROVAÇÃO" &&
-                item.lista !== "ESBOÇO CONCLUIDO" &&
-                item.lista !== "EM TRATATIVA"
+                item.lista !== "ESBOÇO CONCLUIDO" 
             ) {
                 var { div, subUl, h2 } = criarListaDiv(item.lista, item.cards.length);
                 item.cards.forEach(function (card) {
@@ -511,7 +510,7 @@
             infoPorLista
         };
         }
-
+    
     var ordemListas = [
         'em andamento',
         'novos esboços',
@@ -554,7 +553,7 @@
             'criação/complexo': 4
         };
 
-        const listasExcluidas = ["Modelos", "GABRIEL", "ESBOÇO AGUARDANDO APROVAÇÃO", "ESBOÇO CONCLUIDO", "NOVOS ESBOÇOS","CRIAÇÃO/COMPLEXO"];
+        const listasExcluidas = ["Modelos", "GABRIEL", "ESBOÇO AGUARDANDO APROVAÇÃO", "ESBOÇO CONCLUIDO", "EM TRATATIVA", "NOVOS ESBOÇOS","CRIAÇÃO/COMPLEXO"];
 
         const cardsAtrasados = [];
         const listasNaoExcluidas = [];
