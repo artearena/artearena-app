@@ -396,7 +396,8 @@
                 item.lista !== "Modelos" &&
                 item.lista !== "GABRIEL" &&
                 item.lista !== "ESBOÇO AGUARDANDO APROVAÇÃO" &&
-                item.lista !== "ESBOÇO CONCLUIDO" 
+                item.lista !== "ESBOÇO CONCLUIDO" &&
+                item.lista !== "EM TRATATIVA"
             ) {
                 var { div, subUl, h2 } = criarListaDiv(item.lista, item.cards.length);
                 item.cards.forEach(function (card) {

@@ -543,7 +543,7 @@ $.ajaxSetup({
         let table = $('#tabela-pedidos').DataTable({
             fixedHeader: true,
             select: true,
-            "lengthMenu": [[10, 25, 50, 100, 200], [10, 25, 50, 100, 200]],
+            "lengthMenu": [[10, 25, 50, 100, 200, 300], [10, 25, 50, 100, 200, 300]],
             "pageLength": 200,
             "columnDefs": [
                 // Definições das colunas, incluindo a função "render" para formatar a data
