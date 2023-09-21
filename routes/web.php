@@ -7,7 +7,6 @@ use App\Http\Controllers\PedidoController;
 use App\Http\Controllers\PermissaoController;
 use App\Http\Controllers\CadastroController;
 use App\Http\Controllers\TrelloController;
-use App\Http\Controllers\Api\OctaController;
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/', [SiteController::class, 'index'])->name('index');
@@ -42,7 +41,6 @@ Route::middleware(['auth'])->group(function () {
 Route::prefix('trello')->group(function () {
     Route::any('/', [TrelloController::class, 'index'])->name('trello.index');
 });
-Route::post('/cadastrar', [OctaController::class, 'cadastrar']);
 Route::prefix('cadastro')->group(function () {
     // Rota para listar todos os registros de cadastro
     Route::any('/', [CadastroController::class, 'index'])->name('cadastro.index');
