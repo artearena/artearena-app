@@ -7,6 +7,7 @@ use App\Http\Controllers\PedidoController;
 use App\Http\Controllers\PermissaoController;
 use App\Http\Controllers\CadastroController;
 use App\Http\Controllers\TrelloController;
+use App\Http\Controllers\tinyController;
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/', [SiteController::class, 'index'])->name('index');
@@ -38,6 +39,9 @@ Route::middleware(['auth'])->group(function () {
 
     Route::prefix('trello')->group(function () {
         Route::any('/', [TrelloController::class, 'index'])->name('trello.index');
+    });
+    Route::prefix('tiny')->group(function () {
+        Route::any('/', [tinyController::class, 'relatorio'])->name('tiny.relatorio');
     });
 });
 

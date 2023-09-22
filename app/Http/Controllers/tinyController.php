@@ -3,14 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Pedido;
+use App\Models\tiny;
 
 class PedidoController extends Controller
 {
-    public function index()
+    public function relatorio()
     {
-        $pedidos = Pedido::all();
-        return view('pedidos.index', compact('pedidos'));
+        $tiny = tiny::all();
+        return view('pages.tiny.relatorio', compact('tiny'));
     }
 
     public function show($id)
