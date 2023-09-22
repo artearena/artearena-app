@@ -36,11 +36,11 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/register', [AuthController::class,'register_page'])->name('register_page');
     Route::post('/register', [AuthController::class,'register'])->name('register');
 
-    // Rota para as operações CRUD de cadastro
+    Route::prefix('trello')->group(function () {
+        Route::any('/', [TrelloController::class, 'index'])->name('trello.index');
+    });
 });
-Route::prefix('trello')->group(function () {
-    Route::any('/', [TrelloController::class, 'index'])->name('trello.index');
-});
+
 Route::prefix('cadastro')->group(function () {
     // Rota para listar todos os registros de cadastro
     Route::any('/', [CadastroController::class, 'index'])->name('cadastro.index');
@@ -56,8 +56,6 @@ Route::prefix('cadastro')->group(function () {
 
     // Rota para exibir o formulário de edição de cadastro
     Route::get('/{id}/edit', [CadastroController::class, 'edit'])->name('cadastro.edit');
-
-    // Rota para atualizar um registro de cadastro
 
     // Rota para excluir um registro de cadastro
     Route::delete('/{id}', [CadastroController::class, 'destroy'])->name('cadastro.destroy');
