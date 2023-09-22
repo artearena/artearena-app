@@ -49,6 +49,9 @@
                 <li class="nav-item">
                     <a class="nav-link {{ request()->is('trello.index') ? 'active' : '' }}" href="{{ route('trello.index') }}">Lista do Trello</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ request()->is('tiny.relatorio') ? 'active' : '' }}" href="{{ route('tiny.relatorio') }}">Lista do Trello</a>
+                </li>
             </ul>
             @endguest
             <span class="navbar-text" style="margin-right: 40px;">
