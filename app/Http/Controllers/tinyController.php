@@ -11,7 +11,7 @@ class tinyController extends Controller
 
     public function gerarPdf()
     {
-        $dados = Model::getAllData();
+        $dados = Tiny::getAllData();
 
         $pdf = PDF::loadView('relatorioPdf', compact('dados'));
         return $pdf->download('relatorio.pdf');
@@ -19,7 +19,7 @@ class tinyController extends Controller
 
     public function exibirRelatorio() 
     {
-        $dados = Model::getAllData();
+        $dados = Tiny::getAllData();
         
         return view('relatorioTela', compact('dados')); 
     }
