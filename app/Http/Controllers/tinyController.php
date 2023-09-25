@@ -21,7 +21,7 @@ class tinyController extends Controller
     {
         $dados = Tiny::All();
         
-        return view('relatorioTela', compact('dados')); 
+        return view('page.tiny.relatorio', compact('dados')); 
     }
 
 }
