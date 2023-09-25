@@ -20,7 +20,7 @@
             </thead>
 
             <tbody>
-                @foreach($tiny as $item)
+                @foreach($dados as $item)
                 <tr>
                     <td>{{ $item->id_vendedor }}</td>
                     <td>R$ {{ number_format($item->total_pedido, 2, ',', '.') }}</td>
