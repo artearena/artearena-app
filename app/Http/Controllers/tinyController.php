@@ -19,9 +19,12 @@ class tinyController extends Controller
 
     public function exibirRelatorio() 
     {
-        $dados = tiny::All();
-        
+        $dados = tiny::selectRaw('SUM(total_pedido) AS total_pedido, 
+            SUM(valor_frete) AS total_frete, 
+            id_vendedor')
+        ->groupBy('id_vendedor')
+        ->get();
+
         return view('pages.tiny.relatorio', compact('dados')); 
     }
-
 }
