@@ -41,7 +41,8 @@ Route::middleware(['auth'])->group(function () {
         Route::any('/', [TrelloController::class, 'index'])->name('trello.index');
     });
     Route::prefix('tiny')->group(function () {
-        Route::any('/', [tinyController::class, 'relatorio'])->name('tiny.relatorio');
+        Route::any('/', [tinyController::class, 'exibirRelatorio'])->name('tiny.relatorio');
+        Route::any('/download-pdf', [tinyController::class, 'gerarPdf'])->name('tiny.gerarPdf');
     });
 });
 

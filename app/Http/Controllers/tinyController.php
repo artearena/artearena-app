@@ -9,14 +9,19 @@ use PDF;
 class tinyController extends Controller
 {
 
-    public function relatorio()
+    public function gerarPdf()
     {
-        $tiny = tiny::selectRaw('SUM(total_pedido) AS total_pedido, SUM(valor_frete) AS total_frete, id_vendedor')
-        ->groupBy('id_vendedor')
-        ->get();
+        $dados = Model::getAllData();
+
+        $pdf = PDF::loadView('relatorioPdf', compact('dados'));
+        return $pdf->download('relatorio.pdf');
+    }
+
+    public function exibirRelatorio() 
+    {
+        $dados = Model::getAllData();
         
-        $pdf = PDF::loadView('relatorio', compact('tiny'));
-        return $pdf->download('relatorio-tiny.pdf');
+        return view('relatorioTela', compact('dados')); 
     }
 
 }
