@@ -36,7 +36,8 @@
 
     </style>
 @endsection
-@section('body')
+@section('content')
+
 <h1>aaaaaaaaaaa</h1>
     <div class="container">
         <h1>Relatório Trello</h1>
