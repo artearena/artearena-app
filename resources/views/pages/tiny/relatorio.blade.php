@@ -4,7 +4,36 @@
 @endsection
 @section('style')
     <style>
-        /* Estilos personalizados para a tela de relatórios */
+
+        table {
+            width: 100%;
+            border-collapse: collapse; 
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+
+        td {
+            font-size: .9em;
+        }
+
+        tfoot td {
+            font-weight: bold;
+        }
+
+        tbody tr:hover {
+            background-color: #f5f5f5;
+        }
+
+
     </style>
 @endsection
 @section('body')
@@ -20,7 +49,7 @@
             </thead>
 
             <tbody>
-                @foreach($dados as $item)
+                @foreach($dados as T$item)
                 <tr>
                     <td>{{ $item->id_vendedor }}</td>
                     <td>R$ {{ number_format($item->total_pedido, 2, ',', '.') }}</td>
