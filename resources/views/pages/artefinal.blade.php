@@ -817,12 +817,12 @@ $.ajaxSetup({
             // Obter observações
             const observacoes = row.find('td.expandir-observacoes input[name="observacoes"]').val();
             // Mensagem
-            const mensagem = `Erro encontrado!
+            const mensagem = `*Erro encontrado!*
             
-            Designer: ${designer}
-            Pedido: #${pedidoId}
-            Link: ${linkTrello}
-            Observações: ${observacoes}`;
+            *Designer:* ${designer}
+            *Pedido: #*${pedidoId}
+            *Link:* ${linkTrello}
+            *Observações:* ${observacoes}`;
             // URL para enviar notificação
             const url = 'https://artearena.kinghost.net/enviarNotificacaoSlack?mensagem=' + encodeURIComponent(mensagem);
             console.log(url);
