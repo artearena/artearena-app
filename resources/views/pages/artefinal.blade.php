@@ -420,7 +420,6 @@ Consulta de Pedidos
                                         
                                     </div>
                                 </td>
-                                <td style="display:none">{{ auth()->id() }}</td> 
                             </tr>
                             @endif
                             @endforeach
