@@ -820,7 +820,7 @@ $.ajaxSetup({
             const mensagem = `*Erro encontrado!*
             
             *Designer:* ${designer}
-            *Pedido: #*${pedidoId}
+            *Pedido:* #${pedidoId}
             *Link:* ${linkTrello}
             *Observações:* ${observacoes}`;
             // URL para enviar notificação
