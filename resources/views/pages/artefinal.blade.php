@@ -635,7 +635,6 @@ $.ajaxSetup({
             columnResizing: true,
             colReorder: true,
         });
-        console.log(table.settings());
 
         table.on('select', function() {
             var contador = table.rows({ selected: true }).count();
