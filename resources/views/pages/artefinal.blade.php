@@ -297,6 +297,8 @@ Consulta de Pedidos
                                 <th data-filter="true">Tipo de Pedido</th>
                                 <th data-filter="true">Checagem Final</th>
                                 <th>Ações</th>
+                                <th style="display:none">ID Usuario</th> 
+
                             </tr>
                         </thead>
                         <tbody>
@@ -420,6 +422,8 @@ Consulta de Pedidos
                                         
                                     </div>
                                 </td>
+                                <td style="display:none">{{ auth()->id() }}</td> 
+
                             </tr>
                             @endif
                             @endforeach
