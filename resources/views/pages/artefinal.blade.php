@@ -817,7 +817,7 @@ $.ajaxSetup({
             const designer = row.find('select[name="designer"]').val();
 
             // Mensagem
-            const mensagem = `O pedido #${pedidoId} está com ERRO na checagem final. Favor verificar com o designer ${designer}.`;
+            const mensagem = `O pedido #${pedidoId} está com ERRO na checagem final. Favor verificar designer ${designer}.`;
             
             // URL para enviar notificação 
             const url = 'https://artearena.kinghost.net/enviarNotificacaoSlack?mensagem=' + encodeURIComponent(mensagem);
@@ -889,7 +889,7 @@ $.ajaxSetup({
                 // Obter designer
                 const designer = row.find('select[name="designer"]').val();
                 // Mensagem
-                const mensagem = `O pedido #${pedidoId} está com ERRO na checagem final. Favor verificar com o designer ${designer}.`;
+                const mensagem = `O pedido #${pedidoId} está com ERRO na checagem final. Favor verificar designer ${designer}.`;
                 // URL para enviar notificação
                 const url = 'https://artearena.kinghost.net/enviarNotificacaoSlack?mensagem=' + encodeURIComponent(mensagem);
                 console.log(url);
