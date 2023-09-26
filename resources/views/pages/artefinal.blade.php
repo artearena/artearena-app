@@ -899,9 +899,9 @@ $.ajaxSetup({
             Pedido: #${pedidoId}
             Link: ${linkTrello}
             Observações: ${observacoes}`;
+            
             // URL para enviar notificação
             const url = 'https://artearena.kinghost.net/enviarNotificacaoSlack?mensagem=' + encodeURIComponent(mensagem);
-            console.log(url);
             // Enviar requisição
             fetch(url)
                 .then(response => {
