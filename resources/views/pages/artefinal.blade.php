@@ -814,7 +814,7 @@ $.ajaxSetup({
             const row = $(this).closest('tr');
 
             // Obter o <select> do campo designer
-            const designerSelect = row.find('select[name="designer"]');
+            const designerSelect = $(this).closest('tr').find('select[name="designer"]').val();
 
             // Ler o valor selecionado
             const designer = designerSelect.val();
