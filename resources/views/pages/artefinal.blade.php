@@ -810,34 +810,27 @@ $.ajaxSetup({
 
             const pedidoId = id;
 
-            // Obter o elemento <tr> da linha
+            // Obter linha da tabela
             const row = $(this).closest('tr');
 
-            // Obter o <select> do campo designer
-            const designer = $(this).closest('tr').find('select[name="designer"]').val();
+            // Obter designer
+            const designer = row.find('select[name="designer"]').val();
 
+            // Mensagem
             const mensagem = `O pedido #${pedidoId} está com ERRO na checagem final. Favor verificar com o designer ${designer}.`;
-            // URL do webhook
-            const url = 'https://artearena.kinghost.net/enviarNotificacaoSlack';
+
+            // URL para enviar notificação 
+            const url = '/enviar-notificacao-slack?mensagem=' + encodeURIComponent(mensagem);
             console.log(url);
-
-            // Dados para enviar
-            const data = {
-                text: mensagem
-            };
-
-            // Requisição para o Slack
-            fetch(url, {
-            method: 'POST',
-            body: JSON.stringify(data)  
-            })
+            // Enviar requisição
+            fetch(url)
             .then(response => {
-            if (!response.ok) {
+                if(!response.ok) {
                 throw new Error('Erro ao enviar notificação');
-            }
-                console.log('Notificação enviada com sucesso!'); 
+                }
+                console.log('Notificação enviada com sucesso!');
             })
-                .catch(error => {
+            .catch(error => {
                 console.error('Erro ao enviar notificação:', error);
             });
 
