@@ -177,10 +177,6 @@ Consulta de Pedidos
     .destacado {
         background-color: orange;
     }
-    /* CSS */
-    .minhaSelecao {
-        background-color: purple !important;
-    }
 </style>
 @endsection
 
@@ -779,8 +775,9 @@ $.ajaxSetup({
         return message;
     }
     // Javascript
-    $('#tabela-pedidos tbody').on('click', 'tr', function() {
-        (this).toggleClass('minhaSelecao');
+    $('#tabela-pedidos').on('select', function(e, dt, type, indexes) {
+        var row = $('#tabela-pedidos').find('tr.selected'); 
+       row.css('background-color', 'purple');
     });
     $('#tabela-pedidos').on('draw.dt', function() {
         updateColors(); // Função para atualizar as cores de fundo dos campos
