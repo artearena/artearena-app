@@ -819,6 +819,7 @@ $.ajaxSetup({
             const mensagem = `O pedido #${pedidoId} está com ERRO na checagem final. Favor verificar com o designer ${designer}.`;
             // URL do webhook
             const url = 'https://artearena.kinghost.net/enviarNotificacaoSlack';
+            console.log(url);
 
             // Dados para enviar
             const data = {
@@ -887,39 +888,33 @@ $.ajaxSetup({
             }
             if (field === 'checagem_final' && value === 'Erro') {
 
-                const pedidoId = id;
+            const pedidoId = id;
 
-                // Obter o elemento <tr> da linha
-                const row = $(this).closest('tr');
+            // Obter linha da tabela
+            const row = $(this).closest('tr');
 
-                const designer = $(this).closest('tr').find('select[name="designer"]').val();
+            // Obter designer
+            const designer = row.find('select[name="designer"]').val();
 
-                const mensagem = `O pedido #${pedidoId} está com ERRO na checagem final. Favor verificar com o designer ${designer}.`;
-                // URL do webhook
-                const url = 'https://artearena.kinghost.net/enviarNotificacaoSlack';
+            // Mensagem
+            const mensagem = `O pedido #${pedidoId} está com ERRO na checagem final. Favor verificar com o designer ${designer}.`;
 
-                // Dados para enviar
-                const data = {
-                    text: mensagem
-                };
-                console.log(JSON.stringify(data) );
-
-                // Requisição para o Slack
-                fetch(url, {
-                method: 'POST',
-                body: JSON.stringify(data)  
-                })
-                .then(response => {
-                if (!response.ok) {
-                    throw new Error('Erro ao enviar notificação');
+            // URL para enviar notificação 
+            const url = '/enviar-notificacao-slack?mensagem=' + encodeURIComponent(mensagem);
+            console.log(url);
+            // Enviar requisição
+            fetch(url)
+            .then(response => {
+                if(!response.ok) {
+                throw new Error('Erro ao enviar notificação');
                 }
-                    console.log('Notificação enviada com sucesso!'); 
-                })
-                    .catch(error => {
-                    console.error('Erro ao enviar notificação:', error);
-                });
+                console.log('Notificação enviada com sucesso!');
+            })
+            .catch(error => {
+                console.error('Erro ao enviar notificação:', error);
+            });
 
-                }
+            }
             // Verifica se o campo é uma medida linear
             var isLinearMeasurementField = ['medida_linear'].includes(field);
             
