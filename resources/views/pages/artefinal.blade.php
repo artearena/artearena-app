@@ -420,6 +420,7 @@ Consulta de Pedidos
                                         
                                     </div>
                                 </td>
+                                <td style="display:none">{{ auth()->id() }}</td> 
                             </tr>
                             @endif
                             @endforeach
@@ -530,7 +531,7 @@ $.ajaxSetup({
     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
   }
 });
-
+console.log(table.settings());
 
     $(document).ready(function(){
         configurarTabela();
