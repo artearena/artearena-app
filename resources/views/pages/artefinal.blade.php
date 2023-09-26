@@ -177,6 +177,10 @@ Consulta de Pedidos
     .destacado {
         background-color: orange;
     }
+    /* CSS */
+    .minhaSelecao {
+        background-color: purple !important;
+    }
 </style>
 @endsection
 
@@ -774,6 +778,10 @@ $.ajaxSetup({
         // Se nenhum filtro corresponder, retorne a mensagem original
         return message;
     }
+    // Javascript
+    $('#tabela-pedidos tbody').on('click', 'tr', function() {
+        (this).toggleClass('minhaSelecao');
+    });
     $('#tabela-pedidos').on('draw.dt', function() {
         updateColors(); // Função para atualizar as cores de fundo dos campos
         reatribuirEventosChange(); // Função para reatribuir o evento "change" após a paginação ou ordenação
