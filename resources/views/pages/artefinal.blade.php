@@ -807,36 +807,36 @@ $.ajaxSetup({
                 }
         }
         if (field === 'checagem_final' && value === 'Erro') {
-
             const pedidoId = id;
-
             // Obter linha da tabela
             const row = $(this).closest('tr');
-
             // Obter designer
             const designer = row.find('select[name="designer"]').val();
-
+            // Obter link do Trello
+            const linkTrello = row.find('a[data-id="' + pedidoId + '"]').attr('href');
+            // Obter observações
+            const observacoes = row.find('td.expandir-observacoes input[name="observacoes"]').val();
             // Mensagem
-            const mensagem = `O pedido #${pedidoId} está com ERRO na checagem final. Favor verificar designer ${designer}.`;
+            const mensagem = `Erro encontrado!
             
-            // URL para enviar notificação 
+            Designer: ${designer}
+            Pedido: #${pedidoId}
+            Link: ${linkTrello}
+            Observações: ${observacoes}`;
+            // URL para enviar notificação
             const url = 'https://artearena.kinghost.net/enviarNotificacaoSlack?mensagem=' + encodeURIComponent(mensagem);
-
             console.log(url);
-            console.log(encodeURIComponent(mensagem));
-
             // Enviar requisição
             fetch(url)
-            .then(response => {
-                if(!response.ok) {
-                throw new Error('Erro ao enviar notificação');
-                }
-                console.log('Notificação enviada com sucesso!');
-            })
-            .catch(error => {
-                console.error('Erro ao enviar notificação:', error);
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Erro ao enviar notificação');
+                    }
+                    console.log('Notificação enviada com sucesso!');
+                    })
+                    .catch(error => {
+                    console.error('Erro ao enviar notificação:', error);
             });
-
         }
         
         // Verifica se o campo é uma medida linear
@@ -888,23 +888,32 @@ $.ajaxSetup({
                 const row = $(this).closest('tr');
                 // Obter designer
                 const designer = row.find('select[name="designer"]').val();
+                // Obter link do Trello
+                const linkTrello = row.find('a[data-id="' + pedidoId + '"]').attr('href');
+                // Obter observações
+                const observacoes = row.find('td.expandir-observacoes input[name="observacoes"]').val();
                 // Mensagem
-                const mensagem = `O pedido #${pedidoId} está com ERRO na checagem final. Favor verificar designer ${designer}.`;
-                // URL para enviar notificação
-                const url = 'https://artearena.kinghost.net/enviarNotificacaoSlack?mensagem=' + encodeURIComponent(mensagem);
-                console.log(url);
-                // Enviar requisição
-                fetch(url)
-                    .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Erro ao enviar notificação');
-                    }
-                    console.log('Notificação enviada com sucesso!');
-                    })
-                    .catch(error => {
-                    console.error('Erro ao enviar notificação:', error);
-                    });
+                const mensagem = `Erro encontrado!
+                
+            Designer: ${designer}
+            Pedido: #${pedidoId}
+            Link: ${linkTrello}
+            Observações: ${observacoes}`;
+            // URL para enviar notificação
+            const url = 'https://artearena.kinghost.net/enviarNotificacaoSlack?mensagem=' + encodeURIComponent(mensagem);
+            console.log(url);
+            // Enviar requisição
+            fetch(url)
+                .then(response => {
+                if (!response.ok) {
+                    throw new Error('Erro ao enviar notificação');
                 }
+                console.log('Notificação enviada com sucesso!');
+                })
+                .catch(error => {
+                console.error('Erro ao enviar notificação:', error);
+                });
+            }
             // Verifica se o campo é uma medida linear
             var isLinearMeasurementField = ['medida_linear'].includes(field);
             
