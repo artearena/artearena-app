@@ -902,6 +902,7 @@ $.ajaxSetup({
                 const data = {
                     text: mensagem
                 };
+                console.log(JSON.stringify(data) );
 
                 // Requisição para o Slack
                 fetch(url, {
@@ -913,7 +914,6 @@ $.ajaxSetup({
                     throw new Error('Erro ao enviar notificação');
                 }
                     console.log('Notificação enviada com sucesso!'); 
-                    console.log(body);
                 })
                     .catch(error => {
                     console.error('Erro ao enviar notificação:', error);
