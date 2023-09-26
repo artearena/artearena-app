@@ -814,10 +814,7 @@ $.ajaxSetup({
             const row = $(this).closest('tr');
 
             // Obter o <select> do campo designer
-            const designerSelect = $(this).closest('tr').find('select[name="designer"]').val();
-
-            // Ler o valor selecionado
-            const designer = designerSelect.val();
+            const designer = $(this).closest('tr').find('select[name="designer"]').val();
 
             const mensagem = `O pedido #${pedidoId} está com ERRO na checagem final. Favor verificar com o designer ${designer}.`;
             // URL do webhook
@@ -895,11 +892,7 @@ $.ajaxSetup({
                 // Obter o elemento <tr> da linha
                 const row = $(this).closest('tr');
 
-                // Obter o <select> do campo designer
-                const designerSelect = row.find('select[name="designer"]');
-
-                // Ler o valor selecionado
-                const designer = designerSelect.val();
+                const designer = $(this).closest('tr').find('select[name="designer"]').val();
 
                 const mensagem = `O pedido #${pedidoId} está com ERRO na checagem final. Favor verificar com o designer ${designer}.`;
                 // URL do webhook
