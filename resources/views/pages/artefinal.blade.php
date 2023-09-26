@@ -177,14 +177,20 @@ Consulta de Pedidos
     .destacado {
         background-color: orange;
     }
-    /* Muda a cor de fundo da linha selecionada */
-    table.dataTable tr.dt-row-selected {
-        background-color: purple !important;
-    }
+    :root {
 
-    /* Muda a cor do texto quando selecionado */  
-    table.dataTable tr.dt-row-selected td {
-        color: white; 
+    /* Cor de fundo da linha selecionada */
+        --dt-row-selected: purple; 
+
+        /* Cor do texto da linha selecionada */
+        --dt-row-selected-text: white;
+
+        /* Cor de fundo da linha hover */
+        --dt-row-hover: #eee; 
+
+        /* Cor das listras */
+        --dt-row-stripe: #f6f6f6;
+
     }
 </style>
 @endsection
