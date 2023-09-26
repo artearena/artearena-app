@@ -906,7 +906,7 @@ $.ajaxSetup({
                 // Requisição para o Slack
                 fetch(url, {
                 method: 'POST',
-                body: JSON.stringify(data)  
+                body: JSON.stringify(mensagem)  
                 })
                 .then(response => {
                 if (!response.ok) {
