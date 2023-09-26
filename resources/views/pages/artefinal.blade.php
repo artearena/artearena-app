@@ -913,6 +913,7 @@ $.ajaxSetup({
                     throw new Error('Erro ao enviar notificação');
                 }
                     console.log('Notificação enviada com sucesso!'); 
+                    console.log(body);
                 })
                     .catch(error => {
                     console.error('Erro ao enviar notificação:', error);
