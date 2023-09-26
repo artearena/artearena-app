@@ -30,7 +30,8 @@ class Pedido extends Model
         'etapa',
         'observacao_reposicao',
         'created_by',
-        'updated_by'
+        'updated_by',
+        'prioridade'
     ];
 
     protected static function boot()
