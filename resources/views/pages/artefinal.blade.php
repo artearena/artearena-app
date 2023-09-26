@@ -821,7 +821,7 @@ $.ajaxSetup({
 
             const mensagem = `O pedido #${pedidoId} está com ERRO na checagem final. Favor verificar com o designer ${designer}.`;
             // URL do webhook
-            const url = 'https://arte.app.br/enviarNotificacaoSlack';
+            const url = 'https://artearena.kinghost.net/enviarNotificacaoSlack';
 
             // Dados para enviar
             const data = {
@@ -903,7 +903,7 @@ $.ajaxSetup({
 
                 const mensagem = `O pedido #${pedidoId} está com ERRO na checagem final. Favor verificar com o designer ${designer}.`;
                 // URL do webhook
-                const url = 'https://arte.app.br/enviarNotificacaoSlack';
+                const url = 'https://artearena.kinghost.net/enviarNotificacaoSlack';
 
                 // Dados para enviar
                 const data = {
