@@ -177,6 +177,15 @@ Consulta de Pedidos
     .destacado {
         background-color: orange;
     }
+    /* Muda a cor de fundo da linha selecionada */
+    table.dataTable tr.dt-row-selected {
+        background-color: purple !important;
+    }
+
+    /* Muda a cor do texto quando selecionado */  
+    table.dataTable tr.dt-row-selected td {
+        color: white; 
+    }
 </style>
 @endsection
 
@@ -774,11 +783,7 @@ $.ajaxSetup({
         // Se nenhum filtro corresponder, retorne a mensagem original
         return message;
     }
-    // Javascript
-    $('#tabela-pedidos').on('select', function(e, dt, type, indexes) {
-        var row = $('#tabela-pedidos').find('tr.selected'); 
-       row.css('background-color', 'purple');
-    });
+
     $('#tabela-pedidos').on('draw.dt', function() {
         updateColors(); // Função para atualizar as cores de fundo dos campos
         reatribuirEventosChange(); // Função para reatribuir o evento "change" após a paginação ou ordenação
