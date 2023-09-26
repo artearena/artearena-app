@@ -642,6 +642,7 @@ $.ajaxSetup({
             var mensagem = contador + ' registros selecionados';
             exibirMensagemFlutuante(mensagem);
         });
+        console.log(table.settings());
 
         function exibirMensagemFlutuante(mensagem) {
             var mensagemFlutuante = $('<div class="mensagem-flutuante">' + mensagem + '</div>');
@@ -668,7 +669,6 @@ $.ajaxSetup({
         // Restante do código para configurar a tabela
         // ...
     }
-    console.log(table.settings());
 
     $('#cadastrarPedido').click(function(e) {
         e.preventDefault(); // Evita o comportamento padrão do formulário
