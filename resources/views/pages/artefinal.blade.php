@@ -172,7 +172,10 @@ Consulta de Pedidos
         opacity: 1;
     }
     tr.selected td {
-    color: white;
+        color: white;
+    }
+    .destacado {
+        background-color: orange;
     }
 </style>
 @endsection
@@ -639,6 +642,13 @@ $.ajaxSetup({
             columnResizing: true,
             colReorder: true,
         });
+        // Selecione a linha onde o ID do usuário bate com o logado
+        let row = table.row(function(idx, data) {
+        return data[18] === {{ auth()->id() }}; 
+        });
+
+        // Adicione uma classe CSS para destacar
+        row.nodes().to$().addClass('destacado');
 
         table.on('select', function() {
             var contador = table.rows({ selected: true }).count();
