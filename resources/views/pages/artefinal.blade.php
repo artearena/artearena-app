@@ -820,8 +820,8 @@ $.ajaxSetup({
             const mensagem = `O pedido #${pedidoId} está com ERRO na checagem final. Favor verificar com o designer ${designer}.`;
             
             // URL para enviar notificação 
-            const url = '/enviar-notificacao-slack?mensagem=' + encodeURIComponent(mensagem);
-            
+            const url = 'https://artearena.kinghost.net/enviar-notificacao-slack?mensagem=' + encodeURIComponent(mensagem);
+
             console.log(url);
             console.log(encodeURIComponent(mensagem));
 
@@ -896,7 +896,7 @@ $.ajaxSetup({
             const mensagem = `O pedido #${pedidoId} está com ERRO na checagem final. Favor verificar com o designer ${designer}.`;
 
             // URL para enviar notificação 
-            const url = '/enviar-notificacao-slack?mensagem=' + encodeURIComponent(mensagem);
+            const url = 'https://artearena.kinghost.net/enviar-notificacao-slack?mensagem=' + encodeURIComponent(mensagem);
             console.log(url);
             // Enviar requisição
             fetch(url)
