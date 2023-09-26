@@ -179,17 +179,17 @@ Consulta de Pedidos
     }
     :root {
 
-    /* Cor de fundo da linha selecionada */
-        --dt-row-selected: purple; 
+        /* Cor de fundo da linha selecionada */
+        --dt-row-selected: 128, 0, 128;  
 
         /* Cor do texto da linha selecionada */
-        --dt-row-selected-text: white;
+        --dt-row-selected-text: 255, 255, 255;   
 
         /* Cor de fundo da linha hover */
-        --dt-row-hover: #eee; 
+        --dt-row-hover: 238, 238, 238;
 
         /* Cor das listras */
-        --dt-row-stripe: #f6f6f6;
+        --dt-row-stripe: 246, 246, 246; 
 
     }
 </style>
