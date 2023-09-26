@@ -170,13 +170,13 @@ Consulta de Pedidos
     .mensagem-flutuante.mostrar {
         opacity: 1;
     }
-    table.dataTable tbody > tr.selected td,
-    table.dataTable tbody > tr > .selected td {
-        color: #fff; 
-    }
     .destacado {
         background-color: orange;
     }
+    table.dataTable tr.dt-row-selected td {
+        color: #fff;
+    }
+    
     :root {
 
         /* Cor de fundo da linha selecionada */
