@@ -635,6 +635,8 @@ $.ajaxSetup({
             columnResizing: true,
             colReorder: true,
         });
+        console.log(table.settings());
+
         table.on('select', function() {
             var contador = table.rows({ selected: true }).count();
             $('#contador-registros-selecionados').text(contador);
@@ -642,7 +644,6 @@ $.ajaxSetup({
             var mensagem = contador + ' registros selecionados';
             exibirMensagemFlutuante(mensagem);
         });
-        console.log(table.settings());
 
         function exibirMensagemFlutuante(mensagem) {
             var mensagemFlutuante = $('<div class="mensagem-flutuante">' + mensagem + '</div>');
