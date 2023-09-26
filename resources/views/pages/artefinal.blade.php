@@ -818,10 +818,13 @@ $.ajaxSetup({
 
             // Mensagem
             const mensagem = `O pedido #${pedidoId} está com ERRO na checagem final. Favor verificar com o designer ${designer}.`;
-
+            
             // URL para enviar notificação 
             const url = '/enviar-notificacao-slack?mensagem=' + encodeURIComponent(mensagem);
+            
             console.log(url);
+            console.log(encodeURIComponent(mensagem));
+
             // Enviar requisição
             fetch(url)
             .then(response => {
