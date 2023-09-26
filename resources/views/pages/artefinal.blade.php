@@ -106,7 +106,6 @@ Consulta de Pedidos
         background-color: #3D3D3D; /* cinza */
     }
     
-    
     /* Definindo cores de texto para os campos */
     td[data-color="red"], td[data-color="orange"], td[data-color="pink"], td[data-color="purple"], td[data-color="blue"] {
         color: white;
@@ -171,8 +170,9 @@ Consulta de Pedidos
     .mensagem-flutuante.mostrar {
         opacity: 1;
     }
-    tr.selected td {
-        color: white;
+    table.dataTable tbody > tr.selected td,
+    table.dataTable tbody > tr > .selected td {
+        color: #fff; 
     }
     .destacado {
         background-color: orange;
