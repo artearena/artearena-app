@@ -530,7 +530,6 @@ $.ajaxSetup({
     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
   }
 });
-console.log(table.settings());
 
     $(document).ready(function(){
         configurarTabela();
@@ -669,6 +668,7 @@ console.log(table.settings());
         // Restante do código para configurar a tabela
         // ...
     }
+    console.log(table.settings());
 
     $('#cadastrarPedido').click(function(e) {
         e.preventDefault(); // Evita o comportamento padrão do formulário
