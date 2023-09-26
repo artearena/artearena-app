@@ -140,6 +140,7 @@ Consulta de Pedidos
         border: none; /* Remove as bordas */
         outline: none; /* Remove o contorno de foco ao clicar */
         font-family: "Arial", sans-serif; /* Define a fonte como "Arial" e fontes alternativas caso não esteja disponível */
+        color: white;
     }
 
     /* Estilo para deixar a borda inferior nos campos de input somente ao focar */
