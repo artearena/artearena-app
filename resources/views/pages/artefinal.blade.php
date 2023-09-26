@@ -806,33 +806,44 @@ $.ajaxSetup({
                     return;
                 }
         }
-        /* if (field === 'status') {
-            // Enviar notificação para o servidor após a alteração do status
-            var pedidoId = id;
-            var novoStatus = value;
-            var mensagem = 'Pedido: ' + pedidoId + ' teve o status alterado para: ' + novoStatus;
-            
-            // Fazer a requisição para o servidor enviando a mensagem como parâmetro na URL
-            var url = 'https://artearena.kinghost.net/enviarNotificacaoSlack?mensagem=' + mensagem;
-            console.log(url);
-            
+        if (field === 'checagem_final' && value === 'Erro') {
+
+            const pedidoId = id;
+
+            // Obter o elemento <tr> da linha
+            const row = $(this).closest('tr');
+
+            // Obter o <select> do campo designer
+            const designerSelect = row.find('select[name="designer"]');
+
+            // Ler o valor selecionado
+            const designer = designerSelect.val();
+
+            const mensagem = `O pedido #${pedidoId} está com ERRO na checagem final. Favor verificar com o designer ${designer}.`;
+            // URL do webhook
+            const url = 'https://arte.app.br/enviarNotificacaoSlack';
+
+            // Dados para enviar
+            const data = {
+                text: mensagem
+            };
+
+            // Requisição para o Slack
             fetch(url, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
+            method: 'POST',
+            body: JSON.stringify(data)  
             })
             .then(response => {
-                if (response.ok) {
-                    console.log('Notificação enviada para o servidor com sucesso!');
-                } else {
-                    throw new Error('Erro ao enviar notificação para o servidor');
-                }
+            if (!response.ok) {
+                throw new Error('Erro ao enviar notificação');
+            }
+                console.log('Notificação enviada com sucesso!'); 
             })
-            .catch(error => {
-                console.error('Erro ao enviar notificação para o servidor: ' + error.message);
+                .catch(error => {
+                console.error('Erro ao enviar notificação:', error);
             });
-        } */
+
+        }
         
         // Verifica se o campo é uma medida linear
         var isLinearMeasurementField = ['medida_linear'].includes(field);
@@ -877,7 +888,44 @@ $.ajaxSetup({
                     return;
                 }
             }
-            
+            if (field === 'checagem_final' && value === 'Erro') {
+
+                const pedidoId = id;
+
+                // Obter o elemento <tr> da linha
+                const row = $(this).closest('tr');
+
+                // Obter o <select> do campo designer
+                const designerSelect = row.find('select[name="designer"]');
+
+                // Ler o valor selecionado
+                const designer = designerSelect.val();
+
+                const mensagem = `O pedido #${pedidoId} está com ERRO na checagem final. Favor verificar com o designer ${designer}.`;
+                // URL do webhook
+                const url = 'https://arte.app.br/enviarNotificacaoSlack';
+
+                // Dados para enviar
+                const data = {
+                    text: mensagem
+                };
+
+                // Requisição para o Slack
+                fetch(url, {
+                method: 'POST',
+                body: JSON.stringify(data)  
+                })
+                .then(response => {
+                if (!response.ok) {
+                    throw new Error('Erro ao enviar notificação');
+                }
+                    console.log('Notificação enviada com sucesso!'); 
+                })
+                    .catch(error => {
+                    console.error('Erro ao enviar notificação:', error);
+                });
+
+                }
             // Verifica se o campo é uma medida linear
             var isLinearMeasurementField = ['medida_linear'].includes(field);
             
