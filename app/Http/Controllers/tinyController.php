@@ -22,8 +22,7 @@ class TinyController extends Controller
             ->groupBy('id_vendedor')
             ->get();
         
-        $vendedores = Usuario::whereNotNull('id_vendedor')->pluck('nome_usuario');
-        dd($vendedores);
+        $vendedores = Usuario::whereNotNull('id_vendedor')->select('id_vendedor', 'nome_usuario')->get();
         return view('pages.tiny.relatorio', compact('dados', 'vendedores'));
     }
 }

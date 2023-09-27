@@ -48,13 +48,16 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach($dados as $item)
+            @foreach($dados as $item)
                 <tr>
-                    <td>{{ $vendedores[$item->id_vendedor] ?? 'Vendedor não encontrado' }}</td>
+                    @php
+                        $vendedor = $vendedores->firstWhere('id_vendedor', $item->id_vendedor);
+                    @endphp
+                    <td>{{ $vendedor ? $vendedor->nome_usuario : 'Vendedor não encontrado' }}</td>
                     <td>R$ {{ number_format($item->total_pedido, 2, ',', '.') }}</td>
                     <td>R$ {{ number_format($item->total_frete, 2, ',', '.') }}</td>
                 </tr>
-                @endforeach
+            @endforeach
             </tbody>
         </table>
     </div>
