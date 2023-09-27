@@ -44,6 +44,9 @@ Route::middleware(['auth'])->group(function () {
         Route::any('/', [tinyController::class, 'exibirRelatorio'])->name('tiny.relatorio');
         Route::any('/download-pdf', [tinyController::class, 'gerarPdf'])->name('tiny.gerarPdf');
     });
+    Route::prefix('crm')->group(function () {
+        Route::get('/', [LeadController::class, 'index'])->name('octa.crm');
+    });
 });
 
 Route::prefix('cadastro')->group(function () {
