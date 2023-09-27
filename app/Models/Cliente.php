@@ -18,6 +18,7 @@ class Cliente extends Model
         'telefone',
         'email',
         'origem',
+        'url_octa',
         'id_octa',
     ];
 }

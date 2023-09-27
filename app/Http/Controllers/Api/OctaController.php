@@ -17,7 +17,7 @@ class OctaController extends Controller
             'telefone' => 'nullable|string',
             'email' => 'nullable|email',
             'origem' => 'nullable|string',
-            'id_octa' => 'nullable|string',
+            'url_octa' => 'nullable|string',
         ]);
 
         // Criar um novo cliente com os dados recebidos
@@ -26,6 +26,7 @@ class OctaController extends Controller
             'telefone' => $request->telefone,
             'email' => $request->email,
             'origem' => $request->origem,
+            'url_octa' => $request->url_octa,
             'id_octa' => $request->id_octa,
         ]);
         // Salvar o cliente no banco de dados
