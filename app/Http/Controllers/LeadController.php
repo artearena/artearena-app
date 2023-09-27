@@ -11,6 +11,6 @@ class LeadController extends Controller
     public function index()
     {
         $clientes = Cliente::all();
-        return view('page.octa.index', compact('clientes'));
+        return view('pages.Octa.index', compact('clientes'));
     }
 }
