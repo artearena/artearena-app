@@ -17,18 +17,17 @@ class OctaController extends Controller
             'telefone' => 'nullable|string',
             'email' => 'nullable|email',
             'origem' => 'nullable|string',
-            'id_octa' => 'nullable|integer',
+            'id_octa' => 'nullable|string',
         ]);
 
-        // Criar um novo cliente
-        $cliente = new Cliente([
-            'nome' => $request->input('nome'),
-            'telefone' => $request->input('telefone'),
-            'email' => $request->input('email'),
-            'origem' => $request->input('origem'),
-            'id_octa' => $request->input('id_octa'),
+        // Criar um novo cliente com os dados recebidos
+        $cliente = Cliente::create([
+            'nome' => $request->nome,
+            'telefone' => $request->telefone,
+            'email' => $request->email,
+            'origem' => $request->origem,
+            'id_octa' => $request->id_octa,
         ]);
-
         // Salvar o cliente no banco de dados
         $cliente->save();
         
