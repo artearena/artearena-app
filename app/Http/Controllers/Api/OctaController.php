@@ -10,6 +10,7 @@ class OctaController extends Controller
 {
     public function cadastrar(Request $request)
     {
+        info('Dados recebidos na API:', $request->all());
         // Validar os dados recebidos
         $request->validate([
             'nome' => 'required',
@@ -30,7 +31,9 @@ class OctaController extends Controller
 
         // Salvar o cliente no banco de dados
         $cliente->save();
-
+        
+        // Registrar mensagem de log
+        info('Cliente cadastrado com sucesso!');
         // Retornar uma resposta de sucesso
         return response()->json(['message' => 'Cliente cadastrado com sucesso!']);
     }
