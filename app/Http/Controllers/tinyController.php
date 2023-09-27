@@ -12,7 +12,7 @@ class tinyController extends Controller
     public function gerarPdf()
     {
         $dados = tiny::All();
-
+        
         $pdf = PDF::loadView('relatorioPdf', compact('dados'));
         return $pdf->download('relatorio.pdf');
     }
@@ -24,7 +24,8 @@ class tinyController extends Controller
             id_vendedor')
         ->groupBy('id_vendedor')
         ->get();
+        $vendedores = Usuario::whereNotNull('id_vendedor')->pluck('nome_usuario');
 
-        return view('pages.tiny.relatorio', compact('dados')); 
+        return view('pages.tiny.relatorio', compact('dados', 'vendedores')); 
     }
 }

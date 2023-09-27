@@ -38,7 +38,7 @@
 @endsection
 @section('content')
     <div class="container">
-        <h1>Relatório Trello</h1>
+        <h1>Relatório tiny</h1>
         <table>
             <thead>
                 <tr>
@@ -51,7 +51,7 @@
             <tbody>
                 @foreach($dados as $item)
                 <tr>
-                    <td>{{ $item->id_vendedor }}</td>
+                    <td>{{ Usuario::where('id_vendedor', $item->id_vendedor)->pluck('nome_usuario')->first() }}</td>
                     <td>R$ {{ number_format($item->total_pedido, 2, ',', '.') }}</td>
                     <td>R$ {{ number_format($item->total_frete, 2, ',', '.') }}</td>
                 </tr>
