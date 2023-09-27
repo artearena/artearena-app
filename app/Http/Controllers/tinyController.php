@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\tiny;
+use App\Models\Usuario;
 use PDF; 
 
 class tinyController extends Controller
@@ -24,7 +25,7 @@ class tinyController extends Controller
             id_vendedor')
         ->groupBy('id_vendedor')
         ->get();
-        $vendedores = Usuario::whereNotNull('id_vendedor')->pluck('nome_usuario');
+        $vendedores = Usuarios::whereNotNull('id_vendedor')->pluck('nome_usuario');
 
         return view('pages.tiny.relatorio', compact('dados', 'vendedores')); 
     }

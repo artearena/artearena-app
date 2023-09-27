@@ -1,6 +1,6 @@
 @extends('layout.main')
 @section('title')
-    Relatório Trello
+    Relatório Tiny
 @endsection
 @section('style')
     <style>
