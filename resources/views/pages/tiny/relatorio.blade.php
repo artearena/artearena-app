@@ -4,36 +4,28 @@
 @endsection
 @section('style')
     <style>
-
         table {
             width: 100%;
             border-collapse: collapse; 
         }
-
         th, td {
             padding: 8px;
             text-align: left;
             border-bottom: 1px solid #ddd;
         }
-
         th {
             background-color: #f2f2f2;
             font-weight: bold;
         }
-
         td {
             font-size: .9em;
         }
-
         tfoot td {
             font-weight: bold;
         }
-
         tbody tr:hover {
             background-color: #f5f5f5;
         }
-
-
     </style>
 @endsection
 @section('content')
@@ -47,8 +39,9 @@
                     <th>Total Frete</th>
                 </tr>
             </thead>
-                <tbody>
-                    @foreach($dados as $item)
+            <tbody>
+                @foreach($dados as $item)
+                    @if($item->total_pedido != 0 || $item->total_frete != 0)
                         <tr>
                             @php
                                 $vendedor = $vendedores->firstWhere('id_vendedor', $item->id_vendedor);
@@ -57,9 +50,9 @@
                             <td>R$ {{ number_format($item->total_pedido, 2, ',', '.') }}</td>
                             <td>R$ {{ number_format($item->total_frete, 2, ',', '.') }}</td>
                         </tr>
-                    @endforeach
-                </tbody>
-
+                    @endif
+                @endforeach
+            </tbody>
             <tfoot>
                 <tr>
                     <td><strong>Total</strong></td>
