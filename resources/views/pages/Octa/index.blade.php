@@ -57,7 +57,7 @@
                         <td style="display:none">{{ $cliente->id }}</td>
                         <td>{{ $cliente->id_octa }}</td>
                         <td>
-                            <a href="https://app.octadesk.com/chat/{{ $cliente->cliente_url_octa }}/opened" target="_blank">
+                            <a href="https://app.octadesk.com/chat/{{ $cliente->url_octa }}/opened" target="_blank">
                                 {{ $cliente->nome }}
                             </a>
                         </td>
