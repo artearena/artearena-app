@@ -79,7 +79,28 @@ Inicio
                 </div>
             </div>
         </div>
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Tiny Relatório</h5>
+                    <p class="card-text">Descrição de controle de confecção</p>
+                    <a href="{{ route('tiny.relatorio') }}" class="btn btn-outline-danger">Acessar</a>
+                </div>
+            </div>
+        </div>
     </div>
+    <div class="row mt-4">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Mini Trello</h5>
+                    <p class="card-text">Descrição de controle de confecção</p>
+                    <a href="{{ route('trello.index') }}" class="btn btn-outline-dark">Acessar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
 </div>
 
 <div class="modal fade" id="modal-encurtar-link" tabindex="-1" role="dialog" aria-labelledby="modal-encurtar-link-label" aria-hidden="true">
