@@ -42,21 +42,20 @@
         <table>
             <thead>
                 <tr>
-                <th>Vendedor</th>
-                <th>Total Pedido</th>
-                <th>Total Frete</th> 
+                    <th>Vendedor</th>
+                    <th>Total Pedido</th>
+                    <th>Total Frete</th>
                 </tr>
             </thead>
-
             <tbody>
                 @foreach($dados as $item)
                 <tr>
-                    <td>{{ Usuario::where('id_vendedor', $item->id_vendedor)->pluck('nome_usuario')->first() }}</td>
+                    <td>{{ $vendedores[$item->id_vendedor] }}</td>
                     <td>R$ {{ number_format($item->total_pedido, 2, ',', '.') }}</td>
                     <td>R$ {{ number_format($item->total_frete, 2, ',', '.') }}</td>
                 </tr>
                 @endforeach
             </tbody>
-        </table>    
+        </table>
     </div>
 @endsection
