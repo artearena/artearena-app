@@ -8,6 +8,7 @@ use App\Http\Controllers\PermissaoController;
 use App\Http\Controllers\CadastroController;
 use App\Http\Controllers\TrelloController;
 use App\Http\Controllers\tinyController;
+use App\Http\Controllers\LeadController;
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/', [SiteController::class, 'index'])->name('index');
