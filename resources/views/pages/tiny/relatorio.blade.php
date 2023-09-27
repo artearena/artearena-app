@@ -47,25 +47,26 @@
                     <th>Total Frete</th>
                 </tr>
             </thead>
-            <tbody>
-            @foreach($dados as $item)
-                <tr>
-                    @php
-                        $vendedor = $vendedores->firstWhere('id_vendedor', $item->id_vendedor);
-                    @endphp
-                    <td>{{ $vendedor ? $vendedor->nome_usuario : 'Sem Vendedor' }}</td>
-                    <td>R$ {{ number_format($item->total_pedido, 2, ',', '.') }}</td>
-                    <td>R$ {{ number_format($item->total_frete, 2, ',', '.') }}</td>
-                </tr>
-                <tfoot>
+                <tbody>
+                    @foreach($dados as $item)
+                        <tr>
+                            @php
+                                $vendedor = $vendedores->firstWhere('id_vendedor', $item->id_vendedor);
+                            @endphp
+                            <td>{{ $vendedor ? $vendedor->nome_usuario : 'Sem Vendedor' }}</td>
+                            <td>R$ {{ number_format($item->total_pedido, 2, ',', '.') }}</td>
+                            <td>R$ {{ number_format($item->total_frete, 2, ',', '.') }}</td>
+                        </tr>
+                    @endforeach
+                </tbody>
+
+            <tfoot>
                 <tr>
                     <td><strong>Total</strong></td>
                     <td><strong>R$ {{ number_format($dados->sum('total_pedido'), 2, ',', '.') }}</strong></td>
                     <td><strong>R$ {{ number_format($dados->sum('total_frete'), 2, ',', '.') }}</strong></td>
                 </tr>
             </tfoot>
-            @endforeach
-            </tbody>
         </table>
     </div>
 @endsection
