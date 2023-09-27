@@ -50,7 +50,7 @@
             <tbody>
                 @foreach($dados as $item)
                 <tr>
-                    <td>{{ $vendedores[$item->id_vendedor] }}</td>
+                    <td>{{ $vendedores[$item->id_vendedor] ?? 'Vendedor não encontrado' }}</td>
                     <td>R$ {{ number_format($item->total_pedido, 2, ',', '.') }}</td>
                     <td>R$ {{ number_format($item->total_frete, 2, ',', '.') }}</td>
                 </tr>
