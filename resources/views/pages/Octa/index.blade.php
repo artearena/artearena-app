@@ -31,33 +31,33 @@
 @endsection
 @section('content')
     <div id="app">
-        <table>
-            <thead>
+    <table>
+        <thead>
+            <tr>
+                <th style="display:none">ID</th>
+                <th>ID Octa</th>
+                <th>Nome</th>
+                <th>Telefone</th>
+                <th>Email</th>
+                <th>Origem</th>
+                <th>Criado em</th>
+                <th style="display:none">Atualizado em</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($clientes as $cliente)
                 <tr>
-                    <th>ID</th>
-                    <th>Nome</th>
-                    <th>Telefone</th>
-                    <th>Email</th>
-                    <th>Origem</th>
-                    <th>ID Octa</th>
-                    <th>Criado em</th>
-                    <th>Atualizado em</th>
+                    <td style="display:none">{{ $cliente->id }}</td>
+                    <td>{{ $cliente->id_octa }}</td>
+                    <td>{{ $cliente->nome }}</td>
+                    <td>{{ $cliente->telefone }}</td>
+                    <td>{{ $cliente->email }}</td>
+                    <td>{{ $cliente->origem }}</td>
+                    <td>{{ $cliente->created_at }}</td>
+                    <td style="display:none">{{ $cliente->updated_at }}</td>
                 </tr>
-            </thead>
-            <tbody>
-                @foreach ($clientes as $cliente)
-                    <tr>
-                        <td>{{ $cliente->id }}</td>
-                        <td>{{ $cliente->nome }}</td>
-                        <td>{{ $cliente->telefone }}</td>
-                        <td>{{ $cliente->email }}</td>
-                        <td>{{ $cliente->origem }}</td>
-                        <td>{{ $cliente->id_octa }}</td>
-                        <td>{{ $cliente->created_at }}</td>
-                        <td>{{ $cliente->updated_at }}</td>
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
+            @endforeach
+        </tbody>
+    </table>
     </div>
 @endsection
