@@ -21,8 +21,9 @@ class TinyController extends Controller
         $dados = tiny::selectRaw('SUM(total_pedido) AS total_pedido, SUM(valor_frete) AS total_frete, id_vendedor')
             ->groupBy('id_vendedor')
             ->get();
-
+        
         $vendedores = Usuario::whereNotNull('id_vendedor')->pluck('nome_usuario');
+        dd($vendedores);
         return view('pages.tiny.relatorio', compact('dados', 'vendedores'));
     }
 }
