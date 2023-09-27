@@ -18,6 +18,7 @@ class OctaController extends Controller
             'email' => 'nullable|email',
             'origem' => 'nullable|string',
             'url_octa' => 'nullable|string',
+            'id_octa' => 'nullable|string',
         ]);
 
         // Criar um novo cliente com os dados recebidos
