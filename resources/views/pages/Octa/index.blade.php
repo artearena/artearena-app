@@ -95,12 +95,12 @@
 
 @section('extraScript')
 <script>
-    // Inicialize o Datepicker para o campo de data
-    $('.datepicker').datepicker({
-        dateFormat: 'dd/mm/yy',
-        language: 'pt-BR',
-        autoclose: true,
-    });
+    // Inicializa o datepicker
+    $('.datepicker').datepicker();
+
+    // Define localização pt-BR
+    $.datepicker.setDefaults($.datepicker.regional['pt-BR']);
+    
     // Evento quando a data é alterada
     $('#dataAgendamento').on('changeDate', function() {
 
