@@ -147,8 +147,8 @@ Simulação de Frete
                         <input type="text" class="form-control" id="endereco" name="endereco" readonly="" style="
                         background-color: #f2f2f2;
                     ">                    </div>
-  </div>
-<div class="col-sm-6">
+            </div>
+          <div class="col-sm-6">
 
               <div class="row">
                         <div class="col-md-12">
@@ -157,16 +157,17 @@ Simulação de Frete
                             </div>
                             <div class="cards-container" id="cardsContainer"></div>
                         </div>
-                    </div>b 
+                    </div>
                     <button type="button" class="btn btn-primary" id="calcularFrete">Calcular frete</button>
                 </form>
                 <h4>Detalhes do Frete:</h4>
-                <div class="details-container">
-                    <textarea class="form-control" id="campoTexto" rows="5"></textarea>
-                    <button type="button" class="btn btn-primary mt-2" id="botaoCopiar">Copiar</button>
-                    <p class="text-success mt-2" id="avisoCopiado" style="display: none;">Copiado com sucesso!</p>
-                </div>
+               
             </div>
+        </div>
+        <div class="details-container">
+            <textarea class="form-control" id="campoTexto" rows="5"></textarea>
+            <button type="button" class="btn btn-primary mt-2" id="botaoCopiar">Copiar</button>
+            <p class="text-success mt-2" id="avisoCopiado" style="display: none;">Copiado com sucesso!</p>
         </div>
     </div>
 </div>
