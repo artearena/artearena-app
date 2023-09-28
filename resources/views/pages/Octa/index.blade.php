@@ -105,8 +105,12 @@
 @section('extraScript')
 <script>
     // Inicializa o datepicker
-    $('.datepicker').datepicker();
-
+// Inicializa o datepicker
+    $('.datepicker').datepicker({
+    format: 'dd/mm/yyyy', 
+    language: 'pt-BR',
+    autoclose: true
+    });
     // Evento quando a data é alterada
     $('#dataAgendamento').on('changeDate', function() {
 
