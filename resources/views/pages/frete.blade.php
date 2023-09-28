@@ -144,31 +144,31 @@ Simulação de Frete
                     </div>
                     <div class="form-group">
                         <label for="endereco">Endereço:</label>
-                        <input type="text" class="form-control" id="endereco" name="endereco" readonly="" style="
-                        background-color: #f2f2f2;
-                    ">                    </div>
-            </div>
-          <div class="col-sm-6">
-
-              <div class="row">
-                        <div class="col-md-12">
-                            <div id="transp-title">
-                                <h3>Transportadoras:</h3>
-                            </div>
-                            <div class="cards-container" id="cardsContainer"></div>
-                        </div>
+                        <input type="text" class="form-control" id="endereco" name="endereco" readonly="" style="background-color: #f2f2f2;">
                     </div>
-                    <button type="button" class="btn btn-primary" id="calcularFrete">Calcular frete</button>
                 </form>
-                <h4>Detalhes do Frete:</h4>
-               
+                <div class="col-md-12">
+                    <div id="transp-title">
+                        <h3>Transportadoras:</h3>
+                    </div>
+                    <div class="cards-container" id="cardsContainer"></div>
+                </div>
             </div>
-        </div>
-        <div class="details-container">
-            <textarea class="form-control" id="campoTexto" rows="5"></textarea>
-            <button type="button" class="btn btn-primary mt-2" id="botaoCopiar">Copiar</button>
-            <p class="text-success mt-2" id="avisoCopiado" style="display: none;">Copiado com sucesso!</p>
-        </div>
+            <div class="col-sm-6">
+
+                      <div class="row">
+                          
+                      </div>
+                      <button type="button" class="btn btn-primary" id="calcularFrete">Calcular frete</button>
+                  <h4>Detalhes do Frete:</h4>
+                  <div class="details-container">
+                    <textarea class="form-control" id="campoTexto" rows="5"></textarea>
+                    <button type="button" class="btn btn-primary mt-2" id="botaoCopiar">Copiar</button>
+                    <p class="text-success mt-2" id="avisoCopiado" style="display: none;">Copiado com sucesso!</p>
+                </div>
+              </div>
+          </div>
+        
     </div>
 </div>
 @endsection
@@ -433,7 +433,7 @@ Simulação de Frete
                 const nomeProduto = produtosSelecionados[id].nome;
                 const quantidade = produtosSelecionados[id].quantidade;
                 const valor = produtosSelecionados[id].valor;
-                const produtoDescricao = `${quantidade} un- ${nomeProduto} - R$ ${valor.toFixed(2)}`;
+                const produtoDescricao = `${quantidade} un - ${nomeProduto} - R$ ${valor.toFixed(2)}`;
                 produtosDescricao += produtoDescricao;
               }
             }
@@ -456,7 +456,7 @@ Simulação de Frete
             const prazoConfeccao = prazoConfecaoMaisAlto;
 
             const detalhesFrete = `Frete(${titulo}): ${cepDestino} - R$ ${frete} - (Dia da postagem + ${prazoEntrega} úteis)\n\n`;
-            const total = `Total: R$ ${valorTotalFormatado}\n\n`;
+            const total = `Total: R$ ${valorTotalFormatado}\n`;
             const prazo = `Prazo para confecção é de ${prazoConfeccao} dias úteis + prazo de envio.\nPrazo inicia-se após aprovação da arte e pagamento confirmado`;
 
             campoTexto.value = `${produtosDescricao}\n${detalhesFrete}${total}\n${prazo}`;
