@@ -13,9 +13,9 @@ Simulação de Frete
     align-items: center;
     }
     #transp-title {
-        align: center;
         display: flex;
-    }
+        justify-content: center;
+      }
     .form-group{
         width: 100%;
         height: auto;
@@ -28,8 +28,8 @@ Simulação de Frete
     .cards-container {
         display: flex;
         flex-wrap: wrap;
-        justify-content: space-between;
-    }
+        flex-direction: column;
+      }
 
     .card {
         width: calc(25% - 20px);
