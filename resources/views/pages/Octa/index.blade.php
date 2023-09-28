@@ -60,7 +60,7 @@
                         <td>{{ $cliente->created_at }}</td>
                         <td style="display:none">{{ $cliente->updated_at }}</td>
                         <td>
-                        <a href="{{ $pedido->link_trello }}" class="btn btn-primary ms-1" data-id="{{ $pedido->id }}" onclick="return confirmarLink(this)" target="_blank">
+                        <a href="#" class="btn btn-primary ms-1" target="_blank">
                             <i class="fa-brands fa-trello"></i>
                         </a>
                         </td>
