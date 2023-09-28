@@ -71,6 +71,32 @@ Simulação de Frete
         flex-direction: column;
         justify-content: space-between;
     }
+    table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+            text-align: center;
+        }
+        td {
+            font-size: .9em;
+        }
+        tfoot td {
+            font-weight: bold;
+        }
+        tbody tr:nth-child(even) {
+            background-color: #f5f5f5;
+        }
+        tbody tr:hover {
+            background-color: #ebebeb;
+        }
 </style>
 @endsection
 
