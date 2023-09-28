@@ -87,7 +87,7 @@
                         <td>{{ $cliente->status_conversa }}</td>
                         <td>{{ $cliente->created_at }}</td>
                         <td>
-                            <input type="text" class="form-control" id="dataAgendamento">                        
+                            <input class="form-control datepicker" id="dataAgendamento">                        
                         </td>
                         <td style="display:none">{{ $cliente->updated_at }}</td>
                         <td>
