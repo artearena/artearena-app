@@ -24,8 +24,11 @@
         tfoot td {
             font-weight: bold;
         }
-        tbody tr:hover {
+        tbody tr:nth-child(even) {
             background-color: #f5f5f5;
+        }
+        tbody tr:hover {
+            background-color: #ebebeb;
         }
     </style>
 @endsection
