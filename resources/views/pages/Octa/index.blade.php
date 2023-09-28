@@ -111,7 +111,7 @@
 @section('extraScript')
 <script>
     $('.datepicker').datepicker({
-        format: 'dd/mm/yyyy hh:mm',
+        format: 'dd/mm/yyyy HH:mm:ss',
         language: 'pt-BR',
         autoclose: true,
     });
