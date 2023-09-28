@@ -100,13 +100,7 @@
         dateFormat: 'dd/mm/yy',
         language: 'pt-BR',
         autoclose: true,
-        onSelect: function (dateText, inst) {
-            // Quando uma data for selecionada no datepicker, atualizar o valor na célula da tabela
-            let cell = table.cell($(this).closest('td'));
-            cell.data(dateText).draw();
-        }
     });
-    $.fn.datepicker.defaults.language = 'pt-BR';
     // Evento quando a data é alterada
     $('#dataAgendamento').on('changeDate', function() {
 
