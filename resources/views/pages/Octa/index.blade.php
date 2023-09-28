@@ -32,6 +32,10 @@
         }
     </style>
 @endsection
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 @section('content')
     <div id="app">
         <table>
@@ -69,7 +73,9 @@
                         <td style="display:none">{{ $cliente->origem }}</td>
                         <td>{{ $cliente->status_conversa }}</td>
                         <td>{{ $cliente->created_at }}</td>
-                        <td></td>
+                        <td>
+                            <input type="text" class="form-control" id="dataAgendamento">                        
+                        </td>
                         <td style="display:none">{{ $cliente->updated_at }}</td>
                         <td>
                             <a href="#" class="btn btn-primary ms-1" target="_blank">
@@ -81,4 +87,30 @@
             </tbody>
         </table>
     </div>
+@endsection
+
+@section('extraScript')
+<script>
+    $('#dataAgendamento').datepicker();
+    // Evento quando a data é alterada
+    $('#dataAgendamento').on('changeDate', function() {
+
+    // Obtém a nova data
+    var novaData = $(this).val();
+
+    // Requisição AJAX para o backend
+    $.ajax({
+    url: '/clientes/atualizar-data/' + clienteId,
+    type: 'POST',
+    data: {
+        data_agendamento: novaData
+    },
+    success: function(response) {
+        // Exibe mensagem de sucesso
+        alert('Data atualizada com sucesso!');
+    }
+    });
+
+    });
+</script>
 @endsection
