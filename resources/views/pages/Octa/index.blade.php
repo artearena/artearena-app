@@ -37,7 +37,6 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/locales/bootstrap-datepicker.pt-BR.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <!-- Em seguida, carregue a biblioteca Bootstrap -->
@@ -112,7 +111,8 @@
 @section('extraScript')
 <script>
     $('.datepicker').datepicker({
-        format: 'dd/mm/yyyy'
+        format: 'dd/mm/yyyy',
+        language: 'pt-BR'
     });
 
     $('.datepicker').on('changeDate', function() {
