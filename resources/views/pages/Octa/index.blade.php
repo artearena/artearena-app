@@ -123,7 +123,7 @@
         var novaData = $(this).val();
 
     $.ajax({
-        url: '/atualizar-data/'+clienteId,
+        url: 'crm/atualizar-data/'+clienteId,
         type: 'POST',
         data: {
             data_agendamento: novaData
