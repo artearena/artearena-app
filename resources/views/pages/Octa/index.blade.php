@@ -111,10 +111,8 @@
 
 @section('extraScript')
 <script>
-
     $('.datepicker').datepicker({
-        format: 'dd/mm/yyyy',
-        language: 'pt-BR'
+        format: 'dd/mm/yyyy'
     });
 
     $('.datepicker').on('changeDate', function() {
