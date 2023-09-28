@@ -35,8 +35,8 @@
 
     // Remover referências ao datepicker
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
-    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/locales/bootstrap-datetimepicker.pt-BR.min.js"></script>
+
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script> 
 
@@ -120,10 +120,10 @@
 <script>
     $('.datepicker').datetimepicker({
         format: 'dd/mm/yyyy HH:mm:ss',
-        language: 'pt-BR',
+        language: 'pt',
         autoclose: true,
     });
-
+    $.fn.datetimepicker.defaults.language = 'pt';
     $('.datepicker').on('changeDate', function() {
 
         var clienteId = $(this).closest('tr').find('.cliente-id').text();
