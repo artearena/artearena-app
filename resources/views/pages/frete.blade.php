@@ -147,19 +147,22 @@ Simulação de Frete
                         <input type="text" class="form-control" id="endereco" name="endereco" readonly="" style="background-color: #f2f2f2;">
                     </div>
                 </form>
-                <div class="col-md-12">
-                    <div id="transp-title">
-                        <h3>Transportadoras:</h3>
-                    </div>
-                    <div class="cards-container" id="cardsContainer"></div>
+                <div class="row">
+
+                  <div class="col-md-12">
+                      <div id="transp-title">
+                          <h3>Transportadoras:</h3>
+                      </div>
+                      <div class="cards-container" id="cardsContainer"></div>
+                  </div>
                 </div>
+          
+                  <button type="button" class="btn btn-primary" id="calcularFrete">Calcular frete</button>
+
             </div>
             <div class="col-sm-6">
 
-                      <div class="row">
                           
-                      </div>
-                      <button type="button" class="btn btn-primary" id="calcularFrete">Calcular frete</button>
                   <h4>Detalhes do Frete:</h4>
                   <div class="details-container">
                     <textarea class="form-control" id="campoTexto" rows="5"></textarea>
