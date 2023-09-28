@@ -30,16 +30,10 @@
         tbody tr:hover {
             background-color: #ebebeb;
         }
-        .datepicker {
-            z-index: 1600 !important; 
-        }
-
-        .datepicker-dropdown {
-            z-index: 1600 !important;
-        }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
+    
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
@@ -101,8 +95,16 @@
 
 @section('extraScript')
 <script>
-    $('#dataAgendamento').datepicker({
-        format: 'dd/mm/yyyy' 
+    // Inicialize o Datepicker para o campo de data
+    $('.datepicker').datepicker({
+        dateFormat: 'dd/mm/yy',
+        language: 'pt-BR',
+        autoclose: true,
+        onSelect: function (dateText, inst) {
+            // Quando uma data for selecionada no datepicker, atualizar o valor na célula da tabela
+            let cell = table.cell($(this).closest('td'));
+            cell.data(dateText).draw();
+        }
     });
     $.fn.datepicker.defaults.language = 'pt-BR';
     // Evento quando a data é alterada
