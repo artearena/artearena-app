@@ -46,6 +46,13 @@
     <!-- Em seguida, carregue o plugin bootstrap-datepicker -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/locales/bootstrap-datepicker.pt-BR.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
+
+    <!-- JS -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/locales/bootstrap-datepicker.pt-BR.min.js"></script>
 
     @endsection
 
@@ -104,32 +111,24 @@
 
 @section('extraScript')
 <script>
-    // Inicializa o datepicker
-// Inicializa o datepicker
+
     $('.datepicker').datepicker({
-    format: 'dd/mm/yyyy', 
-    language: 'pt-BR',
-    autoclose: true
-    });
-    // Evento quando a data é alterada
-    $('#dataAgendamento').on('changeDate', function() {
-
-    // Obtém a nova data
-    var novaData = $(this).val();
-
-    // Requisição AJAX para o backend
-    $.ajax({
-    url: '/clientes/atualizar-data/' + clienteId,
-    type: 'POST',
-    data: {
-        data_agendamento: novaData
-    },
-    success: function(response) {
-        // Exibe mensagem de sucesso
-        alert('Data atualizada com sucesso!');
-    }
+        format: 'dd/mm/yyyy',
+        language: 'pt-BR'
     });
 
+    $('.datepicker').on('changeDate', function() {
+        var novaData = $(this).val();
+    
+        $.ajax({
+            url: '/atualizar-data',
+            data: {
+            data: novaData 
+            },
+            success: function(data) {
+            alert('Data atualizada!');
+            }
+        });
     });
 </script>
 @endsection
