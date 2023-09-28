@@ -41,11 +41,11 @@
                     <th>Empresa</th>
                     <th>Responsável</th>
                     <th style="display:none">Origem</th>
+                    <th>Status da Conversa</th>
                     <th>Criado em</th>
                     <th>Data de Agendamento</th>
                     <th style="display:none">Atualizado em</th>
                     <th>Trello</th>
-                    <th>Status da Conversa</th>
                 </tr>
             </thead>
             <tbody>
@@ -63,6 +63,7 @@
                         <td>{{ $cliente->empresa }}</td>
                         <td>{{ $cliente->responsavel_contato }}</td>
                         <td style="display:none">{{ $cliente->origem }}</td>
+                        <td>{{ $cliente->status_do_contato }}</td>
                         <td>{{ $cliente->created_at }}</td>
                         <td></td>
                         <td style="display:none">{{ $cliente->updated_at }}</td>
@@ -71,7 +72,6 @@
                                 <i class="fa-brands fa-trello"></i>
                             </a>
                         </td>
-                        <td>{{ $cliente->status_do_contato }}</td>
                     </tr>
                 @endforeach
             </tbody>

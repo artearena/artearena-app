@@ -1,7 +1,5 @@
 <?php
-
 namespace App\Http\Controllers\Api;
-
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Cliente;
@@ -11,6 +9,7 @@ class OctaController extends Controller
     public function cadastrar(Request $request)
     {
         info('Dados recebidos na API:', $request->all());
+
         // Validar os dados recebidos
         $request->validate([
             'nome' => 'required',
@@ -30,9 +29,14 @@ class OctaController extends Controller
             'primeiro_dominio_organizacao' => 'nullable|string',
             'empresa' => 'nullable|string',
         ]);
+
+        // Aplicar a conversão de caracteres especiais no nome
+        $nome = $request->nome;
+        $nome = mb_convert_encoding($nome, 'HTML-ENTITIES', 'UTF-8');
+
         // Criar um novo cliente com os dados recebidos
         $cliente = Cliente::create([
-            'nome' => $request->nome,
+            'nome' => $nome,
             'telefone' => $request->telefone,
             'email' => $request->email,
             'origem' => $request->origem,
@@ -49,12 +53,13 @@ class OctaController extends Controller
             'primeiro_dominio_organizacao' => $request->primeiro_dominio_organizacao,
             'empresa' => $request->empresa,
         ]);
-        
+
         // Salvar o cliente no banco de dados
         $cliente->save();
-        
+
         // Registrar mensagem de log
         info('Cliente cadastrado com sucesso!');
+
         // Retornar uma resposta de sucesso
         return response()->json(['message' => 'Cliente cadastrado com sucesso!']);
     }
