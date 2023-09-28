@@ -31,6 +31,12 @@
             background-color: #ebebeb;
         }
     </style>
+    // Carregar CSS e JS do datetimepicker
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css" rel="stylesheet"/>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
+
+    // Remover referências ao datepicker
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
     
@@ -110,7 +116,7 @@
 
 @section('extraScript')
 <script>
-    $('.datepicker').datepicker({
+    $('.datepicker').datetimepicker({
         format: 'dd/mm/yyyy HH:mm:ss',
         language: 'pt-BR',
         autoclose: true,
@@ -120,7 +126,7 @@
 
         var clienteId = $(this).closest('tr').find('.cliente-id').text();
 
-        var novaData = $(this).val();
+        var novaData = moment($(this).val()).format('YYYY-MM-DD HH:mm:ss');
 
     $.ajax({
         url: 'crm/atualizar-data/'+clienteId,
