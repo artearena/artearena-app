@@ -78,7 +78,7 @@
             <tbody>
                 @foreach ($clientes as $cliente)
                     <tr>
-                        <td style="display:none">{{ $cliente->id }}</td>
+                        <td class="cliente-id" style="display:none">{{ $cliente->id }}</td>
                         <td>{{ $cliente->id_octa }}</td>
                         <td>
                             <a href="https://app.octadesk.com/chat/{{ $cliente->url_octa }}/opened" target="_blank">
@@ -93,7 +93,7 @@
                         <td>{{ $cliente->status_conversa }}</td>
                         <td>{{ $cliente->created_at }}</td>
                         <td>
-                            <input type="text" class="form-control datetimepicker">
+                            <input class="form-control datepicker" id="dataAgendamento">                        
                         </td>
                         <td style="display:none">{{ $cliente->updated_at }}</td>
                         <td>
@@ -118,11 +118,12 @@
 
     $('.datepicker').on('changeDate', function() {
 
+        var clienteId = $(this).closest('tr').find('.cliente-id').text();
+
         var novaData = $(this).val();
-        var leadId = $(this).data('lead-id'); // id do lead
 
     $.ajax({
-        url: '/leads/atualizar-data/' + leadId, 
+        url: '/clientes/atualizar-data/'+clienteId,
         type: 'POST',
         data: {
             data_agendamento: novaData
