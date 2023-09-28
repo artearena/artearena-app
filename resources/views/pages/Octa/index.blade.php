@@ -60,9 +60,9 @@
                         <td>{{ $cliente->created_at }}</td>
                         <td style="display:none">{{ $cliente->updated_at }}</td>
                         <td>
-                            <a href="{{ $cliente->trello_link }}" target="_blank">
-                                <img src="caminho/para/o/icone-do-trello.png" alt="Trello">
-                            </a>
+                        <a href="{{ $pedido->link_trello }}" class="btn btn-primary ms-1" data-id="{{ $pedido->id }}" onclick="return confirmarLink(this)" target="_blank">
+                            <i class="fa-brands fa-trello"></i>
+                        </a>
                         </td>
                     </tr>
                 @endforeach
