@@ -30,5 +30,7 @@ class Cliente extends Model
         'primeiro_telefone_organizacao',
         'primeiro_dominio_organizacao',
         'empresa',
+        'data_agendamento',
+        'status_conversa',
     ];
 }

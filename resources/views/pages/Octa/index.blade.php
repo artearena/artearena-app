@@ -67,7 +67,7 @@
                         <td>{{ $cliente->empresa }}</td>
                         <td>{{ $cliente->responsavel_contato }}</td>
                         <td style="display:none">{{ $cliente->origem }}</td>
-                        <td>{{ $cliente->status_do_contato }}</td>
+                        <td>{{ $cliente->status_conversa }}</td>
                         <td>{{ $cliente->created_at }}</td>
                         <td></td>
                         <td style="display:none">{{ $cliente->updated_at }}</td>

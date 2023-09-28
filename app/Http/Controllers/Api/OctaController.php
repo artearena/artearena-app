@@ -28,6 +28,8 @@ class OctaController extends Controller
             'primeiro_telefone_organizacao' => 'nullable|string',
             'primeiro_dominio_organizacao' => 'nullable|string',
             'empresa' => 'nullable|string',
+            'data_agendamento' => 'nullable|string',
+            'status_conversa' => 'nullable|string',
         ]);
 
         // Aplicar a conversão de caracteres especiais no nome
@@ -52,6 +54,8 @@ class OctaController extends Controller
             'primeiro_telefone_organizacao' => $request->primeiro_telefone_organizacao,
             'primeiro_dominio_organizacao' => $request->primeiro_dominio_organizacao,
             'empresa' => $request->empresa,
+            'data_agendamento' => $request->data_agendamento,
+            'status_conversa' => $request->status_conversa,
         ]);
 
         // Salvar o cliente no banco de dados
