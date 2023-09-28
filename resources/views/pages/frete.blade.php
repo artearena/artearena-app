@@ -28,7 +28,6 @@ Simulação de Frete
     .cards-container {
         display: flex;
         flex-wrap: wrap;
-        flex-direction: column;
       }
 
     .card {
@@ -158,7 +157,7 @@ Simulação de Frete
                             </div>
                             <div class="cards-container" id="cardsContainer"></div>
                         </div>
-                    </div>
+                    </div>b 
                     <button type="button" class="btn btn-primary" id="calcularFrete">Calcular frete</button>
                 </form>
                 <h4>Detalhes do Frete:</h4>
@@ -368,8 +367,10 @@ Simulação de Frete
           const cardElement = document.createElement("div");
           cardElement.classList.add("card");
 
+          const titulo = document.createElement("p");
           const nomeElement = document.createElement("h4");
           nomeElement.textContent = transportadora.transp_nome;
+          titulo.appendChild(nomeElement);
 
           const logoElement = document.createElement("img");
           logoElement.src = transportadora.url_logo;
@@ -383,7 +384,7 @@ Simulação de Frete
           const dataPrevEntregaElement = document.createElement("p");
           dataPrevEntregaElement.textContent = `Previsão: ${formatarData(transportadora.dtPrevEnt)}`;
 
-          cardElement.appendChild(nomeElement);
+          cardElement.appendChild(titulo); 
           cardElement.appendChild(logoElement);
           cardElement.appendChild(valorFreteElement);
           cardElement.appendChild(prazoEntregaElement);
