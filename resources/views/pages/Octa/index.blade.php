@@ -97,9 +97,6 @@
 <script>
     // Inicializa o datepicker
     $('.datepicker').datepicker();
-
-    // Define localização pt-BR
-    $.datepicker.setDefaults($.datepicker.regional['pt-BR']);
     
     // Evento quando a data é alterada
     $('#dataAgendamento').on('changeDate', function() {
