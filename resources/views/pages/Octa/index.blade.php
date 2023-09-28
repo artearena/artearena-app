@@ -31,42 +31,46 @@
 @section('content')
     <div id="app">
         <table>
-            <thead>
+        <thead>
+            <tr>
+                <th style="display:none">ID</th>
+                <th>ID Octa</th>
+                <th>Nome</th>
+                <th>Telefone</th>
+                <th>Email</th>
+                <th>Empresa</th>
+                <th>Responsável</th>
+                <th style="display:none">Origem</th>
+                <th>Criado em</th>
+                <th style="display:none">Atualizado em</th>
+                <th>Trello</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($clientes as $cliente)
                 <tr>
-                    <th style="display:none">ID</th>
-                    <th>ID Octa</th>
-                    <th>Nome</th>
-                    <th>Telefone</th>
-                    <th>Email</th>
-                    <th>Origem</th>
-                    <th>Criado em</th>
-                    <th style="display:none">Atualizado em</th>
-                    <th>Trello</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($clientes as $cliente)
-                    <tr>
-                        <td style="display:none">{{ $cliente->id }}</td>
-                        <td>{{ $cliente->id_octa }}</td>
-                        <td>
-                            <a href="https://app.octadesk.com/chat/{{ $cliente->url_octa }}/opened" target="_blank">
-                                {{ $cliente->nome }}
-                            </a>
-                        </td>
-                        <td>{{ $cliente->telefone }}</td>
-                        <td>{{ $cliente->email }}</td>
-                        <td>{{ $cliente->origem }}</td>
-                        <td>{{ $cliente->created_at }}</td>
-                        <td style="display:none">{{ $cliente->updated_at }}</td>
-                        <td>
+                    <td style="display:none">{{ $cliente->id }}</td>
+                    <td>{{ $cliente->id_octa }}</td>
+                    <td>
+                        <a href="https://app.octadesk.com/chat/{{ $cliente->url_octa }}/opened" target="_blank">
+                            {{ $cliente->nome }}
+                        </a>
+                    </td>
+                    <td>{{ $cliente->telefone }}</td>
+                    <td>{{ $cliente->email }}</td>
+                    <td>{{ $cliente->nome_organizacao }}</td>
+                    <td>{{ $cliente->responsavel_contato }}</td>
+                    <td style="display:none">{{ $cliente->origem }}</td>
+                    <td>{{ $cliente->created_at }}</td>
+                    <td style="display:none">{{ $cliente->updated_at }}</td>
+                    <td>
                         <a href="#" class="btn btn-primary ms-1" target="_blank">
                             <i class="fa-brands fa-trello"></i>
                         </a>
-                        </td>
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
+                    </td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
     </div>
 @endsection
