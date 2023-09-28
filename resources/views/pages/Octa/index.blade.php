@@ -88,6 +88,7 @@
             </tbody> 
         </table> 
     </div> 
+    <button id="btnAgendar">Agendar Teste</button>
 @endsection 
 @section('extraScript') 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js">>  
@@ -117,5 +118,59 @@
             } 
         }); 
     }); 
+</script>
+<script>
+    function agendarConversa() {
+
+    const url = 'https://artearena.api004.octadesk.services/chat/conversation/send-template';
+
+    const data = {
+        target: {
+            contact: {
+            phoneContact: {
+                number: '+5511987430004'
+            }
+            }
+        },
+        content: {
+            templateMessage: {
+            id: '64d2e17f6f8d1b0007de15f3' 
+            }
+        },
+        origin: {
+            from: {
+            number: '+5511934881548'
+            }
+        },
+        options: {
+            automaticAssign: true
+        }        
+    };
+
+    const headers = {
+        'X-API-KEY': '3b8f740e-6dd3-4da3-a59e-30ee20169c49.31b74e42-c05f-4341-b386-320b5231125d',
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+    };
+
+    fetch(url, {
+        method: 'POST',
+        headers: headers,
+        body: JSON.stringify(data) 
+    })
+    .then(response => {
+    if(!response.ok) {
+        throw new Error('Erro na requisição'); 
+    }
+    return response.json();
+    })
+    .then(data => {
+        console.log(data); 
+    })
+    .catch(error => {
+        console.error(error);
+    });
+    }
+    document.getElementById("btnAgendar").addEventListener("click", agendarConversa);
 </script> 
 @endsection 
