@@ -95,6 +95,9 @@ Simulação de Frete
         tbody tr:hover {
             background-color: #ebebeb;
         }
+        #campoTexto{
+            min-height: 200px;
+        }
 </style>
 @endsection
 
@@ -368,6 +371,9 @@ Simulação de Frete
         }
         console.log(data);
         data.forEach(transportadora => {
+          if(transportadora.transp_nome === "Retira") {
+            continue; 
+          }
           const cardElement = document.createElement("div");
           cardElement.classList.add("card");
 
