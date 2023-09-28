@@ -456,7 +456,7 @@ Simulação de Frete
             const valorTotalFormatado = valorTotal.toFixed(2).replace('.', ',');
             const prazoConfeccao = prazoConfecaoMaisAlto;
 
-            const detalhesFrete = `Frete: ${cepDestino} - R$ ${frete} - (Dia da postagem + ${prazoEntrega} úteis)\n`;
+            const detalhesFrete = `Frete(${titulo}): ${cepDestino} - R$ ${frete} - (Dia da postagem + ${prazoEntrega} úteis)\n`;
             const total = `Total: R$ ${valorTotalFormatado}`;
             const prazo = `Prazo para confecção é de ${prazoConfeccao} dias úteis + prazo de envio.\nPrazo inicia-se após aprovação da arte e pagamento confirmado`;
 
