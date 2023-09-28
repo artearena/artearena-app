@@ -69,8 +69,7 @@ Simulação de Frete
     .col-md-6 {
         display: flex;
         flex-direction: column;
-        justify-content: space-between;
-    }
+      }
     table {
             width: 100%;
             border-collapse: collapse;
