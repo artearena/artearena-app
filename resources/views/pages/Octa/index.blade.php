@@ -126,7 +126,8 @@
         url: 'crm/atualizar-data/'+clienteId,
         type: 'POST',
         data: {
-            data_agendamento: novaData
+            data_agendamento: novaData,
+            "_token": "{{ csrf_token() }}"
         },
         success: function(response) {
             alert('Data atualizada com sucesso!');
