@@ -58,7 +58,7 @@
                     </td>
                     <td>{{ $cliente->telefone }}</td>
                     <td>{{ $cliente->email }}</td>
-                    <td>{{ $cliente->nome_organizacao }}</td>
+                    <td>{{ $cliente->empresa }}</td>
                     <td>{{ $cliente->responsavel_contato }}</td>
                     <td style="display:none">{{ $cliente->origem }}</td>
                     <td>{{ $cliente->created_at }}</td>

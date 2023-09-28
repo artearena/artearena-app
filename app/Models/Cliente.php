@@ -28,6 +28,7 @@ class Cliente extends Model
         'numero_de_pedido_contato',
         'nome_organizacao',
         'primeiro_telefone_organizacao',
-        'primeiro_dominio_organizacao'
+        'primeiro_dominio_organizacao',
+        'empresa',
     ];
 }

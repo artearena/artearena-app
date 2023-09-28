@@ -28,6 +28,7 @@ class OctaController extends Controller
             'nome_organizacao' => 'nullable|string',
             'primeiro_telefone_organizacao' => 'nullable|string',
             'primeiro_dominio_organizacao' => 'nullable|string',
+            'empresa' => 'nullable|string',
         ]);
         // Criar um novo cliente com os dados recebidos
         $cliente = Cliente::create([
@@ -46,6 +47,7 @@ class OctaController extends Controller
             'nome_organizacao' => $request->nome_organizacao,
             'primeiro_telefone_organizacao' => $request->primeiro_telefone_organizacao,
             'primeiro_dominio_organizacao' => $request->primeiro_dominio_organizacao,
+            'empresa' => $request->empresa,
         ]);
         
         // Salvar o cliente no banco de dados
