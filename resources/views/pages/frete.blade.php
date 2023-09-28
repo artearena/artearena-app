@@ -451,7 +451,7 @@ Simulação de Frete
             }
 
             valorTotal += parseFloat(frete);
-            const frete = frete.replace('.', ',');
+            frete = frete.replace('.', ',');
 
             const valorTotalFormatado = valorTotal.toFixed(2).replace('.', ',');
             const prazoConfeccao = prazoConfecaoMaisAlto;
