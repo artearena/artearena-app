@@ -93,7 +93,7 @@
                         <td>{{ $cliente->status_conversa }}</td>
                         <td>{{ $cliente->created_at }}</td>
                         <td>
-                            <input class="form-control datepicker" id="dataAgendamento">                        
+                            <input type="text" class="form-control datetimepicker">
                         </td>
                         <td style="display:none">{{ $cliente->updated_at }}</td>
                         <td>
@@ -111,22 +111,27 @@
 @section('extraScript')
 <script>
     $('.datepicker').datepicker({
-        format: 'dd/mm/yyyy',
-        language: 'pt-BR'
+        format: 'DD/MM/YYYY HH:mm',
+        language: 'pt-BR',
+        autoclose: true,
     });
 
     $('.datepicker').on('changeDate', function() {
+
         var novaData = $(this).val();
-    
-        $.ajax({
-            url: '/atualizar-data',
-            data: {
-            data: novaData 
-            },
-            success: function(data) {
-            alert('Data atualizada!');
-            }
+        var leadId = $(this).data('lead-id'); // id do lead
+
+    $.ajax({
+        url: '/leads/atualizar-data/' + leadId, 
+        type: 'POST',
+        data: {
+            data_agendamento: novaData
+        },
+        success: function(response) {
+            alert('Data atualizada com sucesso!');
+        }
         });
+
     });
 </script>
 @endsection
