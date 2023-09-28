@@ -348,7 +348,7 @@ Consulta de Pedidos
                                     </select>
                                 </td>
 
-                                <td><input type='number' step='0.01' class='form-control' name='medida_linear' value="{{ $pedido->medida_linear }} style="appearance: none;""></td>
+                                <td><input type='number' step='0.01' class='form-control' name='medida_linear' value="{{ $pedido->medida_linear }}"></td>
                                 <td class="expandir-observacoes">
                                     <input type="text" class="form-control observacoes-field" name="observacoes" value="{{ $pedido->observacoes }}">
                                 </td>
