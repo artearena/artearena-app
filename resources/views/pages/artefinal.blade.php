@@ -170,7 +170,9 @@ Consulta de Pedidos
     .mensagem-flutuante.mostrar {
         opacity: 1;
     }
-    
+    tbody tr:hover {
+        background-color: #ebebeb;
+    }
     :root {
 
         /* Cor de fundo da linha selecionada */
