@@ -20,5 +20,14 @@ class Cliente extends Model
         'origem',
         'url_octa',
         'id_octa',
+        'primeira_mensagem_cliente',
+        'responsavel_contato',
+        'tel_comercial_contato',
+        'tel_residencial_contato',
+        'status_do_contato',
+        'numero_de_pedido_contato',
+        'nome_organizacao',
+        'primeiro_telefone_organizacao',
+        'primeiro_dominio_organizacao'
     ];
 }
