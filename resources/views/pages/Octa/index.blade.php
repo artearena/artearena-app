@@ -31,8 +31,12 @@
             background-color: #ebebeb; 
         } 
     </style> 
-<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-<script src="http://code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></
 @endsection 
 @section('content') 
     <div id="app"> 
@@ -72,8 +76,14 @@
                         <td>{{ $cliente->status_conversa }}</td> 
                         <td>{{ $cliente->created_at }}</td> 
                         <td>
+                        <td>
                             @foreach ($cliente->agendamentos as $agendamento)
-                                <input class="form-control datetimepicker" value="{{ $agendamento->horario }}">
+                                <div class='input-group date datetimepicker'>
+                                    <input type='text' class="form-control" value="{{ $agendamento->horario }}" />
+                                    <span class="input-group-addon">
+                                        <span class="glyphicon glyphicon-calendar"></span>
+                                    </span>
+                                </div>
                             @endforeach
                         </td>
                         <td style="display:none">{{ $cliente->updated_at }}</td> 
@@ -90,25 +100,10 @@
     <button id="btnAgendar">Agendar Teste</button>
 @endsection 
 @section('extraScript')
-<!-- Bootstrap CSS -->
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-<!-- jQuery -->
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<!-- Bootstrap JS -->
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-<!-- Datetimepicker CSS -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css">
-<!-- Datetimepicker JS -->
-<script src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script> 
+ 
 <script>
-        $(document).ready(function() {
-            $('.datetimepicker').daterangepicker({
-                singleDatePicker: true,
-                timePicker: true,
-                locale: {
-                    format: 'YYYY-MM-DD HH:mm:ss'
-                }
-            });
-        });
+    $(function () {
+        $('#datetimepicker1').datetimepicker();
+    });
 </script> 
 @endsection 
