@@ -4,12 +4,8 @@
 @endsection 
 @section('style') 
     <style> 
-        #app{
-            content
-        }
         table { 
             width: 100%; 
-            margin: 20px;
             border-collapse: collapse; 
         } 
         th, td { 
