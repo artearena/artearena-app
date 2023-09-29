@@ -102,14 +102,14 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/locale/pt-br.js"></script>
-
-    @section('extraScript')
-    <script>
-        $(function() {
-            $('.datetimepicker').datetimepicker({
-                format: 'DD/MM/YYYY HH:mm',
-                locale: 'pt-br'
-            });
+@endsection 
+@section('extraScript')
+<script>
+    $(function() {
+        $('.datetimepicker').datetimepicker({
+            format: 'DD/MM/YYYY HH:mm',
+            locale: 'pt-br'
         });
-    </script>
-    @endsection 
+    });
+</script>
+@endsection 
