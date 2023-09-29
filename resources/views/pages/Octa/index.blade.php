@@ -103,14 +103,17 @@
 @endsection 
 @section('extraScript') 
 <script>
-    $(document).ready(function() {
-        $('.datetimepicker').daterangepicker({
-            singleDatePicker: true,
-            timePicker: true,
-            locale: {
-                format: 'YYYY-MM-DD HH:mm:ss'
-            }
+    jQuery(document).ready(function($){
+        $(document).ready(function() {
+            $('.datetimepicker').daterangepicker({
+                singleDatePicker: true,
+                timePicker: true,
+                locale: {
+                    format: 'YYYY-MM-DD HH:mm:ss'
+                }
+            });
         });
+        
     });
 </script> 
 @endsection 
