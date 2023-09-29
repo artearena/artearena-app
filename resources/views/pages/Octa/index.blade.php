@@ -69,8 +69,8 @@
                         <td>{{ $cliente->status_conversa }}</td> 
                         <td>{{ $cliente->created_at }}</td> 
                         <td>
-                            @foreach ($cliente->agendamentos as $agendamento)
-                                <div class='input-group date'  id='datetimepicker'>
+                            @foreach ($cliente->agendamentos as $index => $agendamento)
+                                <div class='input-group date'  id='datetimepicker{{ $index }}'>
                                     <input class="form-control" value="{{ $agendamento->horario }}" />
                                     <span class="input-group-addon">
                                         <span class="glyphicon glyphicon-calendar"></span>
@@ -99,10 +99,12 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css">
 <script>
     $(function() {
-        $('#datetimepicker').datetimepicker({
-            format: 'DD/MM/YYYY HH:mm',
-            locale: 'pt-br'
-        });
+        @foreach ($cliente->agendamentos as $index => $agendamento)
+            $('#datetimepicker{{ $index }}').datetimepicker({
+                format: 'DD/MM/YYYY HH:mm',
+                locale: 'pt-br'
+            });
+        @endforeach
     });
 </script> 
 @endsection 
