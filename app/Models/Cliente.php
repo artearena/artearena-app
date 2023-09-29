@@ -40,7 +40,7 @@ class Cliente extends Model
     {
         return $this->hasMany(Agendamento::class);
     }
-    public function mensagemTemplate()
+    public function templateMensagem()
     {
         return $this->belongsTo(TemplateMensagem::class, 'mensagem_template_id');
     }

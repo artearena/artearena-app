@@ -15,8 +15,8 @@ class TemplateMensagem extends Model
 
     public $timestamps = false; // desabilita as colunas de timestamps
 
-    public function mensagemTemplate()
+    public function clientes()
     {
-        return $this->hasMany(Cliente::class);
+        return $this->hasMany(Cliente::class, 'mensagem_template_id');
     }
 }
