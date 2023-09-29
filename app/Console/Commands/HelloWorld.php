@@ -70,10 +70,9 @@ class HelloWorld extends Command
                     "automaticAssign" => true
                 ]
             ]);
-
+            $agendamento->update(['confirmacao' => true]);
             if ($response->successful()) {
                 $this->info('CURL request successful');
-                $agendamento->update(['confirmacao' => true]);
                 $cliente->update(['status_conversa' => 'Enviado']);
             } else {
                 $errorMessage = $response->json('message'); // Obtém a mensagem de erro da resposta JSON
