@@ -5,13 +5,15 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Cliente;
+use App\Models\Mensagem;
 
 class LeadController extends Controller
 {
     public function index()
     {
-        $clientes = Cliente::with('agendamentos')->get();
-        return view('pages.Octa.index', compact('clientes'));
+        $clientes = Cliente::with('agendamentos', 'mensagens')->get();
+        $mensagens = Mensagem::all();
+        return view('pages.Octa.index', compact('clientes', 'mensagens'));
     }
 
     public function update(Request $request, $id) 

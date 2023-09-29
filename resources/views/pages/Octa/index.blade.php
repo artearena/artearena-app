@@ -89,7 +89,14 @@
                                 </div>
                             @endforeach
                         </td>
-                        <td></td>
+                        <td>
+                        <select name="mensagem_id">
+                            <option value="">Selecione uma mensagem</option>
+                            @foreach ($mensagens as $mensagem)
+                                <option value="{{ $mensagem->id }}">{{ $mensagem->titulo }}</option>
+                            @endforeach
+                        </select>
+                        </td>
                         <td> 
                             <a href="#" class="btn btn-primary ms-1" target="_blank"> 
                                 <i class="fa-brands fa-trello"></i> 

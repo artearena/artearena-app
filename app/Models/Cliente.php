@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\MensagemTemplate;
 
 class Cliente extends Model
 {
@@ -38,5 +39,9 @@ class Cliente extends Model
     public function agendamentos()
     {
         return $this->hasMany(Agendamento::class);
+    }
+    public function mensagemTemplate()
+    {
+        return $this->belongsTo(MensagemTemplate::class, 'mensagem_template_id');
     }
 }
