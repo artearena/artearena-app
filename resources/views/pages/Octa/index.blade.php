@@ -8,7 +8,7 @@
             text-align: -webkit-center;
         }
         table { 
-            width: 80%; 
+            width: 90%; 
             border-collapse: collapse; 
         } 
         th, td { 
