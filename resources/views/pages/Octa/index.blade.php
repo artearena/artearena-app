@@ -85,7 +85,7 @@
                         <td>{{ $cliente->created_at }}</td> 
                         <td>
                             @foreach ($cliente->agendamentos as $agendamento)
-                                <input type="text" class="form-control datetimepicker" value="{{ $agendamento->horario }}">
+                                <input class="form-control datetimepicker" value="{{ $agendamento->horario }}">
                             @endforeach
                         </td>
                         <td style="display:none">{{ $cliente->updated_at }}</td> 
