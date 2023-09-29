@@ -13,9 +13,9 @@ class TemplateMensagem extends Model
     protected $primaryKey = 'id'; // chave primária da tabela
 
     public $timestamps = false; // desabilita as colunas de timestamps
-    
+
     public function mensagens()
     {
-        return $this->hasMany(Mensagem::class);
+        return $this->hasMany(TemplateMensagem::class);
     }
 }

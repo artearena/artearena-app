@@ -42,6 +42,6 @@ class Cliente extends Model
     }
     public function mensagemTemplate()
     {
-        return $this->belongsTo(MensagemTemplate::class, 'mensagem_template_id');
+        return $this->belongsTo(TemplateMensagem::class, 'mensagem_template_id');
     }
 }
