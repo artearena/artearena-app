@@ -76,7 +76,6 @@
                         <td>{{ $cliente->status_conversa }}</td> 
                         <td>{{ $cliente->created_at }}</td> 
                         <td>
-                        <td>
                             @foreach ($cliente->agendamentos as $agendamento)
                                 <div class='input-group date datetimepicker'>
                                     <input type='text' class="form-control" value="{{ $agendamento->horario }}" />
