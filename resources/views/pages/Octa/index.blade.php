@@ -5,7 +5,7 @@
 @section('style') 
     <style> 
         #app{
-            text-align: -webkit-auto;
+            text-align: -webkit-center;
         }
         table { 
             width: 80%; 
@@ -23,6 +23,7 @@
         } 
         td { 
             font-size: .9em; 
+            padding: 4px;
         } 
         tfoot td { 
             font-weight: bold; 

@@ -32,6 +32,7 @@ class Cliente extends Model
         'empresa',
         'data_agendamento',
         'status_conversa',
+        'mensagem_template_id',
     ];
 
     public function agendamentos()
