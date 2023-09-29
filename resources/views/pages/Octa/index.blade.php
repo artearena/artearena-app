@@ -31,13 +31,7 @@
             background-color: #ebebeb; 
         } 
     </style> 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css">
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
-    
+
 @endsection 
 @section('content') 
     <div id="app"> 
@@ -78,12 +72,7 @@
                         <td>{{ $cliente->created_at }}</td> 
                         <td>
                             @foreach ($cliente->agendamentos as $agendamento)
-                                <div class='input-group date datetimepicker'>
-                                    <input type='text' class="form-control" value="{{ $agendamento->horario }}" />
-                                    <span class="input-group-addon">
-                                        <span class="glyphicon glyphicon-calendar"></span>
-                                    </span>
-                                </div>
+                                <input class="form-control datetimepicker" value="{{ $agendamento->horario }}">
                             @endforeach
                         </td>
                         <td style="display:none">{{ $cliente->updated_at }}</td> 
@@ -102,8 +91,6 @@
 @section('extraScript')
  
 <script>
-    $(function () {
-        $('#datetimepicker1').datetimepicker();
-    });
+
 </script> 
 @endsection 
