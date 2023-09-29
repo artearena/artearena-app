@@ -79,9 +79,10 @@ class HelloWorld extends Command
                 $errorMessage = $response->json('message'); // Obtém a mensagem de erro da resposta JSON
             
                 if ($errorMessage === 'An open conversation already exists with this contact') {
+                    $this->error('Conversa Aberta');
                     $cliente->update(['status_conversa' => 'Aberta']);
                 } else {
-                    $this->error('CURL request failed');
+                    $this->error('Erro não definido');
                     $cliente->update(['status_conversa' => $errorMessage ?? 'Aberta']); // Define como "Aberta" se a mensagem de erro não estiver disponível
                 }
             }
