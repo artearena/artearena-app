@@ -8,7 +8,8 @@
             content
         }
         table { 
-            width: 80%; 
+            width: 100%; 
+            margin: 20px;
             border-collapse: collapse; 
         } 
         th, td { 
@@ -19,7 +20,7 @@
         th { 
             background-color: #f2f2f2; 
             font-weight: bold; 
-            text-align: center; 
+            text-align: center; !important 
         } 
         td { 
             font-size: .9em; 
