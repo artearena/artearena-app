@@ -39,7 +39,7 @@ class LeadController extends Controller
     }
     public function updateAgendamento(Request $request, $id)
     {
-        $data = $request->only(['crm_clientes_id', 'horario']);
+        $data = $request->only(['cliente_id', 'horario']);
     
         $cliente = Cliente::findOrFail($id);
     

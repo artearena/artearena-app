@@ -41,7 +41,7 @@ class HelloWorld extends Command
             ->get();
 
         foreach ($agendamentos as $agendamento) {
-            $cliente = Cliente::findOrFail($agendamento->crm_clientes_id);
+            $cliente = Cliente::findOrFail($agendamento->cliente_id);
             $number = $cliente->telefone;
 
             $response = Http::withHeaders([
