@@ -13,8 +13,8 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule): void
     {
         $schedule->call(function () {
-            echo "Hello, World!";
-        })->everyMinute();
+            logger()->info("Hello, World!");
+        })->everyMinute()
     }
     /**
      * Register the commands for the application.
