@@ -16,6 +16,6 @@ class TemplateMensagem extends Model
 
     public function mensagens()
     {
-        return $this->hasMany(TemplateMensagem::class);
+        return $this->hasMany(Cliente::class);
     }
 }
