@@ -76,8 +76,14 @@ class HelloWorld extends Command
                 $agendamento->update(['confirmacao' => true]);
                 $cliente->update(['status_conversa' => 'Enviado']);
             } else {
-                $this->error('CURL request failed');
-                $cliente->update(['status_conversa' => 'Aberta']);
+                $errorMessage = $response->json('message'); // Obtém a mensagem de erro da resposta JSON
+            
+                if ($errorMessage === 'An open conversation already exists with this contact') {
+                    $cliente->update(['status_conversa' => 'Aberta']);
+                } else {
+                    $this->error('CURL request failed');
+                    $cliente->update(['status_conversa' => $errorMessage ?? 'Aberta']); // Define como "Aberta" se a mensagem de erro não estiver disponível
+                }
             }
         }
 
