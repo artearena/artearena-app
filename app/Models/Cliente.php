@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\TemplateMensagem;
+use App\Models\TemplateMensagem;
 
 class Cliente extends Model
 {
