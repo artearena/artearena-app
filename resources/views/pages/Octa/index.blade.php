@@ -51,8 +51,9 @@
                     <th style="display:none">Origem</th> 
                     <th>Status da Conversa</th> 
                     <th>Criado em</th> 
-                    <th>Data de Agendamento</th> 
-                    <th>Trello</th> 
+                    <th>Agendamento</th> 
+                    <th>Template</th>
+                    <th>Card</th> 
                 </tr> 
             </thead> 
             <tbody> 
@@ -60,11 +61,11 @@
                     <tr> 
                         <td class="cliente-id" style="display:none">{{ $cliente->id }}</td> 
                         <td>{{ $cliente->id_octa }}</td> 
-                        <td> 
+                        <td style="word-wrap: break-word;"> 
                             <a href="https://app.octadesk.com/chat/{{ $cliente->url_octa }}/opened" target="_blank"> 
                                 {{ $cliente->nome }} 
                             </a> 
-                        </td> 
+                        </td>
                         <td>{{ $cliente->telefone }}</td> 
                         <td>{{ $cliente->email }}</td> 
                         <td>{{ $cliente->empresa }}</td> 
@@ -85,6 +86,7 @@
                                 </div>
                             @endforeach
                         </td>
+                        <td></td>
                         <td> 
                             <a href="#" class="btn btn-primary ms-1" target="_blank"> 
                                 <i class="fa-brands fa-trello"></i> 
@@ -111,5 +113,26 @@
             locale: 'pt-br'
         });
     });
+    $('.datetimepicker').on('dp.change', function(e) {
+            var id = $(this).data('id');
+            var newDateTime = e.date.format('YYYY-MM-DD HH:mm:ss');
+
+            // Enviar requisição AJAX para atualizar a tabela com os novos dados
+            $.ajax({
+                url: '/atualizar-data',
+                method: 'POST',
+                data: {
+                    id: id,
+                    newDateTime: newDateTime
+                },
+                success: function(response) {
+                    // Atualizar a tabela com os dados atualizados
+                    // Exemplo: location.reload();
+                },
+                error: function(xhr, status, error) {
+                    // Tratar erros
+                }
+            });
+        });
 </script>
 @endsection 
