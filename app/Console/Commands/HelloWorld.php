@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Http;
 
 class HelloWorld extends Command
 {
@@ -18,7 +19,7 @@ class HelloWorld extends Command
      *
      * @var string
      */
-    protected $description = 'Displays "Hello, World!"';
+    protected $description = 'Simulates a CURL request';
 
     /**
      * Execute the console command.
@@ -27,7 +28,39 @@ class HelloWorld extends Command
      */
     public function handle()
     {
-        $this->info('Hello, World!');
+        $response = Http::withHeaders([
+            'X-API-KEY' => '3b8f740e-6dd3-4da3-a59e-30ee20169c49.31b74e42-c05f-4341-b386-320b5231125d',
+            'Accept' => 'application/json',
+            'Content-Type' => 'application/json',
+        ])->post('https://artearena.api004.octadesk.services/chat/conversation/send-template', [
+            "target" => [
+                "contact" => [
+                    "phoneContact" => [
+                        "number" => "+5511987430004"
+                    ]
+                ]
+            ],
+            "content" => [
+                "templateMessage" => [
+                    "id" => "64d2e17f6f8d1b0007de15f3"
+                ]
+            ],
+            "origin" => [
+                "from" => [
+                    "number" => "+5511934881548"
+                ]
+            ],
+            "options" => [
+                "automaticAssign" => true
+            ]
+        ]);
+
+        if ($response->successful()) {
+            $this->info('CURL request successful');
+        } else {
+            $this->error('CURL request failed');
+        }
+
         return 0;
     }
 }

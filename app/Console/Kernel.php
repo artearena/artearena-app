@@ -14,9 +14,7 @@ class Kernel extends ConsoleKernel
 
     protected function schedule(Schedule $schedule): void
     {
-        $schedule->call(function () {
-            Log::info("Hello, World!");
-        })->everyMinute();
+        $schedule->command('hello:world')->everyMinute();
     }
     /**
      * Register the commands for the application.
