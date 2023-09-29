@@ -96,7 +96,7 @@ Simulação de Frete
             background-color: #ebebeb;
         }
         #campoTexto{
-            min-height: 500px;
+            min-height: 300px;
         }
 </style>
 @endsection
