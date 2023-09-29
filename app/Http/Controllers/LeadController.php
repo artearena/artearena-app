@@ -11,7 +11,7 @@ class LeadController extends Controller
 {
     public function index()
     {
-        $clientes = Cliente::with('agendamentos', 'mensagens')->get();
+        $clientes = Cliente::with('agendamentos', 'mensagemTemplate')->get();
         $mensagens = Mensagem::all();
         return view('pages.Octa.index', compact('clientes', 'mensagens'));
     }
