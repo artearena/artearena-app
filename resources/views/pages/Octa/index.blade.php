@@ -63,7 +63,7 @@
                         <td>{{ $cliente->id_octa }}</td> 
                         <td style="word-wrap: break-word;"> 
                             <a href="https://app.octadesk.com/chat/{{ $cliente->url_octa }}/opened" target="_blank"> 
-                                {{ $cliente->nome }} 
+                                <?php echo chunk_split($cliente->nome, 25, "<br>"); ?>
                             </a> 
                         </td>
                         <td>{{ $cliente->telefone }}</td> 
@@ -110,7 +110,8 @@
     $(function() {
         $('.datetimepicker').datetimepicker({
             format: 'DD/MM/YYYY HH:mm',
-            locale: 'pt-br'
+            locale: 'pt-br',
+            autoclose: true
         });
     });
     $('.datetimepicker').on('dp.change', function(e) {
