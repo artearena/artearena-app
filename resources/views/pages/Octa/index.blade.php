@@ -4,8 +4,11 @@
 @endsection 
 @section('style') 
     <style> 
+        #app{
+            text-align: -webkit-auto;
+        }
         table { 
-            width: 100%; 
+            width: 80%; 
             border-collapse: collapse; 
         } 
         th, td { 
