@@ -100,7 +100,7 @@
 <script>
     $(function() {
         $('#datetimepicker').datetimepicker({
-            format: 'yyyy/dd/mm HH:mm',
+            format: 'DD/MM/YYYY HH:mm',
             locale: 'pt-br'
         });
     });
