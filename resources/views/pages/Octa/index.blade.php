@@ -20,7 +20,7 @@
         th { 
             background-color: #f2f2f2; 
             font-weight: bold; 
-            text-align: center; !important 
+            text-align: center !important; 
         } 
         td { 
             font-size: .9em; 
