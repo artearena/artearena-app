@@ -96,7 +96,7 @@ Simulação de Frete
             background-color: #ebebeb;
         }
         #campoTexto{
-            min-height: 200px;
+            min-height: 500px;
         }
 </style>
 @endsection
@@ -441,7 +441,7 @@ Simulação de Frete
                   const nomeProduto = produtosSelecionados[id].nome;
                   const quantidade = produtosSelecionados[id].quantidade;
                   const valor = produtosSelecionados[id].valor;
-                  const produtoDescricao = `${quantidade} un - ${nomeProduto} - R$ ${valor}\n`;
+                  const produtoDescricao = `${quantidade} un - ${nomeProduto} - R$${valor}\n`;
                   produtosDescricao += produtoDescricao;
                 }
               }
@@ -463,8 +463,8 @@ Simulação de Frete
               const valorTotalFormatado = valorTotal.toFixed(2);
               const prazoConfeccao = prazoConfecaoMaisAlto;
 
-              const detalhesFrete = `Frete: ${cepDestino} - R$ ${frete} - (Dia da postagem + ${prazoEntrega} dias úteis via ${titulo})\n\n`;
-              const total = `Total: R$ ${valorTotalFormatado}\n`;
+              const detalhesFrete = `Frete: ${cepDestino} - R$${frete} - (Dia da postagem + ${prazoEntrega} dias úteis via ${titulo})\n\n`;
+              const total = `Total: R$${valorTotalFormatado}\n`;
               const prazo = `Prazo para confecção é de ${prazoConfeccao} dias úteis + prazo de envio.\nPrazo inicia-se após aprovação da arte e pagamento confirmado`;
 
               campoTexto.value = `${produtosDescricao}\n${detalhesFrete}${total}\n${prazo}`;
