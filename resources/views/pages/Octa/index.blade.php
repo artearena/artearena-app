@@ -70,10 +70,12 @@
                         <td>{{ $cliente->created_at }}</td> 
                         <td>
                             @foreach ($cliente->agendamentos as $agendamento)
-                                <input class="form-control input-group date datetimepicker" value="{{ $agendamento->horario }}" />
-                                <span class="input-group-addon">
-                                    <span class="glyphicon glyphicon-calendar"></span>
-                                </span>
+                                <div class='input-group date datetimepicker'>
+                                    <input class="form-control" value="{{ $agendamento->horario }}" />
+                                    <span class="input-group-addon">
+                                        <span class="glyphicon glyphicon-calendar"></span>
+                                    </span>
+                                </div>
                             @endforeach
                         </td>
                         <td> 
@@ -96,6 +98,10 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css">
 <script>
-
+    $(function () {
+             $('#datetimepicker2').datetimepicker({
+                 locale: 'pt'
+             });
+         });
 </script> 
 @endsection 
