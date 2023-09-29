@@ -5,7 +5,7 @@
 @section('style') 
     <style> 
         table { 
-            width: 100%; 
+            width: 80%; 
             border-collapse: collapse; 
         } 
         th, td { 
