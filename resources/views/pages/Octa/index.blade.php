@@ -69,9 +69,9 @@
                         <td>{{ $cliente->status_conversa }}</td> 
                         <td>{{ $cliente->created_at }}</td> 
                         <td>
-                            @foreach ($cliente->agendamentos as $index => $agendamento)
-                                <div class='input-group date'  id='datetimepicker{{ $index }}'>
-                                    <input class="form-control" value="{{ $agendamento->horario }}" />
+                            @foreach ($cliente->agendamentos as $agendamento)
+                                <div class='input-group date datetimepicker'>
+                                    <input type='text' class="form-control" value="{{ $agendamento->horario }}" />
                                     <span class="input-group-addon">
                                         <span class="glyphicon glyphicon-calendar"></span>
                                     </span>
@@ -89,22 +89,21 @@
         </table> 
     </div> 
     <button id="btnAgendar">Agendar Teste</button>
-@endsection 
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css">
+
+    @endsection 
 @section('extraScript')
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css">
 <script>
     $(function() {
-        @foreach ($cliente->agendamentos as $index => $agendamento)
-            $('#datetimepicker{{ $index }}').datetimepicker({
-                format: 'DD/MM/YYYY HH:mm',
-                locale: 'pt-br'
-            });
-        @endforeach
+        $('.datetimepicker').datetimepicker({
+            format: 'DD/MM/YYYY HH:mm',
+            locale: 'pt-br'
+        });
     });
-</script> 
+</script>
 @endsection 
