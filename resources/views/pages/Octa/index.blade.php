@@ -45,7 +45,7 @@
                     <th>ID Octa</th> 
                     <th>Nome</th> 
                     <th>Telefone</th> 
-                    <th>Email</th> 
+                    <th style="display:none">Email</th> 
                     <th>Empresa</th> 
                     <th>Responsável</th> 
                     <th style="display:none">Origem</th> 
@@ -67,7 +67,7 @@
                             </a> 
                         </td>
                         <td>{{ $cliente->telefone }}</td> 
-                        <td>{{ $cliente->email }}</td> 
+                        <td style="display:none">{{ $cliente->email }}</td> 
                         <td>{{ $cliente->empresa }}</td> 
                         <td>{{ $cliente->responsavel_contato }}</td> 
                         <td style="display:none">{{ $cliente->origem }}</td> 
