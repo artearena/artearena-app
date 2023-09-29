@@ -10,11 +10,13 @@ class Kernel extends ConsoleKernel
     /**
      * Define the application's command schedule.
      */
+    use Illuminate\Support\Facades\Log;
+
     protected function schedule(Schedule $schedule): void
     {
         $schedule->call(function () {
-            logger()->info("Hello, World!");
-        })->everyMinute()
+            Log::info("Hello, World!");
+        })->everyMinute();
     }
     /**
      * Register the commands for the application.
