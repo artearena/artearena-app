@@ -10,7 +10,7 @@ class LeadController extends Controller
 {
     public function index()
     {
-        $clientes = Cliente::all();
+        $clientes = Cliente::with('agendamentos')->get();
         return view('pages.Octa.index', compact('clientes'));
     }
 
@@ -36,5 +36,18 @@ class LeadController extends Controller
       
         return response()->json(['success' => true]);
       
-      }
+    }
+    public function updateAgendamento(Request $request, $id)
+    {
+        $data = $request->only(['crm_clientes_id', 'horario']);
+    
+        $cliente = Cliente::findOrFail($id);
+    
+        try {
+            $cliente->update($data);
+            return response()->json(['message' => 'Agendamento atualizado com sucesso!']);
+        } catch (\Exception $e) {
+            return response()->json(['message' => 'Falha ao atualizar agendamento'], 500);
+        }
+    }
 }

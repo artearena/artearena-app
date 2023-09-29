@@ -33,4 +33,9 @@ class Cliente extends Model
         'data_agendamento',
         'status_conversa',
     ];
+
+    public function agendamentos()
+    {
+        return $this->hasMany(Agendamento::class);
+    }
 }

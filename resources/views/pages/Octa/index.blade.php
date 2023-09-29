@@ -31,11 +31,20 @@
             background-color: #ebebeb; 
         } 
     </style> 
-    <!-- Carregar CSS e JS do datetimepicker --> 
-    <!-- Remover referências ao datepicker --> 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/css/bootstrap.min.css"> 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css"> 
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css" rel="stylesheet"/> 
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+<!-- Bootstrap JS -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<!-- Datetimepicker CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css">
+
+<!-- Datetimepicker JS -->
+<script src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 @endsection 
 @section('content') 
     <div id="app"> 
@@ -74,9 +83,11 @@
                         <td style="display:none">{{ $cliente->origem }}</td> 
                         <td>{{ $cliente->status_conversa }}</td> 
                         <td>{{ $cliente->created_at }}</td> 
-                        <td> 
-                            <input class="form-control datepicker" id="dataAgendamento">                         
-                        </td> 
+                        <td>
+                            @foreach ($cliente->agendamentos as $agendamento)
+                                <input type="text" class="form-control datetimepicker" value="{{ $agendamento->horario }}">
+                            @endforeach
+                        </td>
                         <td style="display:none">{{ $cliente->updated_at }}</td> 
                         <td> 
                             <a href="#" class="btn btn-primary ms-1" target="_blank"> 
@@ -91,86 +102,15 @@
     <button id="btnAgendar">Agendar Teste</button>
 @endsection 
 @section('extraScript') 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js">>  
-<script  src="https://code.jquery.com/jquery-3.6.0.min.js">> 
-<script  src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/js/bootstrap.bundle.min.js">> 
-<script  src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js">> 
-<script  src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/locales/bootstrap-datepicker.pt-BR.min.js">> 
-<script  src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js">> 
-<script> 
-    $('.datepicker').datetimepicker({ 
-        format: 'dd/mm/yyyy HH:mm:ss', 
-        language: 'pt-BR', 
-        autoclose: true, 
-    }); 
-    $('.datepicker').on('changeDate', function() { 
-        var clienteId = $(this).closest('tr').find('.cliente-id').text(); 
-        var novaData = moment($(this).val(), 'DD/MM/YYYY HH:mm:ss').format('YYYY-MM-DD HH:mm:ss'); 
-        $.ajax({ 
-            url: 'crm/atualizar-data/'+clienteId, 
-            type: 'POST', 
-            data: { 
-                data_agendamento: novaData, 
-                "_token": "{{ csrf_token() }}" 
-            }, 
-            success: function(response) { 
-                alert('Data atualizada com sucesso!'); 
-            } 
-        }); 
-    }); 
-</script>
 <script>
-    function agendarConversa() {
-
-    const url = 'https://artearena.api004.octadesk.services/chat/conversation/send-template';
-
-    const data = {
-        target: {
-            contact: {
-            phoneContact: {
-                number: '+5511987430004'
+    $(document).ready(function() {
+        $('.datetimepicker').daterangepicker({
+            singleDatePicker: true,
+            timePicker: true,
+            locale: {
+                format: 'YYYY-MM-DD HH:mm:ss'
             }
-            }
-        },
-        content: {
-            templateMessage: {
-            id: '64d2e17f6f8d1b0007de15f3' 
-            }
-        },
-        origin: {
-            from: {
-            number: '+5511964965907'
-            }
-        },
-        options: {
-            automaticAssign: true
-        }        
-    };
-
-    const headers = {
-        'X-API-KEY': '3b8f740e-6dd3-4da3-a59e-30ee20169c49.31b74e42-c05f-4341-b386-320b5231125d',
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-    };
-
-    fetch(url, {
-        method: 'POST',
-        headers: headers,
-        body: JSON.stringify(data) 
-    })
-    .then(response => {
-    if(!response.ok) {
-        throw new Error('Erro na requisição'); 
-    }
-    return response.json();
-    })
-    .then(data => {
-        console.log(data); 
-    })
-    .catch(error => {
-        console.error(error);
+        });
     });
-    }
-    document.getElementById("btnAgendar").addEventListener("click", agendarConversa);
 </script> 
 @endsection 
