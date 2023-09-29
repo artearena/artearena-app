@@ -4,6 +4,10 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Http;
+use App\Models\Cliente;
+use App\Models\Agendamento;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\App;
 
 class HelloWorld extends Command
 {
@@ -28,37 +32,53 @@ class HelloWorld extends Command
      */
     public function handle()
     {
-        $response = Http::withHeaders([
-            'X-API-KEY' => '3b8f740e-6dd3-4da3-a59e-30ee20169c49.31b74e42-c05f-4341-b386-320b5231125d',
-            'Accept' => 'application/json',
-            'Content-Type' => 'application/json',
-        ])->post('https://artearena.api004.octadesk.services/chat/conversation/send-template', [
-            "target" => [
-                "contact" => [
-                    "phoneContact" => [
-                        "number" => "+5511987430004"
-                    ]
-                ]
-            ],
-            "content" => [
-                "templateMessage" => [
-                    "id" => "64d2e17f6f8d1b0007de15f3"
-                ]
-            ],
-            "origin" => [
-                "from" => [
-                    "number" => "+5511934881548"
-                ]
-            ],
-            "options" => [
-                "automaticAssign" => true
-            ]
-        ]);
+        App::setLocale('pt'); // Define o idioma padrão como português
 
-        if ($response->successful()) {
-            $this->info('CURL request successful');
-        } else {
-            $this->error('CURL request failed');
+        $now = Carbon::now();
+
+        $agendamentos = Agendamento::where('horario', '<=', $now)
+            ->whereNull('confirmacao')
+            ->get();
+
+        foreach ($agendamentos as $agendamento) {
+            $cliente = Cliente::findOrFail($agendamento->crm_clientes_id);
+            $number = $cliente->telefone;
+
+            $response = Http::withHeaders([
+                'X-API-KEY' => '3b8f740e-6dd3-4da3-a59e-30ee20169c49.31b74e42-c05f-4341-b386-320b5231125d',
+                'Accept' => 'application/json',
+                'Content-Type' => 'application/json',
+            ])->post('https://artearena.api004.octadesk.services/chat/conversation/send-template', [
+                "target" => [
+                    "contact" => [
+                        "phoneContact" => [
+                            "number" => $number
+                        ]
+                    ]
+                ],
+                "content" => [
+                    "templateMessage" => [
+                        "id" => "64d2e17f6f8d1b0007de15f3"
+                    ]
+                ],
+                "origin" => [
+                    "from" => [
+                        "number" => "+5511934881548"
+                    ]
+                ],
+                "options" => [
+                    "automaticAssign" => true
+                ]
+            ]);
+
+            if ($response->successful()) {
+                $this->info('CURL request successful');
+                $agendamento->update(['confirmacao' => true]);
+                $cliente->update(['status_conversa' => 'Enviado']);
+            } else {
+                $this->error('CURL request failed');
+                $cliente->update(['status_conversa' => 'Aberta']);
+            }
         }
 
         return 0;
