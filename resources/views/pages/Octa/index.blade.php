@@ -70,12 +70,10 @@
                         <td>{{ $cliente->created_at }}</td> 
                         <td>
                             @foreach ($cliente->agendamentos as $agendamento)
-                                <div class='input-group date datetimepicker'>
-                                    <input class="form-control" value="{{ $agendamento->horario }}" />
-                                    <span class="input-group-addon">
-                                        <span class="glyphicon glyphicon-calendar"></span>
-                                    </span>
-                                </div>
+                                <input class="form-control input-group date datetimepicker" value="{{ $agendamento->horario }}" />
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
                             @endforeach
                         </td>
                         <td> 
