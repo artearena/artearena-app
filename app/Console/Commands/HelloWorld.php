@@ -70,7 +70,7 @@ class HelloWorld extends Command
                     "automaticAssign" => true
                 ]
             ]);
-            $agendamento->update(['confirmacao' => true]);
+
             if ($response->successful()) {
                 $this->info('CURL request successful');
                 $cliente->update(['status_conversa' => 'Enviado']);
@@ -85,6 +85,8 @@ class HelloWorld extends Command
                     $cliente->update(['status_conversa' => $errorMessage ?? 'Aberta']); // Define como "Aberta" se a mensagem de erro não estiver disponível
                 }
             }
+            
+            $agendamento->update(['confirmacao' => true]);
         }
 
         return 0;
