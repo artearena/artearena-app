@@ -25,6 +25,9 @@
             font-size: .9em; 
             padding: 4px;
         } 
+        tr{
+            margin: 2px;
+        }
         tfoot td { 
             font-weight: bold; 
         } 
