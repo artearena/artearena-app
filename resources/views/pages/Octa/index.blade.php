@@ -54,7 +54,6 @@
                     <th>Status da Conversa</th> 
                     <th>Criado em</th> 
                     <th>Data de Agendamento</th> 
-                    <th style="display:none">Atualizado em</th> 
                     <th>Trello</th> 
                 </tr> 
             </thead> 
@@ -85,7 +84,6 @@
                                 </div>
                             @endforeach
                         </td>
-                        <td style="display:none">{{ $cliente->updated_at }}</td> 
                         <td> 
                             <a href="#" class="btn btn-primary ms-1" target="_blank"> 
                                 <i class="fa-brands fa-trello"></i> 
