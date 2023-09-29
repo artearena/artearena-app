@@ -441,7 +441,7 @@ Simulação de Frete
                   const nomeProduto = produtosSelecionados[id].nome;
                   const quantidade = produtosSelecionados[id].quantidade;
                   const valor = produtosSelecionados[id].valor;
-                  const produtoDescricao = `${quantidade} un - ${nomeProduto} - R$ ${valor.toFixed(2)}`;
+                  const produtoDescricao = `${quantidade} un - ${nomeProduto} - R$ ${valor}\n`;
                   produtosDescricao += produtoDescricao;
                 }
               }
