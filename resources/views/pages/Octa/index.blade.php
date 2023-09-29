@@ -123,7 +123,7 @@
             locale: 'pt-br'
         });
     });
-    $('.datetimepicker').on('dp.change', function(e) {
+    /* $('.datetimepicker').on('dp.change', function(e) {
             var id = $(this).data('id');
             var newDateTime = e.date.format('YYYY-MM-DD HH:mm:ss');
 
@@ -143,6 +143,6 @@
                     // Tratar erros
                 }
             });
-        });
+        }); */
 </script>
 @endsection 
