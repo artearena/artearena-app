@@ -90,12 +90,12 @@
                             @endforeach
                         </td>
                         <td>
-                        <select name="mensagem_id">
-                            <option value="">Selecione uma mensagem</option>
-                            @foreach ($mensagens as $mensagem)
-                                <option value="{{ $mensagem->id }}">{{ $mensagem->titulo }}</option>
-                            @endforeach
-                        </select>
+                            <select name="mensagem_id" id="mensagem_id">
+                                <option value="">Selecione uma mensagem</option>
+                                @foreach ($mensagens as $mensagem)
+                                    <option value="{{ $mensagem->id }}">{{ $mensagem->titulo }}</option>
+                                @endforeach
+                            </select>
                         </td>
                         <td> 
                             <a href="#" class="btn btn-primary ms-1" target="_blank"> 
@@ -123,26 +123,25 @@
             locale: 'pt-br'
         });
     });
-    /* $('.datetimepicker').on('dp.change', function(e) {
-            var id = $(this).data('id');
-            var newDateTime = e.date.format('YYYY-MM-DD HH:mm:ss');
+    $('.datetimepicker').on('dp.change', function(e) {
+        var id = $(this).data('id');
+        var newDateTime = e.date.format('YYYY-MM-DD HH:mm:ss');
 
-            // Enviar requisição AJAX para atualizar a tabela com os novos dados
-            $.ajax({
-                url: '/atualizar-data',
-                method: 'POST',
-                data: {
-                    id: id,
-                    newDateTime: newDateTime
-                },
-                success: function(response) {
-                    // Atualizar a tabela com os dados atualizados
-                    // Exemplo: location.reload();
-                },
-                error: function(xhr, status, error) {
-                    // Tratar erros
-                }
-            });
-        }); */
+        // Enviar requisição AJAX para atualizar a tabela com os novos dados
+        $.ajax({
+            url: '/atualizar-agendamento',
+            method: 'POST',
+            data: {
+                id: id,
+                newDateTime: newDateTime
+            },
+            success: function(response) {
+                console.log(response);
+            },
+            error: function(xhr, status, error) {
+                console.log(error);
+            }
+        });
+    }); 
 </script>
 @endsection 
