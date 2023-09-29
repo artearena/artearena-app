@@ -70,7 +70,7 @@
                         <td>{{ $cliente->created_at }}</td> 
                         <td>
                             @foreach ($cliente->agendamentos as $agendamento)
-                                <div class='input-group date datetimepicker'>
+                                <div class='input-group date'  id='datetimepicker'>
                                     <input class="form-control" value="{{ $agendamento->horario }}" />
                                     <span class="input-group-addon">
                                         <span class="glyphicon glyphicon-calendar"></span>
@@ -99,7 +99,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css">
 <script>
     $(function () {
-             $('#datetimepicker2').datetimepicker({
+             $('#datetimepicker').datetimepicker({
                  locale: 'pt'
              });
          });
