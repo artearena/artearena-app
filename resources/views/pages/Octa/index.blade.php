@@ -82,10 +82,12 @@
                                     @php
                                         $formattedDateTime = \Carbon\Carbon::parse($agendamento->horario)->format('d/m/Y H:i');
                                     @endphp
-                                    <input type='text' class="form-control" value="{{ $formattedDateTime }}" />
+                                    <input type="date" class="form-control" id="date" value="{{ $formattedDateTime }}" />
                                     <span class="input-group-addon">
                                         <span class="glyphicon glyphicon-calendar"></span>
                                     </span>
+                            
+                         
                                 </div>
                             @endforeach
                         </td>
