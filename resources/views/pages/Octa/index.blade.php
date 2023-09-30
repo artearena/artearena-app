@@ -79,11 +79,8 @@
                         <td>
                             @foreach ($cliente->agendamentos as $agendamento)
                                 <div class='input-group date datetimepicker'>
-                                    @php
-                                        $formattedDateTime = \Carbon\Carbon::parse($agendamento->horario)->format('d/m/Y H:i');
-                                    @endphp
-                                    <input type="date" class="form-control" id="date" data-bs-locale="pt-BR"
- value="{{ $formattedDateTime }}" />
+
+                                    <input type="date" class="form-control" id="date" data-bs-locale="pt-BR" value="{{ $agendamento->horario }}" />
                                     <span class="input-group-addon">
                                         <span class="glyphicon glyphicon-calendar"></span>
                                     </span>
