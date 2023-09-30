@@ -40,7 +40,7 @@
     </style> 
 @endsection 
 @section('content') 
-    <div id="app"> aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+    <div id="app"> 
         <table> 
             <thead> 
                 <tr> 
@@ -82,7 +82,7 @@
                                     @php
                                         $formattedDateTime = \Carbon\Carbon::parse($agendamento->horario)->format('d/m/Y H:i');
                                     @endphp
-                                    <input type="date" class="form-control" id="date" data-bs-locale="pt-BR" data-bs-date-format="dd/mm/yyyy HH:mm"
+                                    <input type="date" class="form-control" id="date" data-bs-locale="pt-BR"
  value="{{ $formattedDateTime }}" />
                                     <span class="input-group-addon">
                                         <span class="glyphicon glyphicon-calendar"></span>
