@@ -78,12 +78,12 @@
                         <td>{{ $cliente->created_at }}</td> 
                         <td>
                             @foreach ($cliente->agendamentos as $agendamento)
-                                    <div class='input-group date datetimepicker' data-id="{{ $agendamento->id }}" required>
-                                        <input type="datetime-local" class="form-control" id="date" data-bs-locale="pt-br" data-bs-date-format="dd/mm/yyyy HH:mm" value="" />
-                                        <span class="input-group-addon">
-                                            <span class="glyphicon glyphicon-calendar"></span>
-                                        </span>
-                                    </div>
+                                <div class='input-group date datetimepicker' data-id="{{ $agendamento->id }}" data-type="datetime" required>
+                                    <input type="datetime-local" class="form-control" id="date" data-bs-locale="pt-br" data-bs-date-format="dd/mm/yyyy HH:mm" value="" />
+                                    <span class="input-group-addon">
+                                        <span class="glyphicon glyphicon-calendar"></span>
+                                    </span>
+                                </div>
                             @endforeach
                         </td>
                         <td>
@@ -113,11 +113,12 @@
 @endsection 
 @section('extraScript')
 <script>
-    $(function() {
+    $(document).ready(function() {
         $('.datetimepicker').datetimepicker({
-            format: 'DD/MM/YYYY HH:mm',
-            locale: 'pt-br'
+            // Define o tipo de campo como datetime
+            data-type: "datetime"
         });
+
 
         $('.datetimepicker').on('dp.change', function(e) {
             var id = $(this).data('id');
@@ -125,20 +126,21 @@
 
             // Enviar requisição AJAX para atualizar a tabela com os novos dados
             $.ajax({
-                url: '/atualizar-agendamento',
-                method: 'POST',
-                data: {
-                    id: id,
-                    newDateTime: newDateTime
-                },
-                success: function(response) {
-                    console.log(response);
-                },
-                error: function(xhr, status, error) {
-                    console.log(error);
-                }
+            url: '/atualizar-agendamento',
+            method: 'POST',
+            data: {
+                id: id,
+                newDateTime: newDateTime
+            },
+            success: function(response) {
+                console.log(response);
+            },
+            error: function(xhr, status, error) {
+                console.log(error);
+            }
             });
         });
-    });
+        });
+
 </script>
 @endsection
