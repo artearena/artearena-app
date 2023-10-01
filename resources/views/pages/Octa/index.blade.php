@@ -78,15 +78,12 @@
                         <td>{{ $cliente->created_at }}</td> 
                         <td>
                             @foreach ($cliente->agendamentos as $agendamento)
-                                <div class='input-group date datetimepicker'>
-
-                                    <input type="date" class="form-control" id="date" data-bs-locale="pt-BR" value="{{ $agendamento->horario }}" />
-                                    <span class="input-group-addon">
-                                        <span class="glyphicon glyphicon-calendar"></span>
-                                    </span>
-                            
-                         
-                                </div>
+                                    <div class='input-group date datetimepicker' data-id="{{ $agendamento->id }}">
+                                        <input type="datetime-local" class="form-control" id="date" data-bs-locale="pt-BR" value="{{ $agendamento->horario }}" />
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
                             @endforeach
                         </td>
                         <td>
@@ -121,26 +118,27 @@
             format: 'DD/MM/YYYY HH:mm',
             locale: 'pt-br'
         });
-    });
-    $('.datetimepicker').on('dp.change', function(e) {
-        var id = $(this).data('id');
-        var newDateTime = e.date.format('YYYY-MM-DD HH:mm:ss');
 
-        // Enviar requisição AJAX para atualizar a tabela com os novos dados
-        $.ajax({
-            url: '/atualizar-agendamento',
-            method: 'POST',
-            data: {
-                id: id,
-                newDateTime: newDateTime
-            },
-            success: function(response) {
-                console.log(response);
-            },
-            error: function(xhr, status, error) {
-                console.log(error);
-            }
+        $('.datetimepicker').on('dp.change', function(e) {
+            var id = $(this).data('id');
+            var newDateTime = e.date.format('YYYY-MM-DD HH:mm:ss');
+
+            // Enviar requisição AJAX para atualizar a tabela com os novos dados
+            $.ajax({
+                url: '/atualizar-agendamento',
+                method: 'POST',
+                data: {
+                    id: id,
+                    newDateTime: newDateTime
+                },
+                success: function(response) {
+                    console.log(response);
+                },
+                error: function(xhr, status, error) {
+                    console.log(error);
+                }
+            });
         });
-    }); 
+    });
 </script>
-@endsection 
+@endsection
