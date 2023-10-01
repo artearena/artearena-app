@@ -77,6 +77,13 @@
                         <td>{{ $cliente->status_conversa }}</td> 
                         <td>{{ $cliente->created_at }}</td> 
                         <td>
+                            @foreach($cliente->agendamentos as $agendamento)
+                                @if(!empty($agendamento->horario))
+                                    <p>Horário do Agendamento: {{ date('d/m/Y H:i', strtotime($agendamento->horario)) }}</p>
+                                @else
+                                    <p>Horário do Agendamento: {{ date('d/m/Y H:i', strtotime(now())) }}</p>
+                                @endif
+                            @endforeach
                         </td>
                         <td>
                             <select name="mensagem_id" id="mensagem_id">
