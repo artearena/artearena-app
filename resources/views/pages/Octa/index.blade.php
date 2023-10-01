@@ -77,14 +77,6 @@
                         <td>{{ $cliente->status_conversa }}</td> 
                         <td>{{ $cliente->created_at }}</td> 
                         <td>
-                            @foreach ($cliente->agendamentos as $agendamento)
-                                <div class='input-group date datetimepicker' data-id="{{ $agendamento->id }}" data-type="datetime" required>
-                                    <input type="datetime-local" class="form-control" id="date" data-bs-locale="pt-br" data-bs-date-format="dd/mm/yyyy HH:mm" value="" />
-                                    <span class="input-group-addon">
-                                        <span class="glyphicon glyphicon-calendar"></span>
-                                    </span>
-                                </div>
-                            @endforeach
                         </td>
                         <td>
                             <select name="mensagem_id" id="mensagem_id">
