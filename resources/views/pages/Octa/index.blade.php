@@ -102,15 +102,44 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/locale/pt-br.js"></script>
+    <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap4.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap4.min.css">
+
 @endsection 
 @section('extraScript')
 <script>
     $(document).ready(function() {
-        $('.datetimepicker').datetimepicker({
+            // Cria um novo DataTable
+        var table = $('#tabela-clientes').DataTable({
             // Define o tipo de campo como datetime
-            data-type: "datetime"
+            data: [],
+            columns: [
+                { data: 'id' },
+                { data: 'id_octa' },
+                { data: 'nome' },
+                { data: 'telefone' },
+                { data: 'email' },
+                { data: 'empresa' },
+                { data: 'responsavel_contato' },
+                { data: 'origem' },
+                { data: 'status_conversa' },
+                { data: 'created_at' },
+                { data: 'agendamento',
+                    render: function(data, type, row) {
+                        // Retorna um DateTimePicker
+                        return '<input type="datetime-local" class="datetimepicker" data-id="' + row.id + '">';
+                    }
+                },
+                { data: 'template' },
+                { data: 'card' },
+            ]
         });
 
+        // Associa o DateTimePicker ao campo de agendamento
+        $('.datetimepicker').datetimepicker({
+            data-type: "datetime"
+        });
 
         $('.datetimepicker').on('dp.change', function(e) {
             var id = $(this).data('id');
