@@ -137,7 +137,7 @@
 
         // Associa o DateTimePicker ao campo de agendamento
         $('.datetimepicker').datetimepicker({
-            data-type: "datetime"
+            data: "datetime"
         });
 
         $('.datetimepicker').on('dp.change', function(e) {
