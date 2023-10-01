@@ -110,9 +110,8 @@
 @section('extraScript')
 <script>
     $(document).ready(function() {
-            // Cria um novo DataTable
+        // Cria um novo DataTable
         var table = $('#tabela-clientes').DataTable({
-            // Define o tipo de campo como datetime
             data: [],
             columns: [
                 { data: 'id' },
@@ -128,7 +127,7 @@
                 { data: 'agendamento',
                     render: function(data, type, row) {
                         // Retorna um DateTimePicker
-                        return '<input type="datetime-local" class="datetimepicker" data-id="' + row.id + '">';
+                        return '<input type="datetime-local" class="datetimepicker" data-id="' + row.id + '" value="">';
                     }
                 },
                 { data: 'template' },
