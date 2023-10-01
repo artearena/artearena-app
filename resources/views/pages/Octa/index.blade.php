@@ -78,7 +78,11 @@
                         <td>{{ $cliente->created_at }}</td> 
                         <td>
                             @foreach($cliente->agendamentos as $agendamento)
-                                    {{ date('d/m/Y H:i', strtotime($agendamento->horario)) }}
+                                @if(!empty($agendamento->horario))
+                                    Horário do Agendamento: {{ date('d/m/Y H:i', strtotime($agendamento->horario)) }}
+                                @else
+                                    Horário do Agendamento: {{ date('d/m/Y H:i', strtotime(now())) }}
+                                @endif
                             @endforeach
                         </td>
                         <td>
