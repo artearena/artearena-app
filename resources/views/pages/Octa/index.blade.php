@@ -79,7 +79,7 @@
                         <td>
                             @foreach ($cliente->agendamentos as $agendamento)
                                     <div class='input-group date datetimepicker' data-id="{{ $agendamento->id }}">
-                                        <input type="datetime-local" class="form-control" id="date" data-bs-locale="pt-BR" data-bs-date-format="dd/mm/yyyy HH:mm" />
+                                        <input type="datetime-local" class="form-control" id="date" data-bs-locale="pt-BR" data-bs-date-format="dd/mm/yyyy HH:mm" value="{{ $agendamento->horario }}" />
                                         <span class="input-group-addon">
                                             <span class="glyphicon glyphicon-calendar"></span>
                                         </span>
