@@ -137,7 +137,8 @@
                     method: 'POST',
                     data: {
                         id: id,
-                        newDateTime: newDateTime
+                        newDateTime: newDateTime,
+                        "_token": "{{ csrf_token() }}"
                     },
                     success: function(response) {
                         console.log(response);
@@ -157,7 +158,9 @@
                     method: 'POST',
                     data: {
                         clienteId: clienteId,
-                        mensagemId: mensagemId
+                        mensagemId: mensagemId,
+                        "_token": "{{ csrf_token() }}"
+
                     },
                     success: function(response) {
                         console.log(response);
