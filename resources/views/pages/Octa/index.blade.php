@@ -135,9 +135,9 @@
                 }
             });
 
-            $('.datetimepicker').on('change', function(e) {
+            $('.datetimepicker').on('change', function() {
                 var id = $(this).data('id');
-                var newDateTime = e.date.format('YYYY-MM-DD HH:mm');
+                var newDateTime = this.value;
                 // Enviar requisição AJAX para atualizar a tabela com os novos dados
                 $.ajax({
                     url: '/crm/atualizar-data/' + id,
