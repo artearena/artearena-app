@@ -133,7 +133,7 @@
                 }
             });
 
-            $('#datetimepicker').datetimepicker({
+            $('.datetimepicker').datetimepicker({
                  locale: 'pt-br'
              });
 
