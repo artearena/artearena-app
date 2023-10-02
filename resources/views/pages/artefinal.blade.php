@@ -719,13 +719,14 @@ $.ajaxSetup({
         var etapa = 'A';
         
         // Verificar se os campos obrigatórios estão preenchidos
-        if (id === '' || data === '' || link_trello === '') {
+        if (id === '' || data === '' || link_trello === '' || material === '') {
             var campoFaltante = '';
             if (id === '') campoFaltante = 'o ID';
             else if (data === '') campoFaltante = 'a data';
             else if (link_trello === '') campoFaltante = 'o link do trello';
             else if (material === '') campoFaltante = 'o material';
             console.log(material);
+
             Swal.fire({
                 title: 'Campos obrigatórios',
                 text: 'Por favor, preencha ' + campoFaltante,
