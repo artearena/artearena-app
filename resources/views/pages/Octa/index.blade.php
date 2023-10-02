@@ -134,8 +134,7 @@
 
             $('.datetimepicker').datetimepicker({
                 format: 'DD/MM/YYYY HH:mm',
-                locale: 'pt-br',
-                autoclose: true
+                locale: 'pt-br'
             });
 
             $('.datetimepicker').on('dp.change', function(e) {
