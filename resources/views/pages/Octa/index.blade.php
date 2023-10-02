@@ -83,11 +83,12 @@
                         <td>{{ $cliente->status_conversa }}</td>
                         <td>{{ $cliente->created_at }}</td>
                         <td>
-                        <div class='input-group date datetimepicker'>
-                            <input type="datetime-local" class="form-control" id="date" data-bs-locale="pt-BR" />
-                            <span class="input-group-addon">
-                                <span class="glyphicon glyphicon-calendar"></span>
-                            </span>
+                            <div class='input-group date datetimepicker'>
+                                <input type="datetime-local" class="form-control" id="date" data-bs-locale="pt-BR" value="{{ $cliente->data_agendamento }}" />
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                            </div>
                         </td>
                         <td>
                             <select name="mensagem_id" class="mensagem_id">
@@ -139,7 +140,7 @@
 
             $('.datetimepicker').on('dp.change', function(e) {
                 var id = $(this).data('id');
-                var newDateTime = e.date.format('YYYY-MM-DD HH:mm:ss');
+                var newDateTime = e.date.format('YYYY-MM-DD HH:mm');
 
                 
                 // Enviar requisição AJAX para atualizar a tabela com os novos dados
