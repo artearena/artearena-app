@@ -112,9 +112,11 @@
     </div>
 @endsection
 @section('extraScript')
-    <link href="https://unpkg.com/tui-datetime/dist/tui-datetime.css" rel="stylesheet">
-    <script src="https://unpkg.com/tui-datetime/dist/tui-datetime.js"></script>
-    <script>
+        <link href="tui-time-picker.css" rel="stylesheet">
+        <link href="tui-date-picker.css" rel="stylesheet">        
+        <script type="text/javascript" src="tui-time-picker.js"></script>
+        <script type="text/javascript" src="tui-date-picker.js"></script>
+        <script>
         $(document).ready(function() {
             $('#clientesTable').DataTable({
                 searching: false, // Desabilita a funcionalidade de pesquisa
