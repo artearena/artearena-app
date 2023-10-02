@@ -120,7 +120,7 @@
             });
 
             $('.datetimepicker').datetimepicker({
-                format: 'dd/mm/yyyy hh:ii',
+                format: 'DD/MM/YYYY hh:II',
                 locale: 'pt-br'
             });
 
