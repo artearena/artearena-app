@@ -138,7 +138,7 @@
             $('.datetimepicker').on('change', function() {
 
                 var id = $(this).closest('tr').find('.cliente-id').text();
-                var newDateTime = document.getElementById("date").value;
+                var newDateTime = $(this).closest('tr').find('#date').val();
 
                 console.log(newDateTime);
                 // Enviar requisição AJAX para atualizar a tabela com os novos dados
