@@ -84,7 +84,7 @@
                         <td>{{ $cliente->created_at }}</td>
                         <td>
                             <div style="position: relative;">
-                                <input type="text" class="datetimepicker" name="data_agendamento" data-id="{{ $cliente->id }}">
+                                <input type="text" class="tui-datetime" name="data_agendamento" data-id="{{ $cliente->id }}">
                             </div>
                         </td>
                         <td>
@@ -110,9 +110,9 @@
     </div>
 @endsection
 @section('extraScript')
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
+    <link href="https://unpkg.com/tui-datetime/dist/tui-datetime.css" rel="stylesheet">
 
+    <script src="https://unpkg.com/tui-datetime/dist/tui-datetime.js"></script>
     <script>
         $(document).ready(function() {
             $('#clientesTable').DataTable({
@@ -123,7 +123,7 @@
                 }
             });
 
-            $('.datetimepicker').datetimepicker({
+            $('.tui-datetime').datetimepicker({
                 format: 'DD/MM/YYYY HH:mm',
                 locale: 'pt-br'
             });
