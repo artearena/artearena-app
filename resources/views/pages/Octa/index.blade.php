@@ -118,12 +118,7 @@
         $('.datetimepicker').datetimepicker({
             format: 'dd/mm/yyyy hh:ii',
             locale: 'pt-br',
-            autoclose: true,
-            onSelect: function (dateText, inst) {
-                // Quando uma data e hora forem selecionadas, atualizar o valor na célula da tabela
-                let cell = table.cell($(this).closest('td'));
-                cell.data(dateText).draw();
-            }
+            autoclose: true
         });
 
         $('#data_agendamento').on('dp.change', function(e) {
