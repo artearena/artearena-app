@@ -22,6 +22,7 @@
 
         th {
             background-color: #212529;
+            color: gray;
         }
 
         td {
