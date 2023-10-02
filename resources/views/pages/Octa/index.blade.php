@@ -79,7 +79,7 @@
                         <td style="display:none">{{ $cliente->email }}</td>
                         <td>{{ $cliente->empresa }}</td>
                         <td>
-                            <select name="responsavel_contato">
+                            <select name="responsavel_contato" onchange="atualizarVendedor(this)>
                                 <option value="">Selecione um responsável</option>
                                 @foreach ($vendedores as $vendedor)
                                     <option value="{{ $vendedor }}" @if ($cliente->responsavel_contato == $vendedor) selected @endif>
@@ -190,7 +190,9 @@
                 });
             });
 
-            function atualizarVendedor(selectElement, clienteId) {
+            function atualizarVendedor(selectElement) {
+
+                var clienteId = $(this).closest('tr').find('.cliente-id').text();
                 const novoVendedor = selectElement.value;
 
                 // Enviar requisição ao servidor para atualizar o vendedor
