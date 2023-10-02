@@ -52,5 +52,17 @@ class LeadController extends Controller
             return response()->json(['message' => 'Falha ao atualizar agendamento'], 500);
         }
     }
+    public function atualizarMensagem(Request $request)
+    {
+        $clienteId = $request->input('clienteId');
+        $mensagemId = $request->input('mensagemId');
+
+        // Atualizar o registro no banco de dados
+        $cliente = Cliente::find($clienteId);
+        $cliente->mensagem_template_id = $mensagemId;
+        $cliente->save();
+
+        return response()->json(['success' => true]);
+    }
 }
 

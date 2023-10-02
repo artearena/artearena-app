@@ -133,11 +133,31 @@
                 var newDateTime = e.date.format('YYYY-MM-DD HH:mm:ss');
                 // Enviar requisição AJAX para atualizar a tabela com os novos dados
                 $.ajax({
-                    url: '/atualizar-agendamento',
+                    url: '/crm/atualizar-agendamento',
                     method: 'POST',
                     data: {
                         id: id,
                         newDateTime: newDateTime
+                    },
+                    success: function(response) {
+                        console.log(response);
+                    },
+                    error: function(xhr, status, error) {
+                        console.log(error);
+                    }
+                });
+            });
+            $('.mensagem_id').on('change', function() {
+                var mensagemId = $(this).val();
+                var clienteId = $(this).closest('tr').find('.cliente-id').text();
+
+                // Enviar solicitação AJAX para atualizar o registro no banco de dados
+                $.ajax({
+                    url: '/crm/atualizar-mensagem',
+                    method: 'POST',
+                    data: {
+                        clienteId: clienteId,
+                        mensagemId: mensagemId
                     },
                     success: function(response) {
                         console.log(response);
