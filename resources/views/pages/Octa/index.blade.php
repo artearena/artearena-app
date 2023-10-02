@@ -84,9 +84,9 @@
                         <td>{{ $cliente->created_at }}</td>
                         <td>
                             <div class='input-group date datetimepicker'>
-                                <input type='text' class="form-control" />
+                                <input type="datetime-local" class="form-control" id="date" data-bs-locale="pt-BR" value="{{ $cliente->data_agendamento }}" />
                                 <span class="input-group-addon">
-                                <span class="glyphicon glyphicon-calendar"></span>
+                                    <span class="glyphicon glyphicon-calendar"></span>
                                 </span>
                             </div>
                         </td>
@@ -134,9 +134,8 @@
             });
 
             $('.datetimepicker').datetimepicker({
-                 locale: 'pt-br'
-             });
-
+                locale: 'pt-br'
+            });
 
             $('.datetimepicker').on('dp.change', function(e) {
                 var id = $(this).data('id');
