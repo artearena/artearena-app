@@ -83,9 +83,11 @@
                         <td>{{ $cliente->status_conversa }}</td>
                         <td>{{ $cliente->created_at }}</td>
                         <td>
-                            <div style="position: relative;">
-                                <input type="text" class="tui-datetime" name="data_agendamento" data-id="{{ $cliente->id }}">
-                            </div>
+                        <div class="tui-datepicker-input tui-datetime-input tui-has-focus">
+                            <input type="text" id="tui-date-picker-target" aria-label="Date-Time" />
+                            <span class="tui-ico-date"></span>
+                        </div>
+                        <div id="tui-date-picker-container" style="margin-top: -1px;"></div>
                         </td>
                         <td>
                             <select name="mensagem_id" class="mensagem_id">
@@ -112,7 +114,6 @@
 @section('extraScript')
     <link href="https://unpkg.com/tui-datetime/dist/tui-datetime.css" rel="stylesheet">
     <script src="https://unpkg.com/tui-datetime/dist/tui-datetime.js"></script>
-
     <script>
         $(document).ready(function() {
             $('#clientesTable').DataTable({
@@ -123,11 +124,10 @@
                 }
             });
 
-            $('.tui-datetime').datetimepicker({
+            $('.tui-datetime-input').datetimepicker({
                 format: 'DD/MM/YYYY HH:mm',
-                locale: 'pt-br'
+                language: 'pt-br'
             });
-
             $('.datetimepicker').on('dp.change', function(e) {
                 var id = $(this).data('id');
                 var newDateTime = e.date.format('YYYY-MM-DD HH:mm:ss');
