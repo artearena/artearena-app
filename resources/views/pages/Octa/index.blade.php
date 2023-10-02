@@ -87,8 +87,9 @@
                         <td>{{ $cliente->status_conversa }}</td>
                         <td>{{ $cliente->created_at }}</td>
                         <td>
-                            <input type="text" class="datetimepicker" name="data_agendamento"
-                                data-id="{{ $cliente->id }}">
+                            <div style="position: relative;">
+                                <input type="text" class="datetimepicker" name="data_agendamento" data-id="{{ $cliente->id }}">
+                            </div>
                         </td>
                         <td>
                             <select name="mensagem_id" class="mensagem_id">
