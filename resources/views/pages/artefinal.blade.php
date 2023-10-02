@@ -258,7 +258,7 @@ Consulta de Pedidos
                                     <select class="form-control" name="designer" id="designer">
                                         <option value=""></option>
                                         @foreach($designers as $designer)
-                                        <option value="{{ $designer }}">{{ $designer }}</option>
+                                            <option value="{{ $designer }}">{{ $designer }}</option>
                                         @endforeach
                                     </select>
                                 </div>

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Cliente;
 use App\Models\TemplateMensagem;
+use App\Models\Usuario;
 
 class LeadController extends Controller
 {
@@ -13,6 +14,7 @@ class LeadController extends Controller
     {
         $clientes = Cliente::with('agendamentos', 'templateMensagem')->get();
         $mensagens = TemplateMensagem::all();
+        $vendedores = Usuario::whereIn('permissoes', [17, 18])->pluck('nome_usuario');
         return view('pages.Octa.index', compact('clientes', 'mensagens'));
     }
 

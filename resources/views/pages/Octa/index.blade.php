@@ -18,7 +18,7 @@
 
         th {
             background-color: #212529;
-            color: gray;
+            color: white;
             text-align: center !important;
         }
 
@@ -78,7 +78,16 @@
                         <td>{{ $cliente->telefone }}</td>
                         <td style="display:none">{{ $cliente->email }}</td>
                         <td>{{ $cliente->empresa }}</td>
-                        <td>{{ $cliente->responsavel_contato }}</td>
+                        <td>
+                            <select name="responsavel_contato">
+                                <option value="">Selecione um vendedor</option>
+                                @foreach ($vendedores as $vendedor)
+                                    <option value="{{ $vendedor }}" @if ($cliente->responsavel_contato == $vendedor) selected @endif>
+                                        {{ $vendedor }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </td>                        
                         <td style="display:none">{{ $cliente->origem }}</td>
                         <td>{{ $cliente->status_conversa }}</td>
                         <td>{{ $cliente->created_at }}</td>
