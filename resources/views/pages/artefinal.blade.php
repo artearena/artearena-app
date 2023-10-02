@@ -290,6 +290,8 @@ Consulta de Pedidos
                         <button type="submit" class="btn btn-primary" id="cadastrarPedido">Cadastrar Pedido</button>
                     </form>
                     <hr>
+                    <div id="qtd-dia-artes">Quantidade de artes</div>
+                    <hr>
                     <div class="tabela-container">
                     <div id="loading" class="text-center" style="display: none;">
                         <p>Carregando...</p>
