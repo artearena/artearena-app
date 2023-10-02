@@ -1046,28 +1046,27 @@ document.addEventListener('DOMContentLoaded', function() {
     console.log(metragemPorMaterial);
     metragemTotalDiv.innerHTML = `
         <div style="display: flex; flex-direction: row;">
-        <div>
             <p>Metragem Total: ${metragemTotal}M</p>
             <p>Metragem por Hora: ${metragemPorHora}</p>
-        </div>
-        <div>
+        
             <p>Metragem por Material:</p>
-            <ul>
-            ${Object.entries(metragemPorMaterial)
-                .map(([material, metragem]) => `<li>${material ? material : 'Sem material definido'}: ${metragem}M</li>`)
-                .join('')}
-            </ul>
-            <p>Quantidade por Produto:</p>
-            <ul>
-            ${(() => {
-                let lista = '';
-                quantidadePorProduto.forEach(([produto, quantidade]) => {
-                    lista += `<li>${produto}(s): ${quantidade} </li>`;
-                });
-                return lista;
-            })()}
-            </ul>
-        </div>
+            <div>
+                <ul>
+                ${Object.entries(metragemPorMaterial)
+                    .map(([material, metragem]) => `<li>${material ? material : 'Sem material definido'}: ${metragem}M</li>`)
+                    .join('')}
+                </ul>
+                <p>Quantidade por Produto:</p>
+                <ul>
+                ${(() => {
+                    let lista = '';
+                    quantidadePorProduto.forEach(([produto, quantidade]) => {
+                        lista += `<li>${produto}(s): ${quantidade} </li>`;
+                    });
+                    return lista;
+                })()}
+                </ul>
+            </div>
         </div>
     `;
     }
