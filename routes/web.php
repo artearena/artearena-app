@@ -46,10 +46,9 @@ Route::middleware(['auth'])->group(function () {
         Route::any('/download-pdf', [tinyController::class, 'gerarPdf'])->name('tiny.gerarPdf');
     });
     Route::prefix('crm')->group(function () {
-        Route::get('/', [LeadController::class, 'index'])->name('octa.crm');
+        Route::any('/', [LeadController::class, 'index'])->name('octa.crm');
         Route::put('/{id}', [LeadController::class, 'update'])->name('octa.update');
         Route::post('/atualizar-data/{id}', [LeadController::class, 'atualizarData']);
-        Route::post('/atualizar-agendamento/{id}', [LeadController::class, 'updateAgendamento'])->name('octa.updateAgendamento');
         Route::post('/atualizar-mensagem', [LeadController::class, 'atualizarMensagem'])->name('octa.atualizarMensagem');
 
     });
