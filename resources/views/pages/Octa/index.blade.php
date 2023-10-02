@@ -133,9 +133,9 @@
                 }
             }); */
             $('.datetimepicker').datetimepicker({
-                format: 'd/m/Y H:i',
+                format: 'mm/dd/yyyy A',
                 locale: 'pt'
-            }).setLocale('pt');
+            });
             $('.datetimepicker').on('change', function() {                
                 var id = $(this).data('id');
                 var newDateTime = e.date.format('YYYY-MM-DD HH:mm');
