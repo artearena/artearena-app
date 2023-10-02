@@ -83,7 +83,7 @@
                         <td>{{ $cliente->status_conversa }}</td>
                         <td>{{ $cliente->created_at }}</td>
                         <td>
-                        <div class="tui-datepicker-input tui-datetime-input tui-has-focus">
+                        <div class='input-group date datetimepicker'>
                             <input type="datetime-local" class="form-control" id="date" data-bs-locale="pt-BR" data-bs-date-format="dd/mm/yyyy HH:mm" />
                             <span class="input-group-addon">
                                 <span class="glyphicon glyphicon-calendar"></span>
