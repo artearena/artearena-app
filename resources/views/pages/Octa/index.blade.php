@@ -84,7 +84,7 @@
                         <td>{{ $cliente->created_at }}</td>
                         <td>
                         <div class='input-group date datetimepicker'>
-                            <input type="datetime-local" class="form-control" id="date" data-bs-locale="pt-BR" data-bs-date-format="dd/mm/yyyy HH:mm" />
+                            <input type="text" class="form-control" id="date" data-bs-locale="pt-BR" data-bs-date-format="dd/mm/yyyy HH:mm" />
                             <span class="input-group-addon">
                                 <span class="glyphicon glyphicon-calendar"></span>
                             </span>
