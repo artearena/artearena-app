@@ -1045,12 +1045,10 @@ document.addEventListener('DOMContentLoaded', function() {
     const quantidadePorProduto = calcularQuantidadePorProduto();
     console.log(metragemPorMaterial);
     metragemTotalDiv.innerHTML = `
-        <div style="display: flex; flex-direction: row;">
             <p>Metragem Total: ${metragemTotal}M</p>
             <p>Metragem por Hora: ${metragemPorHora}</p>
-        
             <p>Metragem por Material:</p>
-            <div>
+            <div style="display: flex; flex-direction: row;">
                 <ul>
                 ${Object.entries(metragemPorMaterial)
                     .map(([material, metragem]) => `<li>${material ? material : 'Sem material definido'}: ${metragem}M</li>`)
