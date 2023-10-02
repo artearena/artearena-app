@@ -84,8 +84,10 @@
                         <td>{{ $cliente->created_at }}</td>
                         <td>
                         <div class="tui-datepicker-input tui-datetime-input tui-has-focus">
-                            <input type="text" id="tui-date-picker-target" aria-label="Date-Time" />
-                            <span class="tui-ico-date"></span>
+                            <input type="datetime-local" class="form-control" id="date" data-bs-locale="pt-BR" data-bs-date-format="dd/mm/yyyy HH:mm" />
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
                         </div>
                         <div id="tui-date-picker-container" style="margin-top: -1px;"></div>
                         </td>
@@ -112,10 +114,12 @@
     </div>
 @endsection
 @section('extraScript')
-        <link href="tui-time-picker.css" rel="stylesheet">
-        <link href="tui-date-picker.css" rel="stylesheet">        
-        <script type="text/javascript" src="tui-time-picker.js"></script>
-        <script type="text/javascript" src="tui-date-picker.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/locale/pt-br.js"></script>
         <script>
         $(document).ready(function() {
             $('#clientesTable').DataTable({
@@ -126,9 +130,9 @@
                 }
             });
 
-            $('.tui-datetime-input').datetimepicker({
+            $('.datetimepicker').datetimepicker({
                 format: 'DD/MM/YYYY HH:mm',
-                language: 'pt-br'
+                locale: 'pt-br'
             });
             $('.datetimepicker').on('dp.change', function(e) {
                 var id = $(this).data('id');
