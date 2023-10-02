@@ -111,8 +111,8 @@
 @endsection
 @section('extraScript')
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
+
     <script>
         $(document).ready(function() {
             $('#clientesTable').DataTable({
@@ -123,19 +123,10 @@
                 }
             });
 
-            format: 'DD-MM-YY HH:mm:ss',
-            icons: {
-                time: 'fa fa-clock',
-                date: 'fa fa-calendar',
-                up: 'fa fa-chevron-up',
-                down: 'fa fa-chevron-down',
-                previous: 'fa fa-chevron-left',
-                next: 'fa fa-chevron-right',
-                today: 'fa fa-calendar-check-o',
-                clear: 'fa fa-trash',
-                close: 'fa fa-times'
-            }
-        });
+            $('.datetimepicker').datetimepicker({
+                format: 'DD/MM/YYYY HH:mm',
+                locale: 'pt-br'
+            });
 
             $('.datetimepicker').on('dp.change', function(e) {
                 var id = $(this).data('id');
