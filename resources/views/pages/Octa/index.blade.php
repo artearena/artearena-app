@@ -136,7 +136,7 @@
             });
 
             $('.datetimepicker').on('change', function() {
-                var id = $(this).data('id');
+                var id = $(this).closest('tr').find('.cliente-id').text();
                 var newDateTime = this.value;
                 // Enviar requisição AJAX para atualizar a tabela com os novos dados
                 $.ajax({
