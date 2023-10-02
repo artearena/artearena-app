@@ -111,9 +111,9 @@
     </div>
 @endsection
 @section('extraScript')
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdb-bootstrap/5.1.3/css/mdb.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mdb-bootstrap/5.1.3/js/mdb.min.js"></script>
-    <script>
+<link rel="stylesheet" href="https://unpkg.com/tempus-dominus/build/tempus-dominus.min.css">
+<script src="https://unpkg.com/tempus-dominus/build/tempus-dominus.min.js"></script>    
+<script>
         $(document).ready(function() {
             $('#clientesTable').DataTable({
                 language: {
@@ -121,10 +121,12 @@
                 }
             });
 
+             // Inicialize o datetimepicker
             $('.datetimepicker').datetimepicker({
-                format: 'DD/MM/YYYY hh:mm',
-                locale: 'pt-br'
+                format: 'DD/MM/YYYY HH:mm',
+                widgetPosition: 'bottom-left',
             });
+
 
             $('.datetimepicker').on('dp.change', function(e) {
                 var id = $(this).data('id');
