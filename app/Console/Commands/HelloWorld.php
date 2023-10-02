@@ -33,9 +33,7 @@ class HelloWorld extends Command
     public function handle()
     {
         App::setLocale('pt'); // Define o idioma padrão como português
-
         $now = Carbon::now();
-
         $agendamentos = Agendamento::where('horario', '<=', $now)
             ->whereNull('confirmacao')
             ->get();
@@ -43,6 +41,9 @@ class HelloWorld extends Command
         foreach ($agendamentos as $agendamento) {
             $cliente = Cliente::findOrFail($agendamento->cliente_id);
             $number = $cliente->telefone;
+
+            $templateMensagem = TemplateMensagem::findOrFail($cliente->mensagem_template_id);
+            $idTemplate = $templateMensagem->id_template;
 
             $response = Http::withHeaders([
                 'X-API-KEY' => '3b8f740e-6dd3-4da3-a59e-30ee20169c49.31b74e42-c05f-4341-b386-320b5231125d',
@@ -58,7 +59,7 @@ class HelloWorld extends Command
                 ],
                 "content" => [
                     "templateMessage" => [
-                        "id" => "64d2e17f6f8d1b0007de15f3"
+                        "id" => $idTemplate
                     ]
                 ],
                 "origin" => [
@@ -76,7 +77,7 @@ class HelloWorld extends Command
                 $cliente->update(['status_conversa' => 'Enviado']);
             } else {
                 $errorMessage = $response->json('message'); // Obtém a mensagem de erro da resposta JSON
-            
+
                 if ($errorMessage === 'An open conversation already exists with this contact') {
                     $this->error('Conversa Aberta');
                     $cliente->update(['status_conversa' => 'Aberta']);
@@ -85,7 +86,7 @@ class HelloWorld extends Command
                     $cliente->update(['status_conversa' => $errorMessage ?? 'Aberta']); // Define como "Aberta" se a mensagem de erro não estiver disponível
                 }
             }
-            
+
             $agendamento->update(['confirmacao' => true]);
         }
 
