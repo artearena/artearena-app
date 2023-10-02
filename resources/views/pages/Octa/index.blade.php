@@ -79,7 +79,7 @@
                         <td style="display:none">{{ $cliente->email }}</td>
                         <td>{{ $cliente->empresa }}</td>
                         <td>
-                            <select name="responsavel_contato" onchange="atualizarVendedor(this)>
+                            <select name="responsavel_contato" class="form-control" onchange="atualizarVendedor(this)">
                                 <option value="">Selecione um responsável</option>
                                 @foreach ($vendedores as $vendedor)
                                     <option value="{{ $vendedor }}" @if ($cliente->responsavel_contato == $vendedor) selected @endif>
@@ -100,7 +100,7 @@
                             </div>
                         </td>
                         <td>
-                            <select name="mensagem_id" class="mensagem_id">
+                            <select name="mensagem_id" class="form-control mensagem_id">
                                 <option value="">Selecione uma mensagem</option>
                                 @php
                                     $mensagensOrdenadas = $mensagens->sortBy('titulo');
