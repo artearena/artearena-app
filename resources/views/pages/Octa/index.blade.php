@@ -84,7 +84,7 @@
                         <td>{{ $cliente->created_at }}</td>
                         <td>
                         <div class='input-group date datetimepicker'>
-                            <input type="datetime-local" class="form-control" id="date" data-bs-locale="pt-BR"/>
+                            <input type="datetime-local" class="form-control" id="date" data-bs-locale="pt-BR" data-bs-date-format="dd/mm/yyyy HH:mm" />
                             <span class="input-group-addon">
                                 <span class="glyphicon glyphicon-calendar"></span>
                             </span>
@@ -118,8 +118,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/locale/pt-br.js"></script>
-    
-        <script>
+    <script>
         $(document).ready(function() {
             $('#clientesTable').DataTable({
                 searching: false, // Desabilita a funcionalidade de pesquisa
