@@ -124,9 +124,7 @@
     <script src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap4.min.js"></script>
 
     <script>
-        $('.datetimepicker').datetimepicker({
-            locale: 'pt-br'
-        });
+        
         $(document).ready(function() {
             /* $('#clientesTable').DataTable({
                 searching: false, // Desabilita a funcionalidade de pesquisa
@@ -136,7 +134,8 @@
                 }
             }); */
 
-            
+            $('.datetimepicker').datetimepicker({
+            });
 
             $('.datetimepicker').on('dp.change', function(e) {
                 var id = $(this).data('id');
