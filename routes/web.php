@@ -48,7 +48,7 @@ Route::middleware(['auth'])->group(function () {
     Route::prefix('crm')->group(function () {
         Route::any('/', [LeadController::class, 'index'])->name('octa.crm');
         Route::put('/{id}', [LeadController::class, 'update'])->name('octa.update');
-        Route::post('/atualizar-data/{id}', [LeadController::class, 'atualizarData']);
+        Route::put('/atualizar-data/{id}', [LeadController::class, 'atualizarData']);
         Route::post('/atualizar-mensagem', [LeadController::class, 'atualizarMensagem'])->name('octa.atualizarMensagem');
 
     });
