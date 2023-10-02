@@ -1038,25 +1038,24 @@ document.addEventListener('DOMContentLoaded', function() {
         return quantidadeOrdenada;
     }
     function atualizarMetragemTotal() {
-  const metragemTotal = calcularMetragemTotal();
-  const metragemPorHora = calcularMetragemPorHora();
-  const metragemPorMaterial = calcularMetragemPorMaterial();
-  const quantidadePorProduto = calcularQuantidadePorProduto();
-  console.log(metragemPorMaterial);
-  metragemTotalDiv.innerHTML = `
-    <div>
-      <p>Metragem Total: ${metragemTotal}M</p>
-      <p>Metragem por Hora: ${metragemPorHora}</p>
-    </div>
-    <div>
-      <p>Metragem por Material:</p>
-      <ul>
-        ${Object.entries(metragemPorMaterial)
-            .map(([material, metragem]) => `<li>${material ? material : 'Sem material definido'}: ${metragem}M</li>`)
-            .join('')}
-      </ul>
-    </div>
-    <div style="margin-left: 20px;">
+        const metragemTotal = calcularMetragemTotal();
+        const metragemPorHora = calcularMetragemPorHora();
+        const metragemPorMaterial = calcularMetragemPorMaterial();
+        const quantidadePorProduto = calcularQuantidadePorProduto();
+        console.log(metragemPorMaterial);
+        metragemTotalDiv.innerHTML = `
+            <div style="display: flex; flex-direction: row;">
+            <div style="margin-right: 20px;">
+                <p>Metragem Total: ${metragemTotal}M</p>
+                <p>Metragem por Hora: ${metragemPorHora}</p>
+                <p>Metragem por Material:</p>
+                <ul>
+                ${Object.entries(metragemPorMaterial)
+                    .map(([material, metragem]) => `<li>${material ? material : 'Sem material definido'}: ${metragem}M</li>`)
+                    .join('')}
+                </ul>
+            </div>
+            <div style="margin-left: 20px;">
                 <p>Quantidade por Produto:</p>
                 <ul>
                 ${(() => {
@@ -1069,8 +1068,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 </ul>
             </div>
             </div>
-  `;
-}
+        `;
+    }
   // Atualizar as informações quando houver mudanças nos campos relevantes
   tabelaPedidos.addEventListener('input', atualizarMetragemTotal);
   // Atualizar as informações quando a página for carregada
