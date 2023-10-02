@@ -83,7 +83,7 @@
                         <td>{{ $cliente->status_conversa }}</td>
                         <td>{{ $cliente->created_at }}</td>
                         <td>
-                            <div class='date datetimepicker dataAgendamento'>
+                            <div class='date datetimepicker'>
                                 <input type="datetime-local" class="form-control" id="date" lang="pt-br" value="{{ $cliente->data_agendamento ? (new DateTime($cliente->data_agendamento))->format('Y-m-d\TH:i:s') : '' }}">
                                 <span class="input-group-addon">
                                     <span class="glyphicon glyphicon-calendar"></span>
@@ -137,8 +137,8 @@
 
             $('.datetimepicker').on('change', function() {
                 var id = $(this).closest('tr').find('.cliente-id').text();
-                var newDateTime =$(this).closest('tr').find('.dataAgendamento').text();
-                console.log($(this).closest('tr').find('.dataAgendamento').text());
+                var newDateTime = $(this).val();
+                console.log(newDateTime);
                 // Enviar requisição AJAX para atualizar a tabela com os novos dados
                 $.ajax({
                     url: '/crm/atualizar-data/' + id,
