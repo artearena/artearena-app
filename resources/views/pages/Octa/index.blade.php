@@ -132,9 +132,11 @@
             $('.datetimepicker').on('dp.change', function(e) {
                 var id = $(this).data('id');
                 var newDateTime = e.date.format('YYYY-MM-DD HH:mm:ss');
+
+                
                 // Enviar requisição AJAX para atualizar a tabela com os novos dados
                 $.ajax({
-                    url: '/crm/atualizar-data',
+                    url: '/crm/atualizar-data/' + id,
                     method: 'PUT',
                     data: {
                         id: id,
