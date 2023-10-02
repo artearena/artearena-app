@@ -15,7 +15,7 @@ class LeadController extends Controller
         $clientes = Cliente::with('agendamentos', 'templateMensagem')->get();
         $mensagens = TemplateMensagem::all();
         $vendedores = Usuario::whereIn('permissoes', [17, 18])->pluck('nome_usuario');
-        return view('pages.Octa.index', compact('clientes', 'mensagens'));
+        return view('pages.Octa.index', compact('clientes', 'mensagens', 'vendedores'));
     }
 
     public function update(Request $request, $id) 
