@@ -136,8 +136,10 @@
             });
 
             $('.datetimepicker').on('change', function() {
+
                 var id = $(this).closest('tr').find('.cliente-id').text();
-                var newDateTime = $(this).val();
+                var newDateTime = document.getElementById("date").value;
+
                 console.log(newDateTime);
                 // Enviar requisição AJAX para atualizar a tabela com os novos dados
                 $.ajax({
@@ -157,10 +159,6 @@
                 });
             });
             $('.mensagem_id').on('change', function() {
-                var id = $(this).data('id');
-                var newDateTime = $(this).val();
-                console.log(newDateTime);
-
                 var mensagemId = $(this).val();
                 var clienteId = $(this).closest('tr').find('.cliente-id').text();
 
