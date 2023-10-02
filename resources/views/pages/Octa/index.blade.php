@@ -134,7 +134,7 @@
                 var newDateTime = e.date.format('YYYY-MM-DD HH:mm:ss');
                 // Enviar requisição AJAX para atualizar a tabela com os novos dados
                 $.ajax({
-                    url: '/crm/atualizar-agendamento',
+                    url: '/crm/atualizar-data',
                     method: 'PUT',
                     data: {
                         id: id,
