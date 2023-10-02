@@ -79,7 +79,7 @@
                         <td style="display:none">{{ $cliente->email }}</td>
                         <td>{{ $cliente->empresa }}</td>
                         <td>
-                            <select name="responsavel_contato" class="form-control responsavel-contato" onchange="atualizarVendedor(this)">
+                            <select name="responsavel_contato" class="form-control responsavel-contato">
                                 <option value="">Selecione um responsável</option>
                                 @foreach ($vendedores as $vendedor)
                                     <option value="{{ $vendedor }}" @if ($cliente->responsavel_contato == $vendedor) selected @endif>
