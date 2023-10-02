@@ -83,12 +83,12 @@
                         <td>{{ $cliente->status_conversa }}</td>
                         <td>{{ $cliente->created_at }}</td>
                         <td>
-                            <div class='date datetimepicker'>
-                                <input type="datetime-local" class="form-control" id="date" data-bs-locale="pt-br" value="{{ $cliente->data_agendamento }}">
-                                <span class="input-group-addon">
-                                    <span class="glyphicon glyphicon-calendar"></span>
-                                </span>
-                            </div>
+                        <div class='date datetimepicker'>
+                            <input type="datetime-local" class="form-control" id="date" lang="pt-br" value="{{ $cliente->data_agendamento }}">
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                        </div>
                         </td>
                         <td>
                             <select name="mensagem_id" class="mensagem_id">
@@ -132,8 +132,6 @@
                     url: 'https://cdn.datatables.net/plug-ins/1.10.24/i18n/Portuguese-Brasil.json'
                 }
             });
-
-
 
             $('.datetimepicker').on('dp.change', function(e) {
                 var id = $(this).data('id');
