@@ -84,7 +84,7 @@
                         <td>{{ $cliente->created_at }}</td>
                         <td>
                             <div class='date datetimepicker'>
-                                <input type="datetime-local" class="form-control" id="date" locale="pt-br" value="{{ $cliente->data_agendamento ? (new DateTime($cliente->data_agendamento))->format('Y-m-d\TH:i') : '' }}">
+                                <input type="datetime-local" class="form-control" id="date" lang="pt-br" value="{{ $cliente->data_agendamento ? (new DateTime($cliente->data_agendamento))->format('Y-m-d\TH:i:s') : '' }}">
                                 <span class="input-group-addon">
                                     <span class="glyphicon glyphicon-calendar"></span>
                                 </span>
