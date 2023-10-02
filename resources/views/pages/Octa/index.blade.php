@@ -82,12 +82,11 @@
                         <td style="display:none">{{ $cliente->origem }}</td>
                         <td>{{ $cliente->status_conversa }}</td>
                         <td>{{ $cliente->created_at }}</td>
-                        <div class="input-group date">
-                        <input type="text" class="form-control datetimepicker" name="data_agendamento" data-id="{{ $cliente->id }}">
-                        <span class="input-group-addon">
-                            <i class="fa fa-calendar"></i>
-                        </span>
-                    </div>
+                        <td>
+                            <div style="position: relative;">
+                                <input type="text" class="datetimepicker" name="data_agendamento" data-id="{{ $cliente->id }}">
+                            </div>
+                        </td>
                         <td>
                             <select name="mensagem_id" class="mensagem_id">
                                 <option value="">Selecione uma mensagem</option>
