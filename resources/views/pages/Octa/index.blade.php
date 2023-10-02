@@ -83,12 +83,12 @@
                         <td>{{ $cliente->status_conversa }}</td>
                         <td>{{ $cliente->created_at }}</td>
                         <td>
-                        <div class='date datetimepicker'>
-                            <input type="datetime-local" class="form-control" id="date" locale="pt-br" value="{{ $cliente->data_agendamento }}">
-                            <span class="input-group-addon">
-                                <span class="glyphicon glyphicon-calendar"></span>
-                            </span>
-                        </div>
+                            <div class='date datetimepicker'>
+                                <input type="datetime-local" class="form-control" id="date" locale="pt-br" value="{{ $cliente->data_agendamento ? (new DateTime($cliente->data_agendamento))->format('Y-m-d\TH:i') : '' }}">
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                            </div>
                         </td>
                         <td>
                             <select name="mensagem_id" class="mensagem_id">
@@ -133,7 +133,7 @@
                 }
             }); */
 
-            $('.datetimepicker').on('dp.change', function(e) {
+            $('.datetime-input').on('change', function() {                
                 var id = $(this).data('id');
                 var newDateTime = e.date.format('YYYY-MM-DD HH:mm');
 
