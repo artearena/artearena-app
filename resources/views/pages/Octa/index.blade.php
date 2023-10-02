@@ -111,8 +111,8 @@
 @endsection
 @section('extraScript')
     <link href="https://unpkg.com/tui-datetime/dist/tui-datetime.css" rel="stylesheet">
-
     <script src="https://unpkg.com/tui-datetime/dist/tui-datetime.js"></script>
+
     <script>
         $(document).ready(function() {
             $('#clientesTable').DataTable({
