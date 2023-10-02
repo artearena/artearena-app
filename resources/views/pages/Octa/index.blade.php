@@ -4,10 +4,6 @@
 @endsection
 @section('style')
     <style>
-        #app {
-            text-align: -webkit-center;
-        }
-
         table {
             border-collapse: collapse;
             width: 100%;
