@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Http;
 use App\Models\Cliente;
+use App\Models\TemplateMensagem;
 use App\Models\Agendamento;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\App;
