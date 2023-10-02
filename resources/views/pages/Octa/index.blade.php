@@ -9,21 +9,19 @@
         }
 
         table {
-            width: 90%;
-            border-collapse: collapse;
-        }
+        border-collapse: collapse;
+        width: 100%;
+    }
 
         th,
         td {
+            text-align: left;
             padding: 8px;
             border-bottom: 1px solid #ddd;
-            text-align: center;
         }
 
         th {
             background-color: #f2f2f2;
-            font-weight: bold;
-            text-align: center !important;
         }
 
         td {
