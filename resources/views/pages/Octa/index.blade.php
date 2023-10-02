@@ -132,8 +132,11 @@
                     url: 'https://cdn.datatables.net/plug-ins/1.10.24/i18n/Portuguese-Brasil.json'
                 }
             }); */
-
-            $('.datetime-input').on('change', function() {                
+            $('.datetimepicker').datetimepicker({
+                format: 'd/m/Y H:i',
+                lang: 'pt'
+            }).setLocale('pt');
+            $('.datetimepicker').on('change', function() {                
                 var id = $(this).data('id');
                 var newDateTime = e.date.format('YYYY-MM-DD HH:mm');
 
