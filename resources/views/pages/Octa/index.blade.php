@@ -134,8 +134,9 @@
                 }
             }); */
 
-            $('.datetimepicker').datetimepicker({
-            });
+ /*            $('.datetimepicker').datetimepicker({
+                locale: 'pt-br'
+            }); */
 
             $('.datetimepicker').on('dp.change', function(e) {
                 var id = $(this).data('id');
