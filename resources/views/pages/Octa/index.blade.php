@@ -23,6 +23,7 @@
         th {
             background-color: #212529;
             color: gray;
+            text-align: center !important;
         }
 
         td {
