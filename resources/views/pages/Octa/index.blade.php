@@ -111,8 +111,9 @@
     </div>
 @endsection
 @section('extraScript')
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdb-bootstrap/5.1.3/css/mdb.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mdb-bootstrap/5.1.3/js/mdb.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
+   
     <script>
         $(document).ready(function() {
             $('#clientesTable').DataTable({
@@ -121,10 +122,9 @@
                 }
             });
 
-                $('input[type="datetimepicker"]').datetimepicker({
-                    format: 'DD/MM/YYYY HH:mm',
-                    widgetPosition: 'bottom-left',
-                });
+            $('.datetimepicker').datetimepicker({
+                format: 'DD/MM/YYYY hh:mm',
+                locale: 'pt-br'
             });
 
             $('.datetimepicker').on('dp.change', function(e) {
