@@ -79,7 +79,7 @@
                         <td style="display:none">{{ $cliente->email }}</td>
                         <td>{{ $cliente->empresa }}</td>
                         <td>
-                            <select name="responsavel_contato" class="form-control" onchange="atualizarVendedor(this)">
+                            <select name="responsavel_contato" class="form-control responsavel-contato" onchange="atualizarVendedor(this)">
                                 <option value="">Selecione um responsável</option>
                                 @foreach ($vendedores as $vendedor)
                                     <option value="{{ $vendedor }}" @if ($cliente->responsavel_contato == $vendedor) selected @endif>
@@ -190,10 +190,9 @@
                 });
             });
 
-            function atualizarVendedor(selectElement) {
-
+            $('.responsavel-contato').on('change', function() {
                 var clienteId = $(this).closest('tr').find('.cliente-id').text();
-                const novoVendedor = selectElement.value;
+                var novoVendedor = $(this).val();
 
                 // Enviar requisição ao servidor para atualizar o vendedor
                 fetch(`/crm/atualizar-vendedor/${clienteId}`, {
@@ -214,7 +213,7 @@
                 .catch(error => {
                     console.error('Erro na requisição:', error);
                 });
-            }
+            });
 
 
         });
