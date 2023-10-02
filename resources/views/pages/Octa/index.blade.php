@@ -9,9 +9,9 @@
         }
 
         table {
-        border-collapse: collapse;
-        width: 100%;
-    }
+            border-collapse: collapse;
+            width: 100%;
+        }
 
         th,
         td {
@@ -21,7 +21,7 @@
         }
 
         th {
-            background-color: #f2f2f2;
+            background-color: #212529;
         }
 
         td {
