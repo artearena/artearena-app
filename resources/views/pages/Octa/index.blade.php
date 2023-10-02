@@ -87,7 +87,7 @@
                                 <input type="datetime-local" class="form-control" id="date" data-bs-locale="pt-br" value="{{ $cliente->data_agendamento }}">
                                 <span class="input-group-addon">
                                     <span class="glyphicon glyphicon-calendar"></span>
-                                </span> 
+                                </span>
                             </div>
                         </td>
                         <td>
@@ -124,19 +124,16 @@
     <script src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap4.min.js"></script>
 
     <script>
-        
         $(document).ready(function() {
-            /* $('#clientesTable').DataTable({
+            $('#clientesTable').DataTable({
                 searching: false, // Desabilita a funcionalidade de pesquisa
                 info: false, // Desabilita a exibição de informações sobre
                 language: {
                     url: 'https://cdn.datatables.net/plug-ins/1.10.24/i18n/Portuguese-Brasil.json'
                 }
-            }); */
+            });
 
- /*            $('.datetimepicker').datetimepicker({
-                locale: 'pt-br'
-            }); */
+
 
             $('.datetimepicker').on('dp.change', function(e) {
                 var id = $(this).data('id');
@@ -159,7 +156,7 @@
                         console.log(error);
                     }
                 });
-            });
+            }); 
             $('.mensagem_id').on('change', function() {
                 var mensagemId = $(this).val();
                 var clienteId = $(this).closest('tr').find('.cliente-id').text();
