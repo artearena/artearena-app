@@ -111,9 +111,8 @@
     </div>
 @endsection
 @section('extraScript')
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
-   
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdb-bootstrap/5.1.3/css/mdb.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mdb-bootstrap/5.1.3/js/mdb.min.js"></script>
     <script>
         $(document).ready(function() {
             $('#clientesTable').DataTable({
