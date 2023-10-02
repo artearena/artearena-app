@@ -115,10 +115,15 @@
 <script>
     $(document).ready(function() {
 
-        $('#data_agendamento').datetimepicker({
+        $('.datetimepicker').datetimepicker({
             format: 'dd/mm/yyyy hh:ii',
-            language: 'pt-BR',
-            autoclose: true
+            locale: 'pt-br',
+            autoclose: true,
+            onSelect: function (dateText, inst) {
+                // Quando uma data e hora forem selecionadas, atualizar o valor na célula da tabela
+                let cell = table.cell($(this).closest('td'));
+                cell.data(dateText).draw();
+            }
         });
 
         $('#data_agendamento').on('dp.change', function(e) {
