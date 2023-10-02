@@ -133,7 +133,7 @@
                 }
             }); */
             $('.datetimepicker').datetimepicker({
-                format: 'mm/dd/yyyy A',
+                format: 'yyyy-MM-ddThh:mm',
                 locale: 'pt'
             });
             $('.datetimepicker').on('change', function() {                
