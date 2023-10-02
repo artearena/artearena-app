@@ -83,9 +83,11 @@
                         <td>{{ $cliente->status_conversa }}</td>
                         <td>{{ $cliente->created_at }}</td>
                         <div class="input-group date">
-                            <input type="text" class="form-control datetimepicker" name="data_agendamento" data-id="{{ $cliente->id }}">
-                                <i class="fa fa-calendar"></i>
-                        </div>
+                        <input type="text" class="form-control datetimepicker" name="data_agendamento" data-id="{{ $cliente->id }}">
+                        <span class="input-group-addon">
+                            <i class="fa fa-calendar"></i>
+                        </span>
+                    </div>
                         <td>
                             <select name="mensagem_id" class="mensagem_id">
                                 <option value="">Selecione uma mensagem</option>
@@ -122,20 +124,19 @@
                 }
             });
 
-            $('.datetimepicker').datetimepicker({
-                format: 'YYYY-MM-DD HH:mm:ss',
-                icons: {
-                    time: 'fa fa-clock',
-                    date: 'fa fa-calendar',
-                    up: 'fa fa-chevron-up',
-                    down: 'fa fa-chevron-down',
-                    previous: 'fa fa-chevron-left',
-                    next: 'fa fa-chevron-right',
-                    today: 'fa fa-calendar-check-o',
-                    clear: 'fa fa-trash',
-                    close: 'fa fa-times'
-                }
-            });
+            format: 'DD-MM-YY HH:mm:ss',
+            icons: {
+                time: 'fa fa-clock',
+                date: 'fa fa-calendar',
+                up: 'fa fa-chevron-up',
+                down: 'fa fa-chevron-down',
+                previous: 'fa fa-chevron-left',
+                next: 'fa fa-chevron-right',
+                today: 'fa fa-calendar-check-o',
+                clear: 'fa fa-trash',
+                close: 'fa fa-times'
+            }
+        });
 
             $('.datetimepicker').on('dp.change', function(e) {
                 var id = $(this).data('id');
