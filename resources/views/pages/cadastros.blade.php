@@ -1,5 +1,7 @@
 @extends('layout.main')
-
+@section('title')
+    Cadastros
+@endsection
 @section('content')
 <div class="container my-5">
 <div class="text-center">
