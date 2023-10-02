@@ -134,7 +134,7 @@
                 // Enviar requisição AJAX para atualizar a tabela com os novos dados
                 $.ajax({
                     url: '/crm/atualizar-agendamento',
-                    method: 'POST',
+                    method: 'PUT',
                     data: {
                         id: id,
                         newDateTime: newDateTime,
