@@ -1037,35 +1037,40 @@ document.addEventListener('DOMContentLoaded', function() {
         // Retorna o objeto de quantidadePorProduto ordenado
         return quantidadeOrdenada;
     }
-  // Função para atualizar as informações na div "metragem_total"
-  function atualizarMetragemTotal() {
+    // Função para atualizar as informações na div "metragem_total"
+    function atualizarMetragemTotal() {
     const metragemTotal = calcularMetragemTotal();
     const metragemPorHora = calcularMetragemPorHora();
     const metragemPorMaterial = calcularMetragemPorMaterial();
     const quantidadePorProduto = calcularQuantidadePorProduto();
     console.log(metragemPorMaterial);
-
     metragemTotalDiv.innerHTML = `
-      <p>Metragem Total: ${metragemTotal}M</p>
-      <p>Metragem por Hora: ${metragemPorHora}</p>
-      <p>Metragem por Material:</p>
-      <ul>
-        ${Object.entries(metragemPorMaterial)
-            .map(([material, metragem]) => `<li>${material ? material : 'Sem material definido'}: ${metragem}M</li>`)
-            .join('')}
-        </ul>
-        <p>Quantidade por Produto:</p>
-        <ul>
-        ${(() => {
-            let lista = '';
-            quantidadePorProduto.forEach(([produto, quantidade]) => {
-            lista += `<li>${produto}(s): ${quantidade} </li>`;
-            });
-            return lista;
-        })()}
-        </ul>
+        <div style="display: flex; flex-direction: row;">
+        <div>
+            <p>Metragem Total: ${metragemTotal}M</p>
+            <p>Metragem por Hora: ${metragemPorHora}</p>
+        </div>
+        <div>
+            <p>Metragem por Material:</p>
+            <ul>
+            ${Object.entries(metragemPorMaterial)
+                .map(([material, metragem]) => `<li>${material ? material : 'Sem material definido'}: ${metragem}M</li>`)
+                .join('')}
+            </ul>
+            <p>Quantidade por Produto:</p>
+            <ul>
+            ${(() => {
+                let lista = '';
+                quantidadePorProduto.forEach(([produto, quantidade]) => {
+                    lista += `<li>${produto}(s): ${quantidade} </li>`;
+                });
+                return lista;
+            })()}
+            </ul>
+        </div>
+        </div>
     `;
-  }
+    }
   // Atualizar as informações quando houver mudanças nos campos relevantes
   tabelaPedidos.addEventListener('input', atualizarMetragemTotal);
   // Atualizar as informações quando a página for carregada
