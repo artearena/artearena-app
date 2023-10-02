@@ -87,7 +87,7 @@
                                     </option>
                                 @endforeach
                             </select>
-                        </td>                        
+                        </td>                      
                         <td style="display:none">{{ $cliente->origem }}</td>
                         <td>{{ $cliente->status_conversa }}</td>
                         <td>{{ $cliente->created_at }}</td>
@@ -189,6 +189,32 @@
                     }
                 });
             });
+
+            function atualizarVendedor(selectElement, clienteId) {
+                const novoVendedor = selectElement.value;
+
+                // Enviar requisição ao servidor para atualizar o vendedor
+                fetch(`/crm/atualizar-vendedor/${clienteId}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                    },
+                    body: JSON.stringify({ responsavel_contato: novoVendedor }),
+                })
+                .then(response => {
+                    if (response.ok) {
+                        console.log('Vendedor atualizado com sucesso!');
+                    } else {
+                        console.error('Falha ao atualizar o vendedor.');
+                    }
+                })
+                .catch(error => {
+                    console.error('Erro na requisição:', error);
+                });
+            }
+
+
         });
     </script>
 @endsection

@@ -725,7 +725,7 @@ $.ajaxSetup({
             else if (data === '') campoFaltante = 'a data';
             else if (link_trello === '') campoFaltante = 'o link do trello';
             else if (material === '') campoFaltante = 'o material';
-
+            console.log(material);
             Swal.fire({
                 title: 'Campos obrigatórios',
                 text: 'Por favor, preencha ' + campoFaltante,

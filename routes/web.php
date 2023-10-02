@@ -50,7 +50,7 @@ Route::middleware(['auth'])->group(function () {
         Route::put('/{id}', [LeadController::class, 'update'])->name('octa.update');
         Route::put('/atualizar-data/{id}', [LeadController::class, 'atualizarData']);
         Route::post('/atualizar-mensagem', [LeadController::class, 'atualizarMensagem'])->name('octa.atualizarMensagem');
-
+        Route::put('/atualizar-vendedor/{id}', [LeadController::class, 'atualizarVendedor']);
     });
 });
 

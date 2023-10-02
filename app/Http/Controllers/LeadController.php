@@ -66,5 +66,14 @@ class LeadController extends Controller
 
         return response()->json(['success' => true]);
     }
+    public function atualizarVendedor(Request $request, $id)
+    {
+        $cliente = Cliente::findOrFail($id);
+        $cliente->responsavel_contato = $request->input('responsavel_contato');
+        $cliente->save();
+    
+        return response()->json(['message' => 'Vendedor atualizado com sucesso!']);
+    }
+    
 }
 
