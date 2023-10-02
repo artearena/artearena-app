@@ -84,9 +84,7 @@
                         <td>{{ $cliente->created_at }}</td>
                         <div class="input-group date">
                             <input type="text" class="form-control datetimepicker" name="data_agendamento" data-id="{{ $cliente->id }}">
-                            <span class="input-group-addon">
                                 <i class="fa fa-calendar"></i>
-                            </span>
                         </div>
                         <td>
                             <select name="mensagem_id" class="mensagem_id">
