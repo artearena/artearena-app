@@ -1054,7 +1054,9 @@ document.addEventListener('DOMContentLoaded', function() {
                     .map(([material, metragem]) => `<li>${material ? material : 'Sem material definido'}: ${metragem}M</li>`)
                     .join('')}
                 </ul>
-                <p>Quantidade por Produto:</p>
+            </div>
+            <p>Quantidade por Produto:</p>
+            <div style="display: flex; flex-direction: row;">
                 <ul>
                 ${(() => {
                     let lista = '';
@@ -1065,6 +1067,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 })()}
                 </ul>
             </div>
+
         </div>
     `;
     }
