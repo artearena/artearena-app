@@ -83,7 +83,7 @@
                         <td>{{ $cliente->status_conversa }}</td>
                         <td>{{ $cliente->created_at }}</td>
                         <td>
-                            <div class='input-group datetimepicker'>
+                            <div class='date datetimepicker'>
                                 <input type="datetime-local" class="form-control" id="date" data-bs-locale="pt-br" value="{{ $cliente->data_agendamento }}" />
                                 <span class="input-group-addon">
                                     <span class="glyphicon glyphicon-calendar"></span>
