@@ -85,9 +85,9 @@
                         <td>
                             <div class='date datetimepicker'>
                                 <input type="datetime-local" class="form-control" id="date" data-bs-locale="pt-br" value="{{ $cliente->data_agendamento }}">
-                                <span class="input-group-addon">
+<!--                                 <span class="input-group-addon">
                                     <span class="glyphicon glyphicon-calendar"></span>
-                                </span>
+                                </span> -->
                             </div>
                         </td>
                         <td>
