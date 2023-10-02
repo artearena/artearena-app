@@ -28,16 +28,16 @@ class LeadController extends Controller
             return response()->json(['message' => 'Falha ao atualizar registro'], 500);
         }
     }
-    public function atualizarData(Request $request, $id) {
-
+    public function atualizarData(Request $request, $id)
+    {
+        $newDateTime = $request->input('newDateTime');
+        
+        // Atualizar o registro no banco de dados
         $cliente = Cliente::findOrFail($id);
-      
-        $cliente->data_agendamento = $request->data_agendamento;
-      
+        $cliente->data_agendamento = $newDateTime;
         $cliente->save();
-      
+    
         return response()->json(['success' => true]);
-      
     }
     public function updateAgendamento(Request $request, $id)
     {
