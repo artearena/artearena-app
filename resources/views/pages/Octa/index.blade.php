@@ -157,6 +157,10 @@
                 });
             });
             $('.mensagem_id').on('change', function() {
+                var id = $(this).data('id');
+                var newDateTime = $(this).val();
+                console.log(newDateTime);
+
                 var mensagemId = $(this).val();
                 var clienteId = $(this).closest('tr').find('.cliente-id').text();
 
