@@ -121,7 +121,7 @@
             autoclose: true
         });
 
-        $('#        data_agendamento').on('dp.change', function(e) {
+        $('#data_agendamento').on('dp.change', function(e) {
             var id = $(this).data('id');
             var newDateTime = e.date.format('YYYY-MM-DD HH:mm:ss');
 
