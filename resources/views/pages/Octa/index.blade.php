@@ -115,7 +115,7 @@
 <script>
     $(document).ready(function() {
 
-        $('.datetimepicker').datetimepicker({
+        $('#data_agendamento').datetimepicker({
             format: 'dd/mm/yyyy hh:ii',
             locale: 'pt-br',
             autoclose: true
