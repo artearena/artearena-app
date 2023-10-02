@@ -77,13 +77,7 @@
                         <td>{{ $cliente->status_conversa }}</td> 
                         <td>{{ $cliente->created_at }}</td> 
                         <td>
-                            @foreach($cliente->agendamentos as $agendamento)
-                                @if(!empty($agendamento->horario))
-                                    Horário do Agendamento: {{ date('d/m/Y H:i', strtotime($agendamento->horario)) }}
-                                @else
-                                    Horário do Agendamento: {{ date('d/m/Y H:i', strtotime(now())) }}
-                                @endif
-                            @endforeach
+                            <input type="text" id="data_agendamento" name="data_agendamento">
                         </td>
                         <td>
                             <select name="mensagem_id" id="mensagem_id">
@@ -112,42 +106,22 @@
     <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap4.min.js"></script>
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap4.min.css">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
+    <!-- Em seguida, carregue o plugin bootstrap-datepicker -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/locales/bootstrap-datepicker.pt-BR.min.js"></script>
 @endsection 
 @section('extraScript')
 <script>
     $(document).ready(function() {
-        // Cria um novo DataTable
-        var table = $('#tabela-clientes').DataTable({
-            data: [],
-            columns: [
-                { data: 'id' },
-                { data: 'id_octa' },
-                { data: 'nome' },
-                { data: 'telefone' },
-                { data: 'email' },
-                { data: 'empresa' },
-                { data: 'responsavel_contato' },
-                { data: 'origem' },
-                { data: 'status_conversa' },
-                { data: 'created_at' },
-                { data: 'agendamento',
-                    render: function(data, type, row) {
-                        // Retorna um DateTimePicker
-                        return '<input type="datetime-local" class="datetimepicker" data-id="' + row.id + '" value="">';
-                    }
-                },
-                { data: 'template' },
-                { data: 'card' },
-            ]
+
+        $('#data_agendamento').datetimepicker({
+            format: 'dd/mm/yyyy hh:ii',
+            language: 'pt-BR',
+            autoclose: true
         });
 
-        // Associa o DateTimePicker ao campo de agendamento
-        $('.datetimepicker').datetimepicker({
-            data: "datetime"
-        });
-
-        $('.datetimepicker').on('dp.change', function(e) {
+        $('#        data_agendamento').on('dp.change', function(e) {
             var id = $(this).data('id');
             var newDateTime = e.date.format('YYYY-MM-DD HH:mm:ss');
 
