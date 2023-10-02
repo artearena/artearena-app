@@ -93,14 +93,16 @@
                         <td>
                             <select name="mensagem_id" class="mensagem_id">
                                 <option value="">Selecione uma mensagem</option>
-                                @foreach ($mensagens as $mensagem)
+                                @php
+                                    $mensagensOrdenadas = $mensagens->sortBy('titulo');
+                                @endphp
+                                @foreach ($mensagensOrdenadas as $mensagem)
                                     <option value="{{ $mensagem->id }}" @if ($cliente->mensagem_template_id == $mensagem->id) selected @endif>
                                         {{ $mensagem->titulo }}
                                     </option>
                                 @endforeach
                             </select>
                         </td>
-
                         <td>
                             <a href="#" class="btn btn-primary ms-1" target="_blank">
                                 <i class="fa-brands fa-trello"></i>
@@ -133,11 +135,9 @@
                 }
             });
 
-            $('.datetimepicker').on('change', function() {                
+            $('.datetimepicker').on('change', function(e) {
                 var id = $(this).data('id');
                 var newDateTime = e.date.format('YYYY-MM-DD HH:mm');
-
-                
                 // Enviar requisição AJAX para atualizar a tabela com os novos dados
                 $.ajax({
                     url: '/crm/atualizar-data/' + id,
@@ -154,7 +154,7 @@
                         console.log(error);
                     }
                 });
-            }); 
+            });
             $('.mensagem_id').on('change', function() {
                 var mensagemId = $(this).val();
                 var clienteId = $(this).closest('tr').find('.cliente-id').text();
