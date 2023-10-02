@@ -117,8 +117,7 @@
 
         $('#data_agendamento').datetimepicker({
             format: 'dd/mm/yyyy hh:ii',
-            locale: 'pt-br',
-            autoclose: true
+            locale: 'pt-br'
         });
 
         $('#data_agendamento').on('dp.change', function(e) {
