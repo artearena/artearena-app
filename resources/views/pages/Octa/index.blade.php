@@ -139,7 +139,7 @@
 
                 var id = $(this).closest('tr').find('.cliente-id').text();
                 var newDateTime = $(this).val();
-
+                console.log(id);
                 console.log(newDateTime);
                 // Enviar requisição AJAX para atualizar a tabela com os novos dados
                 $.ajax({
