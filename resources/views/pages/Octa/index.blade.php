@@ -80,7 +80,7 @@
                         <td>{{ $cliente->empresa }}</td>
                         <td>
                             <select name="responsavel_contato">
-                                <option value="">Selecione um vendedor</option>
+                                <option value="">Selecione um responsável</option>
                                 @foreach ($vendedores as $vendedor)
                                     <option value="{{ $vendedor }}" @if ($cliente->responsavel_contato == $vendedor) selected @endif>
                                         {{ $vendedor }}
