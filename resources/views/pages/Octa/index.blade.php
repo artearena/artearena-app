@@ -95,10 +95,13 @@
                             <select name="mensagem_id" class="mensagem_id">
                                 <option value="">Selecione uma mensagem</option>
                                 @foreach ($mensagens as $mensagem)
-                                    <option value="{{ $mensagem->id }}">{{ $mensagem->titulo }}</option>
+                                    <option value="{{ $mensagem->id }}" @if ($cliente->mensagem_template_id == $mensagem->id) selected @endif>
+                                        {{ $mensagem->titulo }}
+                                    </option>
                                 @endforeach
                             </select>
                         </td>
+
                         <td>
                             <a href="#" class="btn btn-primary ms-1" target="_blank">
                                 <i class="fa-brands fa-trello"></i>
