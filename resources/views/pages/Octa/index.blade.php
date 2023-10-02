@@ -137,7 +137,7 @@
                 locale: 'pt-br'
             });
 
-            $('.datetimepicker').on('dp.change', function(e) {
+            /* $('.datetimepicker').on('dp.change', function(e) {
                 var id = $(this).data('id');
                 var newDateTime = e.date.format('YYYY-MM-DD HH:mm');
 
@@ -158,7 +158,7 @@
                         console.log(error);
                     }
                 });
-            });
+            }); */
             $('.mensagem_id').on('change', function() {
                 var mensagemId = $(this).val();
                 var clienteId = $(this).closest('tr').find('.cliente-id').text();
