@@ -885,6 +885,38 @@ $.ajaxSetup({
                     console.error('Erro ao enviar notificação:', error);
             });
         }
+        if (field === 'Status' && value === 'Em andamento') {
+            const pedidoId = id;
+            // Obter linha da tabela
+            const row = $(this).closest('tr');
+            // Obter designer
+            const designer = row.find('select[name="designer"]').val();
+            // Obter link do Trello
+            const linkTrello = row.find('a[data-id="' + pedidoId + '"]').attr('href');
+            // Obter observações
+            const observacoes = row.find('td.expandir-observacoes input[name="observacoes"]').val();
+            // Mensagem
+            const mensagem = `*Arte Iniciada!*
+
+        *Pedido Número:* #${pedidoId} 
+        *Designer:* ${designer}
+        *Link:* ${linkTrello}
+        *Observações:* ${observacoes}`;
+            // URL para enviar notificação
+            const url = 'https://artearena.kinghost.net/enviarNotificacaoSlack?mensagem=' + encodeURIComponent(mensagem);
+            console.log(url);
+            // Enviar requisição
+            fetch(url)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Erro ao enviar notificação');
+                    }
+                    console.log('Notificação enviada com sucesso!');
+                    })
+                    .catch(error => {
+                    console.error('Erro ao enviar notificação:', error);
+            });
+        }
         // Verifica se o campo é uma medida linear
         var isLinearMeasurementField = ['medida_linear'].includes(field);
         
@@ -977,6 +1009,38 @@ $.ajaxSetup({
                 *Pedido:* #${pedidoId}
                 *Link:* ${linkTrello}
                 *Observações:* ${observacoes}`;
+                // URL para enviar notificação
+                const url = 'https://artearena.kinghost.net/enviarNotificacaoSlack?mensagem=' + encodeURIComponent(mensagem);
+                console.log(url);
+                // Enviar requisição
+                fetch(url)
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Erro ao enviar notificação');
+                        }
+                        console.log('Notificação enviada com sucesso!');
+                        })
+                        .catch(error => {
+                        console.error('Erro ao enviar notificação:', error);
+                });
+            }
+            if (field === 'Status' && value === 'Em andamento') {
+                const pedidoId = id;
+                // Obter linha da tabela
+                const row = $(this).closest('tr');
+                // Obter designer
+                const designer = row.find('select[name="designer"]').val();
+                // Obter link do Trello
+                const linkTrello = row.find('a[data-id="' + pedidoId + '"]').attr('href');
+                // Obter observações
+                const observacoes = row.find('td.expandir-observacoes input[name="observacoes"]').val();
+                // Mensagem
+                const mensagem = `*Arte Iniciada!*
+
+            *Pedido Número:* #${pedidoId} 
+            *Designer:* ${designer}
+            *Link:* ${linkTrello}
+            *Observações:* ${observacoes}`;
                 // URL para enviar notificação
                 const url = 'https://artearena.kinghost.net/enviarNotificacaoSlack?mensagem=' + encodeURIComponent(mensagem);
                 console.log(url);
