@@ -1327,7 +1327,7 @@ $.ajaxSetup({
                 $('#quantidade-registros').text('Quantidade: ' + quantidadeRegistros + ' registros');
             }
             
-            ffunction contarRegistrosPorData() {
+            function contarRegistrosPorData() {
                 $registrosPorData = array();
                 // Percorre a tabela de pedidos
                 foreach ($tabelaPedidos as $pedido) {
