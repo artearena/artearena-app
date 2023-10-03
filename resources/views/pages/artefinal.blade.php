@@ -699,7 +699,7 @@ $.ajaxSetup({
         // ...
 
         function contarRegistrosPorData() {
-            let tabelaPedidos = $('#tabela-pedidos');
+            let tabelaPedidos = table;
             let registrosPorData = {};
 
             // Percorre as linhas da tabela
