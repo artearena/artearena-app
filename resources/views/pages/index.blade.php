@@ -16,7 +16,7 @@ Inicio
                 <div class="card-body">
                     <h5 class="card-title">CRM Octa</h5>
                     <p class="card-text">Descrição de CRM Octa</p>
-                    <a href="{{ route('crm') }}" class="btn btn-outline-success">Acessar</a>
+                    <a href="{{ route('crm.octa') }}" class="btn btn-outline-success">Acessar</a>
                 </div>
             </div>
             <div class="card">
