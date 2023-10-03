@@ -697,35 +697,36 @@ $.ajaxSetup({
 
         // Restante do código para configurar a tabela
         // ...
-    }
-    contarRegistrosPorData();
+        contarRegistrosPorData();
 
-    function contarRegistrosPorData() {
-        let tabelaPedidos = $('#tabela-pedidos');
-        let registrosPorData = {};
+        function contarRegistrosPorData() {
+            let tabelaPedidos = $('#tabela-pedidos');
+            let registrosPorData = {};
 
-        // Percorre as linhas da tabela
-        tabelaPedidos.rows().every(function () {
-            let dataPedido = moment(this.data()[1], 'DD/MM/YYYY').format('DD/MM/YYYY');
+            // Percorre as linhas da tabela
+            tabelaPedidos.rows().every(function () {
+                let dataPedido = moment(this.data()[1], 'DD/MM/YYYY').format('DD/MM/YYYY');
 
-            if (!registrosPorData[dataPedido]) {
-                registrosPorData[dataPedido] = 0;
+                if (!registrosPorData[dataPedido]) {
+                    registrosPorData[dataPedido] = 0;
+                }
+
+                registrosPorData[dataPedido]++;
+            });
+
+            // Ordena as chaves em ordem crescente
+            let chavesOrdenadas = Object.keys(registrosPorData).sort();
+
+            // Exibe o resultado na div com o id "qtd-dia-artes"
+            let resultado = '';
+            for (let i = 0; i < chavesOrdenadas.length; i++) {
+                let data = chavesOrdenadas[i];
+                resultado += 'Data: ' + data + ' - Registros: ' + registrosPorData[data] + '<br>';
             }
-
-            registrosPorData[dataPedido]++;
-        });
-
-        // Ordena as chaves em ordem crescente
-        let chavesOrdenadas = Object.keys(registrosPorData).sort();
-
-        // Exibe o resultado na div com o id "qtd-dia-artes"
-        let resultado = '';
-        for (let i = 0; i < chavesOrdenadas.length; i++) {
-            let data = chavesOrdenadas[i];
-            resultado += 'Data: ' + data + ' - Registros: ' + registrosPorData[data] + '<br>';
+            document.getElementById("qtd-dia-artes").innerHTML = resultado;
         }
-        document.getElementById("qtd-dia-artes").innerHTML = resultado;
     }
+    
     $('#cadastrarPedido').click(function(e) {
         e.preventDefault(); // Evita o comportamento padrão do formulário
         
