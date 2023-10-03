@@ -1339,12 +1339,12 @@ $.ajaxSetup({
                     let dataFormatada = moment(dataPedido, 'YYYY-MM-DD').format('DD/MM/YYYY');
 
                     // Verifica se já existe um contador para essa data
-                    if (registrosPorData[dataFormatada]) {
+                    if (registrosPorData[dataPedido]) {
                         // Incrementa o contador existente
-                        registrosPorData[dataFormatada]++;
+                        registrosPorData[dataPedido]++;
                     } else {
                         // Inicia o contador para essa data
-                        registrosPorData[dataFormatada] = 1;
+                        registrosPorData[dataPedido] = 1;
                     }
                 });
 
