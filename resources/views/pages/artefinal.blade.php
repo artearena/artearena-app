@@ -1415,9 +1415,13 @@ $.ajaxSetup({
                 registrosPorData[dataPedido]++;
             });
 
+            // Ordena as chaves em ordem crescente
+            let chavesOrdenadas = Object.keys(registrosPorData).sort();
+
             // Exibe o resultado na div com o id "qtd-dia-artes"
             let resultado = '';
-            for (let data in registrosPorData) {
+            for (let i = 0; i < chavesOrdenadas.length; i++) {
+                let data = chavesOrdenadas[i];
                 resultado += 'Data: ' + data + ' - Registros: ' + registrosPorData[data] + '<br>';
             }
             document.getElementById("qtd-dia-artes").innerHTML = resultado;
