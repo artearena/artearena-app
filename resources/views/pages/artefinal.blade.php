@@ -1401,7 +1401,6 @@ $.ajaxSetup({
         contarRegistrosPorData();
 
         function contarRegistrosPorData() {
-            let tabelaPedidos = $('#tabela-pedidos').DataTable();
             let registrosPorData = {};
 
             // Percorre as linhas da tabela
