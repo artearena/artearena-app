@@ -885,7 +885,7 @@ $.ajaxSetup({
                     console.error('Erro ao enviar notificação:', error);
             });
         }
-        if (field === 'Status' && value === 'Em andamento') {
+        if (field === 'status' && value === 'Em andamento') {
             const pedidoId = id;
             // Obter linha da tabela
             const row = $(this).closest('tr');
@@ -1024,7 +1024,7 @@ $.ajaxSetup({
                         console.error('Erro ao enviar notificação:', error);
                 });
             }
-            if (field === 'Status' && value === 'Em andamento') {
+            if (field === 'status' && value === 'Em andamento') {
                 const pedidoId = id;
                 // Obter linha da tabela
                 const row = $(this).closest('tr');
