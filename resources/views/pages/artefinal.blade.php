@@ -697,7 +697,6 @@ $.ajaxSetup({
 
         // Restante do código para configurar a tabela
         // ...
-        contarRegistrosPorData();
 
         function contarRegistrosPorData() {
             let tabelaPedidos = $('#tabela-pedidos');
@@ -725,6 +724,8 @@ $.ajaxSetup({
             }
             document.getElementById("qtd-dia-artes").innerHTML = resultado;
         }
+        contarRegistrosPorData();
+
     }
     
     $('#cadastrarPedido').click(function(e) {
