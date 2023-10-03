@@ -34,6 +34,9 @@ class Cliente extends Model
         'data_agendamento',
         'status_conversa',
         'mensagem_template_id',
+        'contato_bloqueado',
+        'contato_qualificado',
+        'motivo_perda',
     ];
 
     public function agendamentos()

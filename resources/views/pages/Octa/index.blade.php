@@ -62,6 +62,9 @@
                     <th>Criado em</th>
                     <th>Agendamento</th>
                     <th>Template</th>
+                    <th>Bloqueado</th>
+                    <th>Qualificado</th>
+                    <th>Motivo da perda</th>
                     <th>Card</th>
                 </tr>
             </thead>
@@ -112,11 +115,15 @@
                                 @endforeach
                             </select>
                         </td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
                         <td>
                             <a href="#" class="btn btn-primary ms-1" target="_blank">
                                 <i class="fa-brands fa-trello"></i>
                             </a>
                         </td>
+
                     </tr>
                 @endforeach
             </tbody>
