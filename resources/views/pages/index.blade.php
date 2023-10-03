@@ -16,7 +16,7 @@ Inicio
                 <div class="card-body">
                     <h5 class="card-title">CRM Octa</h5>
                     <p class="card-text">Descrição de CRM Octa</p>
-                    <a href="{{ route('crm.octa') }}" class="btn btn-outline-success">Acessar</a>
+                    <a href="{{ route('octa.crm') }}" class="btn btn-outline-success">Acessar</a>
                 </div>
             </div>
             <div class="card">
@@ -47,7 +47,7 @@ Inicio
                 <div class="card-body">
                     <h5 class="card-title">Arte Final</h5>
                     <p class="card-text">Descrição de Arte Final</p>
-                    <a href="{{ route('arte-final') }}" class="btn btn-outline-success">Acessar</a>
+                    <a href="{{ route('pedido') }}" class="btn btn-outline-success">Acessar</a>
                 </div>
             </div>
             <div class="card">
@@ -61,7 +61,7 @@ Inicio
                 <div class="card-body">
                     <h5 class="card-title">Mini Trello</h5>
                     <p class="card-text">Descrição de Mini Trello</p>
-                    <a href="{{ route('mini-trello') }}" class="btn btn-outline-info">Acessar</a>
+                    <a href="{{ route('trello.index') }}" class="btn btn-outline-info">Acessar</a>
                 </div>
             </div>
         </div>
