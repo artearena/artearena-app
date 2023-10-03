@@ -30,7 +30,7 @@ Inicio
                 <div class="card-body">
                     <h5 class="card-title">Gerar Orçamento</h5>
                     <p class="card-text">Descrição de Gerar Orçamento</p>
-                    <a href="{{ route('orcamento') }}" class="btn btn-outline-info">Acessar</a>
+                    <a href="{{ route('frete') }}" class="btn btn-outline-info">Acessar</a>
                 </div>
             </div>
             <div class="card">
