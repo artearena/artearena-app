@@ -1334,17 +1334,17 @@ $.ajaxSetup({
                 // Percorre as linhas da tabela
                 tabelaPedidos.rows().every(function () {
                     let dataPedido = this.data().dataPedido; // Substitua "dataPedido" pelo nome correto da coluna que contém a data do pedido
-
+                    console.log(dataPedido);
                     // Obtém a data formatada
                     let dataFormatada = moment(dataPedido, 'YYYY-MM-DD').format('DD/MM/YYYY');
 
                     // Verifica se já existe um contador para essa data
-                    if (registrosPorData[dataPedido]) {
+                    if (registrosPorData[dataFormatada]) {
                         // Incrementa o contador existente
-                        registrosPorData[dataPedido]++;
+                        registrosPorData[dataFormatada]++;
                     } else {
                         // Inicia o contador para essa data
-                        registrosPorData[dataPedido] = 1;
+                        registrosPorData[dataFormatada] = 1;
                     }
                 });
 
