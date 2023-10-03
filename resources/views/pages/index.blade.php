@@ -98,11 +98,14 @@ Inicio
                     <a href="{{ route('trello.index') }}" class="btn btn-outline-dark">Acessar</a>
                 </div>
             </div>
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">CRM Octa</h5>
-                    <p class="card-text">Descrição de controle de confecção</p>
-                    <a href="{{ route('octa.crm') }}" class="btn btn-outline-dark">Acessar</a>
+            <div class="col-md-6">
+
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">CRM Octa</h5>
+                        <p class="card-text">Descrição de controle de confecção</p>
+                        <a href="{{ route('octa.crm') }}" class="btn btn-outline-dark">Acessar</a>
+                    </div>
                 </div>
             </div>
         </div>
