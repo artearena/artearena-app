@@ -54,7 +54,7 @@ Inicio
                 <div class="card-body">
                     <h5 class="card-title">Tiny Relatório</h5>
                     <p class="card-text">Descrição de Tiny Relatório</p>
-                    <a href="{{ route('tiny-relatorio') }}" class="btn btn-outline-warning">Acessar</a>
+                    <a href="{{ route('tiny.relatorio') }}" class="btn btn-outline-warning">Acessar</a>
                 </div>
             </div>
             <div class="card">
