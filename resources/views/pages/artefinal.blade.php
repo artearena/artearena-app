@@ -761,7 +761,18 @@ $.ajaxSetup({
                     timer: 3000, // Defina o tempo que o alerta será exibido (em milissegundos)
                     showConfirmButton: false // Ocultar o botão "OK"
                 });
-                
+                // Limpar os campos do formulário
+                $('#id').val('');
+                $('#data').val('');
+                $('#produto').val('');
+                $('#material').val('');
+                $('#medida_linear').val('');
+                $('#observacoes').val('');
+                $('#status').val('');
+                $('#designer').val('');
+                $('#tipo_pedido').val('');
+                $('#checagem_final').val('');
+                $('#link_trello').val('');
                 // Restante do código...
             },
             error: function(xhr, status, error) {
