@@ -1327,17 +1327,14 @@ $.ajaxSetup({
                 $('#quantidade-registros').text('Quantidade: ' + quantidadeRegistros + ' registros');
             }
             
-            function contarRegistrosPorData() {
+            ffunction contarRegistrosPorData() {
                 $registrosPorData = array();
-
                 // Percorre a tabela de pedidos
                 foreach ($tabelaPedidos as $pedido) {
                     // Obtém a data do pedido
                     $dataPedido = $pedido->data;
-
                     // Converte a data para o formato desejado
                     $dataFormatada = date('d/m/Y', strtotime($dataPedido));
-
                     // Verifica se já existe um contador para essa data
                     if (isset($registrosPorData[$dataFormatada])) {
                         // Incrementa o contador existente
@@ -1347,12 +1344,10 @@ $.ajaxSetup({
                         $registrosPorData[$dataFormatada] = 1;
                     }
                 }
-
                 // Mostra o resultado
                 foreach ($registrosPorData as $data => $contador) {
                     echo "Data: $data - Registros: $contador <br>";
                 }
-
                 // Exibe o resultado na div com o id "qtd-dia-artes"
                 echo '<script>document.getElementById("qtd-dia-artes").innerHTML = ' . json_encode($registrosPorData) . ';</script>';
             }
