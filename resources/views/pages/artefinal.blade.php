@@ -1398,28 +1398,29 @@ $.ajaxSetup({
 
     </script>
     <script>
-        contarRegistrosPorData();
+      contarRegistrosPorData();
 
-        function contarRegistrosPorData() {
-            let registrosPorData = {};
+    function contarRegistrosPorData() {
+        let tabelaPedidos = $('#tabela-pedidos').DataTable();
+        let registrosPorData = {};
 
-            // Percorre as linhas da tabela
-            tabelaPedidos.rows().every(function () {
-                let dataPedido = moment(this.data()[1], 'DD/MM/YYYY').format('DD/MM/YYYY');
+        // Percorre as linhas da tabela
+        tabelaPedidos.rows().every(function () {
+            let dataPedido = moment(this.data()[1], 'DD/MM/YYYY').format('DD/MM/YYYY');
 
-                if (!registrosPorData[dataPedido]) {
-                    registrosPorData[dataPedido] = 0;
-                }
-
-                registrosPorData[dataPedido]++;
-            });
-
-            // Exibe o resultado na div com o id "qtd-dia-artes"
-            let resultado = '';
-            for (let data in registrosPorData) {
-                resultado += 'Data: ' + data + ' - Registros: ' + registrosPorData[data] + '<br>';
+            if (!registrosPorData[dataPedido]) {
+                registrosPorData[dataPedido] = 0;
             }
-            document.getElementById("qtd-dia-artes").innerHTML = resultado;
+
+            registrosPorData[dataPedido]++;
+        });
+
+        // Exibe o resultado na div com o id "qtd-dia-artes"
+        let resultado = '';
+        for (let data in registrosPorData) {
+            resultado += 'Data: ' + data + ' - Registros: ' + registrosPorData[data] + '<br>';
         }
+        document.getElementById("qtd-dia-artes").innerHTML = resultado;
+    }
     </script>
     @endsection
