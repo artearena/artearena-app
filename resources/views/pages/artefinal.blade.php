@@ -1326,7 +1326,55 @@ $.ajaxSetup({
                 $('#quantidade-registros').text('Quantidade: ' + quantidadeRegistros + ' registros');
             }
             
+            function contarRegistrosPorData() {
+  // Fazer a solicitação AJAX para obter os pedidos
+            $.ajax({
+                url: '/pedido/', // Substitua pelo caminho correto da sua rota Laravel
+                method: 'GET',
+                dataType: 'json',
+                success: function(response) {
+                // Array para armazenar as contagens de pedidos por dia
+                var contagemPedidosPorDia = {};
 
+                // Percorre os pedidos
+                for (var i = 0; i < response.pedidos.length; i++) {
+                    var pedido = response.pedidos[i];
+                    var data = pedido.data;
+                    data = data.split('-').reverse().join('/'); // Converte o formato da data para 'dd/mm/yyyy'
+
+                    // Verifica se a data já existe no objeto de contagem
+                    if (contagemPedidosPorDia[data]) {
+                    // Incrementa a contagem em 1
+                    contagemPedidosPorDia[data]++;
+                    } else {
+                    // Cria uma nova entrada no objeto de contagem com contagem inicial 1
+                    contagemPedidosPorDia[data] = 1;
+                    }
+                }
+
+                // Obtém a referência do elemento "qtd-dia-artes"
+                var qtdDiaArtes = document.getElementById("qtd-dia-artes");
+
+                // Cria uma variável para armazenar o conteúdo HTML
+                var htmlContagem = "";
+
+                // Percorre a contagem de pedidos por dia
+                for (var data in contagemPedidosPorDia) {
+                    // Obtém a quantidade de pedidos para a data atual
+                    var contagem = contagemPedidosPorDia[data];
+
+                    // Cria o conteúdo HTML para a contagem
+                    htmlContagem += "Data: " + data + " - Quantidade de pedidos: " + contagem + "<br>";
+                }
+
+                // Define o conteúdo HTML no elemento "qtd-dia-artes"
+                qtdDiaArtes.innerHTML = htmlContagem;
+                },
+                error: function(error) {
+                console.log(error);
+                }
+            });
+            }
             // Chamada inicial para atualizar as cores ao carregar a página
             updateColors();
 
