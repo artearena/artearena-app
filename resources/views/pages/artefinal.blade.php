@@ -554,7 +554,6 @@ $.ajaxSetup({
 });
 
     $(document).ready(function(){
-        contarRegistrosPorData();
         configurarTabela();
         atualizarQuantidadeRegistros();
         updateColors(); // Função para atualizar as cores de fundo dos campos
@@ -665,6 +664,9 @@ $.ajaxSetup({
 
         // Adicione uma classe CSS para destacar
         row.nodes().to$().addClass('destacado');
+
+        
+        contarRegistrosPorData();
 
         function contarRegistrosPorData() {
             let tabelaPedidos = $('#tabela-pedidos');
