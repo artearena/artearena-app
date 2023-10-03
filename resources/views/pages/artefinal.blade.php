@@ -1330,11 +1330,11 @@ $.ajaxSetup({
             function contarRegistrosPorData() {
                 let tabelaPedidos = $('#tabela-pedidos').DataTable();
                 let registrosPorData = {};
+                console.log(tabelaPedidos);
 
                 // Percorre as linhas da tabela
                 tabelaPedidos.rows().every(function () {
                     let dataPedido = this.data().dataPedido; // Substitua "dataPedido" pelo nome correto da coluna que contém a data do pedido
-                    console.log(dataPedido);
                     // Obtém a data formatada
                     let dataFormatada = moment(dataPedido, 'YYYY-MM-DD').format('DD/MM/YYYY');
 
