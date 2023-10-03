@@ -1328,28 +1328,33 @@ $.ajaxSetup({
             }
             
             function contarRegistrosPorData() {
-                $registrosPorData = array();
-                // Percorre a tabela de pedidos
-                foreach ($tabelaPedidos as $pedido) {
-                    // Obtém a data do pedido
-                    $dataPedido = $pedido->data;
-                    // Converte a data para o formato desejado
-                    $dataFormatada = date('d/m/Y', strtotime($dataPedido));
+                let tabelaPedidos = $('#tabela-pedidos').DataTable();
+                let registrosPorData = {};
+
+                // Percorre as linhas da tabela
+                tabelaPedidos.rows().every(function () {
+                    let dataPedido = this.data().dataPedido; // Substitua "dataPedido" pelo nome correto da coluna que contém a data do pedido
+
+                    // Obtém a data formatada
+                    let dataFormatada = moment(dataPedido, 'YYYY-MM-DD').format('DD/MM/YYYY');
+
                     // Verifica se já existe um contador para essa data
-                    if (isset($registrosPorData[$dataFormatada])) {
+                    if (registrosPorData[dataFormatada]) {
                         // Incrementa o contador existente
-                        $registrosPorData[$dataFormatada]++;
+                        registrosPorData[dataFormatada]++;
                     } else {
                         // Inicia o contador para essa data
-                        $registrosPorData[$dataFormatada] = 1;
+                        registrosPorData[dataFormatada] = 1;
                     }
-                }
+                });
+
                 // Mostra o resultado
-                foreach ($registrosPorData as $data => $contador) {
-                    echo "Data: $data - Registros: $contador <br>";
+                for (let data in registrosPorData) {
+                    console.log('Data: ' + data + ' - Registros: ' + registrosPorData[data]);
                 }
+
                 // Exibe o resultado na div com o id "qtd-dia-artes"
-                echo '<script>document.getElementById("qtd-dia-artes").innerHTML = ' . json_encode($registrosPorData) . ';</script>';
+                document.getElementById("qtd-dia-artes").innerHTML = JSON.stringify(registrosPorData);
             }
             // Chamada inicial para atualizar as cores ao carregar a página
             updateColors();
