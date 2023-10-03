@@ -1328,15 +1328,15 @@ $.ajaxSetup({
             }
             
             function contarRegistrosPorData() {
-                let tabelaPedidos = $('#tabela-pedidos').DataTable().data();
+                let tabelaPedidos = $('#tabela-pedidos').DataTable();
                 let registrosPorData = {};
-                console.log(tabelaPedidos);
 
                 // Percorre as linhas da tabela
                 tabelaPedidos.rows().every(function () {
-                    let dataPedido = this.data().dataPedido; // Substitua "dataPedido" pelo nome correto da coluna que contém a data do pedido
+                    let dataPedido = this.data()[1]; // Obtém a data do pedido na segunda coluna
+
                     // Obtém a data formatada
-                    let dataFormatada = moment(dataPedido, 'YYYY-MM-DD').format('DD/MM/YYYY');
+                    let dataFormatada = moment(dataPedido, 'DD/MM/YYYY').format('DD/MM/YYYY');
 
                     // Verifica se já existe um contador para essa data
                     if (registrosPorData[dataFormatada]) {
