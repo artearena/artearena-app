@@ -234,7 +234,10 @@ Consulta de Pedidos
                             <button type="submit" class="btn btn-primary" id="cadastrarPedido">Cadastrar Pedido</button>
                     </form>
                     <hr>
-                    <div id="metragem_total"></div>
+                        <div id="metragem_total"></div>
+                    <hr>
+                    <hr>
+                        <div id="qtd-dia-artes">Quantidade de artes</div>
                     <hr>
                     <div class="tabela-container">
                     <div id="loading" class="text-center" style="display: none;">
@@ -494,7 +497,33 @@ $(document).ready(function(){
         var fullText = inputField.val();
         inputField.attr('title', fullText);
     });
+    function contarRegistrosPorData() {
+            let tabelaPedidos = table;
+            let registrosPorData = {};
 
+            // Percorre as linhas da tabela
+            tabelaPedidos.rows().every(function () {
+                let dataPedido = moment(this.data()[1], 'DD/MM/YYYY').format('DD/MM/YYYY');
+
+                if (!registrosPorData[dataPedido]) {
+                    registrosPorData[dataPedido] = 0;
+                }
+
+                registrosPorData[dataPedido]++;
+            });
+
+            // Ordena as chaves em ordem crescente
+            let chavesOrdenadas = Object.keys(registrosPorData).sort();
+
+            // Exibe o resultado na div com o id "qtd-dia-artes"
+            let resultado = '';
+            for (let i = 0; i < chavesOrdenadas.length; i++) {
+                let data = chavesOrdenadas[i];
+                resultado += 'Data: ' + data + ' - Registros: ' + registrosPorData[data] + '<br>';
+            }
+            document.getElementById("qtd-dia-artes").innerHTML = resultado;
+        }
+        contarRegistrosPorData();
     // Restante do código para configurar a tabela
     // ...
 }
