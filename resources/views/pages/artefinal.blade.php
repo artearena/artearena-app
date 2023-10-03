@@ -1354,7 +1354,7 @@ $.ajaxSetup({
                 }
 
                 // Exibe o resultado na div com o id "qtd-dia-artes"
-                echo '<script>document.getElementById("qtd-dia-artes").innerHTML = "'.json_encode($registrosPorData).'";</script>';
+                echo '<script>document.getElementById("qtd-dia-artes").innerHTML = ' . json_encode($registrosPorData) . ';</script>';
             }
             // Chamada inicial para atualizar as cores ao carregar a página
             updateColors();
