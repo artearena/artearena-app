@@ -798,7 +798,34 @@ $.ajaxSetup({
         // Se nenhum filtro corresponder, retorne a mensagem original
         return message;
     }
+    contarRegistrosPorData();
 
+    function contarRegistrosPorData() {
+        let tabelaPedidos = table;
+        let registrosPorData = {};
+
+        // Percorre as linhas da tabela
+        tabelaPedidos.rows().every(function () {
+            let dataPedido = moment(this.data()[1], 'DD/MM/YYYY').format('DD/MM/YYYY');
+
+            if (!registrosPorData[dataPedido]) {
+                registrosPorData[dataPedido] = 0;
+            }
+
+            registrosPorData[dataPedido]++;
+        });
+
+        // Ordena as chaves em ordem crescente
+        let chavesOrdenadas = Object.keys(registrosPorData).sort();
+
+        // Exibe o resultado na div com o id "qtd-dia-artes"
+        let resultado = '';
+        for (let i = 0; i < chavesOrdenadas.length; i++) {
+            let data = chavesOrdenadas[i];
+            resultado += 'Data: ' + data + ' - Registros: ' + registrosPorData[data] + '<br>';
+        }
+        document.getElementById("qtd-dia-artes").innerHTML = resultado;
+    }
     $('#tabela-pedidos').on('draw.dt', function() {
         updateColors(); // Função para atualizar as cores de fundo dos campos
         reatribuirEventosChange(); // Função para reatribuir o evento "change" após a paginação ou ordenação
@@ -1396,35 +1423,5 @@ $.ajaxSetup({
         }
         });
 
-    </script>
-    <script>
-        contarRegistrosPorData();
-
-        function contarRegistrosPorData() {
-            let tabelaPedidos = $('#tabela-pedidos').DataTable();
-            let registrosPorData = {};
-
-            // Percorre as linhas da tabela
-            tabelaPedidos.rows().every(function () {
-                let dataPedido = moment(this.data()[1], 'DD/MM/YYYY').format('DD/MM/YYYY');
-
-                if (!registrosPorData[dataPedido]) {
-                    registrosPorData[dataPedido] = 0;
-                }
-
-                registrosPorData[dataPedido]++;
-            });
-
-            // Ordena as chaves em ordem crescente
-            let chavesOrdenadas = Object.keys(registrosPorData).sort();
-
-            // Exibe o resultado na div com o id "qtd-dia-artes"
-            let resultado = '';
-            for (let i = 0; i < chavesOrdenadas.length; i++) {
-                let data = chavesOrdenadas[i];
-                resultado += 'Data: ' + data + ' - Registros: ' + registrosPorData[data] + '<br>';
-            }
-            document.getElementById("qtd-dia-artes").innerHTML = resultado;
-        }
     </script>
     @endsection
