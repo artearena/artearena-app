@@ -764,14 +764,11 @@ $.ajaxSetup({
                 // Limpar os campos do formulário
                 $('#id').val('');
                 $('#data').val('');
-                $('#produto').val('');
                 $('#material').val('');
                 $('#medida_linear').val('');
                 $('#observacoes').val('');
                 $('#status').val('');
                 $('#designer').val('');
-                $('#tipo_pedido').val('');
-                $('#checagem_final').val('');
                 $('#link_trello').val('');
                 // Restante do código...
             },
