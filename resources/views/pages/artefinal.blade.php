@@ -1328,30 +1328,23 @@ $.ajaxSetup({
             }
             
             function contarRegistrosPorData() {
+                // Obtém a tabela de pedidos
                 let tabelaPedidos = $('#tabela-pedidos').DataTable();
+
+                // Cria um objeto para armazenar os registros por data
                 let registrosPorData = {};
 
                 // Percorre as linhas da tabela
                 tabelaPedidos.rows().every(function () {
-                    let dataPedido = this.data()[1]; // Obtém a data do pedido na segunda coluna
+                    // Obtém a data do pedido
+                    let dataPedido = this.data()[1];
 
                     // Obtém a data formatada
                     let dataFormatada = moment(dataPedido, 'DD/MM/YYYY').format('DD/MM/YYYY');
 
-                    // Verifica se já existe um contador para essa data
-                    if (registrosPorData[dataFormatada]) {
-                        // Incrementa o contador existente
-                        registrosPorData[dataFormatada]++;
-                    } else {
-                        // Inicia o contador para essa data
-                        registrosPorData[dataFormatada] = 1;
-                    }
+                    // Incrementa o contador para essa data
+                    registrosPorData[dataFormatada]++;
                 });
-
-                // Mostra o resultado
-                for (let data in registrosPorData) {
-                    console.log('Data: ' + data + ' - Registros: ' + registrosPorData[data]);
-                }
 
                 // Exibe o resultado na div com o id "qtd-dia-artes"
                 document.getElementById("qtd-dia-artes").innerHTML = JSON.stringify(registrosPorData);
