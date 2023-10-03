@@ -554,7 +554,6 @@ $.ajaxSetup({
 });
 
     $(document).ready(function(){
-        contarRegistrosPorData() 
         configurarTabela();
         atualizarQuantidadeRegistros();
         updateColors(); // Função para atualizar as cores de fundo dos campos
@@ -1327,28 +1326,7 @@ $.ajaxSetup({
                 $('#quantidade-registros').text('Quantidade: ' + quantidadeRegistros + ' registros');
             }
             
-            function contarRegistrosPorData() {
-                // Obtém a tabela de pedidos
-                let tabelaPedidos = $('#tabela-pedidos').DataTable();
-
-                // Cria um objeto para armazenar os registros por data
-                let registrosPorData = {};
-
-                // Percorre as linhas da tabela
-                tabelaPedidos.rows().every(function () {
-                    // Obtém a data do pedido
-                    let dataPedido = this.data()[1];
-
-                    // Obtém a data formatada
-                    let dataFormatada = moment(dataPedido, 'DD/MM/YYYY').format('DD/MM/YYYY');
-
-                    // Incrementa o contador para essa data
-                    registrosPorData[dataFormatada]++;
-                });
-
-                // Exibe o resultado na div com o id "qtd-dia-artes"
-                document.getElementById("qtd-dia-artes").innerHTML = JSON.stringify(registrosPorData);
-            }
+            
             // Chamada inicial para atualizar as cores ao carregar a página
             updateColors();
 
@@ -1418,8 +1396,31 @@ $.ajaxSetup({
         }
         });
 
+    </script>
+    <script>
+        contarRegistrosPorData();
 
+        function contarRegistrosPorData() {
+            let tabelaPedidos = $('#tabela-pedidos').DataTable();
+            let registrosPorData = {};
 
+            // Percorre as linhas da tabela
+            tabelaPedidos.rows().every(function () {
+                let dataPedido = moment(this.data()[1], 'DD/MM/YYYY').format('DD/MM/YYYY');
 
+                if (!registrosPorData[dataPedido]) {
+                    registrosPorData[dataPedido] = 0;
+                }
+
+                registrosPorData[dataPedido]++;
+            });
+
+            // Exibe o resultado na div com o id "qtd-dia-artes"
+            let resultado = '';
+            for (let data in registrosPorData) {
+                resultado += 'Data: ' + data + ' - Registros: ' + registrosPorData[data] + '<br>';
+            }
+            document.getElementById("qtd-dia-artes").innerHTML = resultado;
+        }
     </script>
     @endsection
