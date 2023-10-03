@@ -554,6 +554,7 @@ $.ajaxSetup({
 });
 
     $(document).ready(function(){
+        contarRegistrosPorData() 
         configurarTabela();
         atualizarQuantidadeRegistros();
         updateColors(); // Função para atualizar as cores de fundo dos campos
