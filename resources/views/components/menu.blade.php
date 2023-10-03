@@ -24,7 +24,6 @@
                 @guest
 
                 @else
-              
                 <li class="nav-item">
                     <a class="nav-link {{ request()->is('/') ? 'active' : '' }}" href="{{ route('home') }}">Início</a>
                 </li>

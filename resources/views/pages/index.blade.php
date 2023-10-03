@@ -10,7 +10,7 @@ Inicio
 
 <div class="container">
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-4">
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">Bandeiras</h5>
@@ -19,7 +19,7 @@ Inicio
                 </div>
             </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-4">
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">Gerar Orçamentos</h5>
@@ -28,9 +28,7 @@ Inicio
                 </div>
             </div>
         </div>
-    </div>
-    <div class="row mt-4">
-        <div class="col-md-6">
+        <div class="col-md-4">
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">Arte Final</h5>
@@ -39,7 +37,9 @@ Inicio
                 </div>
             </div>
         </div>
-        <div class="col-md-6">
+    </div>
+    <div class="row mt-4">
+        <div class="col-md-4">
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">Impressão</h5>
@@ -48,9 +48,7 @@ Inicio
                 </div>
             </div>
         </div>
-    </div>
-    <div class="row mt-4">
-        <div class="col-md-6">
+        <div class="col-md-4">
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">Controle de Confecções</h5>
@@ -59,7 +57,7 @@ Inicio
                 </div>
             </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-4">
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">Controle de Reposições</h5>
@@ -70,16 +68,16 @@ Inicio
         </div>
     </div>
     <div class="row mt-4">
-        <div class="col-md-6">
+        <div class="col-md-4">
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">Encurtar Link</h5>
                     <p class="card-text">Descrição de encurtar link</p>
-                    <button id="btn-encurtar-link" class="btn btn-outline-secondary">Encurtar Link</buton>                
+                    <button id="btn-encurtar-link" class="btn btn-outline-secondary">Encurtar Link</button>                
                 </div>
             </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-4">
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">Tiny Relatório</h5>
@@ -88,9 +86,7 @@ Inicio
                 </div>
             </div>
         </div>
-    </div>
-    <div class="row mt-4">
-        <div class="col-md-6">
+        <div class="col-md-4">
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">Mini Trello</h5>
@@ -98,13 +94,15 @@ Inicio
                     <a href="{{ route('trello.index') }}" class="btn btn-outline-dark">Acessar</a>
                 </div>
             </div>
-            <div class="col-md-6">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">CRM Octa</h5>
-                        <p class="card-text">Descrição de controle de confecção</p>
-                        <a href="{{ route('octa.crm') }}" class="btn btn-outline-dark">Acessar</a>
-                    </div>
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">CRM Octa</h5>
+                    <p class="card-text">Descrição de controle de confecção</p>
+                    <a href="{{ route('octa.crm') }}" class="btn btn-outline-dark">Acessar</a>
                 </div>
             </div>
         </div>
