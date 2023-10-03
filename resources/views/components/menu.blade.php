@@ -20,39 +20,41 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarText">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="comercialDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Comercial
-                </a>
-                <ul class="dropdown-menu" aria-labelledby="comercialDropdown">
-                    <li><a class="dropdown-item" href="{{ route('octa.crm') }}">CRM Octa</a></li>
-                    <li><a class="dropdown-item" href="{{ route('bandeira') }}">Bandeira</a></li>
-                    <li><a class="dropdown-item" href="{{ route('frete') }}">Gerar Orçamento</a></li>
-                    <li><a class="dropdown-item" href="#">Encurtar Link</a></li>
-                </ul>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="designDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Design
-                </a>
-                <ul class="dropdown-menu" aria-labelledby="designDropdown">
-                    <li><a class="dropdown-item" href="{{ route('pedido') }}">Arte Final</a></li>
-                    <li><a class="dropdown-item" href="{{ route('tiny.relatorio') }}">Tiny Relatório</a></li>
-                    <li><a class="dropdown-item" href="{{ route('trello.index') }}">Mini Trello</a></li>
-                </ul>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="producaoDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Produção
-                </a>
-                <ul class="dropdown-menu" aria-labelledby="producaoDropdown">
-                    <li><a class="dropdown-item" href="{{ route('impressao') }}">Impressão</a></li>
-                    <li><a class="dropdown-item" href="{{ route('confeccao') }}">Confecção</a></li>
-                    <li><a class="dropdown-item" href="{{ route('reposicao') }}">Reposição</a></li>
-                </ul>
-            </li>
-        </ul>
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                @guest
+                @else
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="comercialDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Comercial
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="comercialDropdown">
+                        <li><a class="dropdown-item" href="{{ route('octa.crm') }}">CRM Octa</a></li>
+                        <li><a class="dropdown-item" href="{{ route('bandeira') }}">Bandeira</a></li>
+                        <li><a class="dropdown-item" href="{{ route('frete') }}">Gerar Orçamento</a></li>
+                        <li><a class="dropdown-item" href="#">Encurtar Link</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="designDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Design
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="designDropdown">
+                        <li><a class="dropdown-item" href="{{ route('pedido') }}">Arte Final</a></li>
+                        <li><a class="dropdown-item" href="{{ route('tiny.relatorio') }}">Tiny Relatório</a></li>
+                        <li><a class="dropdown-item" href="{{ route('trello.index') }}">Mini Trello</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="producaoDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Produção
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="producaoDropdown">
+                        <li><a class="dropdown-item" href="{{ route('impressao') }}">Impressão</a></li>
+                        <li><a class="dropdown-item" href="{{ route('confeccao') }}">Confecção</a></li>
+                        <li><a class="dropdown-item" href="{{ route('reposicao') }}">Reposição</a></li>
+                    </ul>
+                </li>
+            </ul>
             @endguest
             <span class="navbar-text" style="margin-right: 40px;">
                 @guest
