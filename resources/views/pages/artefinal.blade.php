@@ -561,7 +561,7 @@ $.ajaxSetup({
         reatribuirEventosExcluir(); 
         
         function configurarTabela() {
-            let table = $('#tabela-pedidos').DataTable({
+        let table = $('#tabela-pedidos').DataTable({
             fixedHeader: true,
             select: true,
             order: [[1, 'asc']],
@@ -657,7 +657,6 @@ $.ajaxSetup({
             columnResizing: true,
             colReorder: true,
         });
-        contarRegistrosPorData(table);
         // Selecione a linha onde o ID do usuário bate com o logado
         let row = table.row(function(idx, data) {
         return data[18] === {{ auth()->id() }}; 
@@ -799,10 +798,9 @@ $.ajaxSetup({
         // Se nenhum filtro corresponder, retorne a mensagem original
         return message;
     }
-    contarRegistrosPorData(table);
-
-    function contarRegistrosPorData(table) {
-        let tabelaPedidos = table;
+    contarRegistrosPorData()
+    function contarRegistrosPorData() {
+        let tabelaPedidos = $('#tabela-pedidos');
         let registrosPorData = {};
 
         // Percorre as linhas da tabela
