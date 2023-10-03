@@ -1327,53 +1327,33 @@ $.ajaxSetup({
             }
             
             function contarRegistrosPorData() {
-  // Fazer a solicitação AJAX para obter os pedidos
-            $.ajax({
-                url: '/pedido/', // Substitua pelo caminho correto da sua rota Laravel
-                method: 'GET',
-                dataType: 'json',
-                success: function(response) {
-                // Array para armazenar as contagens de pedidos por dia
-                var contagemPedidosPorDia = {};
+                $registrosPorData = array();
 
-                // Percorre os pedidos
-                for (var i = 0; i < response.pedidos.length; i++) {
-                    var pedido = response.pedidos[i];
-                    var data = pedido.data;
-                    data = data.split('-').reverse().join('/'); // Converte o formato da data para 'dd/mm/yyyy'
+                // Percorre a tabela de pedidos
+                foreach ($tabelaPedidos as $pedido) {
+                    // Obtém a data do pedido
+                    $dataPedido = $pedido->data;
 
-                    // Verifica se a data já existe no objeto de contagem
-                    if (contagemPedidosPorDia[data]) {
-                    // Incrementa a contagem em 1
-                    contagemPedidosPorDia[data]++;
+                    // Converte a data para o formato desejado
+                    $dataFormatada = date('d/m/Y', strtotime($dataPedido));
+
+                    // Verifica se já existe um contador para essa data
+                    if (isset($registrosPorData[$dataFormatada])) {
+                        // Incrementa o contador existente
+                        $registrosPorData[$dataFormatada]++;
                     } else {
-                    // Cria uma nova entrada no objeto de contagem com contagem inicial 1
-                    contagemPedidosPorDia[data] = 1;
+                        // Inicia o contador para essa data
+                        $registrosPorData[$dataFormatada] = 1;
                     }
                 }
 
-                // Obtém a referência do elemento "qtd-dia-artes"
-                var qtdDiaArtes = document.getElementById("qtd-dia-artes");
-                console.log(qtdDiaArtes);
-                // Cria uma variável para armazenar o conteúdo HTML
-                var htmlContagem = "";
-
-                // Percorre a contagem de pedidos por dia
-                for (var data in contagemPedidosPorDia) {
-                    // Obtém a quantidade de pedidos para a data atual
-                    var contagem = contagemPedidosPorDia[data];
-
-                    // Cria o conteúdo HTML para a contagem
-                    htmlContagem += "Data: " + data + " - Quantidade de pedidos: " + contagem + "<br>";
+                // Mostra o resultado
+                foreach ($registrosPorData as $data => $contador) {
+                    echo "Data: $data - Registros: $contador <br>";
                 }
 
-                // Define o conteúdo HTML no elemento "qtd-dia-artes"
-                qtdDiaArtes.innerHTML = htmlContagem;
-                },
-                error: function(error) {
-                console.log(error);
-                }
-            });
+                // Exibe o resultado na div com o id "qtd-dia-artes"
+                echo '<script>document.getElementById("qtd-dia-artes").innerHTML = "'.json_encode($registrosPorData).'";</script>';
             }
             // Chamada inicial para atualizar as cores ao carregar a página
             updateColors();
