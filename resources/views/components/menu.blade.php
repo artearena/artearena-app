@@ -52,6 +52,9 @@
                 <li class="nav-item">
                     <a class="nav-link {{ request()->is('tiny.relatorio') ? 'active' : '' }}" href="{{ route('tiny.relatorio') }}">Tiny relatório</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ request()->is('octa.crm') ? 'active' : '' }}" href="{{ route('octa.crm') }}">CRM Octa</a>
+                </li>
             </ul>
             @endguest
             <span class="navbar-text" style="margin-right: 40px;">
