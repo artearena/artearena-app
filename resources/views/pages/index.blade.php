@@ -99,7 +99,6 @@ Inicio
                 </div>
             </div>
             <div class="col-md-6">
-
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">CRM Octa</h5>
@@ -110,7 +109,6 @@ Inicio
             </div>
         </div>
     </div>
-    
 </div>
 
 <div class="modal fade" id="modal-encurtar-link" tabindex="-1" role="dialog" aria-labelledby="modal-encurtar-link-label" aria-hidden="true">

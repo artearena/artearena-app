@@ -20,42 +20,27 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarText">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                @guest
-
-                @else
-              
-                <li class="nav-item">
-                    <a class="nav-link {{ request()->is('/') ? 'active' : '' }}" href="{{ route('home') }}">Início</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link {{ request()->is('bandeira') ? 'active' : '' }}" href="{{ route('bandeira') }}">Bandeiras</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link {{ request()->is('frete') ? 'active' : '' }}" href="{{ route('frete') }}">Gerar Orçamentos</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link {{ request()->is('pedido') ? 'active' : '' }}" href="{{ route('pedido') }}">Arte Final</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link {{ request()->is('impressao') ? 'active' : '' }}" href="{{ route('impressao') }}">Impressão</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link {{ request()->is('confeccao') ? 'active' : '' }}" href="{{ route('confeccao') }}">Controle de Confecções</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link {{ request()->is('reposicao') ? 'active' : '' }}" href="{{ route('reposicao') }}">Controle de Reposições</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link {{ request()->is('trello.index') ? 'active' : '' }}" href="{{ route('trello.index') }}">Lista do Trello</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link {{ request()->is('tiny.relatorio') ? 'active' : '' }}" href="{{ route('tiny.relatorio') }}">Tiny relatório</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link {{ request()->is('octa.crm') ? 'active' : '' }}" href="{{ route('octa.crm') }}">CRM Octa</a>
-                </li>
-            </ul>
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            @guest
+            @else
+            <li class="nav-item">
+                <a class="nav-link {{ request()->is('/') ? 'active' : '' }}" href="{{ route('home') }}">Início</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle {{ request()->is('funcionalidades*') ? 'active' : '' }}" href="#" id="funcionalidadesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Funcionalidades</a>
+                <ul class="dropdown-menu" aria-labelledby="funcionalidadesDropdown">
+                    <li><a class="dropdown-item" href="{{ route('bandeira') }}">Bandeiras</a></li>
+                    <li><a class="dropdown-item" href="{{ route('frete') }}">Gerar Orçamentos</a></li>
+                    <li><a class="dropdown-item" href="{{ route('pedido') }}">Arte Final</a></li>
+                    <li><a class="dropdown-item" href="{{ route('impressao') }}">Impressão</a></li>
+                    <li><a class="dropdown-item" href="{{ route('confeccao') }}">Controle de Confecções</a></li>
+                    <li><a class="dropdown-item" href="{{ route('reposicao') }}">Controle de Reposições</a></li>
+                    <li><a class="dropdown-item" href="{{ route('trello.index') }}">Lista do Trello</a></li>
+                    <li><a class="dropdown-item" href="{{ route('tiny.relatorio') }}">Tiny relatório</a></li>
+                    <li><a class="dropdown-item" href="{{ route('octa.crm') }}">CRM Octa</a></li>
+                </ul>
+            </li>
+        </ul>
             @endguest
             <span class="navbar-text" style="margin-right: 40px;">
                 @guest
