@@ -1328,7 +1328,7 @@ $.ajaxSetup({
             }
             
             function contarRegistrosPorData() {
-                let tabelaPedidos = $('#tabela-pedidos').DataTable();
+                let tabelaPedidos = $('#tabela-pedidos').DataTable().data();
                 let registrosPorData = {};
                 console.log(tabelaPedidos);
 
