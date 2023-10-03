@@ -236,7 +236,6 @@ Consulta de Pedidos
                     <hr>
                         <div id="metragem_total"></div>
                     <hr>
-                    <hr>
                         <div id="qtd-dia-artes">Quantidade de artes</div>
                     <hr>
                     <div class="tabela-container">
