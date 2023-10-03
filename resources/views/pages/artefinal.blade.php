@@ -1354,7 +1354,7 @@ $.ajaxSetup({
 
                 // Obtém a referência do elemento "qtd-dia-artes"
                 var qtdDiaArtes = document.getElementById("qtd-dia-artes");
-
+                console.log(qtdDiaArtes);
                 // Cria uma variável para armazenar o conteúdo HTML
                 var htmlContagem = "";
 
