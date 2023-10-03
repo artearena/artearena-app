@@ -2,6 +2,13 @@
 @section('title')
 Inicio
 @endsection
+@section('style')
+<style>
+    .col-md-4(
+        text-align: center;
+    )
+</style>
+@endsection
 
 @section('content')
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
