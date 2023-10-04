@@ -96,14 +96,16 @@
                     </select>
                 </td>
                 <td class="text-center" style="display:none">{{ $cliente->origem }}</td>
-                <select class="form-control" name="status_conversa">
-                    <option value="">Selecione uma opção</option>
-                    <option value="Lead" {{ $cliente->status_conversa == 'Lead' ? 'selected' : '' }}>Lead</option>
-                    <option value="Venda Concluída" {{ $cliente->status_conversa == 'Venda Concluída' ? 'selected' : '' }}>Venda Concluída</option>
-                    <option value="Enviado" {{ $cliente->status_conversa == 'Enviado' ? 'selected' : '' }}>Enviado</option>
-                    <option value="Aberto" {{ $cliente->status_conversa == 'Aberto' ? 'selected' : '' }}>Aberto</option>
-                </select>                
-<td class="text-center">{{ $cliente->created_at }}</td>
+                <td>
+                    <select class="form-control" name="status_conversa">
+                        <option value="">Selecione uma opção</option>
+                        <option value="Lead" {{ $cliente->status_conversa == 'Lead' ? 'selected' : '' }}>Lead</option>
+                        <option value="Venda Concluída" {{ $cliente->status_conversa == 'Venda Concluída' ? 'selected' : '' }}>Venda Concluída</option>
+                        <option value="Enviado" {{ $cliente->status_conversa == 'Enviado' ? 'selected' : '' }}>Enviado</option>
+                        <option value="Aberto" {{ $cliente->status_conversa == 'Aberto' ? 'selected' : '' }}>Aberto</option>
+                    </select>                
+                </td> 
+                <td class="text-center">{{ $cliente->created_at }}</td>
                 <td class="text-center">
                     <div class='date datetimepicker'>
                         <input type="datetime-local" class="form-control" id="date" lang="pt-br"
@@ -133,7 +135,7 @@
                 <td class="text-center">Prov.</td>
                 <td class="text-center">Prov.</td>
                 <td class="text-center">Prov.</td>
-
+                
                 <td class="text-center">
                     <a href="#" class="btn btn-primary ms-1" target="_blank">
                         <i class="fa-brands fa-trello"></i>
