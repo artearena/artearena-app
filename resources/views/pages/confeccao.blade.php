@@ -987,27 +987,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     return metragemTotal.toFixed(2);
     }
-    function converterTempo(tempoEmHoras) {
-    if (tempoEmHoras >= 24) {
-        const dias = Math.floor(tempoEmHoras / 24);
-        const horasRestantes = tempoEmHoras % 24;
-        return `${dias} dia(s) e ${horasRestantes} hora(s)`;
-    } else if (tempoEmHoras < 1) {
-        const minutos = Math.floor(tempoEmHoras * 60);
-        return `${minutos} minuto(s)`;
-    } else {
-        const horas = Math.floor(tempoEmHoras);
-        const minutosRestantes = Math.floor((tempoEmHoras - horas) * 60);
-        return `${horas} hora(s) e ${minutosRestantes} minuto(s)`;
-    }
-    }
-  // Função para calcular a metragem por hora
-    function calcularMetragemPorHora() {
-        const metragemTotal = calcularMetragemTotal();
-        const metrosPorHora = 60; // Altere o valor conforme necessário
-        const metragemPorHora = (metragemTotal / metrosPorHora).toFixed(2);
-        return converterTempo(metragemPorHora);
-    }
+
   // Função para calcular a metragem por tipo de material
   function calcularMetragemPorMaterial() {
     const metragemPorMaterial = {};
@@ -1067,7 +1047,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     function atualizarMetragemTotal() {
         const metragemTotal = calcularMetragemTotal();
-        const metragemPorHora = calcularMetragemPorHora();
         const metragemPorMaterial = calcularMetragemPorMaterial();
         const quantidadePorProduto = calcularQuantidadePorProduto();
         console.log(metragemPorMaterial);
@@ -1075,7 +1054,6 @@ document.addEventListener('DOMContentLoaded', function() {
             <div style="display: flex; flex-direction: row;">
             <div style="margin-right: 20px;">
                 <p>Metragem Total: ${metragemTotal}M</p>
-                <p>Metragem por Hora: ${metragemPorHora}</p>
                 <p>Metragem por Material:</p>
                 <ul>
                 ${Object.entries(metragemPorMaterial)
