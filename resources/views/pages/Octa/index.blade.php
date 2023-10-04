@@ -158,9 +158,9 @@
                 // Habilitar ou desabilitar o campo template_message com base no valor do campo data_agendamento
                 var templateMessageField = $(this).closest('tr').find('.mensagem_id');
                 if (newDateTime) {
-                    templateMessageField.prop('readonly', false);
+                    templateMessageField.prop('disabled', false);
                 } else {
-                    templateMessageField.prop('readonly', true);
+                    templateMessageField.prop('disabled', true);
                 }
 
                 // Enviar requisição AJAX para atualizar a tabela com os novos dados
