@@ -113,7 +113,7 @@
 @section('content')
 <div class="container">
     <div class="container mt-4">
-        <h1>Calcular Frete</h1>
+        <h1>Gerar Orçamentos</h1>
         <div class="row">
             <div class="col-md-6">
                 <form id="produto-form" method="POST" action="">
