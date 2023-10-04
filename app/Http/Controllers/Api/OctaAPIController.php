@@ -29,10 +29,12 @@ class OctaAPIController extends Controller
             $cliente->mensagem_template_id = $mensagem_template_id;
             $cliente->data_agendamento = $data_agendamento;
             $cliente->save();
-
+            // Registrar mensagem de log
+            info('Cliente cadastrado com sucesso!');
             return response()->json(['message' => 'Dados salvos com sucesso!']);
         }
-
+        // Registrar mensagem de log
+        info('Cliente não encontrado!');
         return response()->json(['message' => 'Cliente não encontrado.']);
     }
 }
