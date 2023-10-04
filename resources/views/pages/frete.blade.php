@@ -98,6 +98,15 @@
         #campoTexto{
             min-height: 300px;
         }
+        .radio-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .radio-container label {
+            margin-bottom: 0;
+        }
 </style>
 @endsection
 
@@ -111,13 +120,15 @@
                     @csrf
                   
                     <div class="form-group">
-                    <div class="custom-control custom-radio">
-                        <input type="radio" id="gerarRascunho" name="tipoDocumento" class="custom-control-input" value="1">
-                        <label class="custom-control-label" for="gerarRascunho">Gerar Rascunho</label>
-                    </div>
-                    <div class="custom-control custom-radio">
-                        <input type="radio" id="gerarOrcamento" name="tipoDocumento" class="custom-control-input">
-                        <label class="custom-control-label" for="gerarOrcamento">Gerar Orçamento</label>
+                    <div class="radio-container">
+                        <div class="custom-control custom-radio">
+                            <input type="radio" id="gerarRascunho" name="tipoDocumento" class="custom-control-input" checked>
+                            <label class="custom-control-label" for="gerarRascunho">Gerar Rascunho</label>
+                        </div>
+                        <div class="custom-control custom-radio">
+                            <input type="radio" id="gerarOrcamento" name="tipoDocumento" class="custom-control-input">
+                            <label class="custom-control-label" for="gerarOrcamento">Gerar Orçamento</label>
+                        </div>
                     </div>
                   </div>
                     <div class="form-group">
@@ -197,65 +208,65 @@
           $('#produto').select2();
 
           function consultarProduto() {
-       var produto = $('#produto').val();
+            var produto = $('#produto').val();
 
-      // Realizar requisição AJAX para obter dados do produto do Tiny API
-      $.get('https://artearena.kinghost.net/consultar-tiny', {
-        token: 'bc3cdea243d8687963fa642580057531456d34fa',
-        id: produto,
-        formato: 'json'
-      }, function(response) {
-        var produtoData = response;
-        console.log(response);
+            // Realizar requisição AJAX para obter dados do produto do Tiny API
+            $.get('https://artearena.kinghost.net/consultar-tiny', {
+              token: 'bc3cdea243d8687963fa642580057531456d34fa',
+              id: produto,
+              formato: 'json'
+            }, function(response) {
+              var produtoData = response;
+              console.log(response);
 
-        // Verificar se o produto possui prazo de confecção
-        var prazoConfecao = produtoData.retorno.produto.dias_preparacao || 0;
+              // Verificar se o produto possui prazo de confecção
+              var prazoConfecao = produtoData.retorno.produto.dias_preparacao || 0;
 
-        // Adicionar registro à tabela de produtos selecionados
-        const tableBody = document.getElementById("produtoTableBody");
-        const newRow = tableBody.insertRow();
-        newRow.innerHTML = `
-          <td hidden>${produto}</td>
-          <td>${produtoData.retorno.produto.nome}</td>
-          <td>
-            <input type="text" class="form-control" value="${produtoData.retorno.produto.preco}" onchange='
-              var valor = this.value;
-              this.value = valor;
-              console.log("alterado");
-            '>
-          </td>
-          <td>
-              <input type="number" class="form-control" value="${produtoData.retorno.produto.peso_bruto}" onchange='
-                var peso = this.value;
-                this.value = peso;
-                this.removeAttribute("readonly");
-              '>
-          </td>
-          <td>
-            <input type="number" class="form-control" value="1" onchange='
-              var quantidade = this.value;
-              if (quantidade <= 0) {
-                this.value = 1; <!-- Defina um valor padrão, caso o usuário insira um valor negativo ou zero -->
-              }
-              this.removeAttribute("readonly");
-            '>
-        </td>
+              // Adicionar registro à tabela de produtos selecionados
+              const tableBody = document.getElementById("produtoTableBody");
+              const newRow = tableBody.insertRow();
+              newRow.innerHTML = `
+                <td hidden>${produto}</td>
+                <td>${produtoData.retorno.produto.nome}</td>
+                <td>
+                  <input type="text" class="form-control" value="${produtoData.retorno.produto.preco}" onchange='
+                    var valor = this.value;
+                    this.value = valor;
+                    console.log("alterado");
+                  '>
+                </td>
+                <td>
+                    <input type="number" class="form-control" value="${produtoData.retorno.produto.peso_bruto}" onchange='
+                      var peso = this.value;
+                      this.value = peso;
+                      this.removeAttribute("readonly");
+                    '>
+                </td>
+                <td>
+                  <input type="number" class="form-control" value="1" onchange='
+                    var quantidade = this.value;
+                    if (quantidade <= 0) {
+                      this.value = 1; <!-- Defina um valor padrão, caso o usuário insira um valor negativo ou zero -->
+                    }
+                    this.removeAttribute("readonly");
+                  '>
+              </td>
 
-          <td>
-            <input type="number" class="form-control prazo-confeccao" value="${prazoConfecao}" onchange='
-              var prazoConfecao = this.value;
-              this.value = prazoConfecao;
-              this.removeAttribute("readonly");
-            '>
-          </td>
-          <td onclick="var tableRow = this.closest('tr'); tableRow.remove();">
-            <button class="btn btn-danger">Remover</button>
-          </td>
-        `;
-        newRow.querySelector("td input").dataset.id = produto;
-      });
-    
-  }
+                <td>
+                  <input type="number" class="form-control prazo-confeccao" value="${prazoConfecao}" onchange='
+                    var prazoConfecao = this.value;
+                    this.value = prazoConfecao;
+                    this.removeAttribute("readonly");
+                  '>
+                </td>
+                <td onclick="var tableRow = this.closest('tr'); tableRow.remove();">
+                  <button class="btn btn-danger">Remover</button>
+                </td>
+              `;
+              newRow.querySelector("td input").dataset.id = produto;
+            });
+            
+        }
 
 
           $('#produto').change(function() {
@@ -459,83 +470,83 @@
           }
         });
 
-       // Adicionar a transportadora "Retirada"
-      const retiradaCardElement = document.createElement("div");
-      retiradaCardElement.classList.add("card");
-      const tituloRetirada = document.createElement("p");
-      const nomeRetiradaElement = document.createElement("h4");
-      nomeRetiradaElement.textContent = "Retirada";
-      tituloRetirada.appendChild(nomeRetiradaElement);
-      const logoRetiradaElement = document.createElement("img");
-      logoRetiradaElement.src = "./images/logopreto.png"; // Ajuste o caminho para o logo da "Retirada"
-      const valorFreteRetiradaElement = document.createElement("p");
-      valorFreteRetiradaElement.textContent = "Valor do Frete: R$0.00"; // Ajuste o valor do frete para a "Retirada"
-      const prazoEntregaRetiradaElement = document.createElement("p");
-      prazoEntregaRetiradaElement.textContent = "Prazo de Entrega: A combinar"; // Ajuste o prazo de entrega para a "Retirada"
-      const dataPrevEntregaRetiradaElement = document.createElement("p");
-      dataPrevEntregaRetiradaElement.textContent = "Previsão: A combinar"; // Ajuste a previsão para a "Retirada"
-      retiradaCardElement.appendChild(tituloRetirada);
-      retiradaCardElement.appendChild(logoRetiradaElement);
-      retiradaCardElement.appendChild(valorFreteRetiradaElement);
-      retiradaCardElement.appendChild(prazoEntregaRetiradaElement);
-      retiradaCardElement.appendChild(dataPrevEntregaRetiradaElement);
-      cardsContainer.appendChild(retiradaCardElement);
-      // Adicionar evento de seleção ao card de "Retirada"
-      retiradaCardElement.addEventListener("click", function () {
-        const selectedCard = document.querySelector(".card.selected");
-        if (selectedCard) {
-          selectedCard.classList.remove("selected");
-        }
-        // Adicionar classe "selected" ao card selecionado
-        this.classList.add("selected");
-        // Exibir detalhes do frete no campo de texto
-        const campoTexto = document.getElementById("campoTexto");
-        campoTexto.value = "";
-        let produtosSelecionados = {};
-        const tableRows = $("#produtoTableBody tr");
-        tableRows.each(function () {
-          const id = $(this).find("td:first-child").text();
-          const nomeProduto = $(this).find("td:nth-child(2)").text();
-          const valorProduto = parseFloat($(this).find("td:nth-child(3) input").val());
-          const quantidade = parseInt($(this).find("td:nth-child(5) input").val());
-          if (!produtosSelecionados.hasOwnProperty(id)) {
-            produtosSelecionados[id] = {
-              nome: nomeProduto,
-              valor: valorProduto,
-              quantidade: quantidade
-            };
-          } else {
-            produtosSelecionados[id].quantidade += quantidade;
+        // Adicionar a transportadora "Retirada"
+        const retiradaCardElement = document.createElement("div");
+        retiradaCardElement.classList.add("card");
+        const tituloRetirada = document.createElement("p");
+        const nomeRetiradaElement = document.createElement("h4");
+        nomeRetiradaElement.textContent = "Retirada";
+        tituloRetirada.appendChild(nomeRetiradaElement);
+        const logoRetiradaElement = document.createElement("img");
+        logoRetiradaElement.src = "./images/logopreto.png"; // Ajuste o caminho para o logo da "Retirada"
+        const valorFreteRetiradaElement = document.createElement("p");
+        valorFreteRetiradaElement.textContent = "Valor do Frete: R$0.00"; // Ajuste o valor do frete para a "Retirada"
+        const prazoEntregaRetiradaElement = document.createElement("p");
+        prazoEntregaRetiradaElement.textContent = "Prazo de Entrega: A combinar"; // Ajuste o prazo de entrega para a "Retirada"
+        const dataPrevEntregaRetiradaElement = document.createElement("p");
+        dataPrevEntregaRetiradaElement.textContent = "Previsão: A combinar"; // Ajuste a previsão para a "Retirada"
+        retiradaCardElement.appendChild(tituloRetirada);
+        retiradaCardElement.appendChild(logoRetiradaElement);
+        retiradaCardElement.appendChild(valorFreteRetiradaElement);
+        retiradaCardElement.appendChild(prazoEntregaRetiradaElement);
+        retiradaCardElement.appendChild(dataPrevEntregaRetiradaElement);
+        cardsContainer.appendChild(retiradaCardElement);
+        // Adicionar evento de seleção ao card de "Retirada"
+        retiradaCardElement.addEventListener("click", function () {
+          const selectedCard = document.querySelector(".card.selected");
+          if (selectedCard) {
+            selectedCard.classList.remove("selected");
           }
+          // Adicionar classe "selected" ao card selecionado
+          this.classList.add("selected");
+          // Exibir detalhes do frete no campo de texto
+          const campoTexto = document.getElementById("campoTexto");
+          campoTexto.value = "";
+          let produtosSelecionados = {};
+          const tableRows = $("#produtoTableBody tr");
+          tableRows.each(function () {
+            const id = $(this).find("td:first-child").text();
+            const nomeProduto = $(this).find("td:nth-child(2)").text();
+            const valorProduto = parseFloat($(this).find("td:nth-child(3) input").val());
+            const quantidade = parseInt($(this).find("td:nth-child(5) input").val());
+            if (!produtosSelecionados.hasOwnProperty(id)) {
+              produtosSelecionados[id] = {
+                nome: nomeProduto,
+                valor: valorProduto,
+                quantidade: quantidade
+              };
+            } else {
+              produtosSelecionados[id].quantidade += quantidade;
+            }
+          });
+          let produtosDescricao = "";
+          for (const id in produtosSelecionados) {
+            if (produtosSelecionados.hasOwnProperty(id)) {
+              const nomeProduto = produtosSelecionados[id].nome;
+              const quantidade = produtosSelecionados[id].quantidade;
+              const valor = produtosSelecionados[id].valor;
+              const produtoDescricao = `${quantidade} un - ${nomeProduto} - R$${valor}\n`;
+              produtosDescricao += produtoDescricao;
+            }
+          }
+          const titulo = "Retirada";
+          const frete = "Retirada"; // Substituir pelo texto desejado para "Retirada"
+          const prazoEntrega = "Retirada"; // Substituir pelo texto desejado para "Retirada"
+          let valorTotal = 0;
+          for (const id in produtosSelecionados) {
+            if (produtosSelecionados.hasOwnProperty(id)) {
+              const valorProduto = produtosSelecionados[id].valor;
+              const quantidade = produtosSelecionados[id].quantidade;
+              valorTotal += valorProduto * quantidade;
+            }
+          }
+          const valorTotalFormatado = valorTotal.toFixed(2);
+          const prazoConfeccao = prazoConfecaoMaisAlto;
+          const detalhesFrete = `Frete: ${frete} \n\n`; // Ajustar o texto para "Retirada"
+          const total = `Total: R$${valorTotalFormatado}\n`;
+          const prazo = `Prazo para confecção é de ${prazoConfeccao} dias úteis.\nPrazo inicia-se após aprovação da arte e pagamento confirmado`;
+          campoTexto.value = `${produtosDescricao}\n${total}\n${prazo}`;
         });
-        let produtosDescricao = "";
-        for (const id in produtosSelecionados) {
-          if (produtosSelecionados.hasOwnProperty(id)) {
-            const nomeProduto = produtosSelecionados[id].nome;
-            const quantidade = produtosSelecionados[id].quantidade;
-            const valor = produtosSelecionados[id].valor;
-            const produtoDescricao = `${quantidade} un - ${nomeProduto} - R$${valor}\n`;
-            produtosDescricao += produtoDescricao;
-          }
-        }
-        const titulo = "Retirada";
-        const frete = "Retirada"; // Substituir pelo texto desejado para "Retirada"
-        const prazoEntrega = "Retirada"; // Substituir pelo texto desejado para "Retirada"
-        let valorTotal = 0;
-        for (const id in produtosSelecionados) {
-          if (produtosSelecionados.hasOwnProperty(id)) {
-            const valorProduto = produtosSelecionados[id].valor;
-            const quantidade = produtosSelecionados[id].quantidade;
-            valorTotal += valorProduto * quantidade;
-          }
-        }
-        const valorTotalFormatado = valorTotal.toFixed(2);
-        const prazoConfeccao = prazoConfecaoMaisAlto;
-        const detalhesFrete = `Frete: ${frete} \n\n`; // Ajustar o texto para "Retirada"
-        const total = `Total: R$${valorTotalFormatado}\n`;
-        const prazo = `Prazo para confecção é de ${prazoConfeccao} dias úteis.\nPrazo inicia-se após aprovação da arte e pagamento confirmado`;
-        campoTexto.value = `${produtosDescricao}\n${total}\n${prazo}`;
-      });
       });
     });
 
