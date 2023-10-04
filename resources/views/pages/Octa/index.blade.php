@@ -103,7 +103,7 @@
                             </div>
                         </td>
                         <td>
-                            <select name="mensagem_id" class="form-control mensagem_id">
+                            <select name="mensagem_id" class="form-control mensagem_id" @if (!$cliente->data_agendamento) readonly @endif>
                                 <option value="">Selecione uma mensagem</option>
                                 @php
                                     $mensagensOrdenadas = $mensagens->sortBy('titulo');
@@ -151,11 +151,18 @@
             });
 
             $('.datetimepicker').on('change', function() {
-
                 var id = $(this).closest('tr').find('.cliente-id').text();
                 var newDateTime = $(this).closest('tr').find('#date').val();
-
                 console.log(newDateTime);
+
+                // Habilitar ou desabilitar o campo template_message com base no valor do campo data_agendamento
+                var templateMessageField = $(this).closest('tr').find('.mensagem_id');
+                if (newDateTime) {
+                    templateMessageField.prop('readonly', false);
+                } else {
+                    templateMessageField.prop('readonly', true);
+                }
+
                 // Enviar requisição AJAX para atualizar a tabela com os novos dados
                 $.ajax({
                     url: '/crm/atualizar-data/' + id,
