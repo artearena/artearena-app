@@ -60,13 +60,15 @@
                 <th>Empresa</th>
                 <th>Responsável</th>
                 <th style="display:none">Origem</th>
-                <th>Status da Conversa</th>
+                <th>Status</th>
                 <th>Criado em</th>
                 <th>Agendamento</th>
                 <th>Template</th>
                 <th>Bloqueado</th>
                 <th>Qualificado</th>
                 <th>Motivo da perda</th>
+                <th>Categoria</th>
+                <th>Termometro</th>
                 <th>Card</th>
             </tr>
         </thead>
@@ -120,9 +122,12 @@
                         @endforeach
                     </select>
                 </td>
-                <td class="text-center"></td>
-                <td class="text-center"></td>
-                <td class="text-center"></td>
+                <td class="text-center">Prov.</td>
+                <td class="text-center">Prov.</td>
+                <td class="text-center">Prov.</td>
+                <td class="text-center">Prov.</td>
+                <td class="text-center">Prov.</td>
+                
                 <td class="text-center">
                     <a href="#" class="btn btn-primary ms-1" target="_blank">
                         <i class="fa-brands fa-trello"></i>
