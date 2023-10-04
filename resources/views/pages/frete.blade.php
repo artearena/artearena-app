@@ -140,7 +140,6 @@ Simulação de Frete
                         <tbody id="produtoTableBody"></tbody>
                     </table>
                 </form>
-
                 <form id="cep-form" method="POST" action="">
                     @csrf
                     <div class="form-group">
@@ -153,30 +152,34 @@ Simulação de Frete
                     </div>
                 </form>
                 <div class="row">
-
-                  <div class="col-md-12">
-                      <div id="transp-title">
-                          <h3>Transportadoras:</h3>
-                      </div>
-                      <div class="cards-container" id="cardsContainer"></div>
-                  </div>
+                    <div class="col-md-12">
+                        <div id="transp-title">
+                            <h3>Transportadoras:</h3>
+                        </div>
+                        <div class="cards-container" id="cardsContainer"></div>
+                    </div>
                 </div>
-          
-                  <button type="button" class="btn btn-primary" id="calcularFrete">Calcular frete</button>
-
+                <div class="form-group">
+                    <div class="custom-control custom-radio">
+                        <input type="radio" id="gerarRascunho" name="tipoDocumento" class="custom-control-input">
+                        <label class="custom-control-label" for="gerarRascunho">Gerar Rascunho</label>
+                    </div>
+                    <div class="custom-control custom-radio">
+                        <input type="radio" id="gerarOrcamento" name="tipoDocumento" class="custom-control-input">
+                        <label class="custom-control-label" for="gerarOrcamento">Gerar Orçamento</label>
+                    </div>
+                </div>
+                <button type="button" class="btn btn-primary" id="calcularFrete">Calcular</button>
             </div>
             <div class="col-sm-6">
-
-                          
-                  <h4>Detalhes do Frete:</h4>
-                  <div class="details-container">
+                <h4>Detalhes do Frete:</h4>
+                <div class="details-container">
                     <textarea class="form-control" id="campoTexto" rows="5"></textarea>
                     <button type="button" class="btn btn-primary mt-2" id="botaoCopiar">Copiar</button>
                     <p class="text-success mt-2" id="avisoCopiado" style="display: none;">Copiado com sucesso!</p>
                 </div>
-              </div>
-          </div>
-        
+            </div>
+        </div>
     </div>
 </div>
 @endsection
