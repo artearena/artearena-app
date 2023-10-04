@@ -376,58 +376,45 @@ Simulação de Frete
         }
         console.log(data);
         data.forEach(transportadora => {
-          if(transportadora.transp_nome !== "Retira") {
-
+          if (transportadora.transp_nome !== "Retira") {
             const cardElement = document.createElement("div");
             cardElement.classList.add("card");
-
             const titulo = document.createElement("p");
             const nomeElement = document.createElement("h4");
             nomeElement.textContent = transportadora.transp_nome;
             titulo.appendChild(nomeElement);
-
             const logoElement = document.createElement("img");
             logoElement.src = transportadora.url_logo;
-
             const valorFreteElement = document.createElement("p");
             valorFreteElement.textContent = `Valor do Frete: ${transportadora.vlrFrete}`;
-
             const prazoEntregaElement = document.createElement("p");
             prazoEntregaElement.textContent = `Prazo de Entrega: ${transportadora.prazoEnt}`;
-
             const dataPrevEntregaElement = document.createElement("p");
             dataPrevEntregaElement.textContent = `Previsão: ${formatarData(transportadora.dtPrevEnt)}`;
-
-            cardElement.appendChild(titulo); 
+            cardElement.appendChild(titulo);
             cardElement.appendChild(logoElement);
             cardElement.appendChild(valorFreteElement);
             cardElement.appendChild(prazoEntregaElement);
             cardElement.appendChild(dataPrevEntregaElement);
-
             cardsContainer.appendChild(cardElement);
-
             // Adicionar evento de seleção ao card
-            cardElement.addEventListener("click", function() {
+            cardElement.addEventListener("click", function () {
               const selectedCard = document.querySelector(".card.selected");
               if (selectedCard) {
                 selectedCard.classList.remove("selected");
               }
               // Adicionar classe "selected" ao card selecionado
               this.classList.add("selected");
-
               // Exibir detalhes do frete no campo de texto
               const campoTexto = document.getElementById("campoTexto");
               campoTexto.value = "";
-
               let produtosSelecionados = {};
-
               const tableRows = $("#produtoTableBody tr");
-              tableRows.each(function() {
+              tableRows.each(function () {
                 const id = $(this).find("td:first-child").text();
                 const nomeProduto = $(this).find("td:nth-child(2)").text();
                 const valorProduto = parseFloat($(this).find("td:nth-child(3) input").val());
                 const quantidade = parseInt($(this).find("td:nth-child(5) input").val());
-
                 if (!produtosSelecionados.hasOwnProperty(id)) {
                   produtosSelecionados[id] = {
                     nome: nomeProduto,
@@ -438,9 +425,7 @@ Simulação de Frete
                   produtosSelecionados[id].quantidade += quantidade;
                 }
               });
-
               let produtosDescricao = "";
-
               for (const id in produtosSelecionados) {
                 if (produtosSelecionados.hasOwnProperty(id)) {
                   const nomeProduto = produtosSelecionados[id].nome;
@@ -450,11 +435,10 @@ Simulação de Frete
                   produtosDescricao += produtoDescricao;
                 }
               }
-              const titulo =  transportadora.transp_nome;
+              const titulo = transportadora.transp_nome;
               const frete = transportadora.vlrFrete;
               const prazoEntrega = transportadora.prazoEnt;
               let valorTotal = 0;
-
               for (const id in produtosSelecionados) {
                 if (produtosSelecionados.hasOwnProperty(id)) {
                   const valorProduto = produtosSelecionados[id].valor;
@@ -462,19 +446,49 @@ Simulação de Frete
                   valorTotal += valorProduto * quantidade;
                 }
               }
-
               valorTotal += parseFloat(frete);
-
               const valorTotalFormatado = valorTotal.toFixed(2);
               const prazoConfeccao = prazoConfecaoMaisAlto;
-
               const detalhesFrete = `Frete: ${cepDestino} - R$${frete} - (Dia da postagem + ${prazoEntrega} dias úteis via ${titulo})\n\n`;
               const total = `Total: R$${valorTotalFormatado}\n`;
               const prazo = `Prazo para confecção é de ${prazoConfeccao} dias úteis + prazo de envio.\nPrazo inicia-se após aprovação da arte e pagamento confirmado`;
-
               campoTexto.value = `${produtosDescricao}\n${detalhesFrete}${total}\n${prazo}`;
             });
-          } 
+          }
+        });
+
+        // Adicionar a transportadora "Retirada"
+        const retiradaCardElement = document.createElement("div");
+        retiradaCardElement.classList.add("card");
+        const tituloRetirada = document.createElement("p");
+        const nomeRetiradaElement = document.createElement("h4");
+        nomeRetiradaElement.textContent = "Retirada";
+        tituloRetirada.appendChild(nomeRetiradaElement);
+        const logoRetiradaElement = document.createElement("img");
+        logoRetiradaElement.src = "caminho/para/o/logo-da-retirada.png"; // Ajuste o caminho para o logo da "Retirada"
+        const valorFreteRetiradaElement = document.createElement("p");
+        valorFreteRetiradaElement.textContent = "Valor do Frete: R$0.00"; // Ajuste o valor do frete para a "Retirada"
+        const prazoEntregaRetiradaElement = document.createElement("p");
+        prazoEntregaRetiradaElement.textContent = "Prazo de Entrega: A combinar"; // Ajuste o prazo de entrega para a "Retirada"
+        const dataPrevEntregaRetiradaElement = document.createElement("p");
+        dataPrevEntregaRetiradaElement.textContent = "Previsão: A combinar"; // Ajuste a previsão para a "Retirada"
+        retiradaCardElement.appendChild(tituloRetirada);
+        retiradaCardElement.appendChild(logoRetiradaElement);
+        retiradaCardElement.appendChild(valorFreteRetiradaElement);
+        retiradaCardElement.appendChild(prazoEntregaRetiradaElement);
+        retiradaCardElement.appendChild(dataPrevEntregaRetiradaElement);
+        cardsContainer.appendChild(retiradaCardElement);
+        // Adicionar evento de seleção ao card de "Retirada"
+        retiradaCardElement.addEventListener("click", function () {
+          const selectedCard = document.querySelector(".card.selected");
+          if (selectedCard) {
+            selectedCard.classList.remove("selected");
+          }
+          // Adicionar classe "selected" ao card selecionado
+          this.classList.add("selected");
+          // Exibir detalhes do frete no campo de texto
+          const campoTexto = document.getElementById("campoTexto");
+          campoTexto.value = "Retirada selecionada. O cliente virá retirar o pedido.";
         });
       });
     });
