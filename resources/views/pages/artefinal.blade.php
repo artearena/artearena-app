@@ -524,10 +524,6 @@ Consulta de Pedidos
 @endsection
 
 @section('extraScript')
-<!-- Carregue o jQuery primeiro -->
-
-<!-- Em seguida, carregue a biblioteca Bootstrap -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/js/bootstrap.bundle.min.js"></script>
 
 <!-- Em seguida, carregue o plugin bootstrap-datepicker -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
