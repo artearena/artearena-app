@@ -112,7 +112,7 @@
                   
                     <div class="form-group">
                     <div class="custom-control custom-radio">
-                        <input type="radio" id="gerarRascunho" name="tipoDocumento" class="custom-control-input">
+                        <input type="radio" id="gerarRascunho" name="tipoDocumento" class="custom-control-input" value="1">
                         <label class="custom-control-label" for="gerarRascunho">Gerar Rascunho</label>
                     </div>
                     <div class="custom-control custom-radio">
