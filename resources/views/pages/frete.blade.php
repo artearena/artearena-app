@@ -301,230 +301,181 @@ Simulação de Frete
 
           $(function() {
     // Evento de clique no botão "Calcular frete"
-$('#calcularFrete').click(function() {
-  const url = "https://artearena.kinghost.net/consultar-kangu";
-  const cepDestino = $('#cep').val();
-  var peso_total = 0;
-  var valor_total = 0;
-  var produtos = [];
-  var prazoConfecaoMaisAlto = 0;
-  // Obter os dados dos produtos selecionados na tabela
-  var tableRows = $("#produtoTableBody tr");
-  console.log(tableRows);
-  tableRows.each(function() {
-    var id = $(this).find("td:first-child").text();
-    var valor = parseFloat($(this).find("td:nth-child(3) input").val());
-    var peso = parseFloat($(this).find("td:nth-child(4) input").val());
-    var quantidade = parseInt($(this).find("td:nth-child(5) input").val());
-    var prazoConfecao = parseInt($(this).find("td:nth-child(6) input").val());
-    var produto = {
-      id: id,
-      valor: valor,
-      peso: peso,
-      quantidade: quantidade,
-      prazoConfecao: prazoConfecao
-    };
-    console.log(produto);
-    produtos.push(produto);
-    peso_total += peso * quantidade;
-    valor_total += valor * quantidade;
-    if (prazoConfecao > prazoConfecaoMaisAlto) {
-      prazoConfecaoMaisAlto = prazoConfecao;
-    }
-  });
-  if (prazoConfecaoMaisAlto === 0) {
-    prazoConfecaoMaisAlto = 15; // Prazo de confecção fixo em 15 dias úteis
-  }
-  const bodyData = {
-    cepDestino: cepDestino,
-    vlrMerc: valor_total,
-    pesoMerc: peso_total,
-    produtos: produtos,
-    prazoConfecao: prazoConfecaoMaisAlto
-  };
-  console.log(bodyData);
-  fetch(url, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify(bodyData)
-  })
-  .then(response => response.json())
-  .then(data => {
-    const cardsContainer = document.getElementById("cardsContainer");
-    while (cardsContainer.firstChild) {
-      cardsContainer.removeChild(cardsContainer.firstChild);
-    }
-    if (data.alertas && data.alertas.length > 0) {
-      data.alertas.forEach(alerta => {
-        const alertElement = document.createElement("p");
-        alertElement.textContent = alerta;
-        cardsContainer.appendChild(alertElement);
+    $('#calcularFrete').click(function() {
+      const url = "https://artearena.kinghost.net/consultar-kangu";
+
+      const cepDestino = $('#cep').val();
+      var peso_total = 0;
+      var valor_total = 0;
+      var produtos = [];
+      var prazoConfecaoMaisAlto = 0;
+
+      // Obter os dados dos produtos selecionados na tabela
+      var tableRows = $("#produtoTableBody tr");
+      console.log(tableRows);
+      tableRows.each(function() {
+        var id = $(this).find("td:first-child").text();
+        var valor = parseFloat($(this).find("td:nth-child(3) input").val());
+        var peso = parseFloat($(this).find("td:nth-child(4) input").val());
+        var quantidade = parseInt($(this).find("td:nth-child(5) input").val());
+        var prazoConfecao = parseInt($(this).find("td:nth-child(6) input").val());
+
+        var produto = {
+          id: id,
+          valor: valor,
+          peso: peso,
+          quantidade: quantidade,
+          prazoConfecao: prazoConfecao
+        };
+        console.log(produto);
+        produtos.push(produto);
+
+        peso_total += peso * quantidade;
+        valor_total += valor * quantidade;
+
+        if (prazoConfecao > prazoConfecaoMaisAlto) {
+          prazoConfecaoMaisAlto = prazoConfecao;
+        }
       });
-    }
-    console.log(data);
-    data.forEach(transportadora => {
-      if (transportadora.transp_nome === "Retirada") {
-        const cardElement = document.createElement("div");
-        cardElement.classList.add("card");
-        const titulo = document.createElement("p");
-        const nomeElement = document.createElement("h4");
-        nomeElement.textContent = "Retirada";
-        titulo.appendChild(nomeElement);
-        const logoElement = document.createElement("img");
-        logoElement.src = "caminho/do/logo_retirada.png"; // Substitua pelo caminho do logo de retirada recomendado
-        const valorFreteElement = document.createElement("p");
-        valorFreteElement.textContent = `Frete Grátis`;
-        const prazoEntregaElement = document.createElement("p");
-        prazoEntregaElement.textContent = `Prazo de Entrega: Imediato`;
-        const dataPrevEntregaElement = document.createElement("p");
-        dataPrevEntregaElement.textContent = `Previsão: ${formatarData(transportadora.dtPrevEnt)}`;
-        cardElement.appendChild(titulo);
-        cardElement.appendChild(logoElement);
-        cardElement.appendChild(valorFreteElement);
-        cardElement.appendChild(prazoEntregaElement);
-        cardElement.appendChild(dataPrevEntregaElement);
-        cardsContainer.appendChild(cardElement);
-        // Adicionar evento de seleção ao card
-        cardElement.addEventListener("click", function() {
-          const selectedCard = document.querySelector(".card.selected");
-          if (selectedCard) {
-            selectedCard.classList.remove("selected");
-          }
-          // Adicionar classe "selected" ao card selecionado
-          this.classList.add("selected");
-          // Exibir detalhes do frete no campo de texto
-          const campoTexto = document.getElementById("campoTexto");
-          campoTexto.value = "";
-          let produtosSelecionados = {};
-          const tableRows = $("#produtoTableBody tr");
-          tableRows.each(function() {
-            const id = $(this).find("td:first-child").text();
-            const nomeProduto = $(this).find("td:nth-child(2)").text();
-            const valorProduto = parseFloat($(this).find("td:nth-child(3) input").val());
-            const quantidade = parseInt($(this).find("td:nth-child(5) input").val());
-            if (!produtosSelecionados.hasOwnProperty(id)) {
-              produtosSelecionados[id] = {
-                nome: nomeProduto,
-                valor: valorProduto,
-                quantidade: quantidade
-              };
-            } else {
-              produtosSelecionados[id].quantidade += quantidade;
-            }
-          });
-          let produtosDescricao = "";
-          for (const id in produtosSelecionados) {
-            if (produtosSelecionados.hasOwnProperty(id)) {
-              const nomeProduto = produtosSelecionados[id].nome;
-              const quantidade = produtosSelecionados[id].quantidade;
-              const valor = produtosSelecionados[id].valor;
-              const produtoDescricao = `${quantidade} un - ${nomeProduto} - R$${valor}\n`;
-              produtosDescricao += produtoDescricao;
-            }
-          }
-          const titulo = "Retirada";
-          const frete = 0;
-          const prazoEntrega = "Imediato";
-          let valorTotal = 0;
-          for (const id in produtosSelecionados) {
-            if (produtosSelecionados.hasOwnProperty(id)) {
-              const valorProduto = produtosSelecionados[id].valor;
-              const quantidade = produtosSelecionados[id].quantidade;
-              valorTotal += valorProduto * quantidade;
-            }
-          }
-          valorTotal += parseFloat(frete);
-          const valorTotalFormatado = valorTotal.toFixed(2);
-          const prazoConfeccao = prazoConfecaoMaisAlto;
-          const detalhesFrete = `Retirada Grátis\n\n`;
-          const total = `Total: R$${valorTotalFormatado}\n`;
-          const prazo = `Prazo para confecção é de ${prazoConfeccao} dias úteis.\nPrazo inicia-se após aprovação da arte e pagamento confirmado`;
-          campoTexto.value = `${produtosDescricao}\n${detalhesFrete}${total}\n${prazo}`;
-        });
-      } else if (transportadora.transp_nome !== "Retira") {
-        const cardElement = document.createElement("div");
-        cardElement.classList.add("card");
-        const titulo = document.createElement("p");
-        const nomeElement = document.createElement("h4");
-        nomeElement.textContent = transportadora.transp_nome;
-        titulo.appendChild(nomeElement);
-        const logoElement = document.createElement("img");
-        logoElement.src = transportadora.url_logo;
-        const valorFreteElement = document.createElement("p");
-        valorFreteElement.textContent = `Valor do Frete: ${transportadora.vlrFrete}`;
-        const prazoEntregaElement = document.createElement("p");
-        prazoEntregaElement.textContent = `Prazo de Entrega: ${transportadora.prazoEnt}`;
-        const dataPrevEntregaElement = document.createElement("p");
-        dataPrevEntregaElement.textContent = `Previsão: ${formatarData(transportadora.dtPrevEnt)}`;
-        cardElement.appendChild(titulo);
-        cardElement.appendChild(logoElement);
-        cardElement.appendChild(valorFreteElement);
-        cardElement.appendChild(prazoEntregaElement);
-        cardElement.appendChild(dataPrevEntregaElement);
-        cardsContainer.appendChild(cardElement);
-        // Adicionar evento de seleção ao card
-        cardElement.addEventListener("click", function() {
-          const selectedCard = document.querySelector(".card.selected");
-          if (selectedCard) {
-            selectedCard.classList.remove("selected");
-          }
-          // Adicionar classe "selected" ao card selecionado
-          this.classList.add("selected");
-          // Exibir detalhes do frete no campo de texto
-          const campoTexto = document.getElementById("campoTexto");
-          campoTexto.value = "";
-          let produtosSelecionados = {};
-          const tableRows = $("#produtoTableBody tr");
-          tableRows.each(function() {
-            const id = $(this).find("td:first-child").text();
-            const nomeProduto = $(this).find("td:nth-child(2)").text();
-            const valorProduto = parseFloat($(this).find("td:nth-child(3) input").val());
-            const quantidade = parseInt($(this).find("td:nth-child(5) input").val());
-            if (!produtosSelecionados.hasOwnProperty(id)) {
-              produtosSelecionados[id] = {
-                nome: nomeProduto,
-                valor: valorProduto,
-                quantidade: quantidade
-              };
-            } else {
-              produtosSelecionados[id].quantidade += quantidade;
-            }
-          });
-          let produtosDescricao = "";
-          for (const id in produtosSelecionados) {
-            if (produtosSelecionados.hasOwnProperty(id)) {
-              const nomeProduto = produtosSelecionados[id].nome;
-              const quantidade = produtosSelecionados[id].quantidade;
-              const valor = produtosSelecionados[id].valor;
-              const produtoDescricao = `${quantidade} un - ${nomeProduto} - R$${valor}\n`;
-              produtosDescricao += produtoDescricao;
-            }
-          }
-          const titulo = transportadora.transp_nome;
-          const frete = transportadora.vlrFrete;
-          const prazoEntrega = transportadora.prazoEnt;
-          let valorTotal = 0;
-          for (const id in produtosSelecionados) {
-            if (produtosSelecionados.hasOwnProperty(id)) {
-              const valorProduto = produtosSelecionados[id].valor;
-              const quantidade = produtosSelecionados[id].quantidade;
-              valorTotal += valorProduto * quantidade;
-            }
-          }
-          valorTotal += parseFloat(frete);
-          const valorTotalFormatado = valorTotal.toFixed(2);
-          const prazoConfeccao = prazoConfecaoMaisAlto;
-          const detalhesFrete = `Frete: ${cepDestino} - R$${frete} - (Dia da postagem + ${prazoEntrega} dias úteis via ${titulo})\n\n`;
-          const total = `Total: R$${valorTotalFormatado}\n`;
-          const prazo = `Prazo para confecção é de ${prazoConfeccao} dias úteis + prazo de envio.\nPrazo inicia-se após aprovação da arte e pagamento confirmado`;
-          campoTexto.value = `${produtosDescricao}\n${detalhesFrete}${total}\n${prazo}`;
-        });
+
+      if (prazoConfecaoMaisAlto === 0) {
+        prazoConfecaoMaisAlto = 15; // Prazo de confecção fixo em 15 dias úteis
       }
-    });
-  });
-});
+
+      const bodyData = {
+        cepDestino: cepDestino,
+        vlrMerc: valor_total,
+        pesoMerc: peso_total,
+        produtos: produtos,
+        prazoConfecao: prazoConfecaoMaisAlto
+      };
+
+      console.log(bodyData);
+
+      fetch(url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(bodyData)
+      })
+      .then(response => response.json())
+      .then(data => {
+        const cardsContainer = document.getElementById("cardsContainer");
+
+        while (cardsContainer.firstChild) {
+          cardsContainer.removeChild(cardsContainer.firstChild);
+        }
+
+        if (data.alertas && data.alertas.length > 0) {
+          data.alertas.forEach(alerta => {
+            const alertElement = document.createElement("p");
+            alertElement.textContent = alerta;
+            cardsContainer.appendChild(alertElement);
+          });
+        }
+        console.log(data);
+        data.forEach(transportadora => {
+          if(transportadora.transp_nome !== "Retira") {
+
+            const cardElement = document.createElement("div");
+            cardElement.classList.add("card");
+
+            const titulo = document.createElement("p");
+            const nomeElement = document.createElement("h4");
+            nomeElement.textContent = transportadora.transp_nome;
+            titulo.appendChild(nomeElement);
+
+            const logoElement = document.createElement("img");
+            logoElement.src = transportadora.url_logo;
+
+            const valorFreteElement = document.createElement("p");
+            valorFreteElement.textContent = `Valor do Frete: ${transportadora.vlrFrete}`;
+
+            const prazoEntregaElement = document.createElement("p");
+            prazoEntregaElement.textContent = `Prazo de Entrega: ${transportadora.prazoEnt}`;
+
+            const dataPrevEntregaElement = document.createElement("p");
+            dataPrevEntregaElement.textContent = `Previsão: ${formatarData(transportadora.dtPrevEnt)}`;
+
+            cardElement.appendChild(titulo); 
+            cardElement.appendChild(logoElement);
+            cardElement.appendChild(valorFreteElement);
+            cardElement.appendChild(prazoEntregaElement);
+            cardElement.appendChild(dataPrevEntregaElement);
+
+            cardsContainer.appendChild(cardElement);
+
+            // Adicionar evento de seleção ao card
+            cardElement.addEventListener("click", function() {
+              const selectedCard = document.querySelector(".card.selected");
+              if (selectedCard) {
+                selectedCard.classList.remove("selected");
+              }
+              // Adicionar classe "selected" ao card selecionado
+              this.classList.add("selected");
+
+              // Exibir detalhes do frete no campo de texto
+              const campoTexto = document.getElementById("campoTexto");
+              campoTexto.value = "";
+
+              let produtosSelecionados = {};
+
+              const tableRows = $("#produtoTableBody tr");
+              tableRows.each(function() {
+                const id = $(this).find("td:first-child").text();
+                const nomeProduto = $(this).find("td:nth-child(2)").text();
+                const valorProduto = parseFloat($(this).find("td:nth-child(3) input").val());
+                const quantidade = parseInt($(this).find("td:nth-child(5) input").val());
+
+                if (!produtosSelecionados.hasOwnProperty(id)) {
+                  produtosSelecionados[id] = {
+                    nome: nomeProduto,
+                    valor: valorProduto,
+                    quantidade: quantidade
+                  };
+                } else {
+                  produtosSelecionados[id].quantidade += quantidade;
+                }
+              });
+
+              let produtosDescricao = "";
+
+              for (const id in produtosSelecionados) {
+                if (produtosSelecionados.hasOwnProperty(id)) {
+                  const nomeProduto = produtosSelecionados[id].nome;
+                  const quantidade = produtosSelecionados[id].quantidade;
+                  const valor = produtosSelecionados[id].valor;
+                  const produtoDescricao = `${quantidade} un - ${nomeProduto} - R$${valor}\n`;
+                  produtosDescricao += produtoDescricao;
+                }
+              }
+              const titulo =  transportadora.transp_nome;
+              const frete = transportadora.vlrFrete;
+              const prazoEntrega = transportadora.prazoEnt;
+              let valorTotal = 0;
+
+              for (const id in produtosSelecionados) {
+                if (produtosSelecionados.hasOwnProperty(id)) {
+                  const valorProduto = produtosSelecionados[id].valor;
+                  const quantidade = produtosSelecionados[id].quantidade;
+                  valorTotal += valorProduto * quantidade;
+                }
+              }
+
+              valorTotal += parseFloat(frete);
+
+              const valorTotalFormatado = valorTotal.toFixed(2);
+              const prazoConfeccao = prazoConfecaoMaisAlto;
+
+              const detalhesFrete = `Frete: ${cepDestino} - R$${frete} - (Dia da postagem + ${prazoEntrega} dias úteis via ${titulo})\n\n`;
+              const total = `Total: R$${valorTotalFormatado}\n`;
+              const prazo = `Prazo para confecção é de ${prazoConfeccao} dias úteis + prazo de envio.\nPrazo inicia-se após aprovação da arte e pagamento confirmado`;
+
+              campoTexto.value = `${produtosDescricao}\n${detalhesFrete}${total}\n${prazo}`;
+            });
+          } 
+        });
       });
     });
 
