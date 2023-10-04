@@ -529,10 +529,10 @@ Simulação de Frete
         }
         const valorTotalFormatado = valorTotal.toFixed(2);
         const prazoConfeccao = prazoConfecaoMaisAlto;
-        const detalhesFrete = `Frete: ${cepDestino} - ${frete} - (Dia da postagem + ${prazoEntrega} dias úteis via ${titulo})\n\n`; // Ajustar o texto para "Retirada"
+        const detalhesFrete = `Frete: ${frete} \n\n`; // Ajustar o texto para "Retirada"
         const total = `Total: R$${valorTotalFormatado}\n`;
         const prazo = `Prazo para confecção é de ${prazoConfeccao} dias úteis + prazo de envio.\nPrazo inicia-se após aprovação da arte e pagamento confirmado`;
-        campoTexto.value = `${produtosDescricao}\n${detalhesFrete}${total}\n${prazo}`;
+        campoTexto.value = `${produtosDescricao}\n${total}\n${prazo}`;
       });
       });
     });
