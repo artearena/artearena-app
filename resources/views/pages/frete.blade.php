@@ -120,17 +120,17 @@
                     @csrf
                   
                     <div class="form-group">
-                    <div class="radio-container">
-                        <div class="custom-control custom-radio">
-                            <input type="radio" id="gerarRascunho" name="tipoDocumento" class="custom-control-input" checked>
-                            <label class="custom-control-label" for="gerarRascunho">Gerar Rascunho</label>
-                        </div>
-                        <div class="custom-control custom-radio">
-                            <input type="radio" id="gerarOrcamento" name="tipoDocumento" class="custom-control-input">
-                            <label class="custom-control-label" for="gerarOrcamento">Gerar Orçamento</label>
-                        </div>
+                      <div class="radio-container">
+                          <div class="custom-control custom-radio">
+                              <input type="radio" id="gerarRascunho" name="tipoDocumento" class="custom-control-input" checked>
+                              <label class="custom-control-label" for="gerarRascunho">Gerar Rascunho</label>
+                          </div>
+                          <div class="custom-control custom-radio">
+                              <input type="radio" id="gerarOrcamento" name="tipoDocumento" class="custom-control-input">
+                              <label class="custom-control-label" for="gerarOrcamento">Gerar Orçamento</label>
+                          </div>
+                      </div>
                     </div>
-                  </div>
                     <div class="form-group">
                         <div class="container">
                             <div class="form-group">
