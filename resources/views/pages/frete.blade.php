@@ -466,7 +466,7 @@
       nomeRetiradaElement.textContent = "Retirada";
       tituloRetirada.appendChild(nomeRetiradaElement);
       const logoRetiradaElement = document.createElement("img");
-      logoRetiradaElement.src = "./images/logoPreto.png"; // Ajuste o caminho para o logo da "Retirada"
+      logoRetiradaElement.src = "./images/logopreto.png"; // Ajuste o caminho para o logo da "Retirada"
       const valorFreteRetiradaElement = document.createElement("p");
       valorFreteRetiradaElement.textContent = "Valor do Frete: R$0.00"; // Ajuste o valor do frete para a "Retirada"
       const prazoEntregaRetiradaElement = document.createElement("p");
