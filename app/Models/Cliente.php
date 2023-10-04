@@ -13,7 +13,6 @@ class Cliente extends Model
     protected $table = 'crm_clientes';
     protected $primaryKey = 'id';
     public $timestamps = true;
-
     protected $fillable = [
         'nome',
         'telefone',
