@@ -8,7 +8,9 @@
             border-collapse: collapse;
             width: 100%;
         }
-
+        .small-font {
+            font-size: 0.8em;
+        }
         th,
         td {
             text-align: left;
@@ -47,7 +49,7 @@
 @endsection
 @section('content')
     <div id="app">
-    <table id="clientesTable">
+    <table id="clientesTable" class="small-font">
         <thead>
             <tr>
                 <th style="display:none">ID</th>
