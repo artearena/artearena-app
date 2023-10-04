@@ -15,6 +15,9 @@ Consulta de Pedidos
      .detalhe-expandido {
         white-space: normal !important;
     }
+    .col-md-10 {
+        width: 100%;
+    }
 
     table {
         border-collapse: collapse;
