@@ -3,7 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\OctaController;
-
+use App\Http\Controllers\Api\OctaAPIController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -20,4 +20,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::post('/cadastrar', [OctaController::class, 'cadastrar']);
+Route::get('/titulos', [OctaAPIController::class, 'getTemplateMensagens']);
 

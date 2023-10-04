@@ -123,7 +123,7 @@
                                 <i class="fa-brands fa-trello"></i>
                             </a>
                         </td>
-
+                        
                     </tr>
                 @endforeach
             </tbody>
