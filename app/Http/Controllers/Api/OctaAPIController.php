@@ -23,6 +23,7 @@ class OctaAPIController extends Controller
         $data_agendamento = $request->input('data_agendamento');
 
         $cliente = Cliente::where('id_octa', $id_octa)->first();
+        info(request);
 
         if ($cliente) {
             $cliente->responsavel_contato = $responsavel_contato;
