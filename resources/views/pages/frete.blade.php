@@ -115,7 +115,9 @@ Simulação de Frete
                                 <label for="produto">Produto:</label>
                                 <select class="form-control select2" id="produto" name="produto">
                                     <option value="">Selecione um produto</option>
-                                    @foreach ($produtos as $produto)
+                                    @foreach ($produtos->sortBy(function($produto) {
+                                        return strpos($produto->NOME, 'Bandeira Personalizada') !== false ? 0 : 1;
+                                    })->sortBy('NOME') as $produto)
                                     <option value="{{ $produto->id }}">{{ $produto->NOME }}</option>
                                     @endforeach
                                 </select>
