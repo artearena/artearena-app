@@ -1,6 +1,6 @@
 @extends('layout.main')
 @section('title')
-Simulação de Frete
+  Gerar Orçamento
 @endsection
 @section('style')
 <style>
@@ -109,6 +109,17 @@ Simulação de Frete
             <div class="col-md-6">
                 <form id="produto-form" method="POST" action="">
                     @csrf
+                  
+                    <div class="form-group">
+                    <div class="custom-control custom-radio">
+                        <input type="radio" id="gerarRascunho" name="tipoDocumento" class="custom-control-input">
+                        <label class="custom-control-label" for="gerarRascunho">Gerar Rascunho</label>
+                    </div>
+                    <div class="custom-control custom-radio">
+                        <input type="radio" id="gerarOrcamento" name="tipoDocumento" class="custom-control-input">
+                        <label class="custom-control-label" for="gerarOrcamento">Gerar Orçamento</label>
+                    </div>
+                  </div>
                     <div class="form-group">
                         <div class="container">
                             <div class="form-group">
@@ -157,16 +168,6 @@ Simulação de Frete
                             <h3>Transportadoras:</h3>
                         </div>
                         <div class="cards-container" id="cardsContainer"></div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="custom-control custom-radio">
-                        <input type="radio" id="gerarRascunho" name="tipoDocumento" class="custom-control-input">
-                        <label class="custom-control-label" for="gerarRascunho">Gerar Rascunho</label>
-                    </div>
-                    <div class="custom-control custom-radio">
-                        <input type="radio" id="gerarOrcamento" name="tipoDocumento" class="custom-control-input">
-                        <label class="custom-control-label" for="gerarOrcamento">Gerar Orçamento</label>
                     </div>
                 </div>
                 <button type="button" class="btn btn-primary" id="calcularFrete">Calcular</button>
@@ -465,7 +466,7 @@ Simulação de Frete
       nomeRetiradaElement.textContent = "Retirada";
       tituloRetirada.appendChild(nomeRetiradaElement);
       const logoRetiradaElement = document.createElement("img");
-      logoRetiradaElement.src = "./images/logo.png"; // Ajuste o caminho para o logo da "Retirada"
+      logoRetiradaElement.src = "./images/logoPreto.png"; // Ajuste o caminho para o logo da "Retirada"
       const valorFreteRetiradaElement = document.createElement("p");
       valorFreteRetiradaElement.textContent = "Valor do Frete: R$0.00"; // Ajuste o valor do frete para a "Retirada"
       const prazoEntregaRetiradaElement = document.createElement("p");
@@ -531,7 +532,7 @@ Simulação de Frete
         const prazoConfeccao = prazoConfecaoMaisAlto;
         const detalhesFrete = `Frete: ${frete} \n\n`; // Ajustar o texto para "Retirada"
         const total = `Total: R$${valorTotalFormatado}\n`;
-        const prazo = `Prazo para confecção é de ${prazoConfeccao} dias úteis + prazo de envio.\nPrazo inicia-se após aprovação da arte e pagamento confirmado`;
+        const prazo = `Prazo para confecção é de ${prazoConfeccao} dias úteis.\nPrazo inicia-se após aprovação da arte e pagamento confirmado`;
         campoTexto.value = `${produtosDescricao}\n${total}\n${prazo}`;
       });
       });
