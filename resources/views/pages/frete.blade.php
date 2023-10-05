@@ -228,7 +228,7 @@
               newRow.innerHTML = `
                 <td hidden>${produto}</td>
                 <td>
-                    <input type="text" class="form-control" value="${produtoData.retorno.produto.nome}" readonly>
+                    <input type="text" class="form-control" value="${produtoData.retorno.produto.nome}">
                 </td>
                 <td>
                   <input type="text" class="form-control" value="${produtoData.retorno.produto.preco}" onchange='
