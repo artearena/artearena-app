@@ -778,9 +778,9 @@
           function obterDetalhesTransportadora() {
             const cardElement = document.querySelector(".card.selected");
             const nomeTransportadora = cardElement.querySelector("h4").textContent;
-            const valorFreteElement = cardElement.querySelector("p:nth-of-type(1)");
-            const prazoEntregaElement = cardElement.querySelector("p:nth-of-type(2)");
-            const dataPrevistaElement = cardElement.querySelector("p:nth-of-type(3)");
+            const valorFreteElement = cardElement.querySelector("p:nth-of-type(0)");
+            const prazoEntregaElement = cardElement.querySelector("p:nth-of-type(1)");
+            const dataPrevistaElement = cardElement.querySelector("p:nth-of-type(2)");
             const logoTransportadora = cardElement.querySelector("img").src;
             const valorFrete = extrairValor(valorFreteElement.textContent);
             const prazoEntrega = extrairNumero(prazoEntregaElement.textContent);
@@ -808,7 +808,7 @@
             const data = texto.replace("Previsão: ", "").trim();
             return data;
           }
-          
+
           function obterDetalhesFrete() {
             const id_octa = document.getElementById('id_octa').value;
             const detalhes_orcamento = document.getElementById('campoTexto').value;
