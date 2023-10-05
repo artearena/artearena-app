@@ -808,7 +808,6 @@
             const data = texto.replace("Previsão: ", "").trim();
             return data;
           }
-
           function obterDetalhesFrete() {
             const id_octa = document.getElementById('id_octa').value;
             const detalhes_orcamento = document.getElementById('campoTexto').value;
