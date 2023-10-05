@@ -581,7 +581,6 @@
               }
             }
             const valorTotalFormatado = valorTotal.toFixed(2);
-            const prazoConfeccao = prazoConfecaoMaisAlto;
             const detalhesFrete = `Frete: ${frete} \n\n`; // Ajustar o texto para "Retirada"
             const total = `Total: R$${valorTotalFormatado}\n`;
             const prazo = `Prazo para confecção é de ${prazoConfeccao} dias úteis.\nPrazo inicia-se após aprovação da arte e pagamento confirmado`;
