@@ -782,12 +782,9 @@
             const prazoEntregaElement = cardElement.querySelector("p:nth-of-type(2)");
             const dataPrevistaElement = cardElement.querySelector("p:nth-of-type(3)");
             const logoTransportadora = cardElement.querySelector("img").src;
-            console.log(valorFreteElement);
-
-            const valorFrete = valorFreteElement.textContent.replace("Valor do Frete: R$", "");
-            const prazoEntrega = prazoEntregaElement.textContent.replace("Prazo de Entrega: ", "");
-            const dataPrevista = dataPrevistaElement.textContent.replace("Previsão: ", "");
-            console.log(valorFrete);
+            const valorFrete = extrairValor(valorFreteElement.textContent);
+            const prazoEntrega = extrairNumero(prazoEntregaElement.textContent);
+            const dataPrevista = extrairData(dataPrevistaElement.textContent);
             return {
               nomeTransportadora,
               valorFrete,
@@ -796,6 +793,22 @@
               logoTransportadora
             };
           }
+
+          function extrairValor(texto) {
+            const valor = texto.replace("Valor do Frete: R$", "").trim();
+            return valor;
+          }
+
+          function extrairNumero(texto) {
+            const numero = parseInt(texto.replace("Prazo de Entrega: ", "").trim());
+            return numero;
+          }
+
+          function extrairData(texto) {
+            const data = texto.replace("Previsão: ", "").trim();
+            return data;
+          }
+          
           function obterDetalhesFrete() {
             const id_octa = document.getElementById('id_octa').value;
             const detalhes_orcamento = document.getElementById('campoTexto').value;
