@@ -446,7 +446,7 @@
 
               // Adicionar informações de frete mais barato e frete mais rápido
               if (transportadora === freteMaisBarato) {
-                const freteMaisBaratoIcon = document.createElement("i");
+                const freteMaisBaratoIcon = document.createElement("p");
                 freteMaisBaratoIcon.classList.add("fas", "fa-money-bill");
                 const freteMaisBaratoInfo = document.createElement("span");
                 freteMaisBaratoInfo.textContent = " Frete mais barato!";
@@ -454,7 +454,7 @@
                 valorFreteElement.appendChild(freteMaisBaratoInfo);
               }
               if (transportadora === prazoMenor) {
-                const freteMaisRapidoIcon = document.createElement("i");
+                const freteMaisRapidoIcon = document.createElement("p");
                 freteMaisRapidoIcon.classList.add("fas", "fa-truck");
                 const freteMaisRapidoInfo = document.createElement("span");
                 freteMaisRapidoInfo.textContent = " Frete mais rápido!";
