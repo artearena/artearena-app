@@ -113,6 +113,7 @@
 <div class="container">
     <div class="container mt-4">
         <h1>Gerar Orçamentos</h1>
+        <hr>
         <div class="row">
             <div class="col-md-6">
                 <form id="opt-octa-form" method="POST" action="">
