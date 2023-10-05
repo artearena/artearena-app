@@ -452,28 +452,29 @@
             if (transportadora.transp_nome !== "Retira") {
               const cardElement = document.createElement("div");
               cardElement.classList.add("card");
-              
+
               const logoContainer = document.createElement("div");
               logoContainer.classList.add("logo-container");
-              
+
               const logoElement = document.createElement("img");
               logoElement.src = transportadora.url_logo;
               logoElement.classList.add("center-icon");
 
-              logoContainer.appendChild(logoElement);
-              
               const titulo = document.createElement("h4");
               titulo.textContent = transportadora.transp_nome;
               titulo.classList.add("center-icon");
 
               const prazoEntregaElement = document.createElement("p");
               prazoEntregaElement.textContent = `Prazo de Entrega: ${transportadora.prazoEnt}`;
+
               const valorFreteElement = document.createElement("p");
               valorFreteElement.textContent = `Valor do Frete: R$${transportadora.vlrFrete}`;
+
               const dataPrevEntregaElement = document.createElement("p");
               dataPrevEntregaElement.textContent = `Previsão: ${formatarData(transportadora.dtPrevEnt)}`;
 
-              cardElement.appendChild(logoElement);
+              cardElement.appendChild(logoContainer);
+              logoContainer.appendChild(logoElement);
               cardElement.appendChild(titulo);
               cardElement.appendChild(prazoEntregaElement);
               cardElement.appendChild(valorFreteElement);
