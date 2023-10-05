@@ -28,7 +28,7 @@
     .cards-container {
         display: flex;
         flex-wrap: wrap;
-      }
+    }
 
     .card {
         width: calc(25% - 20px);
@@ -45,6 +45,7 @@
     .card img {
         max-width: 20%;
         height: auto;
+        margin-bottom: 1em;
     }
     .container {
            max-width: 100%;
@@ -105,6 +106,9 @@
 
     .radio-container label {
         margin-bottom: 0;
+    }
+    P {
+      margin: 0px;
     }
 </style>
 @endsection
