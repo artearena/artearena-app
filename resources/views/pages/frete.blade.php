@@ -455,11 +455,13 @@
               
               const logoContainer = document.createElement("div");
               logoContainer.classList.add("logo-container");
-
+              
               const logoElement = document.createElement("img");
               logoElement.src = transportadora.url_logo;
               logoElement.classList.add("center-icon");
 
+              logoContainer.appendChild(logoElement);
+              
               const titulo = document.createElement("h4");
               titulo.textContent = transportadora.transp_nome;
               titulo.classList.add("center-icon");
