@@ -444,30 +444,32 @@
               const dataPrevEntregaElement = document.createElement("p");
               dataPrevEntregaElement.textContent = `Previsão: ${formatarData(transportadora.dtPrevEnt)}`;
 
+              cardElement.appendChild(titulo);
+              cardElement.appendChild(logoElement);
+              cardElement.appendChild(dataPrevEntregaElement);
+              cardElement.appendChild(valorFreteElement);
+              cardElement.appendChild(prazoEntregaElement);
+              cardsContainer.appendChild(cardElement);
+
               // Adicionar informações de frete mais barato e frete mais rápido
               if (transportadora === freteMaisBarato) {
-                const freteMaisBaratoIcon = document.createElement("p");
+                const freteMaisBaratoIcon = document.createElement("i");
                 freteMaisBaratoIcon.classList.add("fas", "fa-money-bill");
                 const freteMaisBaratoInfo = document.createElement("span");
                 freteMaisBaratoInfo.textContent = " Frete mais barato!";
+                valorFreteElement.appendChild(document.createElement("br"));
                 valorFreteElement.appendChild(freteMaisBaratoIcon);
                 valorFreteElement.appendChild(freteMaisBaratoInfo);
               }
               if (transportadora === prazoMenor) {
-                const freteMaisRapidoIcon = document.createElement("p");
+                const freteMaisRapidoIcon = document.createElement("i");
                 freteMaisRapidoIcon.classList.add("fas", "fa-truck");
                 const freteMaisRapidoInfo = document.createElement("span");
                 freteMaisRapidoInfo.textContent = " Frete mais rápido!";
+                prazoEntregaElement.appendChild(document.createElement("br"));
                 prazoEntregaElement.appendChild(freteMaisRapidoIcon);
                 prazoEntregaElement.appendChild(freteMaisRapidoInfo);
               }
-
-              cardElement.appendChild(titulo);
-              cardElement.appendChild(logoElement);
-              cardElement.appendChild(valorFreteElement);
-              cardElement.appendChild(prazoEntregaElement);
-              cardElement.appendChild(dataPrevEntregaElement);
-              cardsContainer.appendChild(cardElement);
 
               // Adicionar evento de seleção ao card
               cardElement.addEventListener("click", function () {
