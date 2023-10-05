@@ -427,7 +427,7 @@
               const tableRows = $("#produtoTableBody tr");
               tableRows.each(function () {
                 const id = $(this).find("td:first-child").text();
-                const nomeProduto = $(this).find("td:nth-child(2)").text();
+                const nomeProduto = $(this).find("td:nth-child(2) input").val();
                 const valorProduto = parseFloat($(this).find("td:nth-child(3) input").val());
                 const quantidade = parseInt($(this).find("td:nth-child(5) input").val());
                 if (!produtosSelecionados.hasOwnProperty(id)) {
