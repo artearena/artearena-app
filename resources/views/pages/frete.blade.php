@@ -777,13 +777,15 @@
 
           function obterDetalhesTransportadora() {
             const cardElement = document.querySelector(".card.selected");
-            console.log(cardElement);
-            
             const nomeTransportadora = cardElement.querySelector("h4").textContent;
-            const valorFrete = cardElement.querySelector("p:nth-of-type(3)").textContent.split(": ")[1];
-            const prazoEntrega = cardElement.querySelector("p:nth-of-type(4)").textContent.split(": ")[1];
-            const dataPrevista = cardElement.querySelector("p:nth-of-type(5)").textContent.split(": ")[1];
+            const valorFreteElement = cardElement.querySelector("p:nth-of-type(3)");
+            const prazoEntregaElement = cardElement.querySelector("p:nth-of-type(4)");
+            const dataPrevistaElement = cardElement.querySelector("p:nth-of-type(5)");
             const logoTransportadora = cardElement.querySelector("img").src;
+
+            const valorFrete = valorFreteElement.textContent.replace("Valor do Frete: ", "");
+            const prazoEntrega = prazoEntregaElement.textContent.replace("Prazo de Entrega: ", "");
+            const dataPrevista = dataPrevistaElement.textContent.replace("Previsão: ", "");
 
             return {
               nomeTransportadora,
