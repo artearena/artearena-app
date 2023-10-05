@@ -412,10 +412,12 @@
           });
 
           // Encontrar a transportadora com o frete mais barato
-          let freteMaisBarato = data[0];
+          let freteMaisBarato = null;
           data.forEach(transportadora => {
-            if (transportadora.transp_nome !== "Retira" && transportadora.vlrFrete < freteMaisBarato.vlrFrete) {
-              freteMaisBarato = transportadora;
+            if (transportadora.transp_nome !== "Retira") {
+              if (!freteMaisBarato || transportadora.vlrFrete < freteMaisBarato.vlrFrete) {
+                freteMaisBarato = transportadora;
+              }
             }
           });
 
@@ -451,7 +453,7 @@
               cardElement.appendChild(prazoEntregaElement);
               cardsContainer.appendChild(cardElement);
 
-              // Adicionar informações de frete mais barato e frete mais rápido
+              // Adicionar informações de frete mais barato
               if (transportadora === freteMaisBarato) {
                 const freteMaisBaratoIcon = document.createElement("i");
                 freteMaisBaratoIcon.classList.add("fas", "fa-money-bill");
@@ -461,12 +463,16 @@
                 valorFreteElement.appendChild(freteMaisBaratoIcon);
                 valorFreteElement.appendChild(freteMaisBaratoInfo);
               }
+              console.log(freteMaisBarato);
               if (transportadora === prazoMenor) {
                 const freteMaisRapidoIcon = document.createElement("i");
                 freteMaisRapidoIcon.classList.add("fas", "fa-truck");
                 const freteMaisRapidoInfo = document.createElement("span");
                 freteMaisRapidoInfo.textContent = " Frete mais rápido!";
+
                 prazoEntregaElement.appendChild(document.createElement("br"));
+                prazoEntregaElement.appendChild(document.createElement("br"));
+
                 prazoEntregaElement.appendChild(freteMaisRapidoIcon);
                 prazoEntregaElement.appendChild(freteMaisRapidoInfo);
               }
