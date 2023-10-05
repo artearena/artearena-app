@@ -689,6 +689,9 @@
           });
 
           function salvarOrcamento() {
+                        
+            const detalhesTransportadora = obterDetalhesTransportadora();
+            const detalhesFrete = obterDetalhesFrete();
             const produtosSelecionados = obterListaProdutos();
 
             if (!detalhesFrete.id_octa) {
@@ -699,9 +702,7 @@
                 alert("Detalhes do orcamento faltando ");
                 return;
             }
-            
-            const detalhesTransportadora = obterDetalhesTransportadora();
-            const detalhesFrete = obterDetalhesFrete();
+
 
             // Montar array de produtos
             const produtos = Object.values(produtosSelecionados).map(produto => {
