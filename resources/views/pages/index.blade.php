@@ -21,9 +21,9 @@ Inicio
             </div>
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">Tiny Relatório</h5>
-                    <p class="card-text">Descrição de Tiny Relatório</p>
-                    <a href="{{ route('tiny.relatorio') }}" class="btn btn-outline-warning">Acessar</a>
+                    <h5 class="card-title">Gerar Orçamento</h5>
+                    <p class="card-text">Descrição de Gerar Orçamento</p>
+                    <a href="{{ route('frete') }}" class="btn btn-outline-info">Acessar</a>
                 </div>
             </div>
             <div class="card">
@@ -35,9 +35,9 @@ Inicio
             </div>
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">Gerar Orçamento</h5>
-                    <p class="card-text">Descrição de Gerar Orçamento</p>
-                    <a href="{{ route('frete') }}" class="btn btn-outline-info">Acessar</a>
+                    <h5 class="card-title">Tiny Relatório</h5>
+                    <p class="card-text">Descrição de Tiny Relatório</p>
+                    <a href="{{ route('tiny.relatorio') }}" class="btn btn-outline-warning">Acessar</a>
                 </div>
             </div>
             <div class="card">
