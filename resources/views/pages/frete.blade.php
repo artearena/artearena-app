@@ -197,14 +197,15 @@
                 </div>
             </div>
             <button type="button" class="btn btn-primary" id="calcularFrete">Calcular</button>
+            </div>
             <div class="col-sm-6">
-              <h4>Detalhes do orçamento:</h4>
-              <div class="details-container">
-                  <textarea class="form-control" id="campoTexto" rows="5"></textarea>
-                  <button type="button" class="btn btn-primary mt-2" id="botaoOrcamento">Salvar/Enviar Orçamento</button>
-                  <button type="button" class="btn btn-primary mt-2" id="botaoCopiar">Copiar</button>
-                  <p class="text-success mt-2" id="avisoCopiado" style="display: none;">Copiado com sucesso!</p>
-              </div>
+                <h4>Detalhes do orçamento:</h4>
+                <div class="details-container">
+                    <textarea class="form-control" id="campoTexto" rows="5"></textarea>
+                    <button type="button" class="btn btn-primary mt-2" id="botaoOrcamento">Salvar/Enviar Orçamento</button>
+                    <button type="button" class="btn btn-primary mt-2" id="botaoCopiar">Copiar</button>
+                    <p class="text-success mt-2" id="avisoCopiado" style="display: none;">Copiado com sucesso!</p>
+                </div>
             </div>
         </div>
     </div>
