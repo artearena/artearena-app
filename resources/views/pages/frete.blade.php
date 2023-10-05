@@ -110,6 +110,10 @@
     P {
       margin-bottom: 0;
     }
+    #blue-text {
+      color: #4169e1;
+    }
+    
 
 </style>
 @endsection
@@ -460,10 +464,10 @@
                 freteMaisBaratoIcon.classList.add("fas", "fa-money-bill", "blue-text"); // Adicionar classe para estilização
                 const freteMaisBaratoInfo = document.createElement("span");
                 freteMaisBaratoInfo.textContent = " Frete mais barato!";
-                valorFreteElement.appendChild(document.createElement("br"));
-                valorFreteElement.appendChild(document.createElement("br"));
-                valorFreteElement.appendChild(freteMaisBaratoIcon);
-                valorFreteElement.appendChild(freteMaisBaratoInfo);
+                dataPrevEntregaElement.appendChild(document.createElement("br"));
+                dataPrevEntregaElement.appendChild(document.createElement("br"));
+                dataPrevEntregaElement.appendChild(freteMaisBaratoIcon);
+                dataPrevEntregaElement.appendChild(freteMaisBaratoInfo);
               }
 
               // Adicionar informações do menor prazo de entrega
@@ -472,10 +476,11 @@
                 freteMaisRapidoIcon.classList.add("fas", "fa-truck", "blue-text"); // Adicionar classe para estilização
                 const freteMaisRapidoInfo = document.createElement("span");
                 freteMaisRapidoInfo.textContent = " Frete mais rápido!";
-                prazoEntregaElement.appendChild(document.createElement("br"));
-                prazoEntregaElement.appendChild(document.createElement("br"));
-                prazoEntregaElement.appendChild(freteMaisRapidoIcon);
-                prazoEntregaElement.appendChild(freteMaisRapidoInfo);
+                freteMaisRapidoInfo.classList.add("blue-text"); // Adicionar classe para estilização
+                dataPrevEntregaElement.appendChild(document.createElement("br"));
+                dataPrevEntregaElement.appendChild(document.createElement("br"));
+                dataPrevEntregaElement.appendChild(freteMaisRapidoIcon);
+                dataPrevEntregaElement.appendChild(freteMaisRapidoInfo);
               }
 
 
