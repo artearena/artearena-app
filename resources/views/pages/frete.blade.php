@@ -115,34 +115,34 @@
         <h1>Gerar Orçamentos</h1>
         <hr>
         <div class="row">
-          <div class="col-md-6">
-          <form id="opt-octa-form" method="POST" action="">
-            <div class="form-group">
-              <div class="radio-container">
-                <div class="custom-control custom-radio">
-                  <input type="radio" id="gerarRascunho" name="tipoDocumento" class="custom-control-input" checked>
-                  <label class="custom-control-label" for="gerarRascunho">Gerar Rascunho</label>
-                </div>
-                <div class="custom-control custom-radio">
-                  <input type="radio" id="gerarOrcamento" name="tipoDocumento" class="custom-control-input">
-                  <label class="custom-control-label" for="gerarOrcamento">Gerar Orçamento</label>
+            <div class="col-md-6">
+            <form id="opt-octa-form" method="POST" action="">
+              <div class="form-group">
+                <div class="radio-container">
+                  <div class="custom-control custom-radio">
+                    <input type="radio" id="gerarRascunho" name="tipoDocumento" class="custom-control-input" checked>
+                    <label class="custom-control-label" for="gerarRascunho">Gerar Rascunho</label>
+                  </div>
+                  <div class="custom-control custom-radio">
+                    <input type="radio" id="gerarOrcamento" name="tipoDocumento" class="custom-control-input">
+                    <label class="custom-control-label" for="gerarOrcamento">Gerar Orçamento</label>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="form-group">
-              <div class="container">
-                <div class="form-group">
-                  <label for="id_octa">ID Cliente:</label>
-                  <div class="input-group">
-                    <input type="text" id="id_octa" class="form-control"></input>
-                    <div class="input-group-append">
-                      <button id="buscar_cliente" class="btn btn-primary" type="button">Buscar Cliente</button>
+              <div class="form-group">
+                <div class="container">
+                  <div class="form-group">
+                    <label for="id_octa">ID Cliente:</label>
+                    <div class="input-group">
+                      <input type="text" id="id_octa" class="form-control"></input>
+                      <div class="input-group-append">
+                        <button id="buscar_cliente" class="btn btn-primary" type="button">Buscar Cliente</button>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-          </form>
+            </form>
             <form id="produto-form" method="POST" action="">
                 @csrf
                 <div class="form-group">
@@ -197,7 +197,7 @@
                 </div>
             </div>
             <button type="button" class="btn btn-primary" id="calcularFrete">Calcular</button>
-            </div>
+          </div>
             <div class="col-sm-6">
                 <h4>Detalhes do orçamento:</h4>
                 <div class="details-container">
