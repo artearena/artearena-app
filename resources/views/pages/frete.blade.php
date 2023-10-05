@@ -50,7 +50,6 @@
            max-width: 100%;
     }
 
-
     .details-container h4 {
         margin-bottom: 10px;
     }
@@ -68,45 +67,45 @@
     .col-md-6 {
         display: flex;
         flex-direction: column;
-      }
+    }
     table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        th, td {
-            padding: 8px;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
-        }
-        th {
-            background-color: #f2f2f2;
-            font-weight: bold;
-            text-align: center;
-        }
-        td {
-            font-size: .9em;
-        }
-        tfoot td {
-            font-weight: bold;
-        }
-        tbody tr:nth-child(even) {
-            background-color: #f5f5f5;
-        }
-        tbody tr:hover {
-            background-color: #ebebeb;
-        }
-        #campoTexto{
-            min-height: 300px;
-        }
-        .radio-container {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
+        width: 100%;
+        border-collapse: collapse;
+    }
+    th, td {
+        padding: 8px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+    th {
+        background-color: #f2f2f2;
+        font-weight: bold;
+        text-align: center;
+    }
+    td {
+        font-size: .9em;
+    }
+    tfoot td {
+        font-weight: bold;
+    }
+    tbody tr:nth-child(even) {
+        background-color: #f5f5f5;
+    }
+    tbody tr:hover {
+        background-color: #ebebeb;
+    }
+    #campoTexto{
+        min-height: 300px;
+    }
+    .radio-container {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
 
-        .radio-container label {
-            margin-bottom: 0;
-        }
+    .radio-container label {
+        margin-bottom: 0;
+    }
 </style>
 @endsection
 
@@ -116,9 +115,7 @@
         <h1>Gerar Orçamentos</h1>
         <div class="row">
             <div class="col-md-6">
-                <form id="produto-form" method="POST" action="">
-                    @csrf
-                  
+                <form id="opt-octa-form" method="POST" action="">
                     <div class="form-group">
                       <div class="radio-container">
                           <div class="custom-control custom-radio">
@@ -139,6 +136,9 @@
                             </div>
                         </div>
                     </div>
+                </form>
+                <form id="produto-form" method="POST" action="">
+                    @csrf
                     <div class="form-group">
                         <div class="container">
                             <div class="form-group">
