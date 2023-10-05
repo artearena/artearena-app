@@ -110,6 +110,9 @@
     P {
       margin-bottom: 0;
     }
+    i {
+      color: #4169e1;
+    }
 </style>
 @endsection
 
@@ -422,10 +425,12 @@
           });
 
           // Encontrar a transportadora com o menor prazo de entrega
-          let prazoMenor = data[0];
+          let prazoMenor = null;
           data.forEach(transportadora => {
-            if (transportadora.transp_nome !== "Retira" && transportadora.prazoEnt < prazoMenor.prazoEnt) {
-              prazoMenor = transportadora;
+            if (transportadora.transp_nome !== "Retira") {
+              if (!prazoMenor || transportadora.prazoEnt < prazoMenor.prazoEnt) {
+                prazoMenor = transportadora;
+              }
             }
           });
 
@@ -433,49 +438,48 @@
             if (transportadora.transp_nome !== "Retira") {
               const cardElement = document.createElement("div");
               cardElement.classList.add("card");
-              const titulo = document.createElement("p");
-              const nomeElement = document.createElement("h4");
-              nomeElement.textContent = transportadora.transp_nome;
-              titulo.appendChild(nomeElement);
               const logoElement = document.createElement("img");
               logoElement.src = transportadora.url_logo;
-              const valorFreteElement = document.createElement("p");
-              valorFreteElement.textContent = `Valor do Frete: R$${transportadora.vlrFrete}`;
+              const titulo = document.createElement("h4");
+              titulo.textContent = transportadora.transp_nome;
               const prazoEntregaElement = document.createElement("p");
               prazoEntregaElement.textContent = `Prazo de Entrega: ${transportadora.prazoEnt}`;
+              const valorFreteElement = document.createElement("p");
+              valorFreteElement.textContent = `Valor do Frete: R$${transportadora.vlrFrete}`;
               const dataPrevEntregaElement = document.createElement("p");
               dataPrevEntregaElement.textContent = `Previsão: ${formatarData(transportadora.dtPrevEnt)}`;
 
-              cardElement.appendChild(titulo);
               cardElement.appendChild(logoElement);
-              cardElement.appendChild(dataPrevEntregaElement);
-              cardElement.appendChild(valorFreteElement);
+              cardElement.appendChild(titulo);
               cardElement.appendChild(prazoEntregaElement);
+              cardElement.appendChild(valorFreteElement);
+              cardElement.appendChild(dataPrevEntregaElement);
               cardsContainer.appendChild(cardElement);
 
-                  // Adicionar informações de frete mais barato
+              // Adicionar informações de frete mais barato
               if (transportadora === freteMaisBarato) {
                 const freteMaisBaratoIcon = document.createElement("i");
                 freteMaisBaratoIcon.classList.add("fas", "fa-money-bill");
                 const freteMaisBaratoInfo = document.createElement("span");
                 freteMaisBaratoInfo.textContent = " Frete mais barato!";
                 valorFreteElement.appendChild(document.createElement("br"));
+                valorFreteElement.appendChild(document.createElement("br"));
                 valorFreteElement.appendChild(freteMaisBaratoIcon);
                 valorFreteElement.appendChild(freteMaisBaratoInfo);
               }
 
+              // Adicionar informações do menor prazo de entrega
               if (transportadora === prazoMenor) {
-                const freteMaisRapidoIcon = document.createElement("i");
-                freteMaisRapidoIcon.classList.add("fas", "fa-truck");
-                const freteMaisRapidoInfo = document.createElement("span");
-                freteMaisRapidoInfo.textContent = " Frete mais rápido!";
-
+                const prazoMenorIcon = document.createElement("i");
+                prazoMenorIcon.classList.add("fas", "fa-truck");
+                const prazoMenorInfo = document.createElement("span");
+                prazoMenorInfo.textContent = " Menor prazo de entrega!";
                 prazoEntregaElement.appendChild(document.createElement("br"));
                 prazoEntregaElement.appendChild(document.createElement("br"));
-
-                prazoEntregaElement.appendChild(freteMaisRapidoIcon);
-                prazoEntregaElement.appendChild(freteMaisRapidoInfo);
+                prazoEntregaElement.appendChild(prazoMenorIcon);
+                prazoEntregaElement.appendChild(prazoMenorInfo);
               }
+
 
               // Adicionar evento de seleção ao card
               cardElement.addEventListener("click", function () {
