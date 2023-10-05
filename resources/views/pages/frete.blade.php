@@ -402,7 +402,7 @@
               cardsContainer.appendChild(alertElement);
             });
           }
-          cardRetirada();
+          cardRetirada(prazoConfecao);
           data.sort(function(a, b) {
             return a.vlrFrete - b.vlrFrete;
           });
@@ -508,7 +508,7 @@
         });
       });
 
-      function cardRetirada(){
+      function cardRetirada(prazoConfecao){
         // Adicionar a transportadora "Retirada"
           const retiradaCardElement = document.createElement("div");
           retiradaCardElement.classList.add("card");
@@ -557,6 +557,7 @@
               } else {
                 produtosSelecionados[id].quantidade += quantidade;
               }
+              
             });
             let produtosDescricao = "";
             for (const id in produtosSelecionados) {
