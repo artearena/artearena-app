@@ -402,10 +402,9 @@
               cardsContainer.appendChild(alertElement);
             });
           }
-          console.log(data);
+          cardRetirada();
           data.forEach(transportadora => {
             if (transportadora.transp_nome !== "Retira") {
-              cardRetirada();
               const cardElement = document.createElement("div");
               cardElement.classList.add("card");
               const titulo = document.createElement("p");
