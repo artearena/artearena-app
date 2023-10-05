@@ -777,7 +777,8 @@
 
           function obterDetalhesTransportadora() {
             const cardElement = document.querySelector(".card.selected");
-
+            console.log(cardElement);
+            
             const nomeTransportadora = cardElement.querySelector("h4").textContent;
             const valorFrete = cardElement.querySelector("p:nth-of-type(3)").textContent.split(": ")[1];
             const prazoEntrega = cardElement.querySelector("p:nth-of-type(4)").textContent.split(": ")[1];
