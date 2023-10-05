@@ -21,6 +21,13 @@ Inicio
             </div>
             <div class="card">
                 <div class="card-body">
+                    <h5 class="card-title">Tiny Relatório</h5>
+                    <p class="card-text">Descrição de Tiny Relatório</p>
+                    <a href="{{ route('tiny.relatorio') }}" class="btn btn-outline-warning">Acessar</a>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
                     <h5 class="card-title">Bandeira</h5>
                     <p class="card-text">Descrição de Bandeira</p>
                     <a href="{{ route('bandeira') }}" class="btn btn-outline-warning">Acessar</a>
@@ -48,13 +55,6 @@ Inicio
                     <h5 class="card-title">Arte Final</h5>
                     <p class="card-text">Descrição de Arte Final</p>
                     <a href="{{ route('pedido') }}" class="btn btn-outline-success">Acessar</a>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Tiny Relatório</h5>
-                    <p class="card-text">Descrição de Tiny Relatório</p>
-                    <a href="{{ route('tiny.relatorio') }}" class="btn btn-outline-warning">Acessar</a>
                 </div>
             </div>
             <div class="card">

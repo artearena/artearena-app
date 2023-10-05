@@ -35,6 +35,7 @@
                         <li><a class="dropdown-item" href="{{ route('octa.crm') }}">CRM Octa</a></li>
                         <li><a class="dropdown-item" href="{{ route('bandeira') }}">Bandeira</a></li>
                         <li><a class="dropdown-item" href="{{ route('frete') }}">Gerar Orçamento</a></li>
+                        <li><a class="dropdown-item" href="{{ route('tiny.relatorio') }}">Tiny Relatório</a></li>
                         <li><a class="dropdown-item" href="#">Encurtar Link</a></li>
                     </ul>
                 </li>
@@ -44,7 +45,6 @@
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="designDropdown">
                         <li><a class="dropdown-item" href="{{ route('pedido') }}">Arte Final</a></li>
-                        <li><a class="dropdown-item" href="{{ route('tiny.relatorio') }}">Tiny Relatório</a></li>
                         <li><a class="dropdown-item" href="{{ route('trello.index') }}">Mini Trello</a></li>
                     </ul>
                 </li>
