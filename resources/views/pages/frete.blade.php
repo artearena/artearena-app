@@ -402,7 +402,7 @@
               cardsContainer.appendChild(alertElement);
             });
           }
-          cardRetirada(prazoConfecao);
+          cardRetirada(prazoConfecaoMaisAlto);
           data.sort(function(a, b) {
             return a.vlrFrete - b.vlrFrete;
           });
