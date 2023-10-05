@@ -123,8 +123,8 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      width: 300px; /* Defina o tamanho desejado para a div */
-      height: 200px; /* Defina o tamanho desejado para a div */
+      width: 1005; /* Defina o tamanho desejado para a div */
+      height: 1005; /* Defina o tamanho desejado para a div */
       margin: 0 auto; /* Centraliza a div horizontalmente */
     }
 </style>
