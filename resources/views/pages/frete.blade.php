@@ -254,35 +254,41 @@
         }, function(response) {
           var produtoData = response;
           console.log(response);
-
           // Verificar se o produto possui prazo de confecção
           var prazoConfecao = produtoData.retorno.produto && produtoData.retorno.produto.dias_preparacao ? produtoData.retorno.produto.dias_preparacao : 0;
-          
+
           // Verificar se é um produto personalizado
-          if (produtoData.retorno.produto.nome.toLowerCase().includes("personalizado")) {
+          if (produtoData.retorno.produto && produtoData.retorno.produto.nome) {
+            var nomeProduto = produtoData.retorno.produto.nome;
+          } else {
+            var nomeProduto = '';
+          }
+
+          // Verificar se é um produto personalizado
+          if (nomeProduto.toLowerCase().includes("personalizado")) {
             // Definir valores padrão para produto personalizado
             produtoData.retorno.produto.preco = 0;
             produtoData.retorno.produto.peso_bruto = 0;
             prazoConfecao = 0;
           }
-          
+
           // Adicionar registro à tabela de produtos selecionados
           const tableBody = document.getElementById("produtoTableBody");
           const newRow = tableBody.insertRow();
           newRow.innerHTML = `
             <td hidden>${produto}</td>
             <td>
-              <input type="text" class="form-control" value="${produtoData.retorno.produto.nome}">
+              <input type="text" class="form-control" value="${nomeProduto}">
             </td>
             <td>
-              <input type="text" class="form-control" value="${produtoData.retorno.produto.preco}" onchange='
+              <input type="text" class="form-control" value="${produtoData.retorno.produto && produtoData.retorno.produto.preco ? produtoData.retorno.produto.preco : 0}" onchange='
                 var valor = this.value;
                 this.value = valor;
                 console.log("alterado");
               '>
             </td>
             <td>
-              <input type="number" class="form-control" value="${produtoData.retorno.produto.peso_bruto}" onchange='
+              <input type="number" class="form-control" value="${produtoData.retorno.produto && produtoData.retorno.produto.peso_bruto ? produtoData.retorno.produto.peso_bruto : 0}" onchange='
                 var peso = this.value;
                 this.value = peso;
                 this.removeAttribute("readonly");
