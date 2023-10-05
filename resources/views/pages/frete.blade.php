@@ -227,7 +227,9 @@
               const newRow = tableBody.insertRow();
               newRow.innerHTML = `
                 <td hidden>${produto}</td>
-                <td>${produtoData.retorno.produto.nome}</td>
+                <td>
+                    <input type="text" value="${produtoData.retorno.produto.nome}" readonly>
+                </td>
                 <td>
                   <input type="text" class="form-control" value="${produtoData.retorno.produto.preco}" onchange='
                     var valor = this.value;
