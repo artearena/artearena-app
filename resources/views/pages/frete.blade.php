@@ -254,8 +254,9 @@
         }, function(response) {
           var produtoData = response;
           console.log(response);
+
           // Verificar se o produto possui prazo de confecção
-          var prazoConfecao = produtoData.retorno.produto.dias_preparacao || 0;
+          var prazoConfecao = produtoData.retorno.produto && produtoData.retorno.produto.dias_preparacao ? produtoData.retorno.produto.dias_preparacao : 0;
           
           // Verificar se é um produto personalizado
           if (produtoData.retorno.produto.nome.toLowerCase().includes("personalizado")) {
