@@ -9,13 +9,18 @@ use App\Http\Controllers\CadastroController;
 use App\Http\Controllers\TrelloController;
 use App\Http\Controllers\tinyController;
 use App\Http\Controllers\LeadController;
+use App\Http\Controllers\OrcamentosController;
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/', [SiteController::class, 'index'])->name('index');
     Route::get('/home', [SiteController::class, 'index'])->name('home');
-    Route::get('/frete', [SiteController::class, 'frete'])->name('frete');
+    
     Route::get('/bandeira', [SiteController::class, 'bandeiras'])->name('bandeira');
-
+    
+    Route::prefix('frete')->group(function () {
+        Route::get('/', [SiteController::class, 'frete'])->name('frete');
+        Route::post('/orcamentos-salvar', [OrcamentosController::class, 'salvarOrcamento'])->name('orcamentos.salvar');
+    });
     Route::prefix('pedido')->group(function () {
         Route::any('/', [PedidoController::class, 'artefinal'])->name('pedido');
         Route::put('/{id}', [PedidoController::class, 'update'])->name('pedido.update');
