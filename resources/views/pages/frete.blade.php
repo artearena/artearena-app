@@ -418,7 +418,7 @@
               const logoElement = document.createElement("img");
               logoElement.src = transportadora.url_logo;
               const valorFreteElement = document.createElement("p");
-              valorFreteElement.textContent = `Valor do Frete: ${transportadora.vlrFrete}`;
+              valorFreteElement.textContent = `Valor do Frete: R$${transportadora.vlrFrete}`;
               const prazoEntregaElement = document.createElement("p");
               prazoEntregaElement.textContent = `Prazo de Entrega: ${transportadora.prazoEnt}`;
               const dataPrevEntregaElement = document.createElement("p");
@@ -584,7 +584,7 @@
             const detalhesFrete = `Frete: ${frete} \n\n`; // Ajustar o texto para "Retirada"
             const total = `Total: R$${valorTotalFormatado}\n`;
             const prazo = `Prazo para confecção é de ${prazoConfecao} dias úteis.\nPrazo inicia-se após aprovação da arte e pagamento confirmado`;
-            campoTexto.value = `${produtosDescricao}\n${total}\n${prazo}`;
+            campoTexto.value = `${produtosDescricao}\n${produtosDescricao}\n${total}\n${prazo}`;
           });
       }
       </script>
