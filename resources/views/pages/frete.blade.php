@@ -782,9 +782,12 @@
             const prazoEntregaElement = cardElement.querySelector("p:nth-of-type(2)");
             const dataPrevistaElement = cardElement.querySelector("p:nth-of-type(3)");
             const logoTransportadora = cardElement.querySelector("img").src;
+            console.log(valorFreteElement);
+
             const valorFrete = valorFreteElement.textContent.replace("Valor do Frete: R$", "");
             const prazoEntrega = prazoEntregaElement.textContent.replace("Prazo de Entrega: ", "");
             const dataPrevista = dataPrevistaElement.textContent.replace("Previsão: ", "");
+            console.log(valorFrete);
             return {
               nomeTransportadora,
               valorFrete,
