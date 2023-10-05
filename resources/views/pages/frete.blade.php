@@ -453,6 +453,7 @@
               dataPrevEntregaElement.textContent = `Previsão: ${formatarData(transportadora.dtPrevEnt)}`;
               
               cardElement.appendChild(logoElement);
+              cardElement.appendChild(document.createElement("br"));
               cardElement.appendChild(titulo);
               cardElement.appendChild(valorFreteElement);
               cardElement.appendChild(prazoEntregaElement);
