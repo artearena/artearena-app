@@ -467,7 +467,6 @@
 
               const logoElement = document.createElement("img");
               logoElement.src = transportadora.url_logo;
-              logoElement.classList.add("center-icon");
 
               const titulo = document.createElement("h4");
               titulo.textContent = transportadora.transp_nome;
@@ -608,7 +607,7 @@
 
           const logoRetiradaElement = document.createElement("img");
           logoRetiradaElement.src = "./images/logopreto.png"; // Ajuste o caminho para o logo da "Retirada"
-          logoRetiradaElement.classList.add("center-icon");
+
           const valorFreteRetiradaElement = document.createElement("p");
           valorFreteRetiradaElement.textContent = "Valor do Frete: R$0.00"; // Ajuste o valor do frete para a "Retirada"
           const prazoEntregaRetiradaElement = document.createElement("p");
