@@ -113,6 +113,9 @@
     i {
       color: #4169e1;
     }
+    span {
+      color: #4169e1;
+    }
 </style>
 @endsection
 
