@@ -245,66 +245,64 @@
       $('#produto').select2();
 
       function consultarProduto() {
-        var produto = $('#produto').val();
-
-        // Realizar requisição AJAX para obter dados do produto do Tiny API
-        $.get('https://artearena.kinghost.net/consultar-tiny', {
-          token: 'bc3cdea243d8687963fa642580057531456d34fa',
-          id: produto,
-          formato: 'json'
-        }, function(response) {
-          var produtoData = response;
-          console.log(response);
-
-          // Verificar se o produto possui prazo de confecção
-          var prazoConfecao = produtoData.retorno.produto.dias_preparacao || 0;
-
-          // Adicionar registro à tabela de produtos selecionados
-          const tableBody = document.getElementById("produtoTableBody");
-          const newRow = tableBody.insertRow();
-          newRow.innerHTML = `
-            <td hidden>${produto}</td>
-            <td>
-                <input type="text" class="form-control" value="${produtoData.retorno.produto.nome}">
-            </td>
-            <td>
-              <input type="text" class="form-control" value="${produtoData.retorno.produto.preco}" onchange='
-                var valor = this.value;
-                this.value = valor;
-                console.log("alterado");
-              '>
-            </td>
-            <td>
-                <input type="number" class="form-control" value="${produtoData.retorno.produto.peso_bruto}" onchange='
-                  var peso = this.value;
-                  this.value = peso;
-                  this.removeAttribute("readonly");
-                '>
-            </td>
-            <td>
-              <input type="number" class="form-control" value="1" onchange='
-                var quantidade = this.value;
-                if (quantidade <= 0) {
-                  this.value = 1; <!-- Defina um valor padrão, caso o usuário insira um valor negativo ou zero -->
-                }
-                this.removeAttribute("readonly");
-              '>
+      var produto = $('#produto').val();
+      // Realizar requisição AJAX para obter dados do produto do Tiny API
+      $.get('https://artearena.kinghost.net/consultar-tiny', {
+        token: 'bc3cdea243d8687963fa642580057531456d34fa',
+        id: produto,
+        formato: 'json'
+      }, function(response) {
+        var produtoData = response;
+        console.log(response);
+        // Verificar se o produto possui prazo de confecção
+        var prazoConfecao = produtoData.retorno.produto.dias_preparacao || 0;
+        // Adicionar registro à tabela de produtos selecionados
+        const tableBody = document.getElementById("produtoTableBody");
+        const newRow = tableBody.insertRow();
+        newRow.innerHTML = `
+          <td hidden>${produto}</td>
+          <td>
+            <input type="text" class="form-control" value="${produtoData.retorno.produto.nome}">
           </td>
-
-            <td>
-              <input type="number" class="form-control prazo-confeccao" value="${prazoConfecao}" onchange='
-                var prazoConfecao = this.value;
-                this.value = prazoConfecao;
-                this.removeAttribute("readonly");
-              '>
-            </td>
-            <td onclick="var tableRow = this.closest('tr'); tableRow.remove();">
-              <button class="btn btn-danger">Remover</button>
-            </td>
-          `;
-          newRow.querySelector("td input").dataset.id = produto;
-        });
-        
+          <td>
+            <input type="text" class="form-control" value="${produtoData.retorno.produto.preco}" onchange='
+              var valor = this.value;
+              this.value = valor;
+              console.log("alterado");
+            '>
+          </td>
+          <td>
+            <input type="number" class="form-control" value="${produtoData.retorno.produto.peso_bruto}" onchange='
+              var peso = this.value;
+              this.value = peso;
+              this.removeAttribute("readonly");
+            '>
+          </td>
+          <td>
+            <input type="number" class="form-control" value="1" onchange='
+              var quantidade = this.value;
+              if (quantidade <= 0) {
+                this.value = 1; <!-- Defina um valor padrão, caso o usuário insira um valor negativo ou zero -->
+              }
+              this.removeAttribute("readonly");
+            '>
+          </td>
+          <td>
+            <input type="number" class="form-control prazo-confeccao" value="${prazoConfecao}" onchange='
+              var prazoConfecao = this.value;
+              this.value = prazoConfecao;
+              this.removeAttribute("readonly");
+            '>
+          </td>
+          <td onclick="var tableRow = this.closest('tr'); tableRow.remove();">
+            <button class="btn btn-danger">Remover</button>
+          </td>
+        `;
+        newRow.querySelector("td input").dataset.id = produto;
+      }).done(function() {
+        // Atualizar Select2 após adicionar o produto
+        $('#produto').trigger('change.select2');
+      });
     }
 
 
