@@ -212,7 +212,6 @@
 </div>
 @endsection
 
-
 @section('extraScript')
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
@@ -406,6 +405,7 @@
           console.log(data);
           data.forEach(transportadora => {
             if (transportadora.transp_nome !== "Retira") {
+              cardRetirada();
               const cardElement = document.createElement("div");
               cardElement.classList.add("card");
               const titulo = document.createElement("p");
@@ -486,7 +486,28 @@
             }
           });
 
-          // Adicionar a transportadora "Retirada"
+          
+        });
+      });
+
+          // Evento de clique no botão "Copiar"
+          $('#botaoCopiar').click(function() {
+              const campoTexto = document.getElementById("campoTexto");
+              campoTexto.select();
+              campoTexto.setSelectionRange(0, 99999);
+              document.execCommand("copy");
+
+              const avisoCopiado = document.getElementById("avisoCopiado");
+              avisoCopiado.style.display = "block";
+              setTimeout(function() {
+                  avisoCopiado.style.display = "none";
+              }, 2000);
+          });
+        });
+      });
+
+      function cardRetirada(){
+        // Adicionar a transportadora "Retirada"
           const retiradaCardElement = document.createElement("div");
           retiradaCardElement.classList.add("card");
           const tituloRetirada = document.createElement("p");
@@ -563,24 +584,7 @@
             const prazo = `Prazo para confecção é de ${prazoConfeccao} dias úteis.\nPrazo inicia-se após aprovação da arte e pagamento confirmado`;
             campoTexto.value = `${produtosDescricao}\n${total}\n${prazo}`;
           });
-        });
-      });
-
-          // Evento de clique no botão "Copiar"
-          $('#botaoCopiar').click(function() {
-              const campoTexto = document.getElementById("campoTexto");
-              campoTexto.select();
-              campoTexto.setSelectionRange(0, 99999);
-              document.execCommand("copy");
-
-              const avisoCopiado = document.getElementById("avisoCopiado");
-              avisoCopiado.style.display = "block";
-              setTimeout(function() {
-                  avisoCopiado.style.display = "none";
-              }, 2000);
-          });
-        });
-      });
+      }
       </script>
       <script>
           const botaoOrcamento = document.getElementById('botaoOrcamento');
