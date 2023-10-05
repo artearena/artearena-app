@@ -116,8 +116,17 @@
     .center-icon {
       display: block;
       margin: 0 auto;
+      min-width: none;
+      min-height:
     }
-
+    .logo-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 300px; /* Defina o tamanho desejado para a div */
+      height: 200px; /* Defina o tamanho desejado para a div */
+      margin: 0 auto; /* Centraliza a div horizontalmente */
+    }
 </style>
 @endsection
 
@@ -443,12 +452,18 @@
             if (transportadora.transp_nome !== "Retira") {
               const cardElement = document.createElement("div");
               cardElement.classList.add("card");
+              
+              const logoContainer = document.createElement("div");
+              logoContainer.classList.add("logo-container");
+
               const logoElement = document.createElement("img");
               logoElement.src = transportadora.url_logo;
               logoElement.classList.add("center-icon");
 
               const titulo = document.createElement("h4");
               titulo.textContent = transportadora.transp_nome;
+              titulo.classList.add("center-icon");
+
               const prazoEntregaElement = document.createElement("p");
               prazoEntregaElement.textContent = `Prazo de Entrega: ${transportadora.prazoEnt}`;
               const valorFreteElement = document.createElement("p");
@@ -577,6 +592,8 @@
           const nomeRetiradaElement = document.createElement("h4");
           nomeRetiradaElement.textContent = "Retirada";
           tituloRetirada.appendChild(nomeRetiradaElement);
+          tituloRetirada.classList.add("center-icon");
+
           const logoRetiradaElement = document.createElement("img");
           logoRetiradaElement.src = "./images/logopreto.png"; // Ajuste o caminho para o logo da "Retirada"
           logoRetiradaElement.classList.add("center-icon");
