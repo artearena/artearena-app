@@ -402,7 +402,11 @@
               cardsContainer.appendChild(alertElement);
             });
           }
-          console.log(data);
+          cardRetirada(prazoConfecao);
+          data.sort(function(a, b) {
+            return a.vlrFrete - b.vlrFrete;
+          });
+
           data.forEach(transportadora => {
             if (transportadora.transp_nome !== "Retira") {
               const cardElement = document.createElement("div");
@@ -484,7 +488,6 @@
               });
             }
           });
-
           
         });
       });
@@ -504,6 +507,86 @@
           });
         });
       });
+
+      function cardRetirada(prazoConfecao){
+        // Adicionar a transportadora "Retirada"
+          const retiradaCardElement = document.createElement("div");
+          retiradaCardElement.classList.add("card");
+          const tituloRetirada = document.createElement("p");
+          const nomeRetiradaElement = document.createElement("h4");
+          nomeRetiradaElement.textContent = "Retirada";
+          tituloRetirada.appendChild(nomeRetiradaElement);
+          const logoRetiradaElement = document.createElement("img");
+          logoRetiradaElement.src = "./images/logopreto.png"; // Ajuste o caminho para o logo da "Retirada"
+          const valorFreteRetiradaElement = document.createElement("p");
+          valorFreteRetiradaElement.textContent = "Valor do Frete: R$0.00"; // Ajuste o valor do frete para a "Retirada"
+          const prazoEntregaRetiradaElement = document.createElement("p");
+          prazoEntregaRetiradaElement.textContent = "Prazo de Entrega: A combinar"; // Ajuste o prazo de entrega para a "Retirada"
+          const dataPrevEntregaRetiradaElement = document.createElement("p");
+          dataPrevEntregaRetiradaElement.textContent = "Previsão: A combinar"; // Ajuste a previsão para a "Retirada"
+          retiradaCardElement.appendChild(tituloRetirada);
+          retiradaCardElement.appendChild(logoRetiradaElement);
+          retiradaCardElement.appendChild(valorFreteRetiradaElement);
+          retiradaCardElement.appendChild(prazoEntregaRetiradaElement);
+          retiradaCardElement.appendChild(dataPrevEntregaRetiradaElement);
+          cardsContainer.appendChild(retiradaCardElement);
+          // Adicionar evento de seleção ao card de "Retirada"
+          retiradaCardElement.addEventListener("click", function () {
+            const selectedCard = document.querySelector(".card.selected");
+            if (selectedCard) {
+              selectedCard.classList.remove("selected");
+            }
+            // Adicionar classe "selected" ao card selecionado
+            this.classList.add("selected");
+            // Exibir detalhes do frete no campo de texto
+            const campoTexto = document.getElementById("campoTexto");
+            campoTexto.value = "";
+            let produtosSelecionados = {};
+            const tableRows = $("#produtoTableBody tr");
+            tableRows.each(function () {
+              const id = $(this).find("td:first-child").text();
+              const nomeProduto = $(this).find("td:nth-child(2) input").val();
+              const valorProduto = parseFloat($(this).find("td:nth-child(3) input").val());
+              const quantidade = parseInt($(this).find("td:nth-child(5) input").val());
+              if (!produtosSelecionados.hasOwnProperty(id)) {
+                produtosSelecionados[id] = {
+                  nome: nomeProduto,
+                  valor: valorProduto,
+                  quantidade: quantidade
+                };
+              } else {
+                produtosSelecionados[id].quantidade += quantidade;
+              }
+              
+            });
+            let produtosDescricao = "";
+            for (const id in produtosSelecionados) {
+              if (produtosSelecionados.hasOwnProperty(id)) {
+                const nomeProduto = produtosSelecionados[id].nome;
+                const quantidade = produtosSelecionados[id].quantidade;
+                const valor = produtosSelecionados[id].valor;
+                const produtoDescricao = `${quantidade} un - ${nomeProduto} - R$${valor}\n`;
+                produtosDescricao += produtoDescricao;
+              }
+            }
+            const titulo = "Retirada";
+            const frete = "Retirada"; // Substituir pelo texto desejado para "Retirada"
+            const prazoEntrega = "Retirada"; // Substituir pelo texto desejado para "Retirada"
+            let valorTotal = 0;
+            for (const id in produtosSelecionados) {
+              if (produtosSelecionados.hasOwnProperty(id)) {
+                const valorProduto = produtosSelecionados[id].valor;
+                const quantidade = produtosSelecionados[id].quantidade;
+                valorTotal += valorProduto * quantidade;
+              }
+            }
+            const valorTotalFormatado = valorTotal.toFixed(2);
+            const detalhesFrete = `Frete: ${frete} \n\n`; // Ajustar o texto para "Retirada"
+            const total = `Total: R$${valorTotalFormatado}\n`;
+            const prazo = `Prazo para confecção é de ${prazoConfeccao} dias úteis.\nPrazo inicia-se após aprovação da arte e pagamento confirmado`;
+            campoTexto.value = `${produtosDescricao}\n${total}\n${prazo}`;
+          });
+      }
       </script>
       <script>
           const botaoOrcamento = document.getElementById('botaoOrcamento');
