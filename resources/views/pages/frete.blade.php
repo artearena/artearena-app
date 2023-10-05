@@ -110,10 +110,13 @@
     P {
       margin-bottom: 0;
     }
-    #blue-text {
+    .blue-text {
       color: #4169e1;
     }
-    
+    .center-icon {
+      display: block;
+      margin: 0 auto;
+    }
 
 </style>
 @endsection
@@ -442,6 +445,8 @@
               cardElement.classList.add("card");
               const logoElement = document.createElement("img");
               logoElement.src = transportadora.url_logo;
+              logoElement.classList.add("center-icon");
+
               const titulo = document.createElement("h4");
               titulo.textContent = transportadora.transp_nome;
               const prazoEntregaElement = document.createElement("p");
@@ -464,6 +469,7 @@
                 freteMaisBaratoIcon.classList.add("fas", "fa-money-bill", "blue-text"); // Adicionar classe para estilização
                 const freteMaisBaratoInfo = document.createElement("span");
                 freteMaisBaratoInfo.textContent = " Frete mais barato!";
+                freteMaisBaratoInfo.classList.add("blue-text"); // Adicionar classe para estilização
                 dataPrevEntregaElement.appendChild(document.createElement("br"));
                 dataPrevEntregaElement.appendChild(document.createElement("br"));
                 dataPrevEntregaElement.appendChild(freteMaisBaratoIcon);
@@ -573,14 +579,16 @@
           tituloRetirada.appendChild(nomeRetiradaElement);
           const logoRetiradaElement = document.createElement("img");
           logoRetiradaElement.src = "./images/logopreto.png"; // Ajuste o caminho para o logo da "Retirada"
+          logoRetiradaElement.classList.add("center-icon");
           const valorFreteRetiradaElement = document.createElement("p");
           valorFreteRetiradaElement.textContent = "Valor do Frete: R$0.00"; // Ajuste o valor do frete para a "Retirada"
           const prazoEntregaRetiradaElement = document.createElement("p");
           prazoEntregaRetiradaElement.textContent = "Prazo de Entrega: A combinar"; // Ajuste o prazo de entrega para a "Retirada"
           const dataPrevEntregaRetiradaElement = document.createElement("p");
           dataPrevEntregaRetiradaElement.textContent = "Previsão: A combinar"; // Ajuste a previsão para a "Retirada"
-          retiradaCardElement.appendChild(tituloRetirada);
+
           retiradaCardElement.appendChild(logoRetiradaElement);
+          retiradaCardElement.appendChild(tituloRetirada);
           retiradaCardElement.appendChild(valorFreteRetiradaElement);
           retiradaCardElement.appendChild(prazoEntregaRetiradaElement);
           retiradaCardElement.appendChild(dataPrevEntregaRetiradaElement);
