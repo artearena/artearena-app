@@ -403,6 +403,10 @@
             });
           }
           cardRetirada();
+          data.sort(function(a, b) {
+            return a.vlrFrete - b.vlrFrete;
+          });
+
           data.forEach(transportadora => {
             if (transportadora.transp_nome !== "Retira") {
               const cardElement = document.createElement("div");
@@ -484,7 +488,6 @@
               });
             }
           });
-
           
         });
       });
