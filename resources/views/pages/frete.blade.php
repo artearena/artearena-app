@@ -115,92 +115,96 @@
         <h1>Gerar Orçamentos</h1>
         <hr>
         <div class="row">
-            <div class="col-md-6">
-                <form id="opt-octa-form" method="POST" action="">
-                    <div class="form-group">
-                      <div class="radio-container">
-                          <div class="custom-control custom-radio">
-                              <input type="radio" id="gerarRascunho" name="tipoDocumento" class="custom-control-input" checked>
-                              <label class="custom-control-label" for="gerarRascunho">Gerar Rascunho</label>
-                          </div>
-                          <div class="custom-control custom-radio">
-                              <input type="radio" id="gerarOrcamento" name="tipoDocumento" class="custom-control-input">
-                              <label class="custom-control-label" for="gerarOrcamento">Gerar Orçamento</label>
-                          </div>
-                      </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="container">
-                            <div class="form-group">
-                                <label for="id_octa">ID Cliente:</label>
-                                <input type="text" id="id_octa" class="form-control"></input> 
-                            </div>
-                        </div>
-                    </div>
-                </form>
-                <form id="produto-form" method="POST" action="">
-                    @csrf
-                    <div class="form-group">
-                        <div class="container">
-                            <div class="form-group">
-                                <label for="produto">Produto:</label>
-                                <select class="form-control select2" id="produto" name="produto">
-                                    <option value="">Selecione um produto</option>
-                                    @foreach ($produtos->sortBy('NOME')->sortBy(function($produto) {
-                                        return strpos($produto->NOME, 'Bandeira Personalizada') !== false ? 0 : 1;
-                                    }) as $produto)
-                                    <option value="{{ $produto->id }}">{{ $produto->NOME }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Tabela de produtos selecionados -->
-                    <table class="table mt-4">
-                        <thead>
-                            <tr>
-                                <th hidden>ID</th>
-                                <th>Nome</th>
-                                <th>Valor</th>
-                                <th>Peso</th>
-                                <th>Quantidade</th>
-                                <th>Prazo de Confecção</th>
-                                <th>Ação</th>
-                            </tr>
-                        </thead>
-                        <tbody id="produtoTableBody"></tbody>
-                    </table>
-                </form>
-                <form id="cep-form" method="POST" action="">
-                    @csrf
-                    <div class="form-group">
-                        <label for="cep">CEP:</label>
-                        <input type="text" class="form-control" id="cep" name="cep" placeholder="CEP">
-                    </div>
-                    <div class="form-group">
-                        <label for="endereco">Endereço:</label>
-                        <input type="text" class="form-control" id="endereco" name="endereco" readonly="" style="background-color: #f2f2f2;">
-                    </div>
-                </form>
-                <div class="row">
-                    <div class="col-md-12">
-                        <div id="transp-title">
-                            <h3>Transportadoras:</h3>
-                        </div>
-                        <div class="cards-container" id="cardsContainer"></div>
-                    </div>
+          <div class="col-md-6">
+          <form id="opt-octa-form" method="POST" action="">
+            <div class="form-group">
+              <div class="radio-container">
+                <div class="custom-control custom-radio">
+                  <input type="radio" id="gerarRascunho" name="tipoDocumento" class="custom-control-input" checked>
+                  <label class="custom-control-label" for="gerarRascunho">Gerar Rascunho</label>
                 </div>
-                <button type="button" class="btn btn-primary" id="calcularFrete">Calcular</button>
+                <div class="custom-control custom-radio">
+                  <input type="radio" id="gerarOrcamento" name="tipoDocumento" class="custom-control-input">
+                  <label class="custom-control-label" for="gerarOrcamento">Gerar Orçamento</label>
+                </div>
+              </div>
             </div>
-            <div class="col-sm-6">
-                <h4>Detalhes do orçamento:</h4>
-                <div class="details-container">
-                    <textarea class="form-control" id="campoTexto" rows="5"></textarea>
-                    <button type="button" class="btn btn-primary mt-2" id="botaoOrcamento">Salvar/Enviar Orçamento</button>
-                    <button type="button" class="btn btn-primary mt-2" id="botaoCopiar">Copiar</button>
-                    <p class="text-success mt-2" id="avisoCopiado" style="display: none;">Copiado com sucesso!</p>
+            <div class="form-group">
+              <div class="container">
+                <div class="form-group">
+                  <label for="id_octa">ID Cliente:</label>
+                  <div class="input-group">
+                    <input type="text" id="id_octa" class="form-control"></input>
+                    <div class="input-group-append">
+                      <button id="buscar_cliente" class="btn btn-primary" type="button">Buscar Cliente</button>
+                    </div>
+                  </div>
                 </div>
+              </div>
+            </div>
+          </form>
+            <form id="produto-form" method="POST" action="">
+                @csrf
+                <div class="form-group">
+                    <div class="container">
+                        <div class="form-group">
+                            <label for="produto">Produto:</label>
+                            <select class="form-control select2" id="produto" name="produto">
+                                <option value="">Selecione um produto</option>
+                                @foreach ($produtos->sortBy('NOME')->sortBy(function($produto) {
+                                    return strpos($produto->NOME, 'Bandeira Personalizada') !== false ? 0 : 1;
+                                }) as $produto)
+                                <option value="{{ $produto->id }}">{{ $produto->NOME }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tabela de produtos selecionados -->
+                <table class="table mt-4">
+                    <thead>
+                        <tr>
+                            <th hidden>ID</th>
+                            <th>Nome</th>
+                            <th>Valor</th>
+                            <th>Peso</th>
+                            <th>Quantidade</th>
+                            <th>Prazo de Confecção</th>
+                            <th>Ação</th>
+                        </tr>
+                    </thead>
+                    <tbody id="produtoTableBody"></tbody>
+                </table>
+            </form>
+            <form id="cep-form" method="POST" action="">
+                @csrf
+                <div class="form-group">
+                    <label for="cep">CEP:</label>
+                    <input type="text" class="form-control" id="cep" name="cep" placeholder="CEP">
+                </div>
+                <div class="form-group">
+                    <label for="endereco">Endereço:</label>
+                    <input type="text" class="form-control" id="endereco" name="endereco" readonly="" style="background-color: #f2f2f2;">
+                </div>
+            </form>
+            <div class="row">
+                <div class="col-md-12">
+                    <div id="transp-title">
+                        <h3>Transportadoras:</h3>
+                    </div>
+                    <div class="cards-container" id="cardsContainer"></div>
+                </div>
+            </div>
+            <button type="button" class="btn btn-primary" id="calcularFrete">Calcular</button>
+            <div class="col-sm-6">
+              <h4>Detalhes do orçamento:</h4>
+              <div class="details-container">
+                  <textarea class="form-control" id="campoTexto" rows="5"></textarea>
+                  <button type="button" class="btn btn-primary mt-2" id="botaoOrcamento">Salvar/Enviar Orçamento</button>
+                  <button type="button" class="btn btn-primary mt-2" id="botaoCopiar">Copiar</button>
+                  <p class="text-success mt-2" id="avisoCopiado" style="display: none;">Copiado com sucesso!</p>
+              </div>
             </div>
         </div>
     </div>
