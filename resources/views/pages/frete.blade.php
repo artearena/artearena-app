@@ -108,7 +108,7 @@
         margin-bottom: 0;
     }
     P {
-      margin: 0px;
+      margin-bottom: 0;
     }
 </style>
 @endsection
