@@ -778,9 +778,9 @@
           function obterDetalhesTransportadora() {
             const cardElement = document.querySelector(".card.selected");
             const nomeTransportadora = cardElement.querySelector("h4").textContent;
-            const valorFreteElement = cardElement.querySelector("p:nth-of-type(0)");
+            const valorFreteElement = cardElement.querySelector("p:nth-of-type(2)");
             const prazoEntregaElement = cardElement.querySelector("p:nth-of-type(1)");
-            const dataPrevistaElement = cardElement.querySelector("p:nth-of-type(2)");
+            const dataPrevistaElement = cardElement.querySelector("p:nth-of-type(3)");
             const logoTransportadora = cardElement.querySelector("img").src;
             const valorFrete = extrairValor(valorFreteElement.textContent);
             const prazoEntrega = extrairNumero(prazoEntregaElement.textContent);
