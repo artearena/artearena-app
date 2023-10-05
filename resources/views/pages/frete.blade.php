@@ -124,11 +124,11 @@
               <div class="form-group">
                 <div class="radio-container">
                   <div class="custom-control custom-radio">
-                    <input type="radio" id="gerarRascunho" name="tipoDocumento" class="custom-control-input" checked>
+                    <input type="radio" id="gerarRascunho" name="tipoDocumento" class="custom-control-input">
                     <label class="custom-control-label" for="gerarRascunho">Gerar Rascunho</label>
                   </div>
                   <div class="custom-control custom-radio">
-                    <input type="radio" id="gerarOrcamento" name="tipoDocumento" class="custom-control-input">
+                    <input type="radio" id="gerarOrcamento" name="tipoDocumento" class="custom-control-input" checked>
                     <label class="custom-control-label" for="gerarOrcamento">Gerar Orçamento</label>
                   </div>
                 </div>
@@ -411,6 +411,22 @@
             return a.vlrFrete - b.vlrFrete;
           });
 
+          // Encontrar a transportadora com o frete mais barato
+          let freteMaisBarato = data[0];
+          data.forEach(transportadora => {
+            if (transportadora.transp_nome !== "Retira" && transportadora.vlrFrete < freteMaisBarato.vlrFrete) {
+              freteMaisBarato = transportadora;
+            }
+          });
+
+          // Encontrar a transportadora com o menor prazo de entrega
+          let prazoMenor = data[0];
+          data.forEach(transportadora => {
+            if (transportadora.transp_nome !== "Retira" && transportadora.prazoEnt < prazoMenor.prazoEnt) {
+              prazoMenor = transportadora;
+            }
+          });
+
           data.forEach(transportadora => {
             if (transportadora.transp_nome !== "Retira") {
               const cardElement = document.createElement("div");
@@ -427,12 +443,32 @@
               prazoEntregaElement.textContent = `Prazo de Entrega: ${transportadora.prazoEnt}`;
               const dataPrevEntregaElement = document.createElement("p");
               dataPrevEntregaElement.textContent = `Previsão: ${formatarData(transportadora.dtPrevEnt)}`;
+
+              // Adicionar informações de frete mais barato e frete mais rápido
+              if (transportadora === freteMaisBarato) {
+                const freteMaisBaratoIcon = document.createElement("i");
+                freteMaisBaratoIcon.classList.add("fas", "fa-money-bill");
+                const freteMaisBaratoInfo = document.createElement("span");
+                freteMaisBaratoInfo.textContent = " Frete mais barato!";
+                valorFreteElement.appendChild(freteMaisBaratoIcon);
+                valorFreteElement.appendChild(freteMaisBaratoInfo);
+              }
+              if (transportadora === prazoMenor) {
+                const freteMaisRapidoIcon = document.createElement("i");
+                freteMaisRapidoIcon.classList.add("fas", "fa-truck");
+                const freteMaisRapidoInfo = document.createElement("span");
+                freteMaisRapidoInfo.textContent = " Frete mais rápido!";
+                prazoEntregaElement.appendChild(freteMaisRapidoIcon);
+                prazoEntregaElement.appendChild(freteMaisRapidoInfo);
+              }
+
               cardElement.appendChild(titulo);
               cardElement.appendChild(logoElement);
               cardElement.appendChild(valorFreteElement);
               cardElement.appendChild(prazoEntregaElement);
               cardElement.appendChild(dataPrevEntregaElement);
               cardsContainer.appendChild(cardElement);
+
               // Adicionar evento de seleção ao card
               cardElement.addEventListener("click", function () {
                 const selectedCard = document.querySelector(".card.selected");
