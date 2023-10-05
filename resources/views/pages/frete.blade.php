@@ -135,7 +135,7 @@
                         <div class="container">
                             <div class="form-group">
                                 <label for="id_octa">ID Cliente:</label>
-                                <input type="text" id="id_octa" class="custom-control-input"></input> 
+                                <input type="text" id="id_octa" class="form-control"></input> 
                             </div>
                         </div>
                     </div>
