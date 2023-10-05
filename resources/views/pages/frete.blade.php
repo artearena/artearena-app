@@ -451,12 +451,13 @@
               prazoEntregaElement.textContent = `Prazo de Entrega: ${transportadora.prazoEnt}`;
               const dataPrevEntregaElement = document.createElement("p");
               dataPrevEntregaElement.textContent = `Previsão: ${formatarData(transportadora.dtPrevEnt)}`;
-
-              cardElement.appendChild(titulo);
+              
               cardElement.appendChild(logoElement);
-              cardElement.appendChild(dataPrevEntregaElement);
+              cardElement.appendChild(titulo);
               cardElement.appendChild(valorFreteElement);
               cardElement.appendChild(prazoEntregaElement);
+              cardElement.appendChild(dataPrevEntregaElement);
+
               cardsContainer.appendChild(cardElement);
 
                   // Adicionar informações de frete mais barato
@@ -466,11 +467,11 @@
                 const freteMaisBaratoInfo = document.createElement("span");
                 freteMaisBaratoInfo.textContent = " Frete mais barato!";
 
-                valorFreteElement.appendChild(document.createElement("br"));
-                valorFreteElement.appendChild(document.createElement("br"));
+                dataPrevEntregaElement.appendChild(document.createElement("br"));
+                dataPrevEntregaElement.appendChild(document.createElement("br"));
 
-                valorFreteElement.appendChild(freteMaisBaratoIcon);
-                valorFreteElement.appendChild(freteMaisBaratoInfo);
+                dataPrevEntregaElement.appendChild(freteMaisBaratoIcon);
+                dataPrevEntregaElement.appendChild(freteMaisBaratoInfo);
               }
 
               if (transportadora === prazoMenor) {
@@ -479,11 +480,11 @@
                 const freteMaisRapidoInfo = document.createElement("span");
                 freteMaisRapidoInfo.textContent = " Frete mais rápido!";
 
-                prazoEntregaElement.appendChild(document.createElement("br"));
-                prazoEntregaElement.appendChild(document.createElement("br"));
+                dataPrevEntregaElement.appendChild(document.createElement("br"));
+                dataPrevEntregaElement.appendChild(document.createElement("br"));
 
-                prazoEntregaElement.appendChild(freteMaisRapidoIcon);
-                prazoEntregaElement.appendChild(freteMaisRapidoInfo);
+                dataPrevEntregaElement.appendChild(freteMaisRapidoIcon);
+                dataPrevEntregaElement.appendChild(freteMaisRapidoInfo);
               }
 
               // Adicionar evento de seleção ao card
