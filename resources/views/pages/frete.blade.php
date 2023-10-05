@@ -134,6 +134,14 @@
                     <div class="form-group">
                         <div class="container">
                             <div class="form-group">
+                                <label for="id_octa">ID Cliente:</label>
+                                <input type="text" id="id_octa" class="custom-control-input"></input> 
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="container">
+                            <div class="form-group">
                                 <label for="produto">Produto:</label>
                                 <select class="form-control select2" id="produto" name="produto">
                                     <option value="">Selecione um produto</option>
@@ -184,7 +192,7 @@
                 <button type="button" class="btn btn-primary" id="calcularFrete">Calcular</button>
             </div>
             <div class="col-sm-6">
-                <h4>Detalhes do Frete:</h4>
+                <h4>Detalhes do orçamento:</h4>
                 <div class="details-container">
                     <textarea class="form-control" id="campoTexto" rows="5"></textarea>
                     <button type="button" class="btn btn-primary mt-2" id="botaoOrcamento">Salvar/Enviar Orçamento</button>
