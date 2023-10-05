@@ -172,10 +172,13 @@
                             <label for="produto">Produto:</label>
                             <select class="form-control select2" id="produto" name="produto">
                                 <option value="">Selecione um produto</option>
+                                <option value="personalizado">Produto Personalizado</option>
                                 @foreach ($produtos->sortBy('NOME')->sortBy(function($produto) {
                                     return strpos($produto->NOME, 'Bandeira Personalizada') !== false ? 0 : 1;
                                 }) as $produto)
-                                <option value="{{ $produto->id }}">{{ $produto->NOME }}</option>
+                                    @if ($produto->NOME !== 'Bandeira Personalizada')
+                                        <option value="{{ $produto->id }}">{{ $produto->NOME }}</option>
+                                    @endif
                                 @endforeach
                             </select>
                         </div>
