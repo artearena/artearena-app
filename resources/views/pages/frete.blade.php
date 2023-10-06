@@ -711,8 +711,6 @@
                 alert("Detalhes do orcamento faltando ");
                 return;
             }
-
-
             // Montar array de produtos
             const produtos = Object.values(produtosSelecionados).map(produto => {
               return {
@@ -736,7 +734,7 @@
                 nome_transportadora: detalhesTransportadora.nomeTransportadora,
                 valor_frete: detalhesTransportadora.valorFrete,
                 prazo_entrega: detalhesTransportadora.prazoEntrega,
-                data_prevista: detalhesTransportadora.dataPrevista,
+                data_prevista: detalhesTransportadora.dataPrevista.replace("Frete mais rápido!", "").replace("Frete mais barato!", "").trim(),
                 logo_frete: detalhesTransportadora.logoTransportadora,
                 produtos: produtos,
                 _token: "{{ csrf_token() }}"
@@ -785,16 +783,16 @@
           }
 
           function obterDetalhesTransportadora() {
-          const cardElement = document.querySelector(".card.selected");
-          const nomeTransportadora = cardElement.querySelector("h4").textContent;
-          const valorFreteElement = cardElement.querySelector("p:nth-of-type(2)");
-          const prazoEntregaElement = cardElement.querySelector("p:nth-of-type(1)");
-          const dataPrevistaElement = cardElement.querySelector("p:nth-of-type(3)");
-          const logoTransportadora = cardElement.querySelector("img").src;
-          const valorFrete = extrairValor(valorFreteElement.textContent);
-          const prazoEntrega = extrairNumero(prazoEntregaElement.textContent);
-          const dataPrevista = extrairData(dataPrevistaElement.textContent);
-          const dataPrevistaFormatada = converterData(dataPrevista);
+            const cardElement = document.querySelector(".card.selected");
+            const nomeTransportadora = cardElement.querySelector("h4").textContent;
+            const valorFreteElement = cardElement.querySelector("p:nth-of-type(2)");
+            const prazoEntregaElement = cardElement.querySelector("p:nth-of-type(1)");
+            const dataPrevistaElement = cardElement.querySelector("p:nth-of-type(3)");
+            const logoTransportadora = cardElement.querySelector("img").src;
+            const valorFrete = extrairValor(valorFreteElement.textContent);
+            const prazoEntrega = extrairNumero(prazoEntregaElement.textContent);
+            const dataPrevista = extrairData(dataPrevistaElement.textContent);
+            const dataPrevistaFormatada = converterData(dataPrevista);
 
           return {
             nomeTransportadora,
