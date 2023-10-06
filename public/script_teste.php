@@ -13,9 +13,9 @@ for ($pagina = 1; $pagina <= 37; $pagina++) {
         "pagina" => $pagina
     ];
 
-    $client = new GuzzleHttp\Client();
-    $response = $client->request('GET', $url, ['query' => $params]);
-    $data = json_decode($response->getBody(), true);
+    $url_completa = $url . '?' . http_build_query($params);
+    $response = file_get_contents($url_completa);
+    $data = json_decode($response, true);
     $produtos_pagina = $data['retorno']['produtos'];
     $produtos_totais = array_merge($produtos_totais, $produtos_pagina);
 }
