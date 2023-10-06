@@ -1,0 +1,30 @@
+<?php
+// Conectar ao banco de dados MySQL
+$servername = "mysql.arte.app.br";
+$username = "arte02";
+$password = "140477nagy";
+$dbname = "arte02";
+$conn = new mysqli($servername, $username, $password, $dbname);
+if ($conn->connect_error) {
+    die("Erro de conexão com o banco de dados: " . $conn->connect_error);
+}
+
+// Consultar as imagens do banco de dados
+$sql = "SELECT anexo FROM produtos WHERE anexo IS NOT NULL"; // Substitua "produtos" pelo nome da sua tabela
+$result = $conn->query($sql);
+
+if ($result && $result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        $imagem = $row["anexo"];
+
+        // Exibir a imagem na tela
+        header("Content-Type: image/jpeg"); // Altere o tipo de conteúdo de acordo com o formato da imagem
+        echo $imagem;
+        echo "<br>"; // Quebra de linha para separar as imagens visualmente
+    }
+} else {
+    echo "Nenhuma imagem encontrada.";
+}
+
+$conn->close();
+?>
