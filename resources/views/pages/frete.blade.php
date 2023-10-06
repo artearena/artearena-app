@@ -570,9 +570,13 @@
                 const prazoConfeccao = prazoConfecaoMaisAlto;
                 const detalhesFrete = `Frete: ${cepDestino} - R$${frete} - (Dia da postagem + ${prazoEntrega} dias úteis via ${titulo})\n\n`;
                 const total = `Total: R$${valorTotalFormatado}\n`;
+
+                total = total.replace(/\./g, ",");
+                detalhesFrete = detalhesFrete.replace(/\./g, ",");
+                produtosDescricao = produtosDescricao.replace(/\./g, ",");
+
                 const prazo = `Prazo para confecção é de ${prazoConfeccao} dias úteis + prazo de envio.\nPrazo inicia-se após aprovação da arte e pagamento confirmado`;
                 campoTexto.value = `${produtosDescricao}${detalhesFrete}${total}\n${prazo}`;
-                campoTexto.value = campoTexto.value.replace(/\./g, ",");
               });
             }
           });
@@ -675,9 +679,13 @@
             const valorTotalFormatado = valorTotal.toFixed(2);
             const detalhesFrete = `Frete: ${frete} \n\n`; // Ajustar o texto para "Retirada"
             const total = `Total: R$${valorTotalFormatado}\n`;
+           
+              total = total.replace(/\./g, ",");
+              detalhesFrete = detalhesFrete.replace(/\./g, ",");
+              produtosDescricao = produtosDescricao.replace(/\./g, ",");
+
             const prazo = `Prazo para confecção é de ${prazoConfecao} dias úteis.\nPrazo inicia-se após aprovação da arte e pagamento confirmado`;
             campoTexto.value = `${produtosDescricao}${total}\n${prazo}`;
-            campoTexto.value = campoTexto.value.replace(/\./g, ",");
           });
       }
       </script>
