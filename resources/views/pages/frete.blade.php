@@ -746,7 +746,7 @@
                 // Tratamento de erro
                 var errorMessage = "Erro ao salvar orçamento: ";
                 if (xhr.responseJSON && xhr.responseJSON.message) {
-                  errorMessage += filtrarMensagemErro(xhr.responseJSON.message);
+                  errorMessage += xhr.responseJSON.message;
                 } else {
                   errorMessage += "Ocorreu um erro inesperado.";
                 }
