@@ -185,7 +185,7 @@
                     </div>
                 </div>
 
-                <!-- Tabela de produtos selecionados -->
+              <!-- Tabela de produtos selecionados -->
               <table class="table mt-4">
                   <thead>
                       <tr>
@@ -335,6 +335,7 @@
     }).fail(function() {
       console.log("Erro ao consultar o produto. Verifique se o ID do produto é válido.");
     });
+}
 
 
       $('#produto').change(function() {
