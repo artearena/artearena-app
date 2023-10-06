@@ -117,7 +117,7 @@ function obterDadosProduto($conn, $token, $id)
             $produto['larguraEmbalagem'],
             $produto['comprimentoEmbalagem'],
             $produto['ncm'],
-            $produto['anexos'][0]['anexo'],
+            $produto['anexo'],
             $id
         );
         $stmt->execute();
