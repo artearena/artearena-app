@@ -678,7 +678,7 @@
             const total = `Total: R$${valorTotalFormatado}\n`;
             const prazo = `Prazo para confecção é de ${prazoConfecao} dias úteis.\nPrazo inicia-se após aprovação da arte e pagamento confirmado`;
             campoTexto.value = `${produtosDescricao}${total}\n${prazo}`;
-            campoTexto.value = campoTexto.replace(/\./g, ",");
+            campoTexto.value = campoTexto.value.replace(/\./g, ",");
             console.log(campoTexto);
           });
       }
