@@ -679,10 +679,10 @@
             const valorTotalFormatado = valorTotal.toFixed(2);
             const detalhesFrete = `Frete: ${frete} \n\n`; // Ajustar o texto para "Retirada"
             const total = `Total: R$${valorTotalFormatado}\n`;
-           
-              total = total.replace(/\./g, ",");
-              detalhesFrete = detalhesFrete.replace(/\./g, ",");
-              produtosDescricao = produtosDescricao.replace(/\./g, ",");
+          
+            total = total.replace(/\./g, ",");
+            detalhesFrete = detalhesFrete.replace(/\./g, ",");
+            produtosDescricao = produtosDescricao.replace(/\./g, ",");
 
             const prazo = `Prazo para confecção é de ${prazoConfecao} dias úteis.\nPrazo inicia-se após aprovação da arte e pagamento confirmado`;
             campoTexto.value = `${produtosDescricao}${total}\n${prazo}`;
