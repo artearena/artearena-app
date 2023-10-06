@@ -186,20 +186,23 @@
                 </div>
 
                 <!-- Tabela de produtos selecionados -->
-                <table class="table mt-4">
-                    <thead>
-                        <tr>
-                            <th hidden>ID</th>
-                            <th>Nome</th>
-                            <th>Valor</th>
-                            <th>Peso</th>
-                            <th>Quantidade</th>
-                            <th>Prazo de Confecção</th>
-                            <th>Ação</th>
-                        </tr>
-                    </thead>
-                    <tbody id="produtoTableBody"></tbody>
-                </table>
+              <table class="table mt-4">
+                  <thead>
+                      <tr>
+                          <th hidden>ID</th>
+                          <th>Nome</th>
+                          <th>Valor</th>
+                          <th>Peso</th>
+                          <th>Quantidade</th>
+                          <th>Prazo de Confecção</th>
+                          <th>Altura</th>
+                          <th>Comprimento</th>
+                          <th>Largura</th>
+                          <th>Ação</th>
+                      </tr>
+                  </thead>
+                  <tbody id="produtoTableBody"></tbody>
+              </table>
             </form>
             <form id="cep-form" method="POST" action="">
                 @csrf
