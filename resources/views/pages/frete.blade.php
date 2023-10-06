@@ -571,7 +571,7 @@
                 const detalhesFrete = `Frete: ${cepDestino} - R$${frete} - (Dia da postagem + ${prazoEntrega} dias úteis via ${titulo})\n\n`;
                 const total = `Total: R$${valorTotalFormatado}\n`;
                 const prazo = `Prazo para confecção é de ${prazoConfeccao} dias úteis + prazo de envio.\nPrazo inicia-se após aprovação da arte e pagamento confirmado`;
-                campoTexto.value = `${produtosDescricao}\n${detalhesFrete}${total}\n${prazo}`;
+                campoTexto.value = `${produtosDescricao}${detalhesFrete}${total}\n${prazo}`;
               });
             }
           });
@@ -675,7 +675,7 @@
             const detalhesFrete = `Frete: ${frete} \n\n`; // Ajustar o texto para "Retirada"
             const total = `Total: R$${valorTotalFormatado}\n`;
             const prazo = `Prazo para confecção é de ${prazoConfecao} dias úteis.\nPrazo inicia-se após aprovação da arte e pagamento confirmado`;
-            campoTexto.value = `${produtosDescricao}${produtosDescricao}\n${total}\n${prazo}`;
+            campoTexto.value = `${produtosDescricao}${total}\n${prazo}`;
           });
       }
       </script>
