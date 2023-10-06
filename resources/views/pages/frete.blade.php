@@ -572,7 +572,8 @@
                 const total = `Total: R$${valorTotalFormatado}\n`;
                 const prazo = `Prazo para confecção é de ${prazoConfeccao} dias úteis + prazo de envio.\nPrazo inicia-se após aprovação da arte e pagamento confirmado`;
                 campoTexto.value = `${produtosDescricao}${detalhesFrete}${total}\n${prazo}`;
-                campoTexto = campoTexto.replace(/\./g, ",");
+                campoTexto = campoTexto.split('.').join(',');
+                console.log(campoTexto);
               });
             }
           });
@@ -677,6 +678,8 @@
             const total = `Total: R$${valorTotalFormatado}\n`;
             const prazo = `Prazo para confecção é de ${prazoConfecao} dias úteis.\nPrazo inicia-se após aprovação da arte e pagamento confirmado`;
             campoTexto.value = `${produtosDescricao}${total}\n${prazo}`;
+            campoTexto = campoTexto.split('.').join(',');
+            console.log(campoTexto); // Saída: 123,456,789
           });
       }
       </script>
