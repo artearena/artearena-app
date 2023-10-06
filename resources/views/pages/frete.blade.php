@@ -734,7 +734,7 @@
                 nome_transportadora: detalhesTransportadora.nomeTransportadora,
                 valor_frete: detalhesTransportadora.valorFrete,
                 prazo_entrega: detalhesTransportadora.prazoEntrega,
-                data_prevista: detalhesTransportadora.dataPrevista.replace("Frete mais rápido!", "").replace("Frete mais barato!", "").trim(),
+                data_prevista: detalhesTransportadora.dataPrevista.replace(" Frete mais rápido!", "").replace(" Frete mais barato!", "").trim(),
                 logo_frete: detalhesTransportadora.logoTransportadora,
                 produtos: produtos,
                 _token: "{{ csrf_token() }}"
