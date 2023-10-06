@@ -655,7 +655,7 @@
               }
               
             });
-            let produtosDescricao = "";
+            var produtosDescricao = "";
             for (const id in produtosSelecionados) {
               if (produtosSelecionados.hasOwnProperty(id)) {
                 const nomeProduto = produtosSelecionados[id].nome;
@@ -681,7 +681,6 @@
             var total = `Total: R$${valorTotalFormatado}\n`;
           
             total = total.replace(/\./g, ",");
-            detalhesFrete = detalhesFrete.replace(/\./g, ",");
             produtosDescricao = produtosDescricao.replace(/\./g, ",");
 
             const prazo = `Prazo para confecção é de ${prazoConfecao} dias úteis.\nPrazo inicia-se após aprovação da arte e pagamento confirmado`;
