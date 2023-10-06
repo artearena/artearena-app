@@ -175,7 +175,36 @@ foreach ($produtos_totais as $produto) {
         echo $registros_inseridos . " registros inseridos...\n";
     }
 }
+foreach ($ids_produtos as $id) {
+    obterDadosProduto($conn, $token, $id);
+    echo $registros_inseridos . " registro " . $id . "atualizado...\n";
+}
+// Função para obter os dados do produto e atualizar no banco de dados
+function obterDadosProduto($conn, $token, $id) {
+    $url = "https://api.tiny.com.br/api2/produto.obter.php";
+    $formato = "json";
+    
+    $params = [
+        "token" => $token,
+        "id" => $id,
+        "formato" => $formato
+    ];
+    
+    $url_completa = $url . '?' . http_build_query($params);
+    $response = file_get_contents($url_completa);
+    $data = json_decode($response, true);
+    
+    if ($data['retorno']['status'] == "OK") {
+        $produto = $data['retorno']['produto'];
+        
+        $sql_update = "UPDATE produtos SET altura = ?, largura = ?, comprimento = ?, ncm = ?, anexo = ? WHERE id = ?";
+        $stmt = $conn->prepare($sql_update);
+        $stmt->bind_param("dddsds", $produto['alturaEmbalagem'], $produto['larguraEmbalagem'], $produto['comprimentoEmbalagem'], $produto['ncm'], $produto['anexos'][0]['anexo'], $id);
+        $stmt->execute();
+        $stmt->close();
+    }
+}
 
-// Fechar a conexão com o banco de dados
 $conn->close();
+
 ?>
