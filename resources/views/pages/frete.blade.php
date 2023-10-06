@@ -544,7 +544,7 @@
                     produtosSelecionados[id].quantidade += quantidade;
                   }
                 });
-                let produtosDescricao = "";
+                var produtosDescricao = "";
                 for (const id in produtosSelecionados) {
                   if (produtosSelecionados.hasOwnProperty(id)) {
                     const nomeProduto = produtosSelecionados[id].nome;
@@ -568,8 +568,8 @@
                 valorTotal += parseFloat(frete);
                 const valorTotalFormatado = valorTotal.toFixed(2);
                 const prazoConfeccao = prazoConfecaoMaisAlto;
-                const detalhesFrete = `Frete: ${cepDestino} - R$${frete} - (Dia da postagem + ${prazoEntrega} dias úteis via ${titulo})\n\n`;
-                const total = `Total: R$${valorTotalFormatado}\n`;
+                var detalhesFrete = `Frete: ${cepDestino} - R$${frete} - (Dia da postagem + ${prazoEntrega} dias úteis via ${titulo})\n\n`;
+                var total = `Total: R$${valorTotalFormatado}\n`;
 
                 total = total.replace(/\./g, ",");
                 detalhesFrete = detalhesFrete.replace(/\./g, ",");
@@ -637,7 +637,7 @@
             // Exibir detalhes do frete no campo de texto
             const campoTexto = document.getElementById("campoTexto");
             campoTexto.value = "";
-            let produtosSelecionados = {};
+            var produtosSelecionados = {};
             const tableRows = $("#produtoTableBody tr");
             tableRows.each(function () {
               const id = $(this).find("td:first-child").text();
@@ -678,7 +678,7 @@
             }
             const valorTotalFormatado = valorTotal.toFixed(2);
             const detalhesFrete = `Frete: ${frete} \n\n`; // Ajustar o texto para "Retirada"
-            const total = `Total: R$${valorTotalFormatado}\n`;
+            var total = `Total: R$${valorTotalFormatado}\n`;
           
             total = total.replace(/\./g, ",");
             detalhesFrete = detalhesFrete.replace(/\./g, ",");
