@@ -88,8 +88,8 @@
             </div>
             <div class="modal-body">
                 <ul>
+                    <li><strong>Gabriel Felix</strong> - 201</li>
                     <li><strong>Telefone Fixo</strong> - 200</li>
-                    <li><strong>Gabriel</strong> - 201</li>
                     <li><strong>Administrativo</strong></li>
                     <ul>
                         <li><strong>João</strong>: 202</li>
