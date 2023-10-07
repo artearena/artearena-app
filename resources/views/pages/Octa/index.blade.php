@@ -184,8 +184,8 @@
                         <input type="radio" name="rdo" id="yes" checked>
                         <input type="radio" name="rdo" id="no">
                         <div class="switch">
-                            <label for="yes">Yes</label>
-                            <label for="no">No</label>
+                            <label for="yes">Sim</label>
+                            <label for="no">Não</label>
                             <span></span>
                         </div>
                     </div>
