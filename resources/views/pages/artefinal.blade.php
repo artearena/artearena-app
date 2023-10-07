@@ -836,9 +836,11 @@ $.ajaxSetup({
         var field = $(this).attr('name');
         var value = $(this).val();
         var medidaLinearValue = $(this).closest('tr').find('input[name="medida_linear"]').val();
-        
+        const row = $(this).closest('tr');
+        const designer = row.find('select[name="designer"]').val();
+
         // Verifica se o campo designer está preenchido
-        if (field === 'status' &&  row.find('select[name="designer"]').val() === '') {
+        if (field === 'status' && designer === '') {
             // Exibe uma mensagem de erro usando o Swal.fire
             Swal.fire({
                 icon: 'error',
