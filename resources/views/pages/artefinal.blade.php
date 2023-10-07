@@ -836,6 +836,18 @@ $.ajaxSetup({
         var field = $(this).attr('name');
         var value = $(this).val();
         var medidaLinearValue = $(this).closest('tr').find('input[name="medida_linear"]').val();
+        
+        // Verifica se o campo designer está preenchido
+        if (field === 'status' && designerValue === '') {
+            // Exibe uma mensagem de erro usando o Swal.fire
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'O campo "designer" precisa ser preenchido antes de alterar o status.',
+            });
+            return;
+        }
+
         if (field === 'data') {
                 var dateParts = value.split('/');
                 if (dateParts.length === 3) {

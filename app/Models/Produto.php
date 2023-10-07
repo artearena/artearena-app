@@ -20,6 +20,10 @@ class Produto extends Model
         'LOCALIZACAO',
         'PRECO_CUSTO',
         'PRECO_CUSTO_MEDIO',
-        'SITUACAO'
+        'SITUACAO',
+        'ALTURA',
+        'COMPRIMENTO',
+        'LARGURA',
+
     ];
 }
