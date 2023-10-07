@@ -45,11 +45,9 @@
             background-color: #ebebeb;
         }
         .switch {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 150px;
-            height: 50px;
+
+            width: 50px;
+            height: 20px;
             text-align: center;
             margin: -30px 0 0 -75px;
             background: #00bc9c;
