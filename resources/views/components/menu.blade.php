@@ -88,27 +88,27 @@
             </div>
             <div class="modal-body">
                 <ul>
-                    <li>Telefone Fixo - 200</li>
-                    <li>Gabriel - 201</li>
-                    <li>Administrativo</li>
+                    <li><strong>Telefone Fixo</strong> - 200</li>
+                    <li><strong>Gabriel</strong> - 201</li>
+                    <li><strong>Administrativo</strong></li>
                     <ul>
-                        <li>João: 202</li>
+                        <li><strong>João</strong>: 202</li>
                     </ul>
-                    <li>Comercial</li>
+                    <li><strong>Comercial</strong></li>
                     <ul>
-                        <li>Giovana: 203</li>
-                        <li>Wagner: 204</li>
-                        <li>Andreia: 205</li>
-                        <li>Emily: 207</li>
-                        <li>Comercial Fixo: 210</li>
+                        <li><strong>Giovana</strong>: 203</li>
+                        <li><strong>Wagner</strong>: 204</li>
+                        <li><strong>Andreia</strong>: 205</li>
+                        <li><strong>Emily</strong>: 207</li>
+                        <li><strong>Comercial Fixo</strong>: 210</li>
                     </ul>
-                    <li>SAC</li>
+                    <li><strong>SAC</strong></li>
                     <ul>
-                        <li>Luciane: 208</li>
+                        <li><strong>Luciane</strong>: 208</li>
                     </ul>
-                    <li>Recepção/BackOffice</li>
+                    <li><strong>Recepção/BackOffice</strong></li>
                     <ul>
-                        <li>Mariana: 206</li>
+                        <li><strong>Mariana</strong>: 206</li>
                     </ul>
                 </ul>
             </div>
