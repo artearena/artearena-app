@@ -93,7 +93,7 @@
             left: 0px;
             height: 20px;
         }
-        l
+        
     </style>
 @endsection
 @section('content')
