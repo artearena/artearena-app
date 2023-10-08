@@ -9,7 +9,7 @@ class ErroController extends Controller
 {
     public function create()
     {
-        return view('page.Erros.index');
+        return view('pages.Erros.index');
     }
 
     public function store(Request $request)
