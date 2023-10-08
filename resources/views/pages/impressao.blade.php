@@ -925,38 +925,6 @@ $('.mover-pedido').click(function () {
     const recordsInfoContainer = document.getElementById('medida-linear-tabela');
     recordsInfoContainer.innerHTML = `${totalMedidaLinearTexto}<br>${tempoEstimadoTexto}`;
     atualizarMetragemTotal();
-    function atualizarMetragemTotal() {
-            const metragemTotal = calcularMetragemTotal();
-            const metragemPorMaterial = calcularMetragemPorMaterial();
-            const quantidadePorProduto = calcularQuantidadePorProduto();
-            console.log(metragemPorMaterial);
-            metragemTotalDiv.innerHTML = `
-                <div style="display: flex; flex-direction: row;">
-                <div style="margin-right: 20px;">
-                    <p>Metragem Total: ${metragemTotal}M</p>
-                    <p>Metragem por Material:</p>
-                    <ul>
-                    ${Object.entries(metragemPorMaterial)
-                        .map(([material, metragem]) => `<li>${material ? material : 'Sem material definido'}: ${metragem}M</li>`)
-                        .join('')}
-                    </ul>
-                </div>
-                <div style="margin-left: 20px;">
-                    <p>Quantidade por Produto:</p>
-                    <ul>
-                    ${(() => {
-                        let lista = '';
-                        quantidadePorProduto.forEach(([produto, quantidade]) => {
-                            lista += `<li>${produto}(s): ${quantidade} </li>`;
-                        });
-                        return lista;
-                    })()}
-                    </ul>
-                </div>
-                </div>
-            `;
-        }
-        
     // Função para calcular a metragem por tipo de material
     function calcularMetragemPorMaterial() {
         const metragemPorMaterial = {};
@@ -1011,6 +979,36 @@ $('.mover-pedido').click(function () {
             const quantidadeOrdenada = Object.entries(quantidadePorProduto).sort((a, b) => b[1] - a[1]);
             // Retorna o objeto de quantidadePorProduto ordenado
             return quantidadeOrdenada;
+        }
+        function atualizarMetragemTotal() {
+            const metragemPorMaterial = calcularMetragemPorMaterial();
+            const quantidadePorProduto = calcularQuantidadePorProduto();
+            console.log(metragemPorMaterial);
+            metragemTotalDiv.innerHTML = `
+                <div style="display: flex; flex-direction: row;">
+                <div style="margin-right: 20px;">
+                    <p>Metragem Total: ${metragemTotal}M</p>
+                    <p>Metragem por Material:</p>
+                    <ul>
+                    ${Object.entries(metragemPorMaterial)
+                        .map(([material, metragem]) => `<li>${material ? material : 'Sem material definido'}: ${metragem}M</li>`)
+                        .join('')}
+                    </ul>
+                </div>
+                <div style="margin-left: 20px;">
+                    <p>Quantidade por Produto:</p>
+                    <ul>
+                    ${(() => {
+                        let lista = '';
+                        quantidadePorProduto.forEach(([produto, quantidade]) => {
+                            lista += `<li>${produto}(s): ${quantidade} </li>`;
+                        });
+                        return lista;
+                    })()}
+                    </ul>
+                </div>
+                </div>
+            `;
         }
         
 </script>
