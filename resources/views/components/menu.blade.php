@@ -56,7 +56,14 @@
                             <li><a class="dropdown-item" href="{{ route('reposicao') }}">Reposição</a></li>
                         </ul>
                     </li>
-
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="producaoDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Administração
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="producaoDropdown">
+                            <li><a class="dropdown-item" href="{{ route('erros.index') }}">Impressão</a></li>
+                        </ul>
+                    </li>
 
                 </ul>
             @endguest

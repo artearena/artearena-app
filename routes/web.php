@@ -60,6 +60,11 @@ Route::middleware(['auth'])->group(function () {
 
     });
     Route::get('/buscar-pedido', [PedidoController::class, 'buscarPedido'])->name('buscarPedido');
+
+    Route::prefix('erros')->group(function () {
+        Route::get('/create', [ErrosController::class, 'create'])->name('erros.index');
+        Route::post('/', [ErrosController::class, 'store'])->name('erros.store');
+    });
 });
 
 Route::prefix('cadastro')->group(function () {
