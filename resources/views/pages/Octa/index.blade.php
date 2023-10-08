@@ -323,7 +323,7 @@
 
             // Exemplo de chamada AJAX usando jQuery
             $.ajax({
-                url: '/crm/atualizar-vendedor/${clienteId}', 
+                url: '/crm/atualizar-bloqueado/${clienteId}', 
                 method: 'POST',
                 data: { valor: valor },
                 success: function(response) {
