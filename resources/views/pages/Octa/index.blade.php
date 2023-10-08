@@ -195,7 +195,7 @@
                 </td>
                 <td class="text-center">
                     <label class="switch">
-                        <input type="checkbox" class="table_checkbox" id="checkbox" value="{{ $cliente->contato_bloqueado }}">
+                        <input type="checkbox" class="table_checkbox" id="checkbox" value="{{ $cliente->contato_bloqueado }}" @if($cliente->contato_bloqueado == 1) checked @endif>
                         <span class="slider round"></span>
                     </label>
                 </td>
