@@ -325,7 +325,10 @@
             $.ajax({
                 url: '/crm/atualizar-bloqueado/${clienteId}', 
                 method: 'PUT',
-                data: { valor: valor },
+                data: { 
+                    valor: valor,
+                    "_token": "{{ csrf_token() }}",
+                },
                 success: function(response) {
                     console.log('Valor atualizado no banco de dados');
                 },
