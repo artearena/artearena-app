@@ -591,14 +591,9 @@ $(document).ready(function(){
         var field = $(this).attr('name');
         var value = $(this).val();
         var medidaLinearValue = $(this).closest('tr').find('input[name="medida_linear"]').val();
-        
-        console.log(id);
-        console.log(field);
-        console.log(value);
 
         // Verifica se o campo é uma medida linear
         var isLinearMeasurementField = ['medida_linear'].includes(field);
-        console.log(medidaLinearValue);
 
         // Se não for medida linear, verifique se o campo está preenchido
         if (!isLinearMeasurementField && medidaLinearValue === '') {
@@ -841,26 +836,19 @@ $('.mover-pedido').click(function () {
             
             var diffInDays = Math.floor((data - today) / (1000 * 60 * 60 * 24));
 
-            console.log(data);
-            console.log(diffInDays);
-
             if (isNaN(data.getTime())) {
                 // Se a data for inválida, defina a cor como verde
                 element.attr("data-color", "green");
-                console.log('1');
             } else if (diffInDays < -1) {
                 // Se a data for igual ou posterior ao dia atual, a cor será vermelha
                 element.attr("data-color", "red");
-                console.log('2');
             } 
             else if(diffInDays > -1){
                 // Caso contrário, a cor será verde
                 element.attr("data-color", "lightgreen");
-                console.log('4');
             } else if (diffInDays = -1) {
                 // Se estiver dentro dos três dias futuros a partir do dia atual, a cor será amarela
                 element.attr("data-color", "green");
-                console.log('3');
             }
             
         }
@@ -946,7 +934,6 @@ $('.mover-pedido').click(function () {
             const linha = tabelaPedidos.rows[i];
             // Seleciona os elementos
             const selectMaterial = linha.querySelector('select[name="material"]');
-            console.log(selectMaterial);
             const inputMedida = linha.querySelector('input[name="medida_linear"]');
             // Verifica se os elementos existem antes de tentar ler os valores
             if (selectMaterial && inputMedida) {
