@@ -954,6 +954,32 @@ $('.mover-pedido').click(function () {
         }
             return metragemPorMaterial;
         }
+        function calcularQuantidadePorProduto() {
+            const quantidadePorProduto = {};
+            // Loop pelas linhas da tabela
+            for (let i = 0; i < tabelaPedidos.rows.length; i++) {
+                const linha = tabelaPedidos.rows[i];
+                // Seleciona o select de produto
+                const selectProduto = linha.querySelector('select[name="produto"]');
+                // Verifica se o select existe antes de tentar ler o value
+                if (selectProduto) {
+                const produto = selectProduto.value;
+                // Soma a quantidade apenas se tiver produto válido
+                if (produto) {
+                    if (quantidadePorProduto[produto]) {
+                    quantidadePorProduto[produto] += 1; 
+                    } else {
+                    quantidadePorProduto[produto] = 1;
+                    }
+                }
+                }
+            }
+            
+            // Ordena o objeto de quantidadePorProduto por quantidade
+            const quantidadeOrdenada = Object.entries(quantidadePorProduto).sort((a, b) => b[1] - a[1]);
+            // Retorna o objeto de quantidadePorProduto ordenado
+            return quantidadeOrdenada;
+        }
         function atualizarMetragemTotal() {
             const metragemTotal = calcularMetragemTotal();
             const metragemPorMaterial = calcularMetragemPorMaterial();
@@ -985,31 +1011,6 @@ $('.mover-pedido').click(function () {
                 </div>
             `;
         }
-        function calcularQuantidadePorProduto() {
-            const quantidadePorProduto = {};
-            // Loop pelas linhas da tabela
-            for (let i = 0; i < tabelaPedidos.rows.length; i++) {
-                const linha = tabelaPedidos.rows[i];
-                // Seleciona o select de produto
-                const selectProduto = linha.querySelector('select[name="produto"]');
-                // Verifica se o select existe antes de tentar ler o value
-                if (selectProduto) {
-                const produto = selectProduto.value;
-                // Soma a quantidade apenas se tiver produto válido
-                if (produto) {
-                    if (quantidadePorProduto[produto]) {
-                    quantidadePorProduto[produto] += 1; 
-                    } else {
-                    quantidadePorProduto[produto] = 1;
-                    }
-                }
-                }
-            }
-            
-            // Ordena o objeto de quantidadePorProduto por quantidade
-            const quantidadeOrdenada = Object.entries(quantidadePorProduto).sort((a, b) => b[1] - a[1]);
-            // Retorna o objeto de quantidadePorProduto ordenado
-            return quantidadeOrdenada;
-        }
+        
 </script>
 @endsection
