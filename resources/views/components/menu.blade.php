@@ -57,7 +57,7 @@
                         </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{ request()->is('/') ? 'active' : '' }}" href="#" data-toggle="modal" data-target="#modalPedido">Consultar Pedido</a>
+                        <a href="#" data-toggle="modal" data-target="#modalPedido">Consultar Pedido</a>
                     </li>
 
                 </ul>
