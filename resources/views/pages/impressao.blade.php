@@ -907,29 +907,53 @@ $('.mover-pedido').click(function () {
 <script>
     const linhasTabela = document.querySelectorAll('#tabela-pedidos tbody tr');
     let somaMedidaLinear = 0;
-
     linhasTabela.forEach((linha) => {
-    const medidaLinear = parseFloat(linha.querySelector('td:nth-child(5) input').value);
-
-    if (!isNaN(medidaLinear)) {
-        somaMedidaLinear += medidaLinear;
-    }
+        const medidaLinear = parseFloat(linha.querySelector('td:nth-child(5) input').value);
+        if (!isNaN(medidaLinear)) {
+            somaMedidaLinear += medidaLinear;
+        }
     });
-
     let tempoEstimado;
     let tempoEstimadoTexto;
-
     if (somaMedidaLinear < 60) {
-    tempoEstimado = somaMedidaLinear;
-    tempoEstimadoTexto = `Tempo estimado: ${tempoEstimado.toFixed(0)} minutos`;
+        tempoEstimado = somaMedidaLinear;
+        tempoEstimadoTexto = `Tempo estimado: ${tempoEstimado.toFixed(0)} minutos`;
     } else {
-    tempoEstimado = somaMedidaLinear / 60;
-    tempoEstimadoTexto = `Tempo estimado: ${tempoEstimado.toFixed(2)} horas`;
+        tempoEstimado = somaMedidaLinear / 60;
+        tempoEstimadoTexto = `Tempo estimado: ${tempoEstimado.toFixed(2)} horas`;
     }
-
     const totalMedidaLinearTexto = `Total de medida linear: ${somaMedidaLinear.toFixed(2)}m`;
-    
     const recordsInfoContainer = document.getElementById('medida-linear-tabela');
     recordsInfoContainer.innerHTML = `${totalMedidaLinearTexto}<br>${tempoEstimadoTexto}`;
+
+    function calcularMetragemPorMaterial() {
+        const metragemPorMaterial = {};
+        const tabelaPedidos = document.getElementById('tabela-pedidos');
+        // Loop pelas linhas da tabela
+        for (let i = 0; i < tabelaPedidos.rows.length; i++) {
+            const linha = tabelaPedidos.rows[i];
+            // Seleciona os elementos
+            const selectMaterial = linha.querySelector('select[name="material"]');
+            const inputMedida = linha.querySelector('input[name="medida_linear"]');
+            // Verifica se os elementos existem antes de tentar ler os valores
+            if (selectMaterial && inputMedida) {
+                const material = selectMaterial.options[selectMaterial.selectedIndex].text;
+                const medidaLinear = parseFloat(inputMedida.value);
+                // Faz validação extra da medida linear
+                if (!isNaN(medidaLinear)) {
+                    // Soma no objeto de metragem por material
+                    if (metragemPorMaterial[material]) {
+                        metragemPorMaterial[material] += medidaLinear;
+                    } else {
+                        metragemPorMaterial[material] = medidaLinear;
+                    }
+                }
+            }
+        }
+        for (const material in metragemPorMaterial) {
+            metragemPorMaterial[material] = metragemPorMaterial[material].toFixed(2);
+        }
+        return metragemPorMaterial;
+    }
 </script>
 @endsection
