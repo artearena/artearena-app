@@ -405,6 +405,7 @@ $(document).ready(function(){
     function configurarTabela() {
     let table = $('#tabela-pedidos').DataTable({
         fixedHeader: true,
+        order: [[1, 'asc']],
         "lengthMenu": [[10, 25, 50, 100, 200], [10, 25, 50, 100, 200]],
         "pageLength": 200,
         "columnDefs": [
