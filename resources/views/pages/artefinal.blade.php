@@ -292,6 +292,7 @@ Consulta de Pedidos
                     <hr>
                         <div id="qtd-dia-artes">Quantidade de artes</div>
                     <hr>
+                    <a class="nav-link btn" href="#" data-toggle="modal" data-target="#modalPedido">Consultar Pedido</a>
                     <div class="tabela-container">
                     <div id="loading" class="text-center" style="display: none;">
                         <p>Carregando...</p>
