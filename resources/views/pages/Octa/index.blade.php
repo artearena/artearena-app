@@ -322,7 +322,7 @@
                     method: 'PUT',
                     data: { 
                         clienteId: clienteId,
-                        valor: valor,
+                        bloqueado: valor,
                         "_token": "{{ csrf_token() }}",
                     },
                     success: function(response) {
