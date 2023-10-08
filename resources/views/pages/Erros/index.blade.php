@@ -28,5 +28,4 @@
         <button type="submit">Cadastrar Erro</button>
     </form>
 @endsection
-@section('extraScript')
-@endsection
+
