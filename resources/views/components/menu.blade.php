@@ -57,7 +57,7 @@
                         </ul>
                     </li>
                     <li class="nav-item">
-                        <a href="#" data-toggle="modal" data-target="#modalPedido">Consultar Pedido</a>
+                        <a class="nav-link " href="#" data-toggle="modal" data-target="#modalPedido">Consultar Pedido</a>
                     </li>
 
                 </ul>
@@ -81,7 +81,25 @@
         </div>
     </div>
 </nav>
-
+<!-- Modal -->
+<div class="modal fade" id="modalPedido" tabindex="-1" role="dialog" aria-labelledby="modalPedidoLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalPedidoLabel">Consultar Pedido</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <input type="text" id="campoBusca" placeholder="Digite o número do pedido">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="btnConfirmar">Confirmar</button>
+            </div>
+        </div>
+    </div>
+</div>
 <!-- Modal Ramal -->
 <div class="modal fade" id="ramalModal" tabindex="-1" aria-labelledby="ramalModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -122,25 +140,7 @@
         </div>
     </div>
 </div>
-<!-- Modal -->
-<div class="modal fade" id="modalPedido" tabindex="-1" role="dialog" aria-labelledby="modalPedidoLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="modalPedidoLabel">Consultar Pedido</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <input type="text" id="campoBusca" placeholder="Digite o número do pedido">
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary" id="btnConfirmar">Confirmar</button>
-            </div>
-        </div>
-    </div>
-</div>
+
 <script>
     document.getElementById('btnConfirmar').addEventListener('click', function() {
     var numeroPedido = document.getElementById('campoBusca').value;
