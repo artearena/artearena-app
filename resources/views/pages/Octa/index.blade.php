@@ -324,7 +324,7 @@
             // Exemplo de chamada AJAX usando jQuery
             $.ajax({
                 url: '/crm/atualizar-bloqueado/${clienteId}', 
-                method: 'POST',
+                method: 'PUT',
                 data: { valor: valor },
                 success: function(response) {
                     console.log('Valor atualizado no banco de dados');
