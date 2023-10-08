@@ -764,7 +764,8 @@
                 _token: "{{ csrf_token() }}"
               },
               success: function(response) {
-                // Tratamento de sucesso
+                // Exibir mensagem de sucesso usando o Swal
+                swal("Orçamento salvo com sucesso!", "", "success");
               },
               error: function(xhr, status, error) {
                 // Tratamento de erro
