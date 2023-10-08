@@ -78,7 +78,7 @@ class LeadController extends Controller
     {
         $cliente = Cliente::findOrFail($id);
 
-        $bloqueado = $request->input('bloqueado') === 'on' ? true : false;
+        $bloqueado = $request->input('bloqueado') === 'on' ? 1 : 0;
         $cliente->contato_bloqueado = $bloqueado;
 
         $cliente->save();
