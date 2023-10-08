@@ -326,6 +326,7 @@
                 url: '/crm/atualizar-bloqueado/${clienteId}', 
                 method: 'PUT',
                 data: { 
+                    clienteId: clienteId,
                     valor: valor,
                     "_token": "{{ csrf_token() }}",
                 },
