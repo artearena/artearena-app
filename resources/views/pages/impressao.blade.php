@@ -232,6 +232,9 @@ Consulta de Pedidos
                     <hr>
                     <div id="medida-linear-tabela"></div>
                     <hr>
+                    <hr>
+                        <div id="metragem_total"></div>
+                    <hr>
                     <div class="tabela-container">
                     <div id="loading" class="text-center" style="display: none;">
                         <p>Carregando...</p>
@@ -907,14 +910,21 @@ $('.mover-pedido').click(function () {
 <script>
     const linhasTabela = document.querySelectorAll('#tabela-pedidos tbody tr');
     let somaMedidaLinear = 0;
+    
+    const tabelaPedidos = document.getElementById('tabela-pedidos');
+    const metragemTotalDiv = document.getElementById('metragem_total');
+   
     linhasTabela.forEach((linha) => {
-        const medidaLinear = parseFloat(linha.querySelector('td:nth-child(5) input').value);
-        if (!isNaN(medidaLinear)) {
-            somaMedidaLinear += medidaLinear;
-        }
+    const medidaLinear = parseFloat(linha.querySelector('td:nth-child(5) input').value);
+
+    if (!isNaN(medidaLinear)) {
+        somaMedidaLinear += medidaLinear;
+    }
     });
+
     let tempoEstimado;
     let tempoEstimadoTexto;
+
     if (somaMedidaLinear < 60) {
         tempoEstimado = somaMedidaLinear;
         tempoEstimadoTexto = `Tempo estimado: ${tempoEstimado.toFixed(0)} minutos`;
@@ -922,7 +932,9 @@ $('.mover-pedido').click(function () {
         tempoEstimado = somaMedidaLinear / 60;
         tempoEstimadoTexto = `Tempo estimado: ${tempoEstimado.toFixed(2)} horas`;
     }
+
     const totalMedidaLinearTexto = `Total de medida linear: ${somaMedidaLinear.toFixed(2)}m`;
+    
     const recordsInfoContainer = document.getElementById('medida-linear-tabela');
     recordsInfoContainer.innerHTML = `${totalMedidaLinearTexto}<br>${tempoEstimadoTexto}`;
 
@@ -934,26 +946,42 @@ $('.mover-pedido').click(function () {
             const linha = tabelaPedidos.rows[i];
             // Seleciona os elementos
             const selectMaterial = linha.querySelector('select[name="material"]');
+            console.log(selectMaterial);
             const inputMedida = linha.querySelector('input[name="medida_linear"]');
             // Verifica se os elementos existem antes de tentar ler os valores
             if (selectMaterial && inputMedida) {
-                const material = selectMaterial.options[selectMaterial.selectedIndex].text;
-                const medidaLinear = parseFloat(inputMedida.value);
-                // Faz validação extra da medida linear
-                if (!isNaN(medidaLinear)) {
-                    // Soma no objeto de metragem por material
-                    if (metragemPorMaterial[material]) {
-                        metragemPorMaterial[material] += medidaLinear;
-                    } else {
-                        metragemPorMaterial[material] = medidaLinear;
-                    }
+            const material = selectMaterial.options[selectMaterial.selectedIndex].text;
+            const medidaLinear = parseFloat(inputMedida.value);
+            // Faz validação extra da medida linear
+            if (!isNaN(medidaLinear)) {
+                // Soma no objeto de metragem por material
+                if (metragemPorMaterial[material]) {
+                metragemPorMaterial[material] += medidaLinear;
+                } else {
+                metragemPorMaterial[material] = medidaLinear;
                 }
+            }
             }
         }
         for (const material in metragemPorMaterial) {
             metragemPorMaterial[material] = metragemPorMaterial[material].toFixed(2);
         }
-        return metragemPorMaterial;
+            return metragemPorMaterial;
+        }
+        function atualizarMetragemTotal() {
+        const metragemPorMaterial = calcularMetragemPorMaterial();
+        metragemTotalDiv.innerHTML = `
+            <div style="display: flex; flex-direction: row;">
+            <div style="margin-right: 20px;">
+                <p>Metragem por Material:</p>
+                <ul>
+                ${Object.entries(metragemPorMaterial)
+                    .map(([material, metragem]) => `<li>${material ? material : 'Sem material definido'}: ${metragem}M</li>`)
+                    .join('')}
+                </ul>
+            </div>
+            </div>
+        `;
     }
 </script>
 @endsection
