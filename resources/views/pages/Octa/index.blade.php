@@ -195,7 +195,7 @@
                 </td>
                 <td class="text-center">
                     <label class="switch">
-                        <input type="checkbox" id="checkbox" onchange="atualizarValor(this)">
+                        <input type="checkbox" class="table_checkbox" id="checkbox" onchange="atualizarValor(this)">
                         <span class="slider round"></span>
                     </label>
                 </td>
