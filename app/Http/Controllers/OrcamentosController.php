@@ -11,12 +11,6 @@ class OrcamentosController extends Controller
 {
     public function salvarOrcamento(Request $request)
     {
-        // Validação dos dados do formulário
-        $request->validate([
-            'id' => 'required',
-            'detalhes_orcamento' => 'required',
-            // Outras validações para os campos necessários
-        ]);
 
         // Criação de um novo objeto de orçamento
         $orcamento = new Orcamentos();
