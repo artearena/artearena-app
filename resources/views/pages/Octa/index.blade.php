@@ -317,11 +317,13 @@
         });
         function atualizarValor(checkbox) {
             // Obter o valor do checkbox
+            var clienteId = $(this).closest('tr').find('.cliente-id').text();
+
             var valor = checkbox.checked;
 
             // Exemplo de chamada AJAX usando jQuery
             $.ajax({
-                url: 'atualizar_valor.php', // substitua pelo URL do script que atualiza o banco de dados
+                url: '/crm/atualizar-vendedor/${clienteId}', 
                 method: 'POST',
                 data: { valor: valor },
                 success: function(response) {
