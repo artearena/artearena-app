@@ -70,6 +70,23 @@
                 <th>Descontado</th>
             </tr>
         </thead>
+        <tbody>
+            @foreach ($erros as $erro)
+                <tr>
+                    <td>{{ $erro->id }}</td>
+                    <td>{{ $erro->departamento }}</td>
+                    <td>{{ $erro->data }}</td>
+                    <td>{{ $erro->responsavel }}</td>
+                    <td>{{ $erro->pedido }}</td>
+                    <td>{{ $erro->tipo_produto }}</td>
+                    <td>{{ $erro->tipo_erro }}</td>
+                    <td>{{ $erro->erro }}</td>
+                    <td>{{ $erro->consequencia_erro }}</td>
+                    <td>{{ $erro->custo }}</td>
+                    <td>{{ $erro->descontado }}</td>
+                </tr>
+            @endforeach
+        </tbody>
     </table>
 @endsection
 
@@ -77,23 +94,36 @@
     <script>
         $(document).ready(function() {
             $('#tabela-erros').DataTable({
-                ajax: {
-                    url: '{{ route('erros.index') }}', // Substitua pela rota correta para buscar os dados dos erros
-                    dataSrc: ''
-                },
-                columns: [
-                    { data: 'id' },
-                    { data: 'departamento' },
-                    { data: 'data' },
-                    { data: 'responsavel' },
-                    { data: 'pedido' },
-                    { data: 'tipo_produto' },
-                    { data: 'tipo_erro' },
-                    { data: 'erro' },
-                    { data: 'consequencia_erro' },
-                    { data: 'custo' },
-                    { data: 'descontado' }
-                ]
+                language: {
+                    "sEmptyTable": "Nenhum registro encontrado",
+                    "sInfo": "Mostrando de _START_ até _END_ de _TOTAL_ registros",
+                    "sInfoEmpty": "Mostrando 0 até 0 de 0 registros",
+                    "sInfoFiltered": "(Filtrados de _MAX_ registros)",
+                    "sInfoPostFix": "",
+                    "sInfoThousands": ".",
+                    "sLengthMenu": "_MENU_ resultados por página",
+                    "sLoadingRecords": "Carregando...",
+                    "sProcessing": "Processando...",
+                    "sZeroRecords": "Nenhum registro encontrado",
+                    "sSearch": "Pesquisar",
+                    "oPaginate": {
+                        "sNext": "Próximo",
+                        "sPrevious": "Anterior",
+                        "sFirst": "Primeiro",
+                        "sLast": "Último"
+                    },
+                    "oAria": {
+                        "sSortAscending": ": Ordenar colunas de forma ascendente",
+                        "sSortDescending": ": Ordenar colunas de forma descendente"
+                    },
+                    "select": {
+                        "rows": {
+                            "_": "Selecionado %d linhas",
+                            "0": "Nenhuma linha selecionada",
+                            "1": "Selecionado 1 linha"
+                        }
+                    }
+                }
             });
         });
     </script>
