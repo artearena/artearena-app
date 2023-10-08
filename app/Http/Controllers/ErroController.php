@@ -3,13 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Erro;
+use App\Models\Erros;
 
 class ErroController extends Controller
 {
     public function index()
     {
-        return view('pages.Erros.index');
+        $erros = Erros::all();
+        return view('pages.Erros.index', compact('erros'));
     }
 
     public function store(Request $request)
@@ -27,7 +28,7 @@ class ErroController extends Controller
             'descontado' => 'nullable|numeric',
         ]);
 
-        Erro::create($validatedData);
+        Erros::create($validatedData);
 
         return back()->with('success', 'Erro cadastrado com sucesso!');
     }
