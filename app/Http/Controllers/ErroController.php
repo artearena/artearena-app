@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Erro;
 
-class ErrosController extends Controller
+class ErroController extends Controller
 {
     public function create()
     {
