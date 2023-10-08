@@ -63,8 +63,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/buscar-pedido', [PedidoController::class, 'buscarPedido'])->name('buscarPedido');
 
     Route::prefix('erros')->group(function () {
-        Route::get('/create', [ErroController::class, 'create'])->name('erros.index');
-        Route::post('/', [ErroController::class, 'store'])->name('erros.store');
+        Route::get('/', [ErroController::class, 'index'])->name('erros.index');
+        Route::post('/store', [ErroController::class, 'store'])->name('erros.store');
     });
 });
 

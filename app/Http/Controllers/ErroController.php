@@ -7,7 +7,7 @@ use App\Models\Erro;
 
 class ErroController extends Controller
 {
-    public function create()
+    public function index()
     {
         return view('pages.Erros.index');
     }
