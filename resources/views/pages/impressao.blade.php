@@ -925,7 +925,7 @@ $('.mover-pedido').click(function () {
     
     const recordsInfoContainer = document.getElementById('medida-linear-tabela');
     recordsInfoContainer.innerHTML = `${totalMedidaLinearTexto}<br>${tempoEstimadoTexto}`;
-    calcularMetragemPorMaterial();
+    atualizarMetragemTotal();
     // Função para calcular a metragem por tipo de material
     function calcularMetragemPorMaterial() {
         const metragemPorMaterial = {};
