@@ -14,7 +14,7 @@ class CreateCrmClientesTable extends Migration
             $table->string('telefone', 15)->nullable();
             $table->string('email', 255)->nullable();
             $table->string('origem', 50)->nullable();
-            $table->integer('id_octa')->nullable();
+            $table->integer('id')->nullable();
             $table->timestamps();
         });
     }

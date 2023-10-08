@@ -17,12 +17,12 @@ class OctaAPIController extends Controller
     }
     public function salvarDados(Request $request)
     {
-        $id_octa = $request->input('id_octa');
+        $id = $request->input('id');
         $responsavel_contato = $request->input('responsavel_contato');
         $mensagem_template_id = $request->input('mensagem_template_id');
         $data_agendamento = $request->input('data_agendamento');
 
-        $cliente = Cliente::where('id_octa', $id_octa)->first();
+        $cliente = Cliente::where('id', $id)->first();
         info($request);
 
         if ($cliente) {

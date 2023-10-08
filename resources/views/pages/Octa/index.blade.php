@@ -139,7 +139,7 @@
             @foreach ($clientes as $cliente)
             <tr>
                 <td class="cliente-id text-center" style="display:none">{{ $cliente->id }}</td>
-                <td class="text-center">{{ $cliente->id_octa }}</td>
+                <td class="text-center">{{ $cliente->id }}</td>
                 <td class="text-center" style="word-wrap: break-word;">
                     <a href="https://app.octadesk.com/chat/{{ $cliente->url_octa }}/opened" target="_blank">
                         <?php echo chunk_split($cliente->nome, 25, "<br>"); ?>

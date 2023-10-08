@@ -13,14 +13,14 @@ class OrcamentosController extends Controller
     {
         // Validação dos dados do formulário
         $request->validate([
-            'id_octa' => 'required',
+            'id' => 'required',
             'detalhes_orcamento' => 'required',
             // Outras validações para os campos necessários
         ]);
 
         // Criação de um novo objeto de orçamento
         $orcamento = new Orcamentos();
-        $orcamento->id_octa = $request->input('id_octa');
+        $orcamento->id = $request->input('id');
         $orcamento->detalhes_orcamento = $request->input('detalhes_orcamento');
         $orcamento->cep_frete = $request->input('cep_frete');
         $orcamento->endereco_frete = $request->input('endereco_frete');

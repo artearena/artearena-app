@@ -157,9 +157,9 @@
               <div class="form-group">
                 <div class="container">
                   <div class="form-group">
-                    <label for="id_octa">ID Cliente:</label>
+                    <label for="id">ID Cliente:</label>
                     <div class="input-group">
-                      <input type="text" id="id_octa" class="form-control"></input>
+                      <input type="text" id="id" class="form-control"></input>
                       <div class="input-group-append">
                         <button id="buscar_cliente" class="btn btn-primary" type="button">Buscar Cliente</button>
                       </div>
@@ -731,7 +731,7 @@
             const detalhesFrete = obterDetalhesFrete();
             const produtosSelecionados = obterListaProdutos();
 
-            if (!detalhesFrete.id_octa) {
+            if (!detalhesFrete.id) {
                 alert("ID do octa faltando");
                 return;
             }
@@ -755,7 +755,7 @@
               url: '/frete/orcamentos-salvar',
               method: 'POST',
               data: {
-                id_octa: detalhesFrete.id_octa,
+                id: detalhesFrete.id,
                 detalhes_orcamento: detalhesFrete.detalhes_orcamento,
                 cep_frete: detalhesFrete.cep_frete,
                 endereco_frete: detalhesFrete.endereco_frete,
@@ -852,13 +852,13 @@
           return dataFormatada;
         }
           function obterDetalhesFrete() {
-            const id_octa = document.getElementById('id_octa').value;
+            const id = document.getElementById('id').value;
             const detalhes_orcamento = document.getElementById('campoTexto').value;
             const cep_frete = document.getElementById('cep').value;
             const endereco_frete = document.getElementById('endereco').value;
 
             const detalhes = {
-              id_octa,
+              id,
               detalhes_orcamento,
               cep_frete,
               endereco_frete

@@ -19,7 +19,7 @@ class Cliente extends Model
         'email',
         'origem',
         'url_octa',
-        'id_octa',
+        'id',
         'primeira_mensagem_cliente',
         'responsavel_contato',
         'tel_comercial_contato',
