@@ -319,7 +319,7 @@
 
                 // Enviar solicitação AJAX para atualizar o registro no banco de dados
                 $.ajax({
-                    url: '/crm/atualizar-bloqueado/${clienteId}',
+                    url: `/crm/atualizar-bloqueado/${clienteId}`,
                     method: 'PUT',
                     data: { 
                         clienteId: clienteId,
@@ -335,28 +335,6 @@
                 });
             });
         });
-        function atualizarValor(checkbox) {
-            // Obter o valor do checkbox
-            var clienteId = $(this).closest('tr').find('.cliente-id').text();
-
-            var valor = checkbox.checked;
-
-            // Exemplo de chamada AJAX usando jQuery
-            $.ajax({
-                url: '/crm/atualizar-bloqueado/${clienteId}', 
-                method: 'PUT',
-                data: { 
-                    clienteId: clienteId,
-                    valor: valor,
-                    "_token": "{{ csrf_token() }}",
-                },
-                success: function(response) {
-                    console.log('Valor atualizado no banco de dados');
-                },
-                error: function() {
-                    console.log('Erro ao atualizar o valor no banco de dados');
-                }
-            });
-        }
+        
     </script>
 @endsection
