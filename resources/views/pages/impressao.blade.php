@@ -940,10 +940,20 @@ $('.mover-pedido').click(function () {
     recordsInfoContainer.innerHTML = `${totalMedidaLinearTexto}<br>${tempoEstimadoTexto}`;
 
     function calcularMetragemPorMaterial() {
+        const metragemPorMaterialTexto = {};
         for (const material in metragemPorMaterial) {
-            metragemPorMaterial[material] = metragemPorMaterial[material].toFixed(2);
+            metragemPorMaterialTexto[material] = `Medida linear total para ${material}: ${metragemPorMaterial[material].toFixed(2)}m`;
         }
-        return metragemPorMaterial;
+        return metragemPorMaterialTexto;
+    }
+
+    const metragemPorMaterialTexto = calcularMetragemPorMaterial();
+    const metragemPorMaterialContainer = document.getElementById('metragem-por-material');
+    for (const material in metragemPorMaterialTexto) {
+        const metragemTexto = metragemPorMaterialTexto[material];
+        const metragemElemento = document.createElement('p');
+        metragemElemento.textContent = metragemTexto;
+        metragemPorMaterialContainer.appendChild(metragemElemento);
     }
 </script>
 @endsection
