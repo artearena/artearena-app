@@ -10,6 +10,7 @@ use App\Http\Controllers\TrelloController;
 use App\Http\Controllers\tinyController;
 use App\Http\Controllers\LeadController;
 use App\Http\Controllers\OrcamentosController;
+use App\Http\Controllers\ErroController;
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/', [SiteController::class, 'index'])->name('index');
@@ -62,8 +63,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/buscar-pedido', [PedidoController::class, 'buscarPedido'])->name('buscarPedido');
 
     Route::prefix('erros')->group(function () {
-        Route::get('/create', [ErrosController::class, 'create'])->name('erros.index');
-        Route::post('/', [ErrosController::class, 'store'])->name('erros.store');
+        Route::get('/create', [ErroController::class, 'create'])->name('erros.index');
+        Route::post('/', [ErroController::class, 'store'])->name('erros.store');
     });
 });
 
