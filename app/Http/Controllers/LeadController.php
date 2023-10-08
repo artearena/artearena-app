@@ -74,6 +74,13 @@ class LeadController extends Controller
     
         return response()->json(['message' => 'Vendedor atualizado com sucesso!']);
     }
+    public function atualizarBloqueado(Request $request, $id)
+    {
+        $cliente = Cliente::findOrFail($id);
+        $cliente->contato_bloqueado = $request->input('bloqueado');
+        $cliente->save();
     
+        return response()->json(['message' => 'Bloqueado atualizado com sucesso!']);
+    }
 }
 

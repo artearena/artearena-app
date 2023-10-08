@@ -194,10 +194,10 @@
                     </select>
                 </td>
                 <td class="text-center">
-                <label class="switch">
-                    <input type="checkbox">
-                    <span class="slider round"></span>
-                </label>
+                    <label class="switch">
+                        <input type="checkbox" id="checkbox" onchange="atualizarValor(this)">
+                        <span class="slider round"></span>
+                    </label>
                 </td>
                 <td class="text-center">Prov.</td>
                 <td class="text-center">Prov.</td>
@@ -315,5 +315,22 @@
 
 
         });
+        function atualizarValor(checkbox) {
+            // Obter o valor do checkbox
+            var valor = checkbox.checked;
+
+            // Exemplo de chamada AJAX usando jQuery
+            $.ajax({
+                url: 'atualizar_valor.php', // substitua pelo URL do script que atualiza o banco de dados
+                method: 'POST',
+                data: { valor: valor },
+                success: function(response) {
+                    console.log('Valor atualizado no banco de dados');
+                },
+                error: function() {
+                    console.log('Erro ao atualizar o valor no banco de dados');
+                }
+            });
+        }
     </script>
 @endsection
