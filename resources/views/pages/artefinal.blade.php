@@ -452,6 +452,25 @@ Consulta de Pedidos
         </main>
     </div>
 </div>
+<!-- Modal -->
+<div class="modal fade" id="modalPedido" tabindex="-1" aria-labelledby="modalPedidoLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalPedidoLabel">Consultar Pedido</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <input type="text" id="campoBusca" placeholder="Digite o número do pedido">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="btnConfirmar">Confirmar</button>
+            </div>
+        </div>
+    </div>
+</div>
 <div class="modal fade" id="confirmDeleteModal" tabindex="-1" role="dialog" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -1435,5 +1454,25 @@ $.ajaxSetup({
         });
 
     </script>
- 
+    <script>
+        document.getElementById('btnConfirmar').addEventListener('click', function() {
+        var numeroPedido = document.getElementById('campoBusca').value;
+        
+        // Faz a requisição AJAX para buscar os dados do pedido
+        fetch('/buscar-pedido?numeroPedido=' + numeroPedido)
+            .then(function(response) {
+                if (response.ok) {
+                    return response.json();
+                } else {
+                    throw new Error('Erro na requisição');
+                }
+            })
+            .then(function(data) {
+                // Aqui você pode manipular a resposta da API e exibir os dados do pedido no modal
+            })
+            .catch(function(error) {
+                // Trate os erros da requisição aqui
+            });
+        });
+    </script>
     @endsection
