@@ -907,24 +907,12 @@ $('.mover-pedido').click(function () {
 <script>
     const linhasTabela = document.querySelectorAll('#tabela-pedidos tbody tr');
     let somaMedidaLinear = 0;
-    const metragemPorMaterial = {};
-
     linhasTabela.forEach((linha) => {
         const medidaLinear = parseFloat(linha.querySelector('td:nth-child(5) input').value);
-        const selectMaterial = linha.querySelector('select[name="material"]');
-        if (!isNaN(medidaLinear) && selectMaterial) {
-            const material = selectMaterial.options[selectMaterial.selectedIndex].text;
-
-            if (metragemPorMaterial[material]) {
-                metragemPorMaterial[material] += medidaLinear;
-            } else {
-                metragemPorMaterial[material] = medidaLinear;
-            }
-
+        if (!isNaN(medidaLinear)) {
             somaMedidaLinear += medidaLinear;
         }
     });
-
     let tempoEstimado;
     let tempoEstimadoTexto;
     if (somaMedidaLinear < 60) {
@@ -934,26 +922,38 @@ $('.mover-pedido').click(function () {
         tempoEstimado = somaMedidaLinear / 60;
         tempoEstimadoTexto = `Tempo estimado: ${tempoEstimado.toFixed(2)} horas`;
     }
-
     const totalMedidaLinearTexto = `Total de medida linear: ${somaMedidaLinear.toFixed(2)}m`;
     const recordsInfoContainer = document.getElementById('medida-linear-tabela');
     recordsInfoContainer.innerHTML = `${totalMedidaLinearTexto}<br>${tempoEstimadoTexto}`;
 
+    // Função para calcular a metragem por tipo de material
     function calcularMetragemPorMaterial() {
-        const metragemPorMaterialTexto = {};
-        for (const material in metragemPorMaterial) {
-            metragemPorMaterialTexto[material] = `Medida linear total para ${material}: ${metragemPorMaterial[material].toFixed(2)}m`;
+        const metragemPorMaterial = {};
+        // Loop pelas linhas da tabela
+        for (let i = 0; i < tabelaPedidos.rows.length; i++) {
+            const linha = tabelaPedidos.rows[i];
+            // Seleciona os elementos
+            const selectMaterial = linha.querySelector('select[name="material"]');
+            const inputMedida = linha.querySelector('input[name="medida_linear"]');
+            // Verifica se os elementos existem antes de tentar ler os valores
+            if (selectMaterial && inputMedida) {
+                const material = selectMaterial.options[selectMaterial.selectedIndex].text;
+                const medidaLinear = parseFloat(inputMedida.value);
+                // Faz validação extra da medida linear
+                if (!isNaN(medidaLinear)) {
+                    // Soma no objeto de metragem por material
+                    if (metragemPorMaterial[material]) {
+                        metragemPorMaterial[material] += medidaLinear;
+                    } else {
+                        metragemPorMaterial[material] = medidaLinear;
+                    }
+                }
+            }
         }
-        return metragemPorMaterialTexto;
-    }
-
-    const metragemPorMaterialTexto = calcularMetragemPorMaterial();
-    const metragemPorMaterialContainer = document.getElementById('metragem-por-material');
-    for (const material in metragemPorMaterialTexto) {
-        const metragemTexto = metragemPorMaterialTexto[material];
-        const metragemElemento = document.createElement('p');
-        metragemElemento.textContent = metragemTexto;
-        metragemPorMaterialContainer.appendChild(metragemElemento);
+        for (const material in metragemPorMaterial) {
+            metragemPorMaterial[material] = metragemPorMaterial[material].toFixed(2);
+        }
+        return metragemPorMaterial;
     }
 </script>
 @endsection
