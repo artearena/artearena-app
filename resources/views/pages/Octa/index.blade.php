@@ -313,7 +313,27 @@
                 });
             });
 
+            $('.table_checkbox').on('change', function() {
+                var clienteId = $(this).closest('tr').find('.cliente-id').text();
+                var valor = $(this).val();
 
+                // Enviar solicitação AJAX para atualizar o registro no banco de dados
+                $.ajax({
+                    url: '/crm/atualizar-bloqueado/${clienteId}',
+                    method: 'PUT',
+                    data: { 
+                        clienteId: clienteId,
+                        valor: valor,
+                        "_token": "{{ csrf_token() }}",
+                    },
+                    success: function(response) {
+                        console.log(response);
+                    },
+                    error: function(xhr, status, error) {
+                        console.log(error);
+                    }
+                });
+            });
         });
         function atualizarValor(checkbox) {
             // Obter o valor do checkbox
