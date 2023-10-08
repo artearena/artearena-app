@@ -195,7 +195,7 @@
                 </td>
                 <td class="text-center">
                     <label class="switch">
-                        <input type="checkbox" class="table_checkbox" id="checkbox" onchange="atualizarValor(this)">
+                        <input type="checkbox" class="table_checkbox" id="checkbox">
                         <span class="slider round"></span>
                     </label>
                 </td>
@@ -315,8 +315,7 @@
 
             $('.table_checkbox').on('change', function() {
                 var clienteId = $(this).closest('tr').find('.cliente-id').text();
-                var valor = $(this).val();
-
+                var valor = $(this).prop('checked') ? 1 : 0; // Obtém o valor corretamente
                 // Enviar solicitação AJAX para atualizar o registro no banco de dados
                 $.ajax({
                     url: `/crm/atualizar-bloqueado/${clienteId}`,
