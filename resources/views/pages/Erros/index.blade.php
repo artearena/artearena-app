@@ -78,7 +78,7 @@
         $(document).ready(function() {
             $('#tabela-erros').DataTable({
                 ajax: {
-                    url: '/api/erros', // Substitua pela rota correta para buscar os dados dos erros
+                    url: '{{ route('erros.index') }}', // Substitua pela rota correta para buscar os dados dos erros
                     dataSrc: ''
                 },
                 columns: [
