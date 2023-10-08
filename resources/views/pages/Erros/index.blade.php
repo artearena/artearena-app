@@ -53,4 +53,48 @@
             </form>
         </div>
     </div>
+    <hr>
+    <table id="tabela-erros" class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Departamento</th>
+                <th>Data</th>
+                <th>Responsável</th>
+                <th>Nº Pedido</th>
+                <th>Tipo de Produto</th>
+                <th>Tipo de Erro</th>
+                <th>Erro</th>
+                <th>Consequência do Erro</th>
+                <th>Custo</th>
+                <th>Descontado</th>
+            </tr>
+        </thead>
+    </table>
+@endsection
+
+@section('extraScript')
+    <script>
+        $(document).ready(function() {
+            $('#tabela-erros').DataTable({
+                ajax: {
+                    url: '/api/erros', // Substitua pela rota correta para buscar os dados dos erros
+                    dataSrc: ''
+                },
+                columns: [
+                    { data: 'id' },
+                    { data: 'departamento' },
+                    { data: 'data' },
+                    { data: 'responsavel' },
+                    { data: 'pedido' },
+                    { data: 'tipo_produto' },
+                    { data: 'tipo_erro' },
+                    { data: 'erro' },
+                    { data: 'consequencia_erro' },
+                    { data: 'custo' },
+                    { data: 'descontado' }
+                ]
+            });
+        });
+    </script>
 @endsection
