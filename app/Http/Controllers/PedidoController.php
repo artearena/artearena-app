@@ -59,28 +59,39 @@ class PedidoController extends Controller
     
     public function update(Request $request, $id)
     {
-    $pedido = Pedido::find($id);
-    $pedido->update($request->only([
-        'id',
-        'data',
-        'produto',
-        'material',
-        'medida_linear',
-        'observacoes',
-        'dificuldade',
-        'status',
-        'designer',
-        'tipo_pedido',
-        'checagem_final',
-        'link_trello',
-        'rolo',
-        'observacao_reposicao'
-    ]));
+        $pedido = Pedido::find($id);
+        $pedido->update($request->only([
+            'id',
+            'data',
+            'produto',
+            'material',
+            'medida_linear',
+            'observacoes',
+            'dificuldade',
+            'status',
+            'designer',
+            'tipo_pedido',
+            'checagem_final',
+            'link_trello',
+            'rolo',
+            'observacao_reposicao'
+        ]));
 
-    return response()->json([
-        'message' => 'Pedido updated successfully!'
-    ], 200);
-}
+        return response()->json([
+            'message' => 'Pedido updated successfully!'
+        ], 200);
+    }
+    public function buscarPedido(Request $request)
+    {
+        $numeroPedido = $request->input('numeroPedido');
+        
+        // Faça a lógica para buscar os dados do pedido com base no número fornecido
+        $pedido = Pedido::where('numero', $numeroPedido)->first();
+        
+        // Retorne os dados do pedido como uma resposta JSON
+        return response()->json($pedido);
+    }
+    
     public function moverPedido($id)
     {
         // Encontrar o pedido pelo ID
