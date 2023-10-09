@@ -19,7 +19,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('/cadastrar', [OctaController::class, 'cadastrar']);
-Route::get('/titulos', [OctaAPIController::class, 'getTemplateMensagens']);
-Route::post('/salvar-dados', [OctaAPIController::class, 'salvarDados']);
 Route::get('/getContatoBloqueado', [OctaAPIController::class, 'getContatoBloqueado']);
+Route::get('/titulos', [OctaAPIController::class, 'getTemplateMensagens']);
+Route::post('/cadastrar', [OctaController::class, 'cadastrar']);
+Route::post('/salvar-dados', [OctaAPIController::class, 'salvarDados']);
