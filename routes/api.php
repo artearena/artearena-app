@@ -22,4 +22,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('/cadastrar', [OctaController::class, 'cadastrar']);
 Route::get('/titulos', [OctaAPIController::class, 'getTemplateMensagens']);
 Route::post('/salvar-dados', [OctaAPIController::class, 'salvarDados']);
-
+Route::get('/getContatoBloqueado', [OctaAPIController::class, 'getContatoBloqueado']);

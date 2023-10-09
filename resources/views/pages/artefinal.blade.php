@@ -191,6 +191,9 @@ Consulta de Pedidos
     #qtd-dia-artes {
         display: none;
     }
+    #metragem_total {
+        display: none;
+    }
 </style>
 @endsection
 
@@ -204,7 +207,7 @@ Consulta de Pedidos
                 <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab" tabindex="0">
                     <h1>Consulta de Pedidos</h1>
                     <button id="toggle-button" class="btn btn-primary">Mostrar/Esconder Formulário</button>
-                    <button class="btn btn-primary" onclick="toggleDivVisibility()">Relatório de artes por dia</button>
+                    <button class="btn btn-primary" onclick="toggleDivVisibility()">Relatório</button>
                     <form id="my-form" class="hidden-form">
                         @csrf
                         <div class="row">
@@ -296,7 +299,7 @@ Consulta de Pedidos
                     </form>
                     
                     <div id="qtd-dia-artes">
-                        <h1>Quantidade de artes</h1>
+                        <hr>
                         <h1>Quantidade de artes</h1>
                     </div>
                     <hr>
@@ -1446,11 +1449,15 @@ $.ajaxSetup({
     </script>
     <script>
         function toggleDivVisibility() {
-            let div = document.getElementById("qtd-dia-artes");
-            if (div.style.display === "none") {
-                div.style.display = "block";
+            let div1 = document.getElementById("qtd-dia-artes");
+            let div2 = document.getElementById("metragem_total");
+            
+            if (div1.style.display === "none") {
+                div1.style.display = "block";
+                div2.style.display = "block";
             } else {
-                div.style.display = "none";
+                div1.style.display = "none";
+                div2.style.display = "none";
             }
         }
         const tabelaPedidos = document.getElementById('tabela-pedidos');

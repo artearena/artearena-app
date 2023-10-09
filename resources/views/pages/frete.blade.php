@@ -739,11 +739,12 @@
           });
 
           function salvarOrcamento() {
-            var tipoDocumento = document.querySelector('input[name="tipoDocumento"]:checked').value;
-            if (tipoDocumento === "gerarRascunho") {
-                swal("Modo atual: rascunho", "Para gerar orçamento, troque a opção", "info");
-                return;
-            }     
+            var tipoDocumento = document.querySelector('input[name="tipoDocumento"]:checked');
+
+            if (tipoDocumento && tipoDocumento.checked) {
+              swal("Modo atual: rascunho", "Para gerar orçamento, troque a opção", "info");
+              return;
+            }  
 
             const detalhesTransportadora = obterDetalhesTransportadora();
             const detalhesFrete = obterDetalhesFrete();

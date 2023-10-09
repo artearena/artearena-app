@@ -15,6 +15,7 @@ class OctaAPIController extends Controller
     
         return response()->json($templateMensagens);
     }
+
     public function salvarDados(Request $request)
     {
         $id = $request->input('id');
@@ -37,5 +38,17 @@ class OctaAPIController extends Controller
         // Registrar mensagem de log
         info('Cliente não encontrado!');
         return response()->json(['message' => 'Cliente não encontrado.']);
+    }
+    public function getContatoBloqueado(Request $request)
+    {
+        $id = $request->input('id');
+        $cliente = Cliente::where('id', $id)->first();
+    
+        if ($cliente) {
+            $contatoBloqueado = $cliente->contato_bloqueado;
+            return response()->json(['contato_bloqueado' => $contatoBloqueado]);
+        }
+    
+        return response()->json(['contato_bloqueado' => false]);
     }
 }
