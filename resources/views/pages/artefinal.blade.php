@@ -294,7 +294,7 @@ Consulta de Pedidos
                     </form>
                     <hr>
                         <div id="qtd-dia-artes">Quantidade de artes</div>
-                        <button onclick="toggleDivVisibility()">Mostrar/Esconder</button>
+                        <button class="btn btn-primary" onclick="toggleDivVisibility()">Relatório de artes por dia</button>
                     <hr>
                         <div id="metragem_total"></div>
                     <hr>
@@ -820,14 +820,7 @@ $.ajaxSetup({
             "font-size": "15px",
             "text-align": "center"
     });
-    function toggleDivVisibility() {
-        let div = document.getElementById("qtd-dia-artes");
-        if (div.style.display === "none") {
-            div.style.display = "block";
-        } else {
-            div.style.display = "none";
-        }
-    }
+
     function filtrarMensagemErro(message) {
         // Exemplo: verificar se a mensagem contém um erro de id duplicado
         if (message.includes("Duplicate entry")) {
