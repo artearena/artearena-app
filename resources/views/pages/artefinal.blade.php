@@ -1454,7 +1454,7 @@ $.ajaxSetup({
         const metragemTotalDiv = document.getElementById('metragem_total');
         atualizarMetragemTotal();
     // Função para calcular a metragem por tipo de material
-    function calcularMetragemPorMaterial() {
+    /* function calcularMetragemPorMaterial() {
         const metragemPorMaterial = {};
         // Loop pelas linhas da tabela
         for (let i = 0; i < tabelaPedidos.rows.length; i++) {
@@ -1481,7 +1481,7 @@ $.ajaxSetup({
             metragemPorMaterial[material] = metragemPorMaterial[material].toFixed(2);
         }
             return metragemPorMaterial;
-        }
+        } */
         function calcularQuantidadePorProduto() {
             const quantidadePorProduto = {};
             // Loop pelas linhas da tabela
@@ -1509,19 +1509,19 @@ $.ajaxSetup({
             return quantidadeOrdenada;
         }
         function atualizarMetragemTotal() {
-            const metragemPorMaterial = calcularMetragemPorMaterial();
+            // const metragemPorMaterial = calcularMetragemPorMaterial();
             const quantidadePorProduto = calcularQuantidadePorProduto();
-            console.log(metragemPorMaterial);
+            // console.log(metragemPorMaterial);
             metragemTotalDiv.innerHTML = `
                 <div style="display: flex; flex-direction: row;">
-                <div style="margin-right: 20px;">
+                <!-- <div style="margin-right: 20px;">
                     <p>Metragem por Material:</p>
                     <ul>
                     ${Object.entries(metragemPorMaterial)
                         .map(([material, metragem]) => `<li>${material ? material : 'Sem material definido'}: ${metragem}M</li>`)
                         .join('')}
                     </ul>
-                </div>
+                </div> -->
                 <div style="margin-left: 20px;">
                     <p>Quantidade por Produto:</p>
                     <ul>
