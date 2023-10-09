@@ -742,7 +742,13 @@
             var tipoDocumento = document.querySelector('input[name="tipoDocumento"]:checked');
 
             if (tipoDocumento && tipoDocumento.checked) {
-              swal("Modo atual: rascunho", "Para gerar orçamento, troque a opção", "info");
+              Swal.fire({
+                title: 'Modo atual: rascunho',
+                text: 'Para gerar orçamento, troque a opção',
+                icon: 'warning',
+                timer: 3000,
+                showConfirmButton: true
+              });
               return;
             }  
 
