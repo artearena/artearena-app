@@ -654,7 +654,7 @@
           Descrição: ?
         ` ;
         document.getElementById('tituloCardTrello').value = id_cliente;
-        document.getElementById('descricao').value = descricao;
+        document.getElementById('descricaoCardTrello').value = descricao;
       }
       function cardRetirada(prazoConfecao){
         // Adicionar a transportadora "Retirada"
