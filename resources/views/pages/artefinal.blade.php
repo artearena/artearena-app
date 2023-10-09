@@ -1450,7 +1450,7 @@ $.ajaxSetup({
                 div.style.display = "none";
             }
         }
-       const tabelaPedidos = document.getElementById('tabela-pedidos');
+        const tabelaPedidos = document.getElementById('tabela-pedidos');
         const metragemTotalDiv = document.getElementById('metragem_total');
         atualizarMetragemTotal();
     // Função para calcular a metragem por tipo de material
@@ -1514,14 +1514,6 @@ $.ajaxSetup({
             // console.log(metragemPorMaterial);
             metragemTotalDiv.innerHTML = `
                 <div style="display: flex; flex-direction: row;">
-                <!-- <div style="margin-right: 20px;">
-                    <p>Metragem por Material:</p>
-                    <ul>
-                    ${Object.entries(metragemPorMaterial)
-                        .map(([material, metragem]) => `<li>${material ? material : 'Sem material definido'}: ${metragem}M</li>`)
-                        .join('')}
-                    </ul>
-                </div> -->
                 <div style="margin-left: 20px;">
                     <p>Quantidade por Produto:</p>
                     <ul>
