@@ -659,9 +659,12 @@ Faces: ${produto.nome.split(" - ")[2]}
 Ilhos: ?
 Mastro: ?
 Descrição: ?
-          `;
+
+---
+
+`;
         }
-        document.getElementById('tituloCardTrello').value = id_cliente;
+        document.getElementById('tituloCardTrello').value = id_cliente + 'teste';
         document.getElementById('descricaoCardTrello').value = descricao;
       }
       function cardRetirada(prazoConfecao){
