@@ -1483,7 +1483,7 @@ $.ajaxSetup({
         }
         function atualizarMetragemTotal() {
             const quantidadePorProduto = calcularQuantidadePorProduto();
-            console.log(metragemPorMaterial);
+
             metragemTotalDiv.innerHTML = `
                 <div style="display: flex; flex-direction: row;">
                 <div style="margin-left: 20px;">
