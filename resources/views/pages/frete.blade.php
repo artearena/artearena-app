@@ -655,7 +655,8 @@
 
   for (const id in produtosSelecionados) {
     const produto = produtosSelecionados[id];
-    descricao += `**Tipo:** ${produto.nome.split(" - ")[0]}  
+    descricao += `#Produtos
+**Tipo:** ${produto.nome.split(" - ")[0]}  
 **Material:** ?  
 **Tamanho:** ${produto.nome.split(" - ")[1]}  
 **Faces:** ${produto.nome.split(" - ")[2]}  
