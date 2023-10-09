@@ -981,7 +981,6 @@ $('.mover-pedido').click(function () {
             return quantidadeOrdenada;
         }
         function atualizarMetragemTotal() {
-            const metragemTotal = calcularMetragemTotal();
             const metragemPorMaterial = calcularMetragemPorMaterial();
             const quantidadePorProduto = calcularQuantidadePorProduto();
             console.log(metragemPorMaterial);
