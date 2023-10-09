@@ -204,8 +204,8 @@ Consulta de Pedidos
                 <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab" tabindex="0">
                     <h1>Consulta de Pedidos</h1>
                     <button id="toggle-button" class="btn btn-primary">Mostrar/Esconder Formulário</button>
+                    <button class="btn btn-primary" onclick="toggleDivVisibility()">Relatório de artes por dia</button>
                     <div id="qtd-dia-artes">Quantidade de artes</div>
-                        <button class="btn btn-primary" onclick="toggleDivVisibility()">Relatório de artes por dia</button>
                     <form id="my-form" class="hidden-form">
                         @csrf
                         <div class="row">
