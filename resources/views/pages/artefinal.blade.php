@@ -295,7 +295,9 @@ Consulta de Pedidos
                         <hr>
                     </form>
                     
-                    <div id="qtd-dia-artes">Quantidade de artes</div>
+                    <div id="qtd-dia-artes">
+                        <h1>Quantidade de artes</h1>
+                    </div>
                     <hr>
                         <div id="metragem_total"></div>
                     <hr>
@@ -1515,7 +1517,7 @@ $.ajaxSetup({
             metragemTotalDiv.innerHTML = `
                 <div style="display: flex; flex-direction: row;">
                 <div style="margin-left: 20px;">
-                    <p>Quantidade por Produto:</p>
+                    <h1>>Quantidade por Produto:</h1></p>
                     <ul>
                     ${(() => {
                         let lista = '';
