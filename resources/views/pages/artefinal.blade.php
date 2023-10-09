@@ -205,7 +205,6 @@ Consulta de Pedidos
                     <h1>Consulta de Pedidos</h1>
                     <button id="toggle-button" class="btn btn-primary">Mostrar/Esconder Formulário</button>
                     <button class="btn btn-primary" onclick="toggleDivVisibility()">Relatório de artes por dia</button>
-                    <div id="qtd-dia-artes">Quantidade de artes</div>
                     <form id="my-form" class="hidden-form">
                         @csrf
                         <div class="row">
@@ -294,10 +293,9 @@ Consulta de Pedidos
                         </div>
                         <button type="submit" class="btn btn-primary" id="cadastrarPedido">Cadastrar Pedido</button>
                     </form>
-                    <hr>
-                        
-                    <hr>
-                        <div id="metragem_total"></div>
+                    <div id="qtd-dia-artes">Quantidade de artes</div>
+
+                    <div id="metragem_total"></div>
                     <div class="tabela-container">
                     <div id="loading" class="text-center" style="display: none;">
                         <p>Carregando...</p>
