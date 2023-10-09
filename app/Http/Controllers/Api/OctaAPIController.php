@@ -43,18 +43,21 @@ class OctaAPIController extends Controller
     {
         $contatoCliente = $request->input('contato_cliente');
         $contatoClienteSemEspacos = str_replace(['+', ' '], '', $contatoCliente);
-        
+        info($contatoClienteSemEspacos);
+
         $clientes = Cliente::all();
         $clienteEncontrado = null;
     
         foreach ($clientes as $cliente) {
             $telefone = str_replace(['+', ' '], '', $cliente->telefone);
             if ($telefone === $contatoClienteSemEspacos) {
+                info($telefone);
+
                 $clienteEncontrado = $cliente;
                 break;
             }
         }
-    
+
         if ($clienteEncontrado) {
             $contatoBloqueado = $clienteEncontrado->contato_bloqueado;
             return response()->json(['contato_bloqueado' => $contatoBloqueado]);
