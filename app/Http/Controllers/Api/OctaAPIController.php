@@ -60,7 +60,7 @@ class OctaAPIController extends Controller
                 return response()->json(['error' => 'Cliente bloqueado'], 400);
 
             }
-            else if(!$contatoBloqueado == 0){
+            else if($contatoBloqueado == 0){
                 return response()->json(['sucesso' => 'Cliente não bloqueado'], 200);
             }
         }
