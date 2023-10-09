@@ -1518,7 +1518,7 @@ $.ajaxSetup({
             metragemTotalDiv.innerHTML = `
                 <div style="display: flex; flex-direction: row;">
                 <div style="margin-left: 20px;">
-                    <h3>>Quantidade por Produto:</h3></p>
+                    <p><strong>Quantidade por Produto:</strong></p>
                     <ul>
                     ${(() => {
                         let lista = '';
