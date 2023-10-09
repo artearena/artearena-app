@@ -315,8 +315,8 @@ Consulta de Pedidos
                                 <th data-filter="true">Medida Linear</th>
                                 <th data-filter="true">Observações</th>
                                 <th data-filter="true">Dificuldade</th>
-                                <th data-filter="true">Status</th>
                                 <th data-filter="true">Designer</th>
+                                <th data-filter="true">Status</th>
                                 <th data-filter="true">Tipo de Pedido</th>
                                 <th data-filter="true">Checagem Final</th>
                                 <th>Ações</th>
@@ -372,8 +372,18 @@ Consulta de Pedidos
                                         <option value="Muito difícil" {{ $pedido->dificuldade === 'Muito difícil' ? 'selected' : '' }}>Muito difícil</option>
                                     </select>
                                 </td>
-
-
+                                <td>
+                                    <select class='form-control' name='designer'>
+                                        @foreach($designers as $designer)
+                                        <option value="{{ $designer }}" {{ $pedido->designer == $designer ? 'selected' : '' }}>
+                                            {{ $designer }}
+                                        </option>
+                                        @endforeach
+                                        <option value="{{ $pedido->designer }}" {{ !in_array($pedido->designer, $designers->toArray()) ? 'selected' : '' }}>
+                                            {{ $pedido->designer }}
+                                        </option>
+                                    </select>
+                                </td>
                                 <td>
                                     <select class='form-control' name='status'>
                                         <option value="Pendente" {{ $pedido->status == 'Pendente' ? 'selected' : '' }}>Pendente</option>
@@ -386,18 +396,6 @@ Consulta de Pedidos
                                         <option value="Análise pendente" {{ $pedido->status == 'Análise pendente' ? 'selected' : '' }}>Análise pendente</option>
                                         <option value="{{ $pedido->status }}" {{ !in_array($pedido->status, ['Pendente', 'Em andamento', 'Arte OK', 'Em confirmação', 'Em espera', 'Cor teste', 'Terceirizado', 'Análise pendente']) ? 'selected' : '' }}>
                                             {{ $pedido->status }}
-                                        </option>
-                                    </select>
-                                </td>
-                                <td>
-                                    <select class='form-control' name='designer'>
-                                        @foreach($designers as $designer)
-                                        <option value="{{ $designer }}" {{ $pedido->designer == $designer ? 'selected' : '' }}>
-                                            {{ $designer }}
-                                        </option>
-                                        @endforeach
-                                        <option value="{{ $pedido->designer }}" {{ !in_array($pedido->designer, $designers->toArray()) ? 'selected' : '' }}>
-                                            {{ $pedido->designer }}
                                         </option>
                                     </select>
                                 </td>
@@ -1509,35 +1507,35 @@ $.ajaxSetup({
             const quantidadeOrdenada = Object.entries(quantidadePorProduto).sort((a, b) => b[1] - a[1]);
             // Retorna o objeto de quantidadePorProduto ordenado
             return quantidadeOrdenada;
-            }
-            function atualizarMetragemTotal() {
-                const metragemPorMaterial = calcularMetragemPorMaterial();
-                const quantidadePorProduto = calcularQuantidadePorProduto();
-                console.log(metragemPorMaterial);
-                metragemTotalDiv.innerHTML = `
-                    <div style="display: flex; flex-direction: row;">
-                    <div style="margin-right: 20px;">
-                        <p>Metragem por Material:</p>
-                        <ul>
-                        ${Object.entries(metragemPorMaterial)
-                            .map(([material, metragem]) => `<li>${material ? material : 'Sem material definido'}: ${metragem}M</li>`)
-                            .join('')}
-                        </ul>
-                    </div>
-                    <div style="margin-left: 20px;">
-                        <p>Quantidade por Produto:</p>
-                        <ul>
-                        ${(() => {
-                            let lista = '';
-                            quantidadePorProduto.forEach(([produto, quantidade]) => {
-                                lista += `<li>${produto}(s): ${quantidade} </li>`;
-                            });
-                            return lista;
-                        })()}
-                        </ul>
-                    </div>
-                    </div>
-                `;
-            }
+        }
+        function atualizarMetragemTotal() {
+            const metragemPorMaterial = calcularMetragemPorMaterial();
+            const quantidadePorProduto = calcularQuantidadePorProduto();
+            console.log(metragemPorMaterial);
+            metragemTotalDiv.innerHTML = `
+                <div style="display: flex; flex-direction: row;">
+                <div style="margin-right: 20px;">
+                    <p>Metragem por Material:</p>
+                    <ul>
+                    ${Object.entries(metragemPorMaterial)
+                        .map(([material, metragem]) => `<li>${material ? material : 'Sem material definido'}: ${metragem}M</li>`)
+                        .join('')}
+                    </ul>
+                </div>
+                <div style="margin-left: 20px;">
+                    <p>Quantidade por Produto:</p>
+                    <ul>
+                    ${(() => {
+                        let lista = '';
+                        quantidadePorProduto.forEach(([produto, quantidade]) => {
+                            lista += `<li>${produto}(s): ${quantidade} </li>`;
+                        });
+                        return lista;
+                    })()}
+                    </ul>
+                </div>
+                </div>
+            `;
+        }
     </script>
     @endsection
