@@ -49,6 +49,6 @@ class OctaAPIController extends Controller
             return response()->json(['contato_bloqueado' => $contatoBloqueado]);
         }
     
-        return response()->json(['contato_bloqueado' => false]);
+        return response()->json(['contato_bloqueado' => "false" + $cliente + $id]);
     }
 }
