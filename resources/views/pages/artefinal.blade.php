@@ -1360,7 +1360,7 @@ $.ajaxSetup({
                     var tipoPedido = $(this).find("select[name='tipo_pedido']").val(); // Adicione essa linha
 
                     setDificuldadeColor(dificuldade, $(this).find("td:nth-child(7)"));
-                    setStatusColor(status, $(this).find("td:nth-child(8)"));
+                    setStatusColor(status, $(this).find("td:nth-child(9)"));
                     setChecagemFinalColor(checagemFinal, $(this).find("td:nth-child(10)"));
                     setDataColor(data, $(this).find("td:nth-child(2)"));
                     //setTipoPedidoColor(tipoPedido, $(this).find("td:nth-child(10)")); // Adicione essa linha
