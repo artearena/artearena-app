@@ -130,9 +130,6 @@
     #descricaoCardTrello{
       min-height: 350px;
     }
-    .col-menor {
-      min-height: 30em;
-    }
 </style>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.css">
 
@@ -197,21 +194,23 @@
 
               <!-- Tabela de produtos selecionados -->
               <table class="table mt-4">
-                  <thead>
-                      <tr>
-                          <th hidden>ID</th>
-                          <th>Nome</th>
-                          <th>Valor</th>
-                          <th>Peso</th>
-                          <th>Quantidade</th>
-                          <th>Confecção(dias)</th>
-                          <th>Altura</th>
-                          <th>Comprimento</th>
-                          <th>Largura</th>
-                          <th>Ação</th>
-                      </tr>
-                  </thead>
-                  <tbody id="produtoTableBody"></tbody>
+                <thead>
+                  <tr>
+                    <th hidden>ID</th>
+                    <th>Nome</th>
+                    <th>Valor</th>
+                    <th>Peso</th>
+                    <th>Quantidade</th>
+                    <th>Confecção(dias)</th>
+                    <th>Ilhoses</th>
+                    <th>Mastro</th>
+                    <th>Altura</th>
+                    <th>Comprimento</th>
+                    <th>Largura</th>
+                    <th>Ação</th>
+                  </tr>
+                </thead>
+                <tbody id="produtoTableBody"></tbody>
               </table>
             </form>
             <form id="cep-form" method="POST" action="">
@@ -331,6 +330,12 @@
                 this.value = prazoConfecao;
                 this.removeAttribute("readonly");
               ' style="width: 70px;">
+            </td>
+            <td>
+              <input type="checkbox" class="form-check-input" id="ilhosesCheckbox">
+            </td>
+            <td>
+              <input type="checkbox" class="form-check-input" id="mastroCheckbox">
             </td>
             <td>
               <input type="number" class="form-control" value="" onchange='
