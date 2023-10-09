@@ -41,14 +41,14 @@ class OctaAPIController extends Controller
     }
     public function getContatoBloqueado(Request $request)
     {
-        $id = $request->input('id');
-        $cliente = Cliente::where('id', $id)->first();
-    
+        $contato_cliente = $request->input('contato_cliente');
+        $cliente = Cliente::where('telefone', $contato_cliente)->first();
+
         if ($cliente) {
             $contatoBloqueado = $cliente->contato_bloqueado;
             return response()->json(['contato_bloqueado' => $contatoBloqueado]);
         }
-    
-        return response()->json(['contato_bloqueado' => "false" ]);
+
+        return response()->json(['contato_bloqueado' => false]);
     }
 }
