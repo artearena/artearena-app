@@ -987,7 +987,6 @@ $('.mover-pedido').click(function () {
             metragemTotalDiv.innerHTML = `
                 <div style="display: flex; flex-direction: row;">
                 <div style="margin-right: 20px;">
-                    <p>Metragem Total: ${metragemTotal}M</p>
                     <p>Metragem por Material:</p>
                     <ul>
                     ${Object.entries(metragemPorMaterial)
