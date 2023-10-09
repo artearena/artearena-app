@@ -1407,7 +1407,9 @@ $.ajaxSetup({
     });
     document.addEventListener("DOMContentLoaded", function () {
         const abrirModalButtons = document.querySelectorAll('.abrir-modal');
-        
+        const tabelaPedidos = document.getElementById('tabela-pedidos');
+        const metragemTotalDiv = document.getElementById('metragem_total');
+   
         abrirModalButtons.forEach(button => {
             button.addEventListener("click", function () {
             // Obtém o ID do pedido a partir da primeira coluna da linha da tabela
