@@ -234,7 +234,7 @@
             </div>
             <button type="button" class="btn btn-primary" id="calcularFrete">Calcular</button>
           </div>
-          <div class="col-sm-3 col-menor">
+          <div class="col-sm-3 text-right">
               <h4>Detalhes do orçamento:</h4>
               <div class="details-container">
                   <textarea class="form-control" id="campoTexto" rows="5"></textarea>
