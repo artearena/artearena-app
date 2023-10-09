@@ -618,7 +618,7 @@
 
                 const prazo = `Prazo para confecção é de ${prazoConfeccao} dias úteis + prazo de envio.\nPrazo inicia-se após aprovação da arte e pagamento confirmado`;
                 campoTexto.value = `${produtosDescricao}${detalhesFrete}${total}\n${prazo}`;
-              
+                carregarInfoCard();
               
               });
             }
@@ -642,7 +642,20 @@
           });
         });
       });
-      
+      function carregarInfoCard() {
+        const id_cliente = document.getElementById('id');
+        const descricao =  `
+          Tipo: ?
+          Material: ?
+          Tamanho: ?
+          Faces: ?
+          Ilhos: ?
+          Mastro: ?
+          Descrição: ?
+        ` ;
+        document.getElementById('tituloCardTrello').value = id_cliente;
+        document.getElementById('descricao').value = descricao;
+      }
       function cardRetirada(prazoConfecao){
         // Adicionar a transportadora "Retirada"
           const retiradaCardElement = document.createElement("div");
