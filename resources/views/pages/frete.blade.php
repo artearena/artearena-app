@@ -643,7 +643,7 @@
         });
       });
       function carregarInfoCard() {
-        const id_cliente = document.getElementById('id');
+        const id_cliente = document.getElementById('id').value;
         const descricao =  `
           Tipo: ?
           Material: ?
