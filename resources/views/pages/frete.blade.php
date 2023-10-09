@@ -127,6 +127,9 @@
       height: 1005; /* Defina o tamanho desejado para a div */
       margin: 0 auto; /* Centraliza a div horizontalmente */
     }
+    #descricaoCardTrello{
+      min-height: 350px;
+    }
 </style>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.css">
 
@@ -649,14 +652,13 @@
 
         for (const id in produtosSelecionados) {
           const produto = produtosSelecionados[id];
-          descricao += `
-Tipo: ${produto.nome.split(" - ")[0]}
+          descricao += `Tipo: ${produto.nome.split(" - ")[0]}
 Material: ?
 Tamanho: ${produto.nome.split(" - ")[1]}
-Faces: ?
+Faces: ${produto.nome.split(" - ")[2]}
 Ilhos: ?
 Mastro: ?
-Descrição: ${produto.nome.split(" - ")[2]}
+Descrição: ?
           `;
         }
         document.getElementById('tituloCardTrello').value = id_cliente;
