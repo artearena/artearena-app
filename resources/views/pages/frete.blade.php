@@ -675,11 +675,24 @@
         const nomeCartao = document.getElementById('tituloCardTrello').value;
         const descCartao = document.getElementById('descricaoCardTrello').value;
 
-        // Faz a solicitação GET para a rota /criar-card-trello
-        fetch(`https://artearena.kinghost.net/criar-card-trello?nome=${nomeCartao}&desc=${descCartao}`)
+        fetch('https://artearena.kinghost.net/criar-card-trello', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              nome: nomeCartao,
+              desc: descCartao
+            })
+          })
           .then(response => response.json())
           .then(data => {
-            alert(data.message); // Exibe a mensagem de sucesso ou erro
+            Swal.fire({
+              title: 'Sucesso',
+              text: data.message,
+              icon: 'success',
+              confirmButtonText: 'OK'
+            });
           })
           .catch(error => {
             console.error('Erro:', error);
@@ -688,8 +701,8 @@
               text: 'Ocorreu um erro ao tentar criar o cartão no Trello. Por favor, verifique suas informações e tente novamente.',
               icon: 'error',
               confirmButtonText: 'OK'
-            });          
-        });
+            });
+          });
       }
       
       function cardRetirada(prazoConfecao){
