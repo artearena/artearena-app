@@ -618,6 +618,8 @@
 
                 const prazo = `Prazo para confecção é de ${prazoConfeccao} dias úteis + prazo de envio.\nPrazo inicia-se após aprovação da arte e pagamento confirmado`;
                 campoTexto.value = `${produtosDescricao}${detalhesFrete}${total}\n${prazo}`;
+              
+              
               });
             }
           });
@@ -640,7 +642,9 @@
           });
         });
       });
-
+      function carregarInfoCard{
+        document.getElementById('')
+      }
       function cardRetirada(prazoConfecao){
         // Adicionar a transportadora "Retirada"
           const retiradaCardElement = document.createElement("div");
@@ -876,20 +880,20 @@
           const dataFormatada = `${partesData[2]}-${partesData[1]}-${partesData[0]}`;
           return dataFormatada;
         }
-          function obterDetalhesFrete() {
-            const id = document.getElementById('id').value;
-            const detalhes_orcamento = document.getElementById('campoTexto').value;
-            const cep_frete = document.getElementById('cep').value;
-            const endereco_frete = document.getElementById('endereco').value;
+        function obterDetalhesFrete() {
+          const id = document.getElementById('id').value;
+          const detalhes_orcamento = document.getElementById('campoTexto').value;
+          const cep_frete = document.getElementById('cep').value;
+          const endereco_frete = document.getElementById('endereco').value;
 
-            const detalhes = {
-              id,
-              detalhes_orcamento,
-              cep_frete,
-              endereco_frete
-            };
+          const detalhes = {
+            id,
+            detalhes_orcamento,
+            cep_frete,
+            endereco_frete
+          };
 
-            return detalhes;
-          }
+          return detalhes;
+        }
       </script>
 @endsection

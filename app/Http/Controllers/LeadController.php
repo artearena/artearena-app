@@ -12,7 +12,13 @@ class LeadController extends Controller
 {
     public function index()
     {
-        $clientes = Cliente::with('agendamentos', 'templateMensagem')->get();
+        $clientes = Cliente::with('agendamentos', 'templateMensagem')
+            ->orderBy('created_at', 'desc') // Ordena por data de criação em ordem decrescente
+            ->get()
+            ->groupBy('telefone')
+            ->map(function ($grupo) {
+                return $grupo->first(); // Retorna apenas o primeiro item de cada grupo
+            });
         $mensagens = TemplateMensagem::all();
         $vendedores = Usuario::whereIn('permissoes', [17, 18])->pluck('nome_usuario');
         return view('pages.Octa.index', compact('clientes', 'mensagens', 'vendedores'));
