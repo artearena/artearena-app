@@ -1454,30 +1454,6 @@ $.ajaxSetup({
        const tabelaPedidos = document.getElementById('tabela-pedidos');
         const metragemTotalDiv = document.getElementById('metragem_total');
         atualizarMetragemTotal();
-    // Função para calcular a metragem por tipo de material
-    function calcularMetragemPorMaterial() {
-        const metragemPorMaterial = {};
-        // Loop pelas linhas da tabela
-        for (let i = 0; i < tabelaPedidos.rows.length; i++) {
-            const linha = tabelaPedidos.rows[i];
-            // Seleciona os elementos
-            const selectMaterial = linha.querySelector('select[name="material"]');
-            const inputMedida = linha.querySelector('input[name="medida_linear"]');
-            // Verifica se os elementos existem antes de tentar ler os valores
-            if (selectMaterial && inputMedida) {
-            const material = selectMaterial.options[selectMaterial.selectedIndex].text;
-            const medidaLinear = parseFloat(inputMedida.value);
-            // Faz validação extra da medida linear
-            if (!isNaN(medidaLinear)) {
-                // Soma no objeto de metragem por material
-                if (metragemPorMaterial[material]) {
-                metragemPorMaterial[material] += medidaLinear;
-                } else {
-                metragemPorMaterial[material] = medidaLinear;
-                }
-            }
-            }
-        }
 
         function calcularQuantidadePorProduto() {
             const quantidadePorProduto = {};
