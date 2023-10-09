@@ -41,28 +41,26 @@ class OctaAPIController extends Controller
     }
     public function getContatoBloqueado(Request $request)
     {
-        info($request);
-
         $contatoCliente = $request->input('contato_cliente');
-        $contatoClienteEncoded = $this->encodePhoneNumber(trim($contatoCliente));
-        info($contatoClienteEncoded);
-
-        $cliente = Cliente::where('telefone', $contatoClienteEncoded)->first();
+        $contatoClienteSemEspacos = str_replace(['+', ' '], '', $contatoCliente);
+        
+        $clientes = Cliente::all();
+        $clienteEncontrado = null;
     
-        if ($cliente) {
-            $contatoBloqueado = $cliente->contato_bloqueado;
+        foreach ($clientes as $cliente) {
+            $telefone = str_replace(['+', ' '], '', $cliente->telefone);
+            if ($telefone === $contatoClienteSemEspacos) {
+                $clienteEncontrado = $cliente;
+                break;
+            }
+        }
+    
+        if ($clienteEncontrado) {
+            $contatoBloqueado = $clienteEncontrado->contato_bloqueado;
             return response()->json(['contato_bloqueado' => $contatoBloqueado]);
         }
     
         return response()->json(['contato_bloqueado' => false]);
-    }
-    
-    private function encodePhoneNumber($phoneNumber)
-    {
-        $encodedPhoneNumber = urlencode($phoneNumber);
-        $encodedPhoneNumber = str_replace('+', '%2B', $encodedPhoneNumber);
-        $encodedPhoneNumber = str_replace(' ', '%20', $encodedPhoneNumber);
-        return $encodedPhoneNumber;
     }
     
 }
