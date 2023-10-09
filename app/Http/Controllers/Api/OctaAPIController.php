@@ -63,7 +63,7 @@ class OctaAPIController extends Controller
                 return response()->json(['error' => 'Cliente não bloqueado'], 400);
             }
         }
-        return response()->json(['error' => 'Cliente não bloqueado'], 400);
+        return response()->json(['error' => 'Cliente não encontrado'], 400);
     }
     
 }
