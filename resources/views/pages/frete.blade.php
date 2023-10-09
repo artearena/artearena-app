@@ -230,26 +230,27 @@
             <button type="button" class="btn btn-primary" id="calcularFrete">Calcular</button>
           </div>
           <div class="col-sm-6">
-            <h4>Detalhes do orçamento:</h4>
-            <div class="details-container">
-                <textarea class="form-control" id="campoTexto" rows="5"></textarea>
-                <button type="button" class="btn btn-primary mt-2" id="botaoOrcamento">Salvar/Enviar Orçamento</button>
-                <button type="button" class="btn btn-primary mt-2" id="botaoCopiar">Copiar</button>
-                <p class="text-success mt-2" id="avisoCopiado" style="display: none;">Copiado com sucesso!</p>
-            </div>
-            <h4>Detalhes do card</h4>
-            <div class="details-container">
-                <div class="form-group">
-                    <label for="tituloCardTrello">Título:</label>
-                    <input type="text" class="form-control" id="tituloCardTrello">
-                </div>
-                <div class="form-group">
-                    <label for="descricaoCardTrello">Descrição:</label>
-                    <textarea class="form-control" id="descricaoCardTrello" rows="5"></textarea>
-                </div>
-                <button type="button" class="btn btn-primary mt-2" id="botaoCardTrello">Gerar Card</button>
-            </div>
-        </div>
+              <h4>Detalhes do orçamento:</h4>
+              <div class="details-container">
+                  <textarea class="form-control" id="campoTexto" rows="5"></textarea>
+                  <button type="button" class="btn btn-primary mt-2" id="botaoOrcamento">Salvar/Enviar Orçamento</button>
+                  <button type="button" class="btn btn-primary mt-2" id="botaoCopiar">Copiar</button>
+                  <p class="text-success mt-2" id="avisoCopiado" style="display: none;">Copiado com sucesso!</p>
+              </div>
+              <hr>
+              <h4>Detalhes do card</h4>
+              <div class="details-container">
+                  <div class="form-group">
+                      <label for="tituloCardTrello">Título:</label>
+                      <input type="text" class="form-control" id="tituloCardTrello">
+                  </div>
+                  <div class="form-group">
+                      <label for="descricaoCardTrello">Descrição:</label>
+                      <textarea class="form-control" id="descricaoCardTrello" rows="5"></textarea>
+                  </div>
+                  <button type="button" class="btn btn-primary mt-2" id="botaoCardTrello">Gerar Card</button>
+              </div>
+          </div>
         </div>
     </div>
 </div>
@@ -738,7 +739,12 @@
           });
 
           function salvarOrcamento() {
-                        
+            var tipoDocumento = document.querySelector('input[name="tipoDocumento"]:checked').value;
+            if (tipoDocumento === "gerarRascunho") {
+                swal("Modo atual: rascunho", "Para gerar orçamento, troque a opção", "info");
+                return;
+            }     
+
             const detalhesTransportadora = obterDetalhesTransportadora();
             const detalhesFrete = obterDetalhesFrete();
             const produtosSelecionados = obterListaProdutos();
