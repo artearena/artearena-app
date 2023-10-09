@@ -188,6 +188,9 @@ Consulta de Pedidos
         --dt-row-stripe: 246, 246, 246; 
 
     }
+    #qtd-dia-artes {
+        display: none;
+    }
 </style>
 @endsection
 
@@ -291,6 +294,7 @@ Consulta de Pedidos
                     </form>
                     <hr>
                         <div id="qtd-dia-artes">Quantidade de artes</div>
+                        <button onclick="toggleDivVisibility()">Mostrar/Esconder</button>
                     <hr>
                         <div id="metragem_total"></div>
                     <hr>
@@ -695,7 +699,14 @@ $.ajaxSetup({
 
         // Restante do código para configurar a tabela
         // ...
-
+        function toggleDivVisibility() {
+            let div = document.getElementById("qtd-dia-artes");
+            if (div.style.display === "none") {
+                div.style.display = "block";
+            } else {
+                div.style.display = "none";
+            }
+        }
         function contarRegistrosPorData() {
             let tabelaPedidos = table;
             let registrosPorData = {};
