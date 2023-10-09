@@ -297,7 +297,6 @@ Consulta de Pedidos
                         <button class="btn btn-primary" onclick="toggleDivVisibility()">Relatório de artes por dia</button>
                     <hr>
                         <div id="metragem_total"></div>
-                    <hr>
                     <div class="tabela-container">
                     <div id="loading" class="text-center" style="display: none;">
                         <p>Carregando...</p>
