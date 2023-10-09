@@ -44,7 +44,7 @@ class OctaAPIController extends Controller
         info($request);
 
         $contatoCliente = $request->input('contato_cliente');
-        $contatoClienteEncoded = $this->encodePhoneNumber($contatoCliente);
+        $contatoClienteEncoded = $this->encodePhoneNumber(trim($contatoCliente));
         info($contatoClienteEncoded);
 
         $cliente = Cliente::where('telefone', $contatoClienteEncoded)->first();
