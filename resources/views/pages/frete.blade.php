@@ -644,15 +644,21 @@
       });
       function carregarInfoCard() {
         const id_cliente = document.getElementById('id').value;
-        const descricao =  `
-          Tipo: ?
-          Material: ?
-          Tamanho: ?
-          Faces: ?
-          Ilhos: ?
-          Mastro: ?
-          Descrição: ?
-        ` ;
+        const produtosSelecionados = obterListaProdutos();
+        let descricao = "";
+
+        for (const id in produtosSelecionados) {
+          const produto = produtosSelecionados[id];
+          descricao += `
+Tipo: ${produto.nome.split(" - ")[0]}
+Material: ?
+Tamanho: ${produto.nome.split(" - ")[1]}
+Faces: ?
+Ilhos: ?
+Mastro: ?
+Descrição: ${produto.nome.split(" - ")[2]}
+          `;
+        }
         document.getElementById('tituloCardTrello').value = id_cliente;
         document.getElementById('descricaoCardTrello').value = descricao;
       }
