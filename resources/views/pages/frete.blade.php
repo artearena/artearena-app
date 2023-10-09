@@ -669,14 +669,14 @@
 **Faces:** ${produto.nome.split(" - ")[2]}`;
 
   // Verifica se a opção de Ilhoses está ativada
-  const ilhosesCheckbox = document.getElementById(`ilhosesCheckbox-${id}`);
+  const ilhosesCheckbox = document.querySelector(`#produtoTableBody tr:nth-child(${Number(id) + 1}) input[id^="ilhosesCheckbox"]`);
   if (ilhosesCheckbox && ilhosesCheckbox.checked) {
     descricao += `
 **Ilhoses:** ?`;
   }
 
   // Verifica se a opção de Mastro está ativada
-  const mastroCheckbox = document.getElementById(`mastroCheckbox-${id}`);
+  const mastroCheckbox = document.querySelector(`#produtoTableBody tr:nth-child(${Number(id) + 1}) input[id^="mastroCheckbox"]`);
   if (mastroCheckbox && mastroCheckbox.checked) {
     descricao += `
 **Mastro:** ?`;
