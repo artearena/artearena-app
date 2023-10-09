@@ -237,8 +237,6 @@
                     <button type="button" class="btn btn-primary mt-2" id="botaoCopiar">Copiar</button>
                     <p class="text-success mt-2" id="avisoCopiado" style="display: none;">Copiado com sucesso!</p>
                 </div>
-            </div>
-            <div class="col-sm-6">
                 <h4>Detalhes do card</h4>
                 <div class="details-container">
                     <textarea class="form-control" id="campoTextoCardTrello" rows="5"></textarea>
