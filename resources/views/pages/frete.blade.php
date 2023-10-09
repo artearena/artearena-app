@@ -642,9 +642,7 @@
           });
         });
       });
-      function carregarInfoCard{
-        document.getElementById('')
-      }
+      
       function cardRetirada(prazoConfecao){
         // Adicionar a transportadora "Retirada"
           const retiradaCardElement = document.createElement("div");
