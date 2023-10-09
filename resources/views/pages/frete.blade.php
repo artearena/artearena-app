@@ -143,7 +143,7 @@
         <h1>Gerar Orçamentos</h1>
         <hr>
         <div class="row">
-            <div class="col-md-6">
+          <div class="col-md-6">
             <form id="opt-octa-form" method="POST" action="">
               <div class="form-group">
                 <div class="radio-container">
