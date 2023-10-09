@@ -204,7 +204,7 @@ Consulta de Pedidos
                 <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab" tabindex="0">
                     <h1>Consulta de Pedidos</h1>
                     <button id="toggle-button" class="btn btn-primary">Mostrar/Esconder Formulário</button>
-                    <button class="btn btn-primary" onclick="toggleDivVisibility()">Relatório</button>
+                    <button class="btn btn-primary" onclick="toggleDivVisibility()">Relatório de artes por dia</button>
                     <form id="my-form" class="hidden-form">
                         @csrf
                         <div class="row">
@@ -295,11 +295,10 @@ Consulta de Pedidos
                         <hr>
                     </form>
                     
-                    <div id="qtd-dia-artes">Quantidade de artes
-                        <hr>
+                    <div id="qtd-dia-artes">Quantidade de artes</div>
+                    <hr>
                         <div id="metragem_total"></div>
-                    </div>
-                    
+                    <hr>
                     <div class="tabela-container">
                     <div id="loading" class="text-center" style="display: none;">
                         <p>Carregando...</p>
@@ -1451,10 +1450,38 @@ $.ajaxSetup({
                 div.style.display = "none";
             }
         }
-        const tabelaPedidos = document.getElementById('tabela-pedidos');
+       const tabelaPedidos = document.getElementById('tabela-pedidos');
         const metragemTotalDiv = document.getElementById('metragem_total');
         atualizarMetragemTotal();
-
+    // Função para calcular a metragem por tipo de material
+    function calcularMetragemPorMaterial() {
+        const metragemPorMaterial = {};
+        // Loop pelas linhas da tabela
+        for (let i = 0; i < tabelaPedidos.rows.length; i++) {
+            const linha = tabelaPedidos.rows[i];
+            // Seleciona os elementos
+            const selectMaterial = linha.querySelector('select[name="material"]');
+            const inputMedida = linha.querySelector('input[name="medida_linear"]');
+            // Verifica se os elementos existem antes de tentar ler os valores
+            if (selectMaterial && inputMedida) {
+            const material = selectMaterial.options[selectMaterial.selectedIndex].text;
+            const medidaLinear = parseFloat(inputMedida.value);
+            // Faz validação extra da medida linear
+            if (!isNaN(medidaLinear)) {
+                // Soma no objeto de metragem por material
+                if (metragemPorMaterial[material]) {
+                metragemPorMaterial[material] += medidaLinear;
+                } else {
+                metragemPorMaterial[material] = medidaLinear;
+                }
+            }
+            }
+        }
+        for (const material in metragemPorMaterial) {
+            metragemPorMaterial[material] = metragemPorMaterial[material].toFixed(2);
+        }
+            return metragemPorMaterial;
+        }
         function calcularQuantidadePorProduto() {
             const quantidadePorProduto = {};
             // Loop pelas linhas da tabela
@@ -1482,10 +1509,19 @@ $.ajaxSetup({
             return quantidadeOrdenada;
         }
         function atualizarMetragemTotal() {
+            const metragemPorMaterial = calcularMetragemPorMaterial();
             const quantidadePorProduto = calcularQuantidadePorProduto();
-
+            console.log(metragemPorMaterial);
             metragemTotalDiv.innerHTML = `
                 <div style="display: flex; flex-direction: row;">
+                <div style="margin-right: 20px;">
+                    <p>Metragem por Material:</p>
+                    <ul>
+                    ${Object.entries(metragemPorMaterial)
+                        .map(([material, metragem]) => `<li>${material ? material : 'Sem material definido'}: ${metragem}M</li>`)
+                        .join('')}
+                    </ul>
+                </div>
                 <div style="margin-left: 20px;">
                     <p>Quantidade por Produto:</p>
                     <ul>
