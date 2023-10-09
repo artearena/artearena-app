@@ -650,23 +650,23 @@
       });
       function carregarInfoCard() {
         const id_cliente = document.getElementById('id').value;
-        const produtosSelecionados = obterListaProdutos();
-        let descricao = "";
+  const produtosSelecionados = obterListaProdutos();
+  let descricao = "";
 
-        for (const id in produtosSelecionados) {
-          const produto = produtosSelecionados[id];
-          descricao += `Tipo: ${produto.nome.split(" - ")[0]}
-Material: ?
-Tamanho: ${produto.nome.split(" - ")[1]}
-Faces: ${produto.nome.split(" - ")[2]}
-Ilhos: ?
-Mastro: ?
-Descrição: ?
-
+  for (const id in produtosSelecionados) {
+    const produto = produtosSelecionados[id];
+    descricao += `**Tipo:** ${produto.nome.split(" - ")[0]}  
+**Material:** ?  
+**Tamanho:** ${produto.nome.split(" - ")[1]}  
+**Faces:** ${produto.nome.split(" - ")[2]}  
+**Ilhos:** ?  
+**Mastro:** ?  
+**Descrição:** ?  
+  
 ---
 
 `;
-        }
+}
         document.getElementById('tituloCardTrello').value = id_cliente + 'teste';
         document.getElementById('descricaoCardTrello').value = descricao;
       }
