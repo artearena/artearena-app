@@ -699,14 +699,7 @@ $.ajaxSetup({
 
         // Restante do código para configurar a tabela
         // ...
-        function toggleDivVisibility() {
-            let div = document.getElementById("qtd-dia-artes");
-            if (div.style.display === "none") {
-                div.style.display = "block";
-            } else {
-                div.style.display = "none";
-            }
-        }
+        
         function contarRegistrosPorData() {
             let tabelaPedidos = table;
             let registrosPorData = {};
@@ -827,6 +820,14 @@ $.ajaxSetup({
             "font-size": "15px",
             "text-align": "center"
     });
+    function toggleDivVisibility() {
+        let div = document.getElementById("qtd-dia-artes");
+        if (div.style.display === "none") {
+            div.style.display = "block";
+        } else {
+            div.style.display = "none";
+        }
+    }
     function filtrarMensagemErro(message) {
         // Exemplo: verificar se a mensagem contém um erro de id duplicado
         if (message.includes("Duplicate entry")) {
