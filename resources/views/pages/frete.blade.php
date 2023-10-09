@@ -651,11 +651,11 @@
       function carregarInfoCard() {
         const id_cliente = document.getElementById('id').value;
   const produtosSelecionados = obterListaProdutos();
-  let descricao = "";
+  let descricao = "#Produtos  ";
 
   for (const id in produtosSelecionados) {
     const produto = produtosSelecionados[id];
-    descricao += `#Produtos
+    descricao +=`
 **Tipo:** ${produto.nome.split(" - ")[0]}  
 **Material:** ?  
 **Tamanho:** ${produto.nome.split(" - ")[1]}  
