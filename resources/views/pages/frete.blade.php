@@ -264,98 +264,101 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
   <script>
     $(function() {
+      const botaoCardTrello = document.getElementById('botaoCardTrello');
+      botaoCardTrello.addEventListener('click', gerarCard);
+
       // Inicializar o select2 para o campo de produto
       $('#produto').select2();
 
       function consultarProduto() {
-  var produto = $('#produto').val();
-  // Realizar requisição AJAX para obter dados do produto do Tiny API
-  $.get('https://artearena.kinghost.net/consultar-tiny', {
-    token: 'bc3cdea243d8687963fa642580057531456d34fa',
-    id: produto,
-    formato: 'json'
-  }, function(response) {
-    var produtoData = response;
-    console.log(response);
-    // Verificar se o produto possui prazo de confecção
-    var prazoConfeccao = produtoData.retorno.produto && produtoData.retorno.produto.dias_preparacao ? produtoData.retorno.produto.dias_preparacao : 0;
-    // Verificar se é um produto personalizado
-    var nomeProduto = produtoData.retorno.produto && produtoData.retorno.produto.nome ? produtoData.retorno.produto.nome : '';
-    // Verificar se é um produto personalizado
-    if (nomeProduto.toLowerCase().includes("personalizado")) {
-      // Definir valores padrão para produto personalizado
-      produtoData.retorno.produto.preco = 0;
-      produtoData.retorno.produto.peso_bruto = 0;
-      prazoConfeccao = 0;
-    }
-    // Adicionar registro à tabela de produtos selecionados
-    const tableBody = document.getElementById("produtoTableBody");
-    const newRow = tableBody.insertRow();
-    newRow.innerHTML = `
-      <td hidden>${produto}</td>
-      <td>
-        <input type="text" class="form-control" value="${nomeProduto}" style="width: 200px;">
-      </td>
-      <td>
-        <input type="text" class="form-control" value="${produtoData.retorno.produto && produtoData.retorno.produto.preco ? produtoData.retorno.produto.preco : 0}" onchange='
-          var valor = this.value;
-          this.value = valor;
-          console.log("alterado");
-        ' style="width: 150px;">
-      </td>
-      <td>
-        <input type="number" class="form-control" value="${produtoData.retorno.produto && produtoData.retorno.produto.peso_bruto ? produtoData.retorno.produto.peso_bruto : 0}" onchange='
-          var peso = this.value;
-          this.value = peso;
-          this.removeAttribute("readonly");
-        ' style="width: 70px;">
-      </td>
-      <td>
-        <input type="number" class="form-control" value="1" onchange='
-          var quantidade = this.value;
-          if (quantidade <= 0) {
-            this.value = 1; <!-- Defina um valor padrão, caso o usuário insira um valor negativo ou zero -->
+        var produto = $('#produto').val();
+        // Realizar requisição AJAX para obter dados do produto do Tiny API
+        $.get('https://artearena.kinghost.net/consultar-tiny', {
+          token: 'bc3cdea243d8687963fa642580057531456d34fa',
+          id: produto,
+          formato: 'json'
+        }, function(response) {
+          var produtoData = response;
+          console.log(response);
+          // Verificar se o produto possui prazo de confecção
+          var prazoConfeccao = produtoData.retorno.produto && produtoData.retorno.produto.dias_preparacao ? produtoData.retorno.produto.dias_preparacao : 0;
+          // Verificar se é um produto personalizado
+          var nomeProduto = produtoData.retorno.produto && produtoData.retorno.produto.nome ? produtoData.retorno.produto.nome : '';
+          // Verificar se é um produto personalizado
+          if (nomeProduto.toLowerCase().includes("personalizado")) {
+            // Definir valores padrão para produto personalizado
+            produtoData.retorno.produto.preco = 0;
+            produtoData.retorno.produto.peso_bruto = 0;
+            prazoConfeccao = 0;
           }
-          this.removeAttribute("readonly");
-        ' style="width: 70px;">
-      </td>
-      <td>
-        <input type="number" class="form-control prazo-confeccao" value="${prazoConfeccao}" onchange='
-          var prazoConfecao = this.value;
-          this.value = prazoConfecao;
-          this.removeAttribute("readonly");
-        ' style="width: 70px;">
-      </td>
-      <td>
-        <input type="number" class="form-control" value="" onchange='
-          var altura = this.value;
-          this.value = altura;
-          this.removeAttribute("readonly");
-        ' style="width: 70px;">
-      </td>
-      <td>
-        <input type="number" class="form-control" value="" onchange='
-          var comprimento = this.value;
-          this.value = comprimento;
-          this.removeAttribute("readonly");
-        ' style="width: 70px;">
-      </td>
-      <td>
-        <input type="number" class="form-control" value="" onchange='
-          var largura = this.value;
-          this.value = largura;
-          this.removeAttribute("readonly");
-        ' style="width: 70px;">
-      </td>
-      <td onclick="var tableRow = this.closest('tr'); tableRow.remove();">
-        <button class="btn btn-danger">Remover</button>
-      </td>
-    `;
-    newRow.querySelector("td input").dataset.id = produto;
-    }).fail(function() {
-      console.log("Erro ao consultar o produto. Verifique se o ID do produto é válido.");
-    });
-}
+          // Adicionar registro à tabela de produtos selecionados
+          const tableBody = document.getElementById("produtoTableBody");
+          const newRow = tableBody.insertRow();
+          newRow.innerHTML = `
+            <td hidden>${produto}</td>
+            <td>
+              <input type="text" class="form-control" value="${nomeProduto}" style="width: 200px;">
+            </td>
+            <td>
+              <input type="text" class="form-control" value="${produtoData.retorno.produto && produtoData.retorno.produto.preco ? produtoData.retorno.produto.preco : 0}" onchange='
+                var valor = this.value;
+                this.value = valor;
+                console.log("alterado");
+              ' style="width: 150px;">
+            </td>
+            <td>
+              <input type="number" class="form-control" value="${produtoData.retorno.produto && produtoData.retorno.produto.peso_bruto ? produtoData.retorno.produto.peso_bruto : 0}" onchange='
+                var peso = this.value;
+                this.value = peso;
+                this.removeAttribute("readonly");
+              ' style="width: 70px;">
+            </td>
+            <td>
+              <input type="number" class="form-control" value="1" onchange='
+                var quantidade = this.value;
+                if (quantidade <= 0) {
+                  this.value = 1; <!-- Defina um valor padrão, caso o usuário insira um valor negativo ou zero -->
+                }
+                this.removeAttribute("readonly");
+              ' style="width: 70px;">
+            </td>
+            <td>
+              <input type="number" class="form-control prazo-confeccao" value="${prazoConfeccao}" onchange='
+                var prazoConfecao = this.value;
+                this.value = prazoConfecao;
+                this.removeAttribute("readonly");
+              ' style="width: 70px;">
+            </td>
+            <td>
+              <input type="number" class="form-control" value="" onchange='
+                var altura = this.value;
+                this.value = altura;
+                this.removeAttribute("readonly");
+              ' style="width: 70px;">
+            </td>
+            <td>
+              <input type="number" class="form-control" value="" onchange='
+                var comprimento = this.value;
+                this.value = comprimento;
+                this.removeAttribute("readonly");
+              ' style="width: 70px;">
+            </td>
+            <td>
+              <input type="number" class="form-control" value="" onchange='
+                var largura = this.value;
+                this.value = largura;
+                this.removeAttribute("readonly");
+              ' style="width: 70px;">
+            </td>
+            <td onclick="var tableRow = this.closest('tr'); tableRow.remove();">
+              <button class="btn btn-danger">Remover</button>
+            </td>
+          `;
+          newRow.querySelector("td input").dataset.id = produto;
+          }).fail(function() {
+            console.log("Erro ao consultar o produto. Verifique se o ID do produto é válido.");
+          });
+      }
 
 
       $('#produto').change(function() {
@@ -667,6 +670,27 @@ Descrição: ?
         document.getElementById('tituloCardTrello').value = id_cliente + 'teste';
         document.getElementById('descricaoCardTrello').value = descricao;
       }
+      function gerarCard() {
+        const nomeCartao = document.getElementById('tituloCardTrello').value;
+        const descCartao = document.getElementById('descricaoCardTrello').value;
+
+        // Faz a solicitação GET para a rota /criar-card-trello
+        fetch(`https://artearena.kinghost.net/criar-card-trello?nome=${nomeCartao}&desc=${descCartao}`)
+          .then(response => response.json())
+          .then(data => {
+            alert(data.message); // Exibe a mensagem de sucesso ou erro
+          })
+          .catch(error => {
+            console.error('Erro:', error);
+            Swal.fire({
+              title: 'Erro ao criar o cartão no Trello',
+              text: 'Ocorreu um erro ao tentar criar o cartão no Trello. Por favor, verifique suas informações e tente novamente.',
+              icon: 'error',
+              confirmButtonText: 'OK'
+            });          
+        });
+      }
+      
       function cardRetirada(prazoConfecao){
         // Adicionar a transportadora "Retirada"
           const retiradaCardElement = document.createElement("div");
