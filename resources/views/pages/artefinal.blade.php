@@ -1406,9 +1406,6 @@ $.ajaxSetup({
         });
     });
     document.addEventListener("DOMContentLoaded", function () {
-        const abrirModalButtons = document.querySelectorAll('.abrir-modal');
-        const tabelaPedidos = document.getElementById('tabela-pedidos');
-        const metragemTotalDiv = document.getElementById('metragem_total');
    
         abrirModalButtons.forEach(button => {
             button.addEventListener("click", function () {
@@ -1507,9 +1504,13 @@ $.ajaxSetup({
                 return quantidadeOrdenada;
                 }
                 function atualizarMetragemTotal() {
+                    const abrirModalButtons = document.querySelectorAll('.abrir-modal');
+                    const tabelaPedidos = document.getElementById('tabela-pedidos');
+                    const metragemTotalDiv = document.getElementById('metragem_total');
+
                     const metragemPorMaterial = calcularMetragemPorMaterial();
                     const quantidadePorProduto = calcularQuantidadePorProduto();
-                    console.log(metragemPorMaterial);
+
                     metragemTotalDiv.innerHTML = `
                         <div style="display: flex; flex-direction: row;">
                         <div style="margin-right: 20px;">
