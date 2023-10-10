@@ -21,9 +21,7 @@ Route::middleware(['auth'])->group(function () {
     Route::prefix('frete')->group(function () {
         Route::get('/', [SiteController::class, 'frete'])->name('frete');
         Route::post('/orcamentos-salvar', [OrcamentosController::class, 'salvarOrcamento'])->name('orcamentos.salvar');
-        Route::get('/consultarOrcamentos', [OrcamentosController::class, 'consultarOrcamentos'])->name('orcamentos.consultar');
-
-        
+        Route::get('/consultarorcamentos/{id}', [OrcamentosController::class, 'consultarOrcamentos'])->name('orcamentos.consultar');
     });
     Route::prefix('pedido')->group(function () {
         Route::any('/', [PedidoController::class, 'artefinal'])->name('pedido');

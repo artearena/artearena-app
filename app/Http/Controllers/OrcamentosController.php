@@ -47,7 +47,7 @@ class OrcamentosController extends Controller
         return response()->json(['message' => 'Orçamento salvo com sucesso']);
     }
 
-    public function consultarOrcamento($id)
+    public function consultarOrcamentos($id)
     {
         // Consultar o orçamento pelo ID
         $orcamento = Orcamentos::where('id_octa', $id)->first();
