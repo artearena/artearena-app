@@ -753,6 +753,7 @@
                 </thead>
                 <tbody>
             `;
+            console.log(data);
             // Preencher a tabela com os dados dos orçamentos
             data.forEach((orcamento) => {
               tabelaHtml += `
