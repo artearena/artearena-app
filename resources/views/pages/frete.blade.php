@@ -971,7 +971,11 @@
                 prazo_individual: produto.prazo_individual
               };
             });
-
+            if (detalhesTransportadora.dataPrevista === null) {
+              data_prevista = null;
+            } else {
+              data_prevista = detalhesTransportadora.dataPrevista.replace(" Frete mais rápido!", "").replace(" Frete mais barato!", "").trim();
+            }
             // Enviar a requisição AJAX para salvar o pedido
             $.ajax({
               url: '/frete/orcamentos-salvar',
@@ -984,7 +988,7 @@
                 nome_transportadora: detalhesTransportadora.nomeTransportadora,
                 valor_frete: detalhesTransportadora.valorFrete,
                 prazo_entrega: detalhesTransportadora.prazoEntrega,
-                data_prevista: detalhesTransportadora.dataPrevista.replace(" Frete mais rápido!", "").replace(" Frete mais barato!", "").trim(),
+                data_prevista: data_prevista,
                 logo_frete: detalhesTransportadora.logoTransportadora,
                 produtos: produtos,
                 _token: "{{ csrf_token() }}"
@@ -1049,7 +1053,7 @@
               dataPrevistaFormatada = null;
               prazoEntrega = null;
             }
-            
+
           return {
             nomeTransportadora,
             valorFrete,
