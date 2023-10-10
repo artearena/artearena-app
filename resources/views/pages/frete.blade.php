@@ -142,7 +142,7 @@
     <div class="container mt-4">
         <h1>Gerar Orçamentos</h1>
         <hr>
-        <div class="row justify-content-between">
+        <div class="row">
             <div class="col-md-6">
                 <form id="opt-octa-form" method="POST" action="">
                     <div class="form-group">
@@ -191,27 +191,27 @@
                             </div>
                         </div>
                     </div>
-                    <!-- Tabela de produtos selecionados -->
-                    <table class="table mt-4">
-                      <thead>
-                        <tr>
-                          <th hidden>ID</th>
-                          <th>Nome</th>
-                          <th>Valor</th>
-                          <th>Peso</th>
-                          <th>Quantidade</th>
-                          <th>Confecção(dias)</th>
-                          <th>Ilhoses</th>
-                          <th>Mastro</th>
-                          <th>Altura</th>
-                          <th>Comprimento</th>
-                          <th>Largura</th>
-                          <th>Ação</th>
-                        </tr>
-                      </thead>
-                      <tbody id="produtoTableBody"></tbody>
-                    </table>
-                  </div>
+                    <div class="table-responsive">
+                      <table class="table mt-4">
+                        <thead>
+                          <tr>
+                            <th hidden>ID</th>
+                            <th>Nome</th>
+                            <th>Valor</th>
+                            <th>Peso</th>
+                            <th>Quantidade</th>
+                            <th>Confecção(dias)</th>
+                            <th>Ilhoses</th>
+                            <th>Mastro</th>
+                            <th>Altura</th>
+                            <th>Comprimento</th>
+                            <th>Largura</th>
+                            <th>Ação</th>
+                          </tr>
+                        </thead>
+                        <tbody id="produtoTableBody"></tbody>
+                      </table>
+                    </div>
                 </form>
                 <form id="cep-form" method="POST" action="">
                     @csrf
@@ -232,7 +232,7 @@
                 </div>
                 <button type="button" class="btn btn-primary" id="calcularFrete">Calcular</button>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-6">
                 <div class="row">
                     <div class="col-sm-12">
                         <h4>Detalhes do orçamento:</h4>
@@ -263,7 +263,6 @@
     </div>
 </div>
 @endsection
-
 @section('extraScript')
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
