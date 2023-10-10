@@ -150,12 +150,11 @@
       min-width: 400px;
     }
     .modal-body {
+      width: 700px;
+      height: 500px;
       overflow: auto;
     }
-    .modal-body {
-      width: 80vw;
-      height: 500px;
-    }
+
 
 </style>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.css">
