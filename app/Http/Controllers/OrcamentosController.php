@@ -14,7 +14,6 @@ class OrcamentosController extends Controller
 
         // Criação de um novo objeto de orçamento
         $orcamento = new Orcamentos();
-        $orcamento->id = $request->input('id');
         $orcamento->id_octa = $request->input('id_octa');
         $orcamento->detalhes_orcamento = $request->input('detalhes_orcamento');
         $orcamento->cep_frete = $request->input('cep_frete');
