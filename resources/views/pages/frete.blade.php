@@ -493,17 +493,6 @@
         })
         .then(response => response.json())
         .then(data => {
-          if (data.error) {
-            console.error(data.error);
-            if (data.error.codigo === 0) {
-              Swal.fire({
-                title: 'API Kangu fora do ar',
-                icon: 'error',
-                confirmButtonText: 'OK'
-              });
-            }
-            return;
-          }       
           const cardsContainer = document.getElementById("cardsContainer");
 
           while (cardsContainer.firstChild) {
@@ -959,8 +948,8 @@
               return;
             }  
 
-            
-            /* const detalhesTransportadora = obterDetalhesTransportadora();*/
+
+            const detalhesTransportadora = obterDetalhesTransportadora();
             const detalhesFrete = obterDetalhesFrete(); 
             const produtosSelecionados = obterListaProdutos();
 
@@ -988,15 +977,15 @@
               url: '/frete/orcamentos-salvar',
               method: 'POST',
               data: {
-                id_octa: "",//detalhesFrete.id,
-                detalhes_orcamento: "",//detalhesFrete.detalhes_orcamento,
-                cep_frete: "",//detalhesFrete.cep_frete,
-                endereco_frete: "",//detalhesFrete.endereco_frete,
-                nome_transportadora: "",// detalhesTransportadora.nomeTransportadora,
-                valor_frete: "",//detalhesTransportadora.valorFrete,
-                prazo_entrega: "",//detalhesTransportadora.prazoEntrega,
-                data_prevista: "",//detalhesTransportadora.dataPrevista.replace(" Frete mais rápido!", "").replace(" Frete mais barato!", "").trim(),
-                logo_frete: "",//detalhesTransportadora.logoTransportadora,
+                id_octa: detalhesFrete.id,
+                detalhes_orcamento: detalhesFrete.detalhes_orcamento,
+                cep_frete: detalhesFrete.cep_frete,
+                endereco_frete: detalhesFrete.endereco_frete,
+                nome_transportadora: detalhesTransportadora.nomeTransportadora,
+                valor_frete: detalhesTransportadora.valorFrete,
+                prazo_entrega: detalhesTransportadora.prazoEntrega,
+                data_prevista: detalhesTransportadora.dataPrevista.replace(" Frete mais rápido!", "").replace(" Frete mais barato!", "").trim(),
+                logo_frete: detalhesTransportadora.logoTransportadora,
                 produtos: produtos,
                 _token: "{{ csrf_token() }}"
               },
