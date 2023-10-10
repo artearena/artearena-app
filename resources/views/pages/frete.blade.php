@@ -308,7 +308,7 @@
                 var valor = this.value;
                 this.value = valor;
                 console.log("alterado");
-              ' style="width: 150px;">
+              ' style="width: 70px;">
             </td>
             <td>
               <input type="number" class="form-control" value="${produtoData.retorno.produto && produtoData.retorno.produto.peso_bruto ? produtoData.retorno.produto.peso_bruto : 0}" onchange='
