@@ -234,7 +234,8 @@
             </div>
             <button type="button" class="btn btn-primary" id="calcularFrete">Calcular</button>
           </div>
-          <div class="col-sm-6 col-menor">
+          <div class="row">
+            <div class="col-sm-6">
               <h4>Detalhes do orçamento:</h4>
               <div class="details-container">
                   <textarea class="form-control" id="campoTexto" rows="5"></textarea>
@@ -255,6 +256,7 @@
                   </div>
                   <button type="button" class="btn btn-primary mt-2" id="botaoCardTrello">Gerar Card</button>
               </div>
+            </div>
           </div>
         </div>
     </div>
