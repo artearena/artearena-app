@@ -130,6 +130,22 @@
     #descricaoCardTrello{
       min-height: 350px;
     }
+    .table-responsive::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    .table-responsive::-webkit-scrollbar-track {
+      background-color: #f1f1f1;
+    }
+
+    .table-responsive::-webkit-scrollbar-thumb {
+      background-color: #888;
+      border-radius: 4px;
+    }
+
+    .table-responsive::-webkit-scrollbar-thumb:hover {
+      background-color: #555;
+    }
 </style>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.css">
 
