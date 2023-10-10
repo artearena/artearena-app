@@ -180,7 +180,7 @@
                                 <div class="input-group">
                                     <input type="text" id="id" class="form-control"></input>
                                     <div class="input-group-append">
-                                        <button id="buscar_cliente" class="btn btn-primary" type="button">Buscar Cliente</button>
+                                        <button id="buscar_orcamento" class="btn btn-primary" type="button">Buscar Orçamentos</button>
                                     </div>
                                 </div>
                             </div>
@@ -726,6 +726,79 @@
         document.getElementById('tituloCardTrello').value = id_cliente ;
         document.getElementById('descricaoCardTrello').value = descricao;
       }
+      // Função para consultar os orçamentos
+      function consultarOrcamentos() {
+        fetch('/consultarorcamentos')
+          .then(response => response.json())
+          .then(data => {
+            // Criar o conteúdo da tabela
+            let tabelaHtml = `
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Detalhes</th>
+                    <th>CEP Frete</th>
+                    <th>Endereço Frete</th>
+                    <th>Nome Transportadora</th>
+                    <th>Valor Frete</th>
+                    <th>Prazo Entrega</th>
+                    <th>Data Prevista</th>
+                    <th>Logo Frete</th>
+                  </tr>
+                </thead>
+                <tbody>
+            `;
+            // Preencher a tabela com os dados dos orçamentos
+            data.forEach((orcamento) => {
+              tabelaHtml += `
+                <tr>
+                  <td>${orcamento.id}</td>
+                  <td>${orcamento.detalhes_orcamento}</td>
+                  <td>${orcamento.cep_frete}</td>
+                  <td>${orcamento.endereco_frete}</td>
+                  <td>${orcamento.nome_transportadora}</td>
+                  <td>${orcamento.valor_frete}</td>
+                  <td>${orcamento.prazo_entrega}</td>
+                  <td>${orcamento.data_prevista}</td>
+                  <td>${orcamento.logo_frete}</td>
+                </tr>
+              `;
+            });
+            tabelaHtml += `
+                </tbody>
+              </table>
+            `;
+            // Criar o modal
+            const modal = `
+              <div class="modal">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title">Orçamentos</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      ${tabelaHtml}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            `;
+            // Adicionar o modal ao body
+            document.body.insertAdjacentHTML('beforeend', modal);
+            // Abrir o modal
+            $('.modal').modal('show');
+          })
+          .catch(error => {
+            console.error('Erro ao consultar os orçamentos:', error);
+          });
+      }
+      // Adicionar o evento de clique ao botão "Buscar Orçamentos"
+      document.getElementById('buscar_orcamento').addEventListener('click', consultarOrcamentos);
+      
       function gerarCard() {
         const nomeCartao = document.getElementById('tituloCardTrello').value;
         const descCartao = document.getElementById('descricaoCardTrello').value;
