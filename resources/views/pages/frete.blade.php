@@ -959,6 +959,7 @@
               return;
             }  
 
+            
             /* const detalhesTransportadora = obterDetalhesTransportadora();*/
             const detalhesFrete = obterDetalhesFrete(); 
             const produtosSelecionados = obterListaProdutos();
