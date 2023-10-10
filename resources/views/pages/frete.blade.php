@@ -147,7 +147,7 @@
       background-color: #555;
     }
     .descricao-orcamento {
-      min-width: 300px;
+      min-width: 400px;
     }
 </style>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.css">
@@ -739,7 +739,7 @@
           .then(data => {
             // Criar o conteúdo da tabela
             let tabelaHtml = `
-              <table class="table">
+              <table class="table-responsive">
                 <thead>
                   <tr>
                     <th>ID</th>
