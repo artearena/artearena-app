@@ -493,11 +493,17 @@
         })
         .then(response => response.json())
         .then(data => {
-          console.log(data);
           if (data.error) {
             console.error(data.error);
+            if (data.codigo === 0) {
+              Swal.fire({
+                title: 'API Kangu fora do ar',
+                icon: 'error',
+                confirmButtonText: 'OK'
+              });
+            }
             return;
-          }          
+          }       
           const cardsContainer = document.getElementById("cardsContainer");
 
           while (cardsContainer.firstChild) {
