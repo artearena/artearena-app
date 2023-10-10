@@ -493,6 +493,7 @@
         })
         .then(response => response.json())
         .then(data => {
+          console.log(data);
           const cardsContainer = document.getElementById("cardsContainer");
 
           while (cardsContainer.firstChild) {

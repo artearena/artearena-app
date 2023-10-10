@@ -16,6 +16,7 @@ class Orcamentos extends Model
     // Defina os campos que podem ser preenchidos em massa
     protected $fillable = [
         'id',
+        'id_octa',
         'detalhes_orcamento',
         'cep_frete',
         'endereco_frete',

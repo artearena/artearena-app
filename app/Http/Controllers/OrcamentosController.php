@@ -15,6 +15,7 @@ class OrcamentosController extends Controller
         // Criação de um novo objeto de orçamento
         $orcamento = new Orcamentos();
         $orcamento->id = $request->input('id');
+        $orcamento->id_octa = $request->input('id_octa');
         $orcamento->detalhes_orcamento = $request->input('detalhes_orcamento');
         $orcamento->cep_frete = $request->input('cep_frete');
         $orcamento->endereco_frete = $request->input('endereco_frete');
@@ -49,8 +50,7 @@ class OrcamentosController extends Controller
     public function consultarOrcamento($id)
     {
         // Consultar o orçamento pelo ID
-        $orcamento = Orcamentos::find($id);
-
+        $orcamento = Orcamentos::where('id_octa', $id)->first();
         // Verificar se o orçamento foi encontrado
         if ($orcamento) {
             // Retornar o orçamento encontrado
