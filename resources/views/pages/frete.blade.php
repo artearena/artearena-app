@@ -959,18 +959,18 @@
               return;
             }  
 
-            /* const detalhesTransportadora = obterDetalhesTransportadora();
-            const detalhesFrete = obterDetalhesFrete(); */
+            /* const detalhesTransportadora = obterDetalhesTransportadora();*/
+            const detalhesFrete = obterDetalhesFrete(); 
             const produtosSelecionados = obterListaProdutos();
 
-            /* if (!detalhesFrete.id) {
+            if (!detalhesFrete.id) {
                 alert("ID do octa faltando");
                 return;
             }
             if (!detalhesFrete.detalhes_orcamento) {
                 alert("Detalhes do orcamento faltando ");
                 return;
-            } */
+            } 
             // Montar array de produtos
             const produtos = Object.values(produtosSelecionados).map(produto => {
               return {
