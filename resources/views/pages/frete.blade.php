@@ -164,7 +164,7 @@
                     <div class="form-group">
                         <div class="radio-container">
                             <div class="custom-control custom-radio">
-                                <input type="radio" id="gerarRascunho" name="tipoDocumento" class="custom-control-input">
+                                <input type="radio" id="gerarRascunho" name="tipoDocumentoRascunho" class="custom-control-input">
                                 <label class="custom-control-label" for="gerarRascunho">Gerar Rascunho</label>
                             </div>
                             <div class="custom-control custom-radio">
@@ -946,7 +946,7 @@
           });
 
           function salvarOrcamento() {
-            var tipoDocumento = document.querySelector('input[name="tipoDocumento"]:checked');
+            var tipoDocumento = document.querySelector('input[name="tipoDocumentoRascunho"]:checked');
 
             if (tipoDocumento && tipoDocumento.checked) {
               Swal.fire({
