@@ -1042,8 +1042,8 @@
             const logoTransportadora = cardElement.querySelector("img").src;
             const valorFrete = extrairValor(valorFreteElement.textContent);
             var prazoEntrega = extrairNumero(prazoEntregaElement.textContent);
-            var dataPrevista = extrairData(dataPrevistaElement.textContent);
-            const dataPrevistaFormatada = converterData(dataPrevista);
+            const dataPrevista = extrairData(dataPrevistaElement.textContent);
+            var dataPrevistaFormatada = converterData(dataPrevista);
 
             if (nomeTransportadora === "Retirada") {
               dataPrevistaFormatada = null;
