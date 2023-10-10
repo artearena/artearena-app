@@ -69,7 +69,10 @@
         display: flex;
         flex-direction: column;
     }
-
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
     th, td {
         padding: 8px;
         text-align: left;
@@ -126,9 +129,6 @@
     }
     #descricaoCardTrello{
       min-height: 350px;
-    }
-    .table{
-      max-width: 400px;
     }
 </style>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.css">
@@ -191,27 +191,26 @@
                             </div>
                         </div>
                     </div>
-                    <div class="table-responsive">
-                      <table class="table mt-4">
+                    <!-- Tabela de produtos selecionados -->
+                    <table class="table mt-4">
                         <thead>
-                          <tr>
-                            <th hidden>ID</th>
-                            <th>Nome</th>
-                            <th>Valor</th>
-                            <th>Peso</th>
-                            <th>Quantidade</th>
-                            <th>Confecção(dias)</th>
-                            <th>Ilhoses</th>
-                            <th>Mastro</th>
-                            <th>Altura</th>
-                            <th>Comprimento</th>
-                            <th>Largura</th>
-                            <th>Ação</th>
-                          </tr>
+                            <tr>
+                                <th hidden>ID</th>
+                                <th>Nome</th>
+                                <th>Valor</th>
+                                <th>Peso</th>
+                                <th>Quantidade</th>
+                                <th>Confecção(dias)</th>
+                                <th>Ilhoses</th>
+                                <th>Mastro</th>
+                                <th>Altura</th>
+                                <th>Comprimento</th>
+                                <th>Largura</th>
+                                <th>Ação</th>
+                            </tr>
                         </thead>
                         <tbody id="produtoTableBody"></tbody>
-                      </table>
-                    </div>
+                    </table>
                 </form>
                 <form id="cep-form" method="POST" action="">
                     @csrf
@@ -335,10 +334,10 @@
               ' style="width: 60px;">
             </td>
             <td>
-              <input type="checkbox" class="form-check-input" id="ilhosesCheckbox" style="width: 30px;>
+              <input type="checkbox" class="form-check-input" id="ilhosesCheckbox">
             </td>
             <td>
-              <input type="checkbox" class="form-check-input" id="mastroCheckbox" style="width: 30px;">
+              <input type="checkbox" class="form-check-input" id="mastroCheckbox">
             </td>
             <td>
               <input type="number" class="form-control" value="" onchange='
