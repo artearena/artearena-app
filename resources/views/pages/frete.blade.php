@@ -738,7 +738,7 @@
         document.getElementById('descricaoCardTrello').value = descricao;
       }
       const id_cliente = document.getElementById('id').value;
-      
+      console.log(id_cliente);
       // Função para consultar os orçamentos
       function consultarOrcamentos() {
         fetch(`/frete/consultarorcamentos/${id_cliente}`)
