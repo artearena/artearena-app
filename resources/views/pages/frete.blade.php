@@ -1049,6 +1049,7 @@
               dataPrevistaFormatada = null;
               prazoEntrega = null;
             }
+            
           return {
             nomeTransportadora,
             valorFrete,
