@@ -49,7 +49,7 @@ class OrcamentosController extends Controller
     public function consultarOrcamentos($id)
     {
         // Consultar o orçamento pelo ID
-        $orcamento = Orcamentos::where('id_octa', $id)->first();
+        $orcamento = Orcamentos::where('id_octa', $id);
         // Verificar se o orçamento foi encontrado
         if ($orcamento) {
             // Retornar o orçamento encontrado
