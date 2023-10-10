@@ -69,10 +69,7 @@
         display: flex;
         flex-direction: column;
     }
-    table {
-        width: 100%;
-        border-collapse: collapse;
-    }
+
     th, td {
         padding: 8px;
         text-align: left;
@@ -129,6 +126,9 @@
     }
     #descricaoCardTrello{
       min-height: 350px;
+    }
+    .table{
+      max-width: 400px;
     }
 </style>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.css">
