@@ -995,7 +995,12 @@
               },
               success: function(response) {
                 // Exibir mensagem de sucesso usando o Swal
-                swal("Orçamento salvo com sucesso!", "", "success");
+                Swal.fire({
+                  title: 'Sucesso',
+                  text: data.message,
+                  icon: 'success',
+                  confirmButtonText: 'OK'
+                }); 
               },
               error: function(xhr, status, error) {
                 // Tratamento de erro
