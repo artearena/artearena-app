@@ -987,7 +987,7 @@
               url: '/frete/orcamentos-salvar',
               method: 'POST',
               data: {
-                id: detalhesFrete.id,
+                id_octa: detalhesFrete.id,
                 detalhes_orcamento: detalhesFrete.detalhes_orcamento,
                 cep_frete: detalhesFrete.cep_frete,
                 endereco_frete: detalhesFrete.endereco_frete,
