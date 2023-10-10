@@ -1044,7 +1044,10 @@
             const prazoEntrega = extrairNumero(prazoEntregaElement.textContent);
             const dataPrevista = extrairData(dataPrevistaElement.textContent);
             const dataPrevistaFormatada = converterData(dataPrevista);
-
+            if (nomeTransportadora === "Retirada") {
+              dataPrevista = null;
+              prazoEntrega = null;
+            }
           return {
             nomeTransportadora,
             valorFrete,
