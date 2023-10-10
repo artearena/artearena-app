@@ -225,7 +225,7 @@
                 </div>
             </form>
             <div class="row justify-content-between">
-                <div class="col-md-12">
+                <div class="col-md-4">
                     <div id="transp-title">
                         <h3>Transportadoras:</h3>
                     </div>
