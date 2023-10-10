@@ -225,7 +225,7 @@
                 </div>
             </form>
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-12">
                     <div id="transp-title">
                         <h3>Transportadoras:</h3>
                     </div>
@@ -234,7 +234,7 @@
             </div>
             <button type="button" class="btn btn-primary" id="calcularFrete">Calcular</button>
           </div>
-          <div class="col-sm-6">
+          <div class="col-sm-6 col-menor">
               <h4>Detalhes do orçamento:</h4>
               <div class="details-container">
                   <textarea class="form-control" id="campoTexto" rows="5"></textarea>
