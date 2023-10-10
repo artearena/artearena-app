@@ -219,9 +219,9 @@
                             <th>Confecção</th>
                             <th>Ilhose</th>
                             <th>Mastro</th>
-                            <th>Altura</th>
-                            <th>Comprimento</th>
-                            <th>Largura</th>
+                            <th>Alt.</th>
+                            <th>Comp.</th>
+                            <th>Larg.</th>
                             <th>Ação</th>
                           </tr>
                         </thead>
