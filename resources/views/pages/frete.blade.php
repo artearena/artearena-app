@@ -589,7 +589,7 @@
                 dataPrevEntregaElement.appendChild(freteMaisRapidoInfo);
               }
               document.getElementById("botaoLimparCampos").addEventListener("click", function() {
-                  document.getElementById("buscar_cliente").value = "";
+                  document.getElementById("id").value = "";
                   document.getElementById("cep").value = "";
                   document.getElementById("endereco").value = "";
                   document.getElementById("campoTexto").value = "";
