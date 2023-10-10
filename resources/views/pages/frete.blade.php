@@ -315,7 +315,7 @@
                 var peso = this.value;
                 this.value = peso;
                 this.removeAttribute("readonly");
-              ' style="width: 70px;">
+              ' style="width: 60px;">
             </td>
             <td>
               <input type="number" class="form-control" value="1" onchange='
@@ -324,41 +324,41 @@
                   this.value = 1; <!-- Defina um valor padrão, caso o usuário insira um valor negativo ou zero -->
                 }
                 this.removeAttribute("readonly");
-              ' style="width: 70px;">
+              ' style="width: 60px;">
             </td>
             <td>
               <input type="number" class="form-control prazo-confeccao" value="${prazoConfeccao}" onchange='
                 var prazoConfecao = this.value;
                 this.value = prazoConfecao;
                 this.removeAttribute("readonly");
-              ' style="width: 70px;">
+              ' style="width: 60px;">
             </td>
             <td>
-              <input type="checkbox" class="form-check-input" id="ilhosesCheckbox">
+              <input type="checkbox" class="form-check-input" id="ilhosesCheckbox" style="width: 30px;>
             </td>
             <td>
-              <input type="checkbox" class="form-check-input" id="mastroCheckbox">
+              <input type="checkbox" class="form-check-input" id="mastroCheckbox" style="width: 30px;">
             </td>
             <td>
               <input type="number" class="form-control" value="" onchange='
                 var altura = this.value;
                 this.value = altura;
                 this.removeAttribute("readonly");
-              ' style="width: 70px;">
+              ' style="width: 60px;">
             </td>
             <td>
               <input type="number" class="form-control" value="" onchange='
                 var comprimento = this.value;
                 this.value = comprimento;
                 this.removeAttribute("readonly");
-              ' style="width: 70px;">
+              ' style="width: 60px;">
             </td>
             <td>
               <input type="number" class="form-control" value="" onchange='
                 var largura = this.value;
                 this.value = largura;
                 this.removeAttribute("readonly");
-              ' style="width: 70px;">
+              ' style="width: 60px;">
             </td>
             <td onclick="var tableRow = this.closest('tr'); tableRow.remove();">
               <button class="btn btn-danger">Remover</button>
