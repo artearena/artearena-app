@@ -224,7 +224,7 @@
                     <input type="text" class="form-control" id="endereco" name="endereco" readonly="" style="background-color: #f2f2f2;">
                 </div>
             </form>
-            <div class="row justify-content-between">
+            <div class="row">
                 <div class="col-md-4">
                     <div id="transp-title">
                         <h3>Transportadoras:</h3>
@@ -234,7 +234,7 @@
             </div>
             <button type="button" class="btn btn-primary" id="calcularFrete">Calcular</button>
           </div>
-          <div class="col-sm-3">
+          <div class="col-sm-6">
               <h4>Detalhes do orçamento:</h4>
               <div class="details-container">
                   <textarea class="form-control" id="campoTexto" rows="5"></textarea>
