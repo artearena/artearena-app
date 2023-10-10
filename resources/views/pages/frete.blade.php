@@ -588,7 +588,23 @@
                 dataPrevEntregaElement.appendChild(freteMaisRapidoIcon);
                 dataPrevEntregaElement.appendChild(freteMaisRapidoInfo);
               }
+              document.getElementById("botaoLimparCampos").addEventListener("click", function() {
+                  document.getElementById("buscar_cliente").value = "";
+                  document.getElementById("cep").value = "";
+                  document.getElementById("endereco").value = "";
+                  document.getElementById("campoTexto").value = "";
+                  document.getElementById("tituloCardTrello").value = "";
+                  document.getElementById("descricaoCardTrello").value = "";
+                  
+                  // Limpar registros da tabela
+                  const tableBody = document.getElementById("produtoTableBody");
+                  tableBody.innerHTML = "";
 
+                  const cardsContainer = document.getElementById("cardsContainer");
+                  while (cardsContainer.firstChild) {
+                    cardsContainer.removeChild(cardsContainer.firstChild);
+                  }
+              });
 
               // Adicionar evento de seleção ao card
               cardElement.addEventListener("click", function () {
