@@ -152,6 +152,9 @@
     .modal-body {
       overflow: auto;
     }
+    .modal-body {
+      width: auto;
+    }
 
 </style>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.css">
