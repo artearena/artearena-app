@@ -15,7 +15,6 @@ use App\Http\Controllers\ErroController;
 Route::middleware(['auth'])->group(function () {
     Route::get('/', [SiteController::class, 'index'])->name('index');
     Route::get('/home', [SiteController::class, 'index'])->name('home');
-    
     Route::get('/bandeira', [SiteController::class, 'bandeiras'])->name('bandeira');
     
     Route::prefix('frete')->group(function () {

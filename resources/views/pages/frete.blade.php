@@ -959,18 +959,18 @@
               return;
             }  
 
-            const detalhesTransportadora = obterDetalhesTransportadora();
-            const detalhesFrete = obterDetalhesFrete();
+            /* const detalhesTransportadora = obterDetalhesTransportadora();
+            const detalhesFrete = obterDetalhesFrete(); */
             const produtosSelecionados = obterListaProdutos();
 
-            if (!detalhesFrete.id) {
+            /* if (!detalhesFrete.id) {
                 alert("ID do octa faltando");
                 return;
             }
             if (!detalhesFrete.detalhes_orcamento) {
                 alert("Detalhes do orcamento faltando ");
                 return;
-            }
+            } */
             // Montar array de produtos
             const produtos = Object.values(produtosSelecionados).map(produto => {
               return {
@@ -987,15 +987,15 @@
               url: '/frete/orcamentos-salvar',
               method: 'POST',
               data: {
-                id_octa: detalhesFrete.id,
-                detalhes_orcamento: detalhesFrete.detalhes_orcamento,
-                cep_frete: detalhesFrete.cep_frete,
-                endereco_frete: detalhesFrete.endereco_frete,
-                nome_transportadora: detalhesTransportadora.nomeTransportadora,
-                valor_frete: detalhesTransportadora.valorFrete,
-                prazo_entrega: detalhesTransportadora.prazoEntrega,
-                data_prevista: detalhesTransportadora.dataPrevista.replace(" Frete mais rápido!", "").replace(" Frete mais barato!", "").trim(),
-                logo_frete: detalhesTransportadora.logoTransportadora,
+                id_octa: "",//detalhesFrete.id,
+                detalhes_orcamento: "",//detalhesFrete.detalhes_orcamento,
+                cep_frete: "",//detalhesFrete.cep_frete,
+                endereco_frete: "",//detalhesFrete.endereco_frete,
+                nome_transportadora: "",// detalhesTransportadora.nomeTransportadora,
+                valor_frete: "",//detalhesTransportadora.valorFrete,
+                prazo_entrega: "",//detalhesTransportadora.prazoEntrega,
+                data_prevista: "",//detalhesTransportadora.dataPrevista.replace(" Frete mais rápido!", "").replace(" Frete mais barato!", "").trim(),
+                logo_frete: "",//detalhesTransportadora.logoTransportadora,
                 produtos: produtos,
                 _token: "{{ csrf_token() }}"
               },
