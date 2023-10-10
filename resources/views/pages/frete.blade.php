@@ -153,7 +153,8 @@
       overflow: auto;
     }
     .modal-body {
-      width: auto;
+      width: 80vw;
+      height: 500px;
     }
 
 </style>
