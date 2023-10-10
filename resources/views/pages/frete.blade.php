@@ -154,7 +154,11 @@
       height: 500px;
       overflow: auto;
     }
-
+    .modal-content{
+      width: 700px;
+      height: 500px;
+      overflow: auto;
+    }
 
 </style>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.css">
