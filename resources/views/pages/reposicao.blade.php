@@ -637,6 +637,11 @@ $(document).ready(function(){
 
                 // Verifique se o campo é uma data e converte para o formato correto (yyyy-mm-dd HH:mm:ss)
                 if (field === 'data') {
+                if (value === '') {
+                    console.error('O campo de data está vazio.');
+                    return;
+                }
+                
                 var dateParts = value.split('/');
                 if (dateParts.length === 3) {
                     value = dateParts[2] + '-' + dateParts[1] + '-' + dateParts[0] + ' 00:00:00';
@@ -645,7 +650,7 @@ $(document).ready(function(){
                     return;
                 }
                 }
-                console.log('passei aqui');
+
                 // Verifica se o campo é uma medida linear
                 var isLinearMeasurementField = ['medida_linear'].includes(field);
 
