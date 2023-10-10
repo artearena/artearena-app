@@ -146,6 +146,9 @@
     .table-responsive::-webkit-scrollbar-thumb:hover {
       background-color: #555;
     }
+    .descricao-orcamento {
+      min-width: 300px;
+    }
 </style>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.css">
 
@@ -758,7 +761,7 @@
               tabelaHtml += `
                 <tr>
                   <td>${orcamento.id}</td>
-                  <td>${orcamento.detalhes_orcamento}</td>
+                  <td class="descricao-orcamento">${orcamento.detalhes_orcamento}</td>
                   <td>${orcamento.cep_frete}</td>
                   <td>${orcamento.endereco_frete}</td>
                   <td>${orcamento.nome_transportadora}</td>
