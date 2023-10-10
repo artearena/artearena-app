@@ -144,120 +144,122 @@
         <hr>
         <div class="row">
             <div class="col-md-6">
-            <form id="opt-octa-form" method="POST" action="">
-              <div class="form-group">
-                <div class="radio-container">
-                  <div class="custom-control custom-radio">
-                    <input type="radio" id="gerarRascunho" name="tipoDocumento" class="custom-control-input">
-                    <label class="custom-control-label" for="gerarRascunho">Gerar Rascunho</label>
-                  </div>
-                  <div class="custom-control custom-radio">
-                    <input type="radio" id="gerarOrcamento" name="tipoDocumento" class="custom-control-input" checked>
-                    <label class="custom-control-label" for="gerarOrcamento">Gerar Orçamento</label>
-                  </div>
-                </div>
-              </div>
-              <div class="form-group">
-                <div class="container">
-                  <div class="form-group">
-                    <label for="id">ID Cliente:</label>
-                    <div class="input-group">
-                      <input type="text" id="id" class="form-control"></input>
-                      <div class="input-group-append">
-                        <button id="buscar_cliente" class="btn btn-primary" type="button">Buscar Cliente</button>
-                      </div>
+                <form id="opt-octa-form" method="POST" action="">
+                    <div class="form-group">
+                        <div class="radio-container">
+                            <div class="custom-control custom-radio">
+                                <input type="radio" id="gerarRascunho" name="tipoDocumento" class="custom-control-input">
+                                <label class="custom-control-label" for="gerarRascunho">Gerar Rascunho</label>
+                            </div>
+                            <div class="custom-control custom-radio">
+                                <input type="radio" id="gerarOrcamento" name="tipoDocumento" class="custom-control-input" checked>
+                                <label class="custom-control-label" for="gerarOrcamento">Gerar Orçamento</label>
+                            </div>
+                        </div>
                     </div>
-                  </div>
+                    <div class="form-group">
+                        <div class="container">
+                            <div class="form-group">
+                                <label for="id">ID Cliente:</label>
+                                <div class="input-group">
+                                    <input type="text" id="id" class="form-control"></input>
+                                    <div class="input-group-append">
+                                        <button id="buscar_cliente" class="btn btn-primary" type="button">Buscar Cliente</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <form id="produto-form" method="POST" action="">
+                    @csrf
+                    <div class="form-group">
+                        <div class="container">
+                            <div class="form-group">
+                                <label for="produto">Produto:</label>
+                                <select class="form-control select2" id="produto" name="produto">
+                                    <option value="">Selecione um produto</option>
+                                    <option value="personalizado">Produto Personalizado</option>
+                                    @foreach ($produtos->sortBy('NOME')->sortBy(function($produto) {
+                                    return strpos($produto->NOME, 'Bandeira Personalizada') !== false ? 0 : 1;
+                                    }) as $produto)
+                                    @if ($produto->NOME !== 'Bandeira Personalizada')
+                                    <option value="{{ $produto->id }}">{{ $produto->NOME }}</option>
+                                    @endif
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Tabela de produtos selecionados -->
+                    <table class="table mt-4">
+                        <thead>
+                            <tr>
+                                <th hidden>ID</th>
+                                <th>Nome</th>
+                                <th>Valor</th>
+                                <th>Peso</th>
+                                <th>Quantidade</th>
+                                <th>Confecção(dias)</th>
+                                <th>Ilhoses</th>
+                                <th>Mastro</th>
+                                <th>Altura</th>
+                                <th>Comprimento</th>
+                                <th>Largura</th>
+                                <th>Ação</th>
+                            </tr>
+                        </thead>
+                        <tbody id="produtoTableBody"></tbody>
+                    </table>
+                </form>
+                <form id="cep-form" method="POST" action="">
+                    @csrf
+                    <div class="form-group">
+                        <label for="cep">CEP:</label>
+                        <input type="text" class="form-control" id="cep" name="cep" placeholder="CEP">
+                    </div>
+                    <div class="form-group">
+                        <label for="endereco">Endereço:</label>
+                        <input type="text" class="form-control" id="endereco" name="endereco" readonly="" style="background-color: #f2f2f2;">
+                    </div>
+                </form>
+                <div class="col-md-12">
+                    <div id="transp-title">
+                        <h3>Transportadoras:</h3>
+                    </div>
+                    <div class="cards-container" id="cardsContainer"></div>
                 </div>
-              </div>
-            </form>
-            <form id="produto-form" method="POST" action="">
-              @csrf
-              <div class="form-group">
-                  <div class="container">
-                      <div class="form-group">
-                          <label for="produto">Produto:</label>
-                          <select class="form-control select2" id="produto" name="produto">
-                              <option value="">Selecione um produto</option>
-                              <option value="personalizado">Produto Personalizado</option>
-                              @foreach ($produtos->sortBy('NOME')->sortBy(function($produto) {
-                                  return strpos($produto->NOME, 'Bandeira Personalizada') !== false ? 0 : 1;
-                              }) as $produto)
-                                  @if ($produto->NOME !== 'Bandeira Personalizada')
-                                      <option value="{{ $produto->id }}">{{ $produto->NOME }}</option>
-                                  @endif
-                              @endforeach
-                          </select>
-                      </div>
-                  </div>
-              </div>
-
-              <!-- Tabela de produtos selecionados -->
-              <table class="table mt-4">
-                <thead>
-                  <tr>
-                    <th hidden>ID</th>
-                    <th>Nome</th>
-                    <th>Valor</th>
-                    <th>Peso</th>
-                    <th>Quantidade</th>
-                    <th>Confecção(dias)</th>
-                    <th>Ilhoses</th>
-                    <th>Mastro</th>
-                    <th>Altura</th>
-                    <th>Comprimento</th>
-                    <th>Largura</th>
-                    <th>Ação</th>
-                  </tr>
-                </thead>
-                <tbody id="produtoTableBody"></tbody>
-              </table>
-            </form>
-            <form id="cep-form" method="POST" action="">
-                @csrf
-                <div class="form-group">
-                    <label for="cep">CEP:</label>
-                    <input type="text" class="form-control" id="cep" name="cep" placeholder="CEP">
-                </div>
-                <div class="form-group">
-                    <label for="endereco">Endereço:</label>
-                    <input type="text" class="form-control" id="endereco" name="endereco" readonly="" style="background-color: #f2f2f2;">
-                </div>
-            </form>
-              <div class="col-md-12">
-                  <div id="transp-title">
-                      <h3>Transportadoras:</h3>
-                  </div>
-                  <div class="cards-container" id="cardsContainer"></div>
-              </div>
-            <button type="button" class="btn btn-primary" id="calcularFrete">Calcular</button>
-          </div>
-
-          <div class="row">
-            <div class="col-sm-6">
-              <h4>Detalhes do orçamento:</h4>
-              <div class="details-container">
-                  <textarea class="form-control" id="campoTexto" rows="5"></textarea>
-                  <button type="button" class="btn btn-primary mt-2" id="botaoOrcamento">Salvar/Enviar Orçamento</button>
-                  <button type="button" class="btn btn-primary mt-2" id="botaoCopiar">Copiar</button>
-                  <p class="text-success mt-2" id="avisoCopiado" style="display: none;">Copiado com sucesso!</p>
-              </div>
-              <hr>
-              <h4>Detalhes do card</h4>
-              <div class="details-container">
-                  <div class="form-group">
-                      <label for="tituloCardTrello">Título:</label>
-                      <input type="text" class="form-control" id="tituloCardTrello">
-                  </div>
-                  <div class="form-group">
-                      <label for="descricaoCardTrello">Descrição:</label>
-                      <textarea class="form-control" id="descricaoCardTrello" rows="5"></textarea>
-                  </div>
-                  <button type="button" class="btn btn-primary mt-2" id="botaoCardTrello">Gerar Card</button>
-              </div>
+                <button type="button" class="btn btn-primary" id="calcularFrete">Calcular</button>
             </div>
-          </div>
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <h4>Detalhes do orçamento:</h4>
+                        <div class="details-container">
+                            <textarea class="form-control" id="campoTexto" rows="5"></textarea>
+                            <button type="button" class="btn btn-primary mt-2" id="botaoOrcamento">Salvar/Enviar Orçamento</button>
+                            <button type="button" class="btn btn-primary mt-2" id="botaoCopiar">Copiar</button>
+                            <p class="text-success mt-2" id="avisoCopiado" style="display: none;">Copiado com sucesso!</p>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 mt-4">
+                        <h4>Detalhes do card</h4>
+                        <div class="details-container">
+                            <div class="form-group">
+                                <label for="tituloCardTrello">Título:</label>
+                                <input type="text" class="form-control" id="tituloCardTrello">
+                            </div>
+                            <div class="form-group">
+                                <label for="descricaoCardTrello">Descrição:</label>
+                                <textarea class="form-control" id="descricaoCardTrello" rows="5"></textarea>
+                            </div>
+                            <button type="button" class="btn btn-primary mt-2" id="botaoCardTrello">Gerar Card</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
+    </div>
 </div>
 @endsection
 
