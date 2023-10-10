@@ -742,7 +742,7 @@
               <table class="table-responsive">
                 <thead>
                   <tr>
-                    <th>ID</th>
+                    <th display="none">ID</th>
                     <th>Detalhes</th>
                     <th>CEP Frete</th>
                     <th>Endereço Frete</th>
@@ -760,7 +760,7 @@
             data.forEach((orcamento) => {
               tabelaHtml += `
                 <tr>
-                  <td>${orcamento.id}</td>
+                  <td display="none">${orcamento.id}</td>
                   <td class="descricao-orcamento">${orcamento.detalhes_orcamento}</td>
                   <td>${orcamento.cep_frete}</td>
                   <td>${orcamento.endereco_frete}</td>
