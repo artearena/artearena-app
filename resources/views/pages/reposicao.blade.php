@@ -874,7 +874,7 @@ $('.mover-pedido').click(function () {
                 }
                 setDataColor(data, dataField);
             });
-        |}
+        }
 
         function atualizarQuantidadeRegistros() {
             let quantidadeRegistros = $('#tabela-pedidos').DataTable().data().count();
