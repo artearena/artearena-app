@@ -495,7 +495,7 @@
         .then(data => {
           if (data.error) {
             console.error(data.error);
-            if (data.codigo === 0) {
+            if (data.error.codigo === 0) {
               Swal.fire({
                 title: 'API Kangu fora do ar',
                 icon: 'error',
