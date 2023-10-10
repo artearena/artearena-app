@@ -629,8 +629,8 @@ $(document).ready(function(){
 
         function reatribuirEventosChange() {
             $('#tabela-pedidos').off('change', '.table input, .table select'); // Remover eventos "change" anteriores
-            $('#tabela-pedidos').on('change', '.table input, .table select', function () {
-                var id = $(this).closest('tr').find('td:first-child').text();
+                $('#tabela-pedidos').on('change', '.table input, .table select', function () {
+                    var id = $(this).closest('tr').find('td:first-child').text();
                 var field = $(this).attr('name');
                 var value = $(this).val();
                 var $this = $(this); // Salvar a referência do this aqui
@@ -857,17 +857,24 @@ $('.mover-pedido').click(function () {
         }
 
 
-        // Função para atualizar as cores de fundo dos campos
         function updateColors() {
             $("#tabela-pedidos tbody tr").each(function() {
                 var status = $(this).find("select[name='status']").val();
                 var data = $(this).find("input[name='data']").val();
 
-                setStatusColor(status, $(this).find("td:nth-child(7)"));
-                setDataColor(data, $(this).find("td:nth-child(2)"));
+                var statusField = $(this).find("td:nth-child(7)");
+                if (statusField.text() === '') {
+                return;
+                }
+                setStatusColor(status, statusField);
 
+                var dataField = $(this).find("td:nth-child(2)");
+                if (dataField.text() === '') {
+                return;
+                }
+                setDataColor(data, dataField);
             });
-        }
+        |}
 
         function atualizarQuantidadeRegistros() {
             let quantidadeRegistros = $('#tabela-pedidos').DataTable().data().count();
