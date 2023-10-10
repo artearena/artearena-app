@@ -997,7 +997,7 @@
                 // Exibir mensagem de sucesso usando o Swal
                 Swal.fire({
                   title: 'Sucesso',
-                  text: data.message,
+                  text: 'Orçamento salvo com sucesso',
                   icon: 'success',
                   confirmButtonText: 'OK'
                 }); 
