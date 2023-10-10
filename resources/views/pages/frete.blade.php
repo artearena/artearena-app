@@ -731,7 +731,6 @@
       function consultarOrcamentos() {
         const id_cliente = document.getElementById('id').value;
         console.log(id_cliente);
-
         fetch(`/frete/consultarorcamentos/${id_cliente}`)
           .then(response => response.json())
           .then(data => {
@@ -801,9 +800,9 @@
             console.error('Erro ao consultar os orçamentos:', error);
           });
       }
+
       // Adicionar o evento de clique ao botão "Buscar Orçamentos"
       document.getElementById('buscar_orcamento').addEventListener('click', consultarOrcamentos);
-      
       function gerarCard() {
         const nomeCartao = document.getElementById('tituloCardTrello').value;
         const descCartao = document.getElementById('descricaoCardTrello').value;
