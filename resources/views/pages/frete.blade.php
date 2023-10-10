@@ -172,25 +172,25 @@
               </div>
             </form>
             <form id="produto-form" method="POST" action="">
-                @csrf
-                <div class="form-group">
-                    <div class="container">
-                        <div class="form-group">
-                            <label for="produto">Produto:</label>
-                            <select class="form-control select2" id="produto" name="produto">
-                                <option value="">Selecione um produto</option>
-                                <option value="personalizado">Produto Personalizado</option>
-                                @foreach ($produtos->sortBy('NOME')->sortBy(function($produto) {
-                                    return strpos($produto->NOME, 'Bandeira Personalizada') !== false ? 0 : 1;
-                                }) as $produto)
-                                    @if ($produto->NOME !== 'Bandeira Personalizada')
-                                        <option value="{{ $produto->id }}">{{ $produto->NOME }}</option>
-                                    @endif
-                                @endforeach
-                            </select>
-                        </div>
-                    </div>
-                </div>
+              @csrf
+              <div class="form-group">
+                  <div class="container">
+                      <div class="form-group">
+                          <label for="produto">Produto:</label>
+                          <select class="form-control select2" id="produto" name="produto">
+                              <option value="">Selecione um produto</option>
+                              <option value="personalizado">Produto Personalizado</option>
+                              @foreach ($produtos->sortBy('NOME')->sortBy(function($produto) {
+                                  return strpos($produto->NOME, 'Bandeira Personalizada') !== false ? 0 : 1;
+                              }) as $produto)
+                                  @if ($produto->NOME !== 'Bandeira Personalizada')
+                                      <option value="{{ $produto->id }}">{{ $produto->NOME }}</option>
+                                  @endif
+                              @endforeach
+                          </select>
+                      </div>
+                  </div>
+              </div>
 
               <!-- Tabela de produtos selecionados -->
               <table class="table mt-4">
@@ -224,16 +224,15 @@
                     <input type="text" class="form-control" id="endereco" name="endereco" readonly="" style="background-color: #f2f2f2;">
                 </div>
             </form>
-            <div class="row">
-                <div class="col-md-12">
-                    <div id="transp-title">
-                        <h3>Transportadoras:</h3>
-                    </div>
-                    <div class="cards-container" id="cardsContainer"></div>
-                </div>
-            </div>
+              <div class="col-md-12">
+                  <div id="transp-title">
+                      <h3>Transportadoras:</h3>
+                  </div>
+                  <div class="cards-container" id="cardsContainer"></div>
+              </div>
             <button type="button" class="btn btn-primary" id="calcularFrete">Calcular</button>
           </div>
+
           <div class="row">
             <div class="col-sm-6">
               <h4>Detalhes do orçamento:</h4>
@@ -259,7 +258,6 @@
             </div>
           </div>
         </div>
-    </div>
 </div>
 @endsection
 
