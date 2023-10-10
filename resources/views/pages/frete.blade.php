@@ -212,12 +212,12 @@
                         <thead>
                           <tr>
                             <th hidden>ID</th>
-                            <th>Nome</th>
-                            <th>Valor</th>
-                            <th>Peso</th>
-                            <th>Quantidade</th>
-                            <th>Confecção(dias)</th>
-                            <th>Ilhoses</th>
+                            <th>Produto</th>
+                            <th>R$</th>
+                            <th>Kg</th>
+                            <th>Qtd</th>
+                            <th>Confecção</th>
+                            <th>Ilhose</th>
                             <th>Mastro</th>
                             <th>Altura</th>
                             <th>Comprimento</th>
