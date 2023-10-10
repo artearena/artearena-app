@@ -1046,7 +1046,7 @@
             const dataPrevistaFormatada = converterData(dataPrevista);
 
             if (nomeTransportadora === "Retirada") {
-              dataPrevista = null;
+              dataPrevistaFormatada = null;
               prazoEntrega = null;
             }
           return {
