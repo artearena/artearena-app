@@ -494,6 +494,10 @@
         .then(response => response.json())
         .then(data => {
           console.log(data);
+          if (data.error) {
+            console.error(data.error);
+            return;
+          }          
           const cardsContainer = document.getElementById("cardsContainer");
 
           while (cardsContainer.firstChild) {
