@@ -739,7 +739,7 @@
       }
       // Função para consultar os orçamentos
       function consultarOrcamentos() {
-        fetch('/consultarorcamentos')
+        fetch('/frete/consultarorcamentos')
           .then(response => response.json())
           .then(data => {
             // Criar o conteúdo da tabela
