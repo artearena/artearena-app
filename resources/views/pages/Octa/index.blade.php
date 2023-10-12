@@ -330,9 +330,6 @@
                         }
                     }
                 ],
-                language: {
-                    url: '//cdn.datatables.net/plug-ins/1.11.3/i18n/Portuguese-Brasil.json'
-                }
             });
 
             // Adicionar evento para mostrar/ocultar detalhes da linha
@@ -365,7 +362,7 @@
                     tr.addClass('shown');
                 }
             });
-            
+
             // Função para formatar os detalhes da linha
             function format(data) {
                 return '<dl>' +
