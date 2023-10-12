@@ -760,6 +760,7 @@ const id_cliente = document.getElementById('id').value;
                     <th>Prazo Entrega</th>
                     <th>Data Prevista</th>
                     <th>Logo Frete</th>
+                    <th>Ação</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -778,6 +779,7 @@ const id_cliente = document.getElementById('id').value;
                   <td>${orcamento.prazo_entrega}</td>
                   <td>${orcamento.data_prevista}</td>
                   <td>${orcamento.logo_frete}</td>
+                  <td><button class="btn btn-primary btn-carregar" onclick="carregarDados(this)">Carregar</button></td>
                 </tr>
               `;
             });
@@ -813,8 +815,33 @@ const id_cliente = document.getElementById('id').value;
           });
       }
 
+
       // Adicionar o evento de clique ao botão "Buscar Orçamentos"
       document.getElementById('buscar_orcamento').addEventListener('click', consultarOrcamentos);
+      function carregarDados(button) {
+        const row = button.closest("tr");
+        const descricaoOrcamento = row.querySelector(".descricao-orcamento").textContent;
+        const cepFrete = row.cells[2].textContent;
+        const enderecoFrete = row.cells[3].textContent;
+        const nomeTransportadora = row.cells[4].textContent;
+        const valorFrete = row.cells[5].textContent;
+        const prazoEntrega = row.cells[6].textContent;
+        const dataPrevista = row.cells[7].textContent;
+        const logoFrete = row.cells[8].textContent;
+
+        // Preencha os campos da tela com os dados extraídos
+        document.getElementById("descricaoOrcamentoInput").value = descricaoOrcamento;
+        document.getElementById("cepFreteInput").value = cepFrete;
+        document.getElementById("enderecoFreteInput").value = enderecoFrete;
+        document.getElementById("nomeTransportadoraInput").value = nomeTransportadora;
+        document.getElementById("valorFreteInput").value = valorFrete;
+        document.getElementById("prazoEntregaInput").value = prazoEntrega;
+        document.getElementById("dataPrevistaInput").value = dataPrevista;
+        document.getElementById("logoFreteInput").value = logoFrete;
+
+        // Feche o modal (se necessário)
+        $('.modal').modal('hide');
+      }
       function gerarCard() {
         const nomeCartao = document.getElementById('tituloCardTrello').value;
         const descCartao = document.getElementById('descricaoCardTrello').value;
