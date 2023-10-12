@@ -788,17 +788,17 @@ const id_cliente = document.getElementById('id').value;
               </table>
             `;
             // Criar o modal
-            const modal = `
-              <div class="modal">
-                <div class="modal-dialog">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title">Orçamentos</h5>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+            const modalOrcamentos = `
+              <div class="modalOrcamentos">
+                <div class="modalOrcamentos-dialog">
+                  <div class="modalOrcamentos-content">
+                    <div class="modalOrcamentos-header">
+                      <h5 class="modalOrcamentos-title">Orçamentos</h5>
+                      <button type="button" class="close" data-dismiss="modalOrcamentos" aria-label="Fechar">
                         <span aria-hidden="true">&times;</span>
                       </button>
                     </div>
-                    <div class="modal-body">
+                    <div class="modalOrcamentos-body">
                       ${tabelaHtml}
                     </div>
                   </div>
@@ -806,9 +806,9 @@ const id_cliente = document.getElementById('id').value;
               </div>
             `;
             // Adicionar o modal ao body
-            document.body.insertAdjacentHTML('beforeend', modal);
+            document.body.insertAdjacentHTML('beforeend', modalOrcamentos);
             // Abrir o modal
-            $('.modal').modal('show');
+            $('.modalOrcamentos').modalOrcamentos('show');
           })
           .catch(error => {
             console.error('Erro ao consultar os orçamentos:', error);
@@ -840,7 +840,7 @@ const id_cliente = document.getElementById('id').value;
         document.getElementById("logoFreteInput").value = logoFrete;
 
         // Feche o modal (se necessário)
-        $('.modal').modal('hide');
+        $('.modalOrcamentos').modalOrcamentos('hide');
       }
       function gerarCard() {
         const nomeCartao = document.getElementById('tituloCardTrello').value;
