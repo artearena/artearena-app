@@ -841,6 +841,9 @@ const id_cliente = document.getElementById('id').value;
             data.forEach(produto => {
               const newRow = document.createElement("tr");
               console.log(produto);
+              console.log(produto.id);
+              console.log(produto.nome_produto);
+              console.log(produto.valor_unitario);
               newRow.innerHTML = `
                 <td hidden>${produto.id}</td>
                 <td>${produto.nome_produto}</td>
