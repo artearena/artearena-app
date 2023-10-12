@@ -706,39 +706,56 @@
         });
       });
       function carregarInfoCard() {
-  const id_cliente = document.getElementById('id').value;
   const produtosSelecionados = obterListaProdutos();
   let descricao = "#Produtos  ";
-  
-  for (const id in produtosSelecionados) {
-    const produto = produtosSelecionados[id];
+
+  const rows = document.querySelectorAll("#produtoTableBody tr");
+  rows.forEach(row => {
+    const ilhoseCheckbox = row.querySelector(".ilhosesCheckbox");
+    const mastroCheckbox = row.querySelector(".mastroCheckbox");
+
+    const ilhoseChecked = ilhoseCheckbox.checked;
+    const mastroChecked = mastroCheckbox.checked;
+
+    const produto = row.querySelector("td:nth-child(2) input").value;
+    const preco = row.querySelector("td:nth-child(3) input").value;
+    const peso = row.querySelector("td:nth-child(4) input").value;
+    const quantidade = row.querySelector("td:nth-child(5) input").value;
+    const prazoConfeccao = row.querySelector("td:nth-child(6) input").value;
+    const altura = row.querySelector("td:nth-child(9) input").value;
+    const comprimento = row.querySelector("td:nth-child(10) input").value;
+    const largura = row.querySelector("td:nth-child(11) input").value;
+
     descricao += `
-**Tipo:** ${produto.nome.split(" - ")[0]}  
+**Tipo:** ${produto.split(" - ")[0]}  
 **Material:** ?  
-**Tamanho:** ${produto.nome.split(" - ")[1]}  
-**Faces:** ${produto.nome.split(" - ")[2]}`;
-    
-    // Verifica se a opção de Ilhoses está ativada
-    const ilhosesCheckbox = document.getElementById(`ilhosesCheckbox${id}`);
-    if (ilhosesCheckbox && ilhosesCheckbox.checked) {
+**Tamanho:** ${produto.split(" - ")[1]}  
+**Faces:** ${produto.split(" - ")[2]}`;
+
+    if (ilhoseChecked) {
       descricao += `
 **Ilhoses:** Sim`;
     }
-    
-    // Verifica se a opção de Mastro está ativada
-    const mastroCheckbox = document.getElementById(`mastroCheckbox${id}`);
-    if (mastroCheckbox && mastroCheckbox.checked) {
+
+    if (mastroChecked) {
       descricao += `
 **Mastro:** Sim`;
     }
-    
+
     descricao += `
+**Preço:** ${preco}  
+**Peso:** ${peso}  
+**Quantidade:** ${quantidade}  
+**Prazo de Confecção:** ${prazoConfeccao}  
+**Altura:** ${altura}  
+**Comprimento:** ${comprimento}  
+**Largura:** ${largura}  
 **Descrição:** ?  
 ---
 `;
-  }
-  
-  document.getElementById('tituloCardTrello').value = id_cliente;
+  });
+
+  document.getElementById('tituloCardTrello').value = '';
   document.getElementById('descricaoCardTrello').value = descricao;
 }
 const id_cliente = document.getElementById('id').value;
