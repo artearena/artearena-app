@@ -233,10 +233,7 @@
                 language: {
                     url: 'https://cdn.datatables.net/plug-ins/1.10.24/i18n/Portuguese-Brasil.json'
                 },
-                initComplete: function() {
-                    // Exibe a tabela somente após a conclusão da inicialização
-                    $('#clientesTable').show();
-                }
+                stateSave: true
             });
 
             $('.datetimepicker').on('change', function() {
