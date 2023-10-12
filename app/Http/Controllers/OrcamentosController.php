@@ -47,7 +47,7 @@ class OrcamentosController extends Controller
     }
     public function consultarProdutos($orcamentoId)
     {
-        $produtos = OrcamentoProdutos::where('orcamento_id', $orcamentoId)->get();
+        $produtos = OrcamentoProdutos::where('id_orcamento', $orcamentoId)->get();
 
         return response()->json($produtos);
     }
