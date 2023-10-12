@@ -831,7 +831,7 @@ const id_cliente = document.getElementById('id').value;
 
         // Obter os produtos relacionados ao orçamento
         const orcamentoId = row.querySelector("td:first-child").textContent;
-        fetch(`/orcamentoProdutos/${orcamentoId}`)
+        fetch(`/frete/orcamentoProdutos/${orcamentoId}`)
           .then(response => response.json())
           .then(data => {
             // Preencher a tabela com os dados dos produtos
