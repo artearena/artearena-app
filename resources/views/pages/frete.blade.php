@@ -721,14 +721,14 @@
   const ilhosesCheckbox = document.querySelector(`#produtoTableBody tr:nth-child(${Number(id) + 1}) input[id^="ilhosesCheckbox"]`);
   if (ilhosesCheckbox && ilhosesCheckbox.checked) {
     descricao += `
-**Ilhoses:** ?`;
+  **Ilhoses:** Sim`;
   }
 
   // Verifica se a opção de Mastro está ativada
   const mastroCheckbox = document.querySelector(`#produtoTableBody tr:nth-child(${Number(id) + 1}) input[id^="mastroCheckbox"]`);
   if (mastroCheckbox && mastroCheckbox.checked) {
     descricao += `
-**Mastro:** ?`;
+  **Mastro:** Sim`;
   }
 
   descricao += `
