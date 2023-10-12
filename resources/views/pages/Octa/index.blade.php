@@ -228,14 +228,140 @@
 
     <script>
         $(document).ready(function() {
-            $('#clientesTable').DataTable({
-                info: false, // Desabilita a exibição de informações sobre
+            // Inicialização do DataTables
+            let table = $('#clientesTable').DataTable({
+                columns: [
+                    { data: 'ID', visible: false },
+                    { data: 'ID Octa' },
+                    { data: 'Nome' },
+                    { data: 'Telefone' },
+                    { data: 'Email', visible: false },
+                    { data: 'Empresa' },
+                    { data: 'Responsável' },
+                    { data: 'Origem', visible: false },
+                    { data: 'Status' },
+                    { data: 'Criado em' },
+                    { data: 'Agendamento' },
+                    { data: 'Template' },
+                    { data: 'Bloqueado' },
+                    { data: 'Qualificado' },
+                    { data: 'Motivo da perda' },
+                    { data: 'Categoria' },
+                    { data: 'Termometro' },
+                    { data: 'Card' }
+                ],
+                columnDefs: [
+                    {
+                        targets: 2, // Coluna "Nome"
+                        render: function (data, type, row, meta) {
+                            return '<a href="https://app.octadesk.com/chat/' + row['ID Octa'] + '/opened" target="_blank">' + data + '</a>';
+                        }
+                    },
+                    {
+                        targets: 6, // Coluna "Responsável"
+                        render: function (data, type, row, meta) {
+                            var selectOptions = '<select name="responsavel_contato" class="form-control responsavel-contato">' +
+                                '<option value="">Selecione um responsável</option>';
+                            $.each(vendedores, function (index, vendedor) {
+                                selectOptions += '<option value="' + vendedor + '"';
+                                if (data == vendedor) {
+                                    selectOptions += ' selected';
+                                }
+                                selectOptions += '>' + vendedor + '</option>';
+                            });
+                            selectOptions += '</select>';
+                            return selectOptions;
+                        }
+                    },
+                    {
+                        targets: 8, // Coluna "Status"
+                        render: function (data, type, row, meta) {
+                            var selectOptions = '<select class="form-control" name="status_conversa">' +
+                                '<option value="">Selecione uma opção</option>' +
+                                '<option value="Lead"' + (data == 'Lead' ? ' selected' : '') + '>Lead</option>' +
+                                '<option value="Venda Concluída"' + (data == 'Venda Concluída' ? ' selected' : '') + '>Venda Concluída</option>' +
+                                '<option value="Enviado"' + (data == 'Enviado' ? ' selected' : '') + '>Enviado</option>' +
+                                '<option value="Aberto"' + (data == 'Aberto' ? ' selected' : '') + '>Aberto</option>' +
+                                '</select>';
+                            return selectOptions;
+                        }
+                    },
+                    {
+                        targets: 10, // Coluna "Agendamento"
+                        render: function (data, type, row, meta) {
+                            var datetimePicker = '<div class="date datetimepicker">' +
+                                '<input type="datetime-local" class="form-control" id="date" lang="pt-br" value="' + (data ? moment(data).format('YYYY-MM-DD[T]HH:mm:ss') : '') + '">' +
+                                '<span class="input-group-addon">' +
+                                '<span class="glyphicon glyphicon-calendar"></span>' +
+                                '</span>' +
+                                '</div>';
+                            return datetimePicker;
+                        }
+                    },
+                    {
+                        targets: 11, // Coluna "Template"
+                        render: function (data, type, row, meta) {
+                            var selectOptions = '<select name="mensagem_id" class="form-control mensagem_id" ' + (row['Agendamento'] ? '' : 'disabled') + '>' +
+                                '<option value="">Selecione uma mensagem</option>';
+                            var mensagensOrdenadas = mensagens.sortBy('titulo');
+                            $.each(mensagensOrdenadas, function (index, mensagem) {
+                                selectOptions += '<option value="' + mensagem.id + '"';
+                                if (data == mensagem.id) {
+                                    selectOptions += ' selected';
+                                }
+                                selectOptions += '>' + mensagem.titulo + '</option>';
+                            });
+                            selectOptions += '</select>';
+                            return selectOptions;
+                        }
+                    },
+                    {
+                        targets: 12, // Coluna "Bloqueado"
+                        render: function (data, type, row, meta) {
+                            var checkbox = '<label class="switch">' +
+                                '<input type="checkbox" class="table_checkbox" id="checkbox" value="' + data + '"';
+                            if (data == 1) {
+                                checkbox += ' checked';
+                            }
+                            checkbox += '>' +
+                                '<span class="slider round"></span>' +
+                                '</label>';
+                            return checkbox;
+                        }
+                    }
+                ],
                 language: {
-                    url: 'https://cdn.datatables.net/plug-ins/1.10.24/i18n/Portuguese-Brasil.json'
-                },
-                stateSave: true
+                    url: '//cdn.datatables.net/plug-ins/1.11.3/i18n/Portuguese-Brasil.json'
+                }
             });
 
+            // Adicionar evento para mostrar/ocultar detalhes da linha
+            $('#clientesTable tbody').on('click', 'td', function () {
+                var tr = $(this).closest('tr');
+                var row = table.row(tr);
+
+                if (row.child.isShown()) {
+                    // Ocultar detalhes da linha
+                    row.child.hide();
+                    tr.removeClass('shown');
+                } else {
+                    // Mostrar detalhes da linha
+                    row.child(format(row.data())).show();
+                    tr.addClass('shown');
+                }
+            });
+
+            // Função para formatar os detalhes da linha
+            function format(data) {
+                return '<dl>' +
+                    '<dt>Full name:</dt>' +
+                    '<dd>' + data.Nome + '</dd>' +
+                    '<dt>Extension number:</dt>' +
+                    '<dd>' + data.Telefone + '</dd>' +
+                    '<dt>Extra info:</dt>' +
+                    '<dd>And any further details here (images etc)...</dd>' +
+                    '</dl>';
+            }
             $('.datetimepicker').on('change', function() {
                 var id = $(this).closest('tr').find('.cliente-id').text();
                 var newDateTime = $(this).closest('tr').find('#date').val();
