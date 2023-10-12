@@ -828,16 +828,46 @@ const id_cliente = document.getElementById('id').value;
         const descricaoOrcamento = row.querySelector(".descricao-orcamento").textContent;
         const cepFrete = row.cells[2].textContent;
         const enderecoFrete = row.cells[3].textContent;
-        const nomeTransportadora = row.cells[4].textContent;
-        const valorFrete = row.cells[5].textContent;
-        const prazoEntrega = row.cells[6].textContent;
-        const dataPrevista = row.cells[7].textContent;
-        const logoFrete = row.cells[8].textContent;
 
-        // Preencha os campos da tela com os dados extraídos
-        document.getElementById("campoTexto").value = descricaoOrcamento;
-        document.getElementById("cep").value = cepFrete;
-        document.getElementById("endereco").value = enderecoFrete;
+        // Obter os produtos relacionados ao orçamento
+        const orcamentoId = row.querySelector("td:first-child").textContent;
+        fetch(`/orcamentoProdutos/${orcamentoId}`)
+          .then(response => response.json())
+          .then(data => {
+            // Preencher a tabela com os dados dos produtos
+            const tabelaBody = document.getElementById("produtoTableBody");
+            tabelaBody.innerHTML = ""; // Limpar o conteúdo existente da tabela
+
+            data.forEach(produto => {
+              const newRow = document.createElement("tr");
+              newRow.innerHTML = `
+                <td hidden>${produto.id}</td>
+                <td>${produto.nome}</td>
+                <td>${produto.valor}</td>
+                <td>${produto.peso}</td>
+                <td>${produto.quantidade}</td>
+                <td>${produto.confeccao}</td>
+                <td></td>
+                <td></td>
+                <td>${produto.altura}</td>
+                <td>${produto.comprimento}</td>
+                <td>${produto.largura}</td>
+                <td>
+                  <button class="btn btn-primary btn-carregar" onclick="carregarDados(this)">Carregar</button>
+                </td>
+              `;
+
+              tabelaBody.appendChild(newRow);
+            });
+
+            // Preencher os campos da tela com os dados do orçamento
+            document.getElementById("campoTexto").value = descricaoOrcamento;
+            document.getElementById("cep").value = cepFrete;
+            document.getElementById("endereco").value = enderecoFrete;
+          })
+          .catch(error => {
+            console.error('Erro ao obter os produtos do orçamento:', error);
+          });
 
         // Feche o modal com o ID específico
         $('#orcamentosModal').modal('hide');

@@ -45,6 +45,12 @@ class OrcamentosController extends Controller
         // Retornar uma resposta ou redirecionar para outra página
         return response()->json(['message' => 'Orçamento salvo com sucesso']);
     }
+    public function consultarProdutos($orcamentoId)
+    {
+        $produtos = OrcamentoProdutos::where('orcamento_id', $orcamentoId)->get();
+
+        return response()->json($produtos);
+    }
 
     public function consultarOrcamentos($id)
     {
