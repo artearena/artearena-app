@@ -718,19 +718,13 @@
     const mastroChecked = mastroCheckbox.checked;
 
     const produto = row.querySelector("td:nth-child(2) input").value;
-    const preco = row.querySelector("td:nth-child(3) input").value;
-    const peso = row.querySelector("td:nth-child(4) input").value;
-    const quantidade = row.querySelector("td:nth-child(5) input").value;
-    const prazoConfeccao = row.querySelector("td:nth-child(6) input").value;
-    const altura = row.querySelector("td:nth-child(9) input").value;
-    const comprimento = row.querySelector("td:nth-child(10) input").value;
-    const largura = row.querySelector("td:nth-child(11) input").value;
+    const tamanho = produto.split(" - ")[1];
+    const faces = produto.split(" - ")[2];
 
     descricao += `
 **Tipo:** ${produto.split(" - ")[0]}  
-**Material:** ?  
-**Tamanho:** ${produto.split(" - ")[1]}  
-**Faces:** ${produto.split(" - ")[2]}`;
+**Tamanho:** ${tamanho}  
+**Faces:** ${faces}`;
 
     if (ilhoseChecked) {
       descricao += `
@@ -741,18 +735,6 @@
       descricao += `
 **Mastro:** Sim`;
     }
-
-    descricao += `
-**Preço:** ${preco}  
-**Peso:** ${peso}  
-**Quantidade:** ${quantidade}  
-**Prazo de Confecção:** ${prazoConfeccao}  
-**Altura:** ${altura}  
-**Comprimento:** ${comprimento}  
-**Largura:** ${largura}  
-**Descrição:** ?  
----
-`;
   });
 
   document.getElementById('tituloCardTrello').value = '';
