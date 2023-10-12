@@ -706,42 +706,42 @@
         });
       });
       function carregarInfoCard() {
-      const id_cliente = document.getElementById('id').value;
-      const produtosSelecionados = obterListaProdutos();
-      let descricao = "#Produtos  ";
-      for (const id in produtosSelecionados) {
-  const produto = produtosSelecionados[id];
-  descricao += `
+  const id_cliente = document.getElementById('id').value;
+  const produtosSelecionados = obterListaProdutos();
+  let descricao = "#Produtos  ";
+  
+  for (const id in produtosSelecionados) {
+    const produto = produtosSelecionados[id];
+    descricao += `
 **Tipo:** ${produto.nome.split(" - ")[0]}  
 **Material:** ?  
 **Tamanho:** ${produto.nome.split(" - ")[1]}  
 **Faces:** ${produto.nome.split(" - ")[2]}`;
-
-  // Verifica se a opção de Ilhoses está ativada
-  const ilhosesCheckbox = document.querySelector(`#produtoTableBody tr:nth-child(${Number(id) + 1}) input[id^="ilhosesCheckbox"]`);
-  console.log(ilhosesCheckbox);
-  if (ilhosesCheckbox && ilhosesCheckbox.checked) {
+    
+    // Verifica se a opção de Ilhoses está ativada
+    const ilhosesCheckbox = document.getElementById(`ilhosesCheckbox${id}`);
+    if (ilhosesCheckbox && ilhosesCheckbox.checked) {
+      descricao += `
+**Ilhoses:** Sim`;
+    }
+    
+    // Verifica se a opção de Mastro está ativada
+    const mastroCheckbox = document.getElementById(`mastroCheckbox${id}`);
+    if (mastroCheckbox && mastroCheckbox.checked) {
+      descricao += `
+**Mastro:** Sim`;
+    }
+    
     descricao += `
-  **Ilhoses:** Sim`;
-  }
-
-  // Verifica se a opção de Mastro está ativada
-  const mastroCheckbox = document.querySelector(`#produtoTableBody tr:nth-child(${Number(id) + 1}) input[id^="mastroCheckbox"]`);
-  if (mastroCheckbox && mastroCheckbox.checked) {
-    descricao += `
-  **Mastro:** Sim`;
-  }
-
-  descricao += `
 **Descrição:** ?  
 ---
 `;
-      }
-
-        document.getElementById('tituloCardTrello').value = id_cliente ;
-        document.getElementById('descricaoCardTrello').value = descricao;
-      }
-      const id_cliente = document.getElementById('id').value;
+  }
+  
+  document.getElementById('tituloCardTrello').value = id_cliente;
+  document.getElementById('descricaoCardTrello').value = descricao;
+}
+const id_cliente = document.getElementById('id').value;
       // Função para consultar os orçamentos
       function consultarOrcamentos() {
         const id_cliente = document.getElementById('id').value;
