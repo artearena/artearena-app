@@ -739,7 +739,6 @@
   document.getElementById('descricaoCardTrello').value = descricao;
 }
 const id_cliente = document.getElementById('id').value;
-      // Função para consultar os orçamentos
       function consultarOrcamentos() {
         const id_cliente = document.getElementById('id').value;
         console.log(id_cliente);
@@ -751,7 +750,7 @@ const id_cliente = document.getElementById('id').value;
               <table class="table-responsive">
                 <thead>
                   <tr>
-                    <th display="none">ID</th>
+                    <th style="display: none;">ID</th>
                     <th>Detalhes</th>
                     <th>CEP Frete</th>
                     <th>Endereço Frete</th>
@@ -770,7 +769,7 @@ const id_cliente = document.getElementById('id').value;
             data.forEach((orcamento) => {
               tabelaHtml += `
                 <tr>
-                  <td display="none">${orcamento.id}</td>
+                  <td style="display: none;">${orcamento.id}</td>
                   <td class="descricao-orcamento">${orcamento.detalhes_orcamento}</td>
                   <td>${orcamento.cep_frete}</td>
                   <td>${orcamento.endereco_frete}</td>
@@ -788,25 +787,30 @@ const id_cliente = document.getElementById('id').value;
               </table>
             `;
             // Criar o modal
-            const modal = `
-              <div class="modal">
-                <div class="modal-dialog">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title">Orçamentos</h5>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-                    </div>
-                    <div class="modal-body">
-                      ${tabelaHtml}
-                    </div>
+            const modal = document.createElement('div');
+            modal.classList.add('modal');
+            modal.innerHTML = `
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title">Orçamentos</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    ${tabelaHtml}
                   </div>
                 </div>
               </div>
             `;
+            // Remover modais anteriores (se existirem)
+            const modals = document.querySelectorAll('.modal');
+            modals.forEach(modal => {
+              modal.remove();
+            });
             // Adicionar o modal ao body
-            document.body.insertAdjacentHTML('beforeend', modal);
+            document.body.appendChild(modal);
             // Abrir o modal
             $('.modal').modal('show');
           })
@@ -839,8 +843,8 @@ const id_cliente = document.getElementById('id').value;
         document.getElementById("dataPrevistaInput").value = dataPrevista;
         document.getElementById("logoFreteInput").value = logoFrete;
 
-        // Feche o modal (se necessário)
-        $('.modal').modal('hide');
+        // Feche o modal com o ID específico
+        $('#orcamentosModal').modal('hide');
       }
       function gerarCard() {
         const nomeCartao = document.getElementById('tituloCardTrello').value;
