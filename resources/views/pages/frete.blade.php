@@ -712,7 +712,7 @@
   const rows = document.querySelectorAll("#produtoTableBody tr");
   rows.forEach(row => {
     const ilhoseCheckbox = row.querySelector("#ilhosesCheckbox");
-    const mastroCheckbox = row.querySelector("$mastroCheckbox");
+    const mastroCheckbox = row.querySelector("#mastroCheckbox");
 
     const ilhoseChecked = ilhoseCheckbox.checked;
     const mastroChecked = mastroCheckbox.checked;
