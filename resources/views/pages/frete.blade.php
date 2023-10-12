@@ -719,6 +719,7 @@
 
   // Verifica se a opção de Ilhoses está ativada
   const ilhosesCheckbox = document.querySelector(`#produtoTableBody tr:nth-child(${Number(id) + 1}) input[id^="ilhosesCheckbox"]`);
+  console.log(ilhosesCheckbox);
   if (ilhosesCheckbox && ilhosesCheckbox.checked) {
     descricao += `
   **Ilhoses:** Sim`;
