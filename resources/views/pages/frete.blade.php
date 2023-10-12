@@ -840,18 +840,19 @@ const id_cliente = document.getElementById('id').value;
 
             data.forEach(produto => {
               const newRow = document.createElement("tr");
+              console.log(produto);
               newRow.innerHTML = `
                 <td hidden>${produto.id}</td>
-                <td>${produto.nome}</td>
-                <td>${produto.valor}</td>
-                <td>${produto.peso}</td>
+                <td>${produto.nome_produto}</td>
+                <td>${produto.valor_unitario}</td>
+                <td>${produto.peso_unitario}</td>
                 <td>${produto.quantidade}</td>
-                <td>${produto.confeccao}</td>
+                <td>${produto.prazo_individual}</td>
                 <td></td>
                 <td></td>
-                <td>${produto.altura}</td>
-                <td>${produto.comprimento}</td>
-                <td>${produto.largura}</td>
+                <td</td>
+                <td></td>
+                <td></td>
                 <td>
                   <button class="btn btn-primary btn-carregar" onclick="carregarDados(this)">Carregar</button>
                 </td>
