@@ -822,6 +822,7 @@ const id_cliente = document.getElementById('id').value;
 
       // Adicionar o evento de clique ao botão "Buscar Orçamentos"
       document.getElementById('buscar_orcamento').addEventListener('click', consultarOrcamentos);
+
       function carregarDados(button) {
         const row = button.closest("tr");
         const descricaoOrcamento = row.querySelector(".descricao-orcamento").textContent;
@@ -834,14 +835,9 @@ const id_cliente = document.getElementById('id').value;
         const logoFrete = row.cells[8].textContent;
 
         // Preencha os campos da tela com os dados extraídos
-        document.getElementById("descricaoOrcamentoInput").value = descricaoOrcamento;
-        document.getElementById("cepFreteInput").value = cepFrete;
-        document.getElementById("enderecoFreteInput").value = enderecoFrete;
-        document.getElementById("nomeTransportadoraInput").value = nomeTransportadora;
-        document.getElementById("valorFreteInput").value = valorFrete;
-        document.getElementById("prazoEntregaInput").value = prazoEntrega;
-        document.getElementById("dataPrevistaInput").value = dataPrevista;
-        document.getElementById("logoFreteInput").value = logoFrete;
+        document.getElementById("campoTexto").value = descricaoOrcamento;
+        document.getElementById("cep").value = cepFrete;
+        document.getElementById("endereco").value = enderecoFrete;
 
         // Feche o modal com o ID específico
         $('#orcamentosModal').modal('hide');
