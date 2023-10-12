@@ -350,7 +350,22 @@
                     tr.addClass('shown');
                 }
             });
+            // Adicionar evento para expandir/contrair a linha
+            $('#clientesTable tbody').on('click', 'td', function () {
+                var tr = $(this).closest('tr');
+                var row = table.row(tr);
 
+                if (row.child.isShown()) {
+                    // Contrair a linha
+                    row.child.hide();
+                    tr.removeClass('shown');
+                } else {
+                    // Expandir a linha
+                    row.child(format(row.data())).show();
+                    tr.addClass('shown');
+                }
+            });
+            
             // Função para formatar os detalhes da linha
             function format(data) {
                 return '<dl>' +
