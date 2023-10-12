@@ -868,6 +868,8 @@ const id_cliente = document.getElementById('id').value;
             document.getElementById("campoTexto").value = descricaoOrcamento;
             document.getElementById("cep").value = cepFrete;
             document.getElementById("endereco").value = enderecoFrete;
+            consultarCep();
+
           })
           .catch(error => {
             console.error('Erro ao obter os produtos do orçamento:', error);
