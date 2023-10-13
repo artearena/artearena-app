@@ -33,6 +33,7 @@ class HelloWorld extends Command
      */
     public function handle()
     {
+        $this->info('Agendamento executado com sucesso!');
         App::setLocale('pt'); // Define o idioma padrão como português
         $now = Carbon::now();
         $agendamentos = Agendamento::where('horario', '<=', $now)
