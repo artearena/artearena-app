@@ -176,16 +176,16 @@
             <div class="col-md-6">
                 <form id="opt-octa-form" method="POST" action="">
                     <div class="form-group">
-                        <div class="radio-container">
-                            <div class="custom-control custom-radio">
-                                <input type="radio" id="gerarRascunho" name="tipoDocumentoRascunho" class="custom-control-input">
-                                <label class="custom-control-label" for="gerarRascunho">Gerar Rascunho</label>
-                            </div>
-                            <div class="custom-control custom-radio">
-                                <input type="radio" id="gerarOrcamento" name="tipoDocumento" class="custom-control-input" checked>
-                                <label class="custom-control-label" for="gerarOrcamento">Gerar Orçamento</label>
-                            </div>
-                        </div>
+                      <div class="radio-container">
+                          <div class="custom-control custom-radio">
+                              <input type="radio" id="gerarRascunho" name="tipoDocumento" class="custom-control-input" onclick="desmarcarOrcamento()">
+                              <label class="custom-control-label" for="gerarRascunho">Gerar Rascunho</label>
+                          </div>
+                          <div class="custom-control custom-radio">
+                              <input type="radio" id="gerarOrcamento" name="tipoDocumento" class="custom-control-input" onclick="desmarcarRascunho()" checked>
+                              <label class="custom-control-label" for="gerarOrcamento">Gerar Orçamento</label>
+                          </div>
+                      </div>
                     </div>
                     <div class="form-group">
                         <div class="container">
@@ -269,6 +269,7 @@
                         <div class="details-container">
                             <textarea class="form-control" id="campoTexto" rows="5"></textarea>
                             <button type="button" class="btn btn-primary mt-2" id="botaoOrcamento">Salvar/Enviar Orçamento</button>
+                            <button type="button" class="btn btn-secondary mt-2" id="botaoPedidoTiny">Criar Pedido</button>
                             <button type="button" class="btn btn-secondary mt-2" id="botaoLimparCampos">Novo Orçamento</button>
                             <button type="button" class="btn btn-primary mt-2" id="botaoCopiar">Copiar</button>
                             <p class="text-success mt-2" id="avisoCopiado" style="display: none;">Copiado com sucesso!</p>
@@ -868,8 +869,7 @@ const id_cliente = document.getElementById('id').value;
             document.getElementById("campoTexto").value = descricaoOrcamento;
             document.getElementById("cep").value = cepFrete;
             document.getElementById("endereco").value = enderecoFrete;
-            consultarCep();
-
+            
           })
           .catch(error => {
             console.error('Erro ao obter os produtos do orçamento:', error);
@@ -1161,6 +1161,13 @@ const id_cliente = document.getElementById('id').value;
           const partesData = data.split("/");
           const dataFormatada = `${partesData[2]}-${partesData[1]}-${partesData[0]}`;
           return dataFormatada;
+        }
+        function desmarcarOrcamento() {
+            document.getElementById("gerarOrcamento").checked = false;
+        }
+
+        function desmarcarRascunho() {
+            document.getElementById("gerarRascunho").checked = false;
         }
         function obterDetalhesFrete() {
           const id = document.getElementById('id').value;
