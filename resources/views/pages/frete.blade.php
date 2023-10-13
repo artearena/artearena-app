@@ -294,15 +294,18 @@
         </div>
     </div>
 </div>
+
 <!-- Modal -->
-<div class="modal" id="meuModal">
-  <div class="modal-dialog">
+<div class="modal fade" id="meuModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
     <div class="modal-content">
     
       <!-- Cabeçalho do modal -->
       <div class="modal-header">
-        <h5 class="modal-title">Criar Pedido</h5>
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h5 class="modal-title" id="modalLabel">Criar Pedido</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+          <span aria-hidden="true">&times;</span>
+        </button>
       </div>
       
       <!-- Corpo do modal -->
