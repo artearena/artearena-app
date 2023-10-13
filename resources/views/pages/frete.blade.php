@@ -269,7 +269,7 @@
                         <div class="details-container">
                             <textarea class="form-control" id="campoTexto" rows="5"></textarea>
                             <button type="button" class="btn btn-primary mt-2" id="botaoOrcamento">Salvar/Enviar Orçamento</button>
-                            <button type="button" class="btn btn-secondary mt-2" id="botaoPedidoTiny">Criar Pedido</button>
+                            <button type="button" class="btn btn-primary mt-2" id="botaoPedidoTiny">Criar Pedido</button>
                             <button type="button" class="btn btn-secondary mt-2" id="botaoLimparCampos">Novo Orçamento</button>
                             <button type="button" class="btn btn-primary mt-2" id="botaoCopiar">Copiar</button>
                             <p class="text-success mt-2" id="avisoCopiado" style="display: none;">Copiado com sucesso!</p>
