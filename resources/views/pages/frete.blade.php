@@ -294,6 +294,42 @@
         </div>
     </div>
 </div>
+<!-- Modal -->
+<div class="modal" id="meuModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+    
+      <!-- Cabeçalho do modal -->
+      <div class="modal-header">
+        <h5 class="modal-title">Criar Pedido</h5>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      
+      <!-- Corpo do modal -->
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="idPedido">ID:</label>
+          <input type="text" class="form-control" id="idPedido">
+        </div>
+        <div class="form-group">
+          <label for="clientePedido">Cliente:</label>
+          <input type="text" class="form-control" id="clientePedido">
+        </div>
+        <div class="form-group">
+          <label for="produtosPedido">Produtos:</label>
+          <textarea class="form-control" id="produtosPedido"></textarea>
+        </div>
+      </div>
+      
+      <!-- Rodapé do modal -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary">Salvar</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+      </div>
+      
+    </div>
+  </div>
+</div>
 @endsection
 @section('extraScript')
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -1184,5 +1220,12 @@ const id_cliente = document.getElementById('id').value;
 
           return detalhes;
         }
-      </script>
+</script>
+<script>
+  document.getElementById("botaoPedidoTiny").addEventListener("click", abrirModal);
+
+  function abrirModal() {
+    document.getElementById("meuModal").style.display = "block";
+  }
+</script>
 @endsection
