@@ -296,7 +296,7 @@
 </div>
 
 <!-- Modal -->
-<div class="modal fade" id="meuModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+<div class="modal fade" id="modalPedidos" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
     
@@ -1228,7 +1228,7 @@ const id_cliente = document.getElementById('id').value;
   document.getElementById("botaoPedidoTiny").addEventListener("click", abrirModal);
 
   function abrirModal() {
-    document.getElementById("meuModal").style.display = "block";
+    document.getElementById("modalPedidos").style.display = "block";
   }
 </script>
 @endsection
