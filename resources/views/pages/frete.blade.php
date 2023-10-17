@@ -150,17 +150,70 @@
       min-width: 400px;
     }
     .modal-dialog {
-      margin: 10em !important;
+      margin: 5% auto;
+      max-width: 800px;
     }
+
+    .modal-content {
+      width: 100%;
+      height: 100%;
+      padding: 20px;
+    }
+
     .modal-body {
-      width: 700px;
-      height: 500px;
-      overflow: auto;
+      height: 400px;
+      overflow-y: auto;
     }
-    .modal-content{
-      width: 700px;
-      height: 500px;
-      overflow: auto;
+
+    .modal-title {
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    label {
+      font-weight: bold;
+    }
+
+    textarea {
+      height: 150px;
+    }
+
+    .btn-primary {
+      background-color: #007bff;
+      border-color: #007bff;
+    }
+
+    .btn-primary:hover {
+      background-color: #0069d9;
+      border-color: #0062cc;
+    }
+
+    .btn-secondary {
+      background-color: #6c757d;
+      border-color: #6c757d;
+    }
+
+    .btn-secondary:hover {
+      background-color: #5a6268;
+      border-color: #545b62;
+    }
+
+    .close {
+      font-size: 28px;
+      font-weight: bold;
+      color: #000;
+    }
+
+    .close:hover,
+    .close:focus {
+      color: #000;
+      text-decoration: none;
+      cursor: pointer;
     }
 
 </style>
