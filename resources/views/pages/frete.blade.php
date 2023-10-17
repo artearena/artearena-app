@@ -182,10 +182,13 @@
     textarea {
       height: 150px;
     }
-
     .btn-primary {
       background-color: #007bff;
       border-color: #007bff;
+      color: #fff;
+      font-weight: bold;
+      padding: 10px 20px;
+      border-radius: 5px;
     }
 
     .btn-primary:hover {
@@ -196,6 +199,10 @@
     .btn-secondary {
       background-color: #6c757d;
       border-color: #6c757d;
+      color: #fff;
+      font-weight: bold;
+      padding: 10px 20px;
+      border-radius: 5px;
     }
 
     .btn-secondary:hover {
