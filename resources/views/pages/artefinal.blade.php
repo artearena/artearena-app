@@ -576,7 +576,6 @@ $.ajaxSetup({
             "pageLength": 300,
             "columnDefs": [
                 // Definições das colunas, incluindo a função "render" para formatar a data
-                { "type": "status-pre", "targets": 9 },
                 {
                     "targets": [0],
                     "width": "3px",
