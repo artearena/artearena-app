@@ -571,7 +571,7 @@ $.ajaxSetup({
         let table = $('#tabela-pedidos').DataTable({
             fixedHeader: true,
             select: true,
-            order: [[9, 'asc']],
+            order: [[9, 'desc']],
             "lengthMenu": [[10, 25, 50, 100, 200, 300], [10, 25, 50, 100, 200, 300]],
             "pageLength": 300,
             "columnDefs": [
