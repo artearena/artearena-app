@@ -149,6 +149,9 @@
     .descricao-orcamento {
       min-width: 400px;
     }
+    .modal-dialog {
+      margin: 10em !important;
+    }
     .modal-body {
       width: 700px;
       height: 500px;
