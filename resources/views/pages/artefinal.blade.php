@@ -566,17 +566,17 @@ $.ajaxSetup({
         updateColors(); // Função para atualizar as cores de fundo dos campos
         reatribuirEventosChange(); // Função para reatribuir o evento "change" após a paginação ou ordenação
         reatribuirEventosExcluir(); 
-        
+    
         function configurarTabela() {
         let table = $('#tabela-pedidos').DataTable({
             fixedHeader: true,
             select: true,
-            order: [[9, 'desc']],
+            order: [[1, 'asc']], [[8, 'asc']],
             "lengthMenu": [[10, 25, 50, 100, 200, 300], [10, 25, 50, 100, 200, 300]],
             "pageLength": 300,
             "columnDefs": [
                 // Definições das colunas, incluindo a função "render" para formatar a data
-                
+                { "type": "status-pre", "targets": 9 },
                 {
                     "targets": [0],
                     "width": "3px",
