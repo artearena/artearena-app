@@ -1312,20 +1312,22 @@ const id_cliente = document.getElementById('id').value;
 </script>
 <script>
   // document.getElementById("botaoPedidoTiny").addEventListener("click", abrirModal);
+  document.addEventListener('DOMContentLoaded', function() {
 
-  function abrirModal() {
-    document.getElementById("modalPedidos").style.display = "block";
-  }
-  // Abrir o modal ao clicar no botão
-  document.getElementById("botaoPedidoTiny").addEventListener("click", function() {
-    var modal = document.getElementById("modalPedidoTiny");
-    modal.style.display = "block";
-  });
+    function abrirModal() {
+      document.getElementById("modalPedidos").style.display = "block";
+    }
+    // Abrir o modal ao clicar no botão
+    document.getElementById("botaoPedidoTiny").addEventListener("click", function() {
+      var modal = document.getElementById("modalPedidoTiny");
+      modal.style.display = "block";
+    });
 
-  // Fechar o modal ao clicar no "x"
-  document.getElementsByClassName("close")[0].addEventListener("click", function() {
-    var modal = document.getElementById("modalPedidoTiny");
-    modal.style.display = "none";
+    // Fechar o modal ao clicar no "x"
+    document.getElementsByClassName("close")[0].addEventListener("click", function() {
+      var modal = document.getElementById("modalPedidoTiny");
+      modal.style.display = "none";
+    });
   });
 </script>
 @endsection
