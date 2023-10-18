@@ -149,18 +149,7 @@
     .descricao-orcamento {
       min-width: 400px;
     }
-    /* Estilos para o modal */
-    .modal {
-      display: none; /* Oculta o modal por padrão */
-      position: fixed;
-      z-index: 1;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      overflow: auto;
-      background-color: rgba(0, 0, 0, 0.4);
-    }
+    
     .modal-dialog {
       margin: 5% auto;
       max-width: 800px;
@@ -234,7 +223,9 @@
       text-decoration: none;
       cursor: pointer;
     }
-
+    .modal {
+      display: none;
+    }
 </style>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.css">
 
@@ -409,11 +400,22 @@
   </div>
 </div>
 <!-- Modal -->
-<div id="modalPedidoTiny" class="modal">
-  <div class="modal-content">
-    <span class="close">&times;</span>
-    <h2>Modal de Pedido Tiny</h2>
-    <p>Conteúdo do modal...</p>
+<div id="modalPedidoTiny" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <!-- Botão de fechar -->
+      <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <!-- Cabeçalho do modal -->
+      <div class="modal-header">
+        <h2 class="modal-title" id="modalLabel">Modal de Pedido Tiny</h2>
+      </div>
+      <!-- Corpo do modal -->
+      <div class="modal-body">
+        <p>Conteúdo do modal...</p>
+      </div>
+    </div>
   </div>
 </div>
 @endsection
@@ -1309,6 +1311,11 @@ const id_cliente = document.getElementById('id').value;
         }
 </script>
 <script>
+  // document.getElementById("botaoPedidoTiny").addEventListener("click", abrirModal);
+
+  function abrirModal() {
+    document.getElementById("modalPedidos").style.display = "block";
+  }
   // Abrir o modal ao clicar no botão
   document.getElementById("botaoPedidoTiny").addEventListener("click", function() {
     var modal = document.getElementById("modalPedidoTiny");
