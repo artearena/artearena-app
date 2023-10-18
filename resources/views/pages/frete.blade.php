@@ -1434,6 +1434,7 @@ const id_cliente = document.getElementById('id').value;
       novaLinha.append("<td>" + nome + "</td>");
       novaLinha.append("<td>" + quantidade + "</td>");
       novaLinha.append("<td>" + precoUnitario + "</td>");
+      novaLinha.append('<td><button type="button" class="btn btn-danger btn-remover">Remover</button></td>');
 
       // Adicionar a nova linha à tabela
       $("#produtosTableBody").append(novaLinha);
