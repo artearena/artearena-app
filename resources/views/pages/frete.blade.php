@@ -1383,4 +1383,72 @@ const id_cliente = document.getElementById('id').value;
     $("#modalPedidoTiny").modal("hide");
   });
 </script>
+<script>
+   $(document).ready(function() {
+      $("#salvarPedido").click(function() {
+        // Obter os valores do formulário
+        var clienteId = $("#cliente_id").val();
+        var vendedor = $("#Vendedor").val();
+        var formaPagamento = $("#forma_pagamento").val();
+        var transportadora = $("#transportadora").val();
+        var valorFrete = $("#valor_frete").val();
+        var observacao = $("#observacao").val();
+        var marcador = $("#marcador").val();
+        var dataVenda = $("#data_venda").val();
+
+        // Fazer algo com os valores do formulário (por exemplo, enviar para o servidor)
+        console.log("Cliente ID:", clienteId);
+        console.log("Vendedor:", vendedor);
+        console.log("Forma de Pagamento:", formaPagamento);
+        console.log("Transportadora:", transportadora);
+        console.log("Valor do Frete:", valorFrete);
+        console.log("Observação:", observacao);
+        console.log("Marcador:", marcador);
+        console.log("Data da Venda:", dataVenda);
+
+        // Fechar o modal
+        $("#modalPedidoTiny").modal("hide");
+      });
+    });
+</script>
+<script>
+  $(document).ready(function() {
+    // Array para armazenar os produtos adicionados
+    var produtos = [];
+
+    // Função para adicionar um produto à tabela
+    function adicionarProduto() {
+      var nome = $("#produto_nome").val();
+      var quantidade = $("#quantidade").val();
+      var precoUnitario = $("#preco_unitario").val();
+
+      // Criar uma nova linha na tabela com os dados do produto
+      var novaLinha = $("<tr>");
+      novaLinha.append("<td>" + nome + "</td>");
+      novaLinha.append("<td>" + quantidade + "</td>");
+      novaLinha.append("<td>" + precoUnitario + "</td>");
+
+      // Adicionar a nova linha à tabela
+      $("#produtosTableBody").append(novaLinha);
+
+      // Limpar os campos do formulário
+      $("#produto_nome").val("");
+      $("#quantidade").val("");
+      $("#preco_unitario").val("");
+
+      // Adicionar o produto ao array de produtos
+      var produto = {
+        nome: nome,
+        quantidade: quantidade,
+        precoUnitario: precoUnitario
+      };
+      produtos.push(produto);
+    }
+
+    // Evento de clique do botão "Adicionar Produto"
+    $("#adicionarProduto").click(function() {
+      adicionarProduto();
+    });
+  });
+</script>
 @endsection
