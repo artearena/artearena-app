@@ -149,6 +149,18 @@
     .descricao-orcamento {
       min-width: 400px;
     }
+    /* Estilos para o modal */
+    .modal {
+      display: none; /* Oculta o modal por padrão */
+      position: fixed;
+      z-index: 1;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0, 0, 0, 0.4);
+    }
     .modal-dialog {
       margin: 5% auto;
       max-width: 800px;
@@ -394,6 +406,14 @@
       </div>
       
     </div>
+  </div>
+</div>
+<!-- Modal -->
+<div id="modalPedidoTiny" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h2>Modal de Pedido Tiny</h2>
+    <p>Conteúdo do modal...</p>
   </div>
 </div>
 @endsection
@@ -1289,10 +1309,16 @@ const id_cliente = document.getElementById('id').value;
         }
 </script>
 <script>
-  document.getElementById("botaoPedidoTiny").addEventListener("click", abrirModal);
+  // Abrir o modal ao clicar no botão
+  document.getElementById("botaoPedidoTiny").addEventListener("click", function() {
+    var modal = document.getElementById("modalPedidoTiny");
+    modal.style.display = "block";
+  });
 
-  function abrirModal() {
-    document.getElementById("modalPedidos").style.display = "block";
-  }
+  // Fechar o modal ao clicar no "x"
+  document.getElementsByClassName("close")[0].addEventListener("click", function() {
+    var modal = document.getElementById("modalPedidoTiny");
+    modal.style.display = "none";
+  });
 </script>
 @endsection
