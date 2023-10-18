@@ -400,6 +400,7 @@
 </div>
 
 <!-- Modal Pedido Tiny -->
+<!-- Modal Pedido Tiny -->
 <div class="modal fade" id="modalPedidoTiny" tabindex="-1" role="dialog" aria-labelledby="modalPedidoTinyLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -444,6 +445,35 @@
             <label for="data_venda">Data da Venda:</label>
             <input type="text" class="form-control" id="data_venda" name="data_venda">
           </div>
+
+          <!-- Campos para adicionar produtos -->
+          <div class="form-group">
+            <label for="produto_nome">Nome do Produto:</label>
+            <input type="text" class="form-control" id="produto_nome" name="produto_nome">
+          </div>
+          <div class="form-group">
+            <label for="quantidade">Quantidade:</label>
+            <input type="text" class="form-control" id="quantidade" name="quantidade">
+          </div>
+          <div class="form-group">
+            <label for="preco_unitario">Preço Unitário:</label>
+            <input type="text" class="form-control" id="preco_unitario" name="preco_unitario">
+          </div>
+
+          <!-- Tabela para exibir os produtos adicionados -->
+          <table class="table mt-4">
+            <thead>
+              <tr>
+                <th>Nome do Produto</th>
+                <th>Quantidade</th>
+                <th>Preço Unitário</th>
+              </tr>
+            </thead>
+            <tbody id="produtosTableBody">
+              <!-- Linhas da tabela para exibir os produtos adicionados -->
+            </tbody>
+          </table>
+
         </form>
       </div>
       <div class="modal-footer">
@@ -453,6 +483,7 @@
     </div>
   </div>
 </div>
+
 @endsection
 @section('extraScript')
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -1384,34 +1415,6 @@ const id_cliente = document.getElementById('id').value;
   });
 </script>
 <script>
-   $(document).ready(function() {
-      $("#salvarPedido").click(function() {
-        // Obter os valores do formulário
-        var clienteId = $("#cliente_id").val();
-        var vendedor = $("#Vendedor").val();
-        var formaPagamento = $("#forma_pagamento").val();
-        var transportadora = $("#transportadora").val();
-        var valorFrete = $("#valor_frete").val();
-        var observacao = $("#observacao").val();
-        var marcador = $("#marcador").val();
-        var dataVenda = $("#data_venda").val();
-
-        // Fazer algo com os valores do formulário (por exemplo, enviar para o servidor)
-        console.log("Cliente ID:", clienteId);
-        console.log("Vendedor:", vendedor);
-        console.log("Forma de Pagamento:", formaPagamento);
-        console.log("Transportadora:", transportadora);
-        console.log("Valor do Frete:", valorFrete);
-        console.log("Observação:", observacao);
-        console.log("Marcador:", marcador);
-        console.log("Data da Venda:", dataVenda);
-
-        // Fechar o modal
-        $("#modalPedidoTiny").modal("hide");
-      });
-    });
-</script>
-<script>
   $(document).ready(function() {
     // Array para armazenar os produtos adicionados
     var produtos = [];
@@ -1448,6 +1451,33 @@ const id_cliente = document.getElementById('id').value;
     // Evento de clique do botão "Adicionar Produto"
     $("#adicionarProduto").click(function() {
       adicionarProduto();
+    });
+
+    // Evento de clique do botão "Salvar Pedido"
+    $("#salvarPedido").click(function() {
+      // Obter os valores dos campos do formulário
+      var clienteId = $("#cliente_id").val();
+      var vendedor = $("#Vendedor").val();
+      var formaPagamento = $("#forma_pagamento").val();
+      var transportadora = $("#transportadora").val();
+      var valorFrete = $("#valor_frete").val();
+      var observacao = $("#observacao").val();
+      var marcador = $("#marcador").val();
+      var dataVenda = $("#data_venda").val();
+
+      // Fazer algo com os valores do formulário e dos produtos (por exemplo, enviar para o servidor)
+      console.log("Cliente ID:", clienteId);
+      console.log("Vendedor:", vendedor);
+      console.log("Forma de Pagamento:", formaPagamento);
+      console.log("Transportadora:", transportadora);
+      console.log("Valor do Frete:", valorFrete);
+      console.log("Observação:", observacao);
+      console.log("Marcador:", marcador);
+      console.log("Data da Venda:", dataVenda);
+      console.log("Produtos:", produtos);
+
+      // Fechar o modal
+      $("#modalPedidoTiny").modal("hide");
     });
   });
 </script>
