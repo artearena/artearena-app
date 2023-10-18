@@ -228,6 +228,7 @@
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.maskedinput/1.4.1/jquery.maskedinput.min.js"></script>
 
 @endsection
 
@@ -420,7 +421,7 @@
           </div>
           <div class="form-group">
             <label for="Vendedor">Vendedor:</label>
-            <input type="text" class="form-control" id="Vendedor" name="Vendedor">
+            <input type="text" class="form-control" id="vendedor" name="vendedor">
           </div>
           <div class="form-group">
             <label for="forma_pagamento">Forma de Pagamento:</label>
@@ -1381,7 +1382,7 @@ const id_cliente = document.getElementById('id').value;
   $("#salvarPedido").click(function() {
     // Obter os valores do formulário
     var clienteId = $("#cliente_id").val();
-    var vendedor = $("#Vendedor").val();
+    var vendedor = $("#vendedor").val();
     var formaPagamento = $("#forma_pagamento").val();
     var transportadora = $("#transportadora").val();
     var valorFrete = $("#valor_frete").val();
@@ -1450,7 +1451,7 @@ const id_cliente = document.getElementById('id').value;
     $("#salvarPedido").click(function() {
       // Obter os valores dos campos do formulário
       var clienteId = $("#cliente_id").val();
-      var vendedor = $("#Vendedor").val();
+      var vendedor = $("#vendedor").val();
       var formaPagamento = $("#forma_pagamento").val();
       var transportadora = $("#transportadora").val();
       var valorFrete = $("#valor_frete").val();
@@ -1472,6 +1473,29 @@ const id_cliente = document.getElementById('id').value;
       // Fechar o modal
       $("#modalPedidoTiny").modal("hide");
     });
+      // Cliente ID
+      $("#cliente_id").mask("9999999999");
+
+      // Vendedor
+      $("#vendedor").mask("9999999999");
+
+      // Forma de pagamento
+      $("#forma_pagamento").mask("9999999999");
+
+      // Transportadora
+      $("#transportadora").mask("9999999999");
+
+      // Valor do frete
+      $("#valor_frete").mask("999999,99");
+
+      // Observação
+      $("#observacao").mask("");
+
+      // Marcador
+      $("#marcador").mask("");
+
+      // Data da venda
+      $("#data_venda").mask("00/00/0000");
   });
 </script>
 
