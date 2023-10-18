@@ -12,7 +12,7 @@ class HomologarPedido extends Controller
     {
         $pedidos = PedidoInterno::all();
 
-        return view('pedidoInterno.index', compact('pedidos'));
+        return view('pages.pedidoInterno.index', compact('pedidos'));
     }
     
     public function store(Request $request)
