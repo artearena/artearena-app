@@ -28,7 +28,7 @@ Inicio
             </div>
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">Bandeira</h5>
+                    <h5 class="card-title">Calculadora de bandeira</h5>
                     <p class="card-text">Descrição de Bandeira</p>
                     <a href="{{ route('bandeira') }}" class="btn btn-outline-warning">Acessar</a>
                 </div>
