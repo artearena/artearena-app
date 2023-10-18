@@ -446,22 +446,6 @@
             <input type="text" class="form-control" id="data_venda" name="data_venda">
           </div>
 
-          <!-- Campos para adicionar produtos -->
-          <div class="form-group">
-            <label for="produto_nome">Nome do Produto:</label>
-            <input type="text" class="form-control" id="produto_nome" name="produto_nome">
-          </div>
-          <div class="form-group">
-            <label for="quantidade">Quantidade:</label>
-            <input type="text" class="form-control" id="quantidade" name="quantidade">
-          </div>
-          <div class="form-group">
-            <label for="preco_unitario">Preço Unitário:</label>
-            <input type="text" class="form-control" id="preco_unitario" name="preco_unitario">
-          </div>
-
-          <button type="button" class="btn btn-primary" id="adicionarProduto">Adicionar Produto</button>
-
 
           <!-- Tabela para exibir os produtos adicionados -->
           <table class="table mt-4">
@@ -874,7 +858,7 @@
                 detalhesFrete = detalhesFrete.replace(/\./g, ",");
                 produtosDescricao = produtosDescricao.replace(/\./g, ",");
 
-                const prazo = `Prazo para confecção é de ${prazoConfeccao} dias úteis + prazo de envio.\nPrazo inicia-se após aprovação da arte e pagamento confirmado`;
+                const prazo = `Prazo para confecção é de ${prazoConfeccao} dias úteis + prazo de envio.\nPrazo inicia-se após aprovação da arte e pagamento confirmado\n\nOrçamento válido por 30 dias`;
                 campoTexto.value = `${produtosDescricao}${detalhesFrete}${total}\n${prazo}`;
                 carregarInfoCard();
               
@@ -1466,9 +1450,7 @@ const id_cliente = document.getElementById('id').value;
     }
 
     // Evento de clique do botão "Adicionar Produto"
-    $("#adicionarProduto").click(function() {
-      adicionarProduto();
-    });
+
     $(document).on("click", ".btn-remover", function() {
       var linha = $(this).closest("tr");
       var index = linha.index();
