@@ -1346,11 +1346,11 @@ const id_cliente = document.getElementById('id').value;
         }
 </script>
 <script>
-  document.getElementById("botaoPedidoTiny").addEventListener("click", abrirModal);
+/*   document.getElementById("botaoPedidoTiny").addEventListener("click", abrirModal);
 
   function abrirModal() {
     document.getElementById("modalPedidos").style.display = "block";
-  }
+  } */
 </script>
 
 <script>
