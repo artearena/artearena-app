@@ -460,6 +460,9 @@
             <input type="text" class="form-control" id="preco_unitario" name="preco_unitario">
           </div>
 
+          <button type="button" class="btn btn-primary" id="adicionarProduto">Adicionar Produto</button>
+
+
           <!-- Tabela para exibir os produtos adicionados -->
           <table class="table mt-4">
             <thead>
