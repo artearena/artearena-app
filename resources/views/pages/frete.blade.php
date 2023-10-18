@@ -399,6 +399,7 @@
   </div>
 </div>
 
+<!-- Modal Pedido Tiny -->
 <div class="modal fade" id="modalPedidoTiny" tabindex="-1" role="dialog" aria-labelledby="modalPedidoTinyLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -452,7 +453,6 @@
     </div>
   </div>
 </div>
-
 @endsection
 @section('extraScript')
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -1354,9 +1354,9 @@ const id_cliente = document.getElementById('id').value;
 </script>
 
 <script>
-    function abrirModalPedidoTiny() {
-      $("#modalPedidoTiny").modal("show");
-    }
+  function abrirModalPedidoTiny() {
+    $("#modalPedidoTiny").modal("show");
+  }
   // Script para manipular o modal Pedido Tiny
   $("#salvarPedido").click(function() {
     // Obter os valores do formulário
