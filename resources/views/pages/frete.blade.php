@@ -1457,19 +1457,12 @@ const id_cliente = document.getElementById('id').value;
     $("#adicionarProduto").click(function() {
       adicionarProduto();
     });
-
     $(document).on("click", ".btn-remover", function() {
       var linha = $(this).closest("tr");
       var index = linha.index();
       linha.remove();
       produtos.splice(index, 1);
     });
-// Evento de clique do botão "Remover"
-    $(document).on("click", ".btn-remover", function() {
-      var linha = $(this).closest("tr");
-      var index = linha.index();
-      linha.remove();
-      produ
     // Evento de clique do botão "Salvar Pedido"
     $("#salvarPedido").click(function() {
       // Obter os valores dos campos do formulário
