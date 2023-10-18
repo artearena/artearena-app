@@ -1420,6 +1420,18 @@ const id_cliente = document.getElementById('id').value;
 </script>
 <script>
   $(document).ready(function() {
+     // Máscara para ID do Cliente (exemplo: 000.000)
+    $("#cliente_id").mask("00000000000");
+
+    // Máscara para Valor do Frete (exemplo: R$ 1.000,00)
+    $("#valor_frete").mask("R$ 0.000,00", { reverse: true });
+
+    // Formatação da Data da Venda (exemplo: 01/01/2021)
+    $("#data_venda").mask("00/00/0000").datepicker({
+      format: "dd/mm/yyyy",
+      autoclose: true,
+      todayHighlight: true
+    });
     // Array para armazenar os produtos adicionados
     var produtos = [];
 
