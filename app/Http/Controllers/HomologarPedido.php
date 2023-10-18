@@ -8,6 +8,13 @@ use App\Models\PedidoInterno;
 
 class HomologarPedido extends Controller
 {
+    public function index()
+    {
+        $pedidos = PedidoInterno::all();
+
+        return view('pedidoInterno.index', compact('pedidos'));
+    }
+    
     public function store(Request $request)
     {
         // Validação dos dados do pedido

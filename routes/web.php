@@ -11,6 +11,7 @@ use App\Http\Controllers\tinyController;
 use App\Http\Controllers\LeadController;
 use App\Http\Controllers\OrcamentosController;
 use App\Http\Controllers\ErroController;
+use App\Http\Controllers\HomologarPedido;
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/', [SiteController::class, 'index'])->name('index');
@@ -30,6 +31,9 @@ Route::middleware(['auth'])->group(function () {
         Route::put('/mover/{id}', [PedidoController::class, 'moverPedido'])->name('pedido.mover');
         Route::post('/criar', [PedidoController::class, 'criarPedido'])->name('pedido.criar');
         Route::delete('/{id}', [PedidoController::class, 'excluirPedido'])->name('pedido.excluir');
+    });
+    Route::prefix('pedidoInterno')->group(function () {
+        Route::any('/', [HomologarPedido::class, 'index'])->name('pedidoInterno');
     });
     Route::prefix('consultarcadastro')->group(function () {
         Route::any('/', [CadastroController::class, 'consultarCadastros'])->name('cadastro.consulta');
