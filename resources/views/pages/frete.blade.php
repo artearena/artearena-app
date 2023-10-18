@@ -470,6 +470,7 @@
                 <th>Nome do Produto</th>
                 <th>Quantidade</th>
                 <th>Preço Unitário</th>
+                <th>Ação</th>
               </tr>
             </thead>
             <tbody id="produtosTableBody">
@@ -1456,6 +1457,18 @@ const id_cliente = document.getElementById('id').value;
       adicionarProduto();
     });
 
+    $(document).on("click", ".btn-remover", function() {
+      var linha = $(this).closest("tr");
+      var index = linha.index();
+      linha.remove();
+      produtos.splice(index, 1);
+    });
+// Evento de clique do botão "Remover"
+    $(document).on("click", ".btn-remover", function() {
+      var linha = $(this).closest("tr");
+      var index = linha.index();
+      linha.remove();
+      produ
     // Evento de clique do botão "Salvar Pedido"
     $("#salvarPedido").click(function() {
       // Obter os valores dos campos do formulário
