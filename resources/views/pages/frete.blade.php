@@ -149,7 +149,6 @@
     .descricao-orcamento {
       min-width: 400px;
     }
-    
     .modal-dialog {
       margin: 5% auto;
       max-width: 800px;
@@ -223,9 +222,7 @@
       text-decoration: none;
       cursor: pointer;
     }
-    .modal {
-      display: none;
-    }
+
 </style>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.css">
 
@@ -335,7 +332,9 @@
                         <div class="details-container">
                             <textarea class="form-control" id="campoTexto" rows="5"></textarea>
                             <button type="button" class="btn btn-primary mt-2" id="botaoOrcamento">Salvar/Enviar Orçamento</button>
-                            <button type="button" class="btn btn-primary mt-2" id="botaoPedidoTiny">Criar Pedido</button>
+                            <button type="button" class="btn btn-primary mt-2" data-toggle="modal" data-target="#modalPedidoTiny">
+                              Criar Pedido
+                            </button>                            
                             <button type="button" class="btn btn-secondary mt-2" id="botaoLimparCampos">Novo Orçamento</button>
                             <button type="button" class="btn btn-primary mt-2" id="botaoCopiar">Copiar</button>
                             <p class="text-success mt-2" id="avisoCopiado" style="display: none;">Copiado com sucesso!</p>
@@ -399,25 +398,61 @@
     </div>
   </div>
 </div>
-<!-- Modal -->
-<div id="modalPedidoTiny" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
+
+<div class="modal fade" id="modalPedidoTiny" tabindex="-1" role="dialog" aria-labelledby="modalPedidoTinyLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
     <div class="modal-content">
-      <!-- Botão de fechar -->
-      <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
-        <span aria-hidden="true">&times;</span>
-      </button>
-      <!-- Cabeçalho do modal -->
       <div class="modal-header">
-        <h2 class="modal-title" id="modalLabel">Modal de Pedido Tiny</h2>
+        <h5 class="modal-title" id="modalPedidoTinyLabel">Modal Pedido Tiny</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
       </div>
-      <!-- Corpo do modal -->
       <div class="modal-body">
-        <p>Conteúdo do modal...</p>
+        <!-- Conteúdo do modal Pedido Tiny -->
+        <form id="pedidoForm">
+          <div class="form-group">
+            <label for="cliente_id">ID do Cliente:</label>
+            <input type="text" class="form-control" id="cliente_id" name="cliente_id">
+          </div>
+          <div class="form-group">
+            <label for="Vendedor">Vendedor:</label>
+            <input type="text" class="form-control" id="Vendedor" name="Vendedor">
+          </div>
+          <div class="form-group">
+            <label for="forma_pagamento">Forma de Pagamento:</label>
+            <input type="text" class="form-control" id="forma_pagamento" name="forma_pagamento">
+          </div>
+          <div class="form-group">
+            <label for="transportadora">Transportadora:</label>
+            <input type="text" class="form-control" id="transportadora" name="transportadora">
+          </div>
+          <div class="form-group">
+            <label for="valor_frete">Valor do Frete:</label>
+            <input type="text" class="form-control" id="valor_frete" name="valor_frete">
+          </div>
+          <div class="form-group">
+            <label for="observacao">Observação:</label>
+            <input type="text" class="form-control" id="observacao" name="observacao">
+          </div>
+          <div class="form-group">
+            <label for="marcador">Marcador:</label>
+            <input type="text" class="form-control" id="marcador" name="marcador">
+          </div>
+          <div class="form-group">
+            <label for="data_venda">Data da Venda:</label>
+            <input type="text" class="form-control" id="data_venda" name="data_venda">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+        <button type="button" class="btn btn-primary" id="salvarPedido">Salvar</button>
       </div>
     </div>
   </div>
 </div>
+
 @endsection
 @section('extraScript')
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -1311,23 +1346,38 @@ const id_cliente = document.getElementById('id').value;
         }
 </script>
 <script>
-  // document.getElementById("botaoPedidoTiny").addEventListener("click", abrirModal);
-  document.addEventListener('DOMContentLoaded', function() {
+  document.getElementById("botaoPedidoTiny").addEventListener("click", abrirModal);
 
-    function abrirModal() {
-      document.getElementById("modalPedidos").style.display = "block";
-    }
-    // Abrir o modal ao clicar no botão
-    document.getElementById("botaoPedidoTiny").addEventListener("click", function() {
-      var modal = document.getElementById("modalPedidoTiny");
-      modal.style.display = "block";
-    });
+  function abrirModal() {
+    document.getElementById("modalPedidos").style.display = "block";
+  }
+</script>
 
-    // Fechar o modal ao clicar no "x"
-    document.getElementsByClassName("close")[0].addEventListener("click", function() {
-      var modal = document.getElementById("modalPedidoTiny");
-      modal.style.display = "none";
-    });
+<script>
+  // Script para manipular o modal Pedido Tiny
+  $("#salvarPedido").click(function() {
+    // Obter os valores do formulário
+    var clienteId = $("#cliente_id").val();
+    var vendedor = $("#Vendedor").val();
+    var formaPagamento = $("#forma_pagamento").val();
+    var transportadora = $("#transportadora").val();
+    var valorFrete = $("#valor_frete").val();
+    var observacao = $("#observacao").val();
+    var marcador = $("#marcador").val();
+    var dataVenda = $("#data_venda").val();
+
+    // Fazer algo com os valores do formulário (por exemplo, enviar para o servidor)
+    console.log("Cliente ID:", clienteId);
+    console.log("Vendedor:", vendedor);
+    console.log("Forma de Pagamento:", formaPagamento);
+    console.log("Transportadora:", transportadora);
+    console.log("Valor do Frete:", valorFrete);
+    console.log("Observação:", observacao);
+    console.log("Marcador:", marcador);
+    console.log("Data da Venda:", dataVenda);
+
+    // Fechar o modal
+    $("#modalPedidoTiny").modal("hide");
   });
 </script>
 @endsection
