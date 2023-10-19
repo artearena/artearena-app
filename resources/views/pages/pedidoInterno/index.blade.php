@@ -7,7 +7,7 @@ Tabela de Pedidos
 @section('content')
 <div class="container">
   <h1>Tabela de Pedidos</h1>
-    <table class="table mt-4">
+  <table class="table mt-4">
     <thead>
       <tr>
         <th>ID</th>
@@ -51,7 +51,7 @@ Tabela de Pedidos
       @endforeach
       @endif
     </tbody>
-  </table>
+</table>
 </div>
 <script>
   $(document).ready(function() {
