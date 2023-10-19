@@ -6,6 +6,12 @@ Tabela de Pedidos
 <style>
   .table {
     text-align: center;
+    border: 1px solid #ccc;
+  }
+
+  .table th,
+  .table td {
+    border: 1px solid #ccc;
   }
 
   .table th {
@@ -16,7 +22,7 @@ Tabela de Pedidos
 @section('content')
 <div class="container">
   <h1>Tabela de Pedidos</h1>
-  <table class="table mt-4">
+  <table class="table mt-4 custom-table">
     <thead>
       <tr>
         <th>ID</th>
