@@ -42,16 +42,16 @@ Tabela de Pedidos
       <tr class="produtos-row" style="display: none;">
         <td colspan="10">
           <ul>
-          @foreach($pedido->produtos ?? [] as $produto)
-              <li>{{ $produto->produto_nome }} (Quantidade: {{ $produto->quantidade }}, Preço Unitário: {{ $produto->preco_unitario }})</li>
-          @endforeach
+            @foreach($pedido->produtos ?? [] as $produto)
+                <li>{{ $produto->produto_nome }} (Quantidade: {{ $produto->quantidade }}, Preço Unitário: {{ $produto->preco_unitario }})</li>
+            @endforeach
           </ul>
         </td>
       </tr>
       @endforeach
       @endisset
     </tbody>
-</table>
+  </table>
 </div>
 <script>
   $(document).ready(function() {
