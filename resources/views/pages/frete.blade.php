@@ -1456,7 +1456,8 @@ const id_cliente = document.getElementById('id').value;
       observacao: observacao,
       marcador: marcador,
       data_venda: dataVenda,
-      produtos: produtos
+      produtos: produtos,
+      _token: "{{ csrf_token() }}"
     };
 
     // Fazer a requisição ao servidor
@@ -1497,9 +1498,6 @@ const id_cliente = document.getElementById('id').value;
 
       // Vendedor
       $("#vendedor").mask("SSSSSSSSSSSSSSSSSS");
-
-      // Forma de pagamento
-      $("#forma_pagamento").mask("9999999999");
 
       // Valor do frete
       $("#valor_frete").mask("999999,99");
