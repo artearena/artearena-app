@@ -23,6 +23,8 @@ Tabela de Pedidos
       </tr>
     </thead>
     <tbody>
+    @if(!empty($pedidos))
+
       @foreach($pedidos as $pedido)
       <tr>
         <td>{{ $pedido->id }}</td>
@@ -43,6 +45,7 @@ Tabela de Pedidos
         <td>{{ $pedido->data_venda }}</td>
       </tr>
       @endforeach
+    @endif
     </tbody>
   </table>
 </div>
