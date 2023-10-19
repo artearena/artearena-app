@@ -1375,6 +1375,7 @@ const id_cliente = document.getElementById('id').value;
 
 <script>
   function abrirModalPedidoTiny() {
+    console.log("abri");
     const transportadora = obterDetalhesTransportadora();
     var cliente_id = document.getElementById("id").value;
     var nome_transportadora = detalhesTransportadora.nomeTransportadora;
@@ -1384,7 +1385,7 @@ const id_cliente = document.getElementById('id').value;
     console.log(cliente_id);
     console.log(nome_transportadora);
     
-
+    console.log("abri2");
     $("#modalPedidoTiny").modal("show");
   }
   // Script para manipular o modal Pedido Tiny
