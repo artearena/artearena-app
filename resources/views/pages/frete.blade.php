@@ -1496,7 +1496,7 @@ const id_cliente = document.getElementById('id').value;
       $("#cliente_id").mask("9999999999");
 
       // Vendedor
-      $("#vendedor").mask("9999999999");
+      $("#vendedor").mask("SSSSSSSSSSSSSSSSSS");
 
       // Forma de pagamento
       $("#forma_pagamento").mask("9999999999");
