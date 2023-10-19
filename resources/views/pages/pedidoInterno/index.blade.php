@@ -7,7 +7,7 @@ Tabela de Pedidos
 @section('content')
 <div class="container">
   <h1>Tabela de Pedidos</h1>
-  <table class="table mt-4">
+    <table class="table mt-4">
     <thead>
       <tr>
         <th>ID</th>
@@ -23,21 +23,14 @@ Tabela de Pedidos
       </tr>
     </thead>
     <tbody>
-    @if(!empty($pedidos))
-
+      @if(!empty($pedidos))
       @foreach($pedidos as $pedido)
-      <tr>
+      <tr class="pedido-row" data-pedido-id="{{ $pedido->id }}">
         <td>{{ $pedido->id }}</td>
         <td>{{ $pedido->cliente_id }}</td>
         <td>{{ $pedido->Vendedor }}</td>
         <td>
-          <ul>
-            @if(!empty($pedido->produtos))
-              @foreach($pedido->produtos as $produto)
-              <li>{{ $produto->produto_nome }} (Quantidade: {{ $produto->quantidade }}, Preço Unitário: {{ $produto->preco_unitario }})</li>
-              @endforeach
-            @endif
-          </ul>
+          <button class="btn btn-link btn-expand-produtos">Expandir</button>
         </td>
         <td>{{ $pedido->forma_pagamento }}</td>
         <td>{{ $pedido->transportadora }}</td>
@@ -46,9 +39,27 @@ Tabela de Pedidos
         <td>{{ $pedido->marcador }}</td>
         <td>{{ $pedido->data_venda }}</td>
       </tr>
+      <tr class="produtos-row" style="display: none;">
+        <td colspan="10">
+          <ul>
+            @foreach($pedido->produtos as $produto)
+            <li>{{ $produto->produto_nome }} (Quantidade: {{ $produto->quantidade }}, Preço Unitário: {{ $produto->preco_unitario }})</li>
+            @endforeach
+          </ul>
+        </td>
+      </tr>
       @endforeach
-    @endif
+      @endif
     </tbody>
   </table>
 </div>
+<script>
+  $(document).ready(function() {
+    $(".btn-expand-produtos").click(function() {
+      var row = $(this).closest(".pedido-row");
+      var produtosRow = row.next(".produtos-row");
+      produtosRow.toggle();
+    });
+  });
+</script>
 @endsection
