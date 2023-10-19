@@ -1383,7 +1383,7 @@ const id_cliente = document.getElementById('id').value;
     document.getElementById("transportadora").value = nome_transportadora;
     console.log(cliente_id);
     console.log(nome_transportadora);
-
+    
 
     $("#modalPedidoTiny").modal("show");
   }
@@ -1420,7 +1420,7 @@ const id_cliente = document.getElementById('id').value;
 
     // Função para adicionar um produto à tabela
     function adicionarProduto() {
-    
+    console.log("estou aqui!");
     // Chamar a função para obter a lista de produtos selecionados
     const produtosSelecionados = obterListaProdutos();
 
