@@ -1379,11 +1379,11 @@ const id_cliente = document.getElementById('id').value;
     var cliente_id = document.getElementById("id").value;
     var nome_transportadora = transportadora.nomeTransportadora;
     adicionarProduto();
+    
     document.getElementById("cliente_id").value = cliente_id;
     document.getElementById("transportadora").value = nome_transportadora;
-    console.log(cliente_id);
-    console.log(nome_transportadora);
-    
+    document.getElementById("valor_frete").value = transportadora.valorFrete;
+
     $("#modalPedidoTiny").modal("show");
   }
    // Array para armazenar os produtos adicionados
