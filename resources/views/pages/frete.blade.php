@@ -404,7 +404,6 @@
 </div>
 
 <!-- Modal Pedido Tiny -->
-<!-- Modal Pedido Tiny -->
 <div class="modal fade" id="modalPedidoTiny" tabindex="-1" role="dialog" aria-labelledby="modalPedidoTinyLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -1376,6 +1375,11 @@ const id_cliente = document.getElementById('id').value;
 
 <script>
   function abrirModalPedidoTiny() {
+    const transportadora = obterDetalhesTransportadora();
+    var cliente_id = document.getElementById("id").value;
+    var nome_transportadora = detalhesTransportadora.nomeTransportadora;
+
+    
     $("#modalPedidoTiny").modal("show");
   }
   // Script para manipular o modal Pedido Tiny
@@ -1411,32 +1415,36 @@ const id_cliente = document.getElementById('id').value;
 
     // Função para adicionar um produto à tabela
     function adicionarProduto() {
-      var nome = $("#produto_nome").val();
-      var quantidade = $("#quantidade").val();
-      var precoUnitario = $("#preco_unitario").val();
+    
+    // Chamar a função para obter a lista de produtos selecionados
+    const produtosSelecionados = obterListaProdutos();
 
-      // Criar uma nova linha na tabela com os dados do produto
-      var novaLinha = $("<tr>");
-      novaLinha.append("<td>" + nome + "</td>");
-      novaLinha.append("<td>" + quantidade + "</td>");
-      novaLinha.append("<td>" + precoUnitario + "</td>");
-      novaLinha.append('<td><button type="button" class="btn btn-danger btn-remover">Remover</button></td>');
+    // Selecionar o corpo da tabela no modal
+    const tabelaProdutos = document.getElementById("produtosTableBody");
 
-      // Adicionar a nova linha à tabela
-      $("#produtosTableBody").append(novaLinha);
+    // Limpar o conteúdo atual da tabela
+    tabelaProdutos.innerHTML = "";
 
-      // Limpar os campos do formulário
-      $("#produto_nome").val("");
-      $("#quantidade").val("");
-      $("#preco_unitario").val("");
+    // Percorrer o objeto de produtos selecionados
+    for (const id in produtosSelecionados) {
+      if (produtosSelecionados.hasOwnProperty(id)) {
+        const produto = produtosSelecionados[id];
 
-      // Adicionar o produto ao array de produtos
-      var produto = {
-        nome: nome,
-        quantidade: quantidade,
-        precoUnitario: precoUnitario
-      };
-      produtos.push(produto);
+        // Criar uma nova linha na tabela
+        const novaLinha = document.createElement("tr");
+
+        // Preencher as células da linha com as informações do produto
+        novaLinha.innerHTML = `
+          <td>${produto.nome}</td>
+          <td>${produto.quantidade}</td>
+          <td>${produto.valor}</td>
+          <td><button type="button" class="btn btn-danger btn-remover">Remover</button></td>
+        `;
+
+        // Adicionar a nova linha à tabela
+        tabelaProdutos.appendChild(novaLinha);
+      }
+    }
     }
 
     // Evento de clique do botão "Adicionar Produto"
