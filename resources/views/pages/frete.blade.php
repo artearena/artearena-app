@@ -1381,7 +1381,10 @@ const id_cliente = document.getElementById('id').value;
     adicionarProduto();
     document.getElementById("cliente_id").value = cliente_id;
     document.getElementById("transportadora").value = nome_transportadora;
-    
+    console.log(cliente_id);
+    console.log(nome_transportadora);
+
+
     $("#modalPedidoTiny").modal("show");
   }
   // Script para manipular o modal Pedido Tiny
