@@ -446,7 +446,7 @@
           </div>
           <div class="form-group">
             <label for="data_venda">Data da Venda:</label>
-            <input type="text" class="form-control" id="data_venda" name="data_venda">
+            <input type="datetime-local" class="form-control" id="data_venda" name="data_venda">
           </div>
 
 
@@ -1386,6 +1386,42 @@ const id_cliente = document.getElementById('id').value;
     
     $("#modalPedidoTiny").modal("show");
   }
+   // Array para armazenar os produtos adicionados
+    var produtos = [];
+
+    // Função para adicionar um produto à tabela
+    function adicionarProduto() {
+      console.log("estou aqui!");
+      // Chamar a função para obter a lista de produtos selecionados
+      const produtosSelecionados = obterListaProdutos();
+
+      // Selecionar o corpo da tabela no modal
+      const tabelaProdutos = document.getElementById("produtosTableBody");
+
+      // Limpar o conteúdo atual da tabela
+      tabelaProdutos.innerHTML = "";
+
+      // Percorrer o objeto de produtos selecionados
+      for (const id in produtosSelecionados) {
+        if (produtosSelecionados.hasOwnProperty(id)) {
+          const produto = produtosSelecionados[id];
+
+          // Criar uma nova linha na tabela
+          const novaLinha = document.createElement("tr");
+
+          // Preencher as células da linha com as informações do produto
+          novaLinha.innerHTML = `
+            <td>${produto.nome}</td>
+            <td>${produto.quantidade}</td>
+            <td>${produto.valor}</td>
+            <td><button type="button" class="btn btn-danger btn-remover">Remover</button></td>
+          `;
+
+          // Adicionar a nova linha à tabela
+          tabelaProdutos.appendChild(novaLinha);
+        }
+      }
+    }
   $("#salvarPedido").click(function() {
     // Obter os valores do formulário
     var clienteId = $("#cliente_id").val();
@@ -1444,42 +1480,7 @@ const id_cliente = document.getElementById('id').value;
 </script>
 <script>
   $(document).ready(function() {
-    // Array para armazenar os produtos adicionados
-    var produtos = [];
-
-    // Função para adicionar um produto à tabela
-    function adicionarProduto() {
-    console.log("estou aqui!");
-    // Chamar a função para obter a lista de produtos selecionados
-    const produtosSelecionados = obterListaProdutos();
-
-    // Selecionar o corpo da tabela no modal
-    const tabelaProdutos = document.getElementById("produtosTableBody");
-
-    // Limpar o conteúdo atual da tabela
-    tabelaProdutos.innerHTML = "";
-
-    // Percorrer o objeto de produtos selecionados
-    for (const id in produtosSelecionados) {
-      if (produtosSelecionados.hasOwnProperty(id)) {
-        const produto = produtosSelecionados[id];
-
-        // Criar uma nova linha na tabela
-        const novaLinha = document.createElement("tr");
-
-        // Preencher as células da linha com as informações do produto
-        novaLinha.innerHTML = `
-          <td>${produto.nome}</td>
-          <td>${produto.quantidade}</td>
-          <td>${produto.valor}</td>
-          <td><button type="button" class="btn btn-danger btn-remover">Remover</button></td>
-        `;
-
-        // Adicionar a nova linha à tabela
-        tabelaProdutos.appendChild(novaLinha);
-      }
-    }
-    }
+   
 
     // Evento de clique do botão "Adicionar Produto"
 
