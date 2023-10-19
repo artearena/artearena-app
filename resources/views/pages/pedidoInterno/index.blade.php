@@ -23,7 +23,7 @@ Tabela de Pedidos
       </tr>
     </thead>
     <tbody>
-      @if(!empty($pedidos))
+      @isset($pedidos)
       @foreach($pedidos as $pedido)
       <tr class="pedido-row" data-pedido-id="{{ $pedido->id }}">
         <td>{{ $pedido->id }}</td>
@@ -49,7 +49,7 @@ Tabela de Pedidos
         </td>
       </tr>
       @endforeach
-      @endif
+      @endisset
     </tbody>
 </table>
 </div>
