@@ -1501,17 +1501,8 @@ const id_cliente = document.getElementById('id').value;
       // Forma de pagamento
       $("#forma_pagamento").mask("9999999999");
 
-      // Transportadora
-      $("#transportadora").mask("9999999999");
-
       // Valor do frete
       $("#valor_frete").mask("999999,99");
-
-      // Observação
-      $("#observacao").mask("");
-
-      // Marcador
-      $("#marcador").mask("");
 
       // Data da venda
       $("#data_venda").mask("00/00/0000");
