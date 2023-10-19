@@ -28,7 +28,7 @@ class HomologarPedido extends Controller
             'marcador' => 'nullable',
             'data_venda' => 'nullable',
             'produtos' => 'nullable|array',
-            'produtos.*.nome' => 'nullable',
+            'produtos.*.produto_nome' => 'nullable',
             'produtos.*.quantidade' => 'nullable',
             'produtos.*.preco_unitario' => 'nullable',
         ]);

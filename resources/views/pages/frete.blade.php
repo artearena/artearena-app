@@ -1440,7 +1440,7 @@ const id_cliente = document.getElementById('id').value;
       var quantidade = $(this).find("td:nth-child(2)").text();
       var precoUnitario = $(this).find("td:nth-child(3)").text();
       produtos.push({
-        nome: nomeProduto,
+        produto_nome: nomeProduto,
         quantidade: quantidade,
         preco_unitario: precoUnitario
       });
