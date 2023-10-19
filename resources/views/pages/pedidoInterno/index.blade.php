@@ -20,6 +20,7 @@ Tabela de Pedidos
         <th>Observação</th>
         <th>Marcador</th>
         <th>Data da Venda</th>
+        <th>Ação</th>
       </tr>
     </thead>
     <tbody>
@@ -38,9 +39,12 @@ Tabela de Pedidos
         <td>{{ $pedido->observacao }}</td>
         <td>{{ $pedido->marcador }}</td>
         <td>{{ $pedido->data_venda }}</td>
+        <td>
+          <button class="btn btn-success btn-confirmar-pedido">Confirmar</button>
+        </td>
       </tr>
       <tr class="produtos-row" style="display: none;">
-        <td colspan="10">
+        <td colspan="11">
           <ul>
             @foreach($pedido->produtos ?? [] as $produto)
                 <li>{{ $produto->produto_nome }} (Quantidade: {{ $produto->quantidade }}, Preço Unitário: {{ $produto->preco_unitario }})</li>
@@ -53,12 +57,23 @@ Tabela de Pedidos
     </tbody>
   </table>
 </div>
+@endsection
+
+@section('script')
 <script>
   $(document).ready(function() {
     $(".btn-expand-produtos").click(function() {
       var row = $(this).closest(".pedido-row");
       var produtosRow = row.next(".produtos-row");
       produtosRow.toggle();
+    });
+
+    $(".btn-confirmar-pedido").click(function() {
+      // Obter o ID do pedido
+      var pedidoId = $(this).closest(".pedido-row").data("pedido-id");
+
+      // Fazer algo com o ID do pedido, como enviar para o servidor
+      console.log("Confirmar pedido ID:", pedidoId);
     });
   });
 </script>
