@@ -1378,7 +1378,9 @@ const id_cliente = document.getElementById('id').value;
     const transportadora = obterDetalhesTransportadora();
     var cliente_id = document.getElementById("id").value;
     var nome_transportadora = detalhesTransportadora.nomeTransportadora;
-
+    adicionarProduto();
+    document.getElementById("cliente_id").value = cliente_id;
+    document.getElementById("transportadora").value = nome_transportadora;
     
     $("#modalPedidoTiny").modal("show");
   }
