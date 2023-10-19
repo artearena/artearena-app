@@ -56,6 +56,7 @@ Tabela de Pedidos
         <td>{{ $pedido->data_venda }}</td>
         <td>
           <button class="btn btn-success btn-confirmar-pedido">Confirmar</button>
+          <button class="btn btn-danger btn-rejeitar-pedido">Rejeitar</button>
         </td>
       </tr>
       <tr class="produtos-row" style="display: none;">
@@ -89,6 +90,14 @@ Tabela de Pedidos
 
       // Fazer algo com o ID do pedido, como enviar para o servidor
       console.log("Confirmar pedido ID:", pedidoId);
+    });
+
+    $(".btn-rejeitar-pedido").click(function() {
+      // Obter o ID do pedido
+      var pedidoId = $(this).closest(".pedido-row").data("pedido-id");
+
+      // Fazer algo com o ID do pedido, como enviar para o servidor
+      console.log("Rejeitar pedido ID:", pedidoId);
     });
   });
 </script>
