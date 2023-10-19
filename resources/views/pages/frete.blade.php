@@ -1386,7 +1386,6 @@ const id_cliente = document.getElementById('id').value;
     
     $("#modalPedidoTiny").modal("show");
   }
-  // Script para manipular o modal Pedido Tiny
   $("#salvarPedido").click(function() {
     // Obter os valores do formulário
     var clienteId = $("#cliente_id").val();
@@ -1397,16 +1396,47 @@ const id_cliente = document.getElementById('id').value;
     var observacao = $("#observacao").val();
     var marcador = $("#marcador").val();
     var dataVenda = $("#data_venda").val();
+    
+    // Obter os produtos da tabela
+    var produtos = [];
+    $("#produtosTableBody tr").each(function() {
+      var nomeProduto = $(this).find("td:nth-child(1)").text();
+      var quantidade = $(this).find("td:nth-child(2)").text();
+      var precoUnitario = $(this).find("td:nth-child(3)").text();
+      produtos.push({
+        nome: nomeProduto,
+        quantidade: quantidade,
+        preco_unitario: precoUnitario
+      });
+    });
 
-    // Fazer algo com os valores do formulário (por exemplo, enviar para o servidor)
-    console.log("Cliente ID:", clienteId);
-    console.log("Vendedor:", vendedor);
-    console.log("Forma de Pagamento:", formaPagamento);
-    console.log("Transportadora:", transportadora);
-    console.log("Valor do Frete:", valorFrete);
-    console.log("Observação:", observacao);
-    console.log("Marcador:", marcador);
-    console.log("Data da Venda:", dataVenda);
+    // Criar um objeto com os dados do pedido e produtos
+    var pedido = {
+      cliente_id: clienteId,
+      Vendedor: vendedor,
+      forma_pagamento: formaPagamento,
+      transportadora: transportadora,
+      valor_frete: valorFrete,
+      observacao: observacao,
+      marcador: marcador,
+      data_venda: dataVenda,
+      produtos: produtos
+    };
+
+    // Fazer a requisição ao servidor
+    $.ajax({
+      url: '/pedidoInterno/criar', // Rota para a função de salvar no servidor
+      type: 'POST',
+      data: pedido,
+      success: function(response) {
+        console.log(response); // Exibir a resposta do servidor no console
+        // Realizar outras ações após o sucesso da requisição
+      },
+      error: function(error) {
+        console.log(error); // Exibir o erro no console, se houver
+        // Realizar ações de tratamento de erro, se necessário
+      }
+    });
 
     // Fechar o modal
     $("#modalPedidoTiny").modal("hide");
@@ -1460,31 +1490,7 @@ const id_cliente = document.getElementById('id').value;
       produtos.splice(index, 1);
     });
     // Evento de clique do botão "Salvar Pedido"
-    $("#salvarPedido").click(function() {
-      // Obter os valores dos campos do formulário
-      var clienteId = $("#cliente_id").val();
-      var vendedor = $("#vendedor").val();
-      var formaPagamento = $("#forma_pagamento").val();
-      var transportadora = $("#transportadora").val();
-      var valorFrete = $("#valor_frete").val();
-      var observacao = $("#observacao").val();
-      var marcador = $("#marcador").val();
-      var dataVenda = $("#data_venda").val();
-
-      // Fazer algo com os valores do formulário e dos produtos (por exemplo, enviar para o servidor)
-      console.log("Cliente ID:", clienteId);
-      console.log("Vendedor:", vendedor);
-      console.log("Forma de Pagamento:", formaPagamento);
-      console.log("Transportadora:", transportadora);
-      console.log("Valor do Frete:", valorFrete);
-      console.log("Observação:", observacao);
-      console.log("Marcador:", marcador);
-      console.log("Data da Venda:", dataVenda);
-      console.log("Produtos:", produtos);
-
-      // Fechar o modal
-      $("#modalPedidoTiny").modal("hide");
-    });
+    
       // Cliente ID
       $("#cliente_id").mask("9999999999");
 

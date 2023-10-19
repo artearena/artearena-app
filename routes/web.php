@@ -34,7 +34,8 @@ Route::middleware(['auth'])->group(function () {
     });
     Route::prefix('pedidoInterno')->group(function () {
         Route::any('/', [HomologarPedido::class, 'index'])->name('pedidoInterno');
-    });
+        Route::post('/criar', [HomologarPedido::class, 'store'])->name('pedidoInterno.salvar');
+     });
     Route::prefix('consultarcadastro')->group(function () {
         Route::any('/', [CadastroController::class, 'consultarCadastros'])->name('cadastro.consulta');
         Route::get('/data', [CadastroController::class, 'getData'])->name('cadastro.data');
