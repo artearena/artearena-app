@@ -1502,8 +1502,6 @@ const id_cliente = document.getElementById('id').value;
       // Valor do frete
       $("#valor_frete").mask("999999,99");
 
-      // Data da venda
-      $("#data_venda").mask("00/00/0000");
   });
 </script>
 
