@@ -3,6 +3,15 @@
 Tabela de Pedidos
 @endsection
 @section('style')
+<style>
+  .table {
+    text-align: center;
+  }
+
+  .table th {
+    text-align: center;
+  }
+</style>
 @endsection
 @section('content')
 <div class="container">
