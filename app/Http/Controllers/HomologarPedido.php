@@ -39,10 +39,12 @@ class HomologarPedido extends Controller
         // Adicionar os produtos ao pedido interno
         if ($request->has('produtos')) {
             foreach ($request->produtos as $produto) {
+                dd($produto);
                 $pedidoInterno->produtos()->create($produto);
             }
         }
-
+        dd($request->produtos);
+        
         // Retornar uma resposta de sucesso
         return response()->json(['message' => 'Pedido interno criado com sucesso'], 201);
     }
