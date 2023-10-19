@@ -32,9 +32,11 @@ Tabela de Pedidos
         <td>{{ $pedido->Vendedor }}</td>
         <td>
           <ul>
-            @foreach($pedido->produtos as $produto)
-            <li>{{ $produto->produto_nome }} (Quantidade: {{ $produto->quantidade }}, Preço Unitário: {{ $produto->preco_unitario }})</li>
-            @endforeach
+            @if(!empty($pedido->produtos))
+              @foreach($pedido->produtos as $produto)
+              <li>{{ $produto->produto_nome }} (Quantidade: {{ $produto->quantidade }}, Preço Unitário: {{ $produto->preco_unitario }})</li>
+              @endforeach
+            @endif
           </ul>
         </td>
         <td>{{ $pedido->forma_pagamento }}</td>
