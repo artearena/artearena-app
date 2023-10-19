@@ -446,7 +446,7 @@
           </div>
           <div class="form-group">
             <label for="data_venda">Data da Venda:</label>
-            <input type="datetime-local" class="form-control" id="data_venda" name="data_venda">
+            <input type="date-local" class="form-control" id="data_venda" name="data_venda">
           </div>
 
 
