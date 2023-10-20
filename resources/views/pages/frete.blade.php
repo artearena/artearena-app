@@ -958,8 +958,10 @@ const id_cliente = document.getElementById('id').value;
                   <td>${orcamento.prazo_entrega}</td>
                   <td>${orcamento.data_prevista}</td>
                   <td>${orcamento.logo_frete}</td>
-                  <td><button class="btn btn-primary btn-carregar" onclick="carregarDados(this)">Carregar</button></td>
-                  <td><button class="btn btn-success btn-criar-pedido" onclick="criarPedido(${orcamento.id})">Criar Pedido</button></td>
+                  <td>
+                    <button class="btn btn-primary btn-carregar" onclick="carregarDados(this)">Carregar</button>
+                    <button class="btn btn-success btn-criar-pedido" onclick="criarPedido(${orcamento.id})">Cria Pedido</button>
+                  </td>
                 </tr>
               `;
             });
