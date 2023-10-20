@@ -1038,6 +1038,7 @@ const id_cliente = document.getElementById('id').value;
                 <td></td>
                 <td>
                   <button class="btn btn-primary btn-carregar" onclick="carregarDados(this)">Carregar</button>
+                  <button class="btn btn-success btn-criar-pedido" onclick="criarPedido(${orcamento.id})">Criar Pedido</button>
                 </td>
               `;
 
@@ -1057,6 +1058,10 @@ const id_cliente = document.getElementById('id').value;
         // Feche o modal com o ID específico
         $('#calcularFrete').click();
         $('#orcamentosModal').modal('hide');
+      }
+      function criarPedido(idOrcamento) {
+  // Redirecionar para a URL com o ID do orçamento
+        window.location.href = `/criar-pedido?id=${idOrcamento}`;
       }
       function gerarCard() {
         const nomeCartao = document.getElementById('tituloCardTrello').value;

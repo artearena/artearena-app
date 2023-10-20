@@ -15,6 +15,12 @@ class HomologarPedido extends Controller
         return view('pages.pedidoInterno.index', compact('pedidos'));
     }
     
+    public function criarPedidoOrcamento($id)
+    {
+        $pedidos = PedidoInterno::all();
+        return view('pages.pedidoInterno.criarPedidoOrcamento', compact('pedidos', 'id'));
+    }
+
     public function store(Request $request)
     {
         // Validação dos dados do pedido

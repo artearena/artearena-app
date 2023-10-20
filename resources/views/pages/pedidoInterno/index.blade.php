@@ -56,7 +56,7 @@ Tabela de Pedidos
         <td>{{ $pedido->data_venda }}</td>
         <td>
           <button class="btn btn-success btn-confirmar-pedido">Confirmar</button>
-          <button class="btn btn-danger btn-rejeitar-pedido">Rejeitar</button>
+          <!-- <button class="btn btn-danger btn-rejeitar-pedido">Rejeitar</button> -->
         </td>
       </tr>
       <tr class="produtos-row" style="display: none;">
