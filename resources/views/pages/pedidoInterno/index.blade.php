@@ -78,56 +78,27 @@ Tabela de Pedidos
 @section('script')
 <script>
   $(document).ready(function() {
-    function salvarPedido() {
-  // Obter os valores do formulário
-  var clienteId = $("#cliente_id").val();
-  var vendedor = $("#vendedor").val();
-  var formaPagamento = $("#forma_pagamento").val();
-  var transportadora = $("#transportadora").val();
-  var valorFrete = $("#valor_frete").val();
-  var observacao = $("#observacao").val();
-  var marcador = $("#marcador").val();
-  var dataVenda = $("#data_venda").val();
-  // Obter os produtos da tabela
-  var produtos = [];
-  $("#produtosTableBody tr").each(function() {
-    var nomeProduto = $(this).find("td:nth-child(1)").text();
-    var quantidade = $(this).find("td:nth-child(2)").text();
-    var precoUnitario = $(this).find("td:nth-child(3)").text();
-    produtos.push({
-      produto_nome: nomeProduto,
-      quantidade: quantidade,
-      preco_unitario: precoUnitario
+    $(".btn-expand-produtos").click(function() {
+      var row = $(this).closest(".pedido-row");
+      var produtosRow = row.next(".produtos-row");
+      produtosRow.toggle();
     });
-  });
-  // Criar um objeto com os dados do pedido e produtos
-  var pedido = {
-    cliente_id: clienteId,
-    vendedor: vendedor,
-    forma_pagamento: formaPagamento,
-    transportadora: transportadora,
-    valor_frete: valorFrete,
-    observacao: observacao,
-    marcador: marcador,
-    data_venda: dataVenda,
-    produtos: produtos,
-    _token: "{{ csrf_token() }}"
-  };
-  // Fazer a requisição ao servidor
-  $.ajax({
-    url: '/pedidoInterno/criar', // Rota para a função de salvar no servidor
-    type: 'POST',
-    data: pedido,
-    success: function(response) {
-      console.log(response); // Exibir a resposta do servidor no console
-      // Realizar outras ações após o sucesso da requisição
-    },
-    error: function(error) {
-      console.log(error); // Exibir o erro no console, se houver
-      // Realizar ações de tratamento de erro, se necessário
-    }
-  });
-}
+
+    $(".btn-confirmar-pedido").click(function() {
+      // Obter o ID do pedido
+      var pedidoId = $(this).closest(".pedido-row").data("pedido-id");
+
+      // Fazer algo com o ID do pedido, como enviar para o servidor
+      console.log("Confirmar pedido ID:", pedidoId);
+    });
+
+    $(".btn-rejeitar-pedido").click(function() {
+      // Obter o ID do pedido
+      var pedidoId = $(this).closest(".pedido-row").data("pedido-id");
+
+      // Fazer algo com o ID do pedido, como enviar para o servidor
+      console.log("Rejeitar pedido ID:", pedidoId);
+    });
   });
 </script>
 @endsection
