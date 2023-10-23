@@ -1,23 +1,18 @@
 @extends('layout.main')
-
 @section('title')
     Cadastro pessoal
 @endsection
-
 @section('content')
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
-
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">Cadastro</div>
-
                 <div class="card-body">
                     <form method="POST" action="{{ route('cadastro.store') }}">
                         @csrf
-
                          <!-- Seleção de Pessoa Jurídica ou Pessoa Física -->
                          <div class="form-check">
                             <input type="radio" class="form-check-input" id="pessoa_juridica" name="tipo_pessoa" value="juridica">
@@ -27,7 +22,6 @@
                             <input type="radio" class="form-check-input" id="pessoa_fisica" name="tipo_pessoa" value="fisica">
                             <label class="form-check-label" for="pessoa_fisica">Pessoa Física</label>
                         </div>
-
                         <!-- Pessoa Jurídica -->
                         <div id="pessoa_juridica_campos" style="display: none;">
                             <div class="form-group">
@@ -48,7 +42,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="cep_juridica">CEP:</label>
-                                <input type="text" name="cep_juridica" id="cep_juridica" class="form-control cep">
+                                <input type="text" name="cep_juridica" id="cep_juridica" class="form-control cep" onblur="consultarCep('juridica')">
                             </div>
                             <div class="form-group">
                                 <label for="endereco_juridica">Endereço:</label>
@@ -75,7 +69,6 @@
                                 <input type="text" name="cell_juridica" id="cell_juridica" class="form-control telefone">
                             </div>
                         </div>
-
                         <!-- Pessoa Física -->
                         <div id="pessoa_fisica_campos" style="display: none;">
                             <div class="form-group">
@@ -96,7 +89,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="cep_fisica">CEP:</label>
-                                <input type="text" name="cep_fisica" id="cep_fisica" class="form-control cep">
+                                <input type="text" name="cep_fisica" id="cep_fisica" class="form-control cep" onblur="consultarCep('fisica')">
                             </div>
                             <div class="form-group">
                                 <label for="endereco_fisica">Endereço:</label>
@@ -123,57 +116,37 @@
                                 <input type="text" name="cell_fisica" id="cell_fisica" class="form-control telefone">
                             </div>
                         </div>
-
                         <!-- Checkbox para endereço de cobrança diferente -->
                         <div id="divEnderecoCobranca" class="form-check" style="display: none;">
                             <input type="checkbox" class="form-check-input" id="endereco_cobranca_diferente" name="endereco_cobranca_diferente">
                             <label class="form-check-label" for="endereco_cobranca_diferente">Endereço de Cobrança diferente do Endereço de Entrega</label>
                         </div>
-
-                        <!-- Endereço de Entrega -->
-                        <div id="endereco_entrega_campos" style="display: none;">
+                        <!-- Campos de Endereço de Cobrança -->
+                        <div id="endereco_cobranca_campos" style="display: none;">
                             <div class="form-group">
-                                <label for="cep_entrega">CEP:</label>
-                                <input type="text" name="cep_entrega" id="cep_entrega" class="form-control cep">
+                                <label for="cep_cobranca">CEP:</label>
+                                <input type="text" name="cep_cobranca" id="cep_cobranca" class="form-control cep" onblur="consultarCep('cobranca')">
                             </div>
                             <div class="form-group">
-                                <label for="endereco_entrega">Endereço de Entrega:</label>
-                                <input type="text" name="endereco_entrega" id="endereco_entrega" class="form-control">
+                                <label for="endereco_cobranca">Endereço:</label>
+                                <input type="text" name="endereco_cobranca" id="endereco_cobranca" class="form-control">
                             </div>
                             <div class="form-group">
-                                <label for="numero_entrega">N°:</label>
-                                <input type="text" name="numero_entrega" id="numero_entrega" class="form-control">
+                                <label for="numero_cobranca">N°:</label>
+                                <input type="text" name="numero_cobranca" id="numero_cobranca" class="form-control">
                             </div>
                             <div class="form-group">
-                                <label for="bairro_entrega">Bairro:</label>
-                                <input type="text" name="bairro_entrega" id="bairro_entrega" class="form-control">
+                                <label for="bairro_cobranca">Bairro:</label>
+                                <input type="text" name="bairro_cobranca" id="bairro_cobranca" class="form-control">
                             </div>
                             <div class="form-group">
-                                <label for="cidade_entrega">Cidade:</label>
-                                <input type="text" name="cidade_entrega" id="cidade_entrega" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <label for="responsavel_entrega">Nome do Responsável:</label>
-                                <input type="text" name="responsavel_entrega" id="responsavel_entrega" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <label for="cpf_responsavel_entrega">CPF do Responsável:</label>
-                                <input type="text" name="cpf_responsavel_entrega" id="cpf_responsavel_entrega" class="form-control">
+                                <label for="cidade_cobranca">Cidade:</label>
+                                <input type="text" name="cidade_cobranca" id="cidade_cobranca" class="form-control">
                             </div>
                         </div>
-                        
-                        <button type="submit" class="btn btn-primary">Salvar</button>
+
+                        <button type="submit" class="btn btn-primary">Cadastrar</button>
                     </form>
-
-                    @if ($errors->any())
-                        <div class="alert alert-danger">
-                            <ul>
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif
                 </div>
             </div>
         </div>
@@ -181,122 +154,63 @@
 </div>
 
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const pessoaJuridica = document.getElementById('pessoa_juridica');
-        const pessoaFisica = document.getElementById('pessoa_fisica');
-        const enderecoCobrancaDiferente = document.getElementById('endereco_cobranca_diferente');
-        const enderecoEntregaCampos = document.getElementById('endereco_entrega_campos');
+    $(document).ready(function() {
+        // Função para exibir ou ocultar campos de acordo com o tipo de pessoa selecionado
+        $("input[name='tipo_pessoa']").change(function() {
+            var tipoPessoa = $(this).val();
 
-        pessoaJuridica.addEventListener('change', function () {
-            if (pessoaJuridica.checked) {
-                document.getElementById('pessoa_juridica_campos').style.display = 'block';
-                document.getElementById('pessoa_fisica_campos').style.display = 'none';
-                divEnderecoCobranca.style.display = 'block';
+            if (tipoPessoa === 'juridica') {
+                $("#pessoa_juridica_campos").show();
+                $("#pessoa_fisica_campos").hide();
+                $("#divEnderecoCobranca").show();
+            } else if (tipoPessoa === 'fisica') {
+                $("#pessoa_juridica_campos").hide();
+                $("#pessoa_fisica_campos").show();
+                $("#divEnderecoCobranca").show();
             }
         });
 
-        pessoaFisica.addEventListener('change', function () {
-            if (pessoaFisica.checked) {
-                document.getElementById('pessoa_fisica_campos').style.display = 'block';
-                document.getElementById('pessoa_juridica_campos').style.display = 'none';
-                divEnderecoCobranca.style.display = 'block';
-            }
-        });
-
-        enderecoCobrancaDiferente.addEventListener('change', function () {
-            if (enderecoCobrancaDiferente.checked) {
-                enderecoEntregaCampos.style.display = 'block';
+        // Função para exibir ou ocultar campos de Endereço de Cobrança
+        $("#endereco_cobranca_diferente").change(function() {
+            if ($(this).is(":checked")) {
+                $("#endereco_cobranca_campos").show();
             } else {
-                enderecoEntregaCampos.style.display = 'none';
-            }
-        });
-        pessoaJuridica.addEventListener('change', function () {
-        if (pessoaJuridica.checked) {
-            document.getElementById('pessoa_juridica_campos').style.display = 'block';
-            document.getElementById('pessoa_fisica_campos').style.display = 'none';
-            limparCampos();
-        }
-        });
-
-        pessoaFisica.addEventListener('change', function () {
-            if (pessoaFisica.checked) {
-                document.getElementById('pessoa_fisica_campos').style.display = 'block';
-                document.getElementById('pessoa_juridica_campos').style.display = 'none';
-                limparCampos();
+                $("#endereco_cobranca_campos").hide();
             }
         });
 
-        // Função para limpar todos os campos do formulário
-        function limparCampos() {
-            // Limpar campos de Pessoa Jurídica
-            $('#razao_social').val('');
-            $('#cnpj').val('');
-            $('#ie').val('');
-            $('#email_juridica').val('');
-            $('#cep_juridica').val('');
-            $('#endereco_juridica').val('');
-            $('#numero_juridica').val('');
-            $('#bairro_juridica').val('');
-            $('#cidade_juridica').val('');
-            $('#fone_fixo_juridica').val('');
-            $('#cell_juridica').val('');
-
-            // Limpar campos de Pessoa Física
-            $('#nome_completo').val('');
-            $('#rg').val('');
-            $('#cpf').val('');
-            $('#email_fisica').val('');
-            $('#cep_fisica').val('');
-            $('#endereco_fisica').val('');
-            $('#numero_fisica').val('');
-            $('#bairro_fisica').val('');
-            $('#cidade_fisica').val('');
-            $('#fone_fixo_fisica').val('');
-            $('#cell_fisica').val('');
-
-            // Limpar campos de Endereço de Entrega
-            $('#cep_entrega').val('');
-            $('#numero_entrega').val('');
-            $('#bairro_entrega').val('');
-            $('#cidade_entrega').val('');
-            $('#endereco_entrega').val('');
-            $('#responsavel_entrega').val('');
-            $('#cpf_responsavel_entrega').val('');
-
-            // Desmarcar checkbox de endereço de cobrança diferente
-            $('#endereco_cobranca_diferente').prop('checked', false);
-
-            // Esconder campos de Endereço de Entrega se necessário
-            if (!enderecoCobrancaDiferente.checked) {
-                enderecoEntregaCampos.style.display = 'none';
-            }
-        }
+        // Máscaras de input
+        $(".cnpj").mask("00.000.000/0000-00");
+        $(".cpf").mask("000.000.000-00");
+        $(".cep").mask("00000-000");
+        $(".telefone").mask("(00) 0000-0000");
+        $(".rg").mask("00.000.000-0");
     });
-    $(document).ready(function () {
-        
-        // Máscara para CNPJ
-        $('#cnpj').mask('00.000.000/0000-00');
 
-        // Máscara para CPF
-        $('#cpf').mask('000.000.000-00');
-        $('#rg').mask('00.000.000-0');
-        $('#cpf_responsavel_entrega').mask('000.000.000-00');
+    // Função para consultar o CEP e preencher os campos de endereço automaticamente
+    function consultarCep(tipo) {
+        var cep = $("#cep_" + tipo).val();
+        cep = cep.replace(/\D/g, '');
 
-
-        // Máscara para CEP (Jurídica)
-        $('#cep_juridica').mask('00000-000');
-
-        // Máscara para CEP (Física)
-        $('#cep_fisica').mask('00000-000');
-
-        $('#cep_entrega').mask('00000-000');
-        // Máscara para telefone fixo
-        $('#fone_fixo_juridica').mask('(00) 0000-0000');
-        $('#fone_fixo_fisica').mask('(00) 0000-0000');
-
-        // Máscara para celular
-        $('#cell_juridica').mask('(00) 00000-0000');
-        $('#cell_fisica').mask('(00) 00000-0000');
-    });
+        if (cep.length === 8) {
+            $.ajax({
+                url: 'https://viacep.com.br/ws/' + cep + '/json/',
+                type: 'GET',
+                dataType: 'json',
+                success: function(data) {
+                    if (data.erro) {
+                        alert('CEP não encontrado.');
+                    } else {
+                        $("#endereco_" + tipo).val(data.logradouro);
+                        $("#bairro_" + tipo).val(data.bairro);
+                        $("#cidade_" + tipo).val(data.localidade);
+                    }
+                },
+                error: function() {
+                    alert('Erro ao consultar o CEP.');
+                }
+            });
+        }
+    }
 </script>
 @endsection
