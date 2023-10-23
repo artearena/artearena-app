@@ -20,8 +20,8 @@ class HomologarPedido extends Controller
     public function criarPedidoOrcamento($id)
     {
         $vendedores = Usuario::whereIn('permissoes', [17, 18])->pluck('nome_usuario');
-        $orcamentos = Orcamentos::where('id', $id)->get();
-        return view('pages.pedidoInterno.criarPedidoOrcamento', compact('orcamentos', 'id', 'vendedores'));
+        $orcamento = Orcamentos::where('id', $id)->get();
+        return view('pages.pedidoInterno.criarPedidoOrcamento', compact('orcamento', 'id', 'vendedores'));
     }
 
     public function store(Request $request)
