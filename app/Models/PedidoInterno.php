@@ -19,6 +19,7 @@ class PedidoInterno extends Model
         'observacao',
         'marcador',
         'data_venda',
+        'id_orcamento',
     ];
 
     public function produtos()
