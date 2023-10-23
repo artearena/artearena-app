@@ -160,10 +160,48 @@
             var tipoPessoa = $(this).val();
 
             if (tipoPessoa === 'juridica') {
+                $("#razao_social").val("");
+    
+                $("#cnpj").val("");
+                $("#ie").val("");
+                $("#email_juridica").val("");
+                $("#cep_juridica").val("");
+                $("#endereco_juridica").val("");
+                $("#numero_juridica").val("");
+                $("#bairro_juridica").val("");
+                $("#cidade_juridica").val("");
+                $("#fone_fixo_juridica").val("");
+                $("#cell_juridica").val("");
+    
+                $("#cep_cobranca").val("");
+                $("#endereco_cobranca").val("");
+                $("#numero_cobranca").val("");
+                $("#bairro_cobranca").val("");
+                $("#cidade_cobranca").val("");
+                
                 $("#pessoa_juridica_campos").show();
                 $("#pessoa_fisica_campos").hide();
                 $("#divEnderecoCobranca").show();
             } else if (tipoPessoa === 'fisica') {
+
+                $("#nome_completo").val("");
+                $("#rg").val("");
+                $("#cpf").val("");
+                $("#email_fisica").val("");
+                $("#cep_fisica").val("");
+                $("#endereco_fisica").val("");
+                $("#numero_fisica").val("");
+                $("#bairro_fisica").val("");
+                $("#cidade_fisica").val("");
+                $("#fone_fixo_fisica").val("");
+                $("#cell_fisica").val("");
+    
+                $("#cep_cobranca").val("");
+                $("#endereco_cobranca").val("");
+                $("#numero_cobranca").val("");
+                $("#bairro_cobranca").val("");
+                $("#cidade_cobranca").val("");
+        
                 $("#pessoa_juridica_campos").hide();
                 $("#pessoa_fisica_campos").show();
                 $("#divEnderecoCobranca").show();
