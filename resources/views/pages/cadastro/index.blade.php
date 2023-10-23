@@ -179,9 +179,10 @@
                 $("#bairro_cobranca").val("");
                 $("#cidade_cobranca").val("");
                 
+                $("#endereco_cobranca_diferente").prop("checked", false);
                 $("#pessoa_juridica_campos").show();
                 $("#pessoa_fisica_campos").hide();
-                $("#divEnderecoCobranca").show();
+                $("#divEnderecoCobranca").hide();
             } else if (tipoPessoa === 'fisica') {
 
                 $("#nome_completo").val("");
@@ -201,10 +202,11 @@
                 $("#numero_cobranca").val("");
                 $("#bairro_cobranca").val("");
                 $("#cidade_cobranca").val("");
-        
+
+                $("#endereco_cobranca_diferente").prop("checked", false);
                 $("#pessoa_juridica_campos").hide();
                 $("#pessoa_fisica_campos").show();
-                $("#divEnderecoCobranca").show();
+                $("#divEnderecoCobranca").hide();
             }
         });
 
