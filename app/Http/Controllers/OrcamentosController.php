@@ -1,68 +1,47 @@
-<?php
+@extends('layout.main')
+@section('title')
+  Criar pedido interno
+@endsection
+@section('style')
+<style>
+  .btn-criar-pedido {
+    float: right;
+    background-color: green;
+    color: white;
+  }
+</style>
+@endsection
+@section('content')
+  <div class="container">
+    <!-- Conteúdo da tela de criação de pedido interno -->
+    <h1>Criar pedido interno</h1>
+    <form id="pedidoForm">
+      <!-- Restante dos campos do formulário -->
 
-namespace App\Http\Controllers;
+      <!-- Tabela para exibir os produtos adicionados -->
+      <table class="table mt-4">
+        <!-- Cabeçalho da tabela -->
+        <thead>
+          <tr>
+            <th>Nome do Produto</th>
+            <th>Quantidade</th>
+            <th>Preço Unitário</th>
+          </tr>
+        </thead>
+        <tbody id="produtosTableBody">
+          <!-- Linhas da tabela com os produtos -->
+          @foreach ($orcamento->produtos as $produto)
+            <tr>
+              <td>{{ $produto->nome_produto }}</td>
+              <td>{{ $produto->quantidade }}</td>
+              <td>R$ {{ number_format($produto->valor_unitario, 2, ',', '.') }}</td>
+            </tr>
+          @endforeach
+        </tbody>
+      </table>
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use App\Models\Orcamentos;
-use App\Models\OrcamentoProdutos;
-
-class OrcamentosController extends Controller
-{
-    public function salvarOrcamento(Request $request)
-    {
-
-        // Criação de um novo objeto de orçamento
-        $orcamento = new Orcamentos();
-        $orcamento->id_octa = $request->input('id_octa');
-        $orcamento->detalhes_orcamento = $request->input('detalhes_orcamento');
-        $orcamento->cep_frete = $request->input('cep_frete');
-        $orcamento->endereco_frete = $request->input('endereco_frete');
-        $orcamento->nome_transportadora = $request->input('nome_transportadora');
-        $orcamento->valor_frete = $request->input('valor_frete');
-        $orcamento->prazo_entrega = $request->input('prazo_entrega');
-        $orcamento->data_prevista = $request->input('data_prevista');
-        $orcamento->logo_frete = $request->input('logo_frete');
-
-        // Salvar o orçamento no banco de dados
-        $orcamento->save();
-
-
-        // Salvar os produtos relacionados ao orçamento
-        $produtos = $request->input('produtos');
-        $produtosParaSalvar = [];
-        foreach ($produtos as $produto) {
-            $produtosParaSalvar[] = new OrcamentoProdutos([
-                'nome_produto' => $produto['nome'],
-                'valor_unitario' => $produto['valor'],
-                'peso_unitario' => $produto['peso'],
-                'quantidade' => $produto['quantidade'],
-                'prazo_individual' => $produto['prazo_individual'],
-            ]);
-        }
-        $orcamento->produtos()->saveMany($produtosParaSalvar);
-
-        // Retornar uma resposta ou redirecionar para outra página
-        return response()->json(['message' => 'Orçamento salvo com sucesso']);
-    }
-    public function consultarProdutos($orcamentoId)
-    {
-        $produtos = OrcamentoProdutos::where('id_orcamento', $orcamentoId)->get();
-
-        return response()->json($produtos);
-    }
-
-    public function consultarOrcamentos($id)
-    {
-        // Consultar o orçamento pelo ID
-        $orcamento = Orcamentos::where('id_octa', $id)->get();
-        // Verificar se o orçamento foi encontrado
-        if ($orcamento) {
-            // Retornar o orçamento encontrado
-            return response()->json($orcamento);
-        } else {
-            // Retornar uma resposta de erro caso o orçamento não seja encontrado
-            return response()->json(['message' => 'Orçamento não encontrado'], 404);
-        }
-    }
-}
+      <!-- Botão de criar pedido -->
+      <button type="submit" class="btn btn-primary btn-criar-pedido">Criar Pedido</button>
+    </form>
+  </div>
+@endsection
