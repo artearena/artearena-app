@@ -73,53 +73,17 @@
           @endforeach
         </tbody>
       </table>
-      <button type="submit" class="btn btn-primary">Criar Pedido</button>
+      <button type="button" class="btn btn-primary" id="btnCriarPedido">Criar Pedido</button>
     </form>
   </div>
 @endsection
-
 @section('script')
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <script>
-  document.getElementById('pedidoForm').addEventListener('submit', function(event) {
-    event.preventDefault(); // Impede o envio padrão do formulário
+  document.getElementById('btnCriarPedido').addEventListener('click', function(event) {
+    event.preventDefault(); // Impede o comportamento padrão do botão
 
-    // Obter os valores do formulário
-    var clienteId = document.getElementById('cliente_id').value;
-    var vendedor = document.getElementById('vendedor').value;
-    var formaPagamento = document.getElementById('forma_pagamento').value;
-    var transportadora = document.getElementById('transportadora').value;
-    var valorFrete = document.getElementById('valor_frete').value;
-    var observacao = document.getElementById('observacao').value;
-    var marcador = document.getElementById('marcador').value;
-    var dataVenda = document.getElementById('data_venda').value;
-
-    // Obter os produtos da tabela
-    var produtos = [];
-    document.querySelectorAll('#produtosTableBody tr').forEach(function(row) {
-      var nomeProduto = row.querySelector('td:nth-child(1)').innerText;
-      var quantidade = row.querySelector('td:nth-child(2)').innerText;
-      var precoUnitario = row.querySelector('td:nth-child(3)').innerText;
-      produtos.push({
-        produto_nome: nomeProduto,
-        quantidade: quantidade,
-        preco_unitario: precoUnitario
-      });
-    });
-
-    // Criar um objeto com os dados do pedido e produtos
-    var pedido = {
-      cliente_id: clienteId,
-      vendedor: vendedor,
-      forma_pagamento: formaPagamento,
-      transportadora: transportadora,
-      valor_frete: valorFrete,
-      observacao: observacao,
-      marcador: marcador,
-      data_venda: dataVenda,
-      produtos: produtos,
-      _token: "{{ csrf_token() }}"
-    };
+    // Restante do código para obter os valores do formulário e dos produtos
 
     // Fazer a requisição fetch para salvar o pedido
     fetch("{{ route('pedidoInterno.salvar') }}", {
@@ -159,4 +123,4 @@
     });
   });
 </script>
-@endsection
+@endsection'
