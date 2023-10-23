@@ -3,15 +3,15 @@
         @guest
             @if(request()->path() !== 'cadastro')
                 <a class="navbar-brand" href="{{ route('home') }}">
-                    <img src="./images/logo.png" alt="" class="logo-img" style="width: 15vh; margin-right: 10px;">
+                    <img src="../images/logo.png" alt="" class="logo-img" style="width: 15vh; margin-right: 10px;">
                 </a>
             @endif
             @if(request()->path() == 'cadastro')
-                <img src="./images/logo.png" alt="" class="logo-img" style="width: 15vh; margin-right: 10px;">
+                <img src="../images/logo.png" alt="" class="logo-img" style="width: 15vh; margin-right: 10px;">
             @endif
         @else
             <a class="navbar-brand" href="{{ route('home') }}">
-                <img src="./images/logo.png" alt="" class="logo-img" style="width: 15vh; margin-right: 10px;">
+                <img src="../images/logo.png" alt="" class="logo-img" style="width: 15vh; margin-right: 10px;">
             </a>
         @endguest
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
