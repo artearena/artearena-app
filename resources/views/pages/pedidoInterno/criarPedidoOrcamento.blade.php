@@ -73,6 +73,8 @@
           @endforeach
         </tbody>
       </table>
+      <button type="submit" class="btn btn-primary">Criar Pedido</button>
+
     </form>
   </div>
 @endsection
