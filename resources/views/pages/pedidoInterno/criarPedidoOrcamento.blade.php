@@ -36,15 +36,15 @@
       </div>
       <div class="form-group">
         <label for="transportadora">Transportadora:</label>
-        <input type="text" class="form-control" id="transportadora" name="transportadora" value="Uello">
+        <input type="text" class="form-control" id="transportadora" name="transportadora" value="{{ $orcamento->nome_transportadora }}">
       </div>
       <div class="form-group">
         <label for="valor_frete">Valor do Frete:</label>
-        <input type="text" class="form-control" id="valor_frete" name="valor_frete" value="22">
+        <input type="text" class="form-control" id="valor_frete" name="valor_frete" value="{{ $orcamento->valor_frete }}">
       </div>
       <div class="form-group">
         <label for="observacao">Observação:</label>
-        <input type="text" class="form-control" id="observacao" name="observacao" value="">
+        <textarea class="form-control" id="observacao" name="observacao">{{ $orcamento->detalhes_orcamento }}</textarea>
       </div>
       <div class="form-group">
         <label for="marcador">Marcador:</label>
@@ -52,7 +52,7 @@
       </div>
       <div class="form-group">
         <label for="data_venda">Data da Venda:</label>
-        <input type="text" class="form-control" id="data_venda" name="data_venda" placeholder="mm/dd/yyyy --:-- --">
+        <input type="datetime-local" class="form-control" id="data_venda" name="data_venda">
       </div>
       <!-- Tabela para exibir os produtos adicionados -->
       <table class="table mt-4">

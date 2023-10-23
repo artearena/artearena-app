@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\PedidoInterno;
 use App\Models\Usuario;
+use App\Models\Orcamentos;
 
 class HomologarPedido extends Controller
 {
@@ -19,8 +20,8 @@ class HomologarPedido extends Controller
     public function criarPedidoOrcamento($id)
     {
         $vendedores = Usuario::whereIn('permissoes', [17, 18])->pluck('nome_usuario');
-        $pedidos = PedidoInterno::all();
-        return view('pages.pedidoInterno.criarPedidoOrcamento', compact('pedidos', 'id', 'vendedores'));
+        $orcamentos = Orcamentos::where('id', $id)->get();
+        return view('pages.pedidoInterno.criarPedidoOrcamento', compact('orcamentos', 'id', 'vendedores'));
     }
 
     public function store(Request $request)
