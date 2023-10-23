@@ -119,10 +119,8 @@ class CadastroController extends Controller
             // Crie um novo registro de cadastro com os dados validados
             Cadastro::create($validatedData);
 
-            return response()->json([
-                'message' => 'Cadastro created successfully!',
-                'cadastro' => $validatedData, // Retorna o objeto do pedido criado para atualização da tabela
-            ], 200);
+            return view('pages.cadastro.sucess');
+
         } catch (\Exception $e) {
             return response()->json(['message' => 'Erro ao criar o Cadastro: ' . $e->getMessage()], 500);
         }
