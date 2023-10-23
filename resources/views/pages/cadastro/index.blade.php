@@ -66,7 +66,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="cell_juridica">Cell:</label>
-                                <input type="text" name="cell_juridica" id="cell_juridica" class="form-control telefone">
+                                <input type="text" name="cell_juridica" id="cell_juridica" class="form-control telefone_cel">
                             </div>
                         </div>
                         <!-- Pessoa Física -->
@@ -113,7 +113,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="cell_fisica">Celular:</label>
-                                <input type="text" name="cell_fisica" id="cell_fisica" class="form-control telefone">
+                                <input type="text" name="cell_fisica" id="cell_fisica" class="form-control telefone_cel">
                             </div>
                         </div>
                         <!-- Checkbox para endereço de cobrança diferente -->
@@ -228,6 +228,7 @@
         $(".cpf").mask("000.000.000-00");
         $(".cep").mask("00000-000");
         $(".telefone").mask("(00) 0000-0000");
+        $(".telefone_cel").mask("(00) 00000-0000");
         $(".rg").mask("00.000.000-0");
     });
 
