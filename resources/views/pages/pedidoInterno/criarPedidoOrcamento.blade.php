@@ -78,13 +78,13 @@
           @endforeach
         </tbody>
       </table>
-      <button type="button" class="btn btn-primary" id="btnCriarPedido">Criar Pedido</button>
+      <button id="btnCriarPedido" class="btn btn-primary" type="submit">Salvar Pedido</button>
     </form>
   </div>
 @endsection
 @section('script')
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
 <script>
   document.getElementById('btnCriarPedido').addEventListener('click', function(event) {
     event.preventDefault(); // Impede o comportamento padrão do botão
@@ -120,12 +120,12 @@
       marcador: marcador,
       data_venda: dataVenda,
       produtos: produtos,
-      id_orcamento: id_orcamento,
+      id_orcamento: "{{ $orcamento->id_octa }}",
       _token: "{{ csrf_token() }}"
     };
     // Fazer a requisição AJAX para salvar o pedido
     $.ajax({
-      url: "{{ route('pedidoInterno.salvar') }}",
+      url: "/pedidoInterno/criar",
       type: "POST",
       data: JSON.stringify(pedido),
       contentType: "application/json",
