@@ -61,11 +61,16 @@
             <th>Nome do Produto</th>
             <th>Quantidade</th>
             <th>Preço Unitário</th>
-            <th>Ação</th>
           </tr>
         </thead>
         <tbody id="produtosTableBody">
-
+          @foreach ($orcamento->produtos as $produto)
+            <tr>
+              <td>{{ $produto->nome_produto }}</td>
+              <td>{{ $produto->quantidade }}</td>
+              <td>{{ $produto->valor_unitario }}</td>
+            </tr>
+          @endforeach
         </tbody>
       </table>
     </form>
