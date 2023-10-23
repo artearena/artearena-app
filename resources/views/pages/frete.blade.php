@@ -1062,8 +1062,8 @@ const id_cliente = document.getElementById('id').value;
         $('#orcamentosModal').modal('hide');
       }
       function criarPedido(idOrcamento) {
-  // Redirecionar para a URL com o ID do orçamento
-        window.location.href = `/criar-pedido?id=${idOrcamento}`;
+  // Redirecionar p<ara a URL com o ID do orçamento
+        window.location.href = `pedidoInterno/criar-pedido/${idOrcamento}`;
       }
       function gerarCard() {
         const nomeCartao = document.getElementById('tituloCardTrello').value;
