@@ -79,9 +79,9 @@
 @endsection
 @section('script')
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
 <script>
   document.getElementById('btnCriarPedido').addEventListener('click', function(event) {
-    event.preventDefault(); // Impede o comportamento padrão do botão
     var nomeProduto = row.querySelector('td:nth-child(1)').innerText;
       var quantidade = row.querySelector('td:nth-child(2)').innerText;
       var precoUnitario = row.querySelector('td:nth-child(3)').innerText;
