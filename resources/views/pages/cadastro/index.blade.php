@@ -160,8 +160,13 @@
             var tipoPessoa = $(this).val();
 
             if (tipoPessoa === 'juridica') {
+                if ($(this).is(":checked")) {
+                    $("#endereco_cobranca_campos").show();
+                } else {
+                    $("#endereco_cobranca_campos").hide();
+                }
+
                 $("#razao_social").val("");
-    
                 $("#cnpj").val("");
                 $("#ie").val("");
                 $("#email_juridica").val("");
@@ -184,6 +189,11 @@
                 $("#pessoa_fisica_campos").hide();
                 $("#divEnderecoCobranca").show();
             } else if (tipoPessoa === 'fisica') {
+                if ($(this).is(":checked")) {
+                    $("#endereco_cobranca_campos").show();
+                } else {
+                    $("#endereco_cobranca_campos").hide();
+                }
 
                 $("#nome_completo").val("");
                 $("#rg").val("");
