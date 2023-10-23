@@ -79,62 +79,83 @@
 @endsection
 
 @section('script')
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <script>
-  $(document).ready(function() {
-    $("#pedidoForm").submit(function(event) {
-      event.preventDefault(); // Impede o envio padrão do formulário
+  document.getElementById('pedidoForm').addEventListener('submit', function(event) {
+    event.preventDefault(); // Impede o envio padrão do formulário
 
-      // Obter os valores do formulário
-      var clienteId = $("#cliente_id").val();
-      var vendedor = $("#vendedor").val();
-      var formaPagamento = $("#forma_pagamento").val();
-      var transportadora = $("#transportadora").val();
-      var valorFrete = $("#valor_frete").val();
-      var observacao = $("#observacao").val();
-      var marcador = $("#marcador").val();
-      var dataVenda = $("#data_venda").val();
+    // Obter os valores do formulário
+    var clienteId = document.getElementById('cliente_id').value;
+    var vendedor = document.getElementById('vendedor').value;
+    var formaPagamento = document.getElementById('forma_pagamento').value;
+    var transportadora = document.getElementById('transportadora').value;
+    var valorFrete = document.getElementById('valor_frete').value;
+    var observacao = document.getElementById('observacao').value;
+    var marcador = document.getElementById('marcador').value;
+    var dataVenda = document.getElementById('data_venda').value;
 
-      // Obter os produtos da tabela
-      var produtos = [];
-      $("#produtosTableBody tr").each(function() {
-        var nomeProduto = $(this).find("td:nth-child(1)").text();
-        var quantidade = $(this).find("td:nth-child(2)").text();
-        var precoUnitario = $(this).find("td:nth-child(3)").text();
-        produtos.push({
-          produto_nome: nomeProduto,
-          quantidade: quantidade,
-          preco_unitario: precoUnitario
-        });
+    // Obter os produtos da tabela
+    var produtos = [];
+    document.querySelectorAll('#produtosTableBody tr').forEach(function(row) {
+      var nomeProduto = row.querySelector('td:nth-child(1)').innerText;
+      var quantidade = row.querySelector('td:nth-child(2)').innerText;
+      var precoUnitario = row.querySelector('td:nth-child(3)').innerText;
+      produtos.push({
+        produto_nome: nomeProduto,
+        quantidade: quantidade,
+        preco_unitario: precoUnitario
       });
+    });
 
-      // Criar um objeto com os dados do pedido e produtos
-      var pedido = {
-        cliente_id: clienteId,
-        vendedor: vendedor,
-        forma_pagamento: formaPagamento,
-        transportadora: transportadora,
-        valor_frete: valorFrete,
-        observacao: observacao,
-        marcador: marcador,
-        data_venda: dataVenda,
-        produtos: produtos,
-        _token: "{{ csrf_token() }}"
-      };
+    // Criar um objeto com os dados do pedido e produtos
+    var pedido = {
+      cliente_id: clienteId,
+      vendedor: vendedor,
+      forma_pagamento: formaPagamento,
+      transportadora: transportadora,
+      valor_frete: valorFrete,
+      observacao: observacao,
+      marcador: marcador,
+      data_venda: dataVenda,
+      produtos: produtos,
+      _token: "{{ csrf_token() }}"
+    };
 
-      // Fazer a requisição AJAX para salvar o pedido
-      $.ajax({
-        url: "{{ route('pedidoInterno.salvar') }}",
-        type: "POST",
-        data: pedido,
-        success: function(response) {
-          console.log(response); // Exibir a resposta do servidor no console
-          // Realizar outras ações após o sucesso da requisição
-        },
-        error: function(error) {
-          console.log(error); // Exibir o erro no console, se houver
-          // Realizar ações de tratamento de erro, se necessário
-        }
+    // Fazer a requisição fetch para salvar o pedido
+    fetch("{{ route('pedidoInterno.salvar') }}", {
+      method: "POST",
+      body: JSON.stringify(pedido),
+      headers: {
+        "Content-Type": "application/json",
+        "X-CSRF-TOKEN": "{{ csrf_token() }}"
+      }
+    })
+    .then(function(response) {
+      if (response.ok) {
+        return response.json();
+      } else {
+        throw new Error("Erro ao salvar o pedido.");
+      }
+    })
+    .then(function(data) {
+      Swal.fire({
+        title: "Sucesso!",
+        text: "Pedido salvo com sucesso.",
+        icon: "success",
+        confirmButtonText: "OK"
       });
+      console.log(data); // Exibir a resposta do servidor no console
+      // Realizar outras ações após o sucesso da requisição
+    })
+    .catch(function(error) {
+      Swal.fire({
+        title: "Erro!",
+        text: "Ocorreu um erro ao salvar o pedido.",
+        icon: "error",
+        confirmButtonText: "OK"
+      });
+      console.log(error); // Exibir o erro no console, se houver
+      // Realizar ações de tratamento de erro, se necessário
     });
   });
 </script>
