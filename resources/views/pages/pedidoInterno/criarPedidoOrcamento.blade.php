@@ -3,6 +3,11 @@
   Criar pedido interno
 @endsection
 @section('style')
+<style> 
+    .observacao{
+      min-height: 400px;
+    }
+</style>
 @endsection
 @section('content')
   <div class="container">
