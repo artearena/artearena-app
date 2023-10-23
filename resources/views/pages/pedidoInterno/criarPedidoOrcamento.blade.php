@@ -82,9 +82,29 @@
 <script>
   document.getElementById('btnCriarPedido').addEventListener('click', function(event) {
     event.preventDefault(); // Impede o comportamento padrão do botão
+    var nomeProduto = row.querySelector('td:nth-child(1)').innerText;
+      var quantidade = row.querySelector('td:nth-child(2)').innerText;
+      var precoUnitario = row.querySelector('td:nth-child(3)').innerText;
+      produtos.push({
+        produto_nome: nomeProduto,
+        quantidade: quantidade,
+        preco_unitario: precoUnitario
+      });
+    });
 
-    // Restante do código para obter os valores do formulário e dos produtos
-
+    // Criar um objeto com os dados do pedido e produtos
+    var pedido = {
+      cliente_id: clienteId,
+      vendedor: vendedor,
+      forma_pagamento: formaPagamento,
+      transportadora: transportadora,
+      valor_frete: valorFrete,
+      observacao: observacao,
+      marcador: marcador,
+      data_venda: dataVenda,
+      produtos: produtos,
+      _token: "{{ csrf_token() }}"
+    };
     // Fazer a requisição fetch para salvar o pedido
     fetch("{{ route('pedidoInterno.salvar') }}", {
       method: "POST",
