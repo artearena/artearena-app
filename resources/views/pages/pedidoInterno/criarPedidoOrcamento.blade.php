@@ -4,7 +4,7 @@
 @endsection
 @section('style')
 <style> 
-    .observacao{
+    #observacao{
       min-height: 400px;
     }
 </style>
