@@ -42,7 +42,7 @@ class HomologarPedido extends Controller
             'produtos.*.preco_unitario' => 'nullable',
         ]);
 
-        // Criação do pedido interno
+        // Criação do pedido internow'
         $pedidoInterno = PedidoInterno::create($request->all());
 
         // Adicionar os produtos ao pedido interno
