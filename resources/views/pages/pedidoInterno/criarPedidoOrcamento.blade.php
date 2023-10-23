@@ -82,6 +82,7 @@
 
 <script>
   document.getElementById('btnCriarPedido').addEventListener('click', function(event) {
+    event.preventDefault(); // Impede o comportamento padrão do botão
     var nomeProduto = row.querySelector('td:nth-child(1)').innerText;
       var quantidade = row.querySelector('td:nth-child(2)').innerText;
       var precoUnitario = row.querySelector('td:nth-child(3)').innerText;
@@ -141,6 +142,5 @@
       console.log(error); // Exibir o erro no console, se houver
       // Realizar ações de tratamento de erro, se necessário
     });
-  });
 </script>
 @endsection'
