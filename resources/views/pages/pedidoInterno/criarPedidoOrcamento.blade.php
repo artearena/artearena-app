@@ -15,11 +15,24 @@
       </div>
       <div class="form-group">
         <label for="vendedor">Vendedor:</label>
-        <input type="text" class="form-control" id="vendedor" name="vendedor" value="">
+        <select class="form-control" id="vendedor" name="vendedor">
+          @foreach ($vendedores as $vendedor)
+            <option value="{{ $vendedor }}">{{ $vendedor }}</option>
+          @endforeach
+        </select>
       </div>
       <div class="form-group">
         <label for="forma_pagamento">Forma de Pagamento:</label>
-        <input type="text" class="form-control" id="forma_pagamento" name="forma_pagamento" value="">
+        <select class="form-control" id="forma_pagamento" name="forma_pagamento">
+          <option value="pix">Pix</option>
+          <option value="boleto">Boleto</option>
+          <option value="cartao_credito">Cartão de Crédito</option>
+          <option value="cartao_debito">Cartão de Débito</option>
+          <option value="transferencia">Transferência</option>
+          <option value="deposito">Depósito</option>
+          <option value="duplicata_faturado">Duplicata Faturado</option>
+          <option value="multiplas">Múltiplas</option>
+        </select>
       </div>
       <div class="form-group">
         <label for="transportadora">Transportadora:</label>
