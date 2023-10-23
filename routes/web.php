@@ -12,6 +12,7 @@ use App\Http\Controllers\LeadController;
 use App\Http\Controllers\OrcamentosController;
 use App\Http\Controllers\ErroController;
 use App\Http\Controllers\HomologarPedido;
+use App\Http\Controllers\ListaUniformeController;
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/', [SiteController::class, 'index'])->name('index');
@@ -32,7 +33,10 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/criar', [PedidoController::class, 'criarPedido'])->name('pedido.criar');
         Route::delete('/{id}', [PedidoController::class, 'excluirPedido'])->name('pedido.excluir');
     });
-    Route::prefix('pedidoInterno')->group(function () {
+    Route::prefix('listaUniformes')->group(function () {
+        Route::any('/', [ListaUniformeController::class, 'index'])->name('index');
+     });
+     Route::prefix('pedidoInterno')->group(function () {
         Route::any('/', [HomologarPedido::class, 'index'])->name('pedidoInterno');
         Route::any('/criar-pedido/{id}', [HomologarPedido::class, 'criarPedidoOrcamento'])->name('pedidoInterno.criar');
         
