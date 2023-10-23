@@ -155,6 +155,8 @@
 
 <script>
     $(document).ready(function() {
+        $("#endereco_cobranca_campos").hide();
+
         // Função para exibir ou ocultar campos de acordo com o tipo de pessoa selecionado
         $("input[name='tipo_pessoa']").change(function() {
             var tipoPessoa = $(this).val();
