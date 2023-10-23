@@ -11,7 +11,7 @@
     <form id="pedidoForm">
       <div class="form-group">
         <label for="cliente_id">ID do Cliente:</label>
-        <input type="text" class="form-control" id="cliente_id" name="cliente_id" value="14099">
+        <input type="text" class="form-control" id="cliente_id" name="cliente_id" value="{{ $orcamento->id_octa }}">
       </div>
       <div class="form-group">
         <label for="vendedor">Vendedor:</label>
@@ -74,7 +74,68 @@
         </tbody>
       </table>
       <button type="submit" class="btn btn-primary">Criar Pedido</button>
-
     </form>
   </div>
+@endsection
+
+@section('script')
+<script>
+  $(document).ready(function() {
+    $("#pedidoForm").submit(function(event) {
+      event.preventDefault(); // Impede o envio padrão do formulário
+
+      // Obter os valores do formulário
+      var clienteId = $("#cliente_id").val();
+      var vendedor = $("#vendedor").val();
+      var formaPagamento = $("#forma_pagamento").val();
+      var transportadora = $("#transportadora").val();
+      var valorFrete = $("#valor_frete").val();
+      var observacao = $("#observacao").val();
+      var marcador = $("#marcador").val();
+      var dataVenda = $("#data_venda").val();
+
+      // Obter os produtos da tabela
+      var produtos = [];
+      $("#produtosTableBody tr").each(function() {
+        var nomeProduto = $(this).find("td:nth-child(1)").text();
+        var quantidade = $(this).find("td:nth-child(2)").text();
+        var precoUnitario = $(this).find("td:nth-child(3)").text();
+        produtos.push({
+          produto_nome: nomeProduto,
+          quantidade: quantidade,
+          preco_unitario: precoUnitario
+        });
+      });
+
+      // Criar um objeto com os dados do pedido e produtos
+      var pedido = {
+        cliente_id: clienteId,
+        vendedor: vendedor,
+        forma_pagamento: formaPagamento,
+        transportadora: transportadora,
+        valor_frete: valorFrete,
+        observacao: observacao,
+        marcador: marcador,
+        data_venda: dataVenda,
+        produtos: produtos,
+        _token: "{{ csrf_token() }}"
+      };
+
+      // Fazer a requisição AJAX para salvar o pedido
+      $.ajax({
+        url: "{{ route('pedidoInterno.salvar') }}",
+        type: "POST",
+        data: pedido,
+        success: function(response) {
+          console.log(response); // Exibir a resposta do servidor no console
+          // Realizar outras ações após o sucesso da requisição
+        },
+        error: function(error) {
+          console.log(error); // Exibir o erro no console, se houver
+          // Realizar ações de tratamento de erro, se necessário
+        }
+      });
+    });
+  });
+</script>
 @endsection

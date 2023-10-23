@@ -44,4 +44,25 @@
       <button type="submit" class="btn btn-primary btn-criar-pedido">Criar Pedido</button>
     </form>
   </div>
+
+  <script>
+    // Evento de envio do formulário
+    document.getElementById('pedidoForm').addEventListener('submit', function(event) {
+      event.preventDefault(); // Impede o envio do formulário padrão
+
+      // Realiza a requisição AJAX para salvar o pedido
+      fetch(this.action, {
+        method: this.method,
+        body: new FormData(this)
+      })
+      .then(response => response.json())
+      .then(data => {
+        // Lógica para lidar com a resposta da requisição
+        console.log(data);
+      })
+      .catch(error => {
+        console.error(error);
+      });
+    });
+  </script>
 @endsection
