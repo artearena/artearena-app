@@ -88,6 +88,7 @@
 <script>
   document.getElementById('btnCriarPedido').addEventListener('click', function(event) {
     event.preventDefault(); // Impede o comportamento padrão do botão
+    console.log("ativei");
     var produtos = [];
     var rows = document.querySelectorAll("#produtosTableBody tr");
     rows.forEach(function(row) {
