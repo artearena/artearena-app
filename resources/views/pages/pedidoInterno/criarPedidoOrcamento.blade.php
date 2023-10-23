@@ -64,15 +64,12 @@
           </tr>
         </thead>
         <tbody id="produtosTableBody">
-         @foreach ($orcamento->produtos as $produto)
+          @foreach ($orcamento->produtos as $produto)
             <tr>
               <td>{{ $produto->nome_produto }}</td>
               <td>{{ $produto->quantidade }}</td>
-              <td>{{ $produto->valor_unitario }}</td>
+              <td>R$ {{ number_format($produto->valor_unitario, 2, ',', '.') }}</td>
             </tr>
-            @php
-              dd($produto); // Console log do objeto $produto
-            @endphp
           @endforeach
         </tbody>
       </table>
