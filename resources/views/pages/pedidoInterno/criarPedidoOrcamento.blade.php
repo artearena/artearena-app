@@ -5,7 +5,7 @@
 @section('style')
 <style> 
     #observacao{
-      min-height: 400px;
+      min-height: 230px;
     }
 </style>
 @endsection
