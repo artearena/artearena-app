@@ -53,7 +53,7 @@
         <td>
           <button class="btn btn-success btn-confirmar-pedido">Confirmar</button>
           <!-- <button class="btn btn-danger btn-rejeitar-pedido">Rejeitar</button> -->
-          <button class="btn btn-primary btn-consultar-lista-uniforme">Consultar lista uniforme</button>
+          <button class="btn btn-primary btn-consultar-lista-uniforme">Gerenciar lista uniforme</button>
         </td>
       </tr>
       <tr class="produtos-row" style="display: none;">
