@@ -18,9 +18,6 @@
 @section('content')
 <div class="container">
   <h1>Tabela de Pedidos</h1>
-  <div class="mb-3">
-    <button class="btn btn-primary" id="btnConsultarListaUniforme">Consultar lista uniforme</button>
-  </div>
   <table class="table mt-4 custom-table">
     <thead>
       <tr>
@@ -56,6 +53,7 @@
         <td>
           <button class="btn btn-success btn-confirmar-pedido">Confirmar</button>
           <!-- <button class="btn btn-danger btn-rejeitar-pedido">Rejeitar</button> -->
+          <button class="btn btn-primary btn-consultar-lista-uniforme">Consultar lista uniforme</button>
         </td>
       </tr>
       <tr class="produtos-row" style="display: none;">
@@ -93,9 +91,10 @@
       // Fazer algo com o ID do pedido, como enviar para o servidor
       console.log("Rejeitar pedido ID:", pedidoId);
     });
-    $("#btnConsultarListaUniforme").click(function() {
+    $(".btn-consultar-lista-uniforme").click(function() {
       // Fazer algo quando o botão "Consultar lista uniforme" for clicado
-      console.log("Consultar lista uniforme");
+      var pedidoId = $(this).closest(".pedido-row").data("pedido-id");
+      console.log("Consultar lista uniforme para o pedido ID:", pedidoId);
     });
   });
 </script>
