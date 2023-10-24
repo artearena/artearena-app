@@ -96,7 +96,7 @@
 @endsection
 @section('script')
 <script>
-  $(document).ready(function() {
+document.addEventListener("DOMContentLoaded", function() {
     console.log('doc_ready');
     $(".btn-expand-produtos").click(function() {
       console.log('teste');
