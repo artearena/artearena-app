@@ -97,6 +97,7 @@
 @section('script')
 <script>
   $(document).ready(function() {
+    console.log('doc_ready');
     $(".btn-expand-produtos").click(function() {
       console.log('teste');
       var row = $(this).closest(".pedido-row");
