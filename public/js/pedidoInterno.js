@@ -1,5 +1,3 @@
-src="https://cdn.jsdelivr.net/npm/sweetalert2@10">
-
 document.getElementById('btnCriarPedido').addEventListener('click', function(event) {
     event.preventDefault(); // Impede o comportamento padrão do botão
     console.log("ativei");
@@ -10,9 +8,9 @@ document.getElementById('btnCriarPedido').addEventListener('click', function(eve
         var quantidade = row.querySelector('td:nth-child(2)').innerText;
         var precoUnitario = row.querySelector('td:nth-child(3)').innerText;
         produtos.push({
-        produto_nome: nomeProduto,
-        quantidade: quantidade,
-        preco_unitario: precoUnitario
+            produto_nome: nomeProduto,
+            quantidade: quantidade,
+            preco_unitario: precoUnitario
         });
     });
     // Obter os valores dos outros campos do formulário
@@ -45,27 +43,27 @@ document.getElementById('btnCriarPedido').addEventListener('click', function(eve
         data: JSON.stringify(pedido),
         contentType: "application/json",
         headers: {
-        "X-CSRF-TOKEN": "{{ csrf_token() }}"
+            "X-CSRF-TOKEN": "{{ csrf_token() }}"
         },
         success: function(data) {
-        Swal.fire({
-            title: "Sucesso!",
-            text: "Pedido salvo com sucesso.",
-            icon: "success",
-            confirmButtonText: "OK"
-        });
-        console.log(data); // Exibir a resposta do servidor no console
-        // Realizar outras ações após o sucesso da requisição
+            Swal.fire({
+                title: "Sucesso!",
+                text: "Pedido salvo com sucesso.",
+                icon: "success",
+                confirmButtonText: "OK"
+            });
+            console.log(data); // Exibir a resposta do servidor no console
+            // Realizar outras ações após o sucesso da requisição
         },
         error: function(error) {
-        Swal.fire({
-            title: "Erro!",
-            text: "Ocorreu um erro ao salvar o pedido.",
-            icon: "error",
-            confirmButtonText: "OK"
-        });
-        console.log(error); // Exibir o erro no console, se houver
-        // Realizar ações de tratamento de erro, se necessário
+            Swal.fire({
+                title: "Erro!",
+                text: "Ocorreu um erro ao salvar o pedido.",
+                icon: "error",
+                confirmButtonText: "OK"
+            });
+            console.log(error); // Exibir o erro no console, se houver
+            // Realizar ações de tratamento de erro, se necessário
         }
     });
 });
