@@ -54,6 +54,7 @@
           <button class="btn btn-success btn-confirmar-pedido">Confirmar</button>
           <!-- <button class="btn btn-danger btn-rejeitar-pedido">Rejeitar</button> -->
           <button class="btn btn-primary btn-consultar-lista-uniforme" data-toggle="modal" data-target="#modalListaUniforme" data-pedido-id="{{ $pedido->id }}">Gerenciar lista uniforme</button>
+          <button class="btn btn-primary btn-teste">Teste</button>
         </td>
       </tr>
       <tr class="produtos-row" style="display: none;">
@@ -70,7 +71,6 @@
     </tbody>
   </table>
 </div>
-
 <!-- Modal Lista Uniforme -->
 <div class="modal fade" id="modalListaUniforme" tabindex="-1" role="dialog" aria-labelledby="modalListaUniformeLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -138,6 +138,10 @@
       var uniforme2 = $("#uniforme2").val();
       // ...
       console.log("Salvar lista uniforme:", uniforme1, uniforme2);
+    });
+    $(".btn-teste").click(function() {
+      console.log("Botão Teste clicado");
+      alert("Teste");
     });
   });
 </script>
