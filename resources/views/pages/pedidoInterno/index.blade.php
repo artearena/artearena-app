@@ -1,19 +1,15 @@
 @extends('layout.main')
-@section('title')
-Tabela de Pedidos
-@endsection
+@section('title', 'Tabela de Pedidos')
 @section('style')
 <style>
   .table {
     text-align: center;
     border: 1px solid #ccc;
   }
-
   .table th,
   .table td {
     border: 1px solid #ccc;
   }
-
   .table th {
     text-align: center;
   }
@@ -22,6 +18,9 @@ Tabela de Pedidos
 @section('content')
 <div class="container">
   <h1>Tabela de Pedidos</h1>
+  <div class="mb-3">
+    <button class="btn btn-primary" id="btnConsultarListaUniforme">Consultar lista uniforme</button>
+  </div>
   <table class="table mt-4 custom-table">
     <thead>
       <tr>
@@ -74,7 +73,6 @@ Tabela de Pedidos
   </table>
 </div>
 @endsection
-
 @section('script')
 <script>
   $(document).ready(function() {
@@ -83,21 +81,21 @@ Tabela de Pedidos
       var produtosRow = row.next(".produtos-row");
       produtosRow.toggle();
     });
-
     $(".btn-confirmar-pedido").click(function() {
       // Obter o ID do pedido
       var pedidoId = $(this).closest(".pedido-row").data("pedido-id");
-
       // Fazer algo com o ID do pedido, como enviar para o servidor
       console.log("Confirmar pedido ID:", pedidoId);
     });
-
     $(".btn-rejeitar-pedido").click(function() {
       // Obter o ID do pedido
       var pedidoId = $(this).closest(".pedido-row").data("pedido-id");
-
       // Fazer algo com o ID do pedido, como enviar para o servidor
       console.log("Rejeitar pedido ID:", pedidoId);
+    });
+    $("#btnConsultarListaUniforme").click(function() {
+      // Fazer algo quando o botão "Consultar lista uniforme" for clicado
+      console.log("Consultar lista uniforme");
     });
   });
 </script>
