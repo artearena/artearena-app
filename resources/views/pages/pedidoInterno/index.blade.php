@@ -14,7 +14,7 @@
     text-align: center;
   }
 </style>
-<script src="../../js/listaUniforme"></script>
+<script src="../../js/listaUniforme.js"></script>
 @endsection
 @section('content')
 <div class="container">
