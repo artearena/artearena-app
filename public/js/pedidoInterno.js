@@ -1,3 +1,4 @@
+console.log('to aqui');
 document.addEventListener("DOMContentLoaded", function() {
     document.getElementById('btnCriarPedido').addEventListener('click', function(event) {
         event.preventDefault(); // Impede o comportamento padrão do botão
