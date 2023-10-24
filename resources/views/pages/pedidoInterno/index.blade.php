@@ -98,7 +98,9 @@
 <script>
   $(document).ready(function() {
     $(".btn-expand-produtos").click(function() {
+      console.log('teste');
       var row = $(this).closest(".pedido-row");
+
       var produtosRow = row.next(".produtos-row");
       produtosRow.toggle();
     });
