@@ -14,6 +14,7 @@
     text-align: center;
   }
 </style>
+<script src="../../js/listaUniforme"></script>
 @endsection
 @section('content')
 <div class="container">
@@ -95,7 +96,9 @@
 </div>
 @endsection
 @section('script')
-
+<script>
+  console.log('teste');
+</script>
 <script>
 console.log('teste-debug');
 document.addEventListener("DOMContentLoaded", function() {
