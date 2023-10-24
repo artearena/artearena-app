@@ -14,7 +14,6 @@
     text-align: center;
   }
 </style>
-<script src="../../js/listaUniforme.js"></script>
 @endsection
 @section('content')
 <div class="container">
@@ -96,11 +95,9 @@
 </div>
 @endsection
 @section('script')
+
 <script>
-  console.log('teste');
-</script>
-<script>
-console.log('teste-debug');
+console.log('teste');
 document.addEventListener("DOMContentLoaded", function() {
     console.log('doc_ready');
     $(".btn-expand-produtos").click(function() {

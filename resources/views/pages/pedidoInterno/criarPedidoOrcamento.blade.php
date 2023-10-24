@@ -80,6 +80,7 @@
           @endforeach
         </tbody>
       </table>
-      <button id="btnCriarPedido" type="button" class="btn btn-primary">Salvar Pedido</button>    </form>
+      <button id="btnCriarPedido" class="btn btn-primary">Salvar Pedido</button>
+    </form>
   </div>
 @endsection
