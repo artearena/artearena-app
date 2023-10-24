@@ -8,7 +8,7 @@
       min-height: 200px;
     }
 </style>
-<script src="../../js/pedidoInterno.js"></script>
+<script src="../../../js/pedidoInterno.js"></script>
 
 @endsection
 @section('content')
