@@ -44,6 +44,9 @@ document.addEventListener("DOMContentLoaded", function() {
             type: "POST",
             data: JSON.stringify(pedido),
             contentType: "application/json",
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
             success: function(data) {
                 Swal.fire({
                     title: "Sucesso!",
