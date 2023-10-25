@@ -1,4 +1,4 @@
-console.log('to aquiatt');
+console.log('to aquit');
 document.addEventListener("DOMContentLoaded", function() {
     document.getElementById('btnCriarPedido').addEventListener('click', function(event) {
         event.preventDefault(); // Impede o comportamento padrão do botão
