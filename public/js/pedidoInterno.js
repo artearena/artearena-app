@@ -43,9 +43,6 @@ document.addEventListener("DOMContentLoaded", function() {
             type: "POST",
             data: JSON.stringify(pedido),
             contentType: "application/json",
-            headers: {
-                "X-CSRF-TOKEN": "{{ csrf_token() }}"
-            },
             success: function(data) {
                 Swal.fire({
                     title: "Sucesso!",
