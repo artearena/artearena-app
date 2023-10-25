@@ -66,7 +66,7 @@
           <td>{{ $pedido->forma_pagamento }}</td>
           <td>{{ $pedido->transportadora }}</td>
           <td>{{ $pedido->valor_frete }}</td>
-          <td id="observacao" style="overflow: auto; max-height: 100px;">{{ $pedido->observacao }}</td>
+          <td id="observacao" style="overflow: auto;">{{ $pedido->observacao }}</td>
           <td>{{ $pedido->marcador }}</td>
           <td>{{ $pedido->data_venda }}</td>
           <td>
