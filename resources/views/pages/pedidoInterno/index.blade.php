@@ -31,6 +31,8 @@
   }
 </style>
 
+<script src="../../js/listaUniforme.js"></script>
+
 @endsection
 @section('content')
 <div class="container">
