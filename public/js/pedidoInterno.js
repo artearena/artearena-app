@@ -36,7 +36,6 @@ document.addEventListener("DOMContentLoaded", function() {
             data_venda: dataVenda,
             produtos: produtos,
             id_orcamento: "{{ $orcamento->id_octa }}",
-            _token: "{{ csrf_token() }}"
         };
         // Fazer a requisição AJAX para salvar o pedido
         $.ajax({
@@ -45,7 +44,7 @@ document.addEventListener("DOMContentLoaded", function() {
             data: JSON.stringify(pedido),
             contentType: "application/json",
             headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                'X-CSRF-TOKEN': "{{ csrf_token() }}"
             },
             success: function(data) {
                 Swal.fire({
