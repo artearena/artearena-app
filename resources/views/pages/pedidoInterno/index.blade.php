@@ -47,7 +47,7 @@
           <th>Forma de Pagamento</th>
           <th>Transportadora</th>
           <th>Valor do Frete</th>
-          <th>Observação</th>
+          <th class="col-lg-6">Observação</th>
           <th>Marcador</th>
           <th>Data da Venda</th>
           <th>Ação</th>
@@ -84,14 +84,13 @@
               @foreach($pedido->produtos ?? [] as $produto)
                   <li>{{ $produto->produto_nome }} (Quantidade: {{ $produto->quantidade }}, Preço Unitário: {{ $produto->preco_unitario }})</li>
               @endforeach
-            </ul
-          </ul>
-        </td>
-      </tr>
-      @endforeach
-      @endisset
-    </tbody>
-  </table>
+            </ul>
+          </td>
+        </tr>
+        @endforeach
+        @endisset
+      </tbody>
+    </table>
 </div>
 <!-- Modal Lista Uniforme -->
 <div class="modal fade" id="modalListaUniforme" tabindex="-1" role="dialog" aria-labelledby="modalListaUniformeLabel" aria-hidden="true">
