@@ -52,7 +52,7 @@
         <td>{{ $pedido->data_venda }}</td>
         <td>
           <button class="btn btn-success btn-confirmar-pedido">
-            <i class="fas fa-check"></i> Confirmar
+            <i class="fas fa-check"></i>
           </button>        
           <button class="btn btn-primary btn-consultar-lista-uniforme" data-toggle="modal" data-target="#modalListaUniforme" data-pedido-id="{{ $pedido->id }}">
             <i class="fas fa-tshirt"></i>
