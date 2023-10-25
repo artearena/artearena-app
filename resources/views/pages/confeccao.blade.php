@@ -221,6 +221,16 @@ Consulta de Pedidos
                                     </select>
                                 </div>
                                 <div class="form-row">
+                                    <label for="tipo_pedido">Tipo de Pedido:</label>
+                                    <select class="form-control" name="tipo_pedido" id="tipo_pedido">
+                                        <option value="Prazo normal">Prazo normal</option>
+                                        <option value="Antecipação">Antecipação</option>
+                                        <option value="Faturado">Faturado</option>
+                                        <option value="Metade/Metade">Metade/Metade</option>
+                                        <option value="Amostra">Amostra</option>
+                                    </select>
+                                </div>
+                                <div class="form-row">
                                     <label for="rolo">Rolo:</label>
                                     <input type="text" class="form-control" name="rolo" id="rolo">
                                 </div>
@@ -253,6 +263,7 @@ Consulta de Pedidos
                                 <th data-filter="true">Medida Linear</th>
                                 <th data-filter="true">Observações</th>
                                 <th data-filter="true">Status</th>
+                                <th data-filter="true">Tipo de Pedido</th>
                                 <th data-filter="true">Rolo</th>
                                 <th>Mover</th>
                                 <th>Excluir</th>
@@ -306,6 +317,18 @@ Consulta de Pedidos
                                         <option value="Conferencia Final" {{ $pedido->status == 'Conferencia Final' ? 'selected' : '' }}>Conferencia Final</option>
                                         <option value="Finalizado" {{ $pedido->status == 'Finalizado' ? 'selected' : '' }}>Finalizado</option>
                                         <option value="Reposição" {{ $pedido->status == 'Reposição' ? 'selected' : '' }}>Reposição</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <select class='form-control' name='tipo_pedido'>
+                                        <option value="Prazo normal" {{ $pedido->tipo_pedido == 'Prazo normal' ? 'selected' : '' }}>Prazo normal</option>
+                                        <option value="Antecipação" {{ $pedido->tipo_pedido == 'Antecipação' ? 'selected' : '' }}>Antecipação</option>
+                                        <option value="Faturado" {{ $pedido->tipo_pedido == 'Faturado' ? 'selected' : '' }}>Faturado</option>
+                                        <option value="Metade/Metade" {{ $pedido->tipo_pedido == 'Metade/Metade' ? 'selected' : '' }}>Metade/Metade</option>
+                                        <option value="Amostra" {{ $pedido->tipo_pedido == 'Amostra' ? 'selected' : '' }}>Amostra</option>
+                                        <option value="{{ $pedido->tipo_pedido }}" {{ !in_array($pedido->tipo_pedido, ['Prazo normal', 'Antecipação', 'Faturado', 'Metade/Metade', 'Amostra']) ? 'selected' : '' }}>
+                                            {{ $pedido->tipo_pedido }}
+                                        </option>
                                     </select>
                                 </td>
                                 <td><input type='text' class='form-control' name='rolo' value="{{ $pedido->rolo }}"></td>
@@ -533,10 +556,28 @@ $(document).ready(function(){
         var medida_linear = $('#medida_linear').val();
         var observacoes = $('#observacoes').val();
         var status = $('#status').val();
+        var tipo_pedido = $('#tipo_pedido').val();
         var rolo = $('#rolo').val();
         var tiny = $('#tiny').val();
         var etapa = 'C';
 
+        // Verificar se os campos obrigatórios estão preenchidos
+        if (id === '' || data === '' || material === '' || tipo_pedido === '') {
+            var campoFaltante = '';
+            if (id === '') campoFaltante = 'o ID';
+            else if (data === '') campoFaltante = 'a data';
+            else if (material === '') campoFaltante = 'o material';
+            else if (tipo_pedido === '') campoFaltante = 'o tipo de pedido';
+
+            Swal.fire({
+                title: 'Campos obrigatórios',
+                text: 'Por favor, preencha ' + campoFaltante,
+                icon: 'warning',
+                timer: 3000,
+                showConfirmButton: false
+            });
+            return;
+        }
 
         // Enviar a requisição AJAX para salvar o pedido
         $.ajax({
@@ -921,11 +962,28 @@ $('.mover-pedido').click(function () {
             $("#tabela-pedidos tbody tr").each(function() {
                 var status = $(this).find("select[name='status']").val();
                 var data = $(this).find("input[name='data']").val();
+                var tipoPedido = $(this).find("select[name='tipo_pedido']").val(); // Adicione essa linha
 
                 setStatusColor(status, $(this).find("td:nth-child(7)"));
                 setDataColor(data, $(this).find("td:nth-child(2)"));
+                setTipoPedidoColor(tipoPedido, $(this).find("td:nth-child(8)")); // Adicione essa linha
 
             });
+        }
+        function setTipoPedidoColor(value, element) {
+            if (value === "Prazo normal") {
+                element.attr("data-color", "blue");
+            } else if (value === "Antecipação") {
+                element.attr("data-color", "purple");
+            } else if (value === "Faturado") {
+                element.attr("data-color", "green");
+            } else if (value === "Metade/Metade") {
+                element.attr("data-color", "orange");
+            } else if (value === "Amostra") {
+                element.attr("data-color", "pink");
+            } else {
+                element.removeAttr("data-color");
+            }
         }
         function atualizarQuantidadeRegistros() {
             let quantidadeRegistros = $('#tabela-pedidos').DataTable().data().count();
