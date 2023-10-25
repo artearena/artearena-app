@@ -1,89 +1,85 @@
-@extends('layout.main')
-
-@section('title')
-  Tabela de pedidos
-@endsection
-
-@section('style')
-<style>
-  .table {
-    border: 1px solid #ccc;
-  }
-  .table th,
-  .table td {
-    border: 1px solid #ccc;
-  }
-  .table th {
-    text-align: center;
-  }
-  #observacao {
-    overflow: hidden; /* Oculta o overflow */
-    overflow-y: auto; /* Adiciona barra de rolagem vertical apenas quando necessário */
-    white-space: pre-wrap; /* Permite quebras de linha */
-    max-height: 100px; /* Altura máxima do campo */
-  }
-  .container {
-    width: 100%;
-    padding-right: 15px;
-    padding-left: 15px;
-    margin-right: auto;
-    margin-left: auto;
-  }
-</style>
-
-<script src="../../js/listaUniforme.js"></script>
-
-@endsection
-@section('content')
-<div class="container">
-  <h1>Tabela de Pedidos</h1>
-  <table id="pedidosTable" class="table mt-4 custom-table">
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>Cliente ID</th>
-        <th>Vendedor</th>
-        <th>Produtos</th>
-        <th>Forma de Pagamento</th>
-        <th>Transportadora</th>
-        <th>Valor do Frete</th>
-        <th>Observação</th>
-        <th>Marcador</th>
-        <th>Data da Venda</th>
-        <th>Ação</th>
-      </tr>
-    </thead>
-    <tbody>
-      @isset($pedidos)
-      @foreach($pedidos as $pedido)
-      <tr class="pedido-row" data-pedido-id="{{ $pedido->id }}">
-        <td>{{ $pedido->id }}</td>
-        <td>{{ $pedido->cliente_id }}</td>
-        <td>{{ $pedido->Vendedor }}</td>
-        <td>
-          <button class="btn btn-link btn-expand-produtos">Expandir</button>
-        </td>
-        <td>{{ $pedido->forma_pagamento }}</td>
-        <td>{{ $pedido->transportadora }}</td>
-        <td>{{ $pedido->valor_frete }}</td>
-        <td id="observacao">{{ $pedido->observacao }}</td>
-        <td>{{ $pedido->marcador }}</td>
-        <td>{{ $pedido->data_venda }}</td>
-        <td>
-          <button class="btn btn-success btn-confirmar-pedido">
-            <i class="fas fa-check"></i>
-          </button>        
-          <button class="btn btn-primary btn-consultar-lista-uniforme" data-toggle="modal" data-target="#modalListaUniforme" data-pedido-id="{{ $pedido->id }}">
-            <i class="fas fa-tshirt"></i>
-          </button>
-        </td>
-      </tr>
-      <tr class="produtos-row" style="display: none;">
-        <td colspan="11">
-          <ul>
-            @foreach($pedido->produtos ?? [] as $produto)
-                <li>{{ $produto->produto_nome }} (Quantidade: {{ $produto->quantidade }}, Preço Unitário: {{ $produto->preco_unitario }})</li>
-            @endforeach
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Tabela de Pedidos</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+  <style>
+    .table {
+      border: 1px solid #ccc;
+    }
+    .table th,
+    .table td {
+      border: 1px solid #ccc;
+    }
+    .table th {
+      text-align: center;
+    }
+    #observacao {
+      overflow: auto; /* Oculta o overflow */
+      overflow-y: auto; /* Adiciona barra de rolagem vertical apenas quando necessário */
+      white-space: pre-wrap; /* Permite quebras de linha */
+      max-height: 100px; /* Altura máxima do campo */
+    }
+    .container {
+      width: 100%;
+      padding-right: 15px;
+      padding-left: 15px;
+      margin-right: auto;
+      margin-left: auto;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Tabela de Pedidos</h1>
+    <table id="pedidosTable" class="table mt-4 custom-table table-responsive">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Cliente ID</th>
+          <th>Vendedor</th>
+          <th>Produtos</th>
+          <th>Forma de Pagamento</th>
+          <th>Transportadora</th>
+          <th>Valor do Frete</th>
+          <th>Observação</th>
+          <th>Marcador</th>
+          <th>Data da Venda</th>
+          <th>Ação</th>
+        </tr>
+      </thead>
+      <tbody>
+        @isset($pedidos)
+        @foreach($pedidos as $pedido)
+        <tr class="pedido-row" data-pedido-id="{{ $pedido->id }}">
+          <td>{{ $pedido->id }}</td>
+          <td>{{ $pedido->cliente_id }}</td>
+          <td>{{ $pedido->Vendedor }}</td>
+          <td>
+            <button class="btn btn-link btn-expand-produtos">Expandir</button>
+          </td>
+          <td>{{ $pedido->forma_pagamento }}</td>
+          <td>{{ $pedido->transportadora }}</td>
+          <td>{{ $pedido->valor_frete }}</td>
+          <td id="observacao" style="overflow: auto; max-height: 100px;">{{ $pedido->observacao }}</td>
+          <td>{{ $pedido->marcador }}</td>
+          <td>{{ $pedido->data_venda }}</td>
+          <td>
+            <button class="btn btn-success btn-confirmar-pedido">
+              <i class="fas fa-check"></i>
+            </button>        
+            <button class="btn btn-primary btn-consultar-lista-uniforme" data-toggle="modal" data-target="#modalListaUniforme" data-pedido-id="{{ $pedido->id }}">
+              <i class="fas fa-tshirt"></i>
+            </button>
+          </td>
+        </tr>
+        <tr class="produtos-row" style="display: none;">
+          <td colspan="11">
+            <ul>
+              @foreach($pedido->produtos ?? [] as $produto)
+                  <li>{{ $produto->produto_nome }} (Quantidade: {{ $produto->quantidade }}, Preço Unitário: {{ $produto->preco_unitario }})</li>
+              @endforeach
           </ul>
         </td>
       </tr>
