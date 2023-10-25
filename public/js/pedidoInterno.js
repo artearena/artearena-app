@@ -1,4 +1,3 @@
-console.log('to aquit');
 document.addEventListener("DOMContentLoaded", function() {
     document.getElementById('btnCriarPedido').addEventListener('click', function(event) {
         event.preventDefault(); // Impede o comportamento padrão do botão
@@ -45,7 +44,7 @@ document.addEventListener("DOMContentLoaded", function() {
             data: JSON.stringify(pedido),
             contentType: "application/json",
             headers: {
-                'X-CSRF-TOKEN': "{{ csrf_token() }}"
+                "X-CSRF-TOKEN": "{{ csrf_token() }}"
             },
             success: function(data) {
                 Swal.fire({
