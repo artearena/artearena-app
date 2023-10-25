@@ -1,4 +1,4 @@
-console.log('to aqui att');
+console.log('to aqui novo');
 document.addEventListener("DOMContentLoaded", function() {
     document.getElementById('btnCriarPedido').addEventListener('click', function(event) {
         event.preventDefault(); // Impede o comportamento padrão do botão
