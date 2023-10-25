@@ -14,8 +14,6 @@
     text-align: center;
   }
   #observacao {
-    height: 1em; /* Altura inicial de 1 linha */
-    max-height: 3em; /* Altura máxima de 3 linhas */
     overflow: hidden; /* Oculta o overflow */
     overflow-y: auto; /* Adiciona barra de rolagem vertical apenas quando necessário */
     white-space: pre-wrap; /* Permite quebras de linha */
