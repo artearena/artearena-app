@@ -618,7 +618,7 @@ $.ajaxSetup({
                     "targets": [10], "visible": true
                 },
                 {
-                    "targets": [9], "visible": false
+                    "targets": [9], "visible": true
                 } 
                 // -Adicione mais definições de colunas conforme necessário
             ],
