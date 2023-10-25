@@ -51,10 +51,12 @@
         <td>{{ $pedido->marcador }}</td>
         <td>{{ $pedido->data_venda }}</td>
         <td>
-          <button class="btn btn-success btn-confirmar-pedido">Confirmar</button>
-          <!-- <button class="btn btn-danger btn-rejeitar-pedido">Rejeitar</button> -->
-          <button class="btn btn-primary btn-consultar-lista-uniforme" data-toggle="modal" data-target="#modalListaUniforme" data-pedido-id="{{ $pedido->id }}">Gerenciar lista uniforme</button>
-          <button class="btn btn-primary btn-teste">Teste</button>
+          <button class="btn btn-success btn-confirmar-pedido">
+            <i class="fas fa-check"></i> Confirmar
+          </button>        
+          <button class="btn btn-primary btn-consultar-lista-uniforme" data-toggle="modal" data-target="#modalListaUniforme" data-pedido-id="{{ $pedido->id }}">
+            <i class="fas fa-tshirt"></i>
+          </button>
         </td>
       </tr>
       <tr class="produtos-row" style="display: none;">
