@@ -1,10 +1,11 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-  <meta charset="UTF-8">
-  <title>Tabela de Pedidos</title>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-  <style>
+@extends('layout.main')
+
+@section('title')
+  Tabela de pedidos
+@endsection
+
+@section('style')
+<style>
     .table {
       border: 1px solid #ccc;
     }
@@ -29,9 +30,12 @@
       margin-left: auto;
     }
   </style>
-</head>
-<body>
-  <div class="container">
+
+<script src="../../js/listaUniforme.js"></script>
+
+@endsection
+@section('content')
+<div class="container">
     <h1>Tabela de Pedidos</h1>
     <table id="pedidosTable" class="table mt-4 custom-table table-responsive">
       <thead>
@@ -80,6 +84,7 @@
               @foreach($pedido->produtos ?? [] as $produto)
                   <li>{{ $produto->produto_nome }} (Quantidade: {{ $produto->quantidade }}, Preço Unitário: {{ $produto->preco_unitario }})</li>
               @endforeach
+            </ul
           </ul>
         </td>
       </tr>
