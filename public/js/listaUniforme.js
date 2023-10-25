@@ -1,9 +1,4 @@
 document.addEventListener("DOMContentLoaded", function() {
-    $("#pedidosTable").DataTable({
-      language: {
-        url: "//cdn.datatables.net/plug-ins/1.10.24/i18n/Portuguese-Brasil.json"
-      }
-    });
 
     $(".btn-expand-produtos").click(function() {
       var row = $(this).closest(".pedido-row");
