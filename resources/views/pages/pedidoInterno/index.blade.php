@@ -7,29 +7,29 @@
 @section('style')
 <style>
     .table {
-      border: 1px solid #ccc;
+      border: 1px solid #ccc !important;
     }
     .table th,
     .table td {
-      border: 1px solid #ccc;
+      border: 1px solid #ccc !important;
     }
     .table th {
-      text-align: center;
+      text-align: center !important;
     }
     #observacao {
-      overflow: auto; /* Oculta o overflow */
-      overflow-y: auto; /* Adiciona barra de rolagem vertical apenas quando necessário */
-      white-space: pre-wrap; /* Permite quebras de linha */
-      max-height: 20px; /* Altura máxima do campo */
+      overflow: auto !important; /* Oculta o overflow */
+      overflow-y: auto !important; /* Adiciona barra de rolagem vertical apenas quando necessário */
+      white-space: pre-wrap !important; /* Permite quebras de linha */
+      max-height: 20px !important; /* Altura máxima do campo */
     }
     .container {
-      width: 100%;
-      padding-right: 15px;
-      padding-left: 15px;
-      margin-right: auto;
-      margin-left: auto;
+      width: 100% !important;
+      padding-right: 15px !important;
+      padding-left: 15px !important;
+      margin-right: auto !important;
+      margin-left: auto !important;
     }
-  </style>
+</style>
 
 <script src="../../js/listaUniforme.js"></script>
 
