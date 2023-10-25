@@ -87,7 +87,7 @@
 @endsection
 @section('script')
 <script>
-  console.log('to aqui');
+  console.log('to aqui att');
   document.addEventListener("DOMContentLoaded", function() {
       document.getElementById('btnCriarPedido').addEventListener('click', function(event) {
           event.preventDefault(); // Impede o comportamento padrão do botão
