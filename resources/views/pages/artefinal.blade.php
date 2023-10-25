@@ -1365,9 +1365,8 @@ $.ajaxSetup({
 
                     setDificuldadeColor(dificuldade, $(this).find("td:nth-child(7)"));
                     setStatusColor(status, $(this).find("td:nth-child(9)"));
-                    setChecagemFinalColor(checagemFinal, $(this).find("td:nth-child(10)"));
+                    setChecagemFinalColor(checagemFinal, $(this).find("td:nth-child(11)"));
                     setDataColor(data, $(this).find("td:nth-child(2)"));
-                    //setTipoPedidoColor(tipoPedido, $(this).find("td:nth-child(10)")); // Adicione essa linha
 
                 });
             }
