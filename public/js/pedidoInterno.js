@@ -1,4 +1,4 @@
-console.log('to a3qui');
+console.log('to aqui');
 document.addEventListener("DOMContentLoaded", function() {
     document.getElementById('btnCriarPedido').addEventListener('click', function(event) {
         event.preventDefault(); // Impede o comportamento padrão do botão
@@ -44,6 +44,9 @@ document.addEventListener("DOMContentLoaded", function() {
             type: "POST",
             data: JSON.stringify(pedido),
             contentType: "application/json",
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
             success: function(data) {
                 Swal.fire({
                     title: "Sucesso!",
