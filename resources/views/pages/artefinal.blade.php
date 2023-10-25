@@ -754,12 +754,13 @@ $.ajaxSetup({
         var etapa = 'A';
         
         // Verificar se os campos obrigatórios estão preenchidos
-        if (id === '' || data === '' || link_trello === '' || material === '') {
+        if (id === '' || data === '' || link_trello === '' || material === '' || tipo_pedido === '') {
             var campoFaltante = '';
             if (id === '') campoFaltante = 'o ID';
             else if (data === '') campoFaltante = 'a data';
             else if (link_trello === '') campoFaltante = 'o link do trello';
             else if (material === '') campoFaltante = 'o material';
+            else if (tipo_pedido === '') campoFaltante = 'o tipo de pedido';
 
             Swal.fire({
                 title: 'Campos obrigatórios',
@@ -796,7 +797,7 @@ $.ajaxSetup({
                     timer: 3000, // Defina o tempo que o alerta será exibido (em milissegundos)
                     showConfirmButton: false // Ocultar o botão "OK"
                 });
-                // Limpar os campos do formulário
+
                 $('#id').val('');
                 $('#data').val('');
                 $('#material').val('');
@@ -805,7 +806,7 @@ $.ajaxSetup({
                 $('#status').val('');
                 $('#designer').val('');
                 $('#link_trello').val('');
-                // Restante do código...
+
             },
             error: function(xhr, status, error) {
                 // Tratamento de erro: exibir pop-up com a mensagem de erro filtrada
