@@ -36,6 +36,7 @@ document.addEventListener("DOMContentLoaded", function() {
             data_venda: dataVenda,
             produtos: produtos,
             id_orcamento: "{{ $orcamento->id_octa }}",
+            _token: "{{ csrf_token() }}"
         };
         // Fazer a requisição AJAX para salvar o pedido
         $.ajax({
