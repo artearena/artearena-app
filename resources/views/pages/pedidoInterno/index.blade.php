@@ -3,7 +3,6 @@
 @section('style')
 <style>
   .table {
-    text-align: center;
     border: 1px solid #ccc;
   }
   .table th,
@@ -19,12 +18,19 @@
     white-space: pre-wrap; /* Permite quebras de linha */
     max-height: 100px; /* Altura máxima do campo */
   }
+  .container {
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+  }
 </style>
 @endsection
 @section('content')
 <div class="container">
   <h1>Tabela de Pedidos</h1>
-  <table class="table mt-4 custom-table">
+  <table id="pedidosTable" class="table mt-4 custom-table">
     <thead>
       <tr>
         <th>ID</th>
@@ -105,15 +111,23 @@
 @section('script')
 <script>
 document.addEventListener("DOMContentLoaded", function() {
+    $("#pedidosTable").DataTable({
+      language: {
+        url: "//cdn.datatables.net/plug-ins/1.10.24/i18n/Portuguese-Brasil.json"
+      }
+    });
+
     $(".btn-expand-produtos").click(function() {
       var row = $(this).closest(".pedido-row");
       var produtosRow = row.next(".produtos-row");
       produtosRow.toggle();
     });
+
     $(".btn-confirmar-pedido").click(function() {
       var pedidoId = $(this).closest(".pedido-row").data("pedido-id");
       console.log("Confirmar pedido ID:", pedidoId);
     });
+
     $(".btn-consultar-lista-uniforme").click(function() {
       var pedidoId = $(this).data("pedido-id");
       console.log("Consultar lista uniforme para o pedido ID:", pedidoId);
@@ -122,6 +136,7 @@ document.addEventListener("DOMContentLoaded", function() {
       form.append('<div class="form-group"><label for="uniforme1">Uniforme 1:</label><input type="text" class="form-control" id="uniforme1" name="uniforme1"></div>');
       form.append('<div class="form-group"><label for="uniforme2">Uniforme 2:</label><input type="text" class="form-control" id="uniforme2" name="uniforme2"></div>');
     });
+
     $("#btnSalvarListaUniforme").click(function() {
       var uniforme1 = $("#uniforme1").val();
       var uniforme2 = $("#uniforme2").val();
