@@ -52,7 +52,7 @@
         <td>{{ $pedido->forma_pagamento }}</td>
         <td>{{ $pedido->transportadora }}</td>
         <td>{{ $pedido->valor_frete }}</td>
-        <td>{{ $pedido->observacao }}</td>
+        <td id="observacao">{{ $pedido->observacao }}</td>
         <td>{{ $pedido->marcador }}</td>
         <td>{{ $pedido->data_venda }}</td>
         <td>
