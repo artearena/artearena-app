@@ -16,7 +16,6 @@
         overflow: auto !important; /* Oculta o overflow */
         overflow-y: auto !important; /* Adiciona barra de rolagem vertical apenas quando necessário */
         white-space: pre-wrap !important; /* Permite quebras de linha */
-        max-height: 20px !important; /* Altura máxima do campo */
     }
     .container {
         width: 100% !important;
