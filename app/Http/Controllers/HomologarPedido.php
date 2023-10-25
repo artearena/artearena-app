@@ -7,16 +7,16 @@ use Illuminate\Http\Request;
 use App\Models\PedidoInterno;
 use App\Models\Usuario;
 use App\Models\Orcamentos;
+use App\Models\ListaUniforme;
 
 class HomologarPedido extends Controller
 {
     public function index()
     {
         $pedidos = PedidoInterno::all();
-
         return view('pages.pedidoInterno.index', compact('pedidos'));
     }
-    
+
     public function criarPedidoOrcamento($id)
     {
         $vendedores = Usuario::whereIn('permissoes', [17, 18])->pluck('nome_usuario');
@@ -42,7 +42,7 @@ class HomologarPedido extends Controller
             'produtos.*.preco_unitario' => 'nullable',
         ]);
 
-        // Criação do pedido internow'
+        // Criação do pedido interno
         $pedidoInterno = PedidoInterno::create($request->all());
 
         // Adicionar os produtos ao pedido interno
@@ -51,8 +51,50 @@ class HomologarPedido extends Controller
                 $pedidoInterno->produtos()->create($produto);
             }
         }
-        
+
+        // Verificar os produtos
+        if ($request->has('produtos')) {
+            foreach ($request->produtos as $produto) {
+                $this->verificarProduto($produto['produto_nome'], $pedidoInterno->id);
+            }
+        }
+
         // Retornar uma resposta de sucesso
         return response()->json(['message' => 'Pedido interno criado com sucesso'], 201);
+    }
+
+    public function verificarProduto($produtoNome, $pedidoId)
+    {
+        $palavrasChave = [
+            'uniforme',
+            'balaclava',
+            'calcao',
+            'camisa',
+            'camisao',
+            'camiseta',
+            'colete',
+            'meiao',
+            'samba',
+            'abada',
+            'roupao',
+            'corte',
+            'chinelo',
+            'shorts'
+        ];
+
+        $produtoNome = mb_strtolower($produtoNome, 'UTF-8');
+
+        foreach ($palavrasChave as $palavraChave) {
+            $palavraChave = mb_strtolower($palavraChave, 'UTF-8');
+
+            if (strpos($produtoNome, $palavraChave) !== false) {
+                $dataCriacao = date('Y-m-d');
+                ListaUniforme::create([
+                    'id_pedido' => $pedidoId,
+                    'data_criacao' => $dataCriacao
+                ]);
+                break;
+            }
+        }
     }
 }
