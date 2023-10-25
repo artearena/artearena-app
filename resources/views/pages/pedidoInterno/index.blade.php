@@ -13,6 +13,11 @@
   .table th {
     text-align: center;
   }
+  #observacao {
+    overflow: hidden; /* Oculta o overflow */
+    overflow-y: auto; /* Adiciona barra de rolagem vertical apenas quando necessário */
+    white-space: pre-wrap; /* Permite quebras de linha */
+  }
 </style>
 @endsection
 @section('content')
