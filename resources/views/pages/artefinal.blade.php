@@ -272,6 +272,7 @@ Consulta de Pedidos
                                 <div class="form-row">
                                     <label for="tipo_pedido">Tipo de Pedido:</label>
                                     <select class="form-control" name="tipo_pedido" id="tipo_pedido">
+                                        <option value="">Selecione uma opção</option>
                                         <option value="Prazo normal">Prazo normal</option>
                                         <option value="Antecipação">Antecipação</option>
                                         <option value="Faturado">Faturado</option>
