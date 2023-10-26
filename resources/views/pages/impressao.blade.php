@@ -260,6 +260,7 @@ Consulta de Pedidos
                                 <th data-filter="true">Medida Linear</th>
                                 <th data-filter="true">Observações</th>
                                 <th data-filter="true">Status</th>
+                                <th data-filter="true">Tipo de Pedido</th>
                                 <th data-filter="true">Rolo</th>
                                 <th>Mover</th>
                                 <th>Excluir</th>
