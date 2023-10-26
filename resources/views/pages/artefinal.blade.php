@@ -808,6 +808,7 @@ $.ajaxSetup({
                 $('#status').val('');
                 $('#designer').val('');
                 $('#link_trello').val('');
+                $('#tipo_pedido').val('');
 
             },
             error: function(xhr, status, error) {
