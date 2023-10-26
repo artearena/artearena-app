@@ -598,6 +598,7 @@ $(document).ready(function(){
                 medida_linear: medida_linear,
                 observacoes: observacoes,
                 status: status,
+                tipo_pedido: tipo_pedido,
                 rolo: rolo,
                     tiny: tiny,
                 etapa: etapa,

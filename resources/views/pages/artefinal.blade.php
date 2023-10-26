@@ -785,6 +785,7 @@ $.ajaxSetup({
                 medida_linear: medida_linear,
                 observacoes: observacoes,
                 status: status,
+                tipo_pedido: tipo_pedido,
                 designer: designer,
                 etapa: etapa,
                 link_trello: link_trello,
