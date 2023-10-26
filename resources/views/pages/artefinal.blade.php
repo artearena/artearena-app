@@ -1341,21 +1341,21 @@ $.ajaxSetup({
                     return false; // Cancela o evento de clique
                 }
             }
-            function setTipoPedidoColor(value, element) {
-                if (value === "Prazo normal") {
-                    element.attr("data-color", "blue");
-                } else if (value === "Antecipação") {
-                    element.attr("data-color", "purple");
-                } else if (value === "Faturado") {
-                    element.attr("data-color", "green");
-                } else if (value === "Metade/Metade") {
-                    element.attr("data-color", "orange");
-                } else if (value === "Amostra") {
-                    element.attr("data-color", "pink");
-                } else {
-                    element.removeAttr("data-color");
-                }
-            }
+            function setTipoPedidoColor(value, element) { 
+                if (value === "Prazo normal") { 
+                    element.attr("data-color", "white"); 
+                } else if (value === "Antecipação") { 
+                    element.attr("data-color", "red"); 
+                } else if (value === "Faturado") { 
+                    element.attr("data-color", "purple"); 
+                } else if (value === "Metade/Metade") { 
+                    element.attr("data-color", "orange"); 
+                } else if (value === "Amostra") { 
+                    element.attr("data-color", "pink"); 
+                } else { 
+                    element.removeAttr("data-color"); 
+                } 
+            }  
             // Função para atualizar as cores de fundo dos campos
             function updateColors() {
                 $("#tabela-pedidos tbody tr").each(function() {

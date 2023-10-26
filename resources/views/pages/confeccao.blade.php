@@ -62,6 +62,7 @@ Consulta de Pedidos
     td {
         text-align: center;
     }
+
     /* Estilização para os campos com cores */
     td[data-color="red"] {
         background-color: #fa7f72; /* Vermelho */
@@ -82,23 +83,29 @@ Consulta de Pedidos
     td[data-color="orange"] {
         background-color: #FFE5A0; /* Laranja */
     }
+
     td[data-color="pink"] {
-        background-color: #FFC0CB; /* rosa */
+        background-color: #FFC0CB; /* Rosa */
     }
+
     td[data-color="purple"] {
-        background-color: #800080; /* roxo */
+        background-color: #800080; /* Roxo */
     }
+
     td[data-color="blue"] {
-        background-color: #0000FF; /* azul */
+        background-color: #0000FF; /* Azul */
     }
+
     td[data-color="lightblue"] {
-        background-color: #C6DBE1; /* azul */
+        background-color: #C6DBE1; /* Azul claro */
     }
+
     td[data-color="lightgray"] {
-        background-color: #E6E6E6; /* azul */
+        background-color: #E6E6E6; /* Cinza claro */
     }
+
     td[data-color="darkblue"] {
-        background-color: #215A6C; /* azul */
+        background-color: #215A6C; /* Azul escuro */
     }
     /* Definindo cores de texto para os campos */
     td[data-color="red"], td[data-color="orange"], td[data-color="pink"], td[data-color="purple"], td[data-color="blue"] {
@@ -970,21 +977,21 @@ $('.mover-pedido').click(function () {
 
             });
         }
-        function setTipoPedidoColor(value, element) {
-            if (value === "Prazo normal") {
-                element.attr("data-color", "blue");
-            } else if (value === "Antecipação") {
-                element.attr("data-color", "purple");
-            } else if (value === "Faturado") {
-                element.attr("data-color", "green");
-            } else if (value === "Metade/Metade") {
-                element.attr("data-color", "orange");
-            } else if (value === "Amostra") {
-                element.attr("data-color", "pink");
-            } else {
-                element.removeAttr("data-color");
-            }
-        }
+        function setTipoPedidoColor(value, element) { 
+            if (value === "Prazo normal") { 
+                element.attr("data-color", "white"); 
+            } else if (value === "Antecipação") { 
+                element.attr("data-color", "red"); 
+            } else if (value === "Faturado") { 
+                element.attr("data-color", "purple"); 
+            } else if (value === "Metade/Metade") { 
+                element.attr("data-color", "orange"); 
+            } else if (value === "Amostra") { 
+                element.attr("data-color", "pink"); 
+            } else { 
+                element.removeAttr("data-color"); 
+            } 
+        }  
         function atualizarQuantidadeRegistros() {
             let quantidadeRegistros = $('#tabela-pedidos').DataTable().data().count();
             $('#quantidade-registros').text('Quantidade: ' + quantidadeRegistros + ' registros');
