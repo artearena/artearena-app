@@ -128,10 +128,9 @@ function gerarLinkTemporario() {
     // Gera um token de acesso temporário
     console.log('clicou');
     // URL da requisição para gerar o link temporário
-    const url = "/gerarLinkCadastroCliente";
 
     // Faz a requisição GET
-    fetch(url)
+    fetch('/gerarLinkCadastroCliente')
         .then(response => response.json())
         .then(data => {
             // Obtém o link do JSON retornado pela requisição
