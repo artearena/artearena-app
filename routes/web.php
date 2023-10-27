@@ -13,6 +13,7 @@ use App\Http\Controllers\OrcamentosController;
 use App\Http\Controllers\ErroController;
 use App\Http\Controllers\HomologarPedido;
 use App\Http\Controllers\ListaUniformeController;
+use App\Http\Controllers\AcessoTemporarioController;
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/', [SiteController::class, 'index'])->name('index');
@@ -98,6 +99,10 @@ Route::prefix('cadastro')->group(function () {
 
     // Rota para excluir um registro de cadastro
     Route::delete('/{id}', [CadastroController::class, 'destroy'])->name('cadastro.destroy');
+
+    // Rota para excluir um registro de cadastro
+    Route::get('/gerarLinkCadastroCliente', [AcessoTemporarioController::class, 'index']);
+
 });
 
 Route::get('/', [AuthController::class, 'login_page'])->name('index_login_page')->middleware('guest');

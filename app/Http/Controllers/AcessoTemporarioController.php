@@ -20,11 +20,10 @@ class AcessoTemporarioController extends Controller
             'pedido_id' => $pedido->id,
         ]);
 
-        // Cria o link de acesso temporário
-        $link = route('acesso-temporario.submit', ['token' => $token]);
+        $link = url('https://arte.app.br/cadastro') . '?token=' . $token;
 
-        // Retorna a view da página de acesso temporário
-        return view('acesso-temporario', [
+        // Retorna o JSON com o link
+        return response()->json([
             'link' => $link,
         ]);
     }
@@ -37,7 +36,7 @@ class AcessoTemporarioController extends Controller
 
         if ($acessoTemporario && $acessoTemporario->validade >= now()) {
             // Redireciona o usuário para a página /listaUniformes
-            return redirect('/listaUniformes');
+            return view('pages.cadastro.index');
         } else {
             // Retorna uma mensagem de erro
             return back()->withErrors(['token' => 'Token inválido ou expirado.']);

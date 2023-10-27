@@ -122,7 +122,35 @@ Inicio
             </div>
     </div>
 </div>
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">Gerar Link Temporário</h5>
+        <p class="card-text">Gerar link para o cliente se cadastrar</p>
+        <a href="#" class="btn btn-outline-danger" onclick="gerarLinkTemporario()">Gerar</a>
+    </div>
+</div>
 
+<script>
+function gerarLinkTemporario() {
+    // Gera um token de acesso temporário
+
+    // URL da requisição para gerar o link temporário
+    const url = "/gerarLinkCadastroCliente";
+
+    // Faz a requisição GET
+    fetch(url)
+        .then(response => response.json())
+        .then(data => {
+            // Obtém o link do JSON retornado pela requisição
+            const link = data.link;
+
+            console.log(link);
+        })
+        .catch(error => {
+            console.error('Erro:', error);
+        });
+}
+</script>
 <script>
     $(document).ready(function() {
         // Abrir o modal ao clicar no botão "Encurtar Link"
