@@ -47,6 +47,13 @@ Inicio
                     <button id="btn-encurtar-link" class="btn btn-outline-primary">Encurtar Link</button>
                 </div>
             </div>
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Gerar Link Temporário</h5>
+                    <p class="card-text">Gerar link para o cliente se cadastrar</p>
+                    <a href="#" class="btn btn-outline-danger" onclick="gerarLinkTemporario()>Gerar</a>
+                </div>
+            </div>
         </div>
         <div class="col-md-4">
             <h5>Design</h5>
@@ -88,13 +95,6 @@ Inicio
                     <a href="{{ route('reposicao') }}" class="btn btn-outline-danger">Acessar</a>
                 </div>
             </div>
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Gerar Link Temporário</h5>
-                    <p class="card-text">Gerar link para o cliente se cadastrar</p>
-                    <a href="#" class="btn btn-outline-danger">Gerar</a>
-                </div>
-            </div>
         </div>
     </div>
 </div>
@@ -120,13 +120,6 @@ Inicio
                 <button type="button" class="btn btn-primary" id="btn-encurtar">Encurtar</button>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal" aria-label="Cerrar">Fechar</button>            </div>
             </div>
-    </div>
-</div>
-<div class="card">
-    <div class="card-body">
-        <h5 class="card-title">Gerar Link Temporário</h5>
-        <p class="card-text">Gerar link para o cliente se cadastrar</p>
-        <a href="#" class="btn btn-outline-danger" onclick="gerarLinkTemporario()">Gerar</a>
     </div>
 </div>
 
