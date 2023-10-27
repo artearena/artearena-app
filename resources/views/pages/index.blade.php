@@ -51,7 +51,7 @@ Inicio
                 <div class="card-body">
                     <h5 class="card-title">Gerar Link Temporário</h5>
                     <p class="card-text">Gerar link para o cliente se cadastrar</p>
-                    <a href="#" class="btn btn-outline-danger" onclick="gerarLinkTemporario()>Gerar</a>
+                    <a href="#" class="btn btn-outline-danger" onclick="gerarLinkTemporario()">Gerar</a>
                 </div>
             </div>
         </div>
