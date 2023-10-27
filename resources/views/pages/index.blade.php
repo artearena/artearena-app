@@ -88,6 +88,13 @@ Inicio
                     <a href="{{ route('reposicao') }}" class="btn btn-outline-danger">Acessar</a>
                 </div>
             </div>
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Gerar Link Temporário</h5>
+                    <p class="card-text">Gerar link para o cliente se cadastrar</p>
+                    <a href="#" class="btn btn-outline-danger">Gerar</a>
+                </div>
+            </div>
         </div>
     </div>
 </div>
