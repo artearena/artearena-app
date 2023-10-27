@@ -133,7 +133,7 @@ Inicio
 <script>
 function gerarLinkTemporario() {
     // Gera um token de acesso temporário
-
+    console.log('clicou');
     // URL da requisição para gerar o link temporário
     const url = "/gerarLinkCadastroCliente";
 
