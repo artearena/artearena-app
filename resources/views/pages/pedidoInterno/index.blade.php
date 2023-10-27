@@ -32,7 +32,6 @@
         margin-right: 5px;
     }
 </style>
-<script src="../../js/listaUniforme.js"></script>
 @endsection
 @section('content')
 <div class="container">
@@ -116,4 +115,14 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('script')
+<script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+<script>
+    $(document).ready(function() {
+        // Inicializar o DataTable
+        $('#pedidosTable').DataTable();
+    });
+</script>
 @endsection
