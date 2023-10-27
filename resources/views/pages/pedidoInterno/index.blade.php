@@ -1,38 +1,5 @@
 @extends('layout.main')
 @section('title', 'Tabela de pedidos')
-@section('style')
-<style>
-    .table {
-        border: 1px solid #ccc !important;
-    }
-    .table th,
-    .table td {
-        border: 1px solid #ccc !important;
-    }
-    .table th {
-        text-align: center !important;
-    }
-    #observacao {
-        overflow: auto !important; /* Oculta o overflow */
-        overflow-y: auto !important; /* Adiciona barra de rolagem vertical apenas quando necessário */
-        white-space: pre-wrap !important; /* Permite quebras de linha */
-    }
-    .container {
-        width: 100% !important;
-        padding-right: 15px !important;
-        padding-left: 15px !important;
-        margin-right: auto !important;
-        margin-left: auto !important;
-    }
-    .btn-group {
-        display: flex;
-        justify-content: flex-start;
-    }
-    .btn-group .btn {
-        margin-right: 5px;
-    }
-</style>
-@endsection
 @section('content')
 <div class="container">
     <h1>Tabela de Pedidos</h1>
@@ -92,28 +59,6 @@
             @endisset
         </tbody>
     </table>
-</div>
-<!-- Modal Lista Uniforme -->
-<div class="modal fade" id="modalListaUniforme" tabindex="-1" role="dialog" aria-labelledby="modalListaUniformeLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="modalListaUniformeLabel">Lista Uniforme</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form id="formListaUniforme">
-                    <!-- Campos para editar a lista de uniformes -->
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary" id="btnSalvarListaUniforme">Salvar</button>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-            </div>
-        </div>
-    </div>
 </div>
 @endsection
 
