@@ -1,4 +1,3 @@
-@extends('layout.main')
 @section('title')
     Listagem de Clientes
 @endsection
