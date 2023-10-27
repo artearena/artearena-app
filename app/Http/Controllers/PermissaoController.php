@@ -22,8 +22,6 @@ class PermissaoController extends Controller
 
         return view('pages.permissao.create', compact('telas'));
     }
-
-
     public function store(Request $request)
 {
     // Validação dos campos do formulário
