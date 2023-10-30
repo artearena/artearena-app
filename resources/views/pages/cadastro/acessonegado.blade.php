@@ -5,6 +5,6 @@
 @section('content')
     <div class="container">
         <h1>Acesso Negado</h1>
-        <p>Você não tem permissão para acessar esta página de cadastro. solicite ao vendedor um novo acesso</p>
+        <p>Você não tem permissão para acessar esta página de cadastro. Solicite ao vendedor um novo acesso caso necessário!</p>
     </div>
 @endsection
