@@ -65,12 +65,11 @@
     </div>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            var btnSalvarConsultarCliente = document.getElementsByClassName('btn-salvar-consultar-cliente');
-            for (var i = 0; i < btnSalvarConsultarCliente.length; i++) {
-                btnSalvarConsultarCliente[i].addEventListener('click', function() {
-                    var clienteId = this.getAttribute('data-cliente-id');
+            var pedidoRows = document.getElementsByClassName('pedido-row');
+            for (var i = 0; i < pedidoRows.length; i++) {
+                pedidoRows[i].addEventListener('click', function() {
                     var pedidoId = this.getAttribute('data-pedido-id');
-                    fetch('/gerarLinkCadastroCliente?clienteId=' + clienteId + '&pedidoId=' + pedidoId)
+                    fetch('/gerarLinkCadastroCliente?pedidoId=' + pedidoId)
                         .then(response => response.json())
                         .then(data => {
                             console.log(data.link);
