@@ -129,7 +129,7 @@ document.addEventListener("DOMContentLoaded", function() {
       </div>
       <div class="form-group">
         <label for="data_venda">Data da Venda:</label>
-        <input type="datetime-local" class="form-control" id="data_venda" name="data_venda">
+        <input type="datetime-local" class="form-control" id="data_venda" name="data_venda" value="{{ date('Y-m-d\TH:i') }}">
       </div>
       <!-- Tabela para exibir os produtos adicionados -->
       <table class="table mt-4">
