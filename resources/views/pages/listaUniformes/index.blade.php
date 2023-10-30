@@ -5,6 +5,7 @@
         <h1>Lista de informações dos produtos</h1>
         <div id="divsContainer">
             <div class="divProduto">
+                <h2>Uniformes</h2>
                 <form id="cadastroForm">
                     <div class="form-group">
                         <label for="pacote">Pacote:</label>
@@ -50,12 +51,45 @@
                     </table>
                 </form>
             </div>
+            <div class="divProduto">
+                <h2>Chinelos de Dedo</h2>
+                <form id="cadastroForm">
+                    <div class="form-group">
+                        <label for="marca">Marca:</label>
+                        <input type="text" class="form-control" id="marca" name="marca">
+                    </div>
+                    <div class="form-group">
+                        <label for="cor">Cor:</label>
+                        <input type="text" class="form-control" id="cor" name="cor">
+                    </div>
+                    <div class="form-group">
+                        <label for="tamanho">Tamanho:</label>
+                        <input type="text" class="form-control" id="tamanho" name="tamanho">
+                    </div>
+                </form>
+            </div>
+            <div class="divProduto">
+                <h2>Chinelos Slides</h2>
+                <form id="cadastroForm">
+                    <div class="form-group">
+                        <label for="marca">Marca:</label>
+                        <input type="text" class="form-control" id="marca" name="marca">
+                    </div>
+                    <div class="form-group">
+                        <label for="cor">Cor:</label>
+                        <input type="text" class="form-control" id="cor" name="cor">
+                    </div>
+                    <div class="form-group">
+                        <label for="tamanho">Tamanho:</label>
+                        <input type="text" class="form-control" id="tamanho" name="tamanho">
+                    </div>
+                </form>
+            </div>
         </div>
         <button type="button" onclick="adicionarDivProduto()" class="btn btn-primary">Adicionar Produto</button>
     </div>
     <script>
         function adicionarDivProduto() {
-            console.log('adicionado');
             var divProduto = document.createElement('div');
             divProduto.className = 'divProduto';
             divProduto.innerHTML = document.getElementsByClassName('divProduto')[0].innerHTML;
