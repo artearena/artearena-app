@@ -64,10 +64,12 @@
         </table>
     </div>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            var pedidoRows = document.getElementsByClassName('pedido-row');
-            for (var i = 0; i < pedidoRows.length; i++) {
-                pedidoRows[i].addEventListener('click', function() {
+    document.addEventListener('DOMContentLoaded', function() {
+        var pedidoRows = document.getElementsByClassName('pedido-row');
+        for (var i = 0; i < pedidoRows.length; i++) {
+            var btnSalvarConsultarCliente = pedidoRows[i].querySelector('.btn-salvar-consultar-cliente');
+            if (btnSalvarConsultarCliente) {
+                btnSalvarConsultarCliente.addEventListener('click', function() {
                     var pedidoId = this.getAttribute('data-pedido-id');
                     fetch('/gerarLinkCadastroCliente?pedidoId=' + pedidoId)
                         .then(response => response.json())
@@ -76,6 +78,7 @@
                         });
                 });
             }
-        });
-    </script>
+        }
+    });
+</script>
 @endsection
