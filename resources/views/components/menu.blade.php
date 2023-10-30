@@ -73,7 +73,6 @@
                     <a href="{{ route('login_page') }}">Login</a>
                 @endif
             @else
-                {{ dd(request()->path()) }}
                     <div>
                         Bem-vindo, <b class="text-white">{{ auth()->user()->nome_usuario }}</b>
                         <br>
