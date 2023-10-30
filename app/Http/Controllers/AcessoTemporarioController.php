@@ -8,8 +8,9 @@ use App\Models\Pedido;
 
 class AcessoTemporarioController extends Controller
 {
-    public function index(Pedido $pedido)
+    public function index(Request $request)
     {
+        $pedidoId = $request->input('pedidoId');
         // Gera um token de acesso temporário
         $token = uniqid();
 
@@ -17,7 +18,7 @@ class AcessoTemporarioController extends Controller
         DB::table('acesso_temporario')->insert([
             'token' => $token,
             'validade' => now()->addWeek(),
-            'pedido_id' => $pedido->id,
+            'pedido_id' => $pedidoId,
         ]);
 
         $link = url('https://arte.app.br/cadastro') . '?token=' . $token;
