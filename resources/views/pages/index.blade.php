@@ -49,9 +49,9 @@ Inicio
             </div>
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">Gerar Link Temporário</h5>
-                    <p class="card-text">Gerar link para o cliente se cadastrar</p>
-                    <a href="#" class="btn btn-outline-danger" onclick="gerarLinkTemporario()">Gerar</a>
+                    <h5 class="card-title">Pedido Interno</h5>
+                    <p class="card-text">Página de gestão dos pedidos internos</p>
+                    <a href="{{ route('pedidoInterno')}}" class="btn btn-outline-danger">Acessar</a>
                 </div>
             </div>
         </div>
