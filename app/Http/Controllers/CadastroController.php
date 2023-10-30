@@ -13,7 +13,10 @@ class CadastroController extends Controller
         $registros = Cadastro::all();
         return view('pages.cadastro.index', compact('registros'));
     }
-
+    public function acessonegado()
+    {
+        return view('pages.cadastro.acessonegado');
+    }
     public function getData()
     {
         $cadastros = Cadastro::all();
