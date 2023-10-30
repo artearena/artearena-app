@@ -25,10 +25,7 @@
                 <tr class="pedido-row" data-pedido-id="{{ $pedido->id }}">
                     <td>{{ $pedido->id }}</td>
                     <td>
-                        {{ $pedido->cliente_id }}
-                        <button class="btn btn-primary btn-salvar-consultar-cliente" data-cliente-id="{{ $pedido->cliente_id }}">
-                            <i class="fas fa-save"></i> Salvar/Consultar Cliente
-                        </button>
+                        <i class="fas fa-link"></i> {{ $pedido->cliente_id }}
                     </td>
                     <td>{{ $pedido->Vendedor }}</td>
                     <td>
@@ -47,6 +44,9 @@
                             </button>
                             <button class="btn btn-primary btn-consultar-lista-uniforme" data-toggle="modal" data-target="#modalListaUniforme" data-pedido-id="{{ $pedido->id }}">
                                 <i class="fas fa-tshirt"></i>
+                            </button>
+                            <button class="btn btn-primary btn-salvar-consultar-cliente" data-cliente-id="{{ $pedido->cliente_id }}">
+                                <i class="fas fa-link"></i>
                             </button>
                         </div>
                     </td>
