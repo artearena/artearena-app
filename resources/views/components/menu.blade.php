@@ -1,11 +1,11 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="margin-bottom: 15px;">
     <div class="container-fluid">
         @guest
-            @if(request()->path() !== 'cadastro' || request()->path() !== 'acessonegado')
-                <a class="navbar-brand" href="{{ route('home') }}">
-                    <img src="../../images/logo.png" alt="" class="logo-img" style="width: 15vh; margin-right: 10px;">
-                </a>
-            @endif
+        @if(request()->path() !== 'cadastro' && request()->path() !== 'acessonegado')
+            <a class="navbar-brand" href="{{ route('home') }}">
+                <img src="../../images/logo.png" alt="" class="logo-img" style="width: 15vh; margin-right: 10px;">
+            </a>
+        @endif
             @if(request()->path() == 'cadastro')
                 <img src="../../images/logo.png" alt="" class="logo-img" style="width: 15vh; margin-right: 10px;">
             @endif
@@ -68,13 +68,12 @@
                 </ul>
             @endguest
             <span class="navbar-text" style="margin-right: 40px;">
-                @guest
-                    @if(request()->path() !== 'cadastro' || request()->path() !== 'acessonegado')
-                        <a href="{{ route('login_page') }}">Login</a>
-                        {{ dd(request()->path()) }}
-
-                    @endif
-                @else
+            @guest
+                @if(request()->path() !== 'cadastro' && request()->path() !== 'acessonegado')
+                    <a href="{{ route('login_page') }}">Login</a>
+                @endif
+            @else
+                {{ dd(request()->path()) }}
                     <div>
                         Bem-vindo, <b class="text-white">{{ auth()->user()->nome_usuario }}</b>
                         <br>
