@@ -43,7 +43,7 @@
                             <button class="btn btn-primary btn-consultar-lista-uniforme" data-toggle="modal" data-target="#modalListaUniforme" data-pedido-id="{{ $pedido->id }}">
                                 <i class="fas fa-tshirt"></i>
                             </button>
-                            <button class="btn btn-warning btn-salvar-consultar-cliente" data-cliente-id="{{ $pedido->cliente_id }}" data-pedido-id="{{ $pedido->id }}">
+                            <button class="btn btn-warning btn-salvar-consultar-cliente" data-cliente-id="{{ $pedido->cliente_id }}">
                                 <i class="fas fa-link"></i>
                             </button>
                         </div>
