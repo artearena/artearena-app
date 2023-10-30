@@ -2,7 +2,7 @@
 @section('title', 'Lista de informações dos produtos')
 @section('content')
     <div class="container">
-        <h1>Lista de Uniformes</h1>
+        <h1>Lista de informações dos produtos</h1>
         <form id="cadastroForm">
             <div class="form-group">
                 <label for="pacote">Pacote:</label>
