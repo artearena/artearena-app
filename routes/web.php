@@ -20,6 +20,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/home', [SiteController::class, 'index'])->name('home');
     Route::get('/bandeira', [SiteController::class, 'bandeiras'])->name('bandeira');
     
+    Route::get('/gerarLinkCadastroCliente', [AcessoTemporarioController::class, 'index']);
+
     Route::prefix('frete')->group(function () {
         Route::get('/', [SiteController::class, 'frete'])->name('frete');
         Route::post('/orcamentos-salvar', [OrcamentosController::class, 'salvarOrcamento'])->name('orcamentos.salvar');
@@ -99,9 +101,6 @@ Route::prefix('cadastro')->group(function () {
 
     // Rota para excluir um registro de cadastro
     Route::delete('/{id}', [CadastroController::class, 'destroy'])->name('cadastro.destroy');
-
-    Route::get('/gerarLinkCadastroCliente', [AcessoTemporarioController::class, 'index']);
-
 });
 
 Route::get('/', [AuthController::class, 'login_page'])->name('index_login_page')->middleware('guest');
