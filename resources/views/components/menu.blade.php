@@ -6,7 +6,7 @@
                 <img src="../../images/logo.png" alt="" class="logo-img" style="width: 15vh; margin-right: 10px;">
             </a>
         @endif
-            @if(request()->path() !== 'cadastro' && request()->path() !== 'acessonegado' && request()->path() !== 'sucessocadastro')
+            @if(request()->path() == 'cadastro' && request()->path() == 'acessonegado' && request()->path() == 'sucessocadastro')
                 <img src="../../images/logo.png" alt="" class="logo-img" style="width: 15vh; margin-right: 10px;">
             @endif
         @else
