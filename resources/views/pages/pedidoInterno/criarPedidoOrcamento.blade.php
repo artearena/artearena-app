@@ -10,7 +10,8 @@
 </style>
 <script src="../../js/pedidoInterno.js"></script>
 <script>
-document.addEventListener("DOMContentLoaded", function() {
+  console.log('teste');
+  document.addEventListener("DOMContentLoaded", function() {
   document.getElementById('btnCriarPedido').addEventListener('click', function(event) {
     event.preventDefault(); // Impede o comportamento padrão do botão
     var produtos = [];
