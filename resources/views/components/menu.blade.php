@@ -71,9 +71,10 @@
                 @guest
                     @if(request()->path() !== 'cadastro' || request()->path() !== 'acessonegado')
                         <a href="{{ route('login_page') }}">Login</a>
+                        {{ dd(request()->path()) }}
+
                     @endif
                 @else
-                {{ dd(request()->path()) }}
                     <div>
                         Bem-vindo, <b class="text-white">{{ auth()->user()->nome_usuario }}</b>
                         <br>
