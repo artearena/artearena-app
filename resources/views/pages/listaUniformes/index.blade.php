@@ -55,7 +55,7 @@
     </div>
     <script>
         function adicionarDivProduto() {
-            console.log(adicionado);
+            console.log('adicionado');
             var divProduto = document.createElement('div');
             divProduto.className = 'divProduto';
             divProduto.innerHTML = document.getElementsByClassName('divProduto')[0].innerHTML;
