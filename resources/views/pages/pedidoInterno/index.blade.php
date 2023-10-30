@@ -27,7 +27,7 @@
                     <td>
                         {{ $pedido->cliente_id }}
                         <button class="btn btn-primary btn-salvar-consultar-cliente" data-cliente-id="{{ $pedido->cliente_id }}">
-                            Salvar/Consultar Cliente
+                            <i class="fas fa-save"></i> Salvar/Consultar Cliente
                         </button>
                     </td>
                     <td>{{ $pedido->Vendedor }}</td>
