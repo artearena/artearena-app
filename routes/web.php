@@ -82,6 +82,7 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/store', [ErroController::class, 'store'])->name('erros.store');
     });
 });
+
 Route::prefix('cadastro')->middleware('validar.token')->group(function () {
     // Rota para listar todos os registros de cadastro
     Route::any('/', [CadastroController::class, 'index'])->name('cadastro.index');
