@@ -127,14 +127,16 @@ class CadastroController extends Controller
             // Invalide o token
             $token = $request->input('token');
             $this->invalidateToken($token);
-            
-            return view('pages.cadastro.sucesso');
 
+            return redirect()->route('cadastro.sucesso');        
         } catch (\Exception $e) {
             return response()->json(['message' => 'Erro ao criar o Cadastro: ' . $e->getMessage()], 500);
         }
     }
-    
+    public function sucessocadastro()
+    {
+        return view('pages.cadastro.sucesso');
+    }
 
 
     // Exibir um registro específico
