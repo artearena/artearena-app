@@ -24,9 +24,7 @@
                 @foreach($pedidos as $pedido)
                 <tr class="pedido-row" data-pedido-id="{{ $pedido->id }}">
                     <td>{{ $pedido->id }}</td>
-                    <td>
-                        <i class="fas fa-link"></i> {{ $pedido->cliente_id }}
-                    </td>
+                    <td>{{ $pedido->cliente_id }}</td>
                     <td>{{ $pedido->Vendedor }}</td>
                     <td>
                         <button class="btn btn-link btn-expand-produtos">Expandir</button>
@@ -65,4 +63,19 @@
             </tbody>
         </table>
     </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var btnSalvarConsultarCliente = document.getElementsByClassName('btn-salvar-consultar-cliente');
+            for (var i = 0; i < btnSalvarConsultarCliente.length; i++) {
+                btnSalvarConsultarCliente[i].addEventListener('click', function() {
+                    var clienteId = this.getAttribute('data-cliente-id');
+                    fetch('/gerarLinkCadastroCliente')
+                        .then(response => response.json())
+                        .then(data => {
+                            console.log(data.link);
+                        });
+                });
+            }
+        });
+    </script>
 @endsection

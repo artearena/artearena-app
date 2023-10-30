@@ -100,7 +100,6 @@ Route::prefix('cadastro')->group(function () {
     // Rota para excluir um registro de cadastro
     Route::delete('/{id}', [CadastroController::class, 'destroy'])->name('cadastro.destroy');
 
-    // Rota para excluir um registro de cadastro
     Route::get('/gerarLinkCadastroCliente', [AcessoTemporarioController::class, 'index']);
 
 });
