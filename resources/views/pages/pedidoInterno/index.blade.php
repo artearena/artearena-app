@@ -72,7 +72,7 @@
                     fetch('/gerarLinkCadastroCliente?pedidoId=' + pedidoId)
                         .then(response => response.json())
                         .then(data => {
-                            console.log(data.link);
+                            alert('link temporario: ' + data.link);
                         });
                 });
             }
