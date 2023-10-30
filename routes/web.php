@@ -97,7 +97,7 @@ Route::prefix('cadastro')->middleware('validar.token')->group(function () {
     // Rota para excluir um registro de cadastro
     Route::delete('/{id}', [CadastroController::class, 'destroy'])->name('cadastro.destroy');
 });
-Route::get('/acessonegado', [CadastroController::class, 'acessonegado']);
+Route::get('/acessonegado', [CadastroController::class, 'acessonegado'])->name('acessonegado');
 
 
 Route::get('/', [AuthController::class, 'login_page'])->name('index_login_page')->middleware('guest');

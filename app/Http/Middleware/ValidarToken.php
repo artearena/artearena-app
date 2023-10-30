@@ -9,10 +9,8 @@ class ValidarToken
         $token = $request->query('token');
         $acessoTemporario = DB::table('acesso_temporario')->where('token', $token)->first();
         if (!$acessoTemporario || $acessoTemporario->validade < now()) {
-            dd('erro lançado');
-            return back()->withErrors(['token' => 'Token inválido ou expirado.']);
+            return redirect()->route('acessonegado');
         }
-        dd($acessoTemporario); // Adicionando dd() para depuração
         return $next($request);
     }
 }
