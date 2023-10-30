@@ -55,16 +55,16 @@
                 <h2>Chinelos de Dedo</h2>
                 <form id="cadastroFormChineloDedo">
                     <div class="form-group">
-                        <label for="marca">Marca:</label>
-                        <input type="text" class="form-control" id="marca" name="marca">
+                        <label for="marcaChineloDedo">Marca:</label>
+                        <input type="text" class="form-control" id="marcaChineloDedo" name="marcaChineloDedo">
                     </div>
                     <div class="form-group">
-                        <label for="cor">Cor:</label>
-                        <input type="text" class="form-control" id="cor" name="cor">
+                        <label for="corChineloDedo">Cor:</label>
+                        <input type="text" class="form-control" id="corChineloDedo" name="corChineloDedo">
                     </div>
                     <div class="form-group">
-                        <label for="tamanho">Tamanho:</label>
-                        <input type="text" class="form-control" id="tamanho" name="tamanho">
+                        <label for="tamanhoChineloDedo">Tamanho:</label>
+                        <input type="text" class="form-control" id="tamanhoChineloDedo" name="tamanhoChineloDedo">
                     </div>
                 </form>
             </div>
@@ -72,24 +72,23 @@
                 <h2>Chinelos Slides</h2>
                 <form id="cadastroFormChineloSlide">
                     <div class="form-group">
-                        <label for="marca">Marca:</label>
-                        <input type="text" class="form-control" id="marca" name="marca">
+                        <label for="marcaChineloSlide">Marca:</label>
+                        <input type="text" class="form-control" id="marcaChineloSlide" name="marcaChineloSlide">
                     </div>
                     <div class="form-group">
-                        <label for="cor">Cor:</label>
-                        <input type="text" class="form-control" id="cor" name="cor">
+                        <label for="corChineloSlide">Cor:</label>
+                        <input type="text" class="form-control" id="corChineloSlide" name="corChineloSlide">
                     </div>
                     <div class="form-group">
-                        <label for="tamanho">Tamanho:</label>
-                        <input type="text" class="form-control" id="tamanho" name="tamanho">
+                        <label for="tamanhoChineloSlide">Tamanho:</label>
+                        <input type="text" class="form-control" id="tamanhoChineloSlide" name="tamanhoChineloSlide">
                     </div>
                 </form>
             </div>
         </div>
-        <button type="button" onclick="adicionarDivUniforme()" class="btn btn-primary">Adicionar Produto</button>
-        <button type="button" onclick="adicionarDivChineloDedo()" class="btn btn-primary">Adicionar Produto</button>
-        <button type="button" onclick="adicionarDivChineloSlide()" class="btn btn-primary">Adicionar Produto</button>
-
+        <button type="button" onclick="adicionarDivUniforme()" class="btn btn-primary">Adicionar Uniforme</button>
+        <button type="button" onclick="adicionarDivChineloDedo()" class="btn btn-primary">Adicionar Chinelo de Dedo</button>
+        <button type="button" onclick="adicionarDivChineloSlide()" class="btn btn-primary">Adicionar Chinelo Slide</button>
     </div>
     <script>
         function adicionarDivUniforme() {
@@ -98,14 +97,12 @@
             divProduto.innerHTML = document.getElementsByClassName('divProduto')[0].innerHTML;
             document.getElementById('divsContainer').appendChild(divProduto);
         }
-
         function adicionarDivChineloDedo() {
             var divProduto = document.createElement('div');
             divProduto.className = 'divProduto';
             divProduto.innerHTML = document.getElementsByClassName('divProduto')[1].innerHTML;
             document.getElementById('divsContainer').appendChild(divProduto);
         }
-
         function adicionarDivChineloSlide() {
             var divProduto = document.createElement('div');
             divProduto.className = 'divProduto';
