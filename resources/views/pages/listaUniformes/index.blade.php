@@ -6,7 +6,7 @@
         <div id="divsContainer">
             <div class="divProduto">
                 <h2>Uniformes</h2>
-                <form id="cadastroForm">
+                <form id="cadastroFormUniforme">
                     <div class="form-group">
                         <label for="pacote">Pacote:</label>
                         <select class="form-control" id="pacote" name="pacote">
@@ -53,7 +53,7 @@
             </div>
             <div class="divProduto">
                 <h2>Chinelos de Dedo</h2>
-                <form id="cadastroForm">
+                <form id="cadastroFormChineloDedo">
                     <div class="form-group">
                         <label for="marca">Marca:</label>
                         <input type="text" class="form-control" id="marca" name="marca">
@@ -70,7 +70,7 @@
             </div>
             <div class="divProduto">
                 <h2>Chinelos Slides</h2>
-                <form id="cadastroForm">
+                <form id="cadastroFormChineloSlide">
                     <div class="form-group">
                         <label for="marca">Marca:</label>
                         <input type="text" class="form-control" id="marca" name="marca">
@@ -87,12 +87,29 @@
             </div>
         </div>
         <button type="button" onclick="adicionarDivProduto()" class="btn btn-primary">Adicionar Produto</button>
+        <button type="button" onclick="adicionarDivProduto()" class="btn btn-primary">Adicionar Produto</button>
+        <button type="button" onclick="adicionarDivProduto()" class="btn btn-primary">Adicionar Produto</button>
+
     </div>
     <script>
-        function adicionarDivProduto() {
+        function adicionarDivUniforme() {
             var divProduto = document.createElement('div');
             divProduto.className = 'divProduto';
             divProduto.innerHTML = document.getElementsByClassName('divProduto')[0].innerHTML;
+            document.getElementById('divsContainer').appendChild(divProduto);
+        }
+
+        function adicionarDivChineloDedo() {
+            var divProduto = document.createElement('div');
+            divProduto.className = 'divProduto';
+            divProduto.innerHTML = document.getElementsByClassName('divProduto')[1].innerHTML;
+            document.getElementById('divsContainer').appendChild(divProduto);
+        }
+
+        function adicionarDivChineloSlide() {
+            var divProduto = document.createElement('div');
+            divProduto.className = 'divProduto';
+            divProduto.innerHTML = document.getElementsByClassName('divProduto')[2].innerHTML;
             document.getElementById('divsContainer').appendChild(divProduto);
         }
     </script>
