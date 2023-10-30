@@ -1,5 +1,9 @@
 @extends('layout.main')
 @section('title', 'Tabela de pedidos')
+@endsection
+@section('style')
+    <script src="../../js/pedidoInterno.js"></script>
+@endsection
 @section('content')
 <div class="container">
     <h1>Tabela de Pedidos</h1>
