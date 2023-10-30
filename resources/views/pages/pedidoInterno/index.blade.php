@@ -67,11 +67,10 @@
         document.addEventListener('DOMContentLoaded', function() {
             var btnSalvarConsultarCliente = document.getElementsByClassName('btn-salvar-consultar-cliente');
             for (var i = 0; i < btnSalvarConsultarCliente.length; i++) {
-                var pedidoId = btnSalvarConsultarCliente[i].getAttribute('data-pedido-id');
-                btnSalvarConsultarCliente[i].setAttribute('id', 'btn-salvar-consultar-cliente-' + pedidoId);
-                document.getElementById('btn-salvar-consultar-cliente-' + pedidoId).addEventListener('click', function() {
+                btnSalvarConsultarCliente[i].addEventListener('click', function() {
+                    var clienteId = this.getAttribute('data-cliente-id');
                     var pedidoId = this.getAttribute('data-pedido-id');
-                    fetch('/gerarLinkCadastroCliente?pedidoId=' + pedidoId)
+                    fetch('/gerarLinkCadastroCliente?clienteId=' + clienteId + '&pedidoId=' + pedidoId)
                         .then(response => response.json())
                         .then(data => {
                             console.log(data.link);
