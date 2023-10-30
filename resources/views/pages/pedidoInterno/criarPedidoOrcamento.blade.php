@@ -92,6 +92,7 @@ document.addEventListener("DOMContentLoaded", function() {
       <div class="form-group">
         <label for="vendedor">Vendedor:</label>
         <select class="form-control" id="vendedor" name="vendedor">
+          <option value="">Selecione um vendedor</option>
           @foreach ($vendedores as $vendedor)
             <option value="{{ $vendedor }}">{{ $vendedor }}</option>
           @endforeach
