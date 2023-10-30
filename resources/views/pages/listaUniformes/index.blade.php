@@ -1,5 +1,5 @@
 @extends('layout.main')
-@section('title', 'Lista de Uniformes')
+@section('title', 'Lista de informações dos produtos')
 @section('content')
     <div class="container">
         <h1>Lista de Uniformes</h1>
@@ -16,7 +16,7 @@
                 </select>
             </div>
             <div class="form-group">
-                <label>Uniformes:</label><br>
+                <label>Uniforme:</label><br>
                 <div class="form-check form-check-inline">
                     <input class="form-check-input" type="checkbox" id="camisa" name="uniforme" value="camisa">
                     <label class="form-check-label" for="camisa">Camisa</label>
@@ -33,7 +33,7 @@
             <table id="registrosTable" class="table mt-4">
                 <thead>
                     <tr>
-                        <th>Uniforme</th>
+                        <th>Nome</th>
                         <th>Quantidade</th>
                         <th>Tamanho</th>
                     </tr>
@@ -41,19 +41,6 @@
                 <tbody id="registrosTableBody">
                 </tbody>
             </table>
-            <div class="form-group">
-                <label for="uniforme">Uniforme:</label>
-                <input type="text" class="form-control" id="uniforme" name="uniforme">
-            </div>
-            <div class="form-group">
-                <label for="quantidade">Quantidade:</label>
-                <input type="text" class="form-control" id="quantidade" name="quantidade">
-            </div>
-            <div class="form-group">
-                <label for="tamanho">Tamanho:</label>
-                <input type="text" class="form-control" id="tamanho" name="tamanho">
-            </div>
-            <button type="button" onclick="adicionarRegistro()" class="btn btn-primary">Adicionar Registro</button>
         </form>
     </div>
     <script>
