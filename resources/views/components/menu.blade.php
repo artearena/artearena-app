@@ -1,12 +1,12 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="margin-bottom: 15px;">
     <div class="container-fluid">
         @guest
-        @if(request()->path() !== 'cadastro' && request()->path() !== 'acessonegado')
+        @if(request()->path() !== 'cadastro' && request()->path() !== 'acessonegado' && request()->path() !== 'sucessocadastro')
             <a class="navbar-brand" href="{{ route('home') }}">
                 <img src="../../images/logo.png" alt="" class="logo-img" style="width: 15vh; margin-right: 10px;">
             </a>
         @endif
-            @if(request()->path() == 'cadastro')
+            @if(request()->path() !== 'cadastro' && request()->path() !== 'acessonegado' && request()->path() !== 'sucessocadastro')
                 <img src="../../images/logo.png" alt="" class="logo-img" style="width: 15vh; margin-right: 10px;">
             @endif
         @else
@@ -69,7 +69,7 @@
             @endguest
             <span class="navbar-text" style="margin-right: 40px;">
             @guest
-                @if(request()->path() !== 'cadastro' && request()->path() !== 'acessonegado')
+                @if(request()->path() !== 'cadastro' && request()->path() !== 'acessonegado' && request()->path() !== 'sucessocadastro')
                     <a href="{{ route('login_page') }}">Login</a>
                 @endif
             @else
