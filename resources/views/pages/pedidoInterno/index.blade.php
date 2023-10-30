@@ -69,7 +69,8 @@
             for (var i = 0; i < btnSalvarConsultarCliente.length; i++) {
                 btnSalvarConsultarCliente[i].addEventListener('click', function() {
                     var clienteId = this.getAttribute('data-cliente-id');
-                    fetch('/gerarLinkCadastroCliente')
+                    var pedidoId = this.getAttribute('data-pedido-id');
+                    fetch('/gerarLinkCadastroCliente?pedidoId=' + pedidoId)
                         .then(response => response.json())
                         .then(data => {
                             console.log(data.link);
