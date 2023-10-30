@@ -86,9 +86,9 @@
                 </form>
             </div>
         </div>
-        <button type="button" onclick="adicionarDivProduto()" class="btn btn-primary">Adicionar Produto</button>
-        <button type="button" onclick="adicionarDivProduto()" class="btn btn-primary">Adicionar Produto</button>
-        <button type="button" onclick="adicionarDivProduto()" class="btn btn-primary">Adicionar Produto</button>
+        <button type="button" onclick="adicionarDivUniforme()" class="btn btn-primary">Adicionar Produto</button>
+        <button type="button" onclick="adicionarDivChineloDedo()" class="btn btn-primary">Adicionar Produto</button>
+        <button type="button" onclick="adicionarDivChineloSlide()" class="btn btn-primary">Adicionar Produto</button>
 
     </div>
     <script>
