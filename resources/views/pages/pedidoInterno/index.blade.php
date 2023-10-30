@@ -64,12 +64,12 @@
         </table>
     </div>
     <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        var pedidoRows = document.getElementsByClassName('pedido-row');
-        for (var i = 0; i < pedidoRows.length; i++) {
-            var btnSalvarConsultarCliente = pedidoRows[i].querySelector('.btn-salvar-consultar-cliente');
-            if (btnSalvarConsultarCliente) {
-                btnSalvarConsultarCliente.addEventListener('click', function() {
+        document.addEventListener('DOMContentLoaded', function() {
+            var btnSalvarConsultarCliente = document.getElementsByClassName('btn-salvar-consultar-cliente');
+            for (var i = 0; i < btnSalvarConsultarCliente.length; i++) {
+                var pedidoId = btnSalvarConsultarCliente[i].getAttribute('data-pedido-id');
+                btnSalvarConsultarCliente[i].setAttribute('id', 'btn-salvar-consultar-cliente-' + pedidoId);
+                document.getElementById('btn-salvar-consultar-cliente-' + pedidoId).addEventListener('click', function() {
                     var pedidoId = this.getAttribute('data-pedido-id');
                     fetch('/gerarLinkCadastroCliente?pedidoId=' + pedidoId)
                         .then(response => response.json())
@@ -78,7 +78,6 @@
                         });
                 });
             }
-        }
-    });
-</script>
+        });
+    </script>
 @endsection
