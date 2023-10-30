@@ -43,4 +43,5 @@ class AcessoTemporarioController extends Controller
             return back()->withErrors(['token' => 'Token inválido ou expirado.']);
         }
     }
+
 }

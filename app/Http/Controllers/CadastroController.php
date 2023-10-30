@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Cadastro;
+use Illuminate\Support\Facades\DB;
 
 class CadastroController extends Controller
 {
@@ -17,6 +18,7 @@ class CadastroController extends Controller
     {
         return view('pages.cadastro.acessonegado');
     }
+    
     public function getData()
     {
         $cadastros = Cadastro::all();
@@ -122,6 +124,10 @@ class CadastroController extends Controller
             // Crie um novo registro de cadastro com os dados validados
             Cadastro::create($validatedData);
 
+            // Invalide o token
+            $token = $request->input('token');
+            $this->invalidateToken($token);
+            
             return view('pages.cadastro.sucesso');
 
         } catch (\Exception $e) {
@@ -172,5 +178,10 @@ class CadastroController extends Controller
         $registro = Cadastro::findOrFail($id);
         $registro->delete();
         return redirect()->route('pages.cadastro.index')->with('success', 'Registro excluído com sucesso!');
+    }
+    public function invalidateToken($token)
+    {
+        // Remove o token do banco de dados
+        DB::table('acesso_temporario')->where('token', $token)->delete();
     }
 }

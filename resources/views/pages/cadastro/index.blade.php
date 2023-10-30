@@ -13,8 +13,10 @@
                 <div class="card-body">
                     <form method="POST" action="{{ route('cadastro.store') }}">
                         @csrf
+                        <input type="hidden" name="token" value="{{ request()->token }}">
+
                          <!-- Seleção de Pessoa Jurídica ou Pessoa Física -->
-                         <div class="form-check">
+                        <div class="form-check">
                             <input type="radio" class="form-check-input" id="pessoa_juridica" name="tipo_pessoa" value="juridica">
                             <label class="form-check-label" for="pessoa_juridica">Pessoa Jurídica</label>
                         </div>
