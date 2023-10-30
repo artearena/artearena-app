@@ -11,7 +11,7 @@
             <div class="card">
                 <div class="card-header">Cadastro</div>
                 <div class="card-body">
-                    <form method="POST" action="{{ route('cadastro.store') }}">
+                <form method="POST" action="{{ route('cadastro.store', ['token' => request()->token]) }}">
                         @csrf
                         <input type="hidden" name="token" value="{{ request()->token }}">
 
