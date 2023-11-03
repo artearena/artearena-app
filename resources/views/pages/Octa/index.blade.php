@@ -162,7 +162,6 @@
                     carregarRegistros();
                 }
             });
-            function carregarRegistros() {
                 function carregarRegistros() {
     // Realizar a carga dos registros aqui
     $.ajax({
@@ -212,7 +211,8 @@
                         '<td class="text-center">' +
                         '<div class="date datetimepicker">' +
                         '<input type="datetime-local" class="form-control" id="date" lang="pt-br" ' +
-                        'value="' + (cliente.data_agendamento ? new Date(cliente.data_agendamento).toLocaleString('pt-BR', { timeZone: 'UTC' }) : '') + '">'                        '<span class="input-group-addon">' +
+                        'value="' + (cliente.data_agendamento ? (new DateTime(cliente.data_agendamento)).format("Y-m-d\\TH:i:s") : '') + '">' +
+                        '<span class="input-group-addon">' +
                         '<span class="glyphicon glyphicon-calendar"></span>' +
                         '</span>' +
                         '</div>' +
