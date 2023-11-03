@@ -113,30 +113,106 @@
 @section('content')
     <div id="app">
     <table id="clientesTable" class="small-font">
-    <thead>
-        <tr>
-            <th style="display:none">ID</th>
-            <th>ID Octa</th>
-            <th>Nome</th>
-            <th>Telefone</th>
-            <th style="display:none">Email</th>
-            <th>Empresa</th>
-            <th>Responsável</th>
-            <th style="display:none">Origem</th>
-            <th>Status</th>
-            <th>Criado em</th>
-            <th>Agendamento</th>
-            <th>Template</th>
-            <th>Bloqueado</th>
-            <th>Qualificado</th>
-            <th>Motivo da perda</th>
-            <th>Categoria</th>
-            <th>Termômetro</th>
-            <th>Card</th>
-        </tr>
-    </thead>
-    <tbody></tbody>
-</table>
+        <thead>
+            <tr>
+                <th style="display:none">ID</th>
+                <th>ID Octa</th>
+                <th>Nome</th>
+                <th>Telefone</th>
+                <th style="display:none">Email</th>
+                <th>Empresa</th>
+                <th>Responsável</th>
+                <th style="display:none">Origem</th>
+                <th>Status</th>
+                <th>Criado em</th>
+                <th>Agendamento</th>
+                <th>Template</th>
+                <th>Bloqueado</th>
+                <th>Qualificado</th>
+                <th>Motivo da perda</th>
+                <th>Categoria</th>
+                <th>Termometro</th>
+                <th>Card</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($clientes as $cliente)
+            <tr>
+                <td class="cliente-id text-center" style="display:none">{{ $cliente->id }}</td>
+                <td class="text-center">{{ $cliente->id }}</td>
+                <td class="text-center" style="word-wrap: break-word;">
+                    <a href="https://app.octadesk.com/chat/{{ $cliente->url_octa }}/opened" target="_blank">
+                        <?php echo chunk_split($cliente->nome, 25, "<br>"); ?>
+                    </a>
+                </td>
+                <td class="text-center">{{ $cliente->telefone }}</td>
+                <td class="text-center" style="display:none">{{ $cliente->email }}</td>
+                <td class="text-center">{{ $cliente->empresa }}</td>
+                <td class="text-center">
+                    <select name="responsavel_contato" class="form-control responsavel-contato">
+                        <option value="">Selecione um responsável</option>
+                        @foreach ($vendedores as $vendedor)
+                        <option value="{{ $vendedor }}" @if ($cliente->responsavel_contato == $vendedor) selected @endif>
+                            {{ $vendedor }}
+                        </option>
+                        @endforeach
+                    </select>
+                </td>
+                <td class="text-center" style="display:none">{{ $cliente->origem }}</td>
+                <td>
+                    <select class="form-control" name="status_conversa">
+                        <option value="">Selecione uma opção</option>
+                        <option value="Lead" {{ $cliente->status_conversa == 'Lead' ? 'selected' : '' }}>Lead</option>
+                        <option value="Venda Concluída" {{ $cliente->status_conversa == 'Venda Concluída' ? 'selected' : '' }}>Venda Concluída</option>
+                        <option value="Enviado" {{ $cliente->status_conversa == 'Enviado' ? 'selected' : '' }}>Enviado</option>
+                        <option value="Aberto" {{ $cliente->status_conversa == 'Aberto' ? 'selected' : '' }}>Aberto</option>
+                    </select>                
+                </td> 
+                <td class="text-center">{{ $cliente->created_at }}</td>
+                <td class="text-center">
+                    <div class='date datetimepicker'>
+                        <input type="datetime-local" class="form-control" id="date" lang="pt-br"
+                            value="{{ $cliente->data_agendamento ? (new DateTime($cliente->data_agendamento))->format('Y-m-d\TH:i:s') : '' }}">
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+                    </div>
+                </td>
+                <td class="text-center">
+                    <select name="mensagem_id" class="form-control mensagem_id" @if (!$cliente->data_agendamento)
+                        disabled @endif>
+                        <option value="">Selecione uma mensagem</option>
+                        @php
+                        $mensagensOrdenadas = $mensagens->sortBy('titulo');
+                        @endphp
+                        @foreach ($mensagensOrdenadas as $mensagem)
+                        <option value="{{ $mensagem->id }}"
+                            @if ($cliente->mensagem_template_id == $mensagem->id) selected @endif>
+                            {{ $mensagem->titulo }}
+                        </option>
+                        @endforeach
+                    </select>
+                </td>
+                <td class="text-center">
+                    <label class="switch">
+                        <input type="checkbox" class="table_checkbox" id="checkbox" value="{{ $cliente->contato_bloqueado }}" @if($cliente->contato_bloqueado == 1) checked @endif>
+                        <span class="slider round"></span>
+                    </label>
+                </td>
+                <td class="text-center">Prov.</td>
+                <td class="text-center">Prov.</td>
+                <td class="text-center">Prov.</td>
+                <td class="text-center">Prov.</td>
+                
+                <td class="text-center">
+                    <a href="#" class="btn btn-primary ms-1" target="_blank">
+                        <i class="fa-brands fa-trello"></i>
+                    </a>
+                </td>
+            </tr>
+            @endforeach
+        </tbody>
+    </table>
     </div>
 @endsection
 @section('extraScript')
@@ -152,134 +228,153 @@
 
     <script>
         $(document).ready(function() {
-            $('#clientesTable').DataTable({
-                info: false,
-                language: {
-                    url: 'https://cdn.datatables.net/plug-ins/1.10.24/i18n/Portuguese-Brasil.json'
-                },
-                pageLength: 10,
-                lengthMenu: [[10, 25, 50, -1], [10, 25, 50, "All"]],
-                initComplete: function() {
-                    carregarRegistros();
-                }
-
-            });
-            function carregarRegistros() {
-                // Realizar a carga dos registros aqui
-                $.ajax({
-                    url: '/crm/getDados/',
-                    type: 'GET',
-                    success: function(response) {
-                        // Atualizar a tabela com os registros obtidos
-                        var clientes = response.clientes;
-                        // Limpar a tabela
-                        $('#clientesTable tbody').empty();
-                        // Iterar sobre os registros e adicionar na tabela
-                        $.each(clientes, function(index, cliente) {
-                            if (cliente.nome) {
-                                var row = '<tr>' +
-                                    '<td class="cliente-id text-center" style="display:none">' + cliente.id + '</td>' +
-                                    '<td class="text-center">' + cliente.id + '</td>' +
-                                    '<td class="text-center" style="word-wrap: break-word;">' +
-                                    '<a href="https://app.octadesk.com/chat/' + cliente.url_octa + '/opened" target="_blank">' +
-                                    wrapText(cliente.nome, 25) +
-                                    '</a>' +
-                                    '</td>' +
-                                    '<td class="text-center">' + cliente.telefone + '</td>' +
-                                    '<td class="text-center" style="display:none">' + cliente.email + '</td>' +
-                                    '<td class="text-center">' + cliente.empresa + '</td>' +
-                                    '<td class="text-center">' +
-                                    '<select name="responsavel_contato" class="form-control responsavel-contato">' +
-                                    '<option value="">Selecione um responsável</option>';
-                                // Iterar sobre os vendedores e adicionar as opções do select
-                                $.each(response.vendedores, function(index, vendedor) {
-                                    row += '<option value="' + vendedor + '"' +
-                                        (cliente.responsavel_contato == vendedor ? ' selected' : '') +
-                                        '>' + vendedor + '</option>';
-                                });
-                                row += '</select>' +
-                                    '</td>' +
-                                    '<td class="text-center" style="display:none">' + cliente.origem + '</td>' +
-                                    '<td>' +
-                                    '<select class="form-control" name="status_conversa">' +
-                                    '<option value="">Selecione uma opção</option>' +
-                                    '<option value="Lead"' + (cliente.status_conversa == 'Lead' ? ' selected' : '') + '>Lead</option>' +
-                                    '<option value="Venda Concluída"' + (cliente.status_conversa == 'Venda Concluída' ? ' selected' : '') + '>Venda Concluída</option>' +
-                                    '<option value="Enviado"' + (cliente.status_conversa == 'Enviado' ? ' selected' : '') + '>Enviado</option>' +
-                                    '<option value="Aberto"' + (cliente.status_conversa == 'Aberto' ? ' selected' : '') + '>Aberto</option>' +
-                                    '</select>' +
-                                    '</td>' +
-                                    '<td class="text-center">' + formatarData(cliente.created_at) + '</td>' +
-                                    '<td class="text-center">' +
-                                    '<div class="date datetimepicker">' +
-                                    '<input type="datetime-local" class="form-control" id="date" lang="pt-br" ' +
-                                    'value="' + (cliente.data_agendamento ? formatarData(cliente.data_agendamento) : '') + '">' +
-                                    '<span class="input-group-addon">' +
-                                    '<span class="glyphicon glyphicon-calendar"></span>' +
-                                    '</span>' +
-                                    '</div>' +
-                                    '</td>' +
-                                    '<td class="text-center">' +
-                                    '<select name="mensagem_id" class="form-control mensagem_id" ' + (cliente.data_agendamento ? '' : 'disabled') + '>' +
-                                    '<option value="">Selecione uma mensagem</option>';
-                                // Iterar sobre as mensagens e adicionar as opções do select
-                                $.each(response.mensagens, function(index, mensagem) {
-                                    row += '<option value="' + mensagem.id + '"' +
-                                        (cliente.mensagem_template_id == mensagem.id ? ' selected' : '') +
-                                        '>' + mensagem.titulo + '</option>';
-                                });
-                                row += '</select>' +
-                                    '</td>' +
-                                    '<td class="text-center">' +
-                                    '<label class="switch">' +
-                                    '<input type="checkbox" class="table_checkbox" id="checkbox" value="' + cliente.contato_bloqueado + '"' +
-                                    (cliente.contato_bloqueado == 1 ? ' checked' : '') +
-                                    '>' +
-                                    '<span class="slider round"></span>' +
-                                    '</label>' +
-                                    '</td>' +
-                                    '<td class="text-center">Prov.</td>' +
-                                    '<td class="text-center">Prov.</td>' +
-                                    '<td class="text-center">Prov.</td>' +
-                                    '<td class="text-center">Prov.</td>' +
-                                    '<td class="text-center">' +
-                                    '<a href="#" class="btn btn-primary ms-1" target="_blank">' +
-                                    '<i class="fa-brands fa-trello"></i>' +
-                                    '</a>' +
-                                    '</td>' +
-                                    '</tr>';
-                                // Adicionar a linha na tabela
-                                $('#clientesTable tbody').append(row);
-                            }
-                        });
+            // Inicialização do DataTables
+            let table = $('#clientesTable').DataTable({
+                columns: [
+                    { data: 'ID', visible: false },
+                    { data: 'ID Octa' },
+                    { data: 'Nome' },
+                    { data: 'Telefone' },
+                    { data: 'Email', visible: false },
+                    { data: 'Empresa' },
+                    { data: 'Responsável' },
+                    { data: 'Origem', visible: false },
+                    { data: 'Status' },
+                    { data: 'Criado em' },
+                    { data: 'Agendamento' },
+                    { data: 'Template' },
+                    { data: 'Bloqueado' },
+                    { data: 'Qualificado' },
+                    { data: 'Motivo da perda' },
+                    { data: 'Categoria' },
+                    { data: 'Termometro' },
+                    { data: 'Card' }
+                ],
+                columnDefs: [
+                    {
+                        targets: 2, // Coluna "Nome"
+                        render: function (data, type, row, meta) {
+                            return '<a href="https://app.octadesk.com/chat/' + row['ID Octa'] + '/opened" target="_blank">' + data + '</a>';
+                        }
                     },
-                    error: function(xhr, status, error) {
-                        // Tratar erros, se necessário
+                    {
+                        targets: 6, // Coluna "Responsável"
+                        render: function (data, type, row, meta) {
+                            var selectOptions = '<select name="responsavel_contato" class="form-control responsavel-contato">' +
+                                '<option value="">Selecione um responsável</option>';
+                            $.each(vendedores, function (index, vendedor) {
+                                selectOptions += '<option value="' + vendedor + '"';
+                                if (data == vendedor) {
+                                    selectOptions += ' selected';
+                                }
+                                selectOptions += '>' + vendedor + '</option>';
+                            });
+                            selectOptions += '</select>';
+                            return selectOptions;
+                        }
+                    },
+                    {
+                        targets: 8, // Coluna "Status"
+                        render: function (data, type, row, meta) {
+                            var selectOptions = '<select class="form-control" name="status_conversa">' +
+                                '<option value="">Selecione uma opção</option>' +
+                                '<option value="Lead"' + (data == 'Lead' ? ' selected' : '') + '>Lead</option>' +
+                                '<option value="Venda Concluída"' + (data == 'Venda Concluída' ? ' selected' : '') + '>Venda Concluída</option>' +
+                                '<option value="Enviado"' + (data == 'Enviado' ? ' selected' : '') + '>Enviado</option>' +
+                                '<option value="Aberto"' + (data == 'Aberto' ? ' selected' : '') + '>Aberto</option>' +
+                                '</select>';
+                            return selectOptions;
+                        }
+                    },
+                    {
+                        targets: 10, // Coluna "Agendamento"
+                        render: function (data, type, row, meta) {
+                            var datetimePicker = '<div class="date datetimepicker">' +
+                                '<input type="datetime-local" class="form-control" id="date" lang="pt-br" value="' + (data ? moment(data).format('YYYY-MM-DD[T]HH:mm:ss') : '') + '">' +
+                                '<span class="input-group-addon">' +
+                                '<span class="glyphicon glyphicon-calendar"></span>' +
+                                '</span>' +
+                                '</div>';
+                            return datetimePicker;
+                        }
+                    },
+                    {
+                        targets: 11, // Coluna "Template"
+                        render: function (data, type, row, meta) {
+                            var selectOptions = '<select name="mensagem_id" class="form-control mensagem_id" ' + (row['Agendamento'] ? '' : 'disabled') + '>' +
+                                '<option value="">Selecione uma mensagem</option>';
+                            var mensagensOrdenadas = mensagens.sortBy('titulo');
+                            $.each(mensagensOrdenadas, function (index, mensagem) {
+                                selectOptions += '<option value="' + mensagem.id + '"';
+                                if (data == mensagem.id) {
+                                    selectOptions += ' selected';
+                                }
+                                selectOptions += '>' + mensagem.titulo + '</option>';
+                            });
+                            selectOptions += '</select>';
+                            return selectOptions;
+                        }
+                    },
+                    {
+                        targets: 12, // Coluna "Bloqueado"
+                        render: function (data, type, row, meta) {
+                            var checkbox = '<label class="switch">' +
+                                '<input type="checkbox" class="table_checkbox" id="checkbox" value="' + data + '"';
+                            if (data == 1) {
+                                checkbox += ' checked';
+                            }
+                            checkbox += '>' +
+                                '<span class="slider round"></span>' +
+                                '</label>';
+                            return checkbox;
+                        }
                     }
-                });
-            }
+                ],
+            });
 
-            function wrapText(str, maxLength) {
-                var wrappedText = '';
-                var currentLine = '';
-                for (var i = 0; i < str.length; i++) {
-                    currentLine += str.charAt(i);
-                    if (currentLine.length >= maxLength) {
-                        wrappedText += currentLine + "<br>";
-                        currentLine = '';
-                    }
-                }
-                if (currentLine.length > 0) {
-                    wrappedText += currentLine;
-                }
-                return wrappedText;
-            }
+            // Adicionar evento para mostrar/ocultar detalhes da linha
+            $('#clientesTable tbody').on('click', 'td', function () {
+                var tr = $(this).closest('tr');
+                var row = table.row(tr);
 
-            function formatarData(data) {
-                var dataObj = new Date(data);
-                return dataObj.toLocaleString('pt-BR');
+                if (row.child.isShown()) {
+                    // Ocultar detalhes da linha
+                    row.child.hide();
+                    tr.removeClass('shown');
+                } else {
+                    // Mostrar detalhes da linha
+                    row.child(format(row.data())).show();
+                    tr.addClass('shown');
+                }
+            });
+            // Adicionar evento para expandir/contrair a linha
+            $('#clientesTable tbody').on('click', 'td', function () {
+                var tr = $(this).closest('tr');
+                var row = table.row(tr);
+
+                if (row.child.isShown()) {
+                    // Contrair a linha
+                    row.child.hide();
+                    tr.removeClass('shown');
+                } else {
+                    // Expandir a linha
+                    row.child(format(row.data())).show();
+                    tr.addClass('shown');
+                }
+            });
+
+            // Função para formatar os detalhes da linha
+            function format(data) {
+                return '<dl>' +
+                    '<dt>Full name:</dt>' +
+                    '<dd>' + data.Nome + '</dd>' +
+                    '<dt>Extension number:</dt>' +
+                    '<dd>' + data.Telefone + '</dd>' +
+                    '<dt>Extra info:</dt>' +
+                    '<dd>And any further details here (images etc)...</dd>' +
+                    '</dl>';
             }
-        $('.datetimepicker').on('change', function() {
+            $('.datetimepicker').on('change', function() {
                 var id = $(this).closest('tr').find('.cliente-id').text();
                 var newDateTime = $(this).closest('tr').find('#date').val();
                 console.log(newDateTime);
