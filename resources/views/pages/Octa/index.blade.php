@@ -125,7 +125,7 @@
             <th style="display:none">Origem</th>
             <th>Status</th>
             <th>Criado em</th>
-            <!-- <th>Agendamento</th> -->
+            <th>Agendamento</th>
             <th>Template</th>
             <th>Bloqueado</th>
             <th>Qualificado</th>
@@ -142,7 +142,7 @@
 @section('extraScript')
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/locale/pt-br.js"></script>
@@ -153,11 +153,12 @@
     <script>
         $(document).ready(function() {
             $('#clientesTable').DataTable({
-                info: false, // Desabilita a exibição de informações sobre
+                info: false,
                 language: {
                     url: 'https://cdn.datatables.net/plug-ins/1.10.24/i18n/Portuguese-Brasil.json'
                 },
                 pageLength: 10,
+                lengthMenu: [[10, 25, 50, -1], [10, 25, 50, "All"]],
                 drawCallback: function() {
                     // Carregar os registros aqui
                     carregarRegistros();
@@ -209,15 +210,15 @@
                                     '</select>' +
                                     '</td>' +
                                     '<td class="text-center">' + formatarData(cliente.created_at) + '</td>' +
-                                    /*'<td class="text-center">' +
-                                     '<div class="date datetimepicker">' +
+                                    '<td class="text-center">' +
+                                    '<div class="date datetimepicker">' +
                                     '<input type="datetime-local" class="form-control" id="date" lang="pt-br" ' +
                                     'value="' + (cliente.data_agendamento ? formatarData(cliente.data_agendamento) : '') + '">' +
                                     '<span class="input-group-addon">' +
                                     '<span class="glyphicon glyphicon-calendar"></span>' +
-                                    '</span>' + 
+                                    '</span>' +
                                     '</div>' +
-                                    '</td>' +*/
+                                    '</td>' +
                                     '<td class="text-center">' +
                                     '<select name="mensagem_id" class="form-control mensagem_id" ' + (cliente.data_agendamento ? '' : 'disabled') + '>' +
                                     '<option value="">Selecione uma mensagem</option>';
