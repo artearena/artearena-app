@@ -4,11 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Support\Collection;
 use App\Models\Cliente;
 use App\Models\TemplateMensagem;
 use App\Models\Usuario;
-use Illuminate\Support\Facades\DB;
 
 class LeadController extends Controller
 {
@@ -16,26 +14,22 @@ class LeadController extends Controller
     {
         return view('pages.Octa.index');
     }
+    public function getDados()
+    {
+        $clientes = Cliente::select('crm_clientes.*')
+            ->with(['agendamentos', 'templateMensagem'])
+            ->get();
 
-public function getDados()
-{
-    $clientes = Cliente::select('crm_clientes.*')
-        ->with(['agendamentos', 'templateMensagem'])
-        ->get();
+        $clientes = $clientes->sortByDesc('created_at')
+            ->groupBy('telefone')
+            ->map(fn ($grupo) => $grupo->first());
 
-    $clientes = $clientes->sortByDesc('created_at')
-        ->groupBy('telefone')
-        ->map(fn ($grupo) => $grupo->first());
+        $mensagens = TemplateMensagem::all();
 
-    $mensagens = TemplateMensagem::all();
+        $vendedores = Usuario::whereIn('permissoes', [17, 18])->pluck('nome_usuario');
 
-    $vendedores = Usuario::whereIn('permissoes', [17, 18])->pluck('nome_usuario');
-
-    // Obter o script SQL
-    $sql = DB::getQueryLog();
-
-    return compact('clientes', 'mensagens', 'vendedores', 'sql');
-}
+        return compact('clientes', 'mensagens', 'vendedores');
+    }
     
     public function update(Request $request, $id)
     {

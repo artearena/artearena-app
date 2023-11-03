@@ -152,6 +152,8 @@
 
     <script>
         $(document).ready(function() {
+            carregarRegistros();
+
             $('#clientesTable').DataTable({
                 info: false,
                 language: {
@@ -159,10 +161,7 @@
                 },
                 pageLength: 10,
                 lengthMenu: [[10, 25, 50, -1], [10, 25, 50, "All"]],
-                drawCallback: function() {
-                    // Carregar os registros aqui
-                    carregarRegistros();
-                }
+
             });
             function carregarRegistros() {
                 // Realizar a carga dos registros aqui
