@@ -137,7 +137,7 @@
     </thead>
     <tbody>
         @foreach ($clientes as $index => $cliente)
-            @if ($index < 200)
+            @if ($index < 10)
                 <tr>
                     <td class="cliente-id text-center" style="display:none">{{ $cliente->id }}</td>
                     <td class="text-center">{{ $cliente->id }}</td>
