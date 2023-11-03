@@ -12,6 +12,7 @@ class LeadController extends Controller
 {
     public function index()
     {
+        
         $clientes = Cliente::with('agendamentos', 'templateMensagem')
             ->orderBy('created_at', 'desc')
             ->take(1000) // Limita a 200 registros
@@ -23,7 +24,7 @@ class LeadController extends Controller
 
         $mensagens = TemplateMensagem::all();
         $vendedores = Usuario::whereIn('permissoes', [17, 18])->pluck('nome_usuario');
-
+        
         return view('pages.Octa.index', compact('clientes', 'mensagens', 'vendedores'));
     }
 
