@@ -169,15 +169,7 @@
                     </select>                
                 </td> 
                 <td class="text-center">{{ $cliente->created_at }}</td>
-                <td class="text-center">
-                    <div class='date datetimepicker'>
-                        <input type="datetime-local" class="form-control" id="date" lang="pt-br"
-                            value="{{ $cliente->data_agendamento ? (new DateTime($cliente->data_agendamento))->format('Y-m-d\TH:i:s') : '' }}">
-                        <span class="input-group-addon">
-                            <span class="glyphicon glyphicon-calendar"></span>
-                        </span>
-                    </div>
-                </td>
+                
                 <td class="text-center">
                     <select name="mensagem_id" class="form-control mensagem_id" @if (!$cliente->data_agendamento)
                         disabled @endif>
