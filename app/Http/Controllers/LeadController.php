@@ -14,10 +14,9 @@ class LeadController extends Controller
     {
         return view('pages.Octa.index');
     }
-
     public function getDados()
     {
-        $clientes = Cliente::select('clientes.*')
+        $clientes = Cliente::select('crm_clientes.*')
             ->with(['agendamentos', 'templateMensagem'])
             ->orderByDesc('created_at')
             ->get()
