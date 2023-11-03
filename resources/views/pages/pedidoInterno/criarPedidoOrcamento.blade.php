@@ -10,7 +10,7 @@
 </style>
 <script src="../../js/pedidoInterno.js"></script>
 <script>
-  console.log('teste');
+
   document.addEventListener("DOMContentLoaded", function() {
   document.getElementById('btnCriarPedido').addEventListener('click', function(event) {
     event.preventDefault(); // Impede o comportamento padrão do botão

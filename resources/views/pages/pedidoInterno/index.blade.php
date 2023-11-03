@@ -53,11 +53,11 @@
                         </tr>
                         <tr class="produtos-row" style="display: none;">
                             <td colspan="11">
-                                <ul>
-                                    @foreach($pedido->produtos ?? [] as $produto)
-                                        <li>{{ $produto->produto_nome }} (Quantidade: {{ $produto->quantidade }}, Preço Unitário: {{ $produto->preco_unitario }})</li>
-                                    @endforeach
-                                </ul>
+                            <ul>
+                                <?php foreach($pedido->produtos ?? [] as $produto): ?>
+                                    <li><?php echo $produto->produto_nome; ?> (Quantidade: <?php echo $produto->quantidade; ?>, Preço Unitário: <?php echo $produto->preco_unitario; ?>)</li>
+                                <?php endforeach; ?>
+                            </ul>
                             </td>
                         </tr>
                     @endforeach
