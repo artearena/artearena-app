@@ -212,8 +212,7 @@
                         '<td class="text-center">' +
                         '<div class="date datetimepicker">' +
                         '<input type="datetime-local" class="form-control" id="date" lang="pt-br" ' +
-                        'value="' + (cliente.data_agendamento ? (new DateTime(cliente.data_agendamento)).format("Y-m-d\\TH:i:s") : '') + '">' +
-                        '<span class="input-group-addon">' +
+                        'value="' + (cliente.data_agendamento ? new Date(cliente.data_agendamento).toLocaleString('pt-BR', { timeZone: 'UTC' }) : '') + '">'                        '<span class="input-group-addon">' +
                         '<span class="glyphicon glyphicon-calendar"></span>' +
                         '</span>' +
                         '</div>' +
@@ -274,7 +273,11 @@ function wrapText(str, maxLength) {
     }
 
     return wrappedText;
-}        
+}    
+function formatarData(data) {
+    var dataObj = new Date(data);
+    return dataObj.toLocaleString('pt-BR');
+}    
 $('.datetimepicker').on('change', function() {
                 var id = $(this).closest('tr').find('.cliente-id').text();
                 var newDateTime = $(this).closest('tr').find('#date').val();
