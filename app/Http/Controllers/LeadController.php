@@ -11,21 +11,21 @@ use App\Models\Usuario;
 class LeadController extends Controller
 {
     public function index()
-    {
-        $clientes = Cliente::with('agendamentos', 'templateMensagem')
-            ->orderBy('created_at', 'desc')
-            ->take(10) // Limita a 10 registros
-            ->get()
-            ->groupBy('telefone')
-            ->map(function ($grupo) {
-                return $grupo->first();
-            });
+{
+    $clientes = Cliente::with('agendamentos', 'templateMensagem')
+        ->orderBy('created_at', 'desc')
+        ->take(200) // Limita a 200 registros
+        ->get()
+        ->groupBy('telefone')
+        ->map(function ($grupo) {
+            return $grupo->first();
+        });
 
-        $mensagens = TemplateMensagem::all();
-        $vendedores = Usuario::whereIn('permissoes', [17, 18])->pluck('nome_usuario');
+    $mensagens = TemplateMensagem::all();
+    $vendedores = Usuario::whereIn('permissoes', [17, 18])->pluck('nome_usuario');
 
-        return view('pages.Octa.index', compact('clientes', 'mensagens', 'vendedores'));
-    }
+    return view('pages.Octa.index', compact('clientes', 'mensagens', 'vendedores'));
+}
 
     public function update(Request $request, $id) 
     {
