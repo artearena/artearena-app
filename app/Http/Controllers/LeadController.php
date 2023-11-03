@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
 use App\Models\Cliente;
 use App\Models\TemplateMensagem;
 use App\Models\Usuario;
@@ -18,15 +19,16 @@ class LeadController extends Controller
     {
         $clientes = Cliente::select('crm_clientes.*')
             ->with(['agendamentos', 'templateMensagem'])
-            ->orderByDesc('created_at')
-            ->get()
+            ->get();
+
+        $clientes = $clientes->sortByDesc('created_at')
             ->groupBy('telefone')
             ->map(fn ($grupo) => $grupo->first());
-    
+
         $mensagens = TemplateMensagem::all();
-    
+
         $vendedores = Usuario::whereIn('permissoes', [17, 18])->pluck('nome_usuario');
-    
+
         return compact('clientes', 'mensagens', 'vendedores');
     }
     

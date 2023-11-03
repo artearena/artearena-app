@@ -279,7 +279,7 @@
                 var dataObj = new Date(data);
                 return dataObj.toLocaleString('pt-BR');
             }
-$('.datetimepicker').on('change', function() {
+        $('.datetimepicker').on('change', function() {
                 var id = $(this).closest('tr').find('.cliente-id').text();
                 var newDateTime = $(this).closest('tr').find('#date').val();
                 console.log(newDateTime);
