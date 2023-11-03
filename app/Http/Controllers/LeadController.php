@@ -8,6 +8,7 @@ use Illuminate\Support\Collection;
 use App\Models\Cliente;
 use App\Models\TemplateMensagem;
 use App\Models\Usuario;
+use Illuminate\Support\Facades\DB;
 
 class LeadController extends Controller
 {
@@ -15,22 +16,26 @@ class LeadController extends Controller
     {
         return view('pages.Octa.index');
     }
-    public function getDados()
-    {
-        $clientes = Cliente::select('crm_clientes.*')
-            ->with(['agendamentos', 'templateMensagem'])
-            ->get();
 
-        $clientes = $clientes->sortByDesc('created_at')
-            ->groupBy('telefone')
-            ->map(fn ($grupo) => $grupo->first());
+public function getDados()
+{
+    $clientes = Cliente::select('crm_clientes.*')
+        ->with(['agendamentos', 'templateMensagem'])
+        ->get();
 
-        $mensagens = TemplateMensagem::all();
+    $clientes = $clientes->sortByDesc('created_at')
+        ->groupBy('telefone')
+        ->map(fn ($grupo) => $grupo->first());
 
-        $vendedores = Usuario::whereIn('permissoes', [17, 18])->pluck('nome_usuario');
+    $mensagens = TemplateMensagem::all();
 
-        return compact('clientes', 'mensagens', 'vendedores');
-    }
+    $vendedores = Usuario::whereIn('permissoes', [17, 18])->pluck('nome_usuario');
+
+    // Obter o script SQL
+    $sql = DB::getQueryLog();
+
+    return compact('clientes', 'mensagens', 'vendedores', 'sql');
+}
     
     public function update(Request $request, $id)
     {
