@@ -12,21 +12,19 @@ class LeadController extends Controller
 {
     public function index()
     {
-        $query = Cliente::with('agendamentos', 'templateMensagem')
+        $clientes = Cliente::with('agendamentos', 'templateMensagem')
             ->orderBy('created_at', 'desc')
             ->take(1000) // Limita a 200 registros
+            ->get()
             ->groupBy('telefone')
             ->map(function ($grupo) {
                 return $grupo->first();
             });
 
-        $clientes = $query->get();
-        $sql = $query->toSql();
-
         $mensagens = TemplateMensagem::all();
         $vendedores = Usuario::whereIn('permissoes', [17, 18])->pluck('nome_usuario');
 
-        return view('pages.Octa.index', compact('clientes', 'mensagens', 'vendedores', 'sql'));
+        return view('pages.Octa.index', compact('clientes', 'mensagens', 'vendedores'));
     }
 
     public function update(Request $request, $id) 
