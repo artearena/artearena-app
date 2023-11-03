@@ -15,15 +15,19 @@ class LeadController extends Controller
         return view('pages.Octa.index');
     }
 
-    public function getDados(){
-        $clientes = Cliente::with('agendamentos', 'templateMensagem')
-        ->orderByDesc('created_at')
-        ->get()
-        ->groupBy('telefone')
-        ->map(fn ($grupo) => $grupo->first());
-
+    public function getDados()
+    {
+        $clientes = Cliente::select('clientes.*')
+            ->with(['agendamentos', 'templateMensagem'])
+            ->orderByDesc('created_at')
+            ->get()
+            ->groupBy('telefone')
+            ->map(fn ($grupo) => $grupo->first());
+    
         $mensagens = TemplateMensagem::all();
+    
         $vendedores = Usuario::whereIn('permissoes', [17, 18])->pluck('nome_usuario');
+    
         return compact('clientes', 'mensagens', 'vendedores');
     }
     

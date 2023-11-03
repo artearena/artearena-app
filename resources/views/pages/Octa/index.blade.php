@@ -125,7 +125,7 @@
             <th style="display:none">Origem</th>
             <th>Status</th>
             <th>Criado em</th>
-            <th>Agendamento</th>
+            <!-- <th>Agendamento</th> -->
             <th>Template</th>
             <th>Bloqueado</th>
             <th>Qualificado</th>
