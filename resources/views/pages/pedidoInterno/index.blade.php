@@ -1,5 +1,4 @@
 @extends('layout.main')
-
 @section('title', 'Tabela de Pedidos')
 
 @section('content')
@@ -53,11 +52,11 @@
                         </tr>
                         <tr class="produtos-row" style="display: none;">
                             <td colspan="11">
-                            <ul>
-                                <?php foreach($pedido->produtos ?? [] as $produto): ?>
-                                    <li><?php echo $produto->produto_nome; ?> (Quantidade: <?php echo $produto->quantidade; ?>, Preço Unitário: <?php echo $produto->preco_unitario; ?>)</li>
-                                <?php endforeach; ?>
-                            </ul>
+                                <ul>
+                                    @foreach($pedido->produtos ?? [] as $produto)
+                                        <li>{{ $pedido->produtos }}</li>
+                                    @endforeach
+                                </ul>
                             </td>
                         </tr>
                     @endforeach
@@ -74,7 +73,7 @@
                     fetch('/gerarLinkCadastroCliente?pedidoId=' + pedidoId)
                         .then(response => response.json())
                         .then(data => {
-                            alert('link temporario:     ' + data.link);
+                            alert('link temporario: ' + data.link);
                         });
                 });
             }
