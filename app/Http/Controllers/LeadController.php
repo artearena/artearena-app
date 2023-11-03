@@ -14,7 +14,7 @@ class LeadController extends Controller
 {
     $clientes = Cliente::with('agendamentos', 'templateMensagem')
         ->orderBy('created_at', 'desc')
-        ->take(200) // Limita a 200 registros
+        ->take(1000) // Limita a 200 registros
         ->get()
         ->groupBy('telefone')
         ->map(function ($grupo) {
