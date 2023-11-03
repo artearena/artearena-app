@@ -233,8 +233,63 @@
                 language: {
                     url: 'https://cdn.datatables.net/plug-ins/1.10.24/i18n/Portuguese-Brasil.json'
                 },
+                drawCallback: function() {
+                    // Carregar os registros aqui
+                    carregarRegistros();
+                }
             });
+            function carregarRegistros() {
+                // Realizar a carga dos registros aqui
+                $.ajax({
+                    url: '/crm/getDados/',
+                    type: 'GET',
+                    success: function(response) {
+                        // Atualizar a tabela com os registros obtidos
+                        var clientes = response.clientes;
 
+                        // Limpar a tabela
+                        $('#clientesTable tbody').empty();
+
+                        // Iterar sobre os registros e adicionar na tabela
+                        $.each(clientes, function(index, cliente) {
+                            var row = '<tr>' +
+                                '<td class="cliente-id text-center" style="display:none">' + cliente.id + '</td>' +
+                                '<td class="text-center">' + cliente.id + '</td>' +
+                                '<td class="text-center" style="word-wrap: break-word;">' +
+                                '<a href="https://app.octadesk.com/chat/' + cliente.url_octa + '/opened" target="_blank">' +
+                                chunkSplit(cliente.nome, 25, "<br>") +
+                                '</a>' +
+                                '</td>' +
+                                '<td class="text-center">' + cliente.telefone + '</td>' +
+                                '<td class="text-center" style="display:none">' + cliente.email + '</td>' +
+                                '<td class="text-center">' + cliente.empresa + '</td>' +
+                                '<td class="text-center">' + cliente.responsavel + '</td>' +
+                                '<td class="text-center" style="display:none">' + cliente.origem + '</td>' +
+                                '<td class="text-center">' + cliente.status + '</td>' +
+                                '<td class="text-center">' + cliente.criado_em + '</td>' +
+                                '<td class="text-center">' + cliente.agendamento + '</td>' +
+                                '<td class="text-center">' + cliente.template + '</td>' +
+                                '<td class="text-center">' + cliente.bloqueado + '</td>' +
+                                '<td class="text-center">' + cliente.qualificado + '</td>' +
+                                '<td class="text-center">' + cliente.motivo_perda + '</td>' +
+                                '<td class="text-center">' + cliente.categoria + '</td>' +
+                                '<td class="text-center">' + cliente.termometro + '</td>' +
+                                '<td class="text-center">' +
+                                '<a href="#" class="btn btn-primary ms-1" target="_blank">' +
+                                '<i class="fa-brands fa-trello"></i>' +
+                                '</a>' +
+                                '</td>' +
+                                '</tr>';
+
+                            // Adicionar a linha na tabela
+                            $('#clientesTable tbody').append(row);
+                        });
+                    },
+                    error: function(xhr, status, error) {
+                        // Tratar erros, se necessário
+                    }
+                });
+            }
             $('.datetimepicker').on('change', function() {
                 var id = $(this).closest('tr').find('.cliente-id').text();
                 var newDateTime = $(this).closest('tr').find('#date').val();
