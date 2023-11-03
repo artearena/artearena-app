@@ -113,109 +113,106 @@
 @section('content')
     <div id="app">
     <table id="clientesTable" class="small-font">
-    <thead>
-        <tr>
-            <th style="display:none">ID</th>
-            <th>ID Octa</th>
-            <th>Nome</th>
-            <th>Telefone</th>
-            <th style="display:none">Email</th>
-            <th>Empresa</th>
-            <th>Responsável</th>
-            <th style="display:none">Origem</th>
-            <th>Status</th>
-            <th>Criado em</th>
-            <th>Agendamento</th>
-            <th>Template</th>
-            <th>Bloqueado</th>
-            <th>Qualificado</th>
-            <th>Motivo da perda</th>
-            <th>Categoria</th>
-            <th>Termometro</th>
-            <th>Card</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach ($clientes as $index => $cliente)
-            @if ($index < 10)
-                <tr>
-                    <td class="cliente-id text-center" style="display:none">{{ $cliente->id }}</td>
-                    <td class="text-center">{{ $cliente->id }}</td>
-                    <td class="text-center" style="word-wrap: break-word;">
-                        <a href="https://app.octadesk.com/chat/{{ $cliente->url_octa }}/opened" target="_blank">
-                            <?php echo chunk_split($cliente->nome, 25, "<br>"); ?>
-                        </a>
-                    </td>
-                    <td class="text-center">{{ $cliente->telefone }}</td>
-                    <td class="text-center" style="display:none">{{ $cliente->email }}</td>
-                    <td class="text-center">{{ $cliente->empresa }}</td>
-                    <td class="text-center">
-                        <select name="responsavel_contato" class="form-control responsavel-contato">
-                            <option value="">Selecione um responsável</option>
-                            @foreach ($vendedores as $vendedor)
-                                <option value="{{ $vendedor }}" @if ($cliente->responsavel_contato == $vendedor) selected @endif>
-                                    {{ $vendedor }}
-                                </option>
-                            @endforeach
-                        </select>
-                    </td>
-                    <td class="text-center" style="display:none">{{ $cliente->origem }}</td>
-                    <td>
-                        <select class="form-control" name="status_conversa">
-                            <option value="">Selecione uma opção</option>
-                            <option value="Lead" {{ $cliente->status_conversa == 'Lead' ? 'selected' : '' }}>Lead</option>
-                            <option value="Venda Concluída" {{ $cliente->status_conversa == 'Venda Concluída' ? 'selected' : '' }}>Venda Concluída</option>
-                            <option value="Enviado" {{ $cliente->status_conversa == 'Enviado' ? 'selected' : '' }}>Enviado</option>
-                            <option value="Aberto" {{ $cliente->status_conversa == 'Aberto' ? 'selected' : '' }}>Aberto</option>
-                        </select>                
-                    </td> 
-                    <td class="text-center">{{ $cliente->created_at }}</td>
-                    <td class="text-center">
-                        <div class='date datetimepicker'>
-                            <input type="datetime-local" class="form-control" id="date" lang="pt-br"
-                                value="{{ $cliente->data_agendamento ? (new DateTime($cliente->data_agendamento))->format('Y-m-d\TH:i:s') : '' }}">
-                            <span class="input-group-addon">
-                                <span class="glyphicon glyphicon-calendar"></span>
-                            </span>
-                        </div>
-                    </td>
-                    <td class="text-center">
-                        <select name="mensagem_id" class="form-control mensagem_id" @if (!$cliente->data_agendamento)
-                            disabled @endif>
-                            <option value="">Selecione uma mensagem</option>
-                            @php
-                            $mensagensOrdenadas = $mensagens->sortBy('titulo');
-                            @endphp
-                            @foreach ($mensagensOrdenadas as $mensagem)
-                                <option value="{{ $mensagem->id }}"
-                                    @if ($cliente->mensagem_template_id == $mensagem->id) selected @endif>
-                                    {{ $mensagem->titulo }}
-                                </option>
-                            @endforeach
-                        </select>
-                    </td>
-                    <td class="text-center">
-                        <label class="switch">
-                            <input type="checkbox" class="table_checkbox" id="checkbox" value="{{ $cliente->contato_bloqueado }}" @if($cliente->contato_bloqueado == 1) checked @endif>
-                            <span class="slider round"></span>
-                        </label>
-                    </td>
-                    <td class="text-center">Prov.</td>
-                    <td class="text-center">Prov.</td>
-                    <td class="text-center">Prov.</td>
-                    <td class="text-center">Prov.</td>
-                    <td class="text-center">
-                        <a href="#" class="btn btn-primary ms-1" target="_blank">
-                            <i class="fa-brands fa-trello"></i>
-                        </a>
-                    </td>
-                </tr>
-            @else
-                @break
-            @endif
-        @endforeach
-    </tbody>
-</table>
+        <thead>
+            <tr>
+                <th style="display:none">ID</th>
+                <th>ID Octa</th>
+                <th>Nome</th>
+                <th>Telefone</th>
+                <th style="display:none">Email</th>
+                <th>Empresa</th>
+                <th>Responsável</th>
+                <th style="display:none">Origem</th>
+                <th>Status</th>
+                <th>Criado em</th>
+                <th>Agendamento</th>
+                <th>Template</th>
+                <th>Bloqueado</th>
+                <th>Qualificado</th>
+                <th>Motivo da perda</th>
+                <th>Categoria</th>
+                <th>Termometro</th>
+                <th>Card</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($clientes as $cliente)
+            <tr>
+                <td class="cliente-id text-center" style="display:none">{{ $cliente->id }}</td>
+                <td class="text-center">{{ $cliente->id }}</td>
+                <td class="text-center" style="word-wrap: break-word;">
+                    <a href="https://app.octadesk.com/chat/{{ $cliente->url_octa }}/opened" target="_blank">
+                        <?php echo chunk_split($cliente->nome, 25, "<br>"); ?>
+                    </a>
+                </td>
+                <td class="text-center">{{ $cliente->telefone }}</td>
+                <td class="text-center" style="display:none">{{ $cliente->email }}</td>
+                <td class="text-center">{{ $cliente->empresa }}</td>
+                <td class="text-center">
+                    <select name="responsavel_contato" class="form-control responsavel-contato">
+                        <option value="">Selecione um responsável</option>
+                        @foreach ($vendedores as $vendedor)
+                        <option value="{{ $vendedor }}" @if ($cliente->responsavel_contato == $vendedor) selected @endif>
+                            {{ $vendedor }}
+                        </option>
+                        @endforeach
+                    </select>
+                </td>
+                <td class="text-center" style="display:none">{{ $cliente->origem }}</td>
+                <td>
+                    <select class="form-control" name="status_conversa">
+                        <option value="">Selecione uma opção</option>
+                        <option value="Lead" {{ $cliente->status_conversa == 'Lead' ? 'selected' : '' }}>Lead</option>
+                        <option value="Venda Concluída" {{ $cliente->status_conversa == 'Venda Concluída' ? 'selected' : '' }}>Venda Concluída</option>
+                        <option value="Enviado" {{ $cliente->status_conversa == 'Enviado' ? 'selected' : '' }}>Enviado</option>
+                        <option value="Aberto" {{ $cliente->status_conversa == 'Aberto' ? 'selected' : '' }}>Aberto</option>
+                    </select>                
+                </td> 
+                <td class="text-center">{{ $cliente->created_at }}</td>
+                <td class="text-center">
+                    <div class='date datetimepicker'>
+                        <input type="datetime-local" class="form-control" id="date" lang="pt-br"
+                            value="{{ $cliente->data_agendamento ? (new DateTime($cliente->data_agendamento))->format('Y-m-d\TH:i:s') : '' }}">
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+                    </div>
+                </td>
+                <td class="text-center">
+                    <select name="mensagem_id" class="form-control mensagem_id" @if (!$cliente->data_agendamento)
+                        disabled @endif>
+                        <option value="">Selecione uma mensagem</option>
+                        @php
+                        $mensagensOrdenadas = $mensagens->sortBy('titulo');
+                        @endphp
+                        @foreach ($mensagensOrdenadas as $mensagem)
+                        <option value="{{ $mensagem->id }}"
+                            @if ($cliente->mensagem_template_id == $mensagem->id) selected @endif>
+                            {{ $mensagem->titulo }}
+                        </option>
+                        @endforeach
+                    </select>
+                </td>
+                <td class="text-center">
+                    <label class="switch">
+                        <input type="checkbox" class="table_checkbox" id="checkbox" value="{{ $cliente->contato_bloqueado }}" @if($cliente->contato_bloqueado == 1) checked @endif>
+                        <span class="slider round"></span>
+                    </label>
+                </td>
+                <td class="text-center">Prov.</td>
+                <td class="text-center">Prov.</td>
+                <td class="text-center">Prov.</td>
+                <td class="text-center">Prov.</td>
+                
+                <td class="text-center">
+                    <a href="#" class="btn btn-primary ms-1" target="_blank">
+                        <i class="fa-brands fa-trello"></i>
+                    </a>
+                </td>
+            </tr>
+            @endforeach
+        </tbody>
+    </table>
     </div>
 @endsection
 @section('extraScript')
