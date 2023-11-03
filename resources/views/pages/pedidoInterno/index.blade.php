@@ -49,15 +49,15 @@
                                     </button>
                                 </div>
                             </td>
-                        </tr>
-                        <tr class="produtos-row" style="display: none;">
-                            <td colspan="11">
-                                <ul>
-                                    @foreach($pedido->produtos ?? [] as $produto)
+                            <td> @foreach($pedido->produtos ?? [] as $produto)
                                         <li>{{ $pedido->produtos }}</li>
                                     @endforeach
-                                </ul>
                             </td>
+                        </tr>
+                        <tr class="produtos-row" style="display: none;">
+
+                                    
+
                         </tr>
                     @endforeach
                 @endisset
