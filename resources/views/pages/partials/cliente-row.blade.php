@@ -22,7 +22,7 @@
         <td>
             <select name="mensagem_id" class="form-control mensagem_id" @if (!$cliente->data_agendamento) disabled @endif>
                 <option value="">Selecione uma mensagem</option>
-                @foreach ($mensagem as $mensagens)
+                @foreach ($mensagens as $mensagens)
                     <option value="{{ $mensagem->id }}" @if ($cliente->mensagem_template_id == $mensagem->id) selected @endif>
                         {{ $mensagem->titulo }}
                     </option>
