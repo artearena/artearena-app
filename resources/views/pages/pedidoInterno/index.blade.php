@@ -82,57 +82,9 @@
         }
     }
 </style>
+<script src="../../js/pedidoInterno"></script>
 @endsection
-@section('extraScript')
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            var btnSalvarConsultarCliente = document.getElementsByClassName('btn-salvar-consultar-cliente');
-            for (var i = 0; i < btnSalvarConsultarCliente.length; i++) {
-                btnSalvarConsultarCliente[i].addEventListener('click', function() {
-                    var pedidoId = this.closest('.pedido-row').getAttribute('data-pedido-id');
-                    fetch('/gerarLinkCadastroCliente?pedidoId=' + pedidoId)
-                        .then(response => response.json())
-                        .then(data => {
-                            alert('link temporario: ' + data.link);
-                        });
-                });
-            }
-        });
-    </script>
-    <script>
-        console.log('teste');
-        var smallBreak = 800; // Your small screen breakpoint in pixels
-        var columns = $('.dataTable tr').length;
-        var rows = $('.dataTable th').length;
 
-        $(document).ready(shapeTable());
-        $(window).resize(function() {
-            shapeTable();
-        });
-
-        function shapeTable() {
-            if ($(window).width() < smallBreak) {
-                for (i=0;i < rows; i++) {
-                    var maxHeight = $('.dataTable th:nth-child(' + i + ')').outerHeight();
-                    for (j=0; j < columns; j++) {
-                        if ($('.dataTable tr:nth-child(' + j + ') td:nth-child(' + i + ')').outerHeight() > maxHeight) {
-                            maxHeight = $('.dataTable tr:nth-child(' + j + ') td:nth-child(' + i + ')').outerHeight();
-                        }
-                        if ($('.dataTable tr:nth-child(' + j + ') td:nth-child(' + i + ')').prop('scrollHeight') > $('.dataTable tr:nth-child(' + j + ') td:nth-child(' + i + ')').outerHeight()) {
-                            maxHeight = $('.dataTable tr:nth-child(' + j + ') td:nth-child(' + i + ')').prop('scrollHeight');
-                        }
-                    }
-                    for (j=0; j < columns; j++) {
-                        $('.dataTable tr:nth-child(' + j + ') td:nth-child(' + i + ')').css('height',maxHeight);
-                        $('.dataTable th:nth-child(' + i + ')').css('height',maxHeight);
-                    }
-                }
-            } else {
-                $('.dataTable td, .dataTable th').removeAttr('style');
-            }
-        }
-    </script>
-@endsection
 @section('content')
     <div class="container">
         <h1>Tabela de Pedidos</h1>
