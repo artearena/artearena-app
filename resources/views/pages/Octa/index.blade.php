@@ -209,6 +209,8 @@
             @endforeach
         </tbody>
     </table>
+    {{ $clientes->links() }}
+
     </div>
 @endsection
 @section('extraScript')
