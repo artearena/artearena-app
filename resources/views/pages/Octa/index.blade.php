@@ -188,7 +188,7 @@
             </tbody>
         </table>
         <div class="pagination justify-content-center">
-            {{ $clientes->links('vendor.pagination.bootstrap-4') }}
+            {{ $clientes->links("pagination::bootstrap-4") }}
         </div>    
 </div>
 @endsection
