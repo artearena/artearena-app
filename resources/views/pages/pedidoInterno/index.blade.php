@@ -56,29 +56,30 @@
 
     @media screen and (min-width: 50em) {
 
-    .dataTable {
-        display: table;
-    }
-    
-    .dataTable thead {
-        display: table-header-group;
-        float: none;
-    }
-    
-    .dataTable tbody {
-        display: table-row-group;
-    }
-    
-    .dataTable thead tr, .dataTable tbody tr {
-        display: table-row;
-    }
-    
-    .dataTable th, .dataTable tbody td {
-        display: table-cell;
-    }
-    
-    .dataTable td, .dataTable th {
-        width: auto;
+        .dataTable {
+            display: table;
+        }
+        
+        .dataTable thead {
+            display: table-header-group;
+            float: none;
+        }
+        
+        .dataTable tbody {
+            display: table-row-group;
+        }
+        
+        .dataTable thead tr, .dataTable tbody tr {
+            display: table-row;
+        }
+        
+        .dataTable th, .dataTable tbody td {
+            display: table-cell;
+        }
+        
+        .dataTable td, .dataTable th {
+            width: auto;
+        }
     }
 </style>
 @endsection
@@ -146,6 +147,8 @@
             </tbody>
         </table>
     </div>
+@endsection
+@section('extraScript')
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             var btnSalvarConsultarCliente = document.getElementsByClassName('btn-salvar-consultar-cliente');
@@ -161,7 +164,8 @@
             }
         });
     </script>
-        <script>
+    <script>
+        console.log('teste');
         var smallBreak = 800; // Your small screen breakpoint in pixels
         var columns = $('.dataTable tr').length;
         var rows = $('.dataTable th').length;
