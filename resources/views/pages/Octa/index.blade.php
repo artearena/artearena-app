@@ -187,8 +187,10 @@
                 @endforeach
             </tbody>
         </table>
-        {{ $clientes->links() }}
-    </div>
+        <div class="pagination justify-content-center">
+            {{ $clientes->links('vendor.pagination.bootstrap-4') }}
+        </div>    
+</div>
 @endsection
 @section('extraScript')
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
