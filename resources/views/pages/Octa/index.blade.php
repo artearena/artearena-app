@@ -135,25 +135,7 @@
                 "lengthMenu": [10, 25, 50, 100], // Opções de quantidade de registros por página
                 "pageLength": 10, // 
             });
-            $('#search-button').on('click', function() {
-                var searchQuery = $('#search-input').val();
-
-                // Enviar solicitação AJAX para buscar os registros
-                $.ajax({
-                    url: '/crm/buscar-registros',
-                    method: 'GET',
-                    data: {
-                        search: searchQuery
-                    },
-                    success: function(response) {
-                        // Atualizar a tabela com os registros encontrados
-                        $('#clientesTable tbody').html(response);
-                    },
-                    error: function(xhr, status, error) {
-                        console.log(error);
-                    }
-                });
-            });
+           
             $('.datetimepicker').on('change', function() {
                 var id = $(this).closest('tr').find('.cliente-id').text();
                 var newDateTime = $(this).closest('tr').find('#date').val();
@@ -184,6 +166,7 @@
                     }
                 });
             });
+
             $('.mensagem_id').on('change', function() {
                 var mensagemId = $(this).val();
                 var clienteId = $(this).closest('tr').find('.cliente-id').text();
@@ -231,7 +214,25 @@
                     console.error('Erro na requisição:', error);
                 });
             });
+            $('#search-button').on('click', function() {
+                var searchQuery = $('#search-input').val();
 
+                // Enviar solicitação AJAX para buscar os registros
+                $.ajax({
+                    url: '/crm/buscar-registros',
+                    method: 'GET',
+                    data: {
+                        search: searchQuery
+                    },
+                    success: function(response) {
+                        // Atualizar a tabela com os registros encontrados
+                        $('#clientesTable tbody').html(response);
+                    },
+                    error: function(xhr, status, error) {
+                        console.log(error);
+                    }
+                });
+            });
             $('.table_checkbox').on('change', function() {
                 var clienteId = $(this).closest('tr').find('.cliente-id').text();
                 var valor = $(this).prop('checked') ? 1 : 0; // Obtém o valor corretamente
