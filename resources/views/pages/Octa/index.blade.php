@@ -95,7 +95,6 @@
             <thead>
                 <tr>
                     <th style="display:none">ID</th>
-                    <th>ID Octa</th>
                     <th>Nome</th>
                     <th>Telefone</th>
                     <th style="display:none">Email</th>
@@ -110,13 +109,13 @@
                     <th>Categoria</th>
                     <th>Termômetro</th>
                     <th>Card</th>
+                    
                 </tr>
             </thead>
             <tbody>
                 @foreach ($clientes as $cliente)
                     <tr>
                         <td class="cliente-id text-center" style="display:none">{{ $cliente->id }}</td>
-                        <td class="text-center">{{ $cliente->id }}</td>
                         <td class="text-center" style="word-wrap: break-word;">
                             <a href="https://app.octadesk.com/chat/{{ $cliente->url_octa }}/opened" target="_blank">
                                 {{ mb_substr($cliente->nome, 0, 25) . (mb_strlen($cliente->nome) > 25 ? '...' : '') }}
