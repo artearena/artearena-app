@@ -31,7 +31,7 @@ class LeadController extends Controller
 
     public function indexView()
     {
-        $clientes = CrmClientesView::all();
+        $clientes = CrmClientesView::paginate(100);
         $mensagens = TemplateMensagem::all();
         $vendedores = Usuario::whereIn('permissoes', [17, 18])->pluck('nome_usuario');
 
