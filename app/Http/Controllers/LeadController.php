@@ -7,8 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Cliente;
 use App\Models\TemplateMensagem;
 use App\Models\Usuario;
-use Illuminate\Support\Facades\DB;
-use App\Models\ClientesView;
+use App\Models\CrmClientesView;
 
 class LeadController extends Controller
 {
@@ -32,7 +31,7 @@ class LeadController extends Controller
 
     public function indexView()
     {
-        $clientes = ClientesView::all();
+        $clientes = CrmClientesView::all();
         $mensagens = TemplateMensagem::all();
         $vendedores = Usuario::whereIn('permissoes', [17, 18])->pluck('nome_usuario');
 
