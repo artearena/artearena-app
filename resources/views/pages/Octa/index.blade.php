@@ -177,7 +177,6 @@
                         </td>
                         <td class="text-center">Prov.</td>
                         <td class="text-center">Prov.</td>
-                        <td class="text-center">Prov.</td>
                         <td class="text-center">
                             <a href="#" class="btn btn-primary ms-1" target="_blank">
                                 <i class="fa-brands fa-trello"></i>
