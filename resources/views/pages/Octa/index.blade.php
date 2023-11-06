@@ -126,7 +126,7 @@
 
     <script>
         $(document).ready(function() {
-            $('#clientesTable').DataTable({
+            /* $('#clientesTable').DataTable({
                 info: false, // Desabilita a exibição de informações sobre
                 language: {
                     url: 'https://cdn.datatables.net/plug-ins/1.10.24/i18n/Portuguese-Brasil.json'
@@ -135,7 +135,7 @@
                 "lengthMenu": [10, 25, 50, 100], // Opções de quantidade de registros por página
                 "pageLength": 10, // 
             });
-           
+            */
             $('.datetimepicker').on('change', function() {
                 var id = $(this).closest('tr').find('.cliente-id').text();
                 var newDateTime = $(this).closest('tr').find('#date').val();
