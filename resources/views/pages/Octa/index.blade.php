@@ -7,15 +7,7 @@
             /* =============================================================================
             Responsive Table CSS
             ========================================================================== */
-            .pagination a,
-            .pagination span {
-                font-size: 1rem; /* Defina o tamanho de fonte desejado */
-            }
 
-            .pagination .next,
-            .pagination .prev {
-                font-size: 1rem; /* Defina o tamanho de fonte desejado para as setas Next e Previous */
-            }
             .dataTable {
                 display: block;
                 width: 100%;
