@@ -69,3 +69,26 @@
         </td>
     </tr>
 @endforeach
+<script>
+    $('.table_checkbox').on('change', function() {
+        console.log('executado');
+        var clienteId = $(this).closest('tr').find('.cliente-id').text();
+        var valor = $(this).prop('checked') ? 1 : 0; // Obtém o valor corretamente
+        // Enviar solicitação AJAX para atualizar o registro no banco de dados
+        $.ajax({
+            url: `/crm/atualizar-bloqueado/${clienteId}`,
+            method: 'PUT',
+            data: { 
+                clienteId: clienteId,
+                bloqueado: valor,
+                "_token": "{{ csrf_token() }}",
+            },
+            success: function(response) {
+                console.log(response);
+            },
+            error: function(xhr, status, error) {
+                console.log(error);
+            }
+        });
+    });
+</script>
