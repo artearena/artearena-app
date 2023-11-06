@@ -112,7 +112,7 @@
 @endsection
 @section('content')
     <div id="app">
-    <table id="clientesTable" class="small-font">
+        <table id="clientesTable" class="small-font">
         <thead>
             <tr>
                 <th style="display:none">ID</th>
@@ -128,10 +128,8 @@
                 <th>Agendamento</th>
                 <th>Template</th>
                 <th>Bloqueado</th>
-                <th>Qualificado</th>
-                <th>Motivo da perda</th>
                 <th>Categoria</th>
-                <th>Termometro</th>
+                <th>Termômetro</th>
                 <th>Card</th>
             </tr>
         </thead>
@@ -142,7 +140,7 @@
                 <td class="text-center">{{ $cliente->id }}</td>
                 <td class="text-center" style="word-wrap: break-word;">
                     <a href="https://app.octadesk.com/chat/{{ $cliente->url_octa }}/opened" target="_blank">
-                        <?php echo chunk_split($cliente->nome, 25, "<br>"); ?>
+                        {{ mb_substr($cliente->nome, 0, 25) . (mb_strlen($cliente->nome) > 25 ? '...' : '') }}
                     </a>
                 </td>
                 <td class="text-center">{{ $cliente->telefone }}</td>
@@ -202,8 +200,6 @@
                 <td class="text-center">Prov.</td>
                 <td class="text-center">Prov.</td>
                 <td class="text-center">Prov.</td>
-                <td class="text-center">Prov.</td>
-                
                 <td class="text-center">
                     <a href="#" class="btn btn-primary ms-1" target="_blank">
                         <i class="fa-brands fa-trello"></i>
