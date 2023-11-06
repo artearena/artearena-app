@@ -48,6 +48,7 @@
             .dataTable th {
                 text-align: center;
                 background: #212529;
+                color: white;
                 border-bottom: 1px dashed #aaa;
             }
 
