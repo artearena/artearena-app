@@ -46,9 +46,11 @@ class LeadController extends Controller
             ->orWhere('nome', 'LIKE', '%' . $searchQuery . '%')
             ->orWhere('telefone', 'LIKE', '%' . $searchQuery . '%')
             ->paginate(10);
+        $mensagens = TemplateMensagem::all();
+        $vendedores = Usuario::whereIn('permissoes', [17, 18])->pluck('nome_usuario');
 
         // Renderizar a tabela com os registros encontrados
-        $html = view('pages.partials.cliente-row', compact('clientes'))->render();
+        $html = view('pages.partials.cliente-row', compact('clientes','mensagens','vendedores'))->render();
 
         return $html;
     }
