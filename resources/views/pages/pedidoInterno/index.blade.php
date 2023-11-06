@@ -5,48 +5,49 @@
     /* =============================================================================
     Responsive Table CSS
     ========================================================================== */
-    
+
     .dataTable {
-    display: block;
-    width: 100%;
-    margin: 1em 0;
+        display: block;
+        width: 100%;
+        margin: 1em 0;
     }
 
     .dataTable thead, .dataTable tbody, .dataTable thead tr, .dataTable th {
-    display: block;
+        display: block;
     }
 
     .dataTable thead {
-    float: left;
+        float: left;
     }
 
     .dataTable tbody {
-    width: auto;
-    position: relative;
-    overflow-x: auto;
+        width: auto;
+        position: relative;
+        overflow-x: auto;
     }
 
     .dataTable td, .dataTable th {
-    padding: .625em;
-    line-height: 1.5em;
-    border-bottom: 1px dashed #ccc;
-    box-sizing: border-box;
-    overflow-x: hidden;
-    overflow-y: auto;
+        padding: .625em;
+        line-height: 1.5em;
+        border-bottom: 1px dashed #ccc;
+        box-sizing: border-box;
+        overflow-x: hidden;
+        overflow-y: auto;
     }
 
     .dataTable th {
-    text-align: left;
-    background: rgba(0, 0, 0, 0.14);
-    border-bottom: 1px dashed #aaa;
+        text-align: center;
+        background: #212529;
+        color: white;
+        border-bottom: 1px dashed #aaa;
     }
 
     .dataTable tbody tr {
-    display: table-cell;
+        display: table-cell;
     }
 
     .dataTable tbody td {
-    display: block;
+        display: block;
     }
 
     .dataTable tr:nth-child(odd) {
@@ -78,8 +79,6 @@
     
     .dataTable td, .dataTable th {
         width: auto;
-    }
-    
     }
 </style>
 @endsection
