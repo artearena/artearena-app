@@ -82,7 +82,7 @@
         }
     }
 </style>
-<script src="../../js/pedidoInterno"></script>
+<script src="../js/pedidoInterno"></script>
 @endsection
 
 @section('content')
