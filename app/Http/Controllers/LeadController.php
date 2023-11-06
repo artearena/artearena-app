@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\Cliente;
 use App\Models\TemplateMensagem;
 use App\Models\Usuario;
+use Illuminate\Support\Facades\DB;
+use App\Models\ClientesView;
 
 class LeadController extends Controller
 {
@@ -28,6 +30,15 @@ class LeadController extends Controller
         return view('pages.Octa.index', compact('clientes', 'mensagens', 'vendedores'));
     }
 
+    public function indexView()
+    {
+        $clientes = ClientesView::all();
+        $mensagens = TemplateMensagem::all();
+        $vendedores = Usuario::whereIn('permissoes', [17, 18])->pluck('nome_usuario');
+
+        return view('pages.Octa.index', compact('clientes', 'mensagens', 'vendedores'));
+    }
+    
     public function update(Request $request, $id) 
     {
         $registro = Cliente::findOrFail($id);
