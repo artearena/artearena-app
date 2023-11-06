@@ -239,24 +239,23 @@
         
     </script>
     <script>
-         $('#search-button').on('click', function() {
-                var searchQuery = $('#search-input').val();
-
-                // Enviar solicitação AJAX para buscar os registros
-                $.ajax({
-                    url: '/crm/buscar-registros',
-                    method: 'GET',
-                    data: {
-                        search: searchQuery
-                    },
-                    success: function(response) {
-                        // Atualizar a tabela com os registros encontrados
-                        $('#clientesTable tbody').html(response);
-                    },
-                    error: function(xhr, status, error) {
-                        console.log(error);
-                    }
-                });
+        $('#search-button').on('click', function() {
+            var searchQuery = $('#search-input').val();
+            // Enviar solicitação AJAX para buscar os registros
+            $.ajax({
+                url: '/crm/buscar-registros',
+                method: 'GET',
+                data: {
+                    search: searchQuery
+                },
+                success: function(response) {
+                    // Atualizar a tabela com os registros encontrados
+                    $('#clientesTable tbody').html(response);
+                },
+                error: function(xhr, status, error) {
+                    console.log(error);
+                }
             });
+        });
     </script>
 @endsection

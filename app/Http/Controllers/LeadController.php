@@ -48,7 +48,7 @@ class LeadController extends Controller
             ->paginate(10);
 
         // Renderizar a tabela com os registros encontrados
-        $html = view('partials.cliente-row', compact('registros'))->render();
+        $html = view('pages.partials.cliente-row', compact('registros'))->render();
 
         return $html;
     }
