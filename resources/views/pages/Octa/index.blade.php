@@ -166,7 +166,7 @@
                     }
                 });
             });
-
+            
             $('.mensagem_id').on('change', function() {
                 var mensagemId = $(this).val();
                 var clienteId = $(this).closest('tr').find('.cliente-id').text();
@@ -214,25 +214,7 @@
                     console.error('Erro na requisição:', error);
                 });
             });
-            $('#search-button').on('click', function() {
-                var searchQuery = $('#search-input').val();
 
-                // Enviar solicitação AJAX para buscar os registros
-                $.ajax({
-                    url: '/crm/buscar-registros',
-                    method: 'GET',
-                    data: {
-                        search: searchQuery
-                    },
-                    success: function(response) {
-                        // Atualizar a tabela com os registros encontrados
-                        $('#clientesTable tbody').html(response);
-                    },
-                    error: function(xhr, status, error) {
-                        console.log(error);
-                    }
-                });
-            });
             $('.table_checkbox').on('change', function() {
                 var clienteId = $(this).closest('tr').find('.cliente-id').text();
                 var valor = $(this).prop('checked') ? 1 : 0; // Obtém o valor corretamente
@@ -255,5 +237,26 @@
             });
         });
         
+    </script>
+    <script>
+         $('#search-button').on('click', function() {
+                var searchQuery = $('#search-input').val();
+
+                // Enviar solicitação AJAX para buscar os registros
+                $.ajax({
+                    url: '/crm/buscar-registros',
+                    method: 'GET',
+                    data: {
+                        search: searchQuery
+                    },
+                    success: function(response) {
+                        // Atualizar a tabela com os registros encontrados
+                        $('#clientesTable tbody').html(response);
+                    },
+                    error: function(xhr, status, error) {
+                        console.log(error);
+                    }
+                });
+            });
     </script>
 @endsection
