@@ -172,7 +172,7 @@
     });
 </script>
 <script>
-    var smallBreak = 1200; // Your small screen breakpoint in pixels
+    var smallBreak = 800; // Your small screen breakpoint in pixels
     var columns = $('.dataTable tr').length;
     var rows = $('.dataTable th').length;
 
