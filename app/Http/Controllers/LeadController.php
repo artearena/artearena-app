@@ -37,7 +37,21 @@ class LeadController extends Controller
 
         return view('pages.Octa.index', compact('clientes', 'mensagens', 'vendedores'));
     }
-    
+    public function buscarRegistros(Request $request)
+    {
+        $searchQuery = $request->input('search');
+
+        // Consulta para buscar os registros com base na consulta de pesquisa
+        $registros = CrmClientesView::where('id', 'LIKE', '%' . $searchQuery . '%')
+            ->orWhere('nome', 'LIKE', '%' . $searchQuery . '%')
+            ->orWhere('telefone', 'LIKE', '%' . $searchQuery . '%')
+            ->paginate(10);
+
+        // Renderizar a tabela com os registros encontrados
+        $html = view('partials.cliente-row', compact('registros'))->render();
+
+        return $html;
+    }
     public function update(Request $request, $id) 
     {
         $registro = Cliente::findOrFail($id);
