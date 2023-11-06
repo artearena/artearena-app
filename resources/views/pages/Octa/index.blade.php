@@ -4,121 +4,126 @@
 @endsection
 @section('style')
     <style>
-        @import "compass/css3";
-
-        /*
-
-        RESPONSTABLE 2.0 by jordyvanraaij
-        Designed mobile first!
-
-        If you like this solution, you might also want to check out the 1.0 version:
-        https://gist.github.com/jordyvanraaij/9069194
-
-        */
-
-        // Default options for table style
-        $table-breakpoint: 480px;
-        $table-background-color: #FFF;
-        $table-text-color: #024457;
-        $table-outer-border: 1px solid #167F92;
-        $table-cell-border: 1px solid #D9E4E6;
-
-        // Extra options for table style (parse these arguments when including your mixin)
-        $table-border-radius: 10px;
-        $table-highlight-color: #EAF3F3;
-        $table-header-background-color: #167F92;
-        $table-header-text-color: #FFF;
-        $table-header-border: 1px solid #FFF;
-
-        // The Responstable mixin
-
-        @mixin responstable(
-        $breakpoint: $table-breakpoint,
-        $background-color: $table-background-color,
-        $text-color: $table-text-color,
-        $outer-border: $table-outer-border,
-        $cell-border: $table-cell-border,
-        $border-radius: none,
-        $highlight-color: none,
-        $header-background-color: $table-background-color,
-        $header-text-color: $table-text-color,
-        $header-border: $table-cell-border) {
-        
-        .responstable {
-            margin: 1em 0;
-            width: 100%;
-            overflow: hidden;  
-            background: $background-color;
-            color: $text-color;
-            border-radius: $border-radius;
-            border: $outer-border;
-        
-            tr {
-            border: $cell-border; 
-            &:nth-child(odd) { // highlight the odd rows with a color
-                background-color: $highlight-color;
-            }  
-            }
-        
-            th {
-            display: none; // hide all the table header for mobile
-            border: $header-border;
-            background-color: $header-background-color;
-            color: $header-text-color;
-            padding: 1em;  
-            &:first-child { // show the first table header for mobile
-                display: table-cell;
-                text-align: center;
-            }
-            &:nth-child(2) { // show the second table header but replace the content with the data-th from the markup for mobile
-                display: table-cell;
-                span {display:none;}
-                &:after {content:attr(data-th);}
-            }
-            @media (min-width: $breakpoint) {
-                &:nth-child(2) { // hide the data-th and show the normal header for tablet and desktop
-                span {display: block;}
-                &:after {display: none;}
-                }
-            }
-            }
-        
-            td {
-            display: block; // display the table data as one block for mobile
-            word-wrap: break-word;
-            max-width: 7em;
-            &:first-child { 
-                display: table-cell; // display the first one as a table cell (radio button) for mobile
-                text-align: center;
-                border-right: $cell-border;
-            }
-            @media (min-width: $breakpoint) {
-                border: $cell-border;
-            }
-            }
-        
-            th, td {
-            text-align: left;
-            margin: .5em 1em;  
-            @media (min-width: $breakpoint) {
-                display: table-cell; // show the table as a normal table for tablet and desktop
-                padding: 1em;
-            }
-            }  
-        }    
+        /* Default options for table style */
+        .table-breakpoint {
+        480px;
+        }
+        .table-background-color {
+        #FFF;
+        }
+        .table-text-color {
+        #024457;
+        }
+        .table-outer-border {
+        1px solid #167F92;
+        }
+        .table-cell-border {
+        1px solid #D9E4E6;
         }
 
-        // Include the mixin (with extra options as overrides)
+        /* Extra options for table style (parse these arguments when including your mixin) */
+        .table-border-radius {
+        10px;
+        }
+        .table-highlight-color {
+        #EAF3F3;
+        }
+        .table-header-background-color {
+        #167F92;
+        }
+        .table-header-text-color {
+        #FFF;
+        }
+        .table-header-border {
+        1px solid #FFF;
+        }
 
-        @include responstable(
-        $border-radius: $table-border-radius,
-        $highlight-color: $table-highlight-color,
-        $header-background-color: $table-header-background-color,
-        $header-text-color: $table-header-text-color,
-        $header-border: $table-header-border);
+        /* The Responstable mixin */
+        .responstable {
+        margin: 1em 0;
+        width: 100%;
+        overflow: hidden;
+        background: var(--table-background-color);
+        color: var(--table-text-color);
+        border-radius: var(--table-border-radius);
+        border: var(--table-outer-border);
+        }
 
-        // General styles
+        .responstable tr {
+        border: var(--table-cell-border);
+        }
 
+        .responstable tr:nth-child(odd) {
+        background-color: var(--table-highlight-color);
+        }
+
+        .responstable th {
+        display: none;
+        border: var(--table-cell-border);
+        background-color: var(--table-header-background-color);
+        color: var(--table-header-text-color);
+        padding: 1em;
+        }
+
+        .responstable th:first-child {
+        display: table-cell;
+        text-align: center;
+        }
+
+        .responstable th:nth-child(2) {
+        display: table-cell;
+        span {
+            display: none;
+        }
+        &:after {
+            content: attr(data-th);
+        }
+        }
+
+        @media (min-width: var(--table-breakpoint)) {
+        .responstable th:nth-child(2) {
+            span {
+            display: block;
+            }
+            &:after {
+            display: none;
+            }
+        }
+        }
+
+        .responstable td {
+        display: block;
+        word-wrap: break-word;
+        max-width: 7em;
+        }
+
+        .responstable td:first-child {
+        display: table-cell;
+        text-align: center;
+        border-right: var(--table-cell-border);
+        }
+
+        @media (min-width: var(--table-breakpoint)) {
+        .responstable td {
+            border: var(--table-cell-border);
+        }
+        }
+
+        .responstable th,
+        .responstable td {
+        text-align: left;
+        margin: 0.5em 1em;
+        }
+
+        @media (min-width: var(--table-breakpoint)) {
+        .responstable th,
+        .responstable td {
+            display: table-cell;
+            padding: 1em;
+        }
+        }
+
+        /* General styles */
         body {
         padding: 0 2em;
         font-family: Arial, sans-serif;
@@ -130,8 +135,11 @@
         font-family: Verdana;
         font-weight: normal;
         color: #024457;
-        span {color: #167F92;}
-        }    
+        }
+
+        h1 span {
+        color: #167F92;
+        } 
 
 </style>
 @endsection
