@@ -68,7 +68,7 @@ Route::middleware(['auth'])->group(function () {
         Route::any('/download-pdf', [tinyController::class, 'gerarPdf'])->name('tiny.gerarPdf');
     });
     Route::prefix('crm')->group(function () {
-        //Route::any('/', [LeadController::class, 'index'])->name('octa.crm');
+        Route::any('/', [LeadController::class, 'index'])->name('octa.crm');
         Route::any('/', [LeadController::class, 'indexView'])->name('octa.crm');
 
         Route::any('/getDados', [LeadController::class, 'getDados'])->name('octa.dados');
@@ -77,6 +77,7 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/atualizar-mensagem', [LeadController::class, 'atualizarMensagem'])->name('octa.atualizarMensagem');
         Route::put('/atualizar-vendedor/{id}', [LeadController::class, 'atualizarVendedor']);
         Route::put('/atualizar-bloqueado/{id}', [LeadController::class, 'atualizarBloqueado']);
+        Route::get('/buscar-registros', [LeadController::class, 'buscarRegistros']);
     });
     Route::get('/buscar-pedido', [PedidoController::class, 'buscarPedido'])->name('buscarPedido');
 
