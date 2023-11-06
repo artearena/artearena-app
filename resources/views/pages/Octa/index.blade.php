@@ -4,144 +4,86 @@
 @endsection
 @section('style')
     <style>
-        /* Default options for table style */
-        .table-breakpoint {
-        480px;
-        }
-        .table-background-color {
-        #FFF;
-        }
-        .table-text-color {
-        #024457;
-        }
-        .table-outer-border {
-        1px solid #167F92;
-        }
-        .table-cell-border {
-        1px solid #D9E4E6;
-        }
-
-        /* Extra options for table style (parse these arguments when including your mixin) */
-        .table-border-radius {
-        10px;
-        }
-        .table-highlight-color {
-        #EAF3F3;
-        }
-        .table-header-background-color {
-        #167F92;
-        }
-        .table-header-text-color {
-        #FFF;
-        }
-        .table-header-border {
-        1px solid #FFF;
-        }
-
-        /* The Responstable mixin */
-        .responstable {
-        margin: 1em 0;
-        width: 100%;
-        overflow: hidden;
-        background: var(--table-background-color);
-        color: var(--table-text-color);
-        border-radius: var(--table-border-radius);
-        border: var(--table-outer-border);
-        }
-
-        .responstable tr {
-        border: var(--table-cell-border);
-        }
-
-        .responstable tr:nth-child(odd) {
-        background-color: var(--table-highlight-color);
-        }
-
-        .responstable th {
-        display: none;
-        border: var(--table-cell-border);
-        background-color: var(--table-header-background-color);
-        color: var(--table-header-text-color);
-        padding: 1em;
-        }
-
-        .responstable th:first-child {
-        display: table-cell;
-        text-align: center;
-        }
-
-        .responstable th:nth-child(2) {
-        display: table-cell;
-        span {
-            display: none;
-        }
-        &:after {
-            content: attr(data-th);
-        }
-        }
-
-        @media (min-width: var(--table-breakpoint)) {
-        .responstable th:nth-child(2) {
-            span {
-            display: block;
+            /* =============================================================================
+            Responsive Table CSS
+            ========================================================================== */
+            
+            .dataTable {
+                display: block;
+                width: 100%;
+                margin: 1em 0;
             }
-            &:after {
-            display: none;
+
+            .dataTable thead, .dataTable tbody, .dataTable thead tr, .dataTable th {
+                display: block;
             }
-        }
-        }
 
-        .responstable td {
-        display: block;
-        word-wrap: break-word;
-        max-width: 7em;
-        }
+            .dataTable thead {
+                float: left;
+            }
 
-        .responstable td:first-child {
-        display: table-cell;
-        text-align: center;
-        border-right: var(--table-cell-border);
-        }
+            .dataTable tbody {
+                width: auto;
+                position: relative;
+                overflow-x: auto;
+            }
 
-        @media (min-width: var(--table-breakpoint)) {
-        .responstable td {
-            border: var(--table-cell-border);
-        }
-        }
+            .dataTable td, .dataTable th {
+                padding: .625em;
+                line-height: 1.5em;
+                border-bottom: 1px dashed #ccc;
+                box-sizing: border-box;
+                overflow-x: hidden;
+                overflow-y: auto;
+            }
 
-        .responstable th,
-        .responstable td {
-        text-align: left;
-        margin: 0.5em 1em;
-        }
+            .dataTable th {
+                text-align: left;
+                background: rgba(0, 0, 0, 0.14);
+                border-bottom: 1px dashed #aaa;
+            }
 
-        @media (min-width: var(--table-breakpoint)) {
-        .responstable th,
-        .responstable td {
-            display: table-cell;
-            padding: 1em;
-        }
-        }
+            .dataTable tbody tr {
+                display: table-cell;
+            }
 
-        /* General styles */
-        body {
-        padding: 0 2em;
-        font-family: Arial, sans-serif;
-        color: #024457;
-        background: #f2f2f2;
+            .dataTable tbody td {
+                display: block;
+            }
+
+            .dataTable tr:nth-child(odd) {
+                background: rgba(0, 0, 0, 0.07);
+            }
+
+            @media screen and (min-width: 50em) {
+
+            .dataTable {
+                display: table;
+            }
+            
+            .dataTable thead {
+                display: table-header-group;
+                float: none;
+            }
+            
+            .dataTable tbody {
+                display: table-row-group;
+            }
+            
+            .dataTable thead tr, .dataTable tbody tr {
+                display: table-row;
+            }
+            
+            .dataTable th, .dataTable tbody td {
+                display: table-cell;
+            }
+            
+            .dataTable td, .dataTable th {
+                width: auto;
+            }
+            
         }
-
-        h1 {
-        font-family: Verdana;
-        font-weight: normal;
-        color: #024457;
-        }
-
-        h1 span {
-        color: #167F92;
-        } 
-
-</style>
+    </style>
 @endsection
 @section('content')
     <div id="app">
@@ -149,7 +91,7 @@
             <input type="text" placeholder="Pesquisar..." id="search-input">
             <button type="button" id="search-button">Buscar</button>
         </div>
-        <table id="clientesTable" class="small-font responstable">
+        <table id="clientesTable" class="dataTable">
             <thead>
                 <tr>
                     <th style="display:none">ID</th>
@@ -393,5 +335,37 @@
                 }
             });
         });
+    </script>
+    <script>
+        var smallBreak = 800; // Your small screen breakpoint in pixels
+        var columns = $('.dataTable tr').length;
+        var rows = $('.dataTable th').length;
+
+        $(document).ready(shapeTable());
+        $(window).resize(function() {
+            shapeTable();
+        });
+
+        function shapeTable() {
+            if ($(window).width() < smallBreak) {
+                for (i=0;i < rows; i++) {
+                    var maxHeight = $('.dataTable th:nth-child(' + i + ')').outerHeight();
+                    for (j=0; j < columns; j++) {
+                        if ($('.dataTable tr:nth-child(' + j + ') td:nth-child(' + i + ')').outerHeight() > maxHeight) {
+                            maxHeight = $('.dataTable tr:nth-child(' + j + ') td:nth-child(' + i + ')').outerHeight();
+                        }
+                        if ($('.dataTable tr:nth-child(' + j + ') td:nth-child(' + i + ')').prop('scrollHeight') > $('.dataTable tr:nth-child(' + j + ') td:nth-child(' + i + ')').outerHeight()) {
+                            maxHeight = $('.dataTable tr:nth-child(' + j + ') td:nth-child(' + i + ')').prop('scrollHeight');
+                        }
+                    }
+                    for (j=0; j < columns; j++) {
+                        $('.dataTable tr:nth-child(' + j + ') td:nth-child(' + i + ')').css('height',maxHeight);
+                        $('.dataTable th:nth-child(' + i + ')').css('height',maxHeight);
+                    }
+                }
+            } else {
+                $('.dataTable td, .dataTable th').removeAttr('style');
+            }
+        }
     </script>
 @endsection
