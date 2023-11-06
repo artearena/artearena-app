@@ -41,7 +41,6 @@
         </td>
         <td>Prov.</td>
         <td>Prov.</td>
-        <td>Prov.</td>
         <td>
             <a href="#" class="btn btn-primary ms-1" target="_blank">
                 <i class="fa-brands fa-trello"></i>
