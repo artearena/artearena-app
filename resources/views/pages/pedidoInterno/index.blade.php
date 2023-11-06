@@ -1,10 +1,92 @@
 @extends('layout.main')
 @section('title', 'Tabela de Pedidos')
+@section('style')
+<style>
+    /* =============================================================================
+    Responsive Table CSS
+    ========================================================================== */
+    
+    .dataTable {
+    display: block;
+    width: 100%;
+    margin: 1em 0;
+    }
 
+    .dataTable thead, .dataTable tbody, .dataTable thead tr, .dataTable th {
+    display: block;
+    }
+
+    .dataTable thead {
+    float: left;
+    }
+
+    .dataTable tbody {
+    width: auto;
+    position: relative;
+    overflow-x: auto;
+    }
+
+    .dataTable td, .dataTable th {
+    padding: .625em;
+    line-height: 1.5em;
+    border-bottom: 1px dashed #ccc;
+    box-sizing: border-box;
+    overflow-x: hidden;
+    overflow-y: auto;
+    }
+
+    .dataTable th {
+    text-align: left;
+    background: rgba(0, 0, 0, 0.14);
+    border-bottom: 1px dashed #aaa;
+    }
+
+    .dataTable tbody tr {
+    display: table-cell;
+    }
+
+    .dataTable tbody td {
+    display: block;
+    }
+
+    .dataTable tr:nth-child(odd) {
+        background: rgba(0, 0, 0, 0.07);
+    }
+
+    @media screen and (min-width: 50em) {
+
+    .dataTable {
+        display: table;
+    }
+    
+    .dataTable thead {
+        display: table-header-group;
+        float: none;
+    }
+    
+    .dataTable tbody {
+        display: table-row-group;
+    }
+    
+    .dataTable thead tr, .dataTable tbody tr {
+        display: table-row;
+    }
+    
+    .dataTable th, .dataTable tbody td {
+        display: table-cell;
+    }
+    
+    .dataTable td, .dataTable th {
+        width: auto;
+    }
+    
+    }
+</style>
+@endsection
 @section('content')
     <div class="container">
         <h1>Tabela de Pedidos</h1>
-        <table id="pedidosTable" class="table mt-4 custom-table table-responsive">
+        <table id="pedidosTable" class="dataTable">
             <thead>
                 <tr>
                     <th>ID</th>
@@ -79,5 +161,37 @@
                 });
             }
         });
+    </script>
+        <script>
+        var smallBreak = 800; // Your small screen breakpoint in pixels
+        var columns = $('.dataTable tr').length;
+        var rows = $('.dataTable th').length;
+
+        $(document).ready(shapeTable());
+        $(window).resize(function() {
+            shapeTable();
+        });
+
+        function shapeTable() {
+            if ($(window).width() < smallBreak) {
+                for (i=0;i < rows; i++) {
+                    var maxHeight = $('.dataTable th:nth-child(' + i + ')').outerHeight();
+                    for (j=0; j < columns; j++) {
+                        if ($('.dataTable tr:nth-child(' + j + ') td:nth-child(' + i + ')').outerHeight() > maxHeight) {
+                            maxHeight = $('.dataTable tr:nth-child(' + j + ') td:nth-child(' + i + ')').outerHeight();
+                        }
+                        if ($('.dataTable tr:nth-child(' + j + ') td:nth-child(' + i + ')').prop('scrollHeight') > $('.dataTable tr:nth-child(' + j + ') td:nth-child(' + i + ')').outerHeight()) {
+                            maxHeight = $('.dataTable tr:nth-child(' + j + ') td:nth-child(' + i + ')').prop('scrollHeight');
+                        }
+                    }
+                    for (j=0; j < columns; j++) {
+                        $('.dataTable tr:nth-child(' + j + ') td:nth-child(' + i + ')').css('height',maxHeight);
+                        $('.dataTable th:nth-child(' + i + ')').css('height',maxHeight);
+                    }
+                }
+            } else {
+                $('.dataTable td, .dataTable th').removeAttr('style');
+            }
+        }
     </script>
 @endsection
