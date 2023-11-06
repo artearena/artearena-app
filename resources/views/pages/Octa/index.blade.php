@@ -229,6 +229,9 @@
                 language: {
                     url: 'https://cdn.datatables.net/plug-ins/1.10.24/i18n/Portuguese-Brasil.json'
                 },
+                "paging": true, // Ativar a paginação
+                "lengthMenu": [10, 25, 50, 100], // Opções de quantidade de registros por página
+                "pageLength": 10, // 
             });
 
             $('.datetimepicker').on('change', function() {
