@@ -1,13 +1,13 @@
 @foreach ($clientes as $cliente)
     <tr>
-        <td class="cliente-id text-center" style="display:none">{{ $cliente->id }}</td>
+        <td class="cliente-id text-center">{{ $cliente->id }}</td>
         <td class="text-center" style="word-wrap: break-word;">
             <a href="https://app.octadesk.com/chat/{{ $cliente->url_octa }}/opened" target="_blank">
                 {{ mb_substr($cliente->nome, 0, 25) . (mb_strlen($cliente->nome) > 25 ? '...' : '') }}
             </a>
         </td>
         <td class="text-center">{{ $cliente->telefone }}</td>
-        <td class="text-center" style="display:none">{{ $cliente->email }}</td>
+        <td class="text-center">{{ $cliente->email }}</td>
         <td class="text-center">{{ $cliente->empresa }}</td>
         <td class="text-center">
             <select name="responsavel_contato" class="form-control responsavel-contato">
@@ -19,7 +19,7 @@
                 @endforeach
             </select>
         </td>
-        <td class="text-center" style="display:none">{{ $cliente->origem }}</td>
+        <td class="text-center">{{ $cliente->origem }}</td>
         <td>
             <select class="form-control" name="status_conversa">
                 <option value="">Selecione uma opção</option>
