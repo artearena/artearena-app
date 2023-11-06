@@ -356,6 +356,7 @@
             });
 
             $('.table_checkbox').on('change', function() {
+                console.log('executado');
                 var clienteId = $(this).closest('tr').find('.cliente-id').text();
                 var valor = $(this).prop('checked') ? 1 : 0; // Obtém o valor corretamente
                 // Enviar solicitação AJAX para atualizar o registro no banco de dados
