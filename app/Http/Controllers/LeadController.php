@@ -42,7 +42,7 @@ class LeadController extends Controller
         $searchQuery = $request->input('search');
 
         // Consulta para buscar os registros com base na consulta de pesquisa
-        $registros = CrmClientesView::where('id', 'LIKE', '%' . $searchQuery . '%')
+        $clientes = CrmClientesView::where('id', 'LIKE', '%' . $searchQuery . '%')
             ->orWhere('nome', 'LIKE', '%' . $searchQuery . '%')
             ->orWhere('telefone', 'LIKE', '%' . $searchQuery . '%')
             ->paginate(10);
