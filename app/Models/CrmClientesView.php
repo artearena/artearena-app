@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class ClientesView extends Model
+class CrmClientesView extends Model
 {
     protected $table = 'clientes_view';
     protected $primaryKey = 'id';

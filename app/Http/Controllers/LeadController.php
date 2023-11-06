@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Models\Cliente;
+use App\Models\CrmClientesView;
 use App\Models\TemplateMensagem;
 use App\Models\Usuario;
-use App\Models\CrmClientesView;
+use Illuminate\Http\Request;
 
 class LeadController extends Controller
 {
