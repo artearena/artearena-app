@@ -136,12 +136,11 @@
                             <td> 
                                 @foreach($pedido->produtos ?? [] as $produto)
                                     <li>{{ $pedido->produtos }}</li>
+                                    <?php echo $pedido->produtos; ?>
                                 @endforeach
                             </td>
                         </tr>
                         <tr class="produtos-row" style="display: none;">
-
-                                    
 
                         </tr>
                     @endforeach
