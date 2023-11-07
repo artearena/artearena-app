@@ -135,16 +135,6 @@
                                         <i class="fas fa-link"></i>
                                     </button>
                                 </div>
-                            </td>
-                            <td> 
-                                @foreach($pedido->produtos ?? [] as $produto)
-                                    <li>{{ $pedido->produtos }}</li>
-                                @endforeach
-                            </td>
-                        </tr>
-                        <tr class="produtos-row" style="display: none;">
-
-                        </tr>
                     @endforeach
                 @endisset
             </tbody>
