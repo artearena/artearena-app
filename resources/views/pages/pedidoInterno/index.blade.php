@@ -112,7 +112,6 @@
                             <td>{{ $pedido->id }}</td>
                             <td>{{ $pedido->cliente_id }}</td>
                             <td>{{ $pedido->Vendedor }}</td>
-                            <td id="produtos-cell-{{ $pedido->id }}">
                             <td>
                                 <button class="btn-expand-produtos">
                                     Expandir

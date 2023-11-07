@@ -61,7 +61,7 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 // Estilização da tabela, não mexer
-const smallBreak = 400; 
+const smallBreak = 800; 
 
 $(document).ready(shapeTable);
 $(window).resize(shapeTable);
