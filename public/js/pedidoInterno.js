@@ -6,7 +6,9 @@ document.addEventListener("DOMContentLoaded", function() {
   // Função para exibir ou ocultar a linha de produtos
   function toggleProdutosRow(btn, pedidoId) {
     const produtosRow = document.querySelector(`.produtos-row[data-pedido-id="${pedidoId}"]`);
-    produtosRow.style.display = produtosRow.style.display === 'table-row' ? 'none' : 'table-row';
+    if (produtosRow) {
+      produtosRow.style.display = produtosRow.style.display === 'table-row' ? 'none' : 'table-row';
+    }
   }
 
   // Função para exibir os produtos na célula da tabela
