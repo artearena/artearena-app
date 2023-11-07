@@ -1,5 +1,38 @@
 console.log('teste-debug');
 
+
+
+// Selecione o botão "Expandir"
+var botaoExpandir = document.querySelector('.btn-expand-produtos');
+
+// Adicione o evento de clique ao botão
+botaoExpandir.addEventListener('click', function() {
+  // Obtenha o ID do pedido
+  var pedidoId = this.getAttribute('data-pedido-id');
+
+  // Faça a requisição AJAX para obter a lista de produtos
+  fetch('/crm/get-produtos-pedido/' + pedidoId)
+    .then(function(response) {
+      return response.json();
+    })
+    .then(function(produtos) {
+      // Selecione a tabela onde você deseja adicionar as linhas dos produtos
+      var tabelaProdutos = document.getElementById('tabela-produtos');
+
+      // Crie as linhas dos produtos e adicione-as à tabela
+      produtos.forEach(function(produto) {
+        var novaLinha = tabelaProdutos.insertRow();
+        var novaCelula = novaLinha.insertCell();
+        novaCelula.textContent = produto.produto_nome;
+      });
+    })
+    .catch(function(error) {
+      console.log('Ocorreu um erro:', error);
+    });
+});
+
+// Separador // Separador // Separador // Separador // Separador // Separador // Separador // Separador // Separador // Separador // Separador // Separador // Separador 
+
 document.addEventListener("DOMContentLoaded", function() {
   $(".btn-confirmar-pedido").click(function() {
     const pedidoId = $(this).closest(".pedido-row").data("pedido-id");
@@ -19,7 +52,6 @@ document.addEventListener("DOMContentLoaded", function() {
   }
 });
 
-console.log('teste');
 // Estilização da tabela, não mexer
 const smallBreak = 1200; 
 

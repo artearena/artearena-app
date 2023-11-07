@@ -8,6 +8,7 @@ use App\Models\PedidoInterno;
 use App\Models\Usuario;
 use App\Models\Orcamentos;
 use App\Models\ListaUniforme;
+use App\Models\ProdutoPedido;
 
 class HomologarPedido extends Controller
 {
@@ -17,6 +18,13 @@ class HomologarPedido extends Controller
         return view('pages.pedidoInterno.index', compact('pedidos'));
     }
 
+    public function getProdutosDoPedido($pedidoId)
+    {
+        $produtos = ProdutoPedido::where('pedido_id', $pedidoId)->get();
+    
+        return response()->json($produtos);
+    }
+    
     public function criarPedidoOrcamento($id)
     {
         $vendedores = Usuario::whereIn('permissoes', [17, 18])->pluck('nome_usuario');
