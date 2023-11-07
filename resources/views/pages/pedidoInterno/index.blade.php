@@ -113,7 +113,11 @@
                             <td>{{ $pedido->cliente_id }}</td>
                             <td>{{ $pedido->Vendedor }}</td>
                             <td id="produtos-cell-{{ $pedido->id }}">
-                            <td> <button class="btn-expand-produtos" data-pedido-id="1" data-produtos='[{"produto_nome": "Produto 1"}, {"produto_nome": "Produto 2"}]'>Expandir</button>                            </td>
+                            <td>
+                                <button class="btn-expand-produtos">
+                                    Expandir
+                                </button>
+                            </td>                            
                             <td>{{ $pedido->forma_pagamento }}</td>
                             <td>{{ $pedido->transportadora }}</td>
                             <td>{{ $pedido->valor_frete }}</td>
