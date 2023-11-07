@@ -1,6 +1,31 @@
 console.log('teste-debug');
 document.addEventListener("DOMContentLoaded", function() {
     console.log('doc_ready');
+    // Obtém uma referência a todos os botões "Expandir"
+const btnExpandirProdutos = document.querySelectorAll('.btn-expand-produtos');
+
+// Adiciona um ouvinte de evento para o clique de cada botão
+    btnExpandirProdutos.forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        // Obtém o ID do pedido correspondente a esta linha
+        const pedidoId = this.dataset.pedidoId;
+
+        // Obtém uma referência à linha do pedido correspondente
+        const pedidoRow = document.querySelector(`.pedido-row[data-pedido-id="${pedidoId}"]`);
+
+        // Obtém uma referência à célula da tabela que contém o botão "Expandir"
+        const produtosCell = pedidoRow.querySelector(`#produtos-cell-${pedidoId}`);
+
+        // Aqui você pode escrever o código para exibir os produtos correspondentes ao pedido
+        // Por exemplo, você pode mostrar uma lista de produtos em algum lugar da página
+        // ou exibir os produtos em um modal
+
+        // Exemplo de código para mostrar os produtos em uma célula de tabela:
+        const produtos = ['produto1', 'produto2', 'produto3']; // Substitua isso pelos seus produtos reais
+        produtosCell.innerHTML = produtos.join(', '); // Exibe os produtos na célula da tabela
+      });
+    });
+    
     $(".btn-expand-produtos").click(function() {
       console.log('teste');
       var row = $(this).closest(".pedido-row");
