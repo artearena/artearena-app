@@ -87,6 +87,8 @@
 
 @section('content')
     <div class="app">
+    <?php echo $pedido ?>
+
         <h1>Tabela de Pedidos</h1>
         <table id="pedidosTable" class="dataTable">
             <thead>
@@ -135,7 +137,6 @@
                             <td> 
                                 @foreach($pedido->produtos ?? [] as $produto)
                                     <li>{{ $pedido->produtos }}</li>
-                                    <?php echo $pedido->produtos; ?>
                                 @endforeach
                             </td>
                         </tr>
