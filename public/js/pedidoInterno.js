@@ -6,22 +6,31 @@ document.addEventListener("DOMContentLoaded", function() {
   // Função para exibir ou ocultar a linha de produtos
   function toggleProdutosRow(btn, pedidoId) {
     const produtosRow = document.querySelector(`.produtos-row[data-pedido-id="${pedidoId}"]`);
-    if (produtosRow) {
-      produtosRow.style.display = produtosRow.style.display === 'table-row' ? 'none' : 'table-row';
-    }
+    produtosRow.style.display = produtosRow.style.display === 'table-row' ? 'none' : 'table-row';
   }
 
   // Função para exibir os produtos na célula da tabela
   function exibirProdutos(produtos, produtosCell) {
-    if (produtosCell) {
-      const produtosList = document.createElement('ul');
-      produtos.forEach(function(produto) {
-        const produtoItem = document.createElement('li');
-        produtoItem.textContent = produto.produto_nome;
-        produtosList.appendChild(produtoItem);
-      });
-  
-      produtosCell.appendChild(produtosList);
+    const produtosList = document.createElement('ul');
+    produtos.forEach(function(produto) {
+      const produtoItem = document.createElement('li');
+      produtoItem.textContent = produto.produto_nome;
+      produtosList.appendChild(produtoItem);
+    });
+
+    produtosCell.innerHTML = '';
+    produtosCell.appendChild(produtosList);
+  }
+
+  // Função para exibir ou ocultar o botão com o logotipo de camiseta
+  function exibirBotaoCamiseta(btn, produto) {
+    const palavrasChave = ["uniforme", "camiseta", "camisa", "short"];
+    const temPalavraChave = palavrasChave.some(palavra => produto.toLowerCase().includes(palavra));
+
+    if (temPalavraChave) {
+      btn.style.display = "inline-block";
+    } else {
+      btn.style.display = "none";
     }
   }
 
@@ -41,6 +50,8 @@ document.addEventListener("DOMContentLoaded", function() {
       if (produtosRow.style.display !== 'table-row') {
         const produtos = JSON.parse(this.dataset.produtos);
         exibirProdutos(produtos, produtosCell);
+
+        exibirBotaoCamiseta(this, produtos[0].produto_nome);
       }
     });
   });
