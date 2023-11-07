@@ -13,15 +13,17 @@ document.addEventListener("DOMContentLoaded", function() {
 
   // Função para exibir os produtos na célula da tabela
   function exibirProdutos(produtos, produtosCell) {
-    const produtosList = document.createElement('ul');
-    produtos.forEach(function(produto) {
-      const produtoItem = document.createElement('li');
-      produtoItem.textContent = produto.produto_nome;
-      produtosList.appendChild(produtoItem);
-    });
-
-    produtosCell.innerHTML = '';
-    produtosCell.appendChild(produtosList);
+    if (produtosCell) {
+      const produtosList = document.createElement('ul');
+      produtos.forEach(function(produto) {
+        const produtoItem = document.createElement('li');
+        produtoItem.textContent = produto.produto_nome;
+        produtosList.appendChild(produtoItem);
+      });
+  
+      produtosCell.innerHTML = '';
+      produtosCell.appendChild(produtosList);
+    }
   }
 
   // Obtém uma referência a todos os botões "Expandir"
