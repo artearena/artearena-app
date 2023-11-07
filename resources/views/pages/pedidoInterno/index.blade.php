@@ -86,7 +86,7 @@
 @endsection
 
 @section('content')
-    <div class="container">
+    <div class="app">
         <h1>Tabela de Pedidos</h1>
         <table id="pedidosTable" class="dataTable">
             <thead>
