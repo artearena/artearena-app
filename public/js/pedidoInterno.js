@@ -10,7 +10,7 @@ botaoExpandir.addEventListener('click', function() {
   // Obtenha o ID do pedido
   var pedidoId = this.getAttribute('data-pedido-id');
 
- // Faça a requisição AJAX para obter a lista de produtos
+// Faça a requisição AJAX para obter a lista de produtos
 fetch('/crm/get-produtos-pedido/' + pedidoId)
   .then(function(response) {
     return response.json();
@@ -36,6 +36,7 @@ fetch('/crm/get-produtos-pedido/' + pedidoId)
   })
   .catch(function(error) {
     console.log('Ocorreu um erro:', error);
+  });
 });
 
 // Separador // Separador // Separador // Separador // Separador // Separador // Separador // Separador // Separador // Separador // Separador // Separador // Separador 
