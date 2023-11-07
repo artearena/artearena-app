@@ -2,27 +2,47 @@ console.log('teste-debug');
 document.addEventListener("DOMContentLoaded", function() {
     console.log('doc_ready');
     // Obtém uma referência a todos os botões "Expandir"
-const btnExpandirProdutos = document.querySelectorAll('.btn-expand-produtos');
+    const btnExpandirProdutos = document.querySelectorAll('.btn-expand-produtos');
 
-// Adiciona um ouvinte de evento para o clique de cada botão
+    // Adiciona um ouvinte de evento para o clique de cada botão
     btnExpandirProdutos.forEach(function(btn) {
       btn.addEventListener('click', function() {
         // Obtém o ID do pedido correspondente a esta linha
         const pedidoId = this.dataset.pedidoId;
 
-        // Obtém uma referência à linha do pedido correspondente
-        const pedidoRow = document.querySelector(`.pedido-row[data-pedido-id="${pedidoId}"]`);
+        // Obtém uma referência à célula da tabela que contém os produtos
+        const produtosCell = document.querySelector(`#produtos-cell-${pedidoId}`);
 
-        // Obtém uma referência à célula da tabela que contém o botão "Expandir"
-        const produtosCell = pedidoRow.querySelector(`#produtos-cell-${pedidoId}`);
+        // Obtém uma referência ao elemento "tr" pai da célula dos produtos
+        const pedidoRow = this.closest('.pedido-row');
 
-        // Aqui você pode escrever o código para exibir os produtos correspondentes ao pedido
-        // Por exemplo, você pode mostrar uma lista de produtos em algum lugar da página
-        // ou exibir os produtos em um modal
+        // Obtém uma referência à próxima linha "tr" que contém os produtos
+        const produtosRow = pedidoRow.nextElementSibling;
 
-        // Exemplo de código para mostrar os produtos em uma célula de tabela:
-        const produtos = ['produto1', 'produto2', 'produto3']; // Substitua isso pelos seus produtos reais
-        produtosCell.innerHTML = produtos.join(', '); // Exibe os produtos na célula da tabela
+        // Verifica se a linha de produtos já está visível
+        const isExpanded = produtosRow.style.display === 'table-row';
+
+        // Exibe ou oculta a linha de produtos com base no estado atual
+        produtosRow.style.display = isExpanded ? 'none' : 'table-row';
+
+        // Se a linha de produtos não estiver visível, exibe os produtos na célula da tabela
+        if (!isExpanded) {
+          // Aqui você pode escrever o código para exibir os produtos correspondentes ao pedido
+          // Por exemplo, você pode criar uma lista de produtos e adicioná-la à célula da tabela
+
+          // Exemplo de código para criar uma lista de produtos
+          const produtos = ['produto1', 'produto2', 'produto3']; // Substitua isso pelos seus produtos reais
+          const produtosList = document.createElement('ul');
+          produtos.forEach(function(produto) {
+            const produtoItem = document.createElement('li');
+            produtoItem.textContent = produto;
+            produtosList.appendChild(produtoItem);
+          });
+
+          // Limpa a célula da tabela antes de adicionar a lista de produtos
+          produtosCell.innerHTML = '';
+          produtosCell.appendChild(produtosList);
+        }
       });
     });
     

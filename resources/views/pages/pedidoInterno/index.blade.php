@@ -111,7 +111,7 @@
                             <td>{{ $pedido->id }}</td>
                             <td>{{ $pedido->cliente_id }}</td>
                             <td>{{ $pedido->Vendedor }}</td>
-                            <td>
+                            <td id="produtos-cell-{{ $pedido->id }}">
                                 <button id="btn-expandir-produtos-{{ $pedido->id }}" class="btn btn-link btn-expand-produtos">Expandir</button>
                             </td>
                             <td>{{ $pedido->forma_pagamento }}</td>
