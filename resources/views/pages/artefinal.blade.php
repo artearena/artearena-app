@@ -865,7 +865,90 @@ $.ajaxSetup({
             });
             return;
         }
+        if (field === 'status' && value === 'Arte OK') {
+            // Exibe um modal usando o SweetAlert2
+            Swal.fire({
+                title: 'Checklist',
+                html: `
+                <div>
+                    <label>
+                    <input type="checkbox" id="checkIlhos"> Ilhos
+                    </label>
+                    <br>
+                    <label>
+                    <input type="checkbox" id="checkMastro"> Mastro
+                    </label>
+                    <br>
+                    <label>
+                    <input type="checkbox" id="checkVetor"> Vetor
+                    </label>
+                    <br>
+                    <label>
+                    <input type="checkbox" id="checkCor"> Cor
+                    </label>
+                    <br>
+                    <label>
+                    <input type="checkbox" id="checkFonte"> Fonte
+                    </label>
+                    <br>
+                    <label>
+                    <input type="checkbox" id="checkOrtografia"> Ortografia
+                    </label>
+                </div>
+                <div id="progressBar" style="margin-top: 10px;"></div>
+                `,
+                showCancelButton: false,
+                showConfirmButton: false,
+                allowOutsideClick: false
+            });
 
+            // Variáveis para controle do progresso
+            let progress = 0;
+            const totalChecks = 6;
+
+            // Função para atualizar a barra de progresso
+            const updateProgressBar = () => {
+                const progressBar = document.getElementById('progressBar');
+                progressBar.style.width = `${(progress / totalChecks) * 100}%`;
+
+                // Verifica se o progresso atingiu 100% e fecha o modal
+                if (progress === totalChecks) {
+                Swal.close();
+                // Aqui você pode permitir a alteração para "Arte OK"
+                }
+            };
+
+            // Event listeners para os checkboxes
+            document.getElementById('checkIlhos').addEventListener('change', () => {
+                progress += document.getElementById('checkIlhos').checked ? 1 : -1;
+                updateProgressBar();
+            });
+
+            document.getElementById('checkMastro').addEventListener('change', () => {
+                progress += document.getElementById('checkMastro').checked ? 1 : -1;
+                updateProgressBar();
+            });
+
+            document.getElementById('checkVetor').addEventListener('change', () => {
+                progress += document.getElementById('checkVetor').checked ? 1 : -1;
+                updateProgressBar();
+            });
+
+            document.getElementById('checkCor').addEventListener('change', () => {
+                progress += document.getElementById('checkCor').checked ? 1 : -1;
+                updateProgressBar();
+            });
+
+            document.getElementById('checkFonte').addEventListener('change', () => {
+                progress += document.getElementById('checkFonte').checked ? 1 : -1;
+                updateProgressBar();
+            });
+
+            document.getElementById('checkOrtografia').addEventListener('change', () => {
+                progress += document.getElementById('checkOrtografia').checked ? 1 : -1;
+                updateProgressBar();
+            });
+            }
         if (field === 'data') {
                 var dateParts = value.split('/');
                 if (dateParts.length === 3) {
