@@ -972,6 +972,7 @@ $.ajaxSetup({
 
   // Desabilita os checkboxes inicialmente
   disableCheckboxes();
+  return;
 }
         if (field === 'data') {
                 var dateParts = value.split('/');
