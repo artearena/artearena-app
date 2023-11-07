@@ -199,7 +199,9 @@ Consulta de Pedidos
 
 @section('content')
 <meta name="csrf-token" content="{{ csrf_token() }}">
-
+<h2>Modal com Barra de Progresso</h2>
+    <button onclick="openModal()">Abrir Modal</button>
+    
 <div class="container-fluid">
     <div class="row">
         <main role="main" class="col-md-10">
@@ -1559,5 +1561,42 @@ $.ajaxSetup({
                 </div>
             `;
         }
+        function checkProgress() {
+            var checkboxes = document.querySelectorAll("#checklist input[type='checkbox']");
+            var total = checkboxes.length;
+            var checked = 0;
+            
+            checkboxes.forEach(function(checkbox) {
+                if (checkbox.checked) {
+                    checked++;
+                }
+            });
+            
+            var progress = (checked / total) * 100;
+            document.querySelector(".progress").style.width = progress + "%";
+            
+            if (progress === 100) {
+                // Fazer a requisição AJAX para salvar os dados
+                // Aqui você pode adicionar seu código AJAX para enviar os dados ao servidor
+                
+                // Após a requisição AJAX, fecha o modal
+                closeModal();
+            }
+        }
+        
+        var checkboxes = document.querySelectorAll("#checklist input[type='checkbox']");
+        
+        checkboxes.forEach(function(checkbox) {
+            checkbox.addEventListener("change", checkProgress);
+        });
     </script>
-    @endsection
+<script>
+    function openModal() {
+            document.getElementById("modal").style.display = "block";
+    }
+    
+    function closeModal() {
+        document.getElementById("modal").style.display = "none";
+    }
+    </script>
+@endsection
