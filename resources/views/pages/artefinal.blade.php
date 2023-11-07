@@ -1082,13 +1082,108 @@ $.ajaxSetup({
     function reatribuirEventosChange() {
         $('#tabela-pedidos').off('change', '.table input, .table select');
         $('#tabela-pedidos').on('change', '.table input, .table select', function () {
-            var id = $(this).closest('tr').find('td:first-child').text();
-            var field = $(this).attr('name');
-            var value = $(this).val();
-            var $this = $(this);
-            
-            // Verifique se o campo é uma data e converte para o formato correto (yyyy-mm-dd HH:mm:ss)
-            if (field === 'data') {
+            var id = $(this).closest('tr').data('id');
+        var field = $(this).attr('name');
+        var value = $(this).val();
+        var medidaLinearValue = $(this).closest('tr').find('input[name="medida_linear"]').val();
+        const row = $(this).closest('tr');
+        const designer = row.find('select[name="designer"]').val();
+
+        // Verifica se o campo designer está preenchido
+        if (field === 'status' && designer === '') {
+            // Exibe uma mensagem de erro usando o Swal.fire
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'O campo "designer" precisa ser preenchido antes de alterar o status.',
+            });
+            return;
+        }
+        if (field === 'status' && value === 'Arte OK') {
+            // Exibe um modal usando o SweetAlert2
+            Swal.fire({
+                title: 'Checklist',
+                html: `
+                <div>
+                    <label>
+                    <input type="checkbox" id="checkIlhos"> Ilhos
+                    </label>
+                    <br>
+                    <label>
+                    <input type="checkbox" id="checkMastro"> Mastro
+                    </label>
+                    <br>
+                    <label>
+                    <input type="checkbox" id="checkVetor"> Vetor
+                    </label>
+                    <br>
+                    <label>
+                    <input type="checkbox" id="checkCor"> Cor
+                    </label>
+                    <br>
+                    <label>
+                    <input type="checkbox" id="checkFonte"> Fonte
+                    </label>
+                    <br>
+                    <label>
+                    <input type="checkbox" id="checkOrtografia"> Ortografia
+                    </label>
+                </div>
+                <div id="progressBar" style="margin-top: 10px;"></div>
+                `,
+                showCancelButton: false,
+                showConfirmButton: false,
+                allowOutsideClick: false
+            });
+
+            // Variáveis para controle do progresso
+            let progress = 0;
+            const totalChecks = 6;
+
+            // Função para atualizar a barra de progresso
+            const updateProgressBar = () => {
+                const progressBar = document.getElementById('progressBar');
+                progressBar.style.width = `${(progress / totalChecks) * 100}%`;
+
+                // Verifica se o progresso atingiu 100% e fecha o modal
+                if (progress === totalChecks) {
+                Swal.close();
+                // Aqui você pode permitir a alteração para "Arte OK"
+                }
+            };
+
+            // Event listeners para os checkboxes
+            document.getElementById('checkIlhos').addEventListener('change', () => {
+                progress += document.getElementById('checkIlhos').checked ? 1 : -1;
+                updateProgressBar();
+            });
+
+            document.getElementById('checkMastro').addEventListener('change', () => {
+                progress += document.getElementById('checkMastro').checked ? 1 : -1;
+                updateProgressBar();
+            });
+
+            document.getElementById('checkVetor').addEventListener('change', () => {
+                progress += document.getElementById('checkVetor').checked ? 1 : -1;
+                updateProgressBar();
+            });
+
+            document.getElementById('checkCor').addEventListener('change', () => {
+                progress += document.getElementById('checkCor').checked ? 1 : -1;
+                updateProgressBar();
+            });
+
+            document.getElementById('checkFonte').addEventListener('change', () => {
+                progress += document.getElementById('checkFonte').checked ? 1 : -1;
+                updateProgressBar();
+            });
+
+            document.getElementById('checkOrtografia').addEventListener('change', () => {
+                progress += document.getElementById('checkOrtografia').checked ? 1 : -1;
+                updateProgressBar();
+            });
+            }
+        if (field === 'data') {
                 var dateParts = value.split('/');
                 if (dateParts.length === 3) {
                     value = dateParts[2] + '-' + dateParts[1] + '-' + dateParts[0] + ' 00:00:00';
@@ -1096,130 +1191,126 @@ $.ajaxSetup({
                     console.error('Formato de data inválido. Formato esperado: dd/mm/yyyy');
                     return;
                 }
-            }
-            if (field === 'checagem_final' && value === 'Erro') {
-                const pedidoId = id;
-                // Obter linha da tabela
-                const row = $(this).closest('tr');
-                // Obter designer
-                const designer = row.find('select[name="designer"]').val();
-                // Obter link do Trello
-                const linkTrello = row.find('a[data-id="' + pedidoId + '"]').attr('href');
-                // Obter observações
-                const observacoes = row.find('td.expandir-observacoes input[name="observacoes"]').val();
-                // Mensagem
-                const mensagem = `Erro encontrado!
-                
-            Designer: ${designer}
-            Pedido: #${pedidoId}
-            Link: ${linkTrello}
-            Observações: ${observacoes}`;
+        }
+        if (field === 'checagem_final' && value === 'Erro') {
+            const pedidoId = id;
+            // Obter linha da tabela
+            const row = $(this).closest('tr');
+            // Obter designer
+            const designer = row.find('select[name="designer"]').val();
+            // Obter link do Trello
+            const linkTrello = row.find('a[data-id="' + pedidoId + '"]').attr('href');
+            // Obter observações
+            const observacoes = row.find('td.expandir-observacoes input[name="observacoes"]').val();
+            // Mensagem
+            const mensagem = `*Erro encontrado!*
             
+            *Designer:* ${designer}
+            *Pedido:* #${pedidoId}
+            *Link:* ${linkTrello}
+            *Observações:* ${observacoes}`;
             // URL para enviar notificação
             const url = 'https://artearena.kinghost.net/enviarNotificacaoSlack?mensagem=' + encodeURIComponent(mensagem);
+            console.log(url);
             // Enviar requisição
             fetch(url)
                 .then(response => {
-                if (!response.ok) {
-                    throw new Error('Erro ao enviar notificação');
-                }
-                console.log('Notificação enviada com sucesso!');
-                })
-                .catch(error => {
-                console.error('Erro ao enviar notificação:', error);
-                });
-            }
-            if (field === 'checagem_final' && value === 'Ajustado') {
-                const pedidoId = id;
-                // Obter linha da tabela
-                const row = $(this).closest('tr');
-                // Obter designer
-                const designer = row.find('select[name="designer"]').val();
-                // Obter link do Trello
-                const linkTrello = row.find('a[data-id="' + pedidoId + '"]').attr('href');
-                // Obter observações
-                const observacoes = row.find('td.expandir-observacoes input[name="observacoes"]').val();
-                // Mensagem
-                const mensagem = `*Arte Ajustada!*
-                
-                *Designer:* ${designer}
-                *Pedido:* #${pedidoId}
-                *Link:* ${linkTrello}
-                *Observações:* ${observacoes}`;
-                // URL para enviar notificação
-                const url = 'https://artearena.kinghost.net/enviarNotificacaoSlack?mensagem=' + encodeURIComponent(mensagem);
-                console.log(url);
-                // Enviar requisição
-                fetch(url)
-                    .then(response => {
-                        if (!response.ok) {
-                            throw new Error('Erro ao enviar notificação');
-                        }
-                        console.log('Notificação enviada com sucesso!');
-                        })
-                        .catch(error => {
-                        console.error('Erro ao enviar notificação:', error);
-                });
-            }
-            if (field === 'status' && value === 'Em andamento') {
-                const pedidoId = id;
-                // Obter linha da tabela
-                const row = $(this).closest('tr');
-                // Obter designer
-                const designer = row.find('select[name="designer"]').val();
-                // Obter link do Trello
-                const linkTrello = row.find('a[data-id="' + pedidoId + '"]').attr('href');
-                // Obter observações
-                const observacoes = row.find('td.expandir-observacoes input[name="observacoes"]').val();
-                // Mensagem
-                const mensagem = `*Arte Iniciada!*
-
-            *Pedido Número:* #${pedidoId} 
+                    if (!response.ok) {
+                        throw new Error('Erro ao enviar notificação');
+                    }
+                    console.log('Notificação enviada com sucesso!');
+                    })
+                    .catch(error => {
+                    console.error('Erro ao enviar notificação:', error);
+            });
+        }
+        if (field === 'checagem_final' && value === 'Ajustado') {
+            const pedidoId = id;
+            // Obter linha da tabela
+            const row = $(this).closest('tr');
+            // Obter designer
+            const designer = row.find('select[name="designer"]').val();
+            // Obter link do Trello
+            const linkTrello = row.find('a[data-id="' + pedidoId + '"]').attr('href');
+            // Obter observações
+            const observacoes = row.find('td.expandir-observacoes input[name="observacoes"]').val();
+            // Mensagem
+            const mensagem = `*Arte Ajustada!*
+            
             *Designer:* ${designer}
+            *Pedido:* #${pedidoId}
             *Link:* ${linkTrello}
             *Observações:* ${observacoes}`;
-                // URL para enviar notificação
-                const url = 'https://artearena.kinghost.net/enviarNotificacaoSlack?mensagem=' + encodeURIComponent(mensagem);
-                console.log(url);
-                // Enviar requisição
-                fetch(url)
-                    .then(response => {
-                        if (!response.ok) {
-                            throw new Error('Erro ao enviar notificação');
-                        }
-                        console.log('Notificação enviada com sucesso!');
-                        })
-                        .catch(error => {
-                        console.error('Erro ao enviar notificação:', error);
-                });
-            }
-            // Verifica se o campo é uma medida linear
-            var isLinearMeasurementField = ['medida_linear'].includes(field);
-            
-            // Verifica se o campo é uma medida linear e se o valor está no formato correto (número positivo com até duas casas decimais)
-            if (isLinearMeasurementField && !value.match(/^\d+(\.\d{1,2})?$/)) {
-                swal('Atenção', 'Insira um número positivo com até duas casas decimais.', 'warning');
-                return;
-            }
-            
-            $.ajax({
-                url: '/pedido/' + id,
-                method: 'PUT',
-                data: {
-                    [field]: value,
-                    "_token": "{{ csrf_token() }}",
-                },
-                success: function (response) {
-                    console.log(response.message);
-                    var table = $('#tabela-pedidos').DataTable();
-                    var row = table.row($this.closest('tr'));
-                    row.data(response.pedido);
-                    row.draw();
-                },
-                error: function (xhr, status, error) {
-                    console.error(error);
-                }
+            // URL para enviar notificação
+            const url = 'https://artearena.kinghost.net/enviarNotificacaoSlack?mensagem=' + encodeURIComponent(mensagem);
+            console.log(url);
+            // Enviar requisição
+            fetch(url)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Erro ao enviar notificação');
+                    }
+                    console.log('Notificação enviada com sucesso!');
+                    })
+                    .catch(error => {
+                    console.error('Erro ao enviar notificação:', error);
             });
+        }
+        if (field === 'status' && value === 'Em andamento') {
+            const pedidoId = id;
+            // Obter linha da tabela
+            const row = $(this).closest('tr');
+            // Obter designer
+            const designer = row.find('select[name="designer"]').val();
+            // Obter link do Trello
+            const linkTrello = row.find('a[data-id="' + pedidoId + '"]').attr('href');
+            // Obter observações
+            const observacoes = row.find('td.expandir-observacoes input[name="observacoes"]').val();
+            // Mensagem
+            const mensagem = `*Arte Iniciada!*
+
+        *Pedido Número:* #${pedidoId} 
+        *Designer:* ${designer}
+        *Link:* ${linkTrello}
+        *Observações:* ${observacoes}`;
+            // URL para enviar notificação
+            const url = 'https://artearena.kinghost.net/enviarNotificacaoSlack?mensagem=' + encodeURIComponent(mensagem);
+            console.log(url);
+            // Enviar requisição
+            fetch(url)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Erro ao enviar notificação');
+                    }
+                    console.log('Notificação enviada com sucesso!');
+                    })
+                    .catch(error => {
+                    console.error('Erro ao enviar notificação:', error);
+            });
+        }
+        // Verifica se o campo é uma medida linear
+        var isLinearMeasurementField = ['medida_linear'].includes(field);
+        
+        $.ajax({
+            url: '/pedido/' + id,
+            method: 'PUT',
+            data: {
+                [field]: value,
+                "_token": "{{ csrf_token() }}",
+            },
+            success: function (response) {
+                Swal.fire({
+                    title: 'Sucesso!',
+                    text: 'Pedido atualizado com sucesso.',
+                    icon: 'success',
+                    timer: 1500,
+                    showConfirmButton: false
+                });
+            },
+            error: function (xhr, status, error) {
+                console.error(error);
+            }
+        });
         });
     }
     $('#tabela-pedidos').on('click', '.btn-check', function() {
