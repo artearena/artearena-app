@@ -20,7 +20,6 @@ document.addEventListener("DOMContentLoaded", function() {
       produtosList.appendChild(produtoItem);
     });
 
-    produtosCell.innerHTML = '';
     produtosCell.appendChild(produtosList);
   }
 
