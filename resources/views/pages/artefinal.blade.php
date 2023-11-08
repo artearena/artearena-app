@@ -621,7 +621,7 @@ input[type=checkbox]:checked + label {
   </div>
 </div>
 
-<div id="modal" class="modal">
+<div id="modal1" class="modal">
     <div class="modal-content">
         <div id="checkbox" class="checkbox">  
             <p>Checklist</p>
@@ -1681,7 +1681,7 @@ $.ajaxSetup({
     </script>
      <script>
             function openModal() {
-                var modal = document.getElementById("modal");
+                var modal = document.getElementById("modal1");
                 modal.style.display = "block";
                 modal.classList.add("fade-in");
                 checkProgress(); // Chame a função checkProgress ao abrir o modal
