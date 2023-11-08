@@ -227,9 +227,7 @@ Consulta de Pedidos
 
 @section('content')
 <meta name="csrf-token" content="{{ csrf_token() }}">
-<h2>Modal com Barra de Progresso</h2>
-    <button onclick="openModal()">Abrir Modal</button>
-    
+
 <div class="container-fluid">
     <div class="row">
         <main role="main" class="col-md-10">
@@ -914,7 +912,10 @@ $.ajaxSetup({
             });
             return;
         }
-
+        if (field === 'status' && value === 'Arte Ok'){
+            openModal()
+            return;
+        }
         if (field === 'data') {
                 var dateParts = value.split('/');
                 if (dateParts.length === 3) {
