@@ -644,11 +644,11 @@ input[type=checkbox]:checked + label {
             <input type="checkbox" id="check4" type="checkbox" name="check" value="Cor">  
             <label for="check4">Cor</label>
             <br>
-            <input type="checkbox" id="check4" type="checkbox" name="check" value="Fonte">  
-            <label for="check4">Fonte</label>
+            <input type="checkbox" id="check5" type="checkbox" name="check" value="Fonte">  
+            <label for="check5">Fonte</label>
             <br>
-            <input type="checkbox" id="check4" type="checkbox" name="check" value="Ortografia">  
-            <label for="check4">Ortografia</label>
+            <input type="checkbox" id="check6" type="checkbox" name="check" value="Ortografia">  
+            <label for="check6">Ortografia</label>
         	<br>
         </div>
         <div class="progress-bar">
