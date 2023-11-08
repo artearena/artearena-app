@@ -214,14 +214,14 @@ Consulta de Pedidos
     width: 80%;
 }
 
-.fade-in {
+/* .fade-in {
     animation: fade-in 0.5s;
 }
 
 @keyframes fade-in {
     from { opacity: 0; }
     to { opacity: 1; }
-}
+} */
 
 /*Fonts import*/
 @import url(https://fonts.googleapis.com/css?family=Oswald);
