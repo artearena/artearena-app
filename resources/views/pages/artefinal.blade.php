@@ -624,7 +624,7 @@ input[type=checkbox]:checked + label {
 <div id="modal" class="modal">
     <div class="modal-content">
         
-        <div class="checkbox">  
+        <div id="checkbox" class="checkbox">  
             <p>Checklist</p>
             <input type="checkbox" id="check1" type="checkbox" name="check" value="Ilhose">  
             <label for="check1">Ilhose</label>  
@@ -645,6 +645,7 @@ input[type=checkbox]:checked + label {
             <label for="check6">Ortografia</label>
         	<br>
         </div>
+
         <div class="progress-bar">
             <div class="progress">0%</div>
         </div>
