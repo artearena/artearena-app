@@ -555,7 +555,7 @@ Consulta de Pedidos
   </div>
 </div>
 
-<div id="modal" class="modal">
+<div id="modal" class="modal fade">
     <div class="modal-content">
         <h3>Checklist</h3>
         <ul id="checklist">
