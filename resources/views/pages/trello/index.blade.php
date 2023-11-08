@@ -397,7 +397,8 @@
                 item.lista !== "GABRIEL" &&
                 item.lista !== "ESBOÇO AGUARDANDO APROVAÇÃO" &&
                 item.lista !== "ESBOÇO CONCLUIDO" &&
-                item.lista !== "EM TRATATIVA"
+                item.lista !== "EM TRATATIVA" &&
+                item.lista !== "LIGAR"
             ) {
                 var { div, subUl, h2 } = criarListaDiv(item.lista, item.cards.length);
                 item.cards.forEach(function (card) {
@@ -430,7 +431,7 @@
         const contagemMembros = {};
         for (const lista in data) {
             if (
-            ["Modelos", "GABRIEL", "ESBOÇO AGUARDANDO APROVAÇÃO", "ESBOÇO CONCLUIDO"].includes(
+            ["Modelos", "GABRIEL", "ESBOÇO AGUARDANDO APROVAÇÃO", "ESBOÇO CONCLUIDO", 'LIGAR'].includes(
                 lista
             )
             ) {
@@ -473,7 +474,7 @@
 
         for (const lista in data) {
             // Verifique se a lista está na lista de exclusão
-            if (!["Modelos", "GABRIEL", "ESBOÇO AGUARDANDO APROVAÇÃO", "ESBOÇO CONCLUIDO"].includes(lista)) {
+            if (!["Modelos", "GABRIEL", "ESBOÇO AGUARDANDO APROVAÇÃO", "ESBOÇO CONCLUIDO", 'LIGAR'].includes(lista)) {
             const cards = data[lista];
             let totalCards = 0;
             let cardsAtrasados = 0;
@@ -554,7 +555,7 @@
             'criação/complexo': 4
         };
 
-        const listasExcluidas = ["Modelos", "GABRIEL", "ESBOÇO AGUARDANDO APROVAÇÃO", "ESBOÇO CONCLUIDO", "EM TRATATIVA", "NOVOS ESBOÇOS","CRIAÇÃO/COMPLEXO"];
+        const listasExcluidas = ["Modelos", "GABRIEL", "ESBOÇO AGUARDANDO APROVAÇÃO", "ESBOÇO CONCLUIDO", "EM TRATATIVA", "NOVOS ESBOÇOS","CRIAÇÃO/COMPLEXO", 'LIGAR'];
 
         const cardsAtrasados = [];
         const listasNaoExcluidas = [];
@@ -634,7 +635,7 @@
                 console.log(data);
                 // Chame a função calcularInfoPorLista para obter as informações
                 const { infoGeral, infoPorLista } = calcularInfoPorLista(data);
-                const listasExcluidas = ["Modelos", "GABRIEL", "ESBOÇO AGUARDANDO APROVAÇÃO", "ESBOÇO CONCLUIDO"];
+                const listasExcluidas = ["Modelos", "GABRIEL", "ESBOÇO AGUARDANDO APROVAÇÃO", "ESBOÇO CONCLUIDO", 'LIGAR'];
 
                 // Obtém os cards atrasados
                 const lateCards = get15CardsMaisAtrasadosExcluindoListas(data);
