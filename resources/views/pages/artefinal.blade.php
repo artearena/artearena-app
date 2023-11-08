@@ -194,6 +194,34 @@ Consulta de Pedidos
     #metragem_total {
         display: none;
     }
+    .modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 10% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+
+.fade-in {
+    animation: fade-in 0.5s;
+}
+
+@keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
 </style>
 @endsection
 
@@ -527,23 +555,23 @@ Consulta de Pedidos
   </div>
 </div>
 
-    <div id="modal" class="modal">
-        <div class="modal-content">
-            <h3>Checklist</h3>
-            <ul id="checklist">
-                <li><input type="checkbox" value="Ilhos">Ilhos</li>
-                <li><input type="checkbox" value="Mastro">Mastro</li>
-                <li><input type="checkbox" value="Vetor">Vetor</li>
-                <li><input type="checkbox" value="Cor">Cor</li>
-                <li><input type="checkbox" value="Fonte">Fonte</li>
-                <li><input type="checkbox" value="Ortografia">Ortografia</li>
-            </ul>
-            
-            <div class="progress-bar">
-                <div class="progress">0%</div>
-            </div>
+<div id="modal" class="modal">
+    <div class="modal-content">
+        <h3>Checklist</h3>
+        <ul id="checklist">
+            <li><input type="checkbox" value="Ilhos">Ilhos</li>
+            <li><input type="checkbox" value="Mastro">Mastro</li>
+            <li><input type="checkbox" value="Vetor">Vetor</li>
+            <li><input type="checkbox" value="Cor">Cor</li>
+            <li><input type="checkbox" value="Fonte">Fonte</li>
+            <li><input type="checkbox" value="Ortografia">Ortografia</li>
+        </ul>
+        
+        <div class="progress-bar">
+            <div class="progress">0%</div>
         </div>
     </div>
+</div>
     
     
 <script>
@@ -1567,11 +1595,15 @@ $.ajaxSetup({
     </script>
     <script>
             function openModal() {
-                document.getElementById("modal").style.display = "block";
+                var modal = document.getElementById("modal");
+                modal.style.display = "block";
+                modal.classList.add("fade-in");
             }
-            
+
             function closeModal() {
-                document.getElementById("modal").style.display = "none";
+                var modal = document.getElementById("modal");
+                modal.style.display = "none";
+                modal.classList.remove("fade-in");
                 var checkboxes = document.querySelectorAll("#checklist input[type='checkbox']");
                 checkboxes.forEach(function(checkbox) {
                     checkbox.checked = false;
