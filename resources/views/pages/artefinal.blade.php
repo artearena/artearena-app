@@ -526,23 +526,25 @@ Consulta de Pedidos
     </div>
   </div>
 </div>
-<div id="modal" class="modal">
-    <div class="modal-content">
-        <h3>Opções</h3>
-        <ul id="checklist">
-            <li><input type="checkbox" value="Ilhos">Ilhos</li>
-            <li><input type="checkbox" value="Mastro">Mastro</li>
-            <li><input type="checkbox" value="Vetor">Vetor</li>
-            <li><input type="checkbox" value="Cor">Cor</li>
-            <li><input type="checkbox" value="Fonte">Fonte</li>
-            <li><input type="checkbox" value="Ortografia">Ortografia</li>
-        </ul>
-        
-        <div class="progress-bar">
-            <div class="progress"></div>
+
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <h3>Checklist</h3>
+            <ul id="checklist">
+                <li><input type="checkbox" value="Ilhos">Ilhos</li>
+                <li><input type="checkbox" value="Mastro">Mastro</li>
+                <li><input type="checkbox" value="Vetor">Vetor</li>
+                <li><input type="checkbox" value="Cor">Cor</li>
+                <li><input type="checkbox" value="Fonte">Fonte</li>
+                <li><input type="checkbox" value="Ortografia">Ortografia</li>
+            </ul>
+            
+            <div class="progress-bar">
+                <div class="progress">0%</div>
+            </div>
         </div>
     </div>
-</div>
+    
     
 <script>
     var toggleButton = document.getElementById('toggle-button');
@@ -1561,42 +1563,51 @@ $.ajaxSetup({
                 </div>
             `;
         }
-        function checkProgress() {
+       
+    </script>
+    <script>
+            function openModal() {
+                document.getElementById("modal").style.display = "block";
+            }
+            
+            function closeModal() {
+                document.getElementById("modal").style.display = "none";
+                var checkboxes = document.querySelectorAll("#checklist input[type='checkbox']");
+                checkboxes.forEach(function(checkbox) {
+                    checkbox.checked = false;
+                });
+                document.querySelector(".progress").textContent = "0%";
+                document.querySelector(".progress").style.width = "0%";
+            }
+            
+            function checkProgress() {
+                var checkboxes = document.querySelectorAll("#checklist input[type='checkbox']");
+                var total = checkboxes.length;
+                var checked = 0;
+                
+                checkboxes.forEach(function(checkbox) {
+                    if (checkbox.checked) {
+                        checked++;
+                    }
+                });
+                
+                var progress = (checked / total) * 100;
+                document.querySelector(".progress").textContent = progress + "%";
+                document.querySelector(".progress").style.width = progress + "%";
+                
+                if (progress === 100) {
+                    // Fazer a requisição AJAX para salvar os dados
+                    // Aqui você pode adicionar seu código AJAX para enviar os dados ao servidor
+                    
+                    // Após a requisição AJAX, fecha o modal
+                    closeModal();
+                }
+            }
+            
             var checkboxes = document.querySelectorAll("#checklist input[type='checkbox']");
-            var total = checkboxes.length;
-            var checked = 0;
             
             checkboxes.forEach(function(checkbox) {
-                if (checkbox.checked) {
-                    checked++;
-                }
+                checkbox.addEventListener("change", checkProgress);
             });
-            
-            var progress = (checked / total) * 100;
-            document.querySelector(".progress").style.width = progress + "%";
-            
-            if (progress === 100) {
-                // Fazer a requisição AJAX para salvar os dados
-                // Aqui você pode adicionar seu código AJAX para enviar os dados ao servidor
-                
-                // Após a requisição AJAX, fecha o modal
-                closeModal();
-            }
-        }
-        
-        var checkboxes = document.querySelectorAll("#checklist input[type='checkbox']");
-        
-        checkboxes.forEach(function(checkbox) {
-            checkbox.addEventListener("change", checkProgress);
-        });
-    </script>
-<script>
-    function openModal() {
-            document.getElementById("modal").style.display = "block";
-    }
-    
-    function closeModal() {
-        document.getElementById("modal").style.display = "none";
-    }
-    </script>
+        </script>
 @endsection
