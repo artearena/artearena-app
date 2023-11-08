@@ -646,7 +646,7 @@ input[type=checkbox]:checked + label {
         </div>
         <div class="progress-bar">
             <div class="progress" style="width: 15%; background-color: #4CAF50;">
-                <span class="progress-text">0%</span>
+                <span class="progress-text"></span>
             </div>
         </div>
     </div>
@@ -1684,18 +1684,21 @@ $.ajaxSetup({
                 var modal = document.getElementById("modal");
                 modal.style.display = "block";
                 modal.classList.add("fade-in");
+                checkProgress(); // Chame a função checkProgress ao abrir o modal
             }
+
             function closeModal() {
                 var modal = document.getElementById("modal");
                 modal.style.display = "none";
                 modal.classList.remove("fade-in");
-                var checkboxes = document.querySelectorAll("#checklist input[type='checkbox']");
+                var checkboxes = document.querySelectorAll("#checkbox input[type='checkbox']"); // Alterado de #checklist para #checkbox
                 checkboxes.forEach(function(checkbox) {
                     checkbox.checked = false;
                 });
                 document.querySelector(".progress").textContent = "0%";
                 document.querySelector(".progress").style.width = "0%";
             }
+
             function checkProgress() {
                 var checkboxes = document.querySelectorAll("#checklist input[type='checkbox']");
                 var total = checkboxes.length;
