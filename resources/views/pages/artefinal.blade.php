@@ -194,108 +194,14 @@ Consulta de Pedidos
     #metragem_total {
         display: none;
     }
-    .modal {
-    display: none;
-    position: fixed;
-    z-index: 1;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0, 0, 0, 0.4);
-}
-
-.modal-content {
-    background-color: #fefefe;
-    margin: 10% auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%;
-}
-
-/* .fade-in {
-    animation: fade-in 0.5s;
-}
-
-@keyframes fade-in {
-    from { opacity: 0; }
-    to { opacity: 1; }
-} */
-
-/*Fonts import*/
-@import url(https://fonts.googleapis.com/css?family=Oswald);
-/*/Fonts import*/
-
-.checkbox {
-	border-radius: 3px;
-	width: 200px;
-	margin: 0 auto;
-	-webkit-box-sizing: border-box;
-	-moz-box-sizing: border-box;
-	-o-box-sizing: border-box;
-	-ms-box-sizing: border-box;
-	box-sizing: border-box;
-	padding: 0px 15px 30px 15px;
-	margin-top: 50px;
-	background: transparent;
-	font-family: 'Oswald', sans-serif;
-}
-.checkbox p {
-	width: 140px;
-	background: transparent;
-	margin: 0;
-	color: #000;
-	text-align: left;
-	margin-top: -12px;
-	padding-bottom: 10px;
-	-webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-}
-.checkbox input[type=checkbox] {  
-    display: none;  
-}  
-.checkbox label:before {  
-	content: "";
-	display: inline-block;
-	width: 16px;
-	height: 16px;
-	margin-right: 10px;
-	position: absolute;
-	left: 0;
-	bottom: 1px;
-    border-radius: 2px;  
-    background-color: #dedede;
-}  
-.checkbox label {
-	display: inline-block;
-	cursor: pointer;
-	position: relative;
-	margin-right: 15px;
-	font-size: 13px;
-	padding: 5px 0px 0 25px;
-	color: #000;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-}
-input[type=checkbox]:checked + label:before {  
-    content: "\2713";  
-    text-shadow: 1px 1px 1px rgba(0, 0, 0, .2);  
-    font-size: 15px;  
-    color: #f3f3f3;  
-    text-align: center;  
-    line-height: 15px;  
-    background-color: #ffd600;
-}
-input[type=checkbox]:checked + label {
-	color: #262626;
-}
 </style>
 @endsection
 
 @section('content')
 <meta name="csrf-token" content="{{ csrf_token() }}">
-
+<h2>Modal com Barra de Progresso</h2>
+    <button onclick="openModal()">Abrir Modal</button>
+    
 <div class="container-fluid">
     <div class="row">
         <main role="main" class="col-md-10">
@@ -580,7 +486,7 @@ input[type=checkbox]:checked + label {
         </div>
     </div>
 </div>
-<div class="modal" id="confirmMoverImpressaoModal" tabindex="-1" role="dialog" aria-labelledby="confirmMoverImpressaoModalLabel" aria-hidden="true">
+<div class="modal fade" id="confirmMoverImpressaoModal" tabindex="-1" role="dialog" aria-labelledby="confirmMoverImpressaoModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -620,34 +526,20 @@ input[type=checkbox]:checked + label {
     </div>
   </div>
 </div>
-
-<div id="modal1" class="modal">
+<div id="modal" class="modal">
     <div class="modal-content">
-        <div id="checkbox" class="checkbox">  
-            <p>Checklist</p>
-            <input type="checkbox" id="check1" type="checkbox" name="check" value="Ilhose">  
-            <label for="check1">Ilhose</label>  
-            <br>  
-            <input type="checkbox" id="check2" type="checkbox" name="check" value="Mastro">  
-            <label for="check2">Mastro</label>  
-            <br>
-            <input type="checkbox" id="check3" type="checkbox" name="check" value="Vetor">  
-            <label for="check3">Vetor</label> 
-            <br>
-            <input type="checkbox" id="check4" type="checkbox" name="check" value="Cor">  
-            <label for="check4">Cor</label>
-            <br>
-            <input type="checkbox" id="check5" type="checkbox" name="check" value="Fonte">  
-            <label for="check5">Fonte</label>
-            <br>
-            <input type="checkbox" id="check6" type="checkbox" name="check" value="Ortografia">  
-            <label for="check6">Ortografia</label>
-        	<br>
-        </div>
+        <h3>Opções</h3>
+        <ul id="checklist">
+            <li><input type="checkbox" value="Ilhos">Ilhos</li>
+            <li><input type="checkbox" value="Mastro">Mastro</li>
+            <li><input type="checkbox" value="Vetor">Vetor</li>
+            <li><input type="checkbox" value="Cor">Cor</li>
+            <li><input type="checkbox" value="Fonte">Fonte</li>
+            <li><input type="checkbox" value="Ortografia">Ortografia</li>
+        </ul>
+        
         <div class="progress-bar">
-            <div class="progress" style="width: 15%; background-color: #4CAF50;">
-                <span class="progress-text"></span>
-            </div>
+            <div class="progress"></div>
         </div>
     </div>
 </div>
@@ -992,10 +884,7 @@ $.ajaxSetup({
             });
             return;
         }
-        if (field === 'status' && value === 'Arte OK'){
-            openModal()
-            return;
-        }
+
         if (field === 'data') {
                 var dateParts = value.split('/');
                 if (dateParts.length === 3) {
@@ -1144,10 +1033,6 @@ $.ajaxSetup({
                     return;
                 }
             }
-            if (field === 'status' && value === 'Arte OK'){
-                openModal()
-                return;
-            }
             if (field === 'checagem_final' && value === 'Erro') {
                 const pedidoId = id;
                 // Obter linha da tabela
@@ -1244,7 +1129,6 @@ $.ajaxSetup({
                         console.error('Erro ao enviar notificação:', error);
                 });
             }
-
             // Verifica se o campo é uma medida linear
             var isLinearMeasurementField = ['medida_linear'].includes(field);
             
@@ -1677,48 +1561,76 @@ $.ajaxSetup({
                 </div>
             `;
         }
-       
+        function checkProgress() {
+            var checkboxes = document.querySelectorAll("#checklist input[type='checkbox']");
+            var total = checkboxes.length;
+            var checked = 0;
+            
+            checkboxes.forEach(function(checkbox) {
+                if (checkbox.checked) {
+                    checked++;
+                }
+            });
+            
+            var progress = (checked / total) * 100;
+            document.querySelector(".progress").style.width = progress + "%";
+            
+            if (progress === 100) {
+                // Fazer a requisição AJAX para salvar os dados
+                // Aqui você pode adicionar seu código AJAX para enviar os dados ao servidor
+                
+                // Após a requisição AJAX, fecha o modal
+                closeModal();
+            }
+        }
+        
+        var checkboxes = document.querySelectorAll("#checklist input[type='checkbox']");
+        
+        checkboxes.forEach(function(checkbox) {
+            checkbox.addEventListener("change", checkProgress);
+        });
     </script>
-     <script>
-          /*   function openModal() {
-                var modal = document.getElementById("modal");
-                modal.style.display = "block";
-                modal.classList.add("fade-in");
-                checkProgress(); // Chame a função checkProgress ao abrir o modal
-            } */
-
+    <script>
+            function openModal() {
+                document.getElementById("modal").style.display = "block";
+            }
+            
             function closeModal() {
-                var modal = document.getElementById("modal");
-                modal.style.display = "none";
-                modal.classList.remove("fade-in");
-                var checkboxes = document.querySelectorAll("#checkbox input[type='checkbox']"); // Alterado de #checklist para #checkbox
+                document.getElementById("modal").style.display = "none";
+                var checkboxes = document.querySelectorAll("#checklist input[type='checkbox']");
                 checkboxes.forEach(function(checkbox) {
                     checkbox.checked = false;
                 });
                 document.querySelector(".progress").textContent = "0%";
                 document.querySelector(".progress").style.width = "0%";
             }
-
+            
             function checkProgress() {
                 var checkboxes = document.querySelectorAll("#checklist input[type='checkbox']");
                 var total = checkboxes.length;
                 var checked = 0;
+                
                 checkboxes.forEach(function(checkbox) {
                     if (checkbox.checked) {
                         checked++;
                     }
                 });
+                
                 var progress = (checked / total) * 100;
                 document.querySelector(".progress").textContent = progress + "%";
                 document.querySelector(".progress").style.width = progress + "%";
+                
                 if (progress === 100) {
                     // Fazer a requisição AJAX para salvar os dados
                     // Aqui você pode adicionar seu código AJAX para enviar os dados ao servidor
+                    
                     // Após a requisição AJAX, fecha o modal
                     closeModal();
                 }
             }
+            
             var checkboxes = document.querySelectorAll("#checklist input[type='checkbox']");
+            
             checkboxes.forEach(function(checkbox) {
                 checkbox.addEventListener("change", checkProgress);
             });
