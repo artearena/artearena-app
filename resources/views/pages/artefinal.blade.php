@@ -227,12 +227,6 @@ Consulta de Pedidos
 @import url(https://fonts.googleapis.com/css?family=Oswald);
 /*/Fonts import*/
 
-html, body {
-	padding: 0;
-	margin: 0;
-	height: 100%;
-  background: linear-gradient(60deg, #220e31 10%, #66e8c8 90%);
-}
 .checkbox {
 	border-radius: 3px;
 	width: 200px;
