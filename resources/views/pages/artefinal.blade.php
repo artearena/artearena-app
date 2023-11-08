@@ -1160,6 +1160,10 @@ $.ajaxSetup({
                         console.error('Erro ao enviar notificação:', error);
                 });
             }
+            if (field === 'status' && value === 'Arte Ok'){
+                openModal()
+                return;
+            }
             // Verifica se o campo é uma medida linear
             var isLinearMeasurementField = ['medida_linear'].includes(field);
             
