@@ -1680,12 +1680,12 @@ $.ajaxSetup({
        
     </script>
      <script>
-            function openModal() {
-                var modal = document.getElementById("modal1");
+          /*   function openModal() {
+                var modal = document.getElementById("modal");
                 modal.style.display = "block";
                 modal.classList.add("fade-in");
                 checkProgress(); // Chame a função checkProgress ao abrir o modal
-            }
+            } */
 
             function closeModal() {
                 var modal = document.getElementById("modal");
