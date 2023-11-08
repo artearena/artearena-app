@@ -912,7 +912,7 @@ $.ajaxSetup({
             });
             return;
         }
-        if (field === 'status' && value === 'Arte Ok'){
+        if (field === 'status' && value === 'Arte OK'){
             openModal()
             return;
         }
@@ -1064,6 +1064,10 @@ $.ajaxSetup({
                     return;
                 }
             }
+            if (field === 'status' && value === 'Arte OK'){
+                openModal()
+                return;
+            }
             if (field === 'checagem_final' && value === 'Erro') {
                 const pedidoId = id;
                 // Obter linha da tabela
@@ -1160,10 +1164,7 @@ $.ajaxSetup({
                         console.error('Erro ao enviar notificação:', error);
                 });
             }
-            if (field === 'status' && value === 'Arte Ok'){
-                openModal()
-                return;
-            }
+
             // Verifica se o campo é uma medida linear
             var isLinearMeasurementField = ['medida_linear'].includes(field);
             
