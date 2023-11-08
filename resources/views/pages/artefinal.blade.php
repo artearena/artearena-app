@@ -645,7 +645,7 @@ input[type=checkbox]:checked + label {
         	<br>
         </div>
         <div class="progress-bar">
-            <div class="progress" style="width: 0%; background-color: #4CAF50;">
+            <div class="progress" style="width: 15%; background-color: #4CAF50;">
                 <span class="progress-text">0%</span>
             </div>
         </div>
