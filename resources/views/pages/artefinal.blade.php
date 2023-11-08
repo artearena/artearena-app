@@ -222,6 +222,80 @@ Consulta de Pedidos
     from { opacity: 0; }
     to { opacity: 1; }
 }
+
+/*Fonts import*/
+@import url(https://fonts.googleapis.com/css?family=Oswald);
+/*/Fonts import*/
+
+html, body {
+	padding: 0;
+	margin: 0;
+	height: 100%;
+  background: linear-gradient(60deg, #220e31 10%, #66e8c8 90%);
+}
+.checkbox {
+	border-radius: 3px;
+	width: 200px;
+	margin: 0 auto;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-o-box-sizing: border-box;
+	-ms-box-sizing: border-box;
+	box-sizing: border-box;
+	padding: 0px 15px 30px 15px;
+	margin-top: 50px;
+	background: transparent;
+	font-family: 'Oswald', sans-serif;
+}
+.checkbox p {
+	width: 140px;
+	background: transparent;
+	margin: 0;
+	color: #000;
+	text-align: left;
+	margin-top: -12px;
+	padding-bottom: 10px;
+	-webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+.checkbox input[type=checkbox] {  
+    display: none;  
+}  
+.checkbox label:before {  
+	content: "";
+	display: inline-block;
+	width: 16px;
+	height: 16px;
+	margin-right: 10px;
+	position: absolute;
+	left: 0;
+	bottom: 1px;
+    border-radius: 2px;  
+    background-color: #dedede;
+}  
+.checkbox label {
+	display: inline-block;
+	cursor: pointer;
+	position: relative;
+	margin-right: 15px;
+	font-size: 13px;
+	padding: 5px 0px 0 25px;
+	color: #000;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+input[type=checkbox]:checked + label:before {  
+    content: "\2713";  
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, .2);  
+    font-size: 15px;  
+    color: #f3f3f3;  
+    text-align: center;  
+    line-height: 15px;  
+    background-color: #ffd600;
+}
+input[type=checkbox]:checked + label {
+	color: #262626;
+}
 </style>
 @endsection
 
@@ -555,16 +629,28 @@ Consulta de Pedidos
 
 <div id="modal" class="modal">
     <div class="modal-content">
-        <h3>Checklist</h3>
-        <ul id="checklist">
-            <li><input type="checkbox" value="Ilhos">Ilhos</li>
-            <li><input type="checkbox" value="Mastro">Mastro</li>
-            <li><input type="checkbox" value="Vetor">Vetor</li>
-            <li><input type="checkbox" value="Cor">Cor</li>
-            <li><input type="checkbox" value="Fonte">Fonte</li>
-            <li><input type="checkbox" value="Ortografia">Ortografia</li>
-        </ul>
         
+        <div class="checkbox">  
+            <p>Checklist</p>
+            <input type="checkbox" id="check1" type="checkbox" name="check" value="Ilhose">  
+            <label for="check1">Ilhose</label>  
+            <br>  
+            <input type="checkbox" id="check2" type="checkbox" name="check" value="Mastro">  
+            <label for="check2">Mastro</label>  
+            <br>
+            <input type="checkbox" id="check3" type="checkbox" name="check" value="Vetor">  
+            <label for="check3">Vetor</label> 
+            <br>
+            <input type="checkbox" id="check4" type="checkbox" name="check" value="Cor">  
+            <label for="check4">Cor</label>
+            <br>
+            <input type="checkbox" id="check4" type="checkbox" name="check" value="Fonte">  
+            <label for="check4">Fonte</label>
+            <br>
+            <input type="checkbox" id="check4" type="checkbox" name="check" value="Ortografia">  
+            <label for="check4">Ortografia</label>
+        	<br>
+        </div>
         <div class="progress-bar">
             <div class="progress">0%</div>
         </div>
