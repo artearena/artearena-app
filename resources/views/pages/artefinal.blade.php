@@ -194,6 +194,54 @@ Consulta de Pedidos
     #metragem_total {
         display: none;
     }
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 9999;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    .modal-dialog {
+        background-color: #fefefe;
+        margin: 15% auto;
+        padding: 20px;
+        border: 1px solid #888;
+        border-radius: 5px;
+        width: 50%;
+        max-width: 500px;
+    }
+
+    .modal-dialog h3 {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    #checklist {
+        list-style-type: none;
+        padding: 0;
+    }
+
+    #checklist li {
+        margin-bottom: 10px;
+    }
+
+    .progress-bar {
+        background-color: #f1f1f1;
+        height: 20px;
+        border-radius: 5px;
+    }
+
+    .progress {
+        background-color: #4caf50;
+        height: 100%;
+        width: 0%;
+        border-radius: 5px;
+    }
 </style>
 @endsection
 
@@ -526,10 +574,11 @@ Consulta de Pedidos
     </div>
   </div>
 </div>
+
 <div id="modal" class="modal">
-    <div class="modal-dialog">
-        <h3>Opções</h3>
-        <ul id="checklist">
+    <div class="modal-dialog" id="meuModal">
+        <h3>Checklist</h3>
+        <ul id="checklist" class="fade">
             <li><input type="checkbox" value="Ilhose">Ilhose</li>
             <li><input type="checkbox" value="Mastro">Mastro</li>
             <li><input type="checkbox" value="Vetor">Vetor</li>
@@ -537,7 +586,6 @@ Consulta de Pedidos
             <li><input type="checkbox" value="Fonte">Fonte</li>
             <li><input type="checkbox" value="Ortografia">Ortografia</li>
         </ul>
-        
         <div class="progress-bar">
             <div class="progress"></div>
         </div>
