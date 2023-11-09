@@ -771,7 +771,12 @@ $.ajaxSetup({
 
         // Restante do código para configurar a tabela
         // ...
-        
+        const checkboxes = document.querySelectorAll('#checklist input[type="checkbox"]');
+        checkboxes.forEach(checkbox => {
+            checkbox.addEventListener('click', () => {
+                checkbox.checked = !checkbox.checked;
+            });
+        });
         function contarRegistrosPorData() {
             let tabelaPedidos = table;
             let registrosPorData = {};
