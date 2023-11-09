@@ -578,7 +578,7 @@ Consulta de Pedidos
 <div id="modal" class="modal">
     <div class="modal-dialog" id="meuModal">
         <h3>Checklist</h3>
-        <ul id="checklist" class="fade">
+        <ul id="checklist">
             <li><input type="checkbox" value="Ilhose">Ilhose</li>
             <li><input type="checkbox" value="Mastro">Mastro</li>
             <li><input type="checkbox" value="Vetor">Vetor</li>
