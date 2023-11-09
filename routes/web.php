@@ -68,7 +68,7 @@ Route::middleware(['auth'])->group(function () {
         Route::any('/download-pdf', [tinyController::class, 'gerarPdf'])->name('tiny.gerarPdf');
     });
     Route::prefix('crm')->group(function () {
-        Route::any('/', [LeadController::class, 'index'])->name('octa.crm');
+        //Route::any('/', [LeadController::class, 'index'])->name('octa.crm');
         Route::any('/', [LeadController::class, 'indexView'])->name('octa.crm');
 
         Route::any('/getDados', [LeadController::class, 'getDados'])->name('octa.dados');
