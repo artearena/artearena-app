@@ -527,10 +527,10 @@ Consulta de Pedidos
   </div>
 </div>
 <div id="modal" class="modal">
-    <div class="modal-content">
+    <div class="modal-dialog">
         <h3>Opções</h3>
         <ul id="checklist">
-            <li><input type="checkbox" value="Ilhos">Ilhos</li>
+            <li><input type="checkbox" value="Ilhose">Ilhose</li>
             <li><input type="checkbox" value="Mastro">Mastro</li>
             <li><input type="checkbox" value="Vetor">Vetor</li>
             <li><input type="checkbox" value="Cor">Cor</li>
