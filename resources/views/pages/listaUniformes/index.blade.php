@@ -55,10 +55,6 @@
                 <h2>Chinelos de Dedo</h2>
                 <form id="cadastroFormChineloDedo">
                     <div class="form-group">
-                        <label for="marcaChineloDedo">Marca:</label>
-                        <input type="text" class="form-control" id="marcaChineloDedo" name="marcaChineloDedo">
-                    </div>
-                    <div class="form-group">
                         <label for="corChineloDedo">Cor:</label>
                         <input type="text" class="form-control" id="corChineloDedo" name="corChineloDedo">
                     </div>
@@ -71,10 +67,6 @@
             <div class="divProduto">
                 <h2>Chinelos Slides</h2>
                 <form id="cadastroFormChineloSlide">
-                    <div class="form-group">
-                        <label for="marcaChineloSlide">Marca:</label>
-                        <input type="text" class="form-control" id="marcaChineloSlide" name="marcaChineloSlide">
-                    </div>
                     <div class="form-group">
                         <label for="corChineloSlide">Cor:</label>
                         <input type="text" class="form-control" id="corChineloSlide" name="corChineloSlide">

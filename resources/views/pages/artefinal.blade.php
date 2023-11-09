@@ -578,7 +578,7 @@ Consulta de Pedidos
 <div id="modal" class="modal">
     <div class="modal-dialog" id="meuModal">
         <h3>Checklist</h3>
-        <ul id="checklist">
+        <ul id="checklist" class="fade">
             <li><input type="checkbox" value="Ilhose">Ilhose</li>
             <li><input type="checkbox" value="Mastro">Mastro</li>
             <li><input type="checkbox" value="Vetor">Vetor</li>
@@ -771,12 +771,7 @@ $.ajaxSetup({
 
         // Restante do código para configurar a tabela
         // ...
-        const checkboxes = document.querySelectorAll('#checklist input[type="checkbox"]');
-        checkboxes.forEach(checkbox => {
-            checkbox.addEventListener('click', () => {
-                checkbox.checked = !checkbox.checked;
-            });
-        });
+        
         function contarRegistrosPorData() {
             let tabelaPedidos = table;
             let registrosPorData = {};
