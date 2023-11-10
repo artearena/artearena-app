@@ -79,28 +79,43 @@
                 </form>
             </div>
         </div>
-        <button type="button" onclick="adicionarDivUniforme()" class="btn btn-primary">Adicionar Uniforme</button>
+  <!--       <button type="button" onclick="adicionarDivUniforme()" class="btn btn-primary">Adicionar Uniforme</button>
         <button type="button" onclick="adicionarDivChineloDedo()" class="btn btn-primary">Adicionar Chinelo de Dedo</button>
         <button type="button" onclick="adicionarDivChineloSlide()" class="btn btn-primary">Adicionar Chinelo Slide</button>
-    </div>
-    <script>
-        function adicionarDivUniforme() {
-            var divProduto = document.createElement('div');
-            divProduto.className = 'divProduto';
-            divProduto.innerHTML = document.getElementsByClassName('divProduto')[0].innerHTML;
-            document.getElementById('divsContainer').appendChild(divProduto);
-        }
-        function adicionarDivChineloDedo() {
-            var divProduto = document.createElement('div');
-            divProduto.className = 'divProduto';
-            divProduto.innerHTML = document.getElementsByClassName('divProduto')[1].innerHTML;
-            document.getElementById('divsContainer').appendChild(divProduto);
-        }
-        function adicionarDivChineloSlide() {
-            var divProduto = document.createElement('div');
-            divProduto.className = 'divProduto';
-            divProduto.innerHTML = document.getElementsByClassName('divProduto')[2].innerHTML;
-            document.getElementById('divsContainer').appendChild(divProduto);
-        }
-    </script>
+     -->
+        </div>
+        <script>
+            function adicionarDivUniforme() {
+                var divProduto = document.createElement('div');
+                divProduto.className = 'divProduto';
+                divProduto.innerHTML = document.getElementsByClassName('divProduto')[0].innerHTML;
+                document.getElementById('divsContainer').appendChild(divProduto);
+            }
+
+            function adicionarDivChineloDedo() {
+                var divProduto = document.createElement('div');
+                divProduto.className = 'divProduto';
+                divProduto.innerHTML = document.getElementsByClassName('divProduto')[1].innerHTML;
+                document.getElementById('divsContainer').appendChild(divProduto);
+            }
+
+            function adicionarDivChineloSlide() {
+                var divProduto = document.createElement('div');
+                divProduto.className = 'divProduto';
+                divProduto.innerHTML = document.getElementsByClassName('divProduto')[2].innerHTML;
+                document.getElementById('divsContainer').appendChild(divProduto);
+            }
+
+            // Verifica o nome do produto e adiciona a div correspondente
+            function adicionarDivProduto(nome) {
+                var nomeLowerCase = nome.toLowerCase();
+                if (nomeLowerCase.includes('uniforme') || nomeLowerCase.includes('camisa') || nomeLowerCase.includes('camiseta') || nomeLowerCase.includes('short')) {
+                    adicionarDivUniforme();
+                } else if (nomeLowerCase.includes('chinelo dedo')) {
+                    adicionarDivChineloDedo();
+                } else if (nomeLowerCase.includes('chinelo slide')) {
+                    adicionarDivChineloSlide();
+                }
+            }
+        </script>
 @endsection
