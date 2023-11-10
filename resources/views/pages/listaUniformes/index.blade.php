@@ -87,13 +87,20 @@
      -->
         </div>
         <script>
-            function adicionarDivUniforme() {
+            function adicionarDivUniforme(produtos) {
                 var divProduto = document.createElement('div');
                 divProduto.className = 'divProduto';
                 divProduto.innerHTML = document.getElementsByClassName('divProduto')[0].innerHTML;
-                document.getElementById('divsContainer').appendChild(divProduto);
-            }
 
+                var divContainer = document.getElementById('divsContainer');
+                for (var i = 0; i < produtos.length; i++) {
+                    var cloneDivProduto = divProduto.cloneNode(true);
+                    cloneDivProduto.querySelector('h2').textContent = produtos[i].nome;
+                    cloneDivProduto.querySelectorAll('.form-group input')[0].value = produtos[i].quantidade;
+                    cloneDivProduto.querySelectorAll('.form-group input')[1].value = produtos[i].tamanho;
+                    divContainer.appendChild(cloneDivProduto);
+                }
+            }
             function adicionarDivChineloDedo() {
                 var divProduto = document.createElement('div');
                 divProduto.className = 'divProduto';
@@ -120,4 +127,17 @@
                 }
             }
         </script>
+        <script>
+    var produtos = [
+        { nome: 'Uniforme 1', quantidade: 2, tamanho: 'M' },
+        { nome: 'Camiseta 1', quantidade: 3, tamanho: 'G' },
+        { nome: 'Chinelo Dedo 1', quantidade: 1, tamanho: '40' },
+        { nome: 'Uniforme 2', quantidade: 1, tamanho: 'S' },
+        { nome: 'Short 1', quantidade: 2, tamanho: 'L' }
+    ];
+
+    adicionarDivUniforme(produtos);
+    adicionarDivChineloDedo();
+    adicionarDivChineloSlide();
+</script>
 @endsection
