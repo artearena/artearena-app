@@ -23,8 +23,6 @@ class ListaUniformeController extends Controller
         $listaUniformes = ListaUniforme::where('id_pedido', $id)->get();
         $produtoListas = ProdutoListaUniforme::whereIn('id_lista', $listaUniformes->pluck('id'))->get();
         
-        dd($pedido, $produtoPedidos, $produtoPedidos, $produtoListas);
-
         return view('pages.listaUniformes.index', compact('pedido', 'produtoPedidos', 'listaUniformes', 'produtoListas'));
     }
     
