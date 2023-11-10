@@ -38,7 +38,7 @@ Route::middleware(['auth'])->group(function () {
     });
     Route::prefix('listaUniformes')->group(function () {
         //Route::any('/', [ListaUniformeController::class, 'index'])->name('index');
-        Route::get('/listaUniformes/{id}', [ListaUniformeController::class, 'indexCliente']);
+        Route::get('/{id}', [ListaUniformeController::class, 'indexCliente']);
     });
      Route::prefix('pedidoInterno')->group(function () {
         Route::any('/', [HomologarPedido::class, 'index'])->name('pedidoInterno');
