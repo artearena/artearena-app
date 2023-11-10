@@ -32,11 +32,11 @@ class PedidoController extends Controller
     public function impressaoprovisorio()
     {
         $pedidos = Pedido::all();
-/*         $designers = Usuario::where('permissoes', 2)->pluck('nome_usuario');
+        $designers = Usuario::where('permissoes', 2)->pluck('nome_usuario');
         $categoriasProduto = CategoriaProduto::all(); // Buscar todas as categorias de produto
         $materiais = Material::all();
- */
-        return view('pages.impressao', compact('pedidos'));
+
+        return view('pages.impressao', compact('pedidos', 'categoriasProduto', 'materiais'));
     }
     public function reposicaoprovisorio ()
     {

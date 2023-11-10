@@ -19,11 +19,11 @@ class ListaUniformeController extends Controller
     public function indexCliente($id)
     {
         $pedido = PedidoInterno::findOrFail($id);
-        $produtoPedidos = ProdutoPedido::where('pedido_id', $id)->get();
+/*         $produtoPedidos = ProdutoPedido::where('pedido_id', $id)->get();
         $listaUniformes = ListaUniforme::where('id_pedido', $id)->get();
         $produtoListas = ProdutoListaUniforme::whereIn('id_lista', $listaUniformes->pluck('id'))->get();
-        
-        return view('pages.listaUniformes.index', compact('pedido', 'produtoPedidos', 'listaUniformes', 'produtoListas'));
+         */
+        return view('pages.listaUniformes.index', compact('pedido'));
     }
     
     public function create()
