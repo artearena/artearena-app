@@ -87,7 +87,7 @@
      -->
         </div>
             <script>
-            function adicionarDivUniforme(produtos) {
+             function adicionarDivUniforme(produtos) {
                 var tabela = document.querySelector('.table');
                 var tbody = tabela.querySelector('tbody');
 
