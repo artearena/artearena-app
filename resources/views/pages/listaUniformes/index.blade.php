@@ -129,9 +129,9 @@
         </script>
         <script>
     var produtos = [
-        { nome: 'Uniforme 1', quantidade: 2, tamanho: 'M' },
-        { nome: 'Camiseta 1', quantidade: 3, tamanho: 'G' },
-        { nome: 'Chinelo Dedo 1', quantidade: 1, tamanho: '40' },
+        { nome: 'Camiseta x', quantidade: 2, tamanho: 'M' },
+        { nome: 'Camiseta y', quantidade: 3, tamanho: 'G' },
+        { nome: 'Chinelo Dedo z', quantidade: 1, tamanho: '40' },
         { nome: 'Uniforme 2', quantidade: 1, tamanho: 'S' },
         { nome: 'Short 1', quantidade: 2, tamanho: 'L' }
     ];
