@@ -37,8 +37,8 @@ Route::middleware(['auth'])->group(function () {
         Route::delete('/{id}', [PedidoController::class, 'excluirPedido'])->name('pedido.excluir');
     });
     Route::prefix('listaUniformes')->group(function () {
-        Route::any('/', [ListaUniformeController::class, 'index'])->name('index');
-        Route::any('/{id}', [ListaUniformeController::class, 'indexCliente']);
+        //Route::any('/', [ListaUniformeController::class, 'index'])->name('index');
+        Route::any('/', [ListaUniformeController::class, 'indexCliente']);
     });
      Route::prefix('pedidoInterno')->group(function () {
         Route::any('/', [HomologarPedido::class, 'index'])->name('pedidoInterno');
