@@ -91,13 +91,38 @@
                 var divProduto = document.createElement('div');
                 divProduto.className = 'divProduto';
                 divProduto.innerHTML = document.getElementsByClassName('divProduto')[0].innerHTML;
-
                 var divContainer = document.getElementById('divsContainer');
                 for (var i = 0; i < produtos.length; i++) {
                     var cloneDivProduto = divProduto.cloneNode(true);
                     cloneDivProduto.querySelector('h2').textContent = produtos[i].nome;
-                    cloneDivProduto.querySelectorAll('.form-group input')[0].value = produtos[i].quantidade;
-                    cloneDivProduto.querySelectorAll('.form-group input')[1].value = produtos[i].tamanho;
+                    var quantidadeInput = cloneDivProduto.querySelectorAll('.form-group input')[0];
+                    var tamanhoInput = cloneDivProduto.querySelectorAll('.form-group input')[1];
+                    quantidadeInput.name = 'quantidade_' + i;
+                    tamanhoInput.name = 'tamanho_' + i;
+                    for (var j = 0; j < produtos[i].quantidade; j++) {
+                        var nomeLabel = document.createElement('label');
+                        nomeLabel.textContent = 'Nome:';
+                        var nomeInput = document.createElement('input');
+                        nomeInput.type = 'text';
+                        nomeInput.name = 'nome_' + i + '_' + j;
+                        var quantidadeLabel = document.createElement('label');
+                        quantidadeLabel.textContent = 'Quantidade:';
+                        var quantidadeInputClone = quantidadeInput.cloneNode(true);
+                        quantidadeInputClone.name = 'quantidade_' + i + '_' + j;
+                        var tamanhoLabel = document.createElement('label');
+                        tamanhoLabel.textContent = 'Tamanho:';
+                        var tamanhoInputClone = tamanhoInput.cloneNode(true);
+                        tamanhoInputClone.name = 'tamanho_' + i + '_' + j;
+                        var formGroupDiv = document.createElement('div');
+                        formGroupDiv.className = 'form-group';
+                        formGroupDiv.appendChild(nomeLabel);
+                        formGroupDiv.appendChild(nomeInput);
+                        formGroupDiv.appendChild(quantidadeLabel);
+                        formGroupDiv.appendChild(quantidadeInputClone);
+                        formGroupDiv.appendChild(tamanhoLabel);
+                        formGroupDiv.appendChild(tamanhoInputClone);
+                        cloneDivProduto.querySelector('form').appendChild(formGroupDiv);
+                    }
                     divContainer.appendChild(cloneDivProduto);
                 }
             }
