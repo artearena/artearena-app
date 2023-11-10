@@ -79,6 +79,8 @@
                 </form>
             </div>
         </div>
+        <button type="button" onclick="confirmarListaUniforme()" class="btn btn-primary">Confirmar</button>
+
   <!--       <button type="button" onclick="adicionarDivUniforme()" class="btn btn-primary">Adicionar Uniforme</button>
         <button type="button" onclick="adicionarDivChineloDedo()" class="btn btn-primary">Adicionar Chinelo de Dedo</button>
         <button type="button" onclick="adicionarDivChineloSlide()" class="btn btn-primary">Adicionar Chinelo Slide</button>
