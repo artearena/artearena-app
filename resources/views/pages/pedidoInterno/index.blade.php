@@ -107,9 +107,8 @@
                             <td>
                                 <div class="btn-group">
                                     <button class="btn btn-success btn-confirmar-pedido">
-                                        <i class="fas fa-check"></i>
+                                        <i class="fas fa-check">{{ $pedido }}</i>
                                     </button>
-                                        {{ $pedido }}
 
                                     @if (is_string($pedido->produto_nome) && str_contains($pedido->produto_nome, ['Uniforme', 'Camiseta', 'Camisa', 'Short', 'Shorts', 'Abadá']))
                                         <button class="btn btn-primary btn-consultar-lista-uniforme" data-toggle="modal" data-target="#modalListaUniforme" data-pedido-id="{{ $pedido->id }}">
