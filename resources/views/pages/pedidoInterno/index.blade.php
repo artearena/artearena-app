@@ -148,18 +148,4 @@
 @endsection
 @section('extraScript')
     <script src="../js/pedidoInterno.js"></script>
-    <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        const btnExpandProdutos = document.querySelectorAll(".btn-expand-produtos");
-        btnExpandProdutos.forEach(function(btn) {
-            btn.addEventListener("click", function() {
-                const pedidoId = this.closest(".pedido-row").getAttribute("data-pedido-id");
-                const produtos = document.querySelectorAll(".produto-pedido-" + pedidoId);
-                produtos.forEach(function(produto) {
-                    produto.style.display = "table-row";
-                });
-            });
-        });
-    });
-    </script>
 @endsection
