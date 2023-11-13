@@ -19,6 +19,8 @@ botoesExpandir.forEach(function(botaoExpandir) {
       produtosRow.style.display = 'none';
 
     } else {
+      produtosRow.style = '';
+
       var contador = 1
       // Caso contrário, faça a requisição AJAX para obter a lista de produtos
       fetch('/pedidoInterno/get-produtos-pedido/' + pedidoId)
