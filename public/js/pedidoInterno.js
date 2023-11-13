@@ -4,6 +4,7 @@ var botoesExpandir = document.querySelectorAll('.btn-expand-produtos');
 // Adicione o evento de clique a todos os botões
 botoesExpandir.forEach(function(botaoExpandir) {
   botaoExpandir.addEventListener('click', function() {
+    console.log('testado')
     // Obtenha o ID do pedido
     var pedidoId = this.closest('.pedido-row').getAttribute('data-pedido-id');
     // Faça a requisição AJAX para obter a lista de produtos
