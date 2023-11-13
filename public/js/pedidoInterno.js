@@ -13,13 +13,15 @@ botoesExpandir.forEach(function(botaoExpandir) {
     var produtosRow = document.querySelector('.produto-pedido-' + pedidoId);
     console.log(produtosRow)
 
-    if (produtosRow.style.display != 'none' ) {
+    if (produtosRow != null ) {
       console.log(pedidoId);
-      // Se já estiver visível, oculte a linha de produtos
-      produtosRow.style.display = 'none';
-
+      
+      if(produtosRow.style.display = 'none')// Se já estiver visível, oculte a linha de produtos
+      {
+          produtosRow.style.display = '';
+      }
     } else {
-      var contador = 1
+
       // Caso contrário, faça a requisição AJAX para obter a lista de produtos
       fetch('/pedidoInterno/get-produtos-pedido/' + pedidoId)
         .then(function(response) {
