@@ -19,7 +19,7 @@ botoesExpandir.forEach(function(botaoExpandir) {
       produtosRow.style.display = 'none';
 
     } else {
-      produtosRow.style = '';
+      produtosRow.style.display = 'flex';
 
       var contador = 1
       // Caso contrário, faça a requisição AJAX para obter a lista de produtos
