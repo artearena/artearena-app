@@ -33,11 +33,13 @@
                         <tbody>
                             @foreach($produtos as $produto)
                                 @if(strpos($produto->produto_nome, 'uniforme') !== false)
-                                    <tr>
-                                        <td>{{ $produto->nome }}</td>
-                                        <td>{{ $produto->numero }}</td>
-                                        <td>{{ $produto->tamanho }}</td>
-                                    </tr>
+                                    @for($i = 0; $i < $produto->quantidade; $i++)
+                                        <tr>
+                                            <td>{{ $produto->nome }}</td>
+                                            <td>{{ $produto->numero }}</td>
+                                            <td>{{ $produto->tamanho }}</td>
+                                        </tr>
+                                    @endfor
                                 @endif
                             @endforeach
                         </tbody>
@@ -59,10 +61,12 @@
                         <tbody>
                             @foreach($produtos as $produto)
                                 @if(strpos($produto->produto_nome, 'chinelo') !== false)
-                                    <tr>
-                                        <td>{{ $produto->nome }}</td>
-                                        <td>{{ $produto->tamanho }}</td>
-                                    </tr>
+                                    @for($i = 0; $i < $produto->quantidade; $i++)
+                                        <tr>
+                                            <td>{{ $produto->nome }}</td>
+                                            <td>{{ $produto->tamanho }}</td>
+                                        </tr>
+                                    @endfor
                                 @endif
                             @endforeach
                         </tbody>
