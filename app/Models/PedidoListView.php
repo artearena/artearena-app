@@ -8,10 +8,10 @@ class PedidoListView extends Model
 {
     protected $table = 'view_pedido_lista';
 
-    protected $primaryKey = 'pedido_id';
+    protected $primaryKey = 'id';
 
     protected $fillable = [
-        'pedido_id',
+        'id',
         'cliente_id',
         'vendedor',
         'produto_nome',
