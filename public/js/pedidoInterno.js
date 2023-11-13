@@ -29,15 +29,16 @@ botoesExpandir.forEach(function(botaoExpandir) {
           novaCelula.setAttribute('colspan', '11');
           // Adicione os dados dos produtos na célula
           produtos.forEach(function(produto) {
-            var linhaProduto = document.createElement('p');
+            var linhaProduto = document.createElement('div');
+            linhaProduto.classList.add('produto-dados');
             linhaProduto.innerHTML = '<strong>Produto:</strong> ' + produto.produto_nome + '<br>' +
                                      '<strong>Quantidade:</strong> ' + produto.quantidade + '<br>' +
-                                     '<strong>Sexo:</strong> ' + produto.sexo + '<br>' +
+                                     '<strong>Sexo:</strong> <input type="text" value="' + produto.sexo + '" class="input-sexo">' + '<br>' +
                                      '<strong>Arte Aprovada:</strong> ' + produto.arte_aprovada + '<br>' +
                                      '<strong>Lista Aprovada:</strong> ' + produto.lista_aprovada + '<br>' +
-                                     '<strong>Pacote:</strong> ' + produto.pacote + '<br>' +
-                                     '<strong>Camisa:</strong> ' + produto.camisa + '<br>' +
-                                     '<strong>Calção:</strong> ' + produto.calcao + '<br>' +
+                                     '<strong>Pacote:</strong> <input type="text" value="' + produto.pacote + '" class="input-pacote">' + '<br>' +
+                                     '<strong>Camisa:</strong> <input type="text" value="' + produto.camisa + '" class="input-camisa">' + '<br>' +
+                                     '<strong>Calção:</strong> <input type="text" value="' + produto.calcao + '" class="input-calcao">' + '<br>' +
                                      '<strong>Meião:</strong> ' + produto.meiao + '<br>' +
                                      '<strong>Nome:</strong> ' + produto.nome + '<br>' +
                                      '<strong>Número:</strong> ' + produto.numero + '<br>' +
@@ -74,6 +75,100 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
   }
+
+  // Adicione o evento de alteração para os campos de entrada de sexo, pacote, camisa, calção, etc.
+  var inputSexo = document.querySelectorAll('.input-sexo');
+  var inputPacote = document.querySelectorAll('.input-pacote');
+  var inputCamisa = document.querySelectorAll('.input-camisa');
+  var inputCalcao = document.querySelectorAll('.input-calcao');
+
+  inputSexo.forEach(function(input) {
+    input.addEventListener('change', function() {
+      var pedidoId = this.closest('.pedido-row').getAttribute('data-pedido-id');
+      var produtoId = this.closest('.produto-dados').getAttribute('data-produto-id');
+      var novoSexo = this.value;
+      // Faça a requisição AJAX para atualizar o sexo do produto
+      fetch('/pedidoInterno/atualizar-sexo-produto/' + pedidoId + '/' + produtoId, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ sexo: novoSexo }),
+      })
+      .then(function(response) {
+        console.log('Sexo atualizado com sucesso!');
+      })
+      .catch(function(error) {
+        console.log('Ocorreu um erro:', error);
+      });
+    });
+  });
+
+  inputPacote.forEach(function(input) {
+    input.addEventListener('change', function() {
+      var pedidoId = this.closest('.pedido-row').getAttribute('data-pedido-id');
+      var produtoId = this.closest('.produto-dados').getAttribute('data-produto-id');
+      var novoPacote = this.value;
+      // Faça a requisição AJAX para atualizar o pacote do produto
+      fetch('/pedidoInterno/atualizar-pacote-produto/' + pedidoId + '/' + produtoId, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ pacote: novoPacote }),
+      })
+      .then(function(response) {
+        console.log('Pacote atualizado com sucesso!');
+      })
+      .catch(function(error) {
+        console.log('Ocorreu um erro:', error);
+      });
+    });
+  });
+
+  inputCamisa.forEach(function(input) {
+    input.addEventListener('change', function() {
+      var pedidoId = this.closest('.pedido-row').getAttribute('data-pedido-id');
+      var produtoId = this.closest('.produto-dados').getAttribute('data-produto-id');
+      var novaCamisa = this.value;
+      // Faça a requisição AJAX para atualizar a camisa do produto
+      fetch('/pedidoInterno/atualizar-camisa-produto/' + pedidoId + '/' + produtoId, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ camisa: novaCamisa }),
+      })
+      .then(function(response) {
+        console.log('Camisa atualizada com sucesso!');
+      })
+      .catch(function(error) {
+        console.log('Ocorreu um erro:', error);
+      });
+    });
+  });
+
+  inputCalcao.forEach(function(input) {
+    input.addEventListener('change', function() {
+      var pedidoId = this.closest('.pedido-row').getAttribute('data-pedido-id');
+      var produtoId = this.closest('.produto-dados').getAttribute('data-produto-id');
+      var novoCalcao = this.value;
+      // Faça a requisição AJAX para atualizar o calção do produto
+      fetch('/pedidoInterno/atualizar-calcao-produto/' + pedidoId + '/' + produtoId, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ calcao: novoCalcao }),
+      })
+      .then(function(response) {
+        console.log('Calção atualizado com sucesso!');
+      })
+      .catch(function(error) {
+        console.log('Ocorreu um erro:', error);
+      });
+    });
+  });
 });
 
 // Estilização da tabela, não mexer
