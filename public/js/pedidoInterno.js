@@ -18,7 +18,10 @@ botoesExpandir.forEach(function(botaoExpandir) {
       {
           produtosRow.style.display = '';
       }
-      produtosRow.style.display = 'none';
+      else{
+        produtosRow.style.display = 'none';
+      }
+      
     } else {
 
       // Caso contrário, faça a requisição AJAX para obter a lista de produtos
