@@ -3,6 +3,7 @@ console.log('teste-debug');
 var botoesExpandir = document.querySelectorAll('.btn-expand-produtos');
 // Adicione o evento de clique a todos os botões
 botoesExpandir.forEach(function(botaoExpandir) {
+  console.log(botaoExpandir);
   botaoExpandir.addEventListener('click', function() {
     console.log('testado');
     // Obtenha o ID do pedido
