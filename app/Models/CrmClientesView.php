@@ -16,6 +16,7 @@ class CrmClientesView extends Model
         'telefone',
         'empresa',
         'responsavel_contato',
+        'url_octa',
         'status_conversa',
         'created_at',
         'data_agendamento',
