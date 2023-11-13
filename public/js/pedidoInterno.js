@@ -2,6 +2,7 @@ console.log('teste-debug');
 // Selecione o botão "Expandir"
 var botoesExpandir = document.querySelectorAll('.btn-expand-produtos');
 // Adicione o evento de clique a todos os botões
+console.log(botoesExpandir);
 botoesExpandir.forEach(function(botaoExpandir) {
   console.log(botaoExpandir);
   botaoExpandir.addEventListener('click', function() {
