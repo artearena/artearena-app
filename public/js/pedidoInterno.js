@@ -14,10 +14,8 @@ botoesExpandir.forEach(function(botaoExpandir) {
     console.log(produtosRow)
     if (produtosRow != null) {
       console.log(pedidoId);
-      // Se já estiver visível, oculte a linha de produtos      document.querySelector('.produto-pedido-'+ pedidoId).style = 'display: none;'; 
-      document.querySelector('.produto-pedido-'+ pedidoId).style = ''; 
-
-      document.querySelector('.produto-pedido-'+ pedidoId).style = 'display: none;'; 
+      // Se já estiver visível, oculte a linha de produtos
+      produtosRow.style.display = 'none';
     } else {
       // Caso contrário, faça a requisição AJAX para obter a lista de produtos
       fetch('/pedidoInterno/get-produtos-pedido/' + pedidoId)
