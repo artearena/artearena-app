@@ -1,7 +1,6 @@
 @extends('layout.main')
 @section('title', 'Lista de informações dos produtos')
 @section('content')
-
     <div class="container">
         <h1>Lista de informações dos produtos</h1>
         <div id="divsContainer">
@@ -50,6 +49,7 @@
                             </tr>
                         </tbody>
                     </table>
+                    <button type="button" onclick="adicionarLinhaUniforme()" class="btn btn-primary">Adicionar Linha</button>
                 </form>
             </div>
             <div class="divProduto">
@@ -63,6 +63,7 @@
                         <label for="tamanhoChineloDedo">Tamanho:</label>
                         <input type="text" class="form-control" id="tamanhoChineloDedo" name="tamanhoChineloDedo">
                     </div>
+                    <button type="button" onclick="adicionarLinhaChineloDedo()" class="btn btn-primary">Adicionar Linha</button>
                 </form>
             </div>
             <div class="divProduto">
@@ -76,94 +77,85 @@
                         <label for="tamanhoChineloSlide">Tamanho:</label>
                         <input type="text" class="form-control" id="tamanhoChineloSlide" name="tamanhoChineloSlide">
                     </div>
+                    <button type="button" onclick="adicionarLinhaChineloSlide()" class="btn btn-primary">Adicionar Linha</button>
                 </form>
             </div>
         </div>
         <button type="button" onclick="confirmarListaUniforme()" class="btn btn-primary">Confirmar</button>
+    </div>
+    <script>
+        function adicionarLinhaUniforme() {
+            var tabela = document.querySelector('#cadastroFormUniforme table');
+            var tbody = tabela.querySelector('tbody');
+            var tr = document.createElement('tr');
+            var tdNome = document.createElement('td');
+            var tdQuantidade = document.createElement('td');
+            var tdTamanho = document.createElement('td');
+            var inputNome = document.createElement('input');
+            inputNome.type = 'text';
+            inputNome.className = 'form-control';
+            inputNome.name = 'nome[]';
+            var inputQuantidade = document.createElement('input');
+            inputQuantidade.type = 'text';
+            inputQuantidade.className = 'form-control';
+            inputQuantidade.name = 'quantidade[]';
+            var inputTamanho = document.createElement('input');
+            inputTamanho.type = 'text';
+            inputTamanho.className = 'form-control';
+            inputTamanho.name = 'tamanho[]';
+            tdNome.appendChild(inputNome);
+            tdQuantidade.appendChild(inputQuantidade);
+            tdTamanho.appendChild(inputTamanho);
+            tr.appendChild(tdNome);
+            tr.appendChild(tdQuantidade);
+            tr.appendChild(tdTamanho);
+            tbody.appendChild(tr);
+        }
 
-  <!--       <button type="button" onclick="adicionarDivUniforme()" class="btn btn-primary">Adicionar Uniforme</button>
-        <button type="button" onclick="adicionarDivChineloDedo()" class="btn btn-primary">Adicionar Chinelo de Dedo</button>
-        <button type="button" onclick="adicionarDivChineloSlide()" class="btn btn-primary">Adicionar Chinelo Slide</button>
-     -->
-        </div>
-            <script>
-             function adicionarDivUniforme(produtos) {
-                var tabela = document.querySelector('.table');
-                var tbody = tabela.querySelector('tbody');
+        function adicionarLinhaChineloDedo() {
+            var tabela = document.querySelector('#cadastroFormChineloDedo table');
+            var tbody = tabela.querySelector('tbody');
+            var tr = document.createElement('tr');
+            var tdCor = document.createElement('td');
+            var tdTamanho = document.createElement('td');
+            var inputCor = document.createElement('input');
+            inputCor.type = 'text';
+            inputCor.className = 'form-control';
+            inputCor.name = 'corChineloDedo[]';
+            var inputTamanho = document.createElement('input');
+            inputTamanho.type = 'text';
+            inputTamanho.className = 'form-control';
+            inputTamanho.name = 'tamanhoChineloDedo[]';
+            tdCor.appendChild(inputCor);
+            tdTamanho.appendChild(inputTamanho);
+            tr.appendChild(tdCor);
+            tr.appendChild(tdTamanho);
+            tbody.appendChild(tr);
+        }
 
-                for (var i = 0; i < produtos.length; i++) {
-                    var produto = produtos[i];
+        function adicionarLinhaChineloSlide() {
+            var tabela = document.querySelector('#cadastroFormChineloSlide table');
+            var tbody = tabela.querySelector('tbody');
+            var tr = document.createElement('tr');
+            var tdCor = document.createElement('td');
+            var tdTamanho = document.createElement('td');
+            var inputCor = document.createElement('input');
+            inputCor.type = 'text';
+            inputCor.className = 'form-control';
+            inputCor.name = 'corChineloSlide[]';
+            var inputTamanho = document.createElement('input');
+            inputTamanho.type = 'text';
+            inputTamanho.className = 'form-control';
+            inputTamanho.name = 'tamanhoChineloSlide[]';
+            tdCor.appendChild(inputCor);
+            tdTamanho.appendChild(inputTamanho);
+            tr.appendChild(tdCor);
+            tr.appendChild(tdTamanho);
+            tbody.appendChild(tr);
+        }
 
-                    for (var j = 0; j < produto.quantidade; j++) {
-                        var tr = document.createElement('tr');
-                        var tdNome = document.createElement('td');
-                        var tdQuantidade = document.createElement('td');
-                        var tdTamanho = document.createElement('td');
-
-                        var inputNome = document.createElement('input');
-                        inputNome.type = 'text';
-                        inputNome.className = 'form-control';
-                        inputNome.name = 'nome_' + i + '_' + j;
-
-                        var inputQuantidade = document.createElement('input');
-                        inputQuantidade.type = 'text';
-                        inputQuantidade.className = 'form-control';
-                        inputQuantidade.name = 'quantidade_' + i + '_' + j;
-
-                        var inputTamanho = document.createElement('input');
-                        inputTamanho.type = 'text';
-                        inputTamanho.className = 'form-control';
-                        inputTamanho.name = 'tamanho_' + i + '_' + j;
-
-                        tdNome.appendChild(inputNome);
-                        tdQuantidade.appendChild(inputQuantidade);
-                        tdTamanho.appendChild(inputTamanho);
-
-                        tr.appendChild(tdNome);
-                        tr.appendChild(tdQuantidade);
-                        tr.appendChild(tdTamanho);
-
-                        tbody.appendChild(tr);
-                    }
-                }
-            }
-            function adicionarDivChineloDedo() {
-                var divProduto = document.createElement('div');
-                divProduto.className = 'divProduto';
-                divProduto.innerHTML = document.getElementsByClassName('divProduto')[1].innerHTML;
-                document.getElementById('divsContainer').appendChild(divProduto);
-            }
-
-            function adicionarDivChineloSlide() {
-                var divProduto = document.createElement('div');
-                divProduto.className = 'divProduto';
-                divProduto.innerHTML = document.getElementsByClassName('divProduto')[2].innerHTML;
-                document.getElementById('divsContainer').appendChild(divProduto);
-            }
-
-            // Verifica o nome do produto e adiciona a div correspondente
-            function adicionarDivProduto(nome) {
-                var nomeLowerCase = nome.toLowerCase();
-                if (nomeLowerCase.includes('uniforme') || nomeLowerCase.includes('camisa') || nomeLowerCase.includes('camiseta') || nomeLowerCase.includes('short')) {
-                    adicionarDivUniforme();
-                } else if (nomeLowerCase.includes('chinelo dedo')) {
-                    adicionarDivChineloDedo();
-                } else if (nomeLowerCase.includes('chinelo slide')) {
-                    adicionarDivChineloSlide();
-                }
-            }
-        </script>
-        <script>
-    var produtos = [
-        { nome: 'Camiseta x', quantidade: 2, tamanho: 'M' },
-        { nome: 'Camiseta y', quantidade: 3, tamanho: 'G' },
-        { nome: 'Chinelo Dedo z', quantidade: 1, tamanho: '40' },
-        { nome: 'Uniforme 2', quantidade: 1, tamanho: 'S' },
-        { nome: 'Short 1', quantidade: 2, tamanho: 'L' }
-    ];
-
-    adicionarDivUniforme(produtos);
-    adicionarDivChineloDedo();
-    adicionarDivChineloSlide();
-</script>
+        function confirmarListaUniforme() {
+            // Lógica para confirmar a lista de uniformes
+        }
+    </script>
 @endsection
