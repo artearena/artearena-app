@@ -110,7 +110,7 @@
                                         <i class="fas fa-check"></i>
                                     </button>
                                     @foreach ($listaProdutos as $listaProduto)
-                                        @if ($listaProduto->pedido_id == $pedido->id && in_array($listaProduto->produto_nome, ['Uniforme', 'Camiseta', 'Camisa', 'Short', 'Shorts', 'Abadá']))
+                                        @if (is_string($listaProduto->produto_nome) && in_array($listaProduto->produto_nome, ['Uniforme', 'Camiseta', 'Camisa', 'Short', 'Shorts', 'Abadá']))
                                             <button class="btn btn-primary btn-consultar-lista-uniforme" data-toggle="modal" data-target="#modalListaUniforme" data-pedido-id="{{ $pedido->id }}">
                                                 <i class="fas fa-tshirt"></i>
                                             </button>
