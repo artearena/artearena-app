@@ -94,11 +94,9 @@
                             <td>{{ $pedido->cliente_id }}</td>
                             <td>{{ $pedido->Vendedor }}</td>
                             <td>
-                            @if (is_string($pedido->produto_nome) && str_contains($pedido->produto_nome, ['Uniforme(s)', 'Camiseta', 'Camisa', 'Short', 'Shorts', 'Abadá']))
                                 <button class="btn-expand-produtos">
                                     Expandir
                                 </button>
-                            @endif
                             </td>                            
                             <td>{{ $pedido->forma_pagamento }}</td>
                             <td>{{ $pedido->transportadora }}</td>
@@ -111,7 +109,7 @@
                                     <button class="btn btn-success btn-confirmar-pedido">
                                         <i class="fas fa-check"></i>
                                     </button>
-                                    @if (str_contains($pedido->produto_nome, ['Uniforme(s)', 'Camiseta', 'Camisa', 'Short', 'Shorts', 'Abadá']))
+                                    @if (is_string($pedido->produto_nome) && str_contains($pedido->produto_nome, ['Uniforme(s)', 'Camiseta', 'Camisa', 'Short', 'Shorts', 'Abadá']))
                                         <button class="btn btn-primary btn-consultar-lista-uniforme" data-toggle="modal" data-target="#modalListaUniforme" data-pedido-id="{{ $pedido->id }}">
                                             <i class="fas fa-tshirt"></i>
                                         </button>
