@@ -42,11 +42,15 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td><input type="text" class="form-control" name="nome" value=""></td>
-                                <td><input type="text" class="form-control" name="numero" value=""></td>
-                                <td><input type="text" class="form-control" name="tamanho" value=""></td>
-                            </tr>
+                            @foreach($produtos as $produto)
+                                @if($produto->produto_nome == 'Uniforme')
+                                    <tr>
+                                        <td><input type="text" class="form-control" name="nome" value="{{ $produto->nome }}"></td>
+                                        <td><input type="text" class="form-control" name="numero" value="{{ $produto->numero }}"></td>
+                                        <td><input type="text" class="form-control" name="tamanho" value="{{ $produto->tamanho }}"></td>
+                                    </tr>
+                                @endif
+                            @endforeach
                         </tbody>
                     </table>
                     <button type="button" onclick="adicionarLinhaUniforme()" class="btn btn-primary">Adicionar Linha</button>
@@ -111,7 +115,6 @@
             tr.appendChild(tdTamanho);
             tbody.appendChild(tr);
         }
-
         function adicionarLinhaChineloDedo() {
             var tabela = document.querySelector('#cadastroFormChineloDedo table');
             var tbody = tabela.querySelector('tbody');
@@ -132,7 +135,6 @@
             tr.appendChild(tdTamanho);
             tbody.appendChild(tr);
         }
-
         function adicionarLinhaChineloSlide() {
             var tabela = document.querySelector('#cadastroFormChineloSlide table');
             var tbody = tabela.querySelector('tbody');
@@ -153,7 +155,6 @@
             tr.appendChild(tdTamanho);
             tbody.appendChild(tr);
         }
-
         function confirmarListaUniforme() {
             // Lógica para confirmar a lista de uniformes
         }
