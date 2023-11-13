@@ -11,7 +11,6 @@ botoesExpandir.forEach(function(botaoExpandir) {
     var pedidoId = pedidoRow.getAttribute('data-pedido-id');
     // Verifique se a linha de produtos já está visível
     var produtosRow = document.querySelector('.produto-pedido-' + pedidoId);
-    produtosRow.style.display = 'none';
     console.log(produtosRow)
 
     if (produtosRow != null) {
