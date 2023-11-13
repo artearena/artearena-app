@@ -88,83 +88,41 @@
             </thead>
             <tbody>
                 @isset($pedidos)
-                @foreach ($listaProdutos as $listaProduto)
-                    <tr class="pedido-row" data-pedido-id="{{ $pedido->id }}">
-                        <td>{{ $pedido->id }}</td>
-                        <td>{{ $pedido->cliente_id }}</td>
-                        <td>{{ $pedido->Vendedor }}</td>
-                        <td>
-                            <button class="btn-expand-produtos">
-                                Expandir
-                            </button>
-                        </td>                            
-                        <td>
-                            <select name="sexo" class="form-control">
-                                <option value="M" {{ $listaProduto->sexo == 'M' ? 'selected' : '' }}>M</option>
-                                <option value="F" {{ $listaProduto->sexo == 'F' ? 'selected' : '' }}>F</option>
-                            </select>
-                        </td>
-                        <td>
-                            <select name="pacote" class="form-control">
-                                <option value="start" {{ $listaProduto->pacote == 'start' ? 'selected' : '' }}>Start</option>
-                                <option value="prata" {{ $listaProduto->pacote == 'prata' ? 'selected' : '' }}>Prata</option>
-                                <option value="ouro" {{ $listaProduto->pacote == 'ouro' ? 'selected' : '' }}>Ouro</option>
-                                <option value="diamante" {{ $listaProduto->pacote == 'diamante' ? 'selected' : '' }}>Diamante</option>
-                                <option value="premium" {{ $listaProduto->pacote == 'premium' ? 'selected' : '' }}>Premium</option>
-                                <option value="profissional" {{ $listaProduto->pacote == 'profissional' ? 'selected' : '' }}>Profissional</option>
-                            </select>
-                        </td>
-                        <td>
-                            <select name="lista_aprovada" class="form-control">
-                                <option value="sim" {{ $listaProduto->lista_aprovada == 'sim' ? 'selected' : '' }}>Sim</option>
-                                <option value="não" {{ $listaProduto->lista_aprovada == 'não' ? 'selected' : '' }}>Não</option>
-                            </select>
-                        </td>
-                        <td>
-                            <select name="tamanho" class="form-control">
-                                <option value="P" {{ $listaProduto->tamanho == 'P' ? 'selected' : '' }}>P</option>
-                                <option value="M" {{ $listaProduto->tamanho == 'M' ? 'selected' : '' }}>M</option>
-                                <option value="G" {{ $listaProduto->tamanho == 'G' ? 'selected' : '' }}>G</option>
-                                <option value="GG" {{ $listaProduto->tamanho == 'GG' ? 'selected' : '' }}>GG</option>
-                                <option value="XG" {{ $listaProduto->tamanho == 'XG' ? 'selected' : '' }}>XG</option>
-                                <option value="XGG" {{ $listaProduto->tamanho == 'XGG' ? 'selected' : '' }}>XGG</option>
-                                <option value="XGGG" {{ $listaProduto->tamanho == 'XGGG' ? 'selected' : '' }}>XGGG</option>
-                            </select>
-                        </td>
-                        <td id="observacao" style="overflow: auto;" lang="pt">{{ $pedido->observacao }}</td>
-                        <td>{{ $pedido->marcador }}</td>
-                        <td>{{ $pedido->data_venda }}</td>
-                        <td>
-                            <div class="btn-group">
-                                <button class="btn btn-success btn-confirmar-pedido">
-                                    <i class="fas fa-check"></i>
+                    @foreach($pedidos as $pedido)
+                        <tr class="pedido-row" data-pedido-id="{{ $pedido->id }}">
+                            <td>{{ $pedido->id }}</td>
+                            <td>{{ $pedido->cliente_id }}</td>
+                            <td>{{ $pedido->Vendedor }}</td>
+                            <td>
+                                <button class="btn-expand-produtos">
+                                    Expandir
                                 </button>
-                                @php
-                                    $hasUniforme = false;
-                                @endphp
-                                @foreach ($listaProdutos as $listaProduto)
-                                    @if ($listaProduto->pedido_id == $pedido->id && in_array($listaProduto->produto_nome, ['Uniforme', 'Camiseta', 'Camisa', 'Short', 'Shorts', 'Abadá']))
-                                        @php
-                                            $hasUniforme = true;
-                                        @endphp
-                                        <button class="btn btn-primary btn-consultar-lista-uniforme" data-toggle="modal" data-target="#modalListaUniforme" data-pedido-id="{{ $pedido->id }}">
-                                            <i class="fas fa-tshirt"></i>
-                                        </button>
-                                    @endif
-                                @endforeach
-                                @if (!$hasUniforme)
-                                    <button class="btn btn-primary btn-consultar-lista-uniforme" data-toggle="modal" data-target="#modalListaUniforme" data-pedido-id="{{ $pedido->id }}" style="display: none;">
-                                        <i class="fas fa-tshirt"></i>
+                            </td>                            
+                            <td>{{ $pedido->forma_pagamento }}</td>
+                            <td>{{ $pedido->transportadora }}</td>
+                            <td>{{ $pedido->valor_frete }}</td>
+                            <td id="observacao" style="overflow: auto;" lang="pt">{{ $pedido->observacao }}</td>
+                            <td>{{ $pedido->marcador }}</td>
+                            <td>{{ $pedido->data_venda }}</td>
+                            <td>
+                                <div class="btn-group">
+                                    <button class="btn btn-success btn-confirmar-pedido">
+                                        <i class="fas fa-check"></i>
                                     </button>
-                                @endif
-                                <button class="btn btn-warning btn-salvar-consultar-cliente" data-cliente-id="{{ $pedido->cliente_id }}">
-                                    <i class="fas fa-link"></i>
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
-                @endforeach
-                
+                                    @foreach ($listaProdutos as $listaProduto)
+                                        @if (is_string($listaProduto->produto_nome) && in_array($listaProduto->produto_nome, ['Uniforme', 'Camiseta', 'Camisa', 'Short', 'Shorts', 'Abadá']))
+                                            <button class="btn btn-primary btn-consultar-lista-uniforme" data-toggle="modal" data-target="#modalListaUniforme" data-pedido-id="{{ $pedido->id }}">
+                                                <i class="fas fa-tshirt"></i>
+                                            </button>
+                                        @endif
+                                    @endforeach
+                                    <button class="btn btn-warning btn-salvar-consultar-cliente" data-cliente-id="{{ $pedido->cliente_id }}">
+                                        <i class="fas fa-link"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    @endforeach
                 @endisset
             </tbody>
         </table>
