@@ -12,7 +12,7 @@ botoesExpandir.forEach(function(botaoExpandir) {
     // Obtenha o ID do pedido
     var pedidoId = this.closest('.pedido-row').getAttribute('data-pedido-id');
     // Faça a requisição AJAX para obter a lista de produtos
-    fetch('//pedidoInterno/get-produtos-pedido/' + pedidoId)
+    fetch('/pedidoInterno/get-produtos-pedido/' + pedidoId)
       .then(function(response) {
         return response.json();
       })
