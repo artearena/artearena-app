@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Models\PedidoListView;
 use Illuminate\Http\Request;
 use App\Models\PedidoInterno;
 use App\Models\Usuario;
@@ -16,13 +15,12 @@ class HomologarPedido extends Controller
     public function index()
     {
         $pedidos = PedidoInterno::all();
-        $listaProdutos = PedidoListView::all();
-        return view('pages.pedidoInterno.index', compact('pedidos', 'listaProdutos'));
+        return view('pages.pedidoInterno.index', compact('pedidos'));
     }
 
     public function getProdutosDoPedido($pedidoId)
     {
-        $produtos = PedidoListView::where('id', $pedidoId)->get();
+        $produtos = ProdutoPedido::where('pedido_id', $pedidoId)->get();
     
         return response()->json($produtos);
     }
