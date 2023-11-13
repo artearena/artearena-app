@@ -109,42 +109,19 @@
                                     <button class="btn btn-success btn-confirmar-pedido">
                                         <i class="fas fa-check"></i>
                                     </button>
-                                        @foreach ($listaProdutos as $listaProduto)
-                                            {{ $listaProduto->produto_nome }} 
-                                                @if (is_string($listaProduto->produto_nome) && str_contains($listaProduto->produto_nome, ['Uniforme', 'Camiseta', 'Camisa', 'Short', 'Shorts', 'Abadá']))
-                                                    <button class="btn btn-primary btn-consultar-lista-uniforme" data-toggle="modal" data-target="#modalListaUniforme" data-pedido-id="{{ $pedido->id }}">
-                                                        <i class="fas fa-tshirt"></i>
-                                                    </button>
-                                                @endif
-                                        @endforeach
-
+                                    @foreach ($listaProdutos as $listaProduto)
+                                        @if ($listaProduto->pedido_id == $pedido->id && in_array($listaProduto->produto_nome, ['Uniforme', 'Camiseta', 'Camisa', 'Short', 'Shorts', 'Abadá']))
+                                            <button class="btn btn-primary btn-consultar-lista-uniforme" data-toggle="modal" data-target="#modalListaUniforme" data-pedido-id="{{ $pedido->id }}">
+                                                <i class="fas fa-tshirt"></i>
+                                            </button>
+                                        @endif
+                                    @endforeach
                                     <button class="btn btn-warning btn-salvar-consultar-cliente" data-cliente-id="{{ $pedido->cliente_id }}">
                                         <i class="fas fa-link"></i>
                                     </button>
                                 </div>
                             </td>
                         </tr>
-                        @foreach ($listaProdutos as $listaProduto)
-                            @if ($listaProduto->pedido_id == $pedido->id)
-                                <tr class="produto-pedido-{{ $pedido->id }}" style="display: none;">
-                                    <td colspan="11">
-                                        <strong>Produto:</strong> {{ $listaProduto->produto_nome }}<br>
-                                        <strong>Quantidade:</strong> {{ $listaProduto->quantidade }}<br>
-                                        <strong>Sexo:</strong> {{ $listaProduto->sexo }}<br>
-                                        <strong>Arte Aprovada:</strong> {{ $listaProduto->arte_aprovada }}<br>
-                                        <strong>Lista Aprovada:</strong> {{ $listaProduto->lista_aprovada }}<br>
-                                        <strong>Pacote:</strong> {{ $listaProduto->pacote }}<br>
-                                        <strong>Camisa:</strong> {{ $listaProduto->camisa }}<br>
-                                        <strong>Calção:</strong> {{ $listaProduto->calcao }}<br>
-                                        <strong>Meião:</strong> {{ $listaProduto->meiao }}<br>
-                                        <strong>Nome:</strong> {{ $listaProduto->nome }}<br>
-                                        <strong>Número:</strong> {{ $listaProduto->numero }}<br>
-                                        <strong>Tamanho:</strong> {{ $listaProduto->tamanho }}<br>
-                                        <strong>ID Lista:</strong> {{ $listaProduto->id_lista }}
-                                    </td>
-                                </tr>
-                            @endif
-                        @endforeach
                     @endforeach
                 @endisset
             </tbody>
