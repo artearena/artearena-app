@@ -8,7 +8,7 @@
             $hasChinelos = false;
         @endphp
         @foreach($produtos as $produto)
-            @if(strpos($produto->produto_nome, 'uniforme') !== false)
+            @if(strpos($produto->produto_nome, 'Uniforme') !== false)
                 @php
                     $hasUniforme = true;
                 @endphp
