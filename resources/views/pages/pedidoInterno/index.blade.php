@@ -66,6 +66,7 @@
         }
     }
 </style>
+
 @endsection
 @section('content')
     <div class="app">
@@ -94,20 +95,9 @@
                             <td>{{ $pedido->cliente_id }}</td>
                             <td>{{ $pedido->Vendedor }}</td>
                             <td>
-                                @php
-                                    $hasUniforme = false;
-                                @endphp
-                                @foreach ($listaProdutos as $listaProduto)
-                                    @if ($listaProduto->pedido_id == $pedido->id && stripos($listaProduto->produto_nome, 'Uniforme') !== false)
-                                        @php
-                                            $hasUniforme = true;
-                                        @endphp
-                                        <button class="btn-expand-produtos">
-                                            Expandir
-                                        </button>
-                                        @break
-                                    @endif
-                                @endforeach
+                                <button class="btn-expand-produtos">
+                                    Expandir
+                                </button>
                             </td>                            
                             <td>{{ $pedido->forma_pagamento }}</td>
                             <td>{{ $pedido->transportadora }}</td>
@@ -120,11 +110,9 @@
                                     <button class="btn btn-success btn-confirmar-pedido">
                                         <i class="fas fa-check"></i>
                                     </button>
-                                    @if ($hasUniforme)
-                                        <button class="btn btn-primary btn-consultar-lista-uniforme" data-toggle="modal" data-target="#modalListaUniforme" data-pedido-id="{{ $pedido->id }}">
-                                            <i class="fas fa-tshirt"></i>
-                                        </button>
-                                    @endif
+                                    <button class="btn btn-primary btn-consultar-lista-uniforme" data-toggle="modal" data-target="#modalListaUniforme" data-pedido-id="{{ $pedido->id }}">
+                                        <i class="fas fa-tshirt"></i>
+                                    </button>
                                     <button class="btn btn-warning btn-salvar-consultar-cliente" data-cliente-id="{{ $pedido->cliente_id }}">
                                         <i class="fas fa-link"></i>
                                     </button>
