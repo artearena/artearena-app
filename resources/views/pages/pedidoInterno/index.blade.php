@@ -107,14 +107,18 @@
                             <td>
                                 <div class="btn-group">
                                     <button class="btn btn-success btn-confirmar-pedido">
-                                        <i class="fas fa-check">{{ $listaProduto->produto_nome }}</i>
+                                        <i class="fas fa-check"></i>
                                     </button>
+                                    @foreach ($listaProdutos as $listaProduto)
+                                        @if ($listaProduto->pedido_id == $pedido->id)
 
-                                    @if (is_string($listaProduto->produto_nome) && str_contains($listaProduto->produto_nome, ['Uniforme', 'Camiseta', 'Camisa', 'Short', 'Shorts', 'Abadá']))
-                                        <button class="btn btn-primary btn-consultar-lista-uniforme" data-toggle="modal" data-target="#modalListaUniforme" data-pedido-id="{{ $pedido->id }}">
-                                            <i class="fas fa-tshirt"></i>
-                                        </button>
-                                    @endif
+                                            @if (is_string($listaProduto->produto_nome) && str_contains($listaProduto->produto_nome, ['Uniforme', 'Camiseta', 'Camisa', 'Short', 'Shorts', 'Abadá']))
+                                                <button class="btn btn-primary btn-consultar-lista-uniforme" data-toggle="modal" data-target="#modalListaUniforme" data-pedido-id="{{ $pedido->id }}">
+                                                    <i class="fas fa-tshirt"></i>
+                                                </button>
+                                            @endif
+                                        @endif
+                                    @endforeach
 
                                     <button class="btn btn-warning btn-salvar-consultar-cliente" data-cliente-id="{{ $pedido->cliente_id }}">
                                         <i class="fas fa-link"></i>
