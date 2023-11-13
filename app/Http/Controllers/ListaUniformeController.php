@@ -16,9 +16,8 @@ class ListaUniformeController extends Controller
 
     public function indexCliente($id)
     {
-        //$produtos = PedidoListView::where('id', $id)->get();
-        $produtos = PedidoListView::all();
-        return response()->json($produtos);
+        $produtos = PedidoListView::where('id', $id)->get();
+        return view('pages.listaUniformes.index', compact('produtos'));
     }
 
     public function create()
