@@ -15,7 +15,7 @@ botoesExpandir.forEach(function(botaoExpandir) {
 
     if (produtosRow != null ) {
       console.log(pedidoId);
-      
+      produtosRow.style.display = 'none'
       if(produtosRow.style.display = 'none')// Se já estiver visível, oculte a linha de produtos
       {
           produtosRow.style.display = '';
