@@ -15,13 +15,10 @@ botoesExpandir.forEach(function(botaoExpandir) {
 
     if (produtosRow.style.display != 'none' ) {
       console.log(pedidoId);
-      
-      if(produtosRow.style.display = 'none')// Se já estiver visível, oculte a linha de produtos
-      {
-          produtosRow.style.display = '';
-      }
-    } else {
+      // Se já estiver visível, oculte a linha de produtos
+      produtosRow.style.display = 'none';
 
+    } else {
       var contador = 1
       // Caso contrário, faça a requisição AJAX para obter a lista de produtos
       fetch('/pedidoInterno/get-produtos-pedido/' + pedidoId)
