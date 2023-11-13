@@ -70,7 +70,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
   $(".btn-consultar-lista-uniforme").click(function() {
     const pedidoId = $(this).closest(".pedido-row").data("pedido-id");
-    window.location.href = `/pedidoInterno/${pedidoId}`;
+    window.location.href = `/listaUniformes/${pedidoId}`;
   });
 
   const btnSalvarConsultarCliente = document.getElementsByClassName('btn-salvar-consultar-cliente');
