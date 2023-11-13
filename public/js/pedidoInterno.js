@@ -170,7 +170,6 @@ document.addEventListener("DOMContentLoaded", function() {
     });
   });
 });
-
 // Estilização da tabela, não mexer
 const smallBreak = 800;
 $(document).ready(shapeTable);
