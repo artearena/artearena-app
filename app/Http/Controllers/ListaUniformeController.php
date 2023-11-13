@@ -2,30 +2,24 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\PedidoListView;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-
-use App\Models\PedidoInterno;
-use App\Models\ProdutoPedido;
 use App\Models\ListaUniforme;
-use App\Models\ProdutoListaUniforme;
+
 class ListaUniformeController extends Controller
 {
     public function index()
     {
-        return view('pages.listaUniformes.index');
+        $listasUniforme = PedidoListView::all();
+        return view('pages.listaUniformes.index', compact('listasUniforme'));
     }
 
     public function indexCliente($id)
     {
-        $pedido = PedidoInterno::findOrFail($id);
-/*         $produtoPedidos = ProdutoPedido::where('pedido_id', $id)->get();
-        $listaUniformes = ListaUniforme::where('id_pedido', $id)->get();
-        $produtoListas = ProdutoListaUniforme::whereIn('id_lista', $listaUniformes->pluck('id'))->get();
-         */
-        return view('pages.listaUniformes.index', compact('pedido'));
+        $pedido = PedidoListView::findOrFail($id);
+        return view('pages.listaUniformes.index', compact('listasUniforme'));
     }
-    
+
     public function create()
     {
         return view('listas_uniforme.create');

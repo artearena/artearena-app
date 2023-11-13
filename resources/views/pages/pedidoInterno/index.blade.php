@@ -5,27 +5,22 @@
     /* =============================================================================
     Responsive Table CSS
     ========================================================================== */
-
     .dataTable {
         display: block;
         width: 100%;
         margin: 1em 0;
     }
-
     .dataTable thead, .dataTable tbody, .dataTable thead tr, .dataTable th {
         display: block;
     }
-
     .dataTable thead {
         float: left;
     }
-
     .dataTable tbody {
         width: auto;
         position: relative;
         overflow-x: auto;
     }
-
     .dataTable td, .dataTable th {
         padding: .625em;
         line-height: 1.5em;
@@ -34,60 +29,61 @@
         overflow-x: hidden;
         overflow-y: auto;
     }
-
     .dataTable th {
         text-align: center;
         background: #212529;
         color: white;
         border-bottom: 1px dashed #aaa;
     }
-
     .dataTable tbody tr {
         display: table-cell;
     }
-
     .dataTable tbody td {
         display: block;
     }
-
     .dataTable tr:nth-child(odd) {
         background: rgba(0, 0, 0, 0.07);
     }
-
     @media screen and (min-width: 50em) {
-
         .dataTable {
             display: table;
         }
-        
         .dataTable thead {
             display: table-header-group;
             float: none;
         }
-        
         .dataTable tbody {
             display: table-row-group;
         }
-        
         .dataTable thead tr, .dataTable tbody tr {
             display: table-row;
         }
-        
         .dataTable th, .dataTable tbody td {
             display: table-cell;
         }
-        
         .dataTable td, .dataTable th {
             width: auto;
         }
     }
 </style>
 <script src="../js/pedidoInterno.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const btnExpandProdutos = document.querySelectorAll(".btn-expand-produtos");
+    btnExpandProdutos.forEach(function(btn) {
+        btn.addEventListener("click", function() {
+            const pedidoId = this.closest(".pedido-row").getAttribute("data-pedido-id");
+            const produtos = document.querySelectorAll(".produto-pedido-" + pedidoId);
+            produtos.forEach(function(produto) {
+                produto.style.display = "table-row";
+            });
+        });
+    });
+});
+</script>
 @endsection
-
 @section('content')
     <div class="app">
-
         <h1>Tabela de Pedidos</h1>
         <table id="pedidosTable" class="dataTable">
             <thead>
@@ -135,6 +131,29 @@
                                         <i class="fas fa-link"></i>
                                     </button>
                                 </div>
+                            </td>
+                        </tr>
+                        @foreach ($listaProdutos as $listaProduto)
+                            @if ($listaProduto->pedido_id == $pedido->id)
+                                <tr class="produto-pedido-{{ $pedido->id }}" style="display: none;">
+                                    <td colspan="11">
+                                        <strong>Produto:</strong> {{ $listaProduto->produto_nome }}<br>
+                                        <strong>Quantidade:</strong> {{ $listaProduto->quantidade }}<br>
+                                        <strong>Sexo:</strong> {{ $listaProduto->sexo }}<br>
+                                        <strong>Arte Aprovada:</strong> {{ $listaProduto->arte_aprovada }}<br>
+                                        <strong>Lista Aprovada:</strong> {{ $listaProduto->lista_aprovada }}<br>
+                                        <strong>Pacote:</strong> {{ $listaProduto->pacote }}<br>
+                                        <strong>Camisa:</strong> {{ $listaProduto->camisa }}<br>
+                                        <strong>Calção:</strong> {{ $listaProduto->calcao }}<br>
+                                        <strong>Meião:</strong> {{ $listaProduto->meiao }}<br>
+                                        <strong>Nome:</strong> {{ $listaProduto->nome }}<br>
+                                        <strong>Número:</strong> {{ $listaProduto->numero }}<br>
+                                        <strong>Tamanho:</strong> {{ $listaProduto->tamanho }}<br>
+                                        <strong>ID Lista:</strong> {{ $listaProduto->id_lista }}
+                                    </td>
+                                </tr>
+                            @endif
+                        @endforeach
                     @endforeach
                 @endisset
             </tbody>
