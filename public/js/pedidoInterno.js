@@ -68,6 +68,11 @@ document.addEventListener("DOMContentLoaded", function() {
     console.log("Confirmar pedido ID:", pedidoId);
   });
 
+  $(".btn-consultar-lista-uniforme").click(function() {
+    const pedidoId = $(this).closest(".pedido-row").data("pedido-id");
+    window.location.href = `/pedidoInterno/${idOrcamento}`;
+  });
+
   const btnSalvarConsultarCliente = document.getElementsByClassName('btn-salvar-consultar-cliente');
   for (let i = 0; i < btnSalvarConsultarCliente.length; i++) {
     btnSalvarConsultarCliente[i].addEventListener('click', function() {
