@@ -21,7 +21,6 @@ class HomologarPedido extends Controller
     public function getProdutosDoPedido($pedidoId)
     {
         $produtos = ProdutoPedido::where('pedido_id', $pedidoId)->get();
-    
         return response()->json($produtos);
     }
     
