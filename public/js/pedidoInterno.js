@@ -12,7 +12,7 @@ botoesExpandir.forEach(function(botaoExpandir) {
     // Verifique se a linha de produtos já está visível
     var produtosRow = document.querySelector('.produto-pedido-' + pedidoId);
     console.log(produtosRow)
-    if (produtosRow.style.display != 'none') {
+    if (produtosRow != null) {
       console.log(pedidoId);
       // Se já estiver visível, oculte a linha de produtos
       document.querySelector('.produto-pedido-'+ pedidoId).style.display = 'none'; 
