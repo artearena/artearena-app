@@ -18,7 +18,7 @@ botoesExpandir.forEach(function(botaoExpandir) {
       })
       .then(function(produtos) {
         // Selecione a tabela onde você deseja adicionar as linhas dos produtos
-        var tabelaProdutos = document.getElementById('tabela-produtos');
+        var tabelaProdutos = document.getElementById('pedidosTable');
         // Limpe a tabela de produtos antes de adicionar novas linhas
         tabelaProdutos.innerHTML = '';
         // Verifique se é um único produto ou uma lista de produtos
