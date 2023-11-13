@@ -94,11 +94,11 @@
                             <td>{{ $pedido->cliente_id }}</td>
                             <td>{{ $pedido->Vendedor }}</td>
                             <td>
-                                @if (str_contains($pedido->produto_nome, ['Uniforme(s)', 'Camiseta', 'Camisa', 'Short', 'Shorts', 'Abadá']))
-                                    <button class="btn-expand-produtos">
-                                        Expandir
-                                    </button>
-                                @endif
+                            @if (is_string($pedido->produto_nome) && str_contains($pedido->produto_nome, ['Uniforme(s)', 'Camiseta', 'Camisa', 'Short', 'Shorts', 'Abadá']))
+                                <button class="btn-expand-produtos">
+                                    Expandir
+                                </button>
+                            @endif
                             </td>                            
                             <td>{{ $pedido->forma_pagamento }}</td>
                             <td>{{ $pedido->transportadora }}</td>
