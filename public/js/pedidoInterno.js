@@ -1,44 +1,59 @@
 console.log('teste-debug');
 // Selecione o botão "Expandir"
 var botoesExpandir = document.querySelectorAll('.btn-expand-produtos');
-// Adicione o evento de clique a todos os botões,
-console.log('teste-debug');
-
-console.log(botoesExpandir);
+// Adicione o evento de clique a todos os botões
 botoesExpandir.forEach(function(botaoExpandir) {
-  console.log(botaoExpandir);
   botaoExpandir.addEventListener('click', function() {
     console.log('testado');
+    // Obtenha a linha do pedido
+    var pedidoRow = this.closest('.pedido-row');
     // Obtenha o ID do pedido
-    var pedidoId = this.closest('.pedido-row').getAttribute('data-pedido-id');
-    // Faça a requisição AJAX para obter a lista de produtos
-    fetch('/pedidoInterno/get-produtos-pedido/' + pedidoId)
-      .then(function(response) {
-        return response.json();
-      })
-      .then(function(produtos) {
-        // Selecione a tabela onde você deseja adicionar as linhas dos produtos
-        var tabelaProdutos = document.getElementById('pedidosTable');
-        // Limpe a tabela de produtos antes de adicionar novas linhas
-        tabelaProdutos.innerHTML = '';
-        // Verifique se é um único produto ou uma lista de produtos
-        if (Array.isArray(produtos)) {
-          // Caso seja uma lista de produtos
+    var pedidoId = pedidoRow.getAttribute('data-pedido-id');
+    // Verifique se a linha de produtos já está visível
+    var produtosRow = document.querySelector('.produto-pedido-' + pedidoId);
+    if (produtosRow) {
+      // Se já estiver visível, oculte a linha de produtos
+      produtosRow.style.display = 'none';
+    } else {
+      // Caso contrário, faça a requisição AJAX para obter a lista de produtos
+      fetch('/pedidoInterno/get-produtos-pedido/' + pedidoId)
+        .then(function(response) {
+          return response.json();
+        })
+        .then(function(produtos) {
+          // Crie uma nova linha para os produtos
+          var novaLinha = document.createElement('tr');
+          novaLinha.classList.add('produto-pedido-' + pedidoId);
+          // Crie uma nova célula para os produtos
+          var novaCelula = document.createElement('td');
+          novaCelula.setAttribute('colspan', '11');
+          // Adicione os dados dos produtos na célula
           produtos.forEach(function(produto) {
-            var novaLinha = tabelaProdutos.insertRow();
-            var novaCelula = novaLinha.insertCell();
-            novaCelula.textContent = produto.produto_nome;
+            var linhaProduto = document.createElement('p');
+            linhaProduto.innerHTML = '<strong>Produto:</strong> ' + produto.produto_nome + '<br>' +
+                                     '<strong>Quantidade:</strong> ' + produto.quantidade + '<br>' +
+                                     '<strong>Sexo:</strong> ' + produto.sexo + '<br>' +
+                                     '<strong>Arte Aprovada:</strong> ' + produto.arte_aprovada + '<br>' +
+                                     '<strong>Lista Aprovada:</strong> ' + produto.lista_aprovada + '<br>' +
+                                     '<strong>Pacote:</strong> ' + produto.pacote + '<br>' +
+                                     '<strong>Camisa:</strong> ' + produto.camisa + '<br>' +
+                                     '<strong>Calção:</strong> ' + produto.calcao + '<br>' +
+                                     '<strong>Meião:</strong> ' + produto.meiao + '<br>' +
+                                     '<strong>Nome:</strong> ' + produto.nome + '<br>' +
+                                     '<strong>Número:</strong> ' + produto.numero + '<br>' +
+                                     '<strong>Tamanho:</strong> ' + produto.tamanho + '<br>' +
+                                     '<strong>ID Lista:</strong> ' + produto.id_lista;
+            novaCelula.appendChild(linhaProduto);
           });
-        } else {
-          // Caso seja um único produto
-          var novaLinha = tabelaProdutos.insertRow();
-          var novaCelula = novaLinha.insertCell();
-          novaCelula.textContent = produtos.produto_nome;
-        }
-      })
-      .catch(function(error) {
-        console.log('Ocorreu um erro:', error);
-      });
+          // Adicione a célula na nova linha
+          novaLinha.appendChild(novaCelula);
+          // Insira a nova linha após a linha do pedido
+          pedidoRow.insertAdjacentElement('afterend', novaLinha);
+        })
+        .catch(function(error) {
+          console.log('Ocorreu um erro:', error);
+        });
+    }
   });
 });
 
