@@ -1,10 +1,8 @@
-console.log('teste-d1ebug');
 // Selecione o botão "Expandir"
 var botoesExpandir = document.querySelectorAll('.btn-expand-produtos');
 // Adicione o evento de clique a todos os botões
 botoesExpandir.forEach(function(botaoExpandir) {
   botaoExpandir.addEventListener('click', function() {
-    console.log('testado');
     // Obtenha a linha do pedido
     var pedidoRow = this.closest('.pedido-row');
     // Obtenha o ID do pedido
@@ -13,9 +11,8 @@ botoesExpandir.forEach(function(botaoExpandir) {
     var produtosRow = document.querySelector('.produto-pedido-' + pedidoId);
     console.log(produtosRow)
 
-    if (produtosRow != null ) {
-      console.log(pedidoId);
-      produtosRow.style.display = 'none'
+    if (produtosRow != 'none' ) {
+      console.log('testando mudar display');
       if(produtosRow.style.display = 'none')// Se já estiver visível, oculte a linha de produtos
       {
           produtosRow.style.display = '';
