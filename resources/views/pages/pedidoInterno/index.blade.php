@@ -109,16 +109,17 @@
                                     <button class="btn btn-success btn-confirmar-pedido">
                                         <i class="fas fa-check"></i>
                                     </button>
-                                    @foreach ($listaProdutos as $listaProduto)
-                                        @if ($listaProduto->pedido_id == $pedido->id)
+                                        @foreach ($listaProdutos as $listaProduto)
+                                            {{ $listaProduto->produto_nome }} 
+                                            @if ($listaProduto->pedido_id == $pedido->id)
 
-                                            @if (is_string($listaProduto->produto_nome) && str_contains($listaProduto->produto_nome, ['Uniforme', 'Camiseta', 'Camisa', 'Short', 'Shorts', 'Abadá']))
-                                                <button class="btn btn-primary btn-consultar-lista-uniforme" data-toggle="modal" data-target="#modalListaUniforme" data-pedido-id="{{ $pedido->id }}">
-                                                    <i class="fas fa-tshirt"></i>
-                                                </button>
+                                                @if (is_string($listaProduto->produto_nome) && str_contains($listaProduto->produto_nome, ['Uniforme', 'Camiseta', 'Camisa', 'Short', 'Shorts', 'Abadá']))
+                                                    <button class="btn btn-primary btn-consultar-lista-uniforme" data-toggle="modal" data-target="#modalListaUniforme" data-pedido-id="{{ $pedido->id }}">
+                                                        <i class="fas fa-tshirt"></i>
+                                                    </button>
+                                                @endif
                                             @endif
-                                        @endif
-                                    @endforeach
+                                        @endforeach
 
                                     <button class="btn btn-warning btn-salvar-consultar-cliente" data-cliente-id="{{ $pedido->cliente_id }}">
                                         <i class="fas fa-link"></i>
