@@ -37,14 +37,14 @@
                         <thead>
                             <tr>
                                 <th>Nome</th>
-                                <th>Quantidade</th>
+                                <th>Número</th>
                                 <th>Tamanho</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
                                 <td><input type="text" class="form-control" name="nome" value=""></td>
-                                <td><input type="text" class="form-control" name="quantidade" value=""></td>
+                                <td><input type="text" class="form-control" name="numero" value=""></td>
                                 <td><input type="text" class="form-control" name="tamanho" value=""></td>
                             </tr>
                         </tbody>
