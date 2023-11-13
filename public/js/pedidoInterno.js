@@ -1,4 +1,4 @@
-console.log('teste-debug');
+console.log('teste-d1ebug');
 // Selecione o botão "Expandir"
 var botoesExpandir = document.querySelectorAll('.btn-expand-produtos');
 // Adicione o evento de clique a todos os botões
