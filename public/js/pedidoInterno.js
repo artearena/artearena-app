@@ -12,9 +12,10 @@ botoesExpandir.forEach(function(botaoExpandir) {
     // Verifique se a linha de produtos já está visível
     var produtosRow = document.querySelector('.produto-pedido-' + pedidoId);
     console.log(produtosRow)
-    if (produtosRow) {
+    if (produtosRow.style.display != 'none') {
+      console.log(pedidoId);
       // Se já estiver visível, oculte a linha de produtos
-      produtosRow.style.display = 'none';
+      document.querySelector('.produto-pedido-'+ pedidoId).style.display = 'none'; 
     } else {
       // Caso contrário, faça a requisição AJAX para obter a lista de produtos
       fetch('/pedidoInterno/get-produtos-pedido/' + pedidoId)
