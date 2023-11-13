@@ -15,6 +15,7 @@ botoesExpandir.forEach(function(botaoExpandir) {
     if (produtosRow != null) {
       // Se já estiver visível, oculte a linha de produtos
       produtosRow.style.display = 'none';
+      console.log('entrei aqui');
     } else {
       // Caso contrário, faça a requisição AJAX para obter a lista de produtos
       fetch('/pedidoInterno/get-produtos-pedido/' + pedidoId)
