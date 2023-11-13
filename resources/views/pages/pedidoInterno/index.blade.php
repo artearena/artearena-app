@@ -110,7 +110,7 @@
                                         <i class="fas fa-check"></i>
                                     </button>
                                     @if (is_string($pedido->produto_nome) && str_contains($pedido->produto_nome, ['Uniforme', 'Camiseta', 'Camisa', 'Short', 'Shorts', 'Abadá']))
-                                        <?php dd($pedido->produto_nome) ?>
+                                        {{ $pedido->produto_nome }}
                                         <button class="btn btn-primary btn-consultar-lista-uniforme" data-toggle="modal" data-target="#modalListaUniforme" data-pedido-id="{{ $pedido->id }}">
                                             <i class="fas fa-tshirt"></i>
                                         </button>
