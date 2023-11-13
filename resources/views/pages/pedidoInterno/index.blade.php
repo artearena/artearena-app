@@ -98,7 +98,7 @@
                                     $hasUniforme = false;
                                 @endphp
                                 @foreach ($listaProdutos as $listaProduto)
-                                    @if ($listaProduto->pedido_id == $pedido->id && stripos($listaProduto->produto_nome, 'uniforme') !== false)
+                                    @if ($listaProduto->pedido_id == $pedido->id && stripos($listaProduto->produto_nome, 'Uniforme') !== false)
                                         @php
                                             $hasUniforme = true;
                                         @endphp
