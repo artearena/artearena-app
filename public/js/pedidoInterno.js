@@ -12,15 +12,11 @@ botoesExpandir.forEach(function(botaoExpandir) {
 
     if (produtosRow != null) {
       console.log(produtosRow.style.display);
-      
-      if(produtosRow.style.display === 'none')// Se já estiver visível, oculte a linha de produtos
-      {
-          produtosRow.style.display = '';
-      }
-      else{
+      if (produtosRow.style.display === 'none') {
+        produtosRow.style.display = '';
+      } else {
         produtosRow.style.display = 'none';
       }
-      
     } else {
 
       // Caso contrário, faça a requisição AJAX para obter a lista de produtos
