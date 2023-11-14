@@ -308,6 +308,8 @@ Consulta de Pedidos
                                         <option value="Cor teste">Cor teste</option>
                                         <option value="Terceirizado">Terceirizado</option>
                                         <option value="Análise pendente">Análise pendente</option>
+                                        <option value="Aguardando Cliente">Aguardando Cliente</option>
+
                                     </select>
                                 </div>
                                 <div class="form-row">
@@ -451,6 +453,7 @@ Consulta de Pedidos
                                         <option value="Cor teste" {{ $pedido->status == 'Cor teste' ? 'selected' : '' }}>Cor teste</option>
                                         <option value="Terceirizado" {{ $pedido->status == 'Terceirizado' ? 'selected' : '' }}>Terceirizado</option>
                                         <option value="Análise pendente" {{ $pedido->status == 'Análise pendente' ? 'selected' : '' }}>Análise pendente</option>
+                                        <option value="Aguardando Cliente" {{ $pedido->status == 'Aguardando Cliente' ? 'selected' : '' }}>Aguardando Cliente</option>
                                         <option value="{{ $pedido->status }}" {{ !in_array($pedido->status, ['Pendente', 'Em andamento', 'Arte OK', 'Em confirmação', 'Em espera', 'Cor teste', 'Terceirizado', 'Análise pendente']) ? 'selected' : '' }}>
                                             {{ $pedido->status }}
                                         </option>
