@@ -44,6 +44,14 @@
     .dataTable tr:nth-child(odd) {
         background: rgba(0, 0, 0, 0.07);
     }
+    .dataTable .select-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .dataTable .select-container select {
+        margin: 0;
+    }
     @media screen and (min-width: 50em) {
         .dataTable {
             display: table;
@@ -63,6 +71,12 @@
         }
         .dataTable td, .dataTable th {
             width: auto;
+        }
+        .dataTable .select-container {
+            display: table-cell;
+        }
+        .dataTable .select-container select {
+            margin: auto;
         }
     }
 </style>
