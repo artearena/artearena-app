@@ -33,7 +33,7 @@
                             <li><a class="dropdown-item" href="{{ route('bandeira') }}">Bandeira</a></li>
                             <li><a class="dropdown-item" href="{{ route('frete') }}">Gerar Orçamento</a></li>
                             <li><a class="dropdown-item" href="{{ route('tiny.relatorio') }}">Tiny Relatório</a></li>
-                            <li><a class="dropdown-item" href="{{ route('pedidoInterno')}}">Tiny Relatório</a></li>
+                            <li><a class="dropdown-item" href="{{ route('pedidoInterno')}}">Pedido Interno</a></li>
                             <li><a class="dropdown-item" href="#">Encurtar Link</a></li>
                             <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#ramalModal">Ramal</a></li> <!-- Opção "Ramal" -->
                         </ul>
