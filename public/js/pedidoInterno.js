@@ -54,11 +54,11 @@ botoesExpandir.forEach(function(botaoExpandir) {
                                         '<option value="premium" ' + (produto.pacote === 'premium' ? 'selected' : '') + '>Premium</option>' +
                                         '<option value="profissional" ' + (produto.pacote === 'profissional' ? 'selected' : '') + '>Profissional</option>' +
                                      '</select><br>' +
-                                     '<strong>Camisa:</strong> <input type="text" value="' + produto.camisa + '" class="input-camisa">' + '<br>' +
-                                     '<strong>Calção:</strong> <input type="text" value="' + produto.calcao + '" class="input-calcao">' + '<br>' +
-                                     '<strong>Meião:</strong> ' + produto.meiao + '<br>' +
-                                     '<strong>Nome:</strong> ' + produto.nome + '<br>' +
-                                     '<strong>Número:</strong> ' + produto.numero + '<br>' +
+                                     '<strong>Camisa:</strong> <input type="checkbox" ' + (produto.camisa !== undefined ? 'checked' : '') + ' class="input-camisa">' + '<br>' +
+                                     '<strong>Calção:</strong> <input type="checkbox" ' + (produto.calcao !== undefined ? 'checked' : '') + ' class="input-calcao">' + '<br>' +
+                                     '<strong>Meião:</strong> <input type="checkbox" ' + (produto.meiao !== undefined ? 'checked' : '') + ' class="input-meiao">' + '<br>' +
+                                     '<strong>Nome:</strong> ' + (produto.nome !== undefined ? produto.nome : '') + '<br>' +
+                                     '<strong>Número:</strong> ' + (produto.numero !== undefined ? produto.numero : '') + '<br>' +
                                      '<strong>Tamanho:</strong> <select class="form-control input-tamanho">' +
                                         '<option value="P" ' + (produto.tamanho === 'P' ? 'selected' : '') + '>P</option>' +
                                         '<option value="M" ' + (produto.tamanho === 'M' ? 'selected' : '') + '>M</option>' +
@@ -75,7 +75,7 @@ botoesExpandir.forEach(function(botaoExpandir) {
           novaLinha.appendChild(novaCelula);
           // Insira a nova linha após a linha do pedido
           pedidoRow.insertAdjacentElement('afterend', novaLinha);
-        }) 
+          }) 
         .catch(function(error) {
           console.log('Ocorreu um erro:', error);
         });
