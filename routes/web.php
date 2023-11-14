@@ -21,6 +21,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/bandeira', [SiteController::class, 'bandeiras'])->name('bandeira');
     
     Route::get('/gerarLinkCadastroCliente', [AcessoTemporarioController::class, 'index']);
+    Route::get('/gerarLinkListaProduto/{id}', [AcessoTemporarioController::class, 'gerarLinkTemporario']);
 
     Route::prefix('frete')->group(function () {
         Route::get('/', [SiteController::class, 'frete'])->name('frete');

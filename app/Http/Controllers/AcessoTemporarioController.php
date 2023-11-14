@@ -28,7 +28,23 @@ class AcessoTemporarioController extends Controller
             'link' => $link,
         ]);
     }
-
+    
+    public function gerarLinkTemporario($id)
+    {
+        // Gera um token de acesso temporário
+        $token = uniqid();
+        // Salva o token no banco de dados
+        DB::table('acesso_temporario')->insert([
+            'token' => $token,
+            'validade' => now()->addWeek(),
+            'pedido_id' => $id,
+        ]);
+        $link = url('https://arte.app.br/listaUniformes/' . $id) . '?token=' . $token;
+        // Retorna o JSON com o link
+        return response()->json([
+            'link' => $link,
+        ]);
+    }
     public function submit()
     {
         // Verifica se o token é válido

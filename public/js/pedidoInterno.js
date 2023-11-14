@@ -68,7 +68,7 @@ botoesExpandir.forEach(function(botaoExpandir) {
                                         '<option value="XGG" ' + (produto.tamanho === 'XGG' ? 'selected' : '') + '>XGG</option>' +
                                         '<option value="XGGG" ' + (produto.tamanho === 'XGGG' ? 'selected' : '') + '>XGGG</option>' +
                                      '</select><br>' +
-                                     '<strong>ID Lista:</strong> ' + produto.id_lista;
+                                     '<strong>ID Lista:</strong> <hr>' + produto.id_lista;
             novaCelula.appendChild(linhaProduto);
           });
           // Adicione a célula na nova linha
