@@ -145,7 +145,7 @@ Inicio
             $('#btn-encurtar').on('click', function() {
                 var url = $('#url-input').val();
                 // Fazer a requisição GET para sua API
-                $.get(`https://ulvis.net/api.php?url=${url}&private=1`)
+                $.get('https://artearena.kinghost.net/encurtar-link', { link: url })
                 .done(function(response) {
                     var urlEncurtada = response.urlEncurtada;
                     // Preencher o campo de URL encurtada com o valor retornado pela API
