@@ -123,11 +123,9 @@
                                     <button class="btn btn-success btn-confirmar-pedido">
                                         <i class="fas fa-check"></i>
                                     </button>
-                                    @foreach ($listaProdutos as $listaProduto)
-                                            <button class="btn btn-primary btn-consultar-lista-uniforme" data-toggle="modal" data-target="#modalListaUniforme" data-pedido-id="{{ $pedido->id }}">
-                                                <i class="fas fa-tshirt"></i>
-                                            </button>
-                                    @endforeach
+                                    <button class="btn btn-primary btn-consultar-lista-uniforme" data-toggle="modal" data-target="#modalListaUniforme" data-pedido-id="{{ $pedido->id }}">
+                                        <i class="fas fa-tshirt"></i>
+                                    </button>
                                     <button class="btn btn-warning btn-salvar-consultar-cliente" data-cliente-id="{{ $pedido->cliente_id }}">
                                         <i class="fas fa-link"></i>
                                     </button>
