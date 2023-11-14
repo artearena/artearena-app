@@ -89,10 +89,17 @@ document.addEventListener("DOMContentLoaded", function() {
     console.log("Confirmar pedido ID:", pedidoId);
   });
 
-  $(".btn-consultar-lista-uniforme").click(function() {
-    const pedidoId = $(this).closest(".pedido-row").data("pedido-id");
-    window.location.href = `/listaUniformes/${pedidoId}`;
-  });
+  const btnConsultarListaUniforme = document.getElementsByClassName('btn-consultar-lista-uniforme');
+  for (let i = 0; i < btnConsultarListaUniforme.length; i++) {
+    btnConsultarListaUniforme[i].addEventListener('click', function() {
+      const pedidoId = this.closest('.pedido-row').getAttribute('data-pedido-id');
+      fetch('/gerarLinkListaProduto/' + pedidoId)
+        .then(response => response.json())
+        .then(data => {
+          alert('link temporario: ' + data.link);
+        });
+    });
+  }
 
   const btnSalvarConsultarCliente = document.getElementsByClassName('btn-salvar-consultar-cliente');
   for (let i = 0; i < btnSalvarConsultarCliente.length; i++) {

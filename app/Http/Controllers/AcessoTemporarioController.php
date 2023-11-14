@@ -28,7 +28,7 @@ class AcessoTemporarioController extends Controller
             'link' => $link,
         ]);
     }
-    
+
     public function gerarLinkTemporario($id)
     {
         // Gera um token de acesso temporário
