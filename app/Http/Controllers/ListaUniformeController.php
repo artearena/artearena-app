@@ -20,7 +20,7 @@ class ListaUniformeController extends Controller
             // Adicione este ponto de depuração para verificar se a rota está sendo acessada corretamente
             dd("Rota de indexCliente acessada com o ID: $id");
         
-            $produtos = PedidoListView::where('id', $id)->get();
+            $produtos = PedidoListView::find($id);
         
             // Adicione este ponto de depuração para verificar os produtos obtidos
             dd($produtos);
