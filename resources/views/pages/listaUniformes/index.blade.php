@@ -9,7 +9,7 @@
         <h1>Lista de informações dos produtos</h1>
 
         @if ($produtos)
-            <p>Total de produtos encontrados: {{ $produtos->count() }}</p>
+            <p>Total de produtos encontrados: {{ $produtos }}</p>
             <?php dd($produtos) ?>
             <div class="divProduto">
 
