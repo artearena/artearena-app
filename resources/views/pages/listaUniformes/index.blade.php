@@ -8,142 +8,46 @@
 
         <h1>Lista de informações dos produtos</h1>
 
-        @php
-
-            $hasUniforme = false;
-            $hasChinelos = false;
-
-        @endphp
-
         @if ($produtos)
             <p>Total de produtos encontrados: {{ $produtos->count() }}</p>
-            @foreach($produtos as $produto)
 
-                {{-- Adicione verificação se $produto é um objeto --}}
-                @if (is_object($produto))
+            <div class="divProduto">
 
-                    @if(stripos($produto->produto_nome, 'Uniforme') !== false)
+                <table class="table">
 
-                        @php
-                            $hasUniforme = true;
-                        @endphp
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Número</th>
+                            <th>Tamanho</th>
+                        </tr>
+                    </thead>
 
-                    @elseif(stripos($produto->produto_nome, 'chinelo') !== false)
+                    <tbody>
 
-                        @php
-                            $hasChinelos = true;
-                        @endphp
+                        @foreach($produtos as $produto)
 
-                    @endif
-
-                @else
-                    <p>Produto não é um objeto: {{ gettype($produto) }}</p>
-                @endif
-
-            @endforeach
-
-            @if($hasUniforme)
-
-                <div class="divProduto">
-
-                    <h2>Uniformes</h2>
-
-                    <form id="cadastroFormUniforme">
-
-                        <table class="table">
-
-                            <thead>
+                            {{-- Adicione verificação se $produto é um objeto --}}
+                            @if (is_object($produto))
 
                                 <tr>
-
-                                    <th>Nome</th>
-
-                                    <th>Número</th>
-
-                                    <th>Tamanho</th>
-
+                                    <td>{{ $produto->nome }}</td>
+                                    <td>{{ $produto->numero }}</td>
+                                    <td>{{ $produto->tamanho }}</td>
                                 </tr>
 
-                            </thead>
+                            @else
+                                <p>Produto não é um objeto: {{ gettype($produto) }}</p>
+                            @endif
 
-                            <tbody>
+                        @endforeach
 
-                                @foreach($produtos as $produto)
+                    </tbody>
 
-                                    {{-- Adicione verificação se $produto é um objeto --}}
-                                    @if (is_object($produto) && stripos($produto->produto_nome, 'uniforme') !== false)
+                </table>
 
-                                        @for($i = 0; $i < $produto->quantidade; $i++)
-                                            <tr>
-                                                <td>{{ $produto->nome }}</td>
-                                                <td>{{ $produto->numero }}</td>
-                                                <td>{{ $produto->tamanho }}</td>
-                                            </tr>
-                                        @endfor
+            </div>
 
-                                    @endif
-
-                                @endforeach
-
-                            </tbody>
-
-                        </table>
-
-                    </form>
-
-                </div>
-
-            @endif
-
-            @if($hasChinelos)
-
-                <div class="divProduto">
-
-                    <h2>Chinelos</h2>
-
-                    <form id="cadastroFormChinelos">
-
-                        <table class="table">
-
-                            <thead>
-
-                                <tr>
-
-                                    <th>Nome</th>
-
-                                    <th>Tamanho</th>
-
-                                </tr>
-
-                            </thead>
-
-                            <tbody>
-
-                                @foreach($produtos as $produto)
-
-                                    {{-- Adicione verificação se $produto é um objeto --}}
-                                    @if (is_object($produto) && stripos($produto->produto_nome, 'chinelo') !== false)
-
-                                        @for($i = 0; $i < $produto->quantidade; $i++)
-                                            <tr>
-                                                <td>{{ $produto->nome }}</td>
-                                                <td>{{ $produto->tamanho }}</td>
-                                            </tr>
-                                        @endfor
-
-                                    @endif
-
-                                @endforeach
-
-                            </tbody>
-
-                        </table>
-
-                    </form>
-
-                </div>
-
-            @endif
         @else
             <p>Nenhum produto encontrado.</p>
         @endif
