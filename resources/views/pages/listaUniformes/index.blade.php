@@ -23,14 +23,14 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($produtos as $produto)
-                                    {{$produto}}
-                        @endforeach
+                        
                     </tbody>
                 </table>
 
             </div>
-
+            @foreach($produtos as $produto)
+                        {{$produto}}
+            @endforeach
         @else
             <p>Nenhum produto encontrado.</p>
         @endif
