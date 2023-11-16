@@ -25,7 +25,7 @@
                     <tbody>
                         @foreach($produtos as $produto)
                                 <tr>
-                                    <td>$produto</td>
+                                    <td>{{$produto}}</td>
                                 </tr>
                         @endforeach
                     </tbody>
