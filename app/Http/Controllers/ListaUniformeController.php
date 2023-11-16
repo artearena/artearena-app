@@ -21,7 +21,7 @@ class ListaUniformeController extends Controller
             $produtos = PedidoListView::find($id);
         
             // Adicione este ponto de depuração para verificar os produtos obtidos
-            dd($produtos);
+            dd("att" + $produtos);
         
             if ($produtos->isEmpty()) {
                 dd("avisa que ta vazio");
