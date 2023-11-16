@@ -37,18 +37,27 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/criar', [PedidoController::class, 'criarPedido'])->name('pedido.criar');
         Route::delete('/{id}', [PedidoController::class, 'excluirPedido'])->name('pedido.excluir');
     });
-    
-    Route::prefix('listaUniformes')->middleware('validar.token')->group(function () {
-        Route::any('/', [ListaUniformeController::class, 'index'])->name('index');
-        Route::any('/{id}', [ListaUniformeController::class, 'indexCliente']);
-    });
 
      Route::prefix('pedidoInterno')->group(function () {
         Route::any('/', [HomologarPedido::class, 'index'])->name('pedidoInterno');
         Route::any('/criar-pedido/{id}', [HomologarPedido::class, 'criarPedidoOrcamento'])->name('pedidoInterno.criar');
         Route::post('/criar', [HomologarPedido::class, 'store'])->name('pedidoInterno.salvar');
         Route::get('/get-produtos-pedido/{id}', [HomologarPedido::class, 'getProdutosDoPedido']);
-     });
+        
+        // Adicionando rota para atualizar o sexo do produto
+        Route::post('/atualizar-sexo-produto/{pedidoId}/{produtoId}', [HomologarPedido::class, 'atualizarSexoProduto']);
+
+        // Adicionando rota para atualizar o pacote do produto
+        Route::post('/atualizar-pacote-produto/{pedidoId}/{produtoId}', [HomologarPedido::class, 'atualizarPacoteProduto']);
+
+        // Adicionando rota para atualizar a camisa do produto
+        Route::post('/atualizar-camisa-produto/{pedidoId}/{produtoId}', [HomologarPedido::class, 'atualizarCamisaProduto']);
+
+        // Adicionando rota para atualizar o calção do produto
+        Route::post('/atualizar-calcao-produto/{pedidoId}/{produtoId}', [HomologarPedido::class, 'atualizarCalcaoProduto']);
+
+    });
+
     Route::prefix('consultarcadastro')->group(function () {
         Route::any('/', [CadastroController::class, 'consultarCadastros'])->name('cadastro.consulta');
         Route::get('/data', [CadastroController::class, 'getData'])->name('cadastro.data');
@@ -90,7 +99,10 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/store', [ErroController::class, 'store'])->name('erros.store');
     });
 });
-
+Route::prefix('listaUniformes')->middleware('validar.token')->group(function () {
+    //Route::any('/', [ListaUniformeController::class, 'index'])->name('index');
+    Route::any('/{id}', [ListaUniformeController::class, 'indexCliente']);
+});
 Route::prefix('cadastro')->middleware('validar.token')->group(function () {
     // Rota para listar todos os registros de cadastro
     Route::any('/', [CadastroController::class, 'index'])->name('cadastro.index');

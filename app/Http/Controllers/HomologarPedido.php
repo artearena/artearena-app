@@ -107,4 +107,30 @@ class HomologarPedido extends Controller
             }
         }
     }
+    public function atualizarCamisaProduto($pedidoId, $produtoId, Request $request)
+    {
+        $produto = ProdutoPedido::find($produtoId);
+
+        if (!$produto) {
+            return response()->json(['message' => 'Produto não encontrado'], 404);
+        }
+
+        $produto->update(['camisa' => $request->input('camisa')]);
+
+        return response()->json(['message' => 'Camisa do produto atualizada com sucesso']);
+    }
+
+    public function atualizarCalcaoProduto($pedidoId, $produtoId, Request $request)
+    {
+        $produto = ProdutoPedido::find($produtoId);
+
+        if (!$produto) {
+            return response()->json(['message' => 'Produto não encontrado'], 404);
+        }
+
+        $produto->update(['calcao' => $request->input('calcao')]);
+
+        return response()->json(['message' => 'Calção do produto atualizado com sucesso']);
+    }
+
 }
