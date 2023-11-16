@@ -22,28 +22,13 @@
                             @endforeach
                         </tr>
                     </thead>
-
                     <tbody>
-
                         @foreach($produtos as $produto)
-
-                            {{-- Adicione verificação se $produto é um objeto --}}
-                            @if ($produto)
-
                                 <tr>
-                                    @foreach($produto->getAttributes() as $value)
-                                        <td>{{ $value }}</td>
-                                    @endforeach
+                                    <td>$produto</td>
                                 </tr>
-
-                            @else
-                                <p>Produto não é um objeto: {{ gettype($produto) }}</p>
-                            @endif
-
                         @endforeach
-
                     </tbody>
-
                 </table>
 
             </div>
