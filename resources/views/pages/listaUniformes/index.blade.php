@@ -9,17 +9,17 @@
         <h1>Lista de informações dos produtos</h1>
 
         @if ($produtos)
-            <p>Total de produtos encontrados: {{ $produtos }}</p>
-            <?php dd($produtos) ?>
+            <p>Total de produtos encontrados: {{ $produtos->count() }}</p>
+
             <div class="divProduto">
 
                 <table class="table">
 
                     <thead>
                         <tr>
-                            <th>Nome</th>
-                            <th>Número</th>
-                            <th>Tamanho</th>
+                            @foreach($produtos->getAttributes() as $attribute => $value)
+                                <th>{{ $attribute }}</th>
+                            @endforeach
                         </tr>
                     </thead>
 
@@ -31,9 +31,9 @@
                             @if (is_object($produto))
 
                                 <tr>
-                                    <td>{{ $produto->nome }}</td>
-                                    <td>{{ $produto->numero }}</td>
-                                    <td>{{ $produto->tamanho }}</td>
+                                    @foreach($produto->getAttributes() as $value)
+                                        <td>{{ $value }}</td>
+                                    @endforeach
                                 </tr>
 
                             @else
