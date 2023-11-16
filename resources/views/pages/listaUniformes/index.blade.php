@@ -28,7 +28,7 @@
                         @foreach($produtos as $produto)
 
                             {{-- Adicione verificação se $produto é um objeto --}}
-                            @if (is_object($produto))
+                            @if ($produto)
 
                                 <tr>
                                     @foreach($produto->getAttributes() as $value)
