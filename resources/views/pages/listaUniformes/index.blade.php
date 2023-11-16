@@ -8,11 +8,11 @@
             $hasChinelos = false;
         @endphp
         @foreach($produtos as $produto)
-            @if(strpos($produto->produto_nome, 'Uniforme') !== false)
+            @if(stripos($produto->produto_nome, 'Uniforme') !== false)
                 @php
                     $hasUniforme = true;
                 @endphp
-            @elseif(strpos($produto->produto_nome, 'chinelo') !== false)
+            @elseif(stripos($produto->produto_nome, 'chinelo') !== false)
                 @php
                     $hasChinelos = true;
                 @endphp
@@ -32,7 +32,7 @@
                         </thead>
                         <tbody>
                             @foreach($produtos as $produto)
-                                @if(strpos($produto->produto_nome, 'uniforme') !== false)
+                                @if(stripos($produto->produto_nome, 'uniforme') !== false && $produto->quantidade > 0)
                                     @for($i = 0; $i < $produto->quantidade; $i++)
                                         <tr>
                                             <td>{{ $produto->nome }}</td>
@@ -60,7 +60,7 @@
                         </thead>
                         <tbody>
                             @foreach($produtos as $produto)
-                                @if(strpos($produto->produto_nome, 'chinelo') !== false)
+                                @if(stripos($produto->produto_nome, 'chinelo') !== false && $produto->quantidade > 0)
                                     @for($i = 0; $i < $produto->quantidade; $i++)
                                         <tr>
                                             <td>{{ $produto->nome }}</td>
