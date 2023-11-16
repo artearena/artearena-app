@@ -25,11 +25,13 @@ class ListaUniformeController extends Controller
         dd($produtos);
     
         if ($produtos->isEmpty()) {
+            dd("avisa que ta vazio");
             $produtos = [];
         }
     
         return view('pages.listaUniformes.index', compact('produtos'));
     }
+    
     
 
     public function create()
