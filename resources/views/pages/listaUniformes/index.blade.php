@@ -11,12 +11,12 @@
         @php
 
             $hasUniforme = false;
-
             $hasChinelos = false;
 
         @endphp
 
         @if ($produtos)
+            <p>Total de produtos encontrados: {{ count($produtos) }}</p>
             @foreach($produtos as $produto)
 
                 {{-- Adicione verificação se $produto é um objeto --}}
@@ -25,21 +25,19 @@
                     @if(stripos($produto->produto_nome, 'Uniforme') !== false)
 
                         @php
-
                             $hasUniforme = true;
-
                         @endphp
 
                     @elseif(stripos($produto->produto_nome, 'chinelo') !== false)
 
                         @php
-
                             $hasChinelos = true;
-
                         @endphp
 
                     @endif
 
+                @else
+                    <p>Produto não é um objeto: {{ gettype($produto) }}</p>
                 @endif
 
             @endforeach
