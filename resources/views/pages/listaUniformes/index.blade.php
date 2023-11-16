@@ -8,9 +8,7 @@
 
         <h1>Lista de informações dos produtos</h1>
 
-        @if ($produtos->isEmpty())
-            <p>Nenhum produto encontrado.</p>
-        @else
+        @if ($produtos)
             <p>Total de produtos encontrados: {{ $produtos->count() }}</p>
 
             <div class="divProduto">
@@ -19,23 +17,24 @@
 
                     <thead>
                         <tr>
-                            @foreach($produtos->first()->getAttributes() as $attribute => $value)
+                            @foreach($produtos->getAttributes() as $attribute => $value)
                                 <th>{{ $attribute }}</th>
                             @endforeach
                         </tr>
                     </thead>
                     <tbody>
                         @foreach($produtos as $produto)
-                            <tr>
-                                @foreach($produto->getAttributes() as $value)
-                                    <td>{{ $value }}</td>
-                                @endforeach
-                            </tr>
+                                <tr>
+                                    <td>$produto</td>
+                                </tr>
                         @endforeach
                     </tbody>
                 </table>
 
             </div>
+
+        @else
+            <p>Nenhum produto encontrado.</p>
         @endif
 
     </div>
