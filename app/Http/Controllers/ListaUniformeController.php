@@ -20,11 +20,7 @@ class ListaUniformeController extends Controller
             // Adicione este ponto de depuração para verificar se a rota está sendo acessada corretamente
             $produtos = PedidoListView::find($id);
         
-            // Adicione este ponto de depuração para verificar os produtos obtidos
-            dd("att" + $produtos);
-        
             if ($produtos->isEmpty()) {
-                dd("avisa que ta vazio");
                 $produtos = [];
             }
         
