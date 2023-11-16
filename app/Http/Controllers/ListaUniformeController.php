@@ -16,12 +16,21 @@ class ListaUniformeController extends Controller
 
     public function indexCliente($id)
     {
+        // Adicione este ponto de depuração para verificar se a rota está sendo acessada corretamente
+        dd("Rota de indexCliente acessada com o ID: $id");
+    
         $produtos = PedidoListView::where('id', $id)->get();
+    
+        // Adicione este ponto de depuração para verificar os produtos obtidos
+        dd($produtos);
+    
         if ($produtos->isEmpty()) {
             $produtos = [];
         }
+    
         return view('pages.listaUniformes.index', compact('produtos'));
     }
+    
 
     public function create()
     {
