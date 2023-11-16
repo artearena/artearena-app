@@ -20,10 +20,6 @@ class ListaUniformeController extends Controller
             // Adicione este ponto de depuração para verificar se a rota está sendo acessada corretamente
             $produtos = PedidoListView::find($id);
         
-            if ($produtos->isEmpty()) {
-                $produtos = [];
-            }
-        
             return view('pages.listaUniformes.index', compact('produtos'));
         } catch (\Exception $e) {
             dd($e->getMessage());
