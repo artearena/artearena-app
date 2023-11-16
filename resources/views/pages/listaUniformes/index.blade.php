@@ -10,7 +10,7 @@
 
         @if ($produtos)
             <p>Total de produtos encontrados: {{ $produtos->count() }}</p>
-            <?php dd($produtos) ?>
+
             <div class="divProduto">
 
                 <table class="table">
@@ -31,7 +31,7 @@
                             @if (is_object($produto))
 
                                 <tr>
-                                    <td>{{ $produto->nome }}</td>
+                                    <td>{{ $produto->produto_nome }}</td>
                                     <td>{{ $produto->numero }}</td>
                                     <td>{{ $produto->tamanho }}</td>
                                 </tr>
