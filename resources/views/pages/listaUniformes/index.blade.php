@@ -24,9 +24,7 @@
                     </thead>
                     <tbody>
                         @foreach($produtos as $produto)
-                                <tr>
-                                    <td>{{$produto}}</td>
-                                </tr>
+                                    {{$produto}}
                         @endforeach
                     </tbody>
                 </table>
