@@ -16,7 +16,7 @@
         @endphp
 
         @if ($produtos)
-            <p>Total de produtos encontrados: {{ count($produtos) }}</p>
+            <p>Total de produtos encontrados: {{ $produtos->count() }}</p>
             @foreach($produtos as $produto)
 
                 {{-- Adicione verificação se $produto é um objeto --}}
