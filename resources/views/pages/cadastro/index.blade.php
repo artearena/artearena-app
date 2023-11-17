@@ -14,6 +14,7 @@
                 <form method="POST" action="{{ route('cadastro.store', ['token' => request()->token]) }}">
                         @csrf
                         <input type="hidden" name="token" value="{{ request()->token }}">
+                        <input type="hidden" name="pedidoId" value="{{ request()->pedidoId }}">
 
                          <!-- Seleção de Pessoa Jurídica ou Pessoa Física -->
                         <div class="form-check">
