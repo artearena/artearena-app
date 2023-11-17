@@ -148,6 +148,7 @@ Inicio
                 $.get('https://artearena.kinghost.net/encurtar-link', { link: url })
                 .done(function(response) {
                     var urlEncurtada = response.urlEncurtada;
+                    console.log(response);
                     // Preencher o campo de URL encurtada com o valor retornado pela API
                     $('#url-encurtada-input').val(urlEncurtada);
                     console.log('URL encurtada:', urlEncurtada);
