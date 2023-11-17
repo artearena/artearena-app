@@ -82,7 +82,46 @@ botoesExpandir.forEach(function(botaoExpandir) {
     }
   });
 });
+// Função para enviar a requisição de salvar o pedido
+function salvarPedido(pedidoId) {
+  // Obtenha os dados do pedido com base no pedidoId
+  const pedido = {
+    id: pedidoId,
+    // Adicione aqui os outros campos do pedido que deseja enviar
+  };
 
+  // Faça a requisição POST para salvar o pedido
+  fetch('/api/salvar-pedido', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(pedido),
+  })
+    .then(response => response.json())
+    .then(data => {
+      // Lide com a resposta da API aqui
+      console.log(data);
+      // Exemplo de exibição de mensagem de sucesso
+      alert('Pedido salvo com sucesso!');
+    })
+    .catch(error => {
+      // Lide com erros de requisição aqui
+      console.error(error);
+      // Exemplo de exibição de mensagem de erro
+      alert('Erro ao salvar o pedido. Por favor, tente novamente.');
+    });
+}
+
+// Evento de clique no botão "Confirmar Pedido"
+document.addEventListener('click', function(event) {
+  if (event.target.classList.contains('btn-confirmar-pedido')) {
+    // Obtenha o ID do pedido a partir do atributo data-pedido-id
+    const pedidoId = event.target.closest('.pedido-row').dataset.pedidoId;
+    // Chame a função para salvar o pedido
+    salvarPedido(pedidoId);
+  }
+});
 document.addEventListener("DOMContentLoaded", function() {
   $(".btn-confirmar-pedido").click(function() {
     const pedidoId = $(this).closest(".pedido-row").data("pedido-id");
