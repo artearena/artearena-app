@@ -36,6 +36,7 @@ class Cadastro extends Model
         'cidade_entrega',
         'responsavel_entrega',
         'cpf_responsavel_entrega',
+        'id_cliente_pedido',
     ];
 
     // Validação de campo tipo_pessoa
