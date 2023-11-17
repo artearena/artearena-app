@@ -147,7 +147,7 @@ Inicio
                 // Fazer a requisição POST para a API do N9 Free Short URL
                 $.ajax({
                     url: 'https://artearena.kinghost.net/encurtar-link',
-                    method: 'POST',
+                    method: 'GET',
                     contentType: 'application/json',
                     data: JSON.stringify({
                     link: url,
