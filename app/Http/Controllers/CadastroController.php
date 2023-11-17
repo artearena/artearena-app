@@ -40,7 +40,7 @@ class CadastroController extends Controller
     }
 
     // Armazenar um novo registro
-    public function store(Request $request, $token, $id_cliente_pedido)
+    public function store(Request $request)
     {
         try {
             // Defina as regras de validação comuns para ambos os tipos de pessoa
@@ -57,7 +57,7 @@ class CadastroController extends Controller
                 'fone_fixo' => 'nullable|string|max:255',
                 'cell' => 'nullable|string|max:255',
             ];
-    
+
             // Validação para Pessoa Jurídica
             if ($request->tipo_pessoa === 'juridica') {
                 $rules = [
@@ -76,22 +76,22 @@ class CadastroController extends Controller
                     'email' => 'required|email|max:255',
                 ];
             }
-    
+
             // Mescla as regras comuns com as regras específicas
             $rules = array_merge($commonRules, $rules);
-    
+
             // Valide os dados do formulário com base nas regras definidas
             $validatedData = $request->validate($rules);
-    
+
             // Adicione o id_cliente_pedido aos dados validados
-            $validatedData['id_cliente_pedido'] = $id_cliente_pedido;
-    
+            $validatedData['id_cliente_pedido'] = $request->id_cliente_pedido;
+
             // Crie um novo registro de cadastro com os dados validados
             Cadastro::create($validatedData);
-    
+
             // Invalide o token
-            $this->invalidateToken($token);
-    
+            $this->invalidateToken($request->token);
+
             // Redirecione para a rota de sucesso
             return redirect()->route('cadastro.sucesso');
         } catch (\Exception $e) {
