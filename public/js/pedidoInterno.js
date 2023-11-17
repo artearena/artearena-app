@@ -82,6 +82,7 @@ botoesExpandir.forEach(function(botaoExpandir) {
     }
   });
 });
+
 // Função para enviar a requisição de salvar o pedido
 function salvarPedido(pedidoId) {
   // Obtenha os dados do pedido com base no pedidoId
@@ -91,7 +92,7 @@ function salvarPedido(pedidoId) {
   };
 
   // Faça a requisição POST para salvar o pedido
-  fetch('/api/salvar-pedido', {
+  fetch('https://artearena.kinghost.net/criar-pedido-tiny', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -122,6 +123,7 @@ document.addEventListener('click', function(event) {
     salvarPedido(pedidoId);
   }
 });
+
 document.addEventListener("DOMContentLoaded", function() {
   $(".btn-confirmar-pedido").click(function() {
     const pedidoId = $(this).closest(".pedido-row").data("pedido-id");
