@@ -40,47 +40,9 @@ class CadastroController extends Controller
     }
 
     // Armazenar um novo registro
-    public function store(Request $request)
+    public function store(Request $request, $token, $id_cliente_pedido)
     {
         try {
-            if ($request->tipo_pessoa === 'juridica') {
-                // Organize os campos para pessoa jurídica
-                $request['email'] = $request['email_juridica'];
-                $request['endereco'] = $request['endereco_juridica'];
-                $request['numero'] = $request['numero_juridica'];
-                $request['bairro'] = $request['bairro_juridica'];
-                $request['fone_fixo'] = $request['fone_fixo_juridica'];
-                $request['cell'] = $request['cell_juridica'];
-                $request['cep'] = $request['cep_juridica'];
-
-                // Remova os campos originais da pessoa jurídica
-                unset($request['email_juridica']);
-                unset($request['endereco_juridica']);
-                unset($request['numero_juridica']);
-                unset($request['bairro_juridica']);
-                unset($request['fone_fixo_juridica']);
-                unset($request['cell_juridica']);
-                unset($request['cep_juridica']);
-            } else {
-                // Organize os campos para pessoa física
-                $request['email'] = $request['email_fisica'];
-                $request['endereco'] = $request['endereco_fisica'];
-                $request['numero'] = $request['numero_fisica'];
-                $request['bairro'] = $request['bairro_fisica'];
-                $request['fone_fixo'] = $request['fone_fixo_fisica'];
-                $request['cell'] = $request['cell_fisica'];
-                $request['cep'] = $request['cep_fisica'];
-
-                // Remova os campos originais da pessoa física
-                unset($request['email_fisica']);
-                unset($request['endereco_fisica']);
-                unset($request['numero_fisica']);
-                unset($request['bairro_fisica']);
-                unset($request['fone_fixo_fisica']);
-                unset($request['cell_fisica']);
-                unset($request['cep_fisica']);
-            }
-
             // Defina as regras de validação comuns para ambos os tipos de pessoa
             $commonRules = [
                 'tipo_pessoa' => 'required|in:juridica,fisica',
@@ -95,7 +57,7 @@ class CadastroController extends Controller
                 'fone_fixo' => 'nullable|string|max:255',
                 'cell' => 'nullable|string|max:255',
             ];
-
+    
             // Validação para Pessoa Jurídica
             if ($request->tipo_pessoa === 'juridica') {
                 $rules = [
@@ -114,23 +76,27 @@ class CadastroController extends Controller
                     'email' => 'required|email|max:255',
                 ];
             }
-
+    
             // Mescla as regras comuns com as regras específicas
             $rules = array_merge($commonRules, $rules);
-
+    
             // Valide os dados do formulário com base nas regras definidas
             $validatedData = $request->validate($rules);
-
+    
+            // Adicione o id_cliente_pedido aos dados validados
+            $validatedData['id_cliente_pedido'] = $id_cliente_pedido;
+    
             // Crie um novo registro de cadastro com os dados validados
             Cadastro::create($validatedData);
-
+    
             // Invalide o token
-            $token = $request->input('token');
             $this->invalidateToken($token);
-
-            return redirect()->route('cadastro.sucesso');        
+    
+            // Redirecione para a rota de sucesso
+            return redirect()->route('cadastro.sucesso');
         } catch (\Exception $e) {
-            return response()->json(['message' => 'Erro ao criar o Cadastro: ' . $e->getMessage()], 500);
+            // Trate o erro de forma apropriada (exemplo: redirecionar com uma mensagem de erro)
+            return redirect()->back()->with('error', 'Erro ao criar o Cadastro: ' . $e->getMessage());
         }
     }
     public function sucessocadastro()
