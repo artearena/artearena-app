@@ -150,8 +150,8 @@ Inicio
                     var urlEncurtada = response.urlEncurtada;
                     console.log(response);
                     // Preencher o campo de URL encurtada com o valor retornado pela API
-                    $('#url-encurtada-input').val(urlEncurtada);
-                    console.log('URL encurtada:', urlEncurtada);
+                    $('#url-encurtada-input').val(response);
+                    console.log('URL encurtada:', response);
                 })
                 .fail(function(error) {
                     console.log('Erro ao consultar a API:', error);
