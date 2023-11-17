@@ -144,30 +144,18 @@ Inicio
             // Encurtar o link ao clicar no botão "Encurtar"
             $('#btn-encurtar').on('click', function() {
                 var url = $('#url-input').val();
-                // Fazer a requisição POST para a API do N9 Free Short URL
-                $.ajax({
-                    url: 'https://artearena.kinghost.net/encurtar-link',
-                    method: 'GET',
-                    contentType: 'application/json',
-                    data: JSON.stringify({
-                    link: url,
-                    }),
-                    success: function(response) {
-                    if (response.status === "OK") {
-                        var urlEncurtada = response.short;
-                        console.log(response);
-                        // Preencher o campo de URL encurtada com o valor retornado pela API
-                        $('#url-encurtada-input').val(urlEncurtada);
-                        console.log('URL encurtada:', urlEncurtada);
-                    } else {
-                        console.log('Erro ao encurtar a URL:', response.info);
-                    }
-                    },
-                    error: function(error) {
+                // Fazer a requisição GET para sua API
+                $.get('https://artearena.kinghost.net/encurtar-link', { link: url })
+                .done(function(response) {
+                    var urlEncurtada = response.urlEncurtada;
+                    // Preencher o campo de URL encurtada com o valor retornado pela API
+                    $('#url-encurtada-input').val(urlEncurtada);
+                    console.log('URL encurtada:', urlEncurtada);
+                })
+                .fail(function(error) {
                     console.log('Erro ao consultar a API:', error);
-                    }
                 });
-                });
+            });
         });
     });
 </script>
