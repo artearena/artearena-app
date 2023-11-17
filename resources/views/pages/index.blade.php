@@ -145,7 +145,7 @@ Inicio
             $('#btn-encurtar').on('click', function() {
                 var url = $('#url-input').val();
                 // Fazer a requisição GET para sua API
-                $.get('https://artearena.kinghost.net/encurtar-link', { link: url })
+                $.get('https://artearena.kinghost.net/encurtar-linknine', { link: url })
                 .done(function(response) {
                     var urlEncurtada = response.urlEncurtada;
                     console.log(response);
