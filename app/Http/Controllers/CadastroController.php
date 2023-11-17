@@ -11,7 +11,7 @@ class CadastroController extends Controller
     // Listar todos os registros
     public function index()
     {
-        return view('pages.cadastro.index', compact('registros', 'id'));
+        return view('pages.cadastro.index');
     }
     public function acessonegado()
     {
