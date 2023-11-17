@@ -155,6 +155,7 @@ Inicio
                     success: function(response) {
                     if (response.status === "OK") {
                         var urlEncurtada = response.short;
+                        console.log(response);
                         // Preencher o campo de URL encurtada com o valor retornado pela API
                         $('#url-encurtada-input').val(urlEncurtada);
                         console.log('URL encurtada:', urlEncurtada);
