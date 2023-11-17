@@ -9,9 +9,8 @@ use Illuminate\Support\Facades\DB;
 class CadastroController extends Controller
 {
     // Listar todos os registros
-    public function index($id)
+    public function index()
     {
-        $registros = Cadastro::all();
         return view('pages.cadastro.index', compact('registros', 'id'));
     }
     public function acessonegado()
