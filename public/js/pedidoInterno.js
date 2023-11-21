@@ -88,8 +88,8 @@ function salvarPedido(pedidoId) {
   const pedido = {
     id: pedidoId,
     // Adicione aqui os outros campos do pedido que deseja enviar
-    produtos: [],
-    cliente: {} // Adicione um objeto vazio para os dados do cliente
+    produtos: [], // Será preenchido posteriormente
+    cliente: {} // Será preenchido posteriormente
   };
 
   // Faça a solicitação para obter os produtos do pedido usando a URL mencionada
@@ -105,6 +105,7 @@ function salvarPedido(pedidoId) {
         .then(clienteData => {
           // Adicione os dados do cliente ao objeto pedido
           pedido.cliente = clienteData;
+
           console.log(pedido);
 
           // Faça a requisição POST para salvar o pedido com os produtos e dados do cliente
