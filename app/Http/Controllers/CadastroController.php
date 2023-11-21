@@ -4,20 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Cadastro;
-use Illuminate\Support\Facades\DB;
 
 class CadastroController extends Controller
 {
     // Listar todos os registros
     public function index()
     {
-        return view('pages.cadastro.index');
+        $registros = Cadastro::all();
+        return view('pages.cadastro.index', compact('registros'));
     }
-    public function acessonegado()
-    {
-        return view('pages.cadastro.acessonegado');
-    }
-    
+
     public function getData()
     {
         $cadastros = Cadastro::all();
@@ -41,23 +37,76 @@ class CadastroController extends Controller
     // Armazenar um novo registro
     public function store(Request $request)
     {
-
         try {
+            if ($request->tipo_pessoa === 'juridica') {
+                // Organize os campos para pessoa jurídica
+                $request['email'] = $request['email_juridica'];
+                $request['endereco'] = $request['endereco_juridica'];
+                $request['numero'] = $request['numero_juridica'];
+                $request['bairro'] = $request['bairro_juridica'];
+                $request['fone_fixo'] = $request['fone_fixo_juridica'];
+                $request['cell'] = $request['cell_juridica'];
+                $request['cep'] = $request['cep_juridica'];
+
+                // Remova os campos originais da pessoa jurídica
+                unset($request['email_juridica']);
+                unset($request['endereco_juridica']);
+                unset($request['numero_juridica']);
+                unset($request['bairro_juridica']);
+                unset($request['fone_fixo_juridica']);
+                unset($request['cell_juridica']);
+                unset($request['cep_juridica']);
+            } else {
+                // Organize os campos para pessoa física
+                $request['email'] = $request['email_fisica'];
+                $request['endereco'] = $request['endereco_fisica'];
+                $request['numero'] = $request['numero_fisica'];
+                $request['bairro'] = $request['bairro_fisica'];
+                $request['fone_fixo'] = $request['fone_fixo_fisica'];
+                $request['cell'] = $request['cell_fisica'];
+                $request['cep'] = $request['cep_fisica'];
+
+                // Remova os campos originais da pessoa física
+                unset($request['email_fisica']);
+                unset($request['endereco_fisica']);
+                unset($request['numero_fisica']);
+                unset($request['bairro_fisica']);
+                unset($request['fone_fixo_fisica']);
+                unset($request['cell_fisica']);
+                unset($request['cep_fisica']);
+            }
+
             // Defina as regras de validação comuns para ambos os tipos de pessoa
             $commonRules = [
-
+                'tipo_pessoa' => 'required|in:juridica,fisica',
+                'cep' => 'required|string|regex:/^\d{5}-\d{3}$/',
+                'endereco_cobranca' => 'nullable|string|max:255',
+                'cep_cobranca' => 'nullable|string|regex:/^\d{5}-\d{3}$/',
+                'endereco_entrega' => 'nullable|string|max:255',
+                'cep_entrega' => 'nullable|string|regex:/^\d{5}-\d{3}$/',
+                'numero' => 'nullable|string|max:255',
+                'bairro' => 'nullable|string|max:255',
+                'cidade' => 'nullable|string|max:255',
+                'fone_fixo' => 'nullable|string|max:255',
+                'cell' => 'nullable|string|max:255',
             ];
 
             // Validação para Pessoa Jurídica
             if ($request->tipo_pessoa === 'juridica') {
                 $rules = [
-
+                    'razao_social' => 'required|string|max:255',
+                    'cnpj' => 'required|string|regex:/^\d{2}\.\d{3}\.\d{3}\/\d{4}-\d{2}$/',
+                    'ie' => 'required|string|max:255',
+                    'email' => 'required|email|max:255',
                 ];
             }
             // Validação para Pessoa Física
             else {
                 $rules = [
-
+                    'nome_completo' => 'required|string|max:255',
+                    'rg' => 'required|string|max:255',
+                    'cpf' => 'required|string|regex:/^\d{3}\.\d{3}\.\d{3}-\d{2}$/',
+                    'email' => 'required|email|max:255',
                 ];
             }
 
@@ -67,28 +116,16 @@ class CadastroController extends Controller
             // Valide os dados do formulário com base nas regras definidas
             $validatedData = $request->validate($rules);
 
-            // Adicione o id_cliente_pedido aos dados validados
-            $validatedData['pedidoId'] = $request->pedidoId;
-            
-
             // Crie um novo registro de cadastro com os dados validados
             Cadastro::create($validatedData);
 
-            // Invalide o token
-            $this->invalidateToken($request->token);
+            return view('pages.cadastro.sucesso');
 
-            // Redirecione para a rota de sucesso
-            return redirect()->route('cadastro.sucesso');
         } catch (\Exception $e) {
-            // Trate o erro de forma apropriada (exemplo: redirecionar com uma mensagem de erro)
-
-            return redirect()->back()->with('error', 'Erro ao criar o Cadastro: ' . $e->getMessage());
+            return response()->json(['message' => 'Erro ao criar o Cadastro: ' . $e->getMessage()], 500);
         }
     }
-    public function sucessocadastro()
-    {
-        return view('pages.cadastro.sucesso');
-    }
+    
 
 
     // Exibir um registro específico
@@ -132,10 +169,5 @@ class CadastroController extends Controller
         $registro = Cadastro::findOrFail($id);
         $registro->delete();
         return redirect()->route('pages.cadastro.index')->with('success', 'Registro excluído com sucesso!');
-    }
-    public function invalidateToken($token)
-    {
-        // Remove o token do banco de dados
-        DB::table('acesso_temporario')->where('token', $token)->delete();
     }
 }
