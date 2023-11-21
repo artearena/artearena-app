@@ -146,9 +146,9 @@ class CadastroController extends Controller
     {
         $cadastro = Cadastro::where('id_cliente_pedido', $pedidoId)->first();
         if ($cadastro) {
-            return view('pages.cadastros', compact('cadastro'));
+            return response()->json($cadastro);
         } else {
-            abort(404); // Ou qualquer outra ação que você deseje realizar caso o cadastro não seja encontrado
+            return response()->json(['message' => 'Cadastro não encontrado'], 404);
         }
     }
 
