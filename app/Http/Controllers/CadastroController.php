@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Cadastro;
+use Illuminate\Support\Facades\DB;
 
 class CadastroController extends Controller
 {
@@ -115,6 +116,9 @@ class CadastroController extends Controller
 
             // Valide os dados do formulário com base nas regras definidas
             $validatedData = $request->validate($rules);
+            $validatedData['id_cliente_pedido'] = $request->id_cliente_pedido;
+            
+            $this->invalidateToken($request->token);
 
             // Crie um novo registro de cadastro com os dados validados
             Cadastro::create($validatedData);
@@ -127,6 +131,15 @@ class CadastroController extends Controller
     }
     
 
+    public function sucessocadastro()
+    {
+        return view('pages.cadastro.sucesso');
+    }
+    public function invalidateToken($token)
+    {
+        // Remove o token do banco de dados
+        DB::table('acesso_temporario')->where('token', $token)->delete();
+    }
 
     // Exibir um registro específico
     public function show($id)
