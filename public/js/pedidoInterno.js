@@ -97,15 +97,15 @@ function salvarPedido(pedidoId) {
     .then(response => response.json())
     .then(data => {
       // Adicione os produtos ao objeto pedido
-      pedido.produtos = data.produtos;
-      console.log(data);
+      pedido.produtos = data;
+
       // Faça a solicitação para obter os dados do cliente usando a rota show
-      fetch('/cadastro/show/' + pedidoId) // Substitua pela URL correta para obter os dados do cliente usando a rota show
+      fetch('/cadastro/show/' + data[0].pedido_id) // Substitua pela URL correta para obter os dados do cliente usando a rota show
         .then(response => response.json())
         .then(clienteData => {
           // Adicione os dados do cliente ao objeto pedido
           pedido.cliente = clienteData;
-          console.log(clienteData);
+
           // Faça a requisição POST para salvar o pedido com os produtos e dados do cliente
           fetch('https://artearena.kinghost.net/criar-pedido-tiny', {
             method: 'POST',
