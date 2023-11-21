@@ -108,6 +108,9 @@ function salvarPedido(pedidoId) {
           // Adicione os dados do cliente ao objeto pedido
           pedido.pedido.cliente = clienteData;
 
+          // Log para verificar como os dados estão estruturados antes de enviar a solicitação
+          console.log('Dados do Pedido:', pedido);
+
           // Faça a requisição POST para salvar o pedido com os produtos e dados do cliente
           fetch('https://artearena.kinghost.net/criar-pedido-tiny', {
             method: 'POST',
@@ -119,27 +122,27 @@ function salvarPedido(pedidoId) {
             .then(response => response.json())
             .then(data => {
               // Lide com a resposta da API aqui
-              console.log(data);
+              console.log('Resposta da API:', data);
               // Exemplo de exibição de mensagem de sucesso
               alert('Pedido salvo com sucesso!');
             })
             .catch(error => {
               // Lide com erros de requisição aqui
-              console.error(error);
+              console.error('Erro na requisição POST:', error);
               // Exemplo de exibição de mensagem de erro
               alert('Erro ao salvar o pedido. Por favor, tente novamente.');
             });
         })
         .catch(error => {
           // Lide com erros de requisição aqui
-          console.error(error);
+          console.error('Erro ao obter dados do cliente:', error);
           // Exemplo de exibição de mensagem de erro
           alert('Erro ao obter os dados do cliente. Por favor, tente novamente.');
         });
     })
     .catch(error => {
       // Lide com erros de requisição aqui
-      console.error(error);
+      console.error('Erro ao obter produtos do pedido:', error);
       // Exemplo de exibição de mensagem de erro
       alert('Erro ao obter os produtos do pedido. Por favor, tente novamente.');
     });
