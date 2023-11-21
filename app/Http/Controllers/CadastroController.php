@@ -57,6 +57,7 @@ class CadastroController extends Controller
                 'fone_fixo' => 'nullable|string|max:255',
                 'cell' => 'nullable|string|max:255',
             ];
+            dd("teste1");
 
             // Validação para Pessoa Jurídica
             if ($request->tipo_pessoa === 'juridica') {
@@ -96,6 +97,8 @@ class CadastroController extends Controller
             return redirect()->route('cadastro.sucesso');
         } catch (\Exception $e) {
             // Trate o erro de forma apropriada (exemplo: redirecionar com uma mensagem de erro)
+            dd("teste");
+
             return redirect()->back()->with('error', 'Erro ao criar o Cadastro: ' . $e->getMessage());
         }
     }
