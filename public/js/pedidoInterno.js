@@ -100,7 +100,7 @@ function salvarPedido(pedidoId) {
       pedido.produtos = data.produtos;
 
       // Faça a solicitação para obter os dados do cliente usando a rota show
-      fetch('/cadastro/show/' + data.id_cliente_pedido) // Substitua pela URL correta para obter os dados do cliente usando a rota show
+      fetch('/cadastro/show/' + pedidoId) // Substitua pela URL correta para obter os dados do cliente usando a rota show
         .then(response => response.json())
         .then(clienteData => {
           // Adicione os dados do cliente ao objeto pedido
