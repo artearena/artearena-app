@@ -86,10 +86,13 @@ botoesExpandir.forEach(function(botaoExpandir) {
 function salvarPedido(pedidoId) {
   // Obtenha os dados do pedido com base no pedidoId
   const pedido = {
-    id: pedidoId,
-    // Adicione aqui os outros campos do pedido que deseja enviar
-    produtos: [], // Será preenchido posteriormente
-    cliente: {} // Será preenchido posteriormente
+    token: 'sua_chave_de_api_aqui', // Substitua 'sua_chave_de_api_aqui' pela chave gerada para identificar sua empresa
+    pedido: {
+      id: pedidoId,
+      produtos: [], // Será preenchido posteriormente
+      cliente: {} // Será preenchido posteriormente
+    },
+    formato: 'json' // Formato do retorno (json)
   };
 
   // Faça a solicitação para obter os produtos do pedido usando a URL mencionada
@@ -97,19 +100,17 @@ function salvarPedido(pedidoId) {
     .then(response => response.json())
     .then(data => {
       // Adicione os produtos ao objeto pedido
-      pedido.produtos = data;
+      pedido.pedido.produtos = data;
 
       // Faça a solicitação para obter os dados do cliente usando a rota show
       fetch('/cadastro/show/' + pedidoId) // Substitua pela URL correta para obter os dados do cliente usando a rota show
         .then(response => response.json())
         .then(clienteData => {
           // Adicione os dados do cliente ao objeto pedido
-          pedido.cliente = clienteData;
-
-          console.log(pedido);
+          pedido.pedido.cliente = clienteData;
 
           // Faça a requisição POST para salvar o pedido com os produtos e dados do cliente
-          fetch('https://artearena.kinghost.net/criar-pedido-tiny', {
+          fetch('https://api.tiny.com.br/api2/pedido.incluir.php', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -144,6 +145,7 @@ function salvarPedido(pedidoId) {
       alert('Erro ao obter os produtos do pedido. Por favor, tente novamente.');
     });
 }
+
 
 // Evento de clique no botão "Confirmar Pedido"
 document.addEventListener('click', function(event) {
