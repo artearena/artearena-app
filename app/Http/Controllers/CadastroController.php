@@ -117,7 +117,7 @@ class CadastroController extends Controller
             // Valide os dados do formulário com base nas regras definidas
             $validatedData = $request->validate($rules);
             $validatedData['id_cliente_pedido'] = $request->id_cliente_pedido;
-            
+
             $this->invalidateToken($request->token);
 
             // Crie um novo registro de cadastro com os dados validados
@@ -142,10 +142,14 @@ class CadastroController extends Controller
     }
 
     // Exibir um registro específico
-    public function show($id)
+    public function show($pedidoId)
     {
-        $registro = Cadastro::findOrFail($id);
-        return view('pages.cadastro.show', compact('registro'));
+        $cadastro = Cadastro::where('id_cliente_pedido', $pedidoId)->first();
+        if ($cadastro) {
+            return view('pages.cadastros', compact('cadastro'));
+        } else {
+            abort(404); // Ou qualquer outra ação que você deseje realizar caso o cadastro não seja encontrado
+        }
     }
 
     // Exibir o formulário de edição
