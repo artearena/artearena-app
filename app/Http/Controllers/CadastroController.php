@@ -72,7 +72,7 @@ class CadastroController extends Controller
             
 
             // Crie um novo registro de cadastro com os dados validados
-            Cadastro::create();
+            Cadastro::create($validatedData);
 
             // Invalide o token
             $this->invalidateToken($request->token);
