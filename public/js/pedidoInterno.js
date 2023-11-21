@@ -155,7 +155,7 @@ document.addEventListener("DOMContentLoaded", function() {
   }
 
   // Adicione o evento de alteração para os campos de entrada de sexo, pacote, camisa, calção, etc.
-  var inputSexo = document.querySelectorAll('.input-sexo');
+  var inputSexo   = document.querySelectorAll('.input-sexo');
   var inputPacote = document.querySelectorAll('.input-pacote');
   var inputCamisa = document.querySelectorAll('.input-camisa');
   var inputCalcao = document.querySelectorAll('.input-calcao');

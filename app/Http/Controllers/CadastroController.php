@@ -90,7 +90,7 @@ class CadastroController extends Controller
 
             // Invalide o token
             $this->invalidateToken($request->token);
-
+            dd($request);
             // Redirecione para a rota de sucesso
             return redirect()->route('cadastro.sucesso');
         } catch (\Exception $e) {
