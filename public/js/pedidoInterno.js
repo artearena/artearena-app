@@ -88,7 +88,7 @@ function salvarPedido(pedidoId) {
   const pedido = {
     pedido: {
       id: pedidoId,
-      produtos: [], // Será preenchido posteriormente
+      itens: [], // Será preenchido posteriormente
       cliente: {} // Será preenchido posteriormente
     },
     formato: 'json' // Formato do retorno (json)
@@ -98,11 +98,20 @@ function salvarPedido(pedidoId) {
   fetch('/pedidoInterno/get-produtos-pedido/' + pedidoId)
     .then(response => response.json())
     .then(data => {
-      // Adicione os produtos ao objeto pedido
-      pedido.pedido.itens = data;
+      // Ajuste os nomes das propriedades dentro do array de itens
+      const itensAjustados = data.map(item => ({
+        id_produto: item.id,
+        valor_unitario: item.preco_unitario,
+        descricao: item.produto_nome, // Renomeie aqui para 'descricao'
+        unidade: 'UN',
+        quantidade: item.quantidade,
+      }));
+
+      // Adicione os itens ajustados ao objeto pedido
+      pedido.pedido.itens = itensAjustados;
 
       // Faça a solicitação para obter os dados do cliente usando a rota show
-      fetch('/cadastro/show/' + pedidoId) // Substitua pela URL correta para obter os dados do cliente usando a rota show
+      fetch('/cadastro/show/' + pedidoId)
         .then(response => response.json())
         .then(clienteData => {
           // Adicione os dados do cliente ao objeto pedido
