@@ -41,7 +41,6 @@ class CadastroController extends Controller
     // Armazenar um novo registro
     public function store(Request $request)
     {
-        dd("teste");
 
         try {
             // Defina as regras de validação comuns para ambos os tipos de pessoa
