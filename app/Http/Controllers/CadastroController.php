@@ -79,6 +79,7 @@ class CadastroController extends Controller
 
             // Mescla as regras comuns com as regras específicas
             $rules = array_merge($commonRules, $rules);
+            dd("trste");
 
             // Valide os dados do formulário com base nas regras definidas
             $validatedData = $request->validate($rules);
