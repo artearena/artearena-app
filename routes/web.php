@@ -117,6 +117,10 @@ Route::prefix('cadastro')->middleware('validar.token')->group(function () {
     // Rota para excluir um registro de cadastro
     Route::delete('/{id}', [CadastroController::class, 'destroy'])->name('cadastro.destroy');*/
 }); 
+Route::prefix('cadastro')->group(function () {
+    Route::get('/show/{id}', [CadastroController::class, 'show'])->name('cadastro.show');
+}); 
+
 Route::get('/acessonegado', [CadastroController::class, 'acessonegado'])->name('acessonegado');
 Route::get('/sucessocadastro', [CadastroController::class, 'sucessocadastro'])->name('cadastro.sucesso');
 
