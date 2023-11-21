@@ -85,14 +85,14 @@ class CadastroController extends Controller
 
             // Adicione o id_cliente_pedido aos dados validados
             $validatedData['pedidoId'] = $request->pedidoId;
+            
+            dd($validatedData);
 
             // Crie um novo registro de cadastro com os dados validados
-            Cadastro::create($validatedData);
+            Cadastro::create();
 
             // Invalide o token
             $this->invalidateToken($request->token);
-            dd($request);
-            dd("teste1");
 
             // Redirecione para a rota de sucesso
             return redirect()->route('cadastro.sucesso');
