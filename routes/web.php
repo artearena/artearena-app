@@ -111,14 +111,15 @@ Route::prefix('cadastro')->middleware('validar.token')->group(function () {
     // Rota para armazenar um novo registro de cadastro
     Route::post('/', [CadastroController::class, 'store'])->name('cadastro.store');
     // Rota para exibir um registro específico de cadastro
-/*     // Rota para exibir o formulário de edição de cadastro
+    Route::get('/show/{id}', [CadastroController::class, 'show'])->name('cadastro.show');
+    /* // Rota para exibir o formulário de edição de cadastro
     Route::get('/{id}/edit', [CadastroController::class, 'edit'])->name('cadastro.edit');
     // Rota para excluir um registro de cadastro
     Route::delete('/{id}', [CadastroController::class, 'destroy'])->name('cadastro.destroy');*/
-}); 
-Route::prefix('cadastro')->group(function () {
-    Route::get('/show/{id}', [CadastroController::class, 'show'])->name('cadastro.show');
-}); 
+});
+
+// Rota para exibir um registro específico de cadastro sem validação de token
+Route::get('/cadastro/show/{id}', [CadastroController::class, 'show'])->name('cadastro.show');
 
 Route::get('/acessonegado', [CadastroController::class, 'acessonegado'])->name('acessonegado');
 Route::get('/sucessocadastro', [CadastroController::class, 'sucessocadastro'])->name('cadastro.sucesso');
