@@ -57,7 +57,6 @@ class CadastroController extends Controller
                 'fone_fixo' => 'nullable|string|max:255',
                 'cell' => 'nullable|string|max:255',
             ];
-            dd("teste1");
 
             // Validação para Pessoa Jurídica
             if ($request->tipo_pessoa === 'juridica') {
@@ -89,6 +88,7 @@ class CadastroController extends Controller
 
             // Crie um novo registro de cadastro com os dados validados
             Cadastro::create($validatedData);
+            dd("teste1");
 
             // Invalide o token
             $this->invalidateToken($request->token);
