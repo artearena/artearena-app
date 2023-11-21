@@ -79,15 +79,16 @@ class CadastroController extends Controller
 
             // Mescla as regras comuns com as regras específicas
             $rules = array_merge($commonRules, $rules);
-            dd("trste");
 
             // Valide os dados do formulário com base nas regras definidas
             $validatedData = $request->validate($rules);
+            dd("trste");
+
+            dd($validatedData);
 
             // Adicione o id_cliente_pedido aos dados validados
             $validatedData['pedidoId'] = $request->pedidoId;
             
-            dd($validatedData);
 
             // Crie um novo registro de cadastro com os dados validados
             Cadastro::create();
