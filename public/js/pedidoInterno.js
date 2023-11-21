@@ -99,7 +99,7 @@ function salvarPedido(pedidoId) {
     .then(response => response.json())
     .then(data => {
       // Adicione os produtos ao objeto pedido
-      pedido.pedido.produtos = data;
+      pedido.pedido.itens = data;
 
       // Faça a solicitação para obter os dados do cliente usando a rota show
       fetch('/cadastro/show/' + pedidoId) // Substitua pela URL correta para obter os dados do cliente usando a rota show
