@@ -21,7 +21,7 @@ class AcessoTemporarioController extends Controller
             'pedido_id' => $pedidoId,
         ]);
 
-        $link = url('https://arte.app.br/cadastro/') . '?token=' . $token . '&pedidoId=' . $pedidoId;
+        $link = url('https://arte.app.br/cadastro/') . '?token=' . $token . '&id_cliente_pedido=' . $pedidoId;
 
         // Retorna o JSON com o link
         return response()->json([
