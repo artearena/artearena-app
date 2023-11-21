@@ -105,6 +105,7 @@ function salvarPedido(pedidoId) {
         .then(clienteData => {
           // Adicione os dados do cliente ao objeto pedido
           pedido.cliente = clienteData;
+          console.log(pedido);
 
           // Faça a requisição POST para salvar o pedido com os produtos e dados do cliente
           fetch('https://artearena.kinghost.net/criar-pedido-tiny', {
