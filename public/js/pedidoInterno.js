@@ -83,34 +83,63 @@ botoesExpandir.forEach(function(botaoExpandir) {
   });
 });
 
-// Função para enviar a requisição de salvar o pedido
 function salvarPedido(pedidoId) {
   // Obtenha os dados do pedido com base no pedidoId
   const pedido = {
     id: pedidoId,
     // Adicione aqui os outros campos do pedido que deseja enviar
+    produtos: [],
+    cliente: {} // Adicione um objeto vazio para os dados do cliente
   };
 
-  // Faça a requisição POST para salvar o pedido
-  fetch('https://artearena.kinghost.net/criar-pedido-tiny', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(pedido),
-  })
+  // Faça a solicitação para obter os produtos do pedido usando a URL mencionada
+  fetch('/pedidoInterno/get-produtos-pedido/' + pedidoId)
     .then(response => response.json())
     .then(data => {
-      // Lide com a resposta da API aqui
-      console.log(data);
-      // Exemplo de exibição de mensagem de sucesso
-      alert('Pedido salvo com sucesso!');
+      // Adicione os produtos ao objeto pedido
+      pedido.produtos = data.produtos;
+
+      // Faça a solicitação para obter os dados do cliente usando a rota show
+      fetch('/cadastro/show/' + data.id_cliente_pedido) // Substitua pela URL correta para obter os dados do cliente usando a rota show
+        .then(response => response.json())
+        .then(clienteData => {
+          // Adicione os dados do cliente ao objeto pedido
+          pedido.cliente = clienteData;
+
+          // Faça a requisição POST para salvar o pedido com os produtos e dados do cliente
+          fetch('https://artearena.kinghost.net/criar-pedido-tiny', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(pedido),
+          })
+            .then(response => response.json())
+            .then(data => {
+              // Lide com a resposta da API aqui
+              console.log(data);
+              // Exemplo de exibição de mensagem de sucesso
+              alert('Pedido salvo com sucesso!');
+            })
+            .catch(error => {
+              // Lide com erros de requisição aqui
+              console.error(error);
+              // Exemplo de exibição de mensagem de erro
+              alert('Erro ao salvar o pedido. Por favor, tente novamente.');
+            });
+        })
+        .catch(error => {
+          // Lide com erros de requisição aqui
+          console.error(error);
+          // Exemplo de exibição de mensagem de erro
+          alert('Erro ao obter os dados do cliente. Por favor, tente novamente.');
+        });
     })
     .catch(error => {
       // Lide com erros de requisição aqui
       console.error(error);
       // Exemplo de exibição de mensagem de erro
-      alert('Erro ao salvar o pedido. Por favor, tente novamente.');
+      alert('Erro ao obter os produtos do pedido. Por favor, tente novamente.');
     });
 }
 
