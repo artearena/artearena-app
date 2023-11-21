@@ -86,7 +86,6 @@ botoesExpandir.forEach(function(botaoExpandir) {
 function salvarPedido(pedidoId) {
   // Obtenha os dados do pedido com base no pedidoId
   const pedido = {
-    token: 'sua_chave_de_api_aqui', // Substitua 'sua_chave_de_api_aqui' pela chave gerada para identificar sua empresa
     pedido: {
       id: pedidoId,
       produtos: [], // Será preenchido posteriormente
@@ -110,7 +109,7 @@ function salvarPedido(pedidoId) {
           pedido.pedido.cliente = clienteData;
 
           // Faça a requisição POST para salvar o pedido com os produtos e dados do cliente
-          fetch('https://api.tiny.com.br/api2/pedido.incluir.php', {
+          fetch('https://artearena.kinghost.net/criar-pedido-tiny', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
