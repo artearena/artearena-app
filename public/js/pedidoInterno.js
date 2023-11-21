@@ -98,7 +98,7 @@ function salvarPedido(pedidoId) {
     .then(data => {
       // Adicione os produtos ao objeto pedido
       pedido.produtos = data.produtos;
-      console.log(data.produtos);
+      console.log(data);
       // Faça a solicitação para obter os dados do cliente usando a rota show
       fetch('/cadastro/show/' + pedidoId) // Substitua pela URL correta para obter os dados do cliente usando a rota show
         .then(response => response.json())
