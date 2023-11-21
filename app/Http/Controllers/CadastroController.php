@@ -88,16 +88,16 @@ class CadastroController extends Controller
 
             // Crie um novo registro de cadastro com os dados validados
             Cadastro::create($validatedData);
-            dd("teste1");
 
             // Invalide o token
             $this->invalidateToken($request->token);
             dd($request);
+            dd("teste1");
+
             // Redirecione para a rota de sucesso
             return redirect()->route('cadastro.sucesso');
         } catch (\Exception $e) {
             // Trate o erro de forma apropriada (exemplo: redirecionar com uma mensagem de erro)
-            dd("teste");
 
             return redirect()->back()->with('error', 'Erro ao criar o Cadastro: ' . $e->getMessage());
         }
