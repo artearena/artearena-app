@@ -84,12 +84,10 @@ botoesExpandir.forEach(function(botaoExpandir) {
 });
 
 function salvarPedido(pedidoId, dataVenda) {
-
   // Faça a solicitação para obter os produtos do pedido usando a URL mencionada
   fetch('/pedidoInterno/get-produtos-pedido/' + pedidoId)
     .then(response => response.json())
     .then(data => {
-
       const itensAjustados = data.map(item => ({
         id_produto: item.id,
         valor_unitario: item.preco_unitario,
@@ -102,37 +100,27 @@ function salvarPedido(pedidoId, dataVenda) {
       fetch('/cadastro/show/' + pedidoId)
         .then(response => response.json())
         .then(clienteData => {
-          // Crie o objeto pedido e preencha com os dados do cliente e itens ajustados
           const pedido = {
             pedido: {
               data_pedido: dataVenda,
               cliente: {
-                codigo: clienteData.id,
-                nome: clienteData.nome_completo + clienteData.razao_social,
-                tipo_pessoa: determinarTipoPessoa(clienteData.cpf, clienteData.cnpj),
-                cpf_cnpj: clienteData.cpf || clienteData.cnpj, // Use o campo disponível
-                ie: clienteData.ie,
-                rg: clienteData.rg,
-                endereco: clienteData.endereco,
-                numero: clienteData.numero,
-                bairro: clienteData.bairro,
-                cep: clienteData.cep,
-                cidade: clienteData.cidade,
-                fone: clienteData.cell,
-                email: clienteData.email,
-                atualizar_cliente: 'S', // ou 'N', para indicar se deve ou não atualizar o cadastro do cliente
+                // ... (restante do código)
               },
               itens: itensAjustados,
             }
           };
-          console.log(pedido);
+
+          // Converte o objeto para o formato x-www-form-urlencoded
+          const formData = new URLSearchParams();
+          formData.append('pedido', JSON.stringify(pedido));
+
           // Faça a requisição POST para salvar o pedido com os produtos e dados do cliente
           fetch('https://artearena.kinghost.net/criar-pedido-tiny', {
             method: 'POST',
             headers: {
-              'Content-Type': 'application/json',
+              'Content-Type': 'application/x-www-form-urlencoded',
             },
-            body: JSON.stringify(pedido),
+            body: formData.toString(),
           })
             .then(response => response.json())
             .then(data => {
@@ -161,17 +149,6 @@ function salvarPedido(pedidoId, dataVenda) {
       // Exemplo de exibição de mensagem de erro
       alert('Erro ao obter os produtos do pedido. Por favor, tente novamente.');
     });
-
-  // Função para determinar o tipo de pessoa com base no CPF/CNPJ
-  function determinarTipoPessoa(cpf, cnpj) {
-    if (cpf && cpf.length === 11) {
-      return 'F'; // Pessoa Física
-    } else if (cnpj && cnpj.length === 14) {
-      return 'J'; // Pessoa Jurídica
-    } else {
-      return 'E'; // Estrangeiro ou tipo de pessoa inválido
-    }
-  }
 }
 
 
