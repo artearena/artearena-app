@@ -179,7 +179,7 @@ function salvarPedido(pedidoId, dataVenda) {
           fetch('https://artearena.kinghost.net/criar-pedido-tiny', {
             method: 'POST',
             headers: {
-              'Content-Type': 'application/json',
+              'Content-Type': 'application/x-www-form-urlencoded',
             },
             body: formData.toString(),
           })
