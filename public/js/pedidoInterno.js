@@ -84,17 +84,18 @@ botoesExpandir.forEach(function(botaoExpandir) {
 });
 
 function salvarPedido(pedidoId, dataVenda) {
+
   // Faça a solicitação para obter os produtos do pedido usando a URL mencionada
   fetch('/pedidoInterno/get-produtos-pedido/' + pedidoId)
     .then(response => response.json())
     .then(data => {
+
       const itensAjustados = data.map(item => ({
-        cfop: '5101',
-        codigo: item.id,
-        unidade: 'UN',
-        descricao: item.produto_nome,
-        quantidade: item.quantidade,
+        id_produto: item.id,
         valor_unitario: item.preco_unitario,
+        descricao: item.produto_nome,
+        unidade: 'UN',
+        quantidade: item.quantidade,
       }));
 
       // Faça a solicitação para obter os dados do cliente usando a rota show
@@ -106,82 +107,32 @@ function salvarPedido(pedidoId, dataVenda) {
             pedido: {
               data_pedido: dataVenda,
               cliente: {
-                ie: '',
-                uf: 'SP',
-                cep: '05814-550',
-                fone: '(11)97708-2713',
-                nome: 'Leoncio da Silva',
-                email: 'leoncionho@gmail.com',
-                bairro: 'São Bento',
-                cidade: 'Rio de Janeiro',
-                numero: '484',
-                cpf_cnpj: '372.016.016-50',
-                endereco: 'Rua Leoncio Osório',
-                complemento: '',
-                tipo_pessoa: 'F',
-                atualizar_cliente: 'N',
+                codigo: clienteData.id,
+                nome: clienteData.nome_completo + clienteData.razao_social,
+                tipo_pessoa: determinarTipoPessoa(clienteData.cpf, clienteData.cnpj),
+                cpf_cnpj: clienteData.cpf || clienteData.cnpj, // Use o campo disponível
+                ie: clienteData.ie,
+                rg: clienteData.rg,
+                endereco: clienteData.endereco,
+                numero: clienteData.numero,
+                bairro: clienteData.bairro,
+                cep: clienteData.cep,
+                cidade: clienteData.cidade,
+                fone: clienteData.cell,
+                email: clienteData.email,
+                atualizar_cliente: 'S', // ou 'N', para indicar se deve ou não atualizar o cadastro do cliente
               },
               itens: itensAjustados,
-              parcelas: [
-                {
-                  obs: 'Paid via Mercado Pago',
-                  data: '23/05/2022',
-                  dias: '0',
-                  valor: '198.00',
-                  meio_pagamento: 'Mercado Pago',
-                  forma_pagamento: 'Mercado Pago',
-                },
-              ],
-              situacao: 'Aberto',
-              marcadores: [
-                {
-                  descricao: 'carolgrizostomo',
-                },
-              ],
-              data_pedido: '23/05/2022',
-              forma_envio: 'N',
-              id_vendedor: '733117945',
-              valor_frete: '0.00',
-              obs_internas: 'Vendedora: Carol Grizostomo',
-              data_prevista: '23/05/2022',
-              nome_vendedor: 'Carol Grizostomo',
-              valor_desconto: '0',
-              forma_pagamento: 'Mercado Pago',
-              frete_por_conta: 'E',
-              endereco_entrega: {
-                ie: '',
-                uf: 'SP',
-                cep: '05814-110',
-                fone: '(11)97708-2713',
-                nome: 'Gabriel Camilo',
-                email: 'contatolotassp@gmail.com',
-                bairro: 'Jardim Ibirapuera',
-                cidade: 'São Paulo',
-                numero: '371',
-                cpf_cnpj: '372.098.458-36',
-                endereco: 'Rua Aldeia de Joanes',
-                complemento: '',
-                tipo_pessoa: 'F',
-              },
-              nome_transportador: '',
-              numero_ordem_compra: '431953',
-              numero_pedido_ecommerce: '4288879263840',
-            },
+            }
           };
-
-          // Converte o objeto para o formato x-www-form-urlencoded
-          const formData = new URLSearchParams();
-          formData.append('token', 'bc3cdea243d8687963fa642580057531456d34fa');
-          formData.append('formato', 'json');
-          formData.append('pedido', JSON.stringify(pedido.pedido));
 
           // Faça a requisição POST para salvar o pedido com os produtos e dados do cliente
           fetch('https://artearena.kinghost.net/criar-pedido-tiny', {
             method: 'POST',
             headers: {
-              'Content-Type': 'application/x-www-form-urlencoded',
+              'Content-Type': 'application/json',
             },
-            body: formData.toString(),
+            body: JSON.stringify(pedido),
           })
             .then(response => response.json())
             .then(data => {
@@ -210,8 +161,18 @@ function salvarPedido(pedidoId, dataVenda) {
       // Exemplo de exibição de mensagem de erro
       alert('Erro ao obter os produtos do pedido. Por favor, tente novamente.');
     });
-}
 
+  // Função para determinar o tipo de pessoa com base no CPF/CNPJ
+  function determinarTipoPessoa(cpf, cnpj) {
+    if (cpf && cpf.length === 11) {
+      return 'F'; // Pessoa Física
+    } else if (cnpj && cnpj.length === 14) {
+      return 'J'; // Pessoa Jurídica
+    } else {
+      return 'E'; // Estrangeiro ou tipo de pessoa inválido
+    }
+  }
+}
 
 
 
