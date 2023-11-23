@@ -162,13 +162,17 @@ function salvarPedido(pedidoId) {
 document.addEventListener('click', function(event) {
   if (event.target.classList.contains('btn-confirmar-pedido')) {
     // Obtenha o ID do pedido a partir do atributo data-pedido-id
-    const pedidoId = event.target.closest('.pedido-row').dataset.pedidoId;
-    // Chame a função para salvar o pedido
-    salvarPedido(pedidoId);
+    
   }
 });
 
 document.addEventListener("DOMContentLoaded", function() {
+  $(".btn-confirmar-pedido").click(function() {
+    const pedidoId = $(this).closest(".pedido-row").data("pedido-id");
+    // Chame a função para salvar o pedido
+    salvarPedido(pedidoId);
+  });
+
   const btnConsultarListaUniforme = document.getElementsByClassName('btn-consultar-lista-uniforme');
   for (let i = 0; i < btnConsultarListaUniforme.length; i++) {
     btnConsultarListaUniforme[i].addEventListener('click', function() {
