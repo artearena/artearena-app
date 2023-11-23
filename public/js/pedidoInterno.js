@@ -83,76 +83,98 @@ botoesExpandir.forEach(function(botaoExpandir) {
   });
 });
 
-function salvarPedido(pedidoId) {
-  // Obtenha os dados do pedido com base no pedidoId
-  const pedido = {
-    pedido: {
-      id: pedidoId,
-      itens: [], // Será preenchido posteriormente
-      cliente: {} // Será preenchido posteriormente
-    },
-    formato: 'json' // Formato do retorno (json)
-  };
+function salvarPedido(pedidoId, dataVenda) {
 
   // Faça a solicitação para obter os produtos do pedido usando a URL mencionada
   fetch('/pedidoInterno/get-produtos-pedido/' + pedidoId)
-  .then(response => response.json())
-  .then(data => {
-    // Ajuste os nomes das propriedades dentro do array de itens
-    const itensAjustados = data.map(item => ({
-      id_produto: item.id,
-      valor_unitario: item.preco_unitario,
-      descricao: item.produto_nome, // Renomeie aqui para 'descricao'
-      unidade: 'UN',
-      quantidade: item.quantidade,
-    }));
-    // Adicione os itens ajustados ao objeto pedido
-    pedido.pedido.itens = itensAjustados;
-    console.log(pedido);
-    // Faça a solicitação para obter os dados do cliente usando a rota show
-    fetch('/cadastro/show/' + pedidoId)
-      .then(response => response.json())
-      .then(clienteData => {
-        // Adicione os dados do cliente ao objeto pedido
-        pedido.pedido.cliente = clienteData;
-        // Log para verificar como os dados estão estruturados antes de enviar a solicitação
-        console.log('Dados do Pedido:', pedido);
-        // Faça a requisição POST para salvar o pedido com os produtos e dados do cliente
-        fetch('https://artearena.kinghost.net/criar-pedido-tiny', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(pedido),
-        })
-          .then(response => response.json())
-          .then(data => {
-            // Lide com a resposta da API aqui
-            console.log('Resposta da API:', data);
-            // Exemplo de exibição de mensagem de sucesso
-            alert('Pedido salvo com sucesso!');
+    .then(response => response.json())
+    .then(data => {
+
+      const itensAjustados = data.map(item => ({
+        id_produto: item.id,
+        valor_unitario: item.preco_unitario,
+        descricao: item.produto_nome,
+        unidade: 'UN',
+        quantidade: item.quantidade,
+      }));
+
+      // Faça a solicitação para obter os dados do cliente usando a rota show
+      fetch('/cadastro/show/' + pedidoId)
+        .then(response => response.json())
+        .then(clienteData => {
+          // Crie o objeto pedido e preencha com os dados do cliente e itens ajustados
+          const pedido = {
+            pedido: {
+              data_pedido: dataVenda,
+              cliente: {
+                codigo: clienteData.id,
+                nome: clienteData.nome_completo + clienteData.razao_social,
+                tipo_pessoa: determinarTipoPessoa(clienteData.cpf, clienteData.cnpj),
+                cpf_cnpj: clienteData.cpf || clienteData.cnpj, // Use o campo disponível
+                ie: clienteData.ie,
+                rg: clienteData.rg,
+                endereco: clienteData.endereco,
+                numero: clienteData.numero,
+                bairro: clienteData.bairro,
+                cep: clienteData.cep,
+                cidade: clienteData.cidade,
+                fone: clienteData.cell,
+                email: clienteData.email,
+                atualizar_cliente: 'S', // ou 'N', para indicar se deve ou não atualizar o cadastro do cliente
+              },
+              itens: itensAjustados,
+            }
+          };
+
+          // Faça a requisição POST para salvar o pedido com os produtos e dados do cliente
+          fetch('https://artearena.kinghost.net/criar-pedido-tiny', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(pedido),
           })
-          .catch(error => {
-            // Lide com erros de requisição aqui
-            console.error('Erro na requisição POST:', error);
-            // Exemplo de exibição de mensagem de erro
-            alert('Erro ao salvar o pedido. Por favor, tente novamente.');
-          });
-      })
-      .catch(error => {
-        // Lide com erros de requisição aqui
-        console.error('Erro ao obter dados do cliente:', error);
-        // Exemplo de exibição de mensagem de erro
-        alert('Erro ao obter os dados do cliente. Por favor, tente novamente.');
-      });
-  })
-  .catch(error => {
-    // Lide com erros de requisição aqui
-    console.error('Erro ao obter produtos do pedido:', error);
-    // Exemplo de exibição de mensagem de erro
-    alert('Erro ao obter os produtos do pedido. Por favor, tente novamente.');
-  });
+            .then(response => response.json())
+            .then(data => {
+              // Lide com a resposta da API aqui
+              console.log('Resposta da API:', data);
+              // Exemplo de exibição de mensagem de sucesso
+              alert('Pedido salvo com sucesso!');
+            })
+            .catch(error => {
+              // Lide com erros de requisição aqui
+              console.error('Erro na requisição POST:', error);
+              // Exemplo de exibição de mensagem de erro
+              alert('Erro ao salvar o pedido. Por favor, tente novamente.');
+            });
+        })
+        .catch(error => {
+          // Lide com erros de requisição aqui
+          console.error('Erro ao obter dados do cliente:', error);
+          // Exemplo de exibição de mensagem de erro
+          alert('Erro ao obter os dados do cliente. Por favor, tente novamente.');
+        });
+    })
+    .catch(error => {
+      // Lide com erros de requisição aqui
+      console.error('Erro ao obter produtos do pedido:', error);
+      // Exemplo de exibição de mensagem de erro
+      alert('Erro ao obter os produtos do pedido. Por favor, tente novamente.');
+    });
+
+  // Função para determinar o tipo de pessoa com base no CPF/CNPJ
+  function determinarTipoPessoa(cpf, cnpj) {
+    if (cpf && cpf.length === 11) {
+      return 'F'; // Pessoa Física
+    } else if (cnpj && cnpj.length === 14) {
+      return 'J'; // Pessoa Jurídica
+    } else {
+      return 'E'; // Estrangeiro ou tipo de pessoa inválido
+    }
+  }
 }
+
+
 
 
 // Evento de clique no botão "Confirmar Pedido"
@@ -166,8 +188,10 @@ document.addEventListener('click', function(event) {
 document.addEventListener("DOMContentLoaded", function() {
   $(".btn-confirmar-pedido").click(function() {
     const pedidoId = $(this).closest(".pedido-row").data("pedido-id");
+    const dataVenda = $(this).closest(".pedido-row").find("td:nth-child(10)").text();
+
     // Chame a função para salvar o pedido
-    salvarPedido(pedidoId);
+    salvarPedido(pedidoId,dataVenda);
   });
 
   const btnConsultarListaUniforme = document.getElementsByClassName('btn-consultar-lista-uniforme');
