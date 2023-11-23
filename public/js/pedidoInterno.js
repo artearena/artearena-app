@@ -169,11 +169,6 @@ document.addEventListener('click', function(event) {
 });
 
 document.addEventListener("DOMContentLoaded", function() {
-  $(".btn-confirmar-pedido").click(function() {
-    const pedidoId = $(this).closest(".pedido-row").data("pedido-id");
-    console.log("Confirmar pedido ID:", pedidoId);
-  });
-
   const btnConsultarListaUniforme = document.getElementsByClassName('btn-consultar-lista-uniforme');
   for (let i = 0; i < btnConsultarListaUniforme.length; i++) {
     btnConsultarListaUniforme[i].addEventListener('click', function() {
