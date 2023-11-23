@@ -125,7 +125,7 @@ function salvarPedido(pedidoId, dataVenda) {
               itens: itensAjustados,
             }
           };
-
+          console.log(pedido);
           // Faça a requisição POST para salvar o pedido com os produtos e dados do cliente
           fetch('https://artearena.kinghost.net/criar-pedido-tiny', {
             method: 'POST',
