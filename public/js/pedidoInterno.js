@@ -109,7 +109,7 @@ function salvarPedido(pedidoId) {
 
       // Adicione os itens ajustados ao objeto pedido
       pedido.pedido.itens = itensAjustados;
-
+      console.log(itensAjustados);
       // Faça a solicitação para obter os dados do cliente usando a rota show
       fetch('/cadastro/show/' + pedidoId)
         .then(response => response.json())
