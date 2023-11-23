@@ -925,6 +925,9 @@ $.ajaxSetup({
     const row = $(this).closest('tr');
     const designer = row.find('select[name="designer"]').val();
 
+    // Store a reference to 'this'
+    var $this = $(this);
+
     // Verifica se o campo designer está preenchido
     if (field === 'status' && designer === '') {
         // Exibe uma mensagem de erro usando o Swal.fire
@@ -1063,7 +1066,8 @@ $.ajaxSetup({
     });
 });
 
-    function reatribuirEventosChange() {
+
+function reatribuirEventosChange() {
     $('#tabela-pedidos').off('change', '.table input, .table select');
     $('#tabela-pedidos').on('change', '.table input, .table select', function () {
         var id = $(this).closest('tr').find('td:first-child').text();
@@ -1084,65 +1088,11 @@ $.ajaxSetup({
 
         if (field === 'checagem_final' && value === 'Erro') {
             const pedidoId = id;
-            // Obter linha da tabela
-            const row = $(this).closest('tr');
-            // Obter designer
-            const designer = row.find('select[name="designer"]').val();
-            // Obter link do Trello
-            const linkTrello = row.find('a[data-id="' + pedidoId + '"]').attr('href');
             // Obter observações
-            const observacoes = row.find('td.expandir-observacoes input[name="observacoes"]').val();
+            const observacoes = $(this).closest('tr').find('td.expandir-observacoes input[name="observacoes"]').val();
             // Mensagem
-            const mensagem = `Erro encontrado!
-            
-        Designer: ${designer}
-        Pedido: #${pedidoId}
-        Link: ${linkTrello}
-        Observações: ${observacoes}`;
-
-            // URL para enviar notificação
-            const url = 'https://artearena.kinghost.net/enviarNotificacaoSlack?mensagem=' + encodeURIComponent(mensagem);
-            // Enviar requisição
-            fetch(url)
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Erro ao enviar notificação');
-                    }
-                    console.log('Notificação enviada com sucesso!');
-                })
-                .catch(error => {
-                    console.error('Erro ao enviar notificação:', error);
-                });
-        }
-
-        if ((field === 'status' && value === 'Aguardando Cliente') || (field === 'status' && value === 'Cor teste')) {
-            // Obter linha da tabela
-            const row = $(this).closest('tr');
-            // Limpar campo observacoes
-            row.find('td.expandir-observacoes input[name="observacoes"]').val('');
-
-            // Remove the table row
-            row.remove();
-
-            // Update the database (you may need to add an AJAX request here to update the database)
-
-            // Exit the function to prevent further execution of code for this specific change
-            return;
-        }
-
-        if (field === 'checagem_final' && value === 'Ajustado') {
-            const pedidoId = id;
-            // Obter linha da tabela
-            const row = $(this).closest('tr');
-            // Obter designer
-            const designer = row.find('select[name="designer"]').val();
-            // Obter link do Trello
-            const linkTrello = row.find('a[data-id="' + pedidoId + '"]').attr('href');
-            // Obter observações
-            const observacoes = row.find('td.expandir-observacoes input[name="observacoes"]').val();
-            // Mensagem
-            const mensagem = `*Arte Ajustada!*
-            
+            const mensagem = `*Erro encontrado!*
+                
             *Designer:* ${designer}
             *Pedido:* #${pedidoId}
             *Link:* ${linkTrello}
@@ -1163,23 +1113,19 @@ $.ajaxSetup({
                 });
         }
 
-        if (field === 'status' && value === 'Em andamento') {
+        if (field === 'checagem_final' && value === 'Ajustado') {
             const pedidoId = id;
-            // Obter linha da tabela
-            const row = $(this).closest('tr');
-            // Obter designer
-            const designer = row.find('select[name="designer"]').val();
             // Obter link do Trello
-            const linkTrello = row.find('a[data-id="' + pedidoId + '"]').attr('href');
+            const linkTrello = $(this).closest('tr').find('a[data-id="' + pedidoId + '"]').attr('href');
             // Obter observações
-            const observacoes = row.find('td.expandir-observacoes input[name="observacoes"]').val();
+            const observacoes = $(this).closest('tr').find('td.expandir-observacoes input[name="observacoes"]').val();
             // Mensagem
-            const mensagem = `*Arte Iniciada!*
-
-        *Pedido Número:* #${pedidoId} 
-        *Designer:* ${designer}
-        *Link:* ${linkTrello}
-        *Observações:* ${observacoes}`;
+            const mensagem = `*Arte Ajustada!*
+                
+            *Designer:* ${designer}
+            *Pedido:* #${pedidoId}
+            *Link:* ${linkTrello}
+            *Observações:* ${observacoes}`;
             // URL para enviar notificação
             const url = 'https://artearena.kinghost.net/enviarNotificacaoSlack?mensagem=' + encodeURIComponent(mensagem);
             console.log(url);
@@ -1196,14 +1142,19 @@ $.ajaxSetup({
                 });
         }
 
+        if (field === 'status' && (value === 'Aguardando Cliente' || value === 'Cor teste')) {
+            // Limpar campo observacoes
+            $(this).closest('tr').find('td.expandir-observacoes input[name="observacoes"]').val('');
+
+            // Add logic to remove the table row from the database
+            // ...
+
+            // Remove the table row from the UI
+            $(this).closest('tr').remove();
+        }
+
         // Verifica se o campo é uma medida linear
         var isLinearMeasurementField = ['medida_linear'].includes(field);
-
-        // Verifica se o campo é uma medida linear e se o valor está no formato correto (número positivo com até duas casas decimais)
-        if (isLinearMeasurementField && !value.match(/^\d+(\.\d{1,2})?$/)) {
-            swal('Atenção', 'Insira um número positivo com até duas casas decimais.', 'warning');
-            return;
-        }
 
         $.ajax({
             url: '/pedido/' + id,
@@ -1225,6 +1176,7 @@ $.ajaxSetup({
         });
     });
 }
+
 
     $('#tabela-pedidos').on('click', '.btn-check', function() {
         var cadastroId = $(this).data('id');
