@@ -176,7 +176,7 @@ function salvarPedido(pedidoId, dataVenda) {
           formData.append('pedido', JSON.stringify(pedido.pedido));
 
           // Faça a requisição POST para salvar o pedido com os produtos e dados do cliente
-          fetch('/criar-pedido-tiny', {
+          fetch('https://artearena.kinghost.net/criar-pedido-tiny', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/x-www-form-urlencoded',
