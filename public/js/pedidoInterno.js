@@ -96,65 +96,62 @@ function salvarPedido(pedidoId) {
 
   // Faça a solicitação para obter os produtos do pedido usando a URL mencionada
   fetch('/pedidoInterno/get-produtos-pedido/' + pedidoId)
-    .then(response => response.json())
-    .then(data => {
-      // Ajuste os nomes das propriedades dentro do array de itens
-      const itensAjustados = data.map(item => ({
-        id_produto: item.id,
-        valor_unitario: item.preco_unitario,
-        descricao: item.produto_nome, // Renomeie aqui para 'descricao'
-        unidade: 'UN',
-        quantidade: item.quantidade,
-      }));
-
-      // Adicione os itens ajustados ao objeto pedido
-      pedido.pedido.itens = itensAjustados;
-      console.log(itensAjustados);
-      // Faça a solicitação para obter os dados do cliente usando a rota show
-      fetch('/cadastro/show/' + pedidoId)
-        .then(response => response.json())
-        .then(clienteData => {
-          // Adicione os dados do cliente ao objeto pedido
-          pedido.pedido.cliente = clienteData;
-
-          // Log para verificar como os dados estão estruturados antes de enviar a solicitação
-          console.log('Dados do Pedido:', pedido);
-
-          // Faça a requisição POST para salvar o pedido com os produtos e dados do cliente
-          fetch('https://artearena.kinghost.net/criar-pedido-tiny', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(pedido),
-          })
-            .then(response => response.json())
-            .then(data => {
-              // Lide com a resposta da API aqui
-              console.log('Resposta da API:', data);
-              // Exemplo de exibição de mensagem de sucesso
-              alert('Pedido salvo com sucesso!');
-            })
-            .catch(error => {
-              // Lide com erros de requisição aqui
-              console.error('Erro na requisição POST:', error);
-              // Exemplo de exibição de mensagem de erro
-              alert('Erro ao salvar o pedido. Por favor, tente novamente.');
-            });
+  .then(response => response.json())
+  .then(data => {
+    // Ajuste os nomes das propriedades dentro do array de itens
+    const itensAjustados = data.map(item => ({
+      id_produto: item.id,
+      valor_unitario: item.preco_unitario,
+      descricao: item.produto_nome, // Renomeie aqui para 'descricao'
+      unidade: 'UN',
+      quantidade: item.quantidade,
+    }));
+    // Adicione os itens ajustados ao objeto pedido
+    pedido.pedido.itens = itensAjustados;
+    console.log(itensAjustados);
+    // Faça a solicitação para obter os dados do cliente usando a rota show
+    fetch('/cadastro/show/' + pedidoId)
+      .then(response => response.json())
+      .then(clienteData => {
+        // Adicione os dados do cliente ao objeto pedido
+        pedido.pedido.cliente = clienteData;
+        // Log para verificar como os dados estão estruturados antes de enviar a solicitação
+        console.log('Dados do Pedido:', pedido);
+        // Faça a requisição POST para salvar o pedido com os produtos e dados do cliente
+        fetch('https://artearena.kinghost.net/criar-pedido-tiny', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(pedido),
         })
-        .catch(error => {
-          // Lide com erros de requisição aqui
-          console.error('Erro ao obter dados do cliente:', error);
-          // Exemplo de exibição de mensagem de erro
-          alert('Erro ao obter os dados do cliente. Por favor, tente novamente.');
-        });
-    })
-    .catch(error => {
-      // Lide com erros de requisição aqui
-      console.error('Erro ao obter produtos do pedido:', error);
-      // Exemplo de exibição de mensagem de erro
-      alert('Erro ao obter os produtos do pedido. Por favor, tente novamente.');
-    });
+          .then(response => response.json())
+          .then(data => {
+            // Lide com a resposta da API aqui
+            console.log('Resposta da API:', data);
+            // Exemplo de exibição de mensagem de sucesso
+            alert('Pedido salvo com sucesso!');
+          })
+          .catch(error => {
+            // Lide com erros de requisição aqui
+            console.error('Erro na requisição POST:', error);
+            // Exemplo de exibição de mensagem de erro
+            alert('Erro ao salvar o pedido. Por favor, tente novamente.');
+          });
+      })
+      .catch(error => {
+        // Lide com erros de requisição aqui
+        console.error('Erro ao obter dados do cliente:', error);
+        // Exemplo de exibição de mensagem de erro
+        alert('Erro ao obter os dados do cliente. Por favor, tente novamente.');
+      });
+  })
+  .catch(error => {
+    // Lide com erros de requisição aqui
+    console.error('Erro ao obter produtos do pedido:', error);
+    // Exemplo de exibição de mensagem de erro
+    alert('Erro ao obter os produtos do pedido. Por favor, tente novamente.');
+  });
 }
 
 
