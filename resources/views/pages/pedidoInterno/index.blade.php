@@ -80,7 +80,38 @@
         }
     }
 </style>
+<script>
+    function observacoesChanged(event) {
+        var id = $(this).closest('tr').data('id');
 
+        var observacoes = $(event.target).val();
+        console.log(id + ' ' + observacoes);
+        $.ajax({
+            url: '/pedido/' + id,
+            method: 'PUT',
+            data: {
+                observacoes: observacoes,
+                "_token": "{{ csrf_token() }}"
+            },
+            success: function(response) {
+                Swal.fire({
+                    title: "Observação atualizada!",
+                    icon: "success",
+                    timer: 2000,
+                    showConfirmButton: false
+                });
+                console.log('Observações atualizadas');
+            },
+            error: function(xhr, status, error) {
+                console.error(error);
+            }
+        });
+    }
+
+    $(document).ready(function() {
+        $(document).on('change', '.observacoes-input', observacoesChanged);
+    });
+</script>
 @endsection
 @section('content')
 <meta name="csrf-token" content="{{ csrf_token() }}">
