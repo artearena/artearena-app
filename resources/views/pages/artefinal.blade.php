@@ -933,25 +933,41 @@ $.ajaxSetup({
                 // Remove the table row
                 row.remove();
             }
-            
             $.ajax({
                 url: '/pedido/' + id,
                 method: 'PUT',
                 data: {
-                    observacoes: '',
+                    observacoes: value,
                     "_token": "{{ csrf_token() }}",
                 },
                 success: function (response) {
-                    console.log(response.message);
-                    var table = $('#tabela-pedidos').DataTable();
-                    var row = table.row($this.closest('tr'));
-                    row.data(response.pedido);
-                    row.draw();
+                    console.log('obs vazio');
                 },
                 error: function (xhr, status, error) {
                     console.error(error);
                 }
             });
+            $.ajax({
+                url: '/pedido/' + id,
+                method: 'PUT',
+                data: {
+                    [field]: value,
+                    "_token": "{{ csrf_token() }}",
+                },
+                success: function (response) {
+                    Swal.fire({
+                        title: 'Sucesso!',
+                        text: 'Pedido atualizado com sucesso.',
+                        icon: 'success',
+                        timer: 1500,
+                        showConfirmButton: false
+                    });
+                },
+                error: function (xhr, status, error) {
+                    console.error(error);
+                }
+            });
+            return;
         }
         // Verifica se o campo designer está preenchido
         if (field === 'status' && designer === '') {
@@ -1102,34 +1118,50 @@ $.ajaxSetup({
             var value = $(this).val();
             var $this = $(this);
             if ((field === 'status' && value === 'Aguardando Cliente') || (field === 'status' && value === 'Cor teste')) {
-                // Obter linha da tabela
-                const row = $(this).closest('tr');
-                // Limpar campo observacoes
-                row.find('td.expandir-observacoes input[name="observacoes"]').val('');
-                if (field === 'status' && value === 'Aguardando Cliente') {
-                    // Remove the table row
-                    row.remove();
-                }
-                
-                $.ajax({
-                    url: '/pedido/' + id,
-                    method: 'PUT',
-                    data: {
-                        observacoes: '',
-                        "_token": "{{ csrf_token() }}",
-                    },
-                    success: function (response) {
-                        console.log(response.message);
-                        var table = $('#tabela-pedidos').DataTable();
-                        var row = table.row($this.closest('tr'));
-                        row.data(response.pedido);
-                        row.draw();
-                    },
-                    error: function (xhr, status, error) {
-                        console.error(error);
-                    }
-                });
+            // Obter linha da tabela
+            const row = $(this).closest('tr');
+            // Limpar campo observacoes
+            row.find('td.expandir-observacoes input[name="observacoes"]').val('');
+            if (field === 'status' && value === 'Aguardando Cliente') {
+                // Remove the table row
+                row.remove();
             }
+            $.ajax({
+                url: '/pedido/' + id,
+                method: 'PUT',
+                data: {
+                    observacoes: value,
+                    "_token": "{{ csrf_token() }}",
+                },
+                success: function (response) {
+                    console.log('obs vazio');
+                },
+                error: function (xhr, status, error) {
+                    console.error(error);
+                }
+            });
+            $.ajax({
+                url: '/pedido/' + id,
+                method: 'PUT',
+                data: {
+                    [field]: value,
+                    "_token": "{{ csrf_token() }}",
+                },
+                success: function (response) {
+                    Swal.fire({
+                        title: 'Sucesso!',
+                        text: 'Pedido atualizado com sucesso.',
+                        icon: 'success',
+                        timer: 1500,
+                        showConfirmButton: false
+                    });
+                },
+                error: function (xhr, status, error) {
+                    console.error(error);
+                }
+            });
+            return;
+        }
             // Verifique se o campo é uma data e converte para o formato correto (yyyy-mm-dd HH:mm:ss)
             if (field === 'data') {
                 var dateParts = value.split('/');
