@@ -115,7 +115,7 @@
     <div class="alert-table">
         <h2>Alertas</h2>
         <div class="alert-table">
-        <table id="alertasTable" class="table">
+        <table id="alertasTable" class="dataTable table">
             <thead>
                 <tr>
                     <th class="text-center">ID</th>
