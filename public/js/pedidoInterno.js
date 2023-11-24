@@ -327,28 +327,38 @@ function shapeTable() {
 $(document).ready(function() {
   $('.btn-voltar-arte-final').click(function() {
       var pedidoId = $(this).data('pedido-id');
-      var data = prompt("Por favor, insira a nova data:", "");
-      var mensagem = prompt("Por favor, insira a nova mensagem:", "");
-      
-      if (data !== null && mensagem !== null) {
-          // Aqui você pode fazer a requisição AJAX para atualizar os dados no servidor
-          $.ajax({
-              url: '/atualizar-pedido',
-              method: 'POST',
-              data: {
-                  pedidoId: pedidoId,
-                  data: data,
-                  mensagem: mensagem
-              },
-              success: function(response) {
-                  // Aqui você pode tratar a resposta do servidor, se necessário
-                  console.log(response);
-              },
-              error: function(xhr, status, error) {
-                  // Aqui você pode tratar o erro, se necessário
-                  console.log(xhr.responseText);
-              }
-          });
-      }
+
+      Swal.fire({
+          title: "Alterar data?",
+          showCancelButton: true,
+          confirmButtonText: "Alterar",
+          cancelButtonText: "Manter",
+          input: "text",
+          inputPlaceholder: "Insira a nova mensagem",
+          inputAttributes: {
+              autocapitalize: "off"
+          }
+      }).then(function(result) {
+          if (result.isConfirmed) {
+              var mensagem = result.value;
+              // Aqui você pode fazer a requisição AJAX para atualizar os dados no servidor
+              $.ajax({
+                  url: '/atualizar-pedido',
+                  method: 'POST',
+                  data: {
+                      pedidoId: pedidoId,
+                      mensagem: mensagem
+                  },
+                  success: function(response) {
+                      // Aqui você pode tratar a resposta do servidor, se necessário
+                      console.log(response);
+                  },
+                  error: function(xhr, status, error) {
+                      // Aqui você pode tratar o erro, se necessário
+                      console.log(xhr.responseText);
+                  }
+              });
+          }
+      });
   });
 });
