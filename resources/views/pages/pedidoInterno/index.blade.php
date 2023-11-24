@@ -195,7 +195,7 @@
                             <td>{{ $pedido->valor_frete }}</td>
                             <td id="observacao" style="overflow: auto;" lang="pt">{{ $pedido->observacao }}</td>
                             <td>{{ $pedido->marcador }}</td>
-                            <td>{{ $pedido->data_venda }}</td>
+                            <td>{{ date('Y-m-d', strtotime($pedido->data_venda)) }}</td>
                             <td>
                                 <div class="btn-group">
                                     <button class="btn btn-success btn-confirmar-pedido">
