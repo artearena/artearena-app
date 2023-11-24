@@ -82,7 +82,7 @@
 </style>
 <script>
     function observacoesChanged(event) {
-        var id = $(event.target).closest('tr').data('pedido-id');
+        var id = $(this).closest('tr').data('id');        
         var observacoes = $(event.target).val();
         console.log(id + ' ' + observacoes);
         $.ajax({
