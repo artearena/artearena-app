@@ -82,7 +82,7 @@
 </style>
 <script>
     function observacoesChanged(event) {
-        var pedidoId = $(this).closest('tr').data('id');
+        var pedidoId = $(this).closest('tr').attr('data-id');
 
         var observacoes = $(event.target).val();
         console.log(pedidoId + ' ' + observacoes);
