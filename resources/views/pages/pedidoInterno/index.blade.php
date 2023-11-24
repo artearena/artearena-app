@@ -161,6 +161,8 @@
         </table>
     </div>
     </div>
+        <hr>
+        
         <h1>Tabela de Pedidos</h1>
         <table id="pedidosTable" class="dataTable">
             <thead>
