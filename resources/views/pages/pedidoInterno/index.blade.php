@@ -113,7 +113,8 @@
                                 </a>
                                 <button class="btn-voltar-arte-final">
                                     <i class="fas fa-arrow-circle-left"></i>
-                                </button>
+                                </button> 
+                                
                             </td>
                         </tr>
                     @endforeach
