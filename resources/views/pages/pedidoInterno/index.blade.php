@@ -102,7 +102,7 @@
             @isset($pedidosArte)
                 @foreach($pedidosArte as $pedidoArte)
                     <tr>
-                        <td class="text-center {{ count($pedidosArte) > 0 ? 'text-red' : '' }}">{{ $pedidoArte->id }}</td>
+                        <td class="text-center">{{ $pedidoArte->id }}</td>
                         <td class="text-center">{{ $pedidoArte->status }}</td>
                         <td class="text-center">{{ $pedidoArte->observacoes }}</td>
                         <td class="text-center">{{ $pedidoArte->data }}</td>
