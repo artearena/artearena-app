@@ -331,7 +331,7 @@ $(document).ready(function() {
       var pedidoId = $(this).closest('tr').data('id');
 
       Swal.fire({
-          title: "Alterar data?",
+          title: "Confirmar data?",
           showCancelButton: true,
           confirmButtonText: "Alterar",
           cancelButtonText: "Manter",
