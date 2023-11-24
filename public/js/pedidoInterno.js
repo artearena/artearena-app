@@ -328,39 +328,43 @@ function shapeTable() {
 
 $(document).ready(function() {
   $('.btn-voltar-arte-final').click(function() {
-      var pedidoId = $(this).closest('tr').find('.pedido-id').text();
-      Swal.fire({
-          title: "Alterar data?",
-          showCancelButton: true,
-          confirmButtonText: "Alterar",
-          cancelButtonText: "Manter",
-          html: '<input type="date" id="swal-date-picker" class="swal2-input">',
-          preConfirm: function() {
-              return document.getElementById('swal-date-picker').value;
-          }
-      }).then(function(result) {
-          if (result.isConfirmed) {
-              var data = result.value;
-              // Aqui você pode fazer a requisição AJAX para atualizar os dados no servidor
-              $.ajax({
-                  url: '/pedido/' + pedidoId,
-                  method: 'POST',
-                  data: {
-                      data: data,
-                      "_token": "{{ csrf_token() }}"
-                  },
-                  success: function(response) {
-                      // Aqui você pode tratar a resposta do servidor, se necessário
-                      console.log(response);
-                  },
-                  error: function(xhr, status, error) {
-                      // Aqui você pode tratar o erro, se necessário
-                      console.log(xhr.responseText);
-                  }
-              });
-          }
-      });
-  });
+    var pedidoId = $(this).closest('tr').find('.pedido-id').text();
+
+    Swal.fire({
+        title: "Alterar data?",
+        showCancelButton: true,
+        confirmButtonText: "Alterar",
+        cancelButtonText: "Manter",
+        html: '<input type="date" id="swal-date-picker" class="swal2-input">',
+        preConfirm: function() {
+            return document.getElementById('swal-date-picker').value;
+        }
+    }).then(function(result) {
+        if (result.isConfirmed) {
+            var data = result.value;
+            // Aqui você pode fazer a requisição AJAX para atualizar os dados no servidor
+            $.ajax({
+                url: '/pedido/' + pedidoId,
+                method: 'PUT',
+                data: {
+                    data: data,
+                    status: 'Pendente',
+                    "_token": "{{ csrf_token() }}"
+                },
+                success: function(response) {
+                    // Aqui você pode tratar a resposta do servidor, se necessário
+                    console.log(response);
+                },
+                error: function(xhr, status, error) {
+                    // Aqui você pode tratar o erro, se necessário
+                    console.log(xhr.responseText);
+                }
+            });
+        } else if (result.dismiss === Swal.DismissReason.cancel) {
+            // Aqui você pode lidar com o cancelamento, se necessário
+        }
+    });
+});
 
   $('.alertasTable input').change(function() {
     var id = $(this).closest('tr').data('pedido-id');
