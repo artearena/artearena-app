@@ -88,39 +88,39 @@
         <h2>Alertas</h2>
         <div class="alert-table">
         <table id="alertasTable" class="dataTable">
-        <thead>
-            <tr>
-                <th class="text-center">ID</th>
-                <th class="text-center">Status</th>
-                <th class="text-center">Mensagem</th>
-                <th class="text-center">Data</th>
-                <th class="text-center">Designer</th>
-                <th class="text-center">Ações</th>
-            </tr>
-        </thead>
-        <tbody>
-            @isset($pedidosArte)
-                @foreach($pedidosArte as $pedidoArte)
-                    <tr>
-                        <td class="text-center">{{ $pedidoArte->id }}</td>
-                        <td class="text-center">{{ $pedidoArte->status }}</td>
-                        <td class="text-center">
-                            <input type="text" value="{{ $pedidoArte->observacoes }}" class="form-control">
-                        </td>                         
-                        <td class="text-center">{{ $pedidoArte->data }}</td>
-                        <td class="text-center">{{ $pedidoArte->designer }}</td>
-                        <td class="text-center">
-                            <a href="{{ $pedidoArte->link_trello }}" class="btn btn-primary ms-1" data-id="{{ $pedidoArte->id }}" onclick="return confirmarLink(this)" target="_blank">
-                                <i class="fa-brands fa-trello"></i> <!-- Ícone de cadeado do Font Awesome -->
-                            </a>
-                            <button class="btn-voltar-arte-final btn btn-warning ms-1">
-                                <i class="fas fa-undo fa-lg"></i>                                
-                            </button>
-                        </td>
-                    </tr>
-                @endforeach
-            @endisset
-        </tbody>
+            <thead>
+                <tr>
+                    <th class="text-center">ID</th>
+                    <th class="text-center">Status</th>
+                    <th class="text-center">Mensagem</th>
+                    <th class="text-center">Data</th>
+                    <th class="text-center">Designer</th>
+                    <th class="text-center">Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                @isset($pedidosArte)
+                    @foreach($pedidosArte as $pedidoArte)
+                        <tr>
+                            <td class="text-center">{{ $pedidoArte->id }}</td>
+                            <td class="text-center">{{ $pedidoArte->status }}</td>
+                            <td class="text-center">
+                                <input type="text" value="{{ $pedidoArte->observacoes }}" class="form-control">
+                            </td>
+                            <td class="text-center">{{ $pedidoArte->data }}</td>
+                            <td class="text-center">{{ $pedidoArte->designer }}</td>
+                            <td class="text-center">
+                                <a href="{{ $pedidoArte->link_trello }}" class="btn btn-primary ms-1" data-id="{{ $pedidoArte->id }}" onclick="return confirmarLink(this)" target="_blank">
+                                    <i class="fa-brands fa-trello"></i> <!-- Ícone de cadeado do Font Awesome -->
+                                </a>
+                                <button class="btn-voltar-arte-final btn btn-warning ms-1" data-pedido-id="{{ $pedidoArte->id }}">
+                                    <i class="fas fa-undo fa-lg"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    @endforeach
+                @endisset
+            </tbody>
         </table>
     </div>
     </div>
