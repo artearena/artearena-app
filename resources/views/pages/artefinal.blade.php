@@ -937,7 +937,7 @@ $.ajaxSetup({
                 url: '/pedido/' + id,
                 method: 'PUT',
                 data: {
-                    observacoes: value,
+                    observacoes: "",
                     "_token": "{{ csrf_token() }}",
                 },
                 success: function (response) {
