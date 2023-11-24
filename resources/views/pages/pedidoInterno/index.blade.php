@@ -83,21 +83,42 @@
 @endsection
 @section('content')
     <div class="app">
+        
     <div class="alert-table">
         <h2>Alertas</h2>
+        <div class="alert-table">
         <table id="alertasTable" class="dataTable">
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Tipo</th>
+                    <th>Status</th>
                     <th>Mensagem</th>
                     <th>Data</th>
+                    <th>Designer</th>
+                    <th>Ações</th>
                 </tr>
             </thead>
             <tbody>
-                <!-- Coloque aqui os dados dos alertas -->
+                @isset($pedidosArte)
+                    @foreach($pedidosArte as $pedidoArte)
+                        <tr>
+                            <td>{{ $pedidoArte->id }}</td>
+                            <td>{{ $pedidoArte->status }}</td>
+                            <td>{{ $pedidoArte->observacoes }}</td>
+                            <td>{{ $pedidoArte->data }}</td>
+                            <td>{{ $pedidoArte->designer }}</td>
+                            <td>
+                                <a href="{{ $pedidoArte->link_trello }}" class="btn btn-primary ms-1" data-id="{{ $pedidoArte->id }}" onclick="return confirmarLink(this)" target="_blank">
+                                    <i class="fa-brands fa-trello"></i> <!-- Ícone de cadeado do Font Awesome -->
+                                </a>
+                                <button class="btn-voltar-arte-final">Voltar para Arte Final</button>
+                            </td>
+                        </tr>
+                    @endforeach
+                @endisset
             </tbody>
         </table>
+    </div>
     </div>
         <h1>Tabela de Pedidos</h1>
         <table id="pedidosTable" class="dataTable">

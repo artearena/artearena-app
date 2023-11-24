@@ -82,7 +82,14 @@ botoesExpandir.forEach(function(botaoExpandir) {
     }
   });
 });
-
+function confirmarLink(link) {
+  var confirmacao = confirm("Deseja ir para o link: " + link.href + "?");
+  if (confirmacao) {
+      return true; // Continua para o link
+  } else {
+      return false; // Cancela o evento de clique
+  }
+}
 function salvarPedido(pedidoId, dataVenda) {
   // Faça a solicitação para obter os produtos do pedido usando a URL mencionada
   fetch('/pedidoInterno/get-produtos-pedido/' + pedidoId)

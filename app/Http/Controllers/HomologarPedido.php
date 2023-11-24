@@ -10,15 +10,17 @@ use App\Models\Usuario;
 use App\Models\Orcamentos;
 use App\Models\ListaUniforme;
 use App\Models\ProdutoPedido;
-
+use App\Models\Pedido;
 class HomologarPedido extends Controller
 {
     public function index()
     {
         $pedidos = PedidoInterno::all();
+        $pedidosArte = Pedido::where('status', 'Aguardando Cliente')->get();        
         $listaProdutos = PedidoListView::all();
-        return view('pages.pedidoInterno.index', compact('pedidos', 'listaProdutos'));
+        return view('pages.pedidoInterno.index', compact('pedidos', 'listaProdutos','pedidosArte'));
     }
+    
 
     public function getProdutosDoPedido($pedidoId)
     {
