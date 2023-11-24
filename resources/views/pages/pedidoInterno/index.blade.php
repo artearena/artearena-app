@@ -104,7 +104,7 @@
             <tbody>
                 @isset($pedidosArte)
                     @foreach($pedidosArte as $pedidoArte)
-                        <tr data-id="{{ $pedido->id }}">
+                        <tr data-id="{{ $pedidoArte->id }}">
                             <td class="text-center">{{ $pedidoArte->id }}</td>
                             <td class="text-center">{{ $pedidoArte->status }}</td>
                             <td class="text-center">
