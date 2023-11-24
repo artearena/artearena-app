@@ -84,6 +84,7 @@
     function observacoesChanged(event) {
         var id = $(this).closest('tr').data('pedido-id');
         var observacoes = $(this).val();
+        console.log(id + ' ' + observacoes );
         $.ajax({
         url: '/pedido/' + id,
         method: 'PUT',
