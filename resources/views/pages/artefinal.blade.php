@@ -924,7 +924,35 @@ $.ajaxSetup({
         var medidaLinearValue = $(this).closest('tr').find('input[name="medida_linear"]').val();
         const row = $(this).closest('tr');
         const designer = row.find('select[name="designer"]').val();
-
+        if ((field === 'status' && value === 'Aguardando Cliente') || (field === 'status' && value === 'Cor teste')) {
+            // Obter linha da tabela
+            const row = $(this).closest('tr');
+            // Limpar campo observacoes
+            row.find('td.expandir-observacoes input[name="observacoes"]').val('');
+            if (field === 'status' && value === 'Aguardando Cliente') {
+                // Remove the table row
+                row.remove();
+            }
+            
+            $.ajax({
+                url: '/pedido/' + id,
+                method: 'PUT',
+                data: {
+                    observacoes: '',
+                    "_token": "{{ csrf_token() }}",
+                },
+                success: function (response) {
+                    console.log(response.message);
+                    var table = $('#tabela-pedidos').DataTable();
+                    var row = table.row($this.closest('tr'));
+                    row.data(response.pedido);
+                    row.draw();
+                },
+                error: function (xhr, status, error) {
+                    console.error(error);
+                }
+            });
+        }
         // Verifica se o campo designer está preenchido
         if (field === 'status' && designer === '') {
             // Exibe uma mensagem de erro usando o Swal.fire
@@ -1073,7 +1101,35 @@ $.ajaxSetup({
             var field = $(this).attr('name');
             var value = $(this).val();
             var $this = $(this);
-            
+            if ((field === 'status' && value === 'Aguardando Cliente') || (field === 'status' && value === 'Cor teste')) {
+                // Obter linha da tabela
+                const row = $(this).closest('tr');
+                // Limpar campo observacoes
+                row.find('td.expandir-observacoes input[name="observacoes"]').val('');
+                if (field === 'status' && value === 'Aguardando Cliente') {
+                    // Remove the table row
+                    row.remove();
+                }
+                
+                $.ajax({
+                    url: '/pedido/' + id,
+                    method: 'PUT',
+                    data: {
+                        observacoes: '',
+                        "_token": "{{ csrf_token() }}",
+                    },
+                    success: function (response) {
+                        console.log(response.message);
+                        var table = $('#tabela-pedidos').DataTable();
+                        var row = table.row($this.closest('tr'));
+                        row.data(response.pedido);
+                        row.draw();
+                    },
+                    error: function (xhr, status, error) {
+                        console.error(error);
+                    }
+                });
+            }
             // Verifique se o campo é uma data e converte para o formato correto (yyyy-mm-dd HH:mm:ss)
             if (field === 'data') {
                 var dateParts = value.split('/');
