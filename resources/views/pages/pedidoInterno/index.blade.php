@@ -111,10 +111,9 @@
                                 <a href="{{ $pedidoArte->link_trello }}" class="btn btn-primary ms-1" data-id="{{ $pedidoArte->id }}" onclick="return confirmarLink(this)" target="_blank">
                                     <i class="fa-brands fa-trello"></i> <!-- Ícone de cadeado do Font Awesome -->
                                 </a>
-                                <button class="btn-voltar-arte-final btn btn-primary ms-1">
+                                <button class="btn-voltar-arte-final btn btn-warning ms-1">
                                     <i class="fas fa-undo fa-spin fa-lg"></i>                                
-                                </button> 
-
+                                </button>
                             </td>
                         </tr>
                     @endforeach
