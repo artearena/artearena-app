@@ -81,7 +81,7 @@
     }
 </style>
 <script>
-    $('.table input').change(function () {
+    function observacoesChanged(event) {
         var id = $(this).closest('tr').data('pedido-id');
         var observacoes = $(this).val();
         $.ajax({
@@ -104,7 +104,7 @@
             console.error(error);
         }
         });
-    });
+    }
 </script>
 @endsection
 @section('content')
@@ -115,7 +115,7 @@
     <div class="alert-table">
         <h2>Alertas</h2>
         <div class="alert-table">
-        <table id="alertasTable" class="dataTable table">
+        <table id="alertasTable" class="dataTable">
             <thead>
                 <tr>
                     <th class="text-center">ID</th>
