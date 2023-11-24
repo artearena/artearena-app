@@ -88,16 +88,16 @@
         <h2>Alertas</h2>
         <div class="alert-table">
         <table id="alertasTable" class="dataTable">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Status</th>
-                    <th>Mensagem</th>
-                    <th>Data</th>
-                    <th>Designer</th>
-                    <th>Ações</th>
-                </tr>
-            </thead>
+        <thead>
+            <tr>
+                <th class="text-center">ID</th>
+                <th class="text-center">Status</th>
+                <th class="text-center">Mensagem</th>
+                <th class="text-center">Data</th>
+                <th class="text-center">Designer</th>
+                <th class="text-center">Ações</th>
+            </tr>
+        </thead>
             <tbody>
                 @isset($pedidosArte)
                     @foreach($pedidosArte as $pedidoArte)
