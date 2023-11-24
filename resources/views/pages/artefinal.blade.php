@@ -385,7 +385,7 @@ Consulta de Pedidos
                         </thead>
                         <tbody>
                             @foreach($pedidos as $pedido)
-                            @if($pedido->etapa == 'A')
+                            @if($pedido->etapa == 'A' && $pedido->status != 'Aguardando Cliente')
                             <tr data-id="{{ $pedido->id }}">
                                 <!-- Tornar o campo ID editável -->
                                 <td>{{ $pedido->id }}</td>
