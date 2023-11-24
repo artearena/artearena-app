@@ -98,27 +98,27 @@
                 <th class="text-center">Ações</th>
             </tr>
         </thead>
-            <tbody>
-                @isset($pedidosArte)
-                    @foreach($pedidosArte as $pedidoArte)
-                        <tr>
-                            <td>{{ $pedidoArte->id }}</td>
-                            <td>{{ $pedidoArte->status }}</td>
-                            <td>{{ $pedidoArte->observacoes }}</td>
-                            <td>{{ $pedidoArte->data }}</td>
-                            <td>{{ $pedidoArte->designer }}</td>
-                            <td>
-                                <a href="{{ $pedidoArte->link_trello }}" class="btn btn-primary ms-1" data-id="{{ $pedidoArte->id }}" onclick="return confirmarLink(this)" target="_blank">
-                                    <i class="fa-brands fa-trello"></i> <!-- Ícone de cadeado do Font Awesome -->
-                                </a>
-                                <button class="btn-voltar-arte-final btn btn-warning ms-1">
-                                    <i class="fas fa-undo fa-lg"></i>                                
-                                </button>
-                            </td>
-                        </tr>
-                    @endforeach
-                @endisset
-            </tbody>
+        <tbody>
+            @isset($pedidosArte)
+                @foreach($pedidosArte as $pedidoArte)
+                    <tr>
+                        <td class="text-center">{{ $pedidoArte->id }}</td>
+                        <td class="text-center">{{ $pedidoArte->status }}</td>
+                        <td class="text-center">{{ $pedidoArte->observacoes }}</td>
+                        <td class="text-center">{{ $pedidoArte->data }}</td>
+                        <td class="text-center">{{ $pedidoArte->designer }}</td>
+                        <td class="text-center">
+                            <a href="{{ $pedidoArte->link_trello }}" class="btn btn-primary ms-1" data-id="{{ $pedidoArte->id }}" onclick="return confirmarLink(this)" target="_blank">
+                                <i class="fa-brands fa-trello"></i> <!-- Ícone de cadeado do Font Awesome -->
+                            </a>
+                            <button class="btn-voltar-arte-final btn btn-warning ms-1">
+                                <i class="fas fa-undo fa-lg"></i>                                
+                            </button>
+                        </td>
+                    </tr>
+                @endforeach
+            @endisset
+        </tbody>
         </table>
     </div>
     </div>
