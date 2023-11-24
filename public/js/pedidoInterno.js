@@ -346,10 +346,12 @@ $(document).ready(function() {
               $.ajax({
                   url: '/pedido/' + pedidoId,
                   method: 'PUT',
+                  headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                  },
                   data: {
                       data: data,
-                      status: 'Pendente',
-                      "_token": "{{ csrf_token() }}"
+                      status: 'Pendente'
                   },
                   success: function(response) {
                       // Aqui você pode tratar a resposta do servidor, se necessário
