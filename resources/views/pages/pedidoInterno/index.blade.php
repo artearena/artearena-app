@@ -78,6 +78,9 @@
         .dataTable .select-container select {
             margin: auto;
         }
+        .red-text {
+            color: red;
+        }
     }
 </style>
 <script>
@@ -119,8 +122,8 @@
     <div class="app">
         
     <div class="alert-table">
-        <h2>Alertas</h2>
-        <div class="alert-table">
+    <h2 class="red-text">Alertas</h2>
+    <div class="alert-table">
         <table id="alertasTable" class="dataTable">
             <thead>
                 <tr>
