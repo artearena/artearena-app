@@ -112,7 +112,7 @@
                                     <i class="fa-brands fa-trello"></i> <!-- Ícone de cadeado do Font Awesome -->
                                 </a>
                                 <button class="btn-voltar-arte-final">
-                                    <i class="fas fa-brands fa-undo fa-spin fa-xs"></i>                                
+                                    <i class="fas fa-undo fa-spin fa-lg"></i>                                
                                 </button> 
 
                             </td>
