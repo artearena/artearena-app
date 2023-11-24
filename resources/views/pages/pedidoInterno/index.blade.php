@@ -83,6 +83,22 @@
 @endsection
 @section('content')
     <div class="app">
+    <div class="alert-table">
+        <h2>Alertas</h2>
+        <table id="alertasTable" class="dataTable">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Tipo</th>
+                    <th>Mensagem</th>
+                    <th>Data</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Coloque aqui os dados dos alertas -->
+            </tbody>
+        </table>
+    </div>
         <h1>Tabela de Pedidos</h1>
         <table id="pedidosTable" class="dataTable">
             <thead>
