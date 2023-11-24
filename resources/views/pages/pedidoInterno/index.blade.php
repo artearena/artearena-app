@@ -80,6 +80,32 @@
         }
     }
 </style>
+<script>
+    function observacoesChanged(event) {
+        var id = $(this).closest('tr').data('pedido-id');
+        var observacoes = $(this).val();
+        $.ajax({
+        url: '/pedido/' + id,
+        method: 'PUT',
+        data: {
+            observacoes: observacoes,
+            "_token": "{{ csrf_token() }}"
+        },
+        success: function(response) {
+            Swal.fire({
+            title: "Observação atualizada!",
+            icon: "success",
+            timer: 2000,
+            showConfirmButton: false
+            });
+            console.log('Observações atualizadas');
+        },
+        error: function(xhr, status, error) {
+            console.error(error);
+        }
+        });
+    }
+</script>
 @endsection
 @section('content')
 <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -107,7 +133,7 @@
                             <td class="text-center">{{ $pedidoArte->id }}</td>
                             <td class="text-center">{{ $pedidoArte->status }}</td>
                             <td class="text-center">
-                                <input type="text" value="{{ $pedidoArte->observacoes }}" class="form-control">
+                                <input type="text" value="{{ $pedidoArte->observacoes }}" class="form-control" onchange="observacoesChanged(event)">
                             </td>
                             <td class="text-center">{{ $pedidoArte->data }}</td>
                             <td class="text-center">{{ $pedidoArte->designer }}</td>
