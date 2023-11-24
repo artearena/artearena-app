@@ -122,7 +122,7 @@
     <div class="app">
         
     <div class="alert-table">
-    <h2 class="red-text">Alertas</h2>
+    <h2 class="red-text text-center">Alertas</h2>
     <div class="alert-table">
         <table id="alertasTable" class="dataTable">
             <thead>
