@@ -362,7 +362,7 @@ $(document).ready(function() {
     });
   });
 
-  $('.table input').change(function() {
+  $('.alertasTable input').change(function() {
     var id = $(this).closest('tr').data('pedido-id');
     var observacoes = $(this).val();
     $.ajax({
