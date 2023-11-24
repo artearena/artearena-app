@@ -104,7 +104,9 @@
                     <tr>
                         <td class="text-center">{{ $pedidoArte->id }}</td>
                         <td class="text-center">{{ $pedidoArte->status }}</td>
-                        <td class="text-center">{{ $pedidoArte->observacoes }}</td>
+                        <td class="text-center">
+                            <input type="text" value="{{ $pedidoArte->observacoes }}">
+                        </td>                        
                         <td class="text-center">{{ $pedidoArte->data }}</td>
                         <td class="text-center">{{ $pedidoArte->designer }}</td>
                         <td class="text-center">

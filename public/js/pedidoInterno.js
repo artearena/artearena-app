@@ -359,4 +359,23 @@ $(document).ready(function() {
           }
       });
   });
+  $('.observacoes-input').blur(function() {
+      var id = $(this).closest('tr').data('pedido-id');
+      var observacoes = $(this).val();
+      
+      $.ajax({
+          url: '/pedido/' + id,
+          method: 'PUT',
+          data: {
+              observacoes: observacoes,
+              "_token": "{{ csrf_token() }}",
+          },
+          success: function(response) {
+              console.log('Observações atualizadas');
+          },
+          error: function(xhr, status, error) {
+              console.error(error);
+          }
+      });
+  });
 });
