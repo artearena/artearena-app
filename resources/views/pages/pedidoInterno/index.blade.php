@@ -82,12 +82,12 @@
 </style>
 <script>
     function observacoesChanged(event) {
-        var id = $(this).closest('tr').data('id');
+        var pedidoId = $(this).closest('tr').data('id');
 
         var observacoes = $(event.target).val();
-        console.log(id + ' ' + observacoes);
+        console.log(pedidoId + ' ' + observacoes);
         $.ajax({
-            url: '/pedido/' + id,
+            url: '/pedido/' + pedidoId,
             method: 'PUT',
             data: {
                 observacoes: observacoes,

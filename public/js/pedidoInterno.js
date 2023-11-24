@@ -328,7 +328,6 @@ function shapeTable() {
 
 $(document).ready(function() {
   $('.btn-voltar-arte-final').click(function() {
-      var id = $(this).closest('tr').find('.pedido-id').text();
       var pedidoId = $(this).closest('tr').data('id');
 
       Swal.fire({
