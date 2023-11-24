@@ -328,52 +328,75 @@ function shapeTable() {
 
 $(document).ready(function() {
   $('.btn-voltar-arte-final').click(function() {
-      var pedidoId = $(this).closest('tr').data('id');
-
-      Swal.fire({
-          title: "Confirmar data?",
-          showCancelButton: true,
-          confirmButtonText: "Alterar",
-          cancelButtonText: "Manter",
-          html: '<input type="date" id="swal-date-picker" class="swal2-input">',
-          preConfirm: function() {
-              return document.getElementById('swal-date-picker').value;
-          }
-      }).then(function(result) {
-          if (result.isConfirmed) {
-              var data = result.value;
-              // Aqui você pode fazer a requisição AJAX para atualizar os dados no servidor
-              $.ajax({
-                  url: '/pedido/' + pedidoId,
-                  method: 'PUT',
-                  headers: {
-                      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                  },
-                  data: {
-                      data: data,
-                      status: 'Pendente'
-                  },
-                  success: function(response) {
-                      Swal.fire({
-                          icon: 'success',
-                          title: 'Sucesso!',
-                          text: 'Os dados foram atualizados.',
-                          showConfirmButton: false,
-                          timer: 1500
-                      });
-
-                      // Remove a linha da tabela
-                      $(this).closest('tr').remove();
-                  },
-                  error: function(xhr, status, error) {
-                      // Aqui você pode tratar o erro, se necessário
-                  }
-              });
-          } else if (result.dismiss === Swal.DismissReason.cancel) {
-              // Aqui você pode lidar com o cancelamento, se necessário
-          }
-      });
-  });
+    var pedidoId = $(this).closest('tr').data('id');
+    Swal.fire({
+        title: "Confirmar data?",
+        showCancelButton: true,
+        confirmButtonText: "Alterar",
+        cancelButtonText: "Manter",
+        html: '<input type="date" id="swal-date-picker" class="swal2-input">',
+        preConfirm: function() {
+            return document.getElementById('swal-date-picker').value;
+        }
+    }).then(function(result) {
+        if (result.isConfirmed) {
+            var data = result.value;
+            // Aqui você pode fazer a requisição AJAX para atualizar os dados no servidor
+            $.ajax({
+                url: '/pedido/' + pedidoId,
+                method: 'PUT',
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                data: {
+                    data: data,
+                    status: 'Pendente'
+                },
+                success: function(response) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Sucesso!',
+                        text: 'Os dados foram atualizados.',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                    // Remove a linha da tabela
+                    $(this).closest('tr').remove();
+                },
+                error: function(xhr, status, error) {
+                    // Aqui você pode tratar o erro, se necessário
+                }
+            });
+        } else if (result.dismiss === Swal.DismissReason.cancel) {
+            // Aqui você pode lidar com o cancelamento, se necessário
+            // Fazer a requisição AJAX para manter o status atual
+            $.ajax({
+                url: '/pedido/' + pedidoId,
+                method: 'PUT',
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                data: {
+                    status: 'Pendente'
+                },
+                success: function(response) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Sucesso!',
+                        text: 'Os dados foram atualizados.',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                    // Remove a linha da tabela
+                    $(this).closest('tr').remove();
+                },
+                error: function(xhr, status, error) {
+                    // Aqui você pode tratar o erro, se necessário
+                }
+            });
+        }
+    });
+});
 
  
 });
