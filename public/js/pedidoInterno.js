@@ -359,7 +359,7 @@ $(document).ready(function() {
       }
     });
   });
-  $('.observacoes-input').blur(function() {
+  $('.table input').change(function() {
     var id = $(this).closest('tr').data('pedido-id');
     var observacoes = $(this).val();
     $.ajax({
