@@ -347,19 +347,26 @@ $(document).ready(function() {
                   url: '/pedido/' + pedidoId,
                   method: 'PUT',
                   headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                   },
                   data: {
                       data: data,
                       status: 'Pendente'
                   },
                   success: function(response) {
-                      // Aqui você pode tratar a resposta do servidor, se necessário
-                      console.log(response);
+                      Swal.fire({
+                          icon: 'success',
+                          title: 'Sucesso!',
+                          text: 'Os dados foram atualizados.',
+                          showConfirmButton: false,
+                          timer: 1500
+                      });
+
+                      // Remove a linha da tabela
+                      $(this).closest('tr').remove();
                   },
                   error: function(xhr, status, error) {
                       // Aqui você pode tratar o erro, se necessário
-                      console.log(xhr.responseText);
                   }
               });
           } else if (result.dismiss === Swal.DismissReason.cancel) {
