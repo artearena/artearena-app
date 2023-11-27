@@ -118,9 +118,8 @@ Inicio
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary" id="btn-encurtar">Encurtar</button>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal" aria-label="Fechar">Fechar</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" aria-label="Cerrar">Fechar</button>            </div>
             </div>
-        </div>
     </div>
 </div>
 
@@ -162,16 +161,9 @@ Inicio
     });
 </script>
 <script>
-    // Fechar o modal quando um botão de fechar for clicado
-    const closeButton = document.querySelectorAll('[data-dismiss="modal"]');
-    closeButton.forEach(button => {
-        button.addEventListener('click', function() {
-            const modal = document.getElementById('modal-encurtar-link');
-            modal.classList.remove('show');
-            modal.style.display = 'none';
-            const modalBackdrop = document.getElementsByClassName('modal-backdrop');
-            document.body.removeChild(modalBackdrop[0]);
-        });
+    // Fechar o modal quando o botão de fechar for clicado
+    document.getElementById('btn-fechar').addEventListener('click', function() {
+        $('#modal-encurtar-link').modal('hide');
     });
 </script>
 @endsection
