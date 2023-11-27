@@ -96,7 +96,7 @@ function salvarPedido(pedidoId, dataVenda) {
     .then(response => response.json())
     .then(data => {
       const itensAjustados = data.map(item => ({
-        id_produto: item.id,
+        codigo: item.id,
         valor_unitario: item.preco_unitario,
         descricao: item.produto_nome,
         unidade: 'UN',
