@@ -47,6 +47,7 @@ Inicio
                     <button id="btn-encurtar-link" class="btn btn-outline-primary">Encurtar Link</button>
                 </div>
             </div>
+
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">Pedido Interno</h5>
@@ -118,14 +119,13 @@ Inicio
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary" id="btn-encurtar">Encurtar</button>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal" aria-label="Cerrar">Fechar</button>            </div>
+                <button type="button" class="btn btn-secondary" id="btn-fechar" data-dismiss="modal" aria-label="Fechar">Fechar</button>
             </div>
+        </div>
     </div>
 </div>
 
-<script>
 
-</script>
 <script>
     $(document).ready(function() {
         // Abrir o modal ao clicar no botão "Encurtar Link"
@@ -161,6 +161,11 @@ Inicio
     });
 </script>
 <script>
+    // Abrir o modal quando o botão "Encurtar Link" for clicado
+    document.getElementById('btn-encurtar-link').addEventListener('click', function() {
+        $('#modal-encurtar-link').modal('show');
+    });
+
     // Fechar o modal quando o botão de fechar for clicado
     document.getElementById('btn-fechar').addEventListener('click', function() {
         $('#modal-encurtar-link').modal('hide');
