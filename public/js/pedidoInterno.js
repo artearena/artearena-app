@@ -102,7 +102,6 @@ function salvarPedido(pedidoId, dataVenda) {
         unidade: 'UN',
         quantidade: item.quantidade,
       }));
-
       // Faça a solicitação para obter os dados do cliente usando a rota show
       fetch('/cadastro/show/' + pedidoId)
         .then(response => response.json())
@@ -116,11 +115,9 @@ function salvarPedido(pedidoId, dataVenda) {
               itens: itensAjustados,
             }
           };
-
           // Converte o objeto para o formato x-www-form-urlencoded
           const formData = new URLSearchParams();
           formData.append('pedido', JSON.stringify(pedido));
-
           // Faça a requisição POST para salvar o pedido com os produtos e dados do cliente
           fetch('https://artearena.kinghost.net/criar-pedido-tiny', {
             method: 'POST',
@@ -157,7 +154,6 @@ function salvarPedido(pedidoId, dataVenda) {
       alert('Erro ao obter os produtos do pedido. Por favor, tente novamente.');
     });
 }
-
 
 
 
