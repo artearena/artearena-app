@@ -161,14 +161,17 @@ Inicio
     });
 </script>
 <script>
-    // Abrir o modal quando o botão "Encurtar Link" for clicado
-    document.getElementById('btn-encurtar-link').addEventListener('click', function() {
+     // Abrir o modal quando o botão "Encurtar Link" for clicado
+     document.getElementById('btn-encurtar-link').addEventListener('click', function() {
         $('#modal-encurtar-link').modal('show');
     });
 
-    // Fechar o modal quando o botão de fechar for clicado
-    document.getElementById('btn-fechar').addEventListener('click', function() {
-        $('#modal-encurtar-link').modal('hide');
+    // Fechar o modal quando o botão de fechar ou o botão "Fechar" no modal for clicado
+    const closeButtons = document.querySelectorAll('[data-dismiss="modal"]');
+    closeButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            $('#modal-encurtar-link').modal('hide');
+        });
     });
 </script>
 @endsection
