@@ -91,70 +91,56 @@ function confirmarLink(link) {
   }
 }
 function salvarPedido(pedidoId, dataVenda) {
-  // Faça a solicitação para obter os produtos do pedido usando a URL mencionada
   fetch('/pedidoInterno/get-produtos-pedido/' + pedidoId)
     .then(response => response.json())
     .then(data => {
       const itensAjustados = data.map(item => ({
-        codigo: item.id,
-        valor_unitario: item.preco_unitario,
-        descricao: item.produto_nome,
-        unidade: 'UN',
-        quantidade: item.quantidade,
+        item: {
+          codigo: item.id,
+          valor_unitario: parseFloat(item.preco_unitario),
+          descricao: item.produto_nome,
+          unidade: 'UN',
+          quantidade: item.quantidade,
+        },
       }));
-      // Faça a solicitação para obter os dados do cliente usando a rota show
       fetch('/cadastro/show/' + pedidoId)
         .then(response => response.json())
         .then(clienteData => {
           const pedido = {
             pedido: {
-              data_pedido: dataVenda,
-              cliente: {
-                // ... (restante do código)
-              },
+              cliente: {},
               itens: itensAjustados,
-            }
+              data_pedido: dataVenda,
+            },
           };
-          // Converte o objeto para o formato x-www-form-urlencoded
-          const formData = new URLSearchParams();
-          formData.append('pedido', JSON.stringify(pedido));
-          // Faça a requisição POST para salvar o pedido com os produtos e dados do cliente
+          const json = JSON.stringify(pedido);
           fetch('https://artearena.kinghost.net/criar-pedido-tiny', {
             method: 'POST',
             headers: {
-              'Content-Type': 'application/json', // Mantenha como está
+              'Content-Type': 'application/json',
             },
-            body: JSON.stringify(pedido),
+            body: json,
           })
             .then(response => response.json())
             .then(data => {
-              // Lide com a resposta da API aqui
               console.log('Resposta da API:', data);
-              // Exemplo de exibição de mensagem de sucesso
               alert('Pedido salvo com sucesso!');
             })
             .catch(error => {
-              // Lide com erros de requisição aqui
               console.error('Erro na requisição POST:', error);
-              // Exemplo de exibição de mensagem de erro
               alert('Erro ao salvar o pedido. Por favor, tente novamente.');
             });
         })
         .catch(error => {
-          // Lide com erros de requisição aqui
           console.error('Erro ao obter dados do cliente:', error);
-          // Exemplo de exibição de mensagem de erro
           alert('Erro ao obter os dados do cliente. Por favor, tente novamente.');
         });
     })
     .catch(error => {
-      // Lide com erros de requisição aqui
       console.error('Erro ao obter produtos do pedido:', error);
-      // Exemplo de exibição de mensagem de erro
       alert('Erro ao obter os produtos do pedido. Por favor, tente novamente.');
     });
 }
-
 
 
 // Evento de clique no botão "Confirmar Pedido"
