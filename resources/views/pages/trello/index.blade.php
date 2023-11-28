@@ -433,9 +433,9 @@
             if (
             ["Modelos", "GABRIEL", "ESBOÇO AGUARDANDO APROVAÇÃO", "ESBOÇO CONCLUIDO", 'LIGAR', 'EM TRATATIVA'].includes(
                 lista
-                console.log(lista);
             )
-            
+            console.log(lista);
+
             ) {
             continue;
             }
