@@ -15,29 +15,34 @@
     }
     /* Estilos */
     .list {
-        display: flex;
-        overflow-x: auto;
-        width: auto; /* Ajuste a largura do container para auto */
+        flex-shrink: 0 !important;
+        min-width: 200px !important;
+        background-color: #212529 !important;
+        border: 1px solid #ccc !important;
+        border-radius: 5px !important;
+        padding: 5px !important;
+        margin-left: 5px !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        height: auto !important;
+        overflow-y: auto !important;
+    }
+
+    .card {
+        flex: 0 0 auto !important;
+        background-color: #fff !important;
+        border: 1px solid #ccc !important;
+        border-radius: 3px !important;
+        padding: 10px !important;
+        margin-bottom: 10px !important;
     }
     .board {
         display: flex;
         gap: 10px;
         overflow-x: auto; /* Para permitir rolagem horizontal, se necessário */
     }
-    .list {
-        flex: 1;
-        min-width: 200px;
-        background-color: #212529;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        padding: 5px;
-        margin-left: 5px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        height: auto;
-        overflow-y: auto;
-    }
+
     /* Estilos para a barra de rolagem vertical */
     .list::-webkit-scrollbar {
         width: 5px; /* Largura da barra de rolagem vertical */
@@ -72,14 +77,9 @@
         text-align: center;
         color: white;
     }
-    .card {
-        background-color: #fff;
-        border: 1px solid #ccc;
-        border-radius: 3px;
-        padding: 10px;
-        margin-bottom: 10px;
-    }
+
     .card-item {
+        flex: 1 1 200px; /* Flex reduzido */
         min-width: 200px;  
     }
     strong {
