@@ -113,7 +113,7 @@ function salvarPedido(pedidoId, dataVenda) {
               data_pedido: dataVenda,
             },
           };
-          console.log(cliente)
+          console.log(clienteData)
           const json = JSON.stringify(pedido);
           fetch('https://artearena.kinghost.net/criar-pedido-tiny', {
             method: 'POST',
