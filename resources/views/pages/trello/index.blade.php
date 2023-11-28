@@ -24,7 +24,20 @@
         gap: 10px;
         overflow-x: auto; /* Para permitir rolagem horizontal, se necessário */
     }
-
+    .list {
+        flex: 1;
+        min-width: 200px;
+        background-color: #212529;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding: 5px;
+        margin-left: 5px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: auto;
+        overflow-y: auto;
+    }
     /* Estilos para a barra de rolagem vertical */
     .list::-webkit-scrollbar {
         width: 5px; /* Largura da barra de rolagem vertical */
