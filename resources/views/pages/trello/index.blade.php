@@ -229,7 +229,6 @@
     </div>
 </div>
 <hr>
-<button id="btn-atualizar">Atualizar</button>
 <hr>
 
 <div class="container">
