@@ -480,7 +480,7 @@
 
             for (const lista in data) {
                 // Verifique se a lista está na lista de exclusão
-                if (!["Modelos", "GABRIEL", "ESBOÇO AGUARDANDO APROVAÇÃO", "ESBOÇO CONCLUIDO", 'LIGAR'].includes(lista)) {
+                if (!["Modelos", "GABRIEL", "ESBOÇO AGUARDANDO APROVAÇÃO", "ESBOÇO CONCLUIDO", 'LIGAR', 'EM TRATATIVA'].includes(lista)) {
 
                     const cards = data[lista];
                     let totalCards = 0;
@@ -643,7 +643,7 @@
                 console.log(data);
                 // Chame a função calcularInfoPorLista para obter as informações
                 const { infoGeral, infoPorLista } = calcularInfoPorLista(data);
-                const listasExcluidas = ["Modelos", "GABRIEL", "ESBOÇO AGUARDANDO APROVAÇÃO", "ESBOÇO CONCLUIDO", 'LIGAR'];
+                const listasExcluidas = ["Modelos", "GABRIEL", "ESBOÇO AGUARDANDO APROVAÇÃO", "ESBOÇO CONCLUIDO", 'LIGAR', 'EM TRATATIVA'];
 
                 // Obtém os cards atrasados
                 const lateCards = get15CardsMaisAtrasadosExcluindoListas(data);
