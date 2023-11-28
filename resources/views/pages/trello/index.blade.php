@@ -121,7 +121,11 @@
         font-family: "Roboto Condensed", sans-serif;
 
     }
-
+    #seq_cards{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
     #relatorio #rcontainer {
         display: flex;
         align-items: center;
@@ -190,13 +194,6 @@
         overflow: auto; /* Adiciona uma barra de rolagem caso o conteúdo seja maior que o tamanho do elemento */
 
     }
-    body {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        height: 100vh;
-        margin: 0;
-    }
 </style>
 @endsection
 
@@ -238,7 +235,7 @@
 
 <div class="container">
 
-    <h1>Sequência de cards</h1>
+    <h1 id="seq_cards">Sequência de cards</h1>
     
     <div id="cards-atrasados" class="cards-container">
     </div>
