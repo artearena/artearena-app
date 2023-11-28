@@ -190,6 +190,13 @@
         overflow: auto; /* Adiciona uma barra de rolagem caso o conteúdo seja maior que o tamanho do elemento */
 
     }
+    body {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        margin: 0;
+    }
 </style>
 @endsection
 
