@@ -958,12 +958,14 @@ $('.mover-pedido').click(function () {
         tempoEstimado = somaMedidaLinear;
         tempoEstimadoTexto = `Tempo estimado: ${tempoEstimado.toFixed(0)} minutos`;
     } else {
-        tempoEstimado = somaMedidaLinear / 60;
-        tempoEstimadoTexto = `Tempo estimado: ${tempoEstimado.toFixed(2)} horas`;
+        let horas = Math.floor(somaMedidaLinear / 60);  // Parte inteira das horas
+        let minutos = somaMedidaLinear % 60;  // Parte decimal dos minutos
+
+        tempoEstimadoTexto = `Tempo estimado: ${horas} horas ${minutos.toFixed(0)} minutos`;
     }
 
-    const totalMedidaLinearTexto = `Total de medida linear: ${somaMedidaLinear.toFixed(2)}m`;
-    
+    const totalMedidaLinearTexto = `Total de medida linear: ${somaMedidaLinear.toFixed(2)}m - ${tempoEstimadoTexto}`;
+
     const recordsInfoContainer = document.getElementById('medida-linear-tabela');
     recordsInfoContainer.innerHTML = `${totalMedidaLinearTexto}<br>${tempoEstimadoTexto}`;
     atualizarMetragemTotal();
