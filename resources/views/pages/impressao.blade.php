@@ -967,8 +967,9 @@ $('.mover-pedido').click(function () {
     const totalMedidaLinearTexto = `Total de medida linear: ${somaMedidaLinear.toFixed(2)}m - ${tempoEstimadoTexto}`;
 
     const recordsInfoContainer = document.getElementById('medida-linear-tabela');
-    recordsInfoContainer.innerHTML = `${totalMedidaLinearTexto}<br>${tempoEstimadoTexto}`;
+    recordsInfoContainer.innerHTML = totalMedidaLinearTexto;  // Remova a duplicação de tempoEstimadoTexto
     atualizarMetragemTotal();
+
     // Função para calcular a metragem por tipo de material
     function calcularMetragemPorMaterial() {
         const metragemPorMaterial = {};
