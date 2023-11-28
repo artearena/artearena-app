@@ -956,12 +956,13 @@ $('.mover-pedido').click(function () {
 
     if (somaMedidaLinear < 60) {
         tempoEstimado = somaMedidaLinear;
-        tempoEstimadoTexto = `Tempo estimado: ${tempoEstimado.toFixed(0)} minutos`;
+        tempoEstimadoTexto = `Tempo estimado: ${tempoEstimado.toFixed(0)} segundos`;
     } else {
-        let horas = Math.floor(somaMedidaLinear / 60);  // Parte inteira das horas
-        let minutos = somaMedidaLinear % 60;  // Parte decimal dos minutos
+        let horas = Math.floor(somaMedidaLinear / 3600);  // Parte inteira das horas
+        let minutos = Math.floor((somaMedidaLinear % 3600) / 60);  // Parte inteira dos minutos
+        let segundos = somaMedidaLinear % 60;  // Parte decimal dos segundos
 
-        tempoEstimadoTexto = `Tempo estimado: ${horas} horas ${minutos.toFixed(0)} minutos`;
+        tempoEstimadoTexto = `Tempo estimado: ${horas} horas ${minutos} minutos ${segundos.toFixed(0)} segundos`;
     }
 
     const totalMedidaLinearTexto = `Total de medida linear: ${somaMedidaLinear.toFixed(2)}m - ${tempoEstimadoTexto}`;
