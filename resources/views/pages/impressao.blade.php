@@ -964,7 +964,7 @@ $('.mover-pedido').click(function () {
         tempoEstimadoTexto = `Tempo estimado: ${horas} horas ${minutos.toFixed(0)} minutos`;
     }
 
-    const totalMedidaLinearTexto = `Total de medida linear: ${somaMedidaLinear.toFixed(2)}m - ${tempoEstimadoTexto}`;
+    const totalMedidaLinearTexto = `Total de medida linear: ${somaMedidaLinear.toFixed(2)}m <br> ${tempoEstimadoTexto}`;
 
     const recordsInfoContainer = document.getElementById('medida-linear-tabela');
     recordsInfoContainer.innerHTML = totalMedidaLinearTexto;  // Remova a duplicação de tempoEstimadoTexto
