@@ -450,68 +450,73 @@
         return contagemMembros;
         }
 
-    function calcularInfoPorLista(data) {
-        const regrasAtraso = {
-            'esboço fácil': 1000 * 60 * 60,
-            'esboço médio': 1000 * 60 * 60 * 2,
-            'prioridade': 1000 * 60 * 40,
-            'alteração': 1000 * 60 * 30,
-            'novos esboços': 1000 * 60 * 30,
-            'criação/complexo': 1000 * 60 * 60 * 24 * 2,
-            'em tratativa': 1000 * 60 * 60 * 24,
-            'vestuários fácil': 1000 * 60 * 60 * 2,
-            'vestuários médio': 1000 * 60 * 60 * 4,
-            'em andamento': 1000 * 60 * 25,
-        };
-
-        const infoGeral = {
-            totalCardsGeral: 0,
-            cardsAtrasadosGeral: 0,
-            cardsEmDiaGeral: [],
-        };
-
-        const infoPorLista = {};
-
-        for (const lista in data) {
-            // Verifique se a lista está na lista de exclusão
-            if (!["Modelos", "GABRIEL", "ESBOÇO AGUARDANDO APROVAÇÃO", "ESBOÇO CONCLUIDO", 'LIGAR'].includes(lista)) {
-            const cards = data[lista];
-            let totalCards = 0;
-            let cardsAtrasados = 0;
-            const cardsEmDia = [];
-
-            cards.forEach(card => {
-                const tipoLista = card.lista.toLowerCase();
-                const diff = new Date() - new Date(card.dataUltimaAtividade);
-
-                if (regrasAtraso[tipoLista] && diff >= regrasAtraso[tipoLista]) {
-                cardsAtrasados++;
-                } else {
-                cardsEmDia.push(card);
-                }
-                totalCards++;
-                // Atualize as informações gerais
-                infoGeral.totalCardsGeral++;
-                if (diff >= regrasAtraso[tipoLista]) {
-                infoGeral.cardsAtrasadosGeral++;
-                } else {
-                infoGeral.cardsEmDiaGeral.push(card);
-                }
-            });
-
-            infoPorLista[lista] = {
-                totalCards,
-                cardsAtrasados,
-                cardsEmDia
+        function calcularInfoPorLista(data) {
+            const regrasAtraso = {
+                'esboço fácil': 1000 * 60 * 60,
+                'esboço médio': 1000 * 60 * 60 * 2,
+                'prioridade': 1000 * 60 * 40,
+                'alteração': 1000 * 60 * 30,
+                'novos esboços': 1000 * 60 * 30,
+                'criação/complexo': 1000 * 60 * 60 * 24 * 2,
+                'em tratativa': 1000 * 60 * 60 * 24,
+                'vestuários fácil': 1000 * 60 * 60 * 2,
+                'vestuários médio': 1000 * 60 * 60 * 4,
+                'em andamento': 1000 * 60 * 25,
             };
+
+            const infoGeral = {
+                totalCardsGeral: 0,
+                cardsAtrasadosGeral: 0,
+                cardsEmDiaGeral: [],
+            };
+
+            const infoPorLista = {};
+
+            // Adicione o console.log para imprimir todas as listas incluídas
+            console.log("Listas incluídas:", Object.keys(data));
+
+            for (const lista in data) {
+                // Verifique se a lista está na lista de exclusão
+                if (!["Modelos", "GABRIEL", "ESBOÇO AGUARDANDO APROVAÇÃO", "ESBOÇO CONCLUIDO", 'LIGAR'].includes(lista)) {
+
+                    const cards = data[lista];
+                    let totalCards = 0;
+                    let cardsAtrasados = 0;
+                    const cardsEmDia = [];
+
+                    cards.forEach(card => {
+                        const tipoLista = card.lista.toLowerCase();
+                        const diff = new Date() - new Date(card.dataUltimaAtividade);
+
+                        if (regrasAtraso[tipoLista] && diff >= regrasAtraso[tipoLista]) {
+                            cardsAtrasados++;
+                        } else {
+                            cardsEmDia.push(card);
+                        }
+                        totalCards++;
+                        // Atualize as informações gerais
+                        infoGeral.totalCardsGeral++;
+                        if (diff >= regrasAtraso[tipoLista]) {
+                            infoGeral.cardsAtrasadosGeral++;
+                        } else {
+                            infoGeral.cardsEmDiaGeral.push(card);
+                        }
+                    });
+
+                    infoPorLista[lista] = {
+                        totalCards,
+                        cardsAtrasados,
+                        cardsEmDia
+                    };
+                }
             }
+
+            return {
+                infoGeral,
+                infoPorLista
+            };
         }
 
-        return {
-            infoGeral,
-            infoPorLista
-        };
-        }
     
     var ordemListas = [
         'em andamento',
