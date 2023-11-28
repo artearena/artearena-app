@@ -431,15 +431,15 @@
         const contagemMembros = {};
         for (const lista in data) {
             if (
-            ["Modelos", "GABRIEL", "ESBOÇO AGUARDANDO APROVAÇÃO", "ESBOÇO CONCLUIDO", 'LIGAR', 'EM TRATATIVA'].includes(
-                lista
-            )
+                ["Modelos", "GABRIEL", "ESBOÇO AGUARDANDO APROVAÇÃO", "ESBOÇO CONCLUIDO", 'LIGAR', 'EM TRATATIVA'].includes(
+                    lista
+                )
+            ) 
+            {
+                continue;
+            }
             console.log(lista);
 
-            
-            ) {
-            continue;
-            }
             const cards = data[lista];
             cards.forEach((card) => {
             card.members.forEach((membro) => {
