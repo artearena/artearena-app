@@ -108,11 +108,12 @@ function salvarPedido(pedidoId, dataVenda) {
         .then(clienteData => {
           const pedido = {
             pedido: {
-              cliente: {},
+              cliente: {clienteData},
               itens: itensAjustados,
               data_pedido: dataVenda,
             },
           };
+          console.log(cliente)
           const json = JSON.stringify(pedido);
           fetch('https://artearena.kinghost.net/criar-pedido-tiny', {
             method: 'POST',
