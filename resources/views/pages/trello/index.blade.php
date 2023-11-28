@@ -14,7 +14,11 @@
         font-family: 'Roboto Condensed', sans-serif;
     }
     /* Estilos */
-
+    .list {
+        display: flex;
+        overflow-x: auto;
+        width: auto; /* Ajuste a largura do container para auto */
+    }
     .board {
         display: flex;
         gap: 10px;
@@ -76,7 +80,6 @@
         margin-bottom: 10px;
     }
     .card-item {
-        flex: 1 1 200px; /* Flex reduzido */
         min-width: 200px;  
     }
     strong {
