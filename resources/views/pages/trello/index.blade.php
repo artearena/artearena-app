@@ -431,7 +431,7 @@
         const contagemMembros = {};
         for (const lista in data) {
             if (
-            ["Modelos", "GABRIEL", "ESBOÇO AGUARDANDO APROVAÇÃO", "ESBOÇO CONCLUIDO", 'LIGAR'].includes(
+            ["Modelos", "GABRIEL", "ESBOÇO AGUARDANDO APROVAÇÃO", "ESBOÇO CONCLUIDO", 'LIGAR', 'EM TRATATIVA'].includes(
                 lista
             )
             ) {
