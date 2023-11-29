@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProducaoController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SiteController;
 use App\Http\Controllers\AuthController;
@@ -37,7 +38,9 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/criar', [PedidoController::class, 'criarPedido'])->name('pedido.criar');
         Route::delete('/{id}', [PedidoController::class, 'excluirPedido'])->name('pedido.excluir');
     });
-
+    Route::prefix('producao')->group(function () {
+        Route::any('/', [ProducaoController::class, 'index']);
+    });
      Route::prefix('pedidoInterno')->group(function () {
         Route::any('/', [HomologarPedido::class, 'index'])->name('pedidoInterno');
         Route::any('/criar-pedido/{id}', [HomologarPedido::class, 'criarPedidoOrcamento'])->name('pedidoInterno.criar');
