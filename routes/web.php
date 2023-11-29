@@ -40,6 +40,7 @@ Route::middleware(['auth'])->group(function () {
     });
     Route::prefix('producao')->group(function () {
         Route::any('/', [ProducaoController::class, 'index']);
+        Route::any('/criar', [ProducaoController::class, 'store']);
     });
      Route::prefix('pedidoInterno')->group(function () {
         Route::any('/', [HomologarPedido::class, 'index'])->name('pedidoInterno');
