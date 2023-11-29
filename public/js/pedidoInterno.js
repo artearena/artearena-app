@@ -103,6 +103,8 @@ function salvarPedido(pedidoId, dataVenda) {
           quantidade: item.quantidade,
         },
       }));
+      console.log(data)
+
       fetch('/cadastro/show/' + pedidoId)
         .then(response => response.json())
         .then(clienteData => {
