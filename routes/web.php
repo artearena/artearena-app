@@ -15,6 +15,7 @@ use App\Http\Controllers\ErroController;
 use App\Http\Controllers\HomologarPedido;
 use App\Http\Controllers\ListaUniformeController;
 use App\Http\Controllers\AcessoTemporarioController;
+use App\Http\Controllers\ProdutoController;
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/', [SiteController::class, 'index'])->name('index');
@@ -62,6 +63,13 @@ Route::middleware(['auth'])->group(function () {
 
     });
 
+    Route::prefix('produto')->group(function () {
+        // Adicione outras rotas relacionadas a produtos aqui, se necessário
+    
+        // Rota para buscar um produto por nome
+        Route::get('/buscar-por-nome/{nome}', [ProdutoController::class, 'buscarPorNome'])->name('produto.buscarPorNome');
+    });
+    
     Route::prefix('consultarcadastro')->group(function () {
         Route::any('/', [CadastroController::class, 'consultarCadastros'])->name('cadastro.consulta');
         Route::get('/data', [CadastroController::class, 'getData'])->name('cadastro.data');
