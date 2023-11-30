@@ -111,6 +111,7 @@ function salvarPedido(pedidoId, dataVenda) {
               // Retorna um objeto com as informações necessárias do produto
               return {
                 codigo: produtoEncontrado.codigo,
+                quantidade: produtoPedido.quantidade,
                 // Adicione outros campos do produto conforme necessário
               };
             } else {
@@ -128,9 +129,9 @@ function salvarPedido(pedidoId, dataVenda) {
 
       // Aguarda todas as promessas serem resolvidas
       Promise.all(promessasProdutos)
-        .then(produtosEncontrados => {
+        .then(produtosValidos => {
           // Filtra os produtos encontrados, removendo os nulos
-          const produtosValidos = produtosEncontrados.filter(produto => produto !== null);
+          const produtosFiltrados = produtosValidos.filter(produto => produto !== null);
 
           // Terceira requisição para obter dados do cliente
           fetch('/cadastro/show/' + pedidoId)
@@ -152,15 +153,12 @@ function salvarPedido(pedidoId, dataVenda) {
                     cidade: clienteData.cidade,
                     fone: clienteData.fone_fixo,
                   },
-                  itens: produtosValidos.map(produto => {
-                    // Encontrar o item correspondente em 'data' usando o nome do produto
-                    const itemCorrespondente = data.find(item => item.produto_nome === produtoEncontrado.nome);
-
+                  itens: produtosFiltrados.map(produto => {
                     return {
                       item: {
                         codigo: produto.codigo,
-                        descricao: itemCorrespondente.descricao, // Adicione outros campos conforme necessário
-                        valor_unitario: itemCorrespondente.valor_unitario,
+                        descricao: 'Descrição do produto', // Adicione outros campos conforme necessário
+                        valor_unitario: 10.99, // Valor temporário, substitua conforme necessário
                         unidade: 'UN',
                         quantidade: produto.quantidade,
                       },
@@ -169,7 +167,7 @@ function salvarPedido(pedidoId, dataVenda) {
                   data_pedido: dataVenda,
                 },
               };
-              console.log(pedidoData);
+
               // Quarta requisição para salvar o pedido
               fetch('https://artearena.kinghost.net/criar-pedido-tiny', {
                 method: 'POST',
@@ -203,7 +201,6 @@ function salvarPedido(pedidoId, dataVenda) {
       alert('Erro ao obter os produtos do pedido. Por favor, tente novamente.');
     });
 }
-
 
 // Evento de clique no botão "Confirmar Pedido"
 document.addEventListener('click', function(event) {
