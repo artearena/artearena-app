@@ -90,63 +90,60 @@ function confirmarLink(link) {
       return false; // Cancela o evento de clique
   }
 }
-
 function salvarPedido(pedidoId, dataVenda) {
-  // Primeira requisição para obter produtos do pedido
   fetch('/pedidoInterno/get-produtos-pedido/' + pedidoId)
-      .then(response => response.json())
-      .then(data => {
-          // Obtenha o código do primeiro produto da lista
-          const codigoDoProduto = data.length > 0 ? data[0].id : '';
+    .then(response => response.json())
+    .then(data => {
+      const itensAjustados = data.map(item => ({
+        item: {
+          codigo: item.id,
+          valor_unitario: parseFloat(item.preco_unitario),
+          descricao: item.produto_nome,
+          unidade: 'UN',
+          quantidade: item.quantidade,
+        },
+      }));
+      console.log(data)
 
-          // Segunda requisição para obter dados do cliente
-          fetch('/cadastro/show/' + pedidoId)
-              .then(response => response.json())
-              .then(clienteData => {
-                  // Terceira requisição para salvar o pedido
-                  fetch('https://artearena.kinghost.net/criar-pedido-tiny', {
-                      method: 'POST',
-                      headers: {
-                          'Content-Type': 'application/json',
-                      },
-                      body: JSON.stringify({
-                          pedido: {
-                              cliente: clienteData,
-                              itens: [{
-                                  item: {
-                                      codigo: codigoDoProduto,
-                                      descricao: 'Descrição do produto',
-                                      valor_unitario: 10.99,
-                                      unidade: 'UN',
-                                      quantidade: 1,
-                                      // Adicione outros campos do item conforme necessário
-                                  },
-                              }],
-                              data_pedido: dataVenda,
-                          },
-                      }),
-                  })
-                      .then(response => response.json())
-                      .then(data => {
-                          console.log('Resposta da API:', data);
-                          alert('Pedido salvo com sucesso!');
-                      })
-                      .catch(error => {
-                          console.error('Erro na requisição POST:', error);
-                          alert('Erro ao salvar o pedido. Por favor, tente novamente.');
-                      });
-              })
-              .catch(error => {
-                  console.error('Erro ao obter dados do cliente:', error);
-                  alert('Erro ao obter os dados do cliente. Por favor, tente novamente.');
-              });
-      })
-      .catch(error => {
-          console.error('Erro ao obter produtos do pedido:', error);
-          alert('Erro ao obter os produtos do pedido. Por favor, tente novamente.');
-      });
+      fetch('/cadastro/show/' + pedidoId)
+        .then(response => response.json())
+        .then(clienteData => {
+          const pedido = {
+            pedido: {
+              cliente: {clienteData},
+              itens: itensAjustados,
+              data_pedido: dataVenda,
+            },
+          };
+          console.log(clienteData)
+          const json = JSON.stringify(pedido);
+          fetch('https://artearena.kinghost.net/criar-pedido-tiny', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: json,
+          })
+            .then(response => response.json())
+            .then(data => {
+              console.log('Resposta da API:', data);
+              alert('Pedido salvo com sucesso!');
+            })
+            .catch(error => {
+              console.error('Erro na requisição POST:', error);
+              alert('Erro ao salvar o pedido. Por favor, tente novamente.');
+            });
+        })
+        .catch(error => {
+          console.error('Erro ao obter dados do cliente:', error);
+          alert('Erro ao obter os dados do cliente. Por favor, tente novamente.');
+        });
+    })
+    .catch(error => {
+      console.error('Erro ao obter produtos do pedido:', error);
+      alert('Erro ao obter os produtos do pedido. Por favor, tente novamente.');
+    });
 }
-
 
 
 // Evento de clique no botão "Confirmar Pedido"

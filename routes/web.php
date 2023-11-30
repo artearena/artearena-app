@@ -62,12 +62,6 @@ Route::middleware(['auth'])->group(function () {
 
     });
 
-    Route::prefix('produto')->group(function () {
-        Route::any('/', [CadastroController::class, 'consultarCadastros'])->name('cadastro.consulta');
-        Route::get('/data', [CadastroController::class, 'getData'])->name('cadastro.data');
-        Route::put('/{id}', [CadastroController::class, 'update'])->name('cadastro.update');
-   \ });
-
     Route::prefix('consultarcadastro')->group(function () {
         Route::any('/', [CadastroController::class, 'consultarCadastros'])->name('cadastro.consulta');
         Route::get('/data', [CadastroController::class, 'getData'])->name('cadastro.data');
