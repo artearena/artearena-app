@@ -103,35 +103,22 @@ function salvarPedido(pedidoId, dataVenda) {
               .then(response => response.json())
               .then(clienteData => {
                   // Terceira requisição para buscar produto pelo nome
-                  fetch('/produto/buscar-por-nome/' + nomeDoProduto)
+                  fetch(`/produto/buscar-por-nome/${nomeDoProduto}`)
                       .then(response => response.json())
                       .then(produtoEncontrado => {
                           if (produtoEncontrado) {
                               // Agora você tem o código do produto
                               const codigoDoProduto = produtoEncontrado.codigo;
 
+                              // Construa a URL para a quarta requisição incluindo os parâmetros
+                              const url = `https://artearena.kinghost.net/criar-pedido-tiny?codigoDoProduto=${codigoDoProduto}&descricao=Descrição do produto&valor_unitario=10.99&unidade=UN&quantidade=1&data_pedido=${dataVenda}`;
+
                               // Quarta requisição para salvar o pedido
-                              fetch('https://artearena.kinghost.net/criar-pedido-tiny', {
+                              fetch(url, {
                                   method: 'POST',
                                   headers: {
                                       'Content-Type': 'application/json',
                                   },
-                                  body: JSON.stringify({
-                                      pedido: {
-                                          cliente: clienteData,
-                                          itens: [{
-                                              item: {
-                                                  codigo: codigoDoProduto,
-                                                  descricao: 'Descrição do produto',
-                                                  valor_unitario: 10.99,
-                                                  unidade: 'UN',
-                                                  quantidade: 1,
-                                                  // Adicione outros campos do item conforme necessário
-                                              },
-                                          }],
-                                          data_pedido: dataVenda,
-                                      },
-                                  }),
                               })
                                   .then(response => response.json())
                                   .then(data => {
@@ -162,6 +149,7 @@ function salvarPedido(pedidoId, dataVenda) {
           alert('Erro ao obter os produtos do pedido. Por favor, tente novamente.');
       });
 }
+
 
 
 // Evento de clique no botão "Confirmar Pedido"
