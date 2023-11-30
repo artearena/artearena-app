@@ -90,7 +90,6 @@ function confirmarLink(link) {
       return false; // Cancela o evento de clique
   }
 }
-
 function salvarPedido(pedidoId, dataVenda) {
   // Primeira requisição para obter produtos do pedido
   fetch('/pedidoInterno/get-produtos-pedido/' + pedidoId)
