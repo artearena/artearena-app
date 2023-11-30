@@ -102,6 +102,7 @@ function salvarPedido(pedidoId, dataVenda) {
             fetch('/cadastro/show/' + pedidoId)
                 .then(response => response.json())
                 .then(clienteData => {
+                  console.log(clienteData);
                     // Terceira requisição para buscar produto pelo nome
                     fetch('/produto/buscar-por-nome/' + nomeDoProduto)
                         .then(response => response.json())
