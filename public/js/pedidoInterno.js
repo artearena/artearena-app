@@ -107,6 +107,7 @@ function salvarPedido(pedidoId, dataVenda) {
         return fetch('/produto/buscar-por-nome/' + produtoPedido.produto_nome)
           .then(response => response.json())
           .then(produtoEncontrado => {
+            console.log(produtoEncontrado);
             if (produtoEncontrado) {
               // Retorna um objeto com as informações necessárias do produto
               return {
