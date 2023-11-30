@@ -90,78 +90,94 @@ function confirmarLink(link) {
       return false; // Cancela o evento de clique
   }
 }
+
 function salvarPedido(pedidoId, dataVenda) {
-    // Primeira requisição para obter produtos do pedido
-    fetch('/pedidoInterno/get-produtos-pedido/' + pedidoId)
+  // Primeira requisição para obter produtos do pedido
+  fetch('/pedidoInterno/get-produtos-pedido/' + pedidoId)
+    .then(response => response.json())
+    .then(data => {
+      // Obtenha o nome do primeiro produto da lista
+      const nomeDoProduto = data.length > 0 ? data[0].produto_nome : '';
+
+      // Segunda requisição para obter dados do cliente
+      fetch('/cadastro/show/' + pedidoId)
         .then(response => response.json())
-        .then(data => {
-            // Obtenha o nome do primeiro produto da lista
-            const nomeDoProduto = data.length > 0 ? data[0].produto_nome : '';
+        .then(clienteData => {
+          // Mapeia o clienteData para o formato esperado pela API do Tiny
+          const pedidoData = {
+            pedido: {
+              cliente: {
+                nome: clienteData.nome_completo,
+                tipo_pessoa: clienteData.tipo_pessoa,
+                cpf_cnpj: clienteData.cpf,
+                rg: clienteData.rg,
+                email: clienteData.email,
+                endereco: clienteData.endereco,
+                cep: clienteData.cep,
+                numero: clienteData.numero,
+                bairro: clienteData.bairro,
+                cidade: clienteData.cidade,
+                fone: clienteData.fone_fixo,
+              },
+              itens: [
+                {
+                  item: {
+                    descricao: 'Descrição do produto',
+                    valor_unitario: 10.99,
+                    unidade: 'UN',
+                    quantidade: 1,
+                    // Adicione outros campos do item conforme necessário
+                  },
+                },
+              ],
+              data_pedido: dataVenda,
+            },
+          };
 
-            // Segunda requisição para obter dados do cliente
-            fetch('/cadastro/show/' + pedidoId)
-                .then(response => response.json())
-                .then(clienteData => {
-                  console.log(clienteData);
-                    // Terceira requisição para buscar produto pelo nome
-                    fetch('/produto/buscar-por-nome/' + nomeDoProduto)
-                        .then(response => response.json())
-                        .then(produtoEncontrado => {
-                            if (produtoEncontrado) {
-                                // Agora você tem o código do produto
-                                const codigoDoProduto = produtoEncontrado.codigo;
+          // Terceira requisição para buscar produto pelo nome
+          fetch('/produto/buscar-por-nome/' + nomeDoProduto)
+            .then(response => response.json())
+            .then(produtoEncontrado => {
+              if (produtoEncontrado) {
+                // Agora você tem o código do produto
+                const codigoDoProduto = produtoEncontrado.codigo;
 
-                                // Quarta requisição para salvar o pedido
-                                fetch('https://artearena.kinghost.net/criar-pedido-tiny', {
-                                    method: 'POST',
-                                    headers: {
-                                        'Content-Type': 'application/json',
-                                    },
-                                    body: JSON.stringify({
-                                        pedido: {
-                                            cliente: clienteData,
-                                            itens: [{
-                                                item: {
-                                                    codigo: codigoDoProduto,
-                                                    descricao: 'Descrição do produto',
-                                                    valor_unitario: 10.99,
-                                                    unidade: 'UN',
-                                                    quantidade: 1,
-                                                    // Adicione outros campos do item conforme necessário
-                                                },
-                                            }],
-                                            data_pedido: dataVenda,
-                                        },
-                                    }),
-                                })
-                                    .then(response => response.json())
-                                    .then(data => {
-                                        console.log('Resposta da API:', data);
-                                        alert('Pedido salvo com sucesso!');
-                                    })
-                                    .catch(error => {
-                                        console.error('Erro na requisição POST:', error);
-                                        alert('Erro ao salvar o pedido. Por favor, tente novamente.');
-                                    });
-                            } else {
-                                console.error('Produto não encontrado.');
-                                alert('Produto não encontrado. Por favor, verifique o nome do produto.');
-                            }
-                        })
-                        .catch(error => {
-                            console.error('Erro ao buscar produto por nome:', error);
-                            alert('Erro ao buscar produto por nome. Por favor, tente novamente.');
-                        });
+                // Quarta requisição para salvar o pedido
+                fetch('https://artearena.kinghost.net/criar-pedido-tiny', {
+                  method: 'POST',
+                  headers: {
+                    'Content-Type': 'application/json',
+                  },
+                  body: JSON.stringify(pedidoData),
                 })
-                .catch(error => {
-                    console.error('Erro ao obter dados do cliente:', error);
-                    alert('Erro ao obter os dados do cliente. Por favor, tente novamente.');
-                });
+                  .then(response => response.json())
+                  .then(data => {
+                    console.log('Resposta da API:', data);
+                    alert('Pedido salvo com sucesso!');
+                  })
+                  .catch(error => {
+                    console.error('Erro na requisição POST:', error);
+                    alert('Erro ao salvar o pedido. Por favor, tente novamente.');
+                  });
+              } else {
+                console.error('Produto não encontrado.');
+                alert('Produto não encontrado. Por favor, verifique o nome do produto.');
+              }
+            })
+            .catch(error => {
+              console.error('Erro ao buscar produto por nome:', error);
+              alert('Erro ao buscar produto por nome. Por favor, tente novamente.');
+            });
         })
         .catch(error => {
-            console.error('Erro ao obter produtos do pedido:', error);
-            alert('Erro ao obter os produtos do pedido. Por favor, tente novamente.');
+          console.error('Erro ao obter dados do cliente:', error);
+          alert('Erro ao obter os dados do cliente. Por favor, tente novamente.');
         });
+    })
+    .catch(error => {
+      console.error('Erro ao obter produtos do pedido:', error);
+      alert('Erro ao obter os produtos do pedido. Por favor, tente novamente.');
+    });
 }
 
 
