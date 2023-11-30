@@ -90,7 +90,6 @@ function confirmarLink(link) {
       return false; // Cancela o evento de clique
   }
 }
-
 function salvarPedido(pedidoId, dataVenda) {
   // Primeira requisição para obter produtos do pedido
   fetch('/pedidoInterno/get-produtos-pedido/' + pedidoId)
@@ -107,9 +106,9 @@ function salvarPedido(pedidoId, dataVenda) {
           const pedidoData = {
             pedido: {
               cliente: {
-                nome: clienteData.nome_completo,
+                nome: clienteData.nome_completo || clienteData.razao_social || '',
                 tipo_pessoa: clienteData.tipo_pessoa,
-                cpf_cnpj: clienteData.cpf,
+                cpf_cnpj: clienteData.cpf || clienteData.cnpj || '',
                 rg: clienteData.rg,
                 email: clienteData.email,
                 endereco: clienteData.endereco,
