@@ -95,6 +95,7 @@ function salvarPedido(pedidoId, dataVenda) {
   fetch('/pedidoInterno/get-produtos-pedido/' + pedidoId)
     .then(response => response.json())
     .then(data => {
+      console.log(data);
       // Obtenha o nome do primeiro produto da lista
       const nomeDoProduto = data.length > 0 ? data[0].produto_nome : '';
       // Terceira requisição para buscar produto pelo nome
@@ -140,7 +141,7 @@ function salvarPedido(pedidoId, dataVenda) {
                 },
               };
               // Quarta requisição para salvar o pedido
-              fetch('https://artearena.kinghost.net/criar-pedido-tiny', {
+              fetch('https://artearena.kinghost.net/criar-pedido-tinyx', {
                 method: 'POST',
                 headers: {
                   'Content-Type': 'application/json',
