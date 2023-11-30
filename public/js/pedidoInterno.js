@@ -171,7 +171,7 @@ function salvarPedido(pedidoId, dataVenda) {
               };
 
               // Quarta requisição para salvar o pedido
-              fetch('https://artearena.kinghost.net/criar-pedido-tinycx', {
+              fetch('https://artearena.kinghost.net/criar-pedido-tiny', {
                 method: 'POST',
                 headers: {
                   'Content-Type': 'application/json',
