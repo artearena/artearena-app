@@ -335,10 +335,7 @@
                         <h4>Detalhes do orçamento:</h4>
                         <div class="details-container">
                             <textarea class="form-control" id="campoTexto" rows="5"></textarea>
-                            <button type="button" class="btn btn-primary mt-2" id="botaoOrcamento">Salvar/Enviar Orçamento</button>
-                            <button type="button" class="btn btn-primary mt-2" onclick="abrirModalPedidoTiny()">
-                              Criar Pedido
-                            </button>                         
+                            <button type="button" class="btn btn-primary mt-2" id="botaoOrcamento">Salvar/Enviar Orçamento</button>                
                             <button type="button" class="btn btn-secondary mt-2" id="botaoLimparCampos">Novo Orçamento</button>
                             <button type="button" class="btn btn-primary mt-2" id="botaoCopiar">Copiar</button>
                             <p class="text-success mt-2" id="avisoCopiado" style="display: none;">Copiado com sucesso!</p>
@@ -399,78 +396,6 @@
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
       </div>
       
-    </div>
-  </div>
-</div>
-
-<!-- Modal Pedido Tiny -->
-<div class="modal fade" id="modalPedidoTiny" tabindex="-1" role="dialog" aria-labelledby="modalPedidoTinyLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="modalPedidoTinyLabel">Modal Pedido Tiny</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <!-- Conteúdo do modal Pedido Tiny -->
-        <form id="pedidoForm">
-          <div class="form-group">
-            <label for="cliente_id">ID do Cliente:</label>
-            <input type="text" class="form-control" id="cliente_id" name="cliente_id">
-          </div>
-          <div class="form-group">
-            <label for="Vendedor">Vendedor:</label>
-            <input type="text" class="form-control" id="vendedor" name="vendedor">
-          </div>
-          <div class="form-group">
-            <label for="forma_pagamento">Forma de Pagamento:</label>
-            <input type="text" class="form-control" id="forma_pagamento" name="forma_pagamento">
-          </div>
-          <div class="form-group">
-            <label for="transportadora">Transportadora:</label>
-            <input type="text" class="form-control" id="transportadora" name="transportadora">
-          </div>
-          <div class="form-group">
-            <label for="valor_frete">Valor do Frete:</label>
-            <input type="text" class="form-control" id="valor_frete" name="valor_frete">
-          </div>
-          <div class="form-group">
-            <label for="observacao">Observação:</label>
-            <input type="text" class="form-control" id="observacao" name="observacao">
-          </div>
-          <div class="form-group">
-            <label for="marcador">Marcador:</label>
-            <input type="text" class="form-control" id="marcador" name="marcador">
-          </div>
-          <div class="form-group">
-            <label for="data_venda">Data da Venda:</label>
-            <input type="datetime-local" class="form-control" id="data_venda" name="data_venda">
-          </div>
-
-
-          <!-- Tabela para exibir os produtos adicionados -->
-          <table class="table mt-4">
-            <thead>
-              <tr>
-                <th>Nome do Produto</th>
-                <th>Quantidade</th>
-                <th>Preço Unitário</th>
-                <th>Ação</th>
-              </tr>
-            </thead>
-            <tbody id="produtosTableBody">
-              <!-- Linhas da tabela para exibir os produtos adicionados -->
-            </tbody>
-          </table>
-
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-        <button type="button" class="btn btn-primary" id="salvarPedido">Salvar</button>
-      </div>
     </div>
   </div>
 </div>
@@ -1381,18 +1306,6 @@ const id_cliente = document.getElementById('id').value;
 </script>
 
 <script>
-  function abrirModalPedidoTiny() {
-    const transportadora = obterDetalhesTransportadora();
-    var cliente_id = document.getElementById("id").value;
-    var nome_transportadora = transportadora.nomeTransportadora;
-    adicionarProduto();
-    
-    document.getElementById("cliente_id").value = cliente_id;
-    document.getElementById("transportadora").value = nome_transportadora;
-    document.getElementById("valor_frete").value = transportadora.valorFrete;
-
-    $("#modalPedidoTiny").modal("show");
-  }
    // Array para armazenar os produtos adicionados
     var produtos = [];
 
@@ -1482,8 +1395,6 @@ const id_cliente = document.getElementById('id').value;
       }
     });
 
-    // Fechar o modal
-    $("#modalPedidoTiny").modal("hide");
   });
 </script>
 <script>
