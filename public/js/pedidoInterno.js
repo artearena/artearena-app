@@ -110,9 +110,9 @@ function salvarPedido(pedidoId, dataVenda) {
             if (produtoEncontrado) {
               // Retorna um objeto com as informações necessárias do produto
               return {
-                codigo: produtoEncontrado.CODIGO, // Ajuste para usar o código do produto
-                descricao: produtoEncontrado.NOME, // Adicione outros campos do produto conforme necessário
-                valor_unitario: parseFloat(produtoEncontrado.PRECO), // Converta para número, se necessário
+                codigo: produtoEncontrado.codigo,
+                descricao: produtoEncontrado.descricao, // Adicione outros campos do produto conforme necessário
+                valor_unitario: produtoEncontrado.valor_unitario,
                 quantidade: produtoPedido.quantidade,
               };
             } else {
