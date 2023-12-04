@@ -418,7 +418,7 @@
     botaoLimparCampos.style.display = 'block';
     botaoCopiar.style.display = 'block';
   }
-y
+
     // Evento de clique no radio button
     document.getElementById('gerarRascunho').addEventListener('click', function() {
       if (this.checked) {
