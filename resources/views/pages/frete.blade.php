@@ -302,30 +302,7 @@ textarea {
 @section('extraScript')
   <script src="https://dnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
   <script>
-    // Função para esconder os campos
-  function esconderCampos() {
-    botaoOrcamento.style.display = 'none';
-    botaoLimparCampos.style.display = 'none';
-    botaoCopiar.style.display = 'none';
-  }
-
-  // Função para mostrar os campos
-  function mostrarCampos() {
-    campoTexto.style.display = 'block';
-    botaoOrcamento.style.display = 'block';
-    botaoLimparCampos.style.display = 'block';
-    botaoCopiar.style.display = 'block';
-  }
-y
-    // Evento de clique no radio button
-    document.getElementById('gerarRascunho').addEventListener('click', function() {
-      if (this.checked) {
-        esconderCampos();
-      } else {
-        mostrarCampos();
-      }
-    });
-
+   
     $(function() {
       const botaoCardTrello = document.getElementById('botaoCardTrello');
       botaoCardTrello.addEventListener('click', gerarCard);
