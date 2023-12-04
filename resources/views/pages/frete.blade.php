@@ -4,224 +4,122 @@
 @endsection
 @section('style')
 <style>
-    .form-group {
-        margin-bottom: 10px;
-    }
-    #cep-form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    }
-    #transp-title {
-        display: flex;
-        justify-content: center;
-      }
-    .form-group{
-        width: 100%;
-        height: auto;
-    }
-    #calcularFrete {
-    width: 30%;
-    height: auto;
-    margin-top: 10px;
-    }
-    .cards-container {
-        display: flex;
-        flex-wrap: wrap;
-    }
+/* Estilos Gerais */
 
-    .card {
-        width: calc(25% - 20px);
-        margin: 10px;
-        padding: 10px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-    }
+body {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+}
 
-    .card.selected {
-        border-color: blue;
-    }
+/* Estilos do Modal */
 
-    .card img {
-        max-width: 20%;
-        height: auto;
-        margin-bottom: 1em;
-    }
-    .container {
-           max-width: 100%;
-    }
+.modal-dialog {
+  margin: 5% auto;
+  max-width: 800px;
+}
 
-    .details-container h4 {
-        margin-bottom: 10px;
-    }
+.modal-content {
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+}
 
-    #botaoCopiar {
-        float: right;
-        margin-top: 5px;
-    }
+.modal-body {
+  max-height: 400px;
+  overflow-y: auto;
+}
 
-    #avisoCopiado {
-        float: right;
-        margin-top: 10px;
-    }
+.modal-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
 
-    .col-md-6 {
-        display: flex;
-        flex-direction: column;
-    }
-    table {
-        width: 100%;
-        border-collapse: collapse;
-    }
-    th, td {
-        padding: 8px;
-        text-align: left;
-        border-bottom: 1px solid #ddd;
-    }
-    th {
-        background-color: #f2f2f2;
-        font-weight: bold;
-        text-align: center;
-    }
-    td {
-        font-size: .9em;
-    }
-    tfoot td {
-        font-weight: bold;
-    }
-    tbody tr:nth-child(even) {
-        background-color: #f5f5f5;
-    }
-    tbody tr:hover {
-        background-color: #ebebeb;
-    }
-    #campoTexto{
-        min-height: 300px;
-    }
-    .radio-container {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-    }
+/* Estilos do Formulário */
 
-    .radio-container label {
-        margin-bottom: 0;
-    }
-    P {
-      margin-bottom: 0;
-    }
-    .blue-text {
-      color: #4169e1;
-    }
-    .center-icon {
-      display: block;
-      margin: 0 auto;
-      min-width: none;
-      min-height:
-    }
-    .logo-container {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 1005; /* Defina o tamanho desejado para a div */
-      height: 1005; /* Defina o tamanho desejado para a div */
-      margin: 0 auto; /* Centraliza a div horizontalmente */
-    }
-    #descricaoCardTrello{
-      min-height: 350px;
-    }
-    .table-responsive::-webkit-scrollbar {
-      width: 8px;
-    }
+.form-group {
+  margin-bottom: 20px;
+}
 
-    .table-responsive::-webkit-scrollbar-track {
-      background-color: #f1f1f1;
-    }
+label {
+  font-weight: bold;
+}
 
-    .table-responsive::-webkit-scrollbar-thumb {
-      background-color: #888;
-      border-radius: 4px;
-    }
+textarea {
+  height: 150px;
+}
 
-    .table-responsive::-webkit-scrollbar-thumb:hover {
-      background-color: #555;
-    }
-    .descricao-orcamento {
-      min-width: 400px;
-    }
-    .modal-dialog {
-      margin: 5% auto;
-      max-width: 800px;
-    }
+/* Estilos dos Botões */
 
-    .modal-content {
-      width: 100%;
-      height: 100%;
-      padding: 20px;
-    }
+.btn-primary {
+  background-color: #007bff;
+  border-color: #007bff;
+  color: #fff;
+  font-weight: bold;
+  padding: 10px 20px;
+  border-radius: 5px;
+}
 
-    .modal-body {
-      height: 400px;
-      overflow-y: auto;
-    }
+.btn-primary:hover {
+  background-color: #0069d9;
+  border-color: #0062cc;
+}
 
-    .modal-title {
-      font-size: 24px;
-      font-weight: bold;
-      margin-bottom: 20px;
-    }
+.btn-secondary {
+  background-color: #6c757d;
+  border-color: #6c757d;
+  color: #fff;
+  font-weight: bold;
+  padding: 10px 20px;
+  border-radius: 5px;
+}
 
-    .form-group {
-      margin-bottom: 20px;
-    }
+.btn-secondary:hover {
+  background-color: #5a6268;
+  border-color: #545b62;
+}
 
-    label {
-      font-weight: bold;
-    }
+/* Estilos da Tabela Responsiva */
 
-    textarea {
-      height: 150px;
-    }
-    .btn-primary {
-      background-color: #007bff;
-      border-color: #007bff;
-      color: #fff;
-      font-weight: bold;
-      padding: 10px 20px;
-      border-radius: 5px;
-    }
+.table-responsive::-webkit-scrollbar {
+  width: 8px;
+}
 
-    .btn-primary:hover {
-      background-color: #0069d9;
-      border-color: #0062cc;
-    }
+.table-responsive::-webkit-scrollbar-track {
+  background-color: #f1f1f1;
+}
 
-    .btn-secondary {
-      background-color: #6c757d;
-      border-color: #6c757d;
-      color: #fff;
-      font-weight: bold;
-      padding: 10px 20px;
-      border-radius: 5px;
-    }
+.table-responsive::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 4px;
+}
 
-    .btn-secondary:hover {
-      background-color: #5a6268;
-      border-color: #545b62;
-    }
+.table-responsive::-webkit-scrollbar-thumb:hover {
+  background-color: #555;
+}
 
-    .close {
-      font-size: 28px;
-      font-weight: bold;
-      color: #000;
-    }
+/* Estilos Adicionais */
 
-    .close:hover,
-    .close:focus {
-      color: #000;
-      text-decoration: none;
-      cursor: pointer;
-    }
+.blue-text {
+  color: #4169e1;
+}
+
+.center-icon {
+  display: block;
+  margin: 0 auto;
+}
+
+.logo-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%; /* Ajuste conforme necessário */
+  height: 100%; /* Ajuste conforme necessário */
+  margin: 0 auto;
+}
+
+
 
 </style>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.css">
