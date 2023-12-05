@@ -1304,6 +1304,9 @@ const id_cliente = document.getElementById('id').value;
 
         function desmarcarRascunho() {
             document.getElementById("gerarRascunho").checked = false;
+
+            document.getElementById("id").readOnly = false;
+            document.getElementById("botaoOrcamento").style.display = "block";
         }
         function obterDetalhesFrete() {
           const id = document.getElementById('id').value;
