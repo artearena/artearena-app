@@ -162,7 +162,6 @@
 
     .modal-body {
       height: 400px;
-      overflow-y: auto;
     }
 
     .modal-title {
