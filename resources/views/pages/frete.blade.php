@@ -4,6 +4,28 @@
 @endsection
 @section('style')
 <style>
+  .close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 0;
+    margin: 0;
+    font-size: 21px;
+    font-weight: bold;
+    line-height: 1;
+    text-align: center;
+    text-decoration: none;
+    color: #000;
+    background-color: transparent;
+    border: 0;
+  }
+
+  .close:hover,
+  .close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+  }
     .form-group {
         margin-bottom: 10px;
     }
