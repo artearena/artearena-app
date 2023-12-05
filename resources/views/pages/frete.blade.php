@@ -16,7 +16,7 @@ body {
 
 .modal-dialog {
   margin: 5% auto;
-  max-width: 800px;
+  min-width: 190vh;
 }
 
 .modal-content {
@@ -118,7 +118,6 @@ textarea {
   height: 100%; /* Ajuste conforme necessário */
   margin: 0 auto;
 }
-
 
 
 </style>
