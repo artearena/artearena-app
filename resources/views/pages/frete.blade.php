@@ -855,7 +855,6 @@ const id_cliente = document.getElementById('id').value;
                   <tr>
                     <th style="display: none;">ID</th>
                     <th>Detalhes</th>
-                    <th>CEP Frete</th>
                     <th>Endereço Frete</th>
                     <th>Nome Transportadora</th>
                     <th>Valor Frete</th>
@@ -873,14 +872,15 @@ const id_cliente = document.getElementById('id').value;
               tabelaHtml += `
                 <tr>
                   <td style="display: none;">${orcamento.id}</td>
-                  <td class="descricao-orcamento">${orcamento.detalhes_orcamento}</td>
-                  <td>${orcamento.cep_frete}</td>
+                  <td class="descricao-orcamento">${orcamento.detalhes_orcamento.substring(0, 100)}...</td>
                   <td>${orcamento.endereco_frete}</td>
                   <td>${orcamento.nome_transportadora}</td>
                   <td>${orcamento.valor_frete}</td>
                   <td>${orcamento.prazo_entrega}</td>
                   <td>${orcamento.data_prevista}</td>
-                  <td>${orcamento.logo_frete}</td>
+                  <td>
+                    <img src="${orcamento.logo_frete}" alt="${orcamento.nome_transportadora}" width="100px" height="100px" />
+                  </td>                  
                   <td>
                     <button class="btn btn-primary btn-carregar" onclick="carregarDados(this)">Carregar</button>
                     <button class="btn btn-success btn-criar-pedido" onclick="criarPedido(${orcamento.id})">Cria Pedido</button>
