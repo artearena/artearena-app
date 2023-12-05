@@ -4,222 +4,122 @@
 @endsection
 @section('style')
 <style>
-    .form-group {
-        margin-bottom: 10px;
-    }
-    #cep-form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    }
-    #transp-title {
-        display: flex;
-        justify-content: center;
-      }
-    .form-group{
-        width: 100%;
-        height: auto;
-    }
-    #calcularFrete {
-    width: 30%;
-    height: auto;
-    margin-top: 10px;
-    }
-    .cards-container {
-        display: flex;
-        flex-wrap: wrap;
-    }
+/* Estilos Gerais */
 
-    .card {
-        width: calc(25% - 20px);
-        margin: 10px;
-        padding: 10px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-    }
+body {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+}
 
-    .card.selected {
-        border-color: blue;
-    }
-    .modal-dialog {
-      margin: 5% auto;
-      min-width: 190vh;
-    }
-    .card img {
-        max-width: 20%;
-        height: auto;
-        margin-bottom: 1em;
-    }
-    .container {
-           max-width: 100%;
-    }
+/* Estilos do Modal */
 
-    .details-container h4 {
-        margin-bottom: 10px;
-    }
+.modal-dialog {
+  margin: 5% auto;
+  max-width: 800px;
+}
 
-    #botaoCopiar {
-        float: right;
-        margin-top: 5px;
-    }
+.modal-content {
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+}
 
-    #avisoCopiado {
-        float: right;
-        margin-top: 10px;
-    }
+.modal-body {
+  max-height: 400px;
+  overflow-y: auto;
+}
 
-    .col-md-6 {
-        display: flex;
-        flex-direction: column;
-    }
-    table {
-        width: 100%;
-        border-collapse: collapse;
-    }
-    th, td {
-        padding: 8px;
-        text-align: left;
-        border-bottom: 1px solid #ddd;
-    }
-    th {
-        background-color: #f2f2f2;
-        font-weight: bold;
-        text-align: center;
-    }
-    td {
-        font-size: .9em;
-    }
-    tfoot td {
-        font-weight: bold;
-    }
-    tbody tr:nth-child(even) {
-        background-color: #f5f5f5;
-    }
-    tbody tr:hover {
-        background-color: #ebebeb;
-    }
-    #campoTexto{
-        min-height: 300px;
-    }
-    .radio-container {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-    }
+.modal-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
 
-    .radio-container label {
-        margin-bottom: 0;
-    }
-    P {
-      margin-bottom: 0;
-    }
-    .blue-text {
-      color: #4169e1;
-    }
-    .center-icon {
-      display: block;
-      margin: 0 auto;
-      min-width: none;
-      min-height:
-    }
-    .logo-container {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 1005; /* Defina o tamanho desejado para a div */
-      height: 1005; /* Defina o tamanho desejado para a div */
-      margin: 0 auto; /* Centraliza a div horizontalmente */
-    }
-    #descricaoCardTrello{
-      min-height: 350px;
-    }
-    .table-responsive::-webkit-scrollbar {
-      width: 8px;
-    }
+/* Estilos do Formulário */
 
-    .table-responsive::-webkit-scrollbar-track {
-      background-color: #f1f1f1;
-    }
+.form-group {
+  margin-bottom: 20px;
+}
 
-    .table-responsive::-webkit-scrollbar-thumb {
-      background-color: #888;
-      border-radius: 4px;
-    }
+label {
+  font-weight: bold;
+}
 
-    .table-responsive::-webkit-scrollbar-thumb:hover {
-      background-color: #555;
-    }
-    .descricao-orcamento {
-      min-width: 400px;
-    }
+textarea {
+  height: 150px;
+}
 
-    .modal-content {
-      width: 100%;
-      height: 100%;
-      padding: 20px;
-    }
+/* Estilos dos Botões */
 
-    .modal-body {
-      height: 400px;
-    }
+.btn-primary {
+  background-color: #007bff;
+  border-color: #007bff;
+  color: #fff;
+  font-weight: bold;
+  padding: 10px 20px;
+  border-radius: 5px;
+}
 
-    .modal-title {
-      font-size: 24px;
-      font-weight: bold;
-      margin-bottom: 20px;
-    }
+.btn-primary:hover {
+  background-color: #0069d9;
+  border-color: #0062cc;
+}
 
-    .form-group {
-      margin-bottom: 20px;
-    }
+.btn-secondary {
+  background-color: #6c757d;
+  border-color: #6c757d;
+  color: #fff;
+  font-weight: bold;
+  padding: 10px 20px;
+  border-radius: 5px;
+}
 
-    label {
-      font-weight: bold;
-    }
+.btn-secondary:hover {
+  background-color: #5a6268;
+  border-color: #545b62;
+}
 
-    textarea {
-      height: 150px;
-    }
-    .btn-primary {
-      background-color: #007bff;
-      border-color: #007bff;
-      color: #fff;
-      font-weight: bold;
-      padding: 10px 20px;
-      border-radius: 5px;
-    }
+/* Estilos da Tabela Responsiva */
 
-    .btn-primary:hover {
-      background-color: #0069d9;
-      border-color: #0062cc;
-    }
+.table-responsive::-webkit-scrollbar {
+  width: 8px;
+}
 
-    .btn-secondary {
-      background-color: #6c757d;
-      border-color: #6c757d;
-      color: #fff;
-      font-weight: bold;
-      padding: 10px 20px;
-      border-radius: 5px;
-    }
+.table-responsive::-webkit-scrollbar-track {
+  background-color: #f1f1f1;
+}
 
-    .btn-secondary:hover {
-      background-color: #5a6268;
-      border-color: #545b62;
-    }
+.table-responsive::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 4px;
+}
 
-    .close {
-      font-size: 28px;
-      font-weight: bold;
-      color: #000;
-    }
+.table-responsive::-webkit-scrollbar-thumb:hover {
+  background-color: #555;
+}
 
-    .close:hover,
-    .close:focus {
-      color: #000;
-      text-decoration: none;
-      cursor: pointer;
-    }
+/* Estilos Adicionais */
+
+.blue-text {
+  color: #4169e1;
+}
+
+.center-icon {
+  display: block;
+  margin: 0 auto;
+}
+
+.logo-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%; /* Ajuste conforme necessário */
+  height: 100%; /* Ajuste conforme necessário */
+  margin: 0 auto;
+}
+
+
 
 </style>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.css">
@@ -855,6 +755,7 @@ const id_cliente = document.getElementById('id').value;
                   <tr>
                     <th style="display: none;">ID</th>
                     <th>Detalhes</th>
+                    <th>CEP Frete</th>
                     <th>Endereço Frete</th>
                     <th>Nome Transportadora</th>
                     <th>Valor Frete</th>
@@ -872,15 +773,14 @@ const id_cliente = document.getElementById('id').value;
               tabelaHtml += `
                 <tr>
                   <td style="display: none;">${orcamento.id}</td>
-                  <td class="descricao-orcamento">${orcamento.detalhes_orcamento.substring(0, 100)}...</td>
+                  <td class="descricao-orcamento">${orcamento.detalhes_orcamento}</td>
+                  <td>${orcamento.cep_frete}</td>
                   <td>${orcamento.endereco_frete}</td>
                   <td>${orcamento.nome_transportadora}</td>
                   <td>${orcamento.valor_frete}</td>
                   <td>${orcamento.prazo_entrega}</td>
                   <td>${orcamento.data_prevista}</td>
-                  <td>
-                    <img src="${orcamento.logo_frete}" alt="${orcamento.nome_transportadora}" width="100px" height="100px" />
-                  </td>                  
+                  <td>${orcamento.logo_frete}</td>
                   <td>
                     <button class="btn btn-primary btn-carregar" onclick="carregarDados(this)">Carregar</button>
                     <button class="btn btn-success btn-criar-pedido" onclick="criarPedido(${orcamento.id})">Cria Pedido</button>
