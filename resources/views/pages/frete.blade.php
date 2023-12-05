@@ -362,8 +362,8 @@
                         </div>
                     </div>
                     <div class="col-sm-12 mt-4">
-                        <h4>Detalhes do card</h4>
                         <div class="details-container2">
+                            <h4>Detalhes do card</h4>
                             <div class="form-group">
                                 <label for="tituloCardTrello">Título:</label>
                                 <input type="text" class="form-control" id="tituloCardTrello">
