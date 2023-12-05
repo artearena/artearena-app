@@ -4,223 +4,122 @@
 @endsection
 @section('style')
 <style>
-    .form-group {
-        margin-bottom: 10px;
-    }
-    #cep-form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    }
-    #transp-title {
-        display: flex;
-        justify-content: center;
-      }
-    .form-group{
-        width: 100%;
-        height: auto;
-    }
-    #calcularFrete {
-    width: 30%;
-    height: auto;
-    margin-top: 10px;
-    }
-    .cards-container {
-        display: flex;
-        flex-wrap: wrap;
-    }
+/* Estilos Gerais */
 
-    .card {
-        width: calc(25% - 20px);
-        margin: 10px;
-        padding: 10px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-    }
+body {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+}
 
-    .card.selected {
-        border-color: blue;
-    }
+/* Estilos do Modal */
 
-    .card img {
-        max-width: 20%;
-        height: auto;
-        margin-bottom: 1em;
-    }
-    .container {
-           max-width: 100%;
-    }
+.modal-dialog {
+  margin: 5% auto;
+  max-width: 800px;
+}
 
-    .details-container h4 {
-        margin-bottom: 10px;
-    }
-
-    #botaoCopiar {
-        float: right;
-        margin-top: 5px;
-    }
-
-    #avisoCopiado {
-        float: right;
-        margin-top: 10px;
-    }
-
-    .col-md-6 {
-        display: flex;
-        flex-direction: column;
-    }
-    table {
-        width: 100%;
-        border-collapse: collapse;
-    }
-    th, td {
-        padding: 8px;
-        text-align: left;
-        border-bottom: 1px solid #ddd;
-    }
-    th {
-        background-color: #f2f2f2;
-        font-weight: bold;
-        text-align: center;
-    }
-    td {
-        font-size: .9em;
-    }
-    tfoot td {
-        font-weight: bold;
-    }
-    tbody tr:nth-child(even) {
-        background-color: #f5f5f5;
-    }
-    tbody tr:hover {
-        background-color: #ebebeb;
-    }
-    #campoTexto{
-        min-height: 300px;
-    }
-    .radio-container {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-    }
-
-    .radio-container label {
-        margin-bottom: 0;
-    }
-    P {
-      margin-bottom: 0;
-    }
-    .blue-text {
-      color: #4169e1;
-    }
-    .center-icon {
-      display: block;
-      margin: 0 auto;
-      min-width: none;
-      min-height:
-    }
-    .logo-container {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 1005; /* Defina o tamanho desejado para a div */
-      height: 1005; /* Defina o tamanho desejado para a div */
-      margin: 0 auto; /* Centraliza a div horizontalmente */
-    }
-    #descricaoCardTrello{
-      min-height: 350px;
-    }
-    .table-responsive::-webkit-scrollbar {
-      width: 8px;
-    }
-
-    .table-responsive::-webkit-scrollbar-track {
-      background-color: #f1f1f1;
-    }
-
-    .table-responsive::-webkit-scrollbar-thumb {
-      background-color: #888;
-      border-radius: 4px;
-    }
-
-    .table-responsive::-webkit-scrollbar-thumb:hover {
-      background-color: #555;
-    }
-    .descricao-orcamento {
-      min-width: 400px;
-    }
-    .modal-dialog {
-      margin: 5% auto;
-      max-width: 800px;
-    }
-
-    .modal-content {
-      width: 100%;
-      height: 100%;
-      padding: 20px;
-    }
+.modal-content {
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+}
 
     .modal-body {
       height: 400px;
+      overflow-y: auto;
     }
 
-    .modal-title {
-      font-size: 24px;
-      font-weight: bold;
-      margin-bottom: 20px;
-    }
+.modal-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
 
-    .form-group {
-      margin-bottom: 20px;
-    }
+/* Estilos do Formulário */
 
-    label {
-      font-weight: bold;
-    }
+.form-group {
+  margin-bottom: 20px;
+}
 
-    textarea {
-      height: 150px;
-    }
-    .btn-primary {
-      background-color: #007bff;
-      border-color: #007bff;
-      color: #fff;
-      font-weight: bold;
-      padding: 10px 20px;
-      border-radius: 5px;
-    }
+label {
+  font-weight: bold;
+}
 
-    .btn-primary:hover {
-      background-color: #0069d9;
-      border-color: #0062cc;
-    }
+textarea {
+  height: 150px;
+}
 
-    .btn-secondary {
-      background-color: #6c757d;
-      border-color: #6c757d;
-      color: #fff;
-      font-weight: bold;
-      padding: 10px 20px;
-      border-radius: 5px;
-    }
+/* Estilos dos Botões */
 
-    .btn-secondary:hover {
-      background-color: #5a6268;
-      border-color: #545b62;
-    }
+.btn-primary {
+  background-color: #007bff;
+  border-color: #007bff;
+  color: #fff;
+  font-weight: bold;
+  padding: 10px 20px;
+  border-radius: 5px;
+}
 
-    .close {
-      font-size: 28px;
-      font-weight: bold;
-      color: #000;
-    }
+.btn-primary:hover {
+  background-color: #0069d9;
+  border-color: #0062cc;
+}
 
-    .close:hover,
-    .close:focus {
-      color: #000;
-      text-decoration: none;
-      cursor: pointer;
-    }
+.btn-secondary {
+  background-color: #6c757d;
+  border-color: #6c757d;
+  color: #fff;
+  font-weight: bold;
+  padding: 10px 20px;
+  border-radius: 5px;
+}
+
+.btn-secondary:hover {
+  background-color: #5a6268;
+  border-color: #545b62;
+}
+
+/* Estilos da Tabela Responsiva */
+
+.table-responsive::-webkit-scrollbar {
+  width: 8px;
+}
+
+.table-responsive::-webkit-scrollbar-track {
+  background-color: #f1f1f1;
+}
+
+.table-responsive::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 4px;
+}
+
+.table-responsive::-webkit-scrollbar-thumb:hover {
+  background-color: #555;
+}
+
+/* Estilos Adicionais */
+
+.blue-text {
+  color: #4169e1;
+}
+
+.center-icon {
+  display: block;
+  margin: 0 auto;
+}
+
+.logo-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%; /* Ajuste conforme necessário */
+  height: 100%; /* Ajuste conforme necessário */
+  margin: 0 auto;
+}
+
+
 
 </style>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.css">
@@ -334,7 +233,10 @@
                         <h4>Detalhes do orçamento:</h4>
                         <div class="details-container">
                             <textarea class="form-control" id="campoTexto" rows="5"></textarea>
-                            <button type="button" class="btn btn-primary mt-2" id="botaoOrcamento">Salvar/Enviar Orçamento</button>                
+                            <button type="button" class="btn btn-primary mt-2" id="botaoOrcamento">Salvar/Enviar Orçamento</button>
+                            <button type="button" class="btn btn-primary mt-2" onclick="abrirModalPedidoTiny()">
+                              Criar Pedido
+                            </button>                         
                             <button type="button" class="btn btn-secondary mt-2" id="botaoLimparCampos">Novo Orçamento</button>
                             <button type="button" class="btn btn-primary mt-2" id="botaoCopiar">Copiar</button>
                             <p class="text-success mt-2" id="avisoCopiado" style="display: none;">Copiado com sucesso!</p>
@@ -399,10 +301,83 @@
   </div>
 </div>
 
+<!-- Modal Pedido Tiny -->
+<div class="modal fade" id="modalPedidoTiny" tabindex="-1" role="dialog" aria-labelledby="modalPedidoTinyLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalPedidoTinyLabel">Modal Pedido Tiny</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <!-- Conteúdo do modal Pedido Tiny -->
+        <form id="pedidoForm">
+          <div class="form-group">
+            <label for="cliente_id">ID do Cliente:</label>
+            <input type="text" class="form-control" id="cliente_id" name="cliente_id">
+          </div>
+          <div class="form-group">
+            <label for="Vendedor">Vendedor:</label>
+            <input type="text" class="form-control" id="vendedor" name="vendedor">
+          </div>
+          <div class="form-group">
+            <label for="forma_pagamento">Forma de Pagamento:</label>
+            <input type="text" class="form-control" id="forma_pagamento" name="forma_pagamento">
+          </div>
+          <div class="form-group">
+            <label for="transportadora">Transportadora:</label>
+            <input type="text" class="form-control" id="transportadora" name="transportadora">
+          </div>
+          <div class="form-group">
+            <label for="valor_frete">Valor do Frete:</label>
+            <input type="text" class="form-control" id="valor_frete" name="valor_frete">
+          </div>
+          <div class="form-group">
+            <label for="observacao">Observação:</label>
+            <input type="text" class="form-control" id="observacao" name="observacao">
+          </div>
+          <div class="form-group">
+            <label for="marcador">Marcador:</label>
+            <input type="text" class="form-control" id="marcador" name="marcador">
+          </div>
+          <div class="form-group">
+            <label for="data_venda">Data da Venda:</label>
+            <input type="datetime-local" class="form-control" id="data_venda" name="data_venda">
+          </div>
+
+
+          <!-- Tabela para exibir os produtos adicionados -->
+          <table class="table mt-4">
+            <thead>
+              <tr>
+                <th>Nome do Produto</th>
+                <th>Quantidade</th>
+                <th>Preço Unitário</th>
+                <th>Ação</th>
+              </tr>
+            </thead>
+            <tbody id="produtosTableBody">
+              <!-- Linhas da tabela para exibir os produtos adicionados -->
+            </tbody>
+          </table>
+
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+        <button type="button" class="btn btn-primary" id="salvarPedido">Salvar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 @endsection
 @section('extraScript')
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+  <script src="https://dnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
   <script>
+   
     $(function() {
       const botaoCardTrello = document.getElementById('botaoCardTrello');
       botaoCardTrello.addEventListener('click', gerarCard);
@@ -1305,6 +1280,18 @@ const id_cliente = document.getElementById('id').value;
 </script>
 
 <script>
+  function abrirModalPedidoTiny() {
+    const transportadora = obterDetalhesTransportadora();
+    var cliente_id = document.getElementById("id").value;
+    var nome_transportadora = transportadora.nomeTransportadora;
+    adicionarProduto();
+    
+    document.getElementById("cliente_id").value = cliente_id;
+    document.getElementById("transportadora").value = nome_transportadora;
+    document.getElementById("valor_frete").value = transportadora.valorFrete;
+
+    $("#modalPedidoTiny").modal("show");
+  }
    // Array para armazenar os produtos adicionados
     var produtos = [];
 
@@ -1394,6 +1381,8 @@ const id_cliente = document.getElementById('id').value;
       }
     });
 
+    // Fechar o modal
+    $("#modalPedidoTiny").modal("hide");
   });
 </script>
 <script>
