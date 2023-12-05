@@ -1296,6 +1296,10 @@ const id_cliente = document.getElementById('id').value;
         }
         function desmarcarOrcamento() {
             document.getElementById("gerarOrcamento").checked = false;
+
+            document.getElementById("id").value = "";
+            document.getElementById("id").readOnly = true;
+            document.getElementById("botaoOrcamento").style.display = "none";
         }
 
         function desmarcarRascunho() {
