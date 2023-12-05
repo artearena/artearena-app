@@ -363,7 +363,7 @@
                     </div>
                     <div class="col-sm-12 mt-4">
                         <h4>Detalhes do card</h4>
-                        <div class="details-container">
+                        <div class="details-container2">
                             <div class="form-group">
                                 <label for="tituloCardTrello">Título:</label>
                                 <input type="text" class="form-control" id="tituloCardTrello">
@@ -1300,7 +1300,7 @@ const id_cliente = document.getElementById('id').value;
             document.getElementById("id").value = "";
             document.getElementById("id").readOnly = true;
             document.getElementById("botaoOrcamento").style.display = "none";
-            document.querySelector('.details-container').style.display = 'none';
+            document.querySelector('.details-container2').style.display = 'none';
 
         }
 
@@ -1309,7 +1309,7 @@ const id_cliente = document.getElementById('id').value;
 
             document.getElementById("id").readOnly = false;
             document.getElementById("botaoOrcamento").style.display = "block";
-            document.querySelector('.details-container').style.display = 'block';
+            document.querySelector('.details-container2').style.display = 'block';
 
         }
         function obterDetalhesFrete() {
