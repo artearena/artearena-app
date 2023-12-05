@@ -1300,6 +1300,8 @@ const id_cliente = document.getElementById('id').value;
             document.getElementById("id").value = "";
             document.getElementById("id").readOnly = true;
             document.getElementById("botaoOrcamento").style.display = "none";
+            document.querySelector('.details-container').style.display = 'none';
+
         }
 
         function desmarcarRascunho() {
@@ -1307,6 +1309,8 @@ const id_cliente = document.getElementById('id').value;
 
             document.getElementById("id").readOnly = false;
             document.getElementById("botaoOrcamento").style.display = "block";
+            document.querySelector('.details-container').style.display = 'block';
+
         }
         function obterDetalhesFrete() {
           const id = document.getElementById('id').value;
