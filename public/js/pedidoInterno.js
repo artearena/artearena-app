@@ -139,6 +139,10 @@ function salvarPedido(pedidoId, dataVenda) {
             .then(response => response.json())
             .then(clienteData => {
               // Mapeia o clienteData para o formato esperado pela API do Tiny
+              var pedidoRow = this.closest('.pedido-row');
+              // Obtenha o valor do marcador
+              var marcadorValue = pedidoRow.querySelector('td:nth-child(9)').textContent;
+      
               const pedidoData = {
                 pedido: {
                   cliente: {
@@ -165,7 +169,7 @@ function salvarPedido(pedidoId, dataVenda) {
                       },
                     };
                   }),
-                  marcadores: document.getElementById('marcador').value, // Adicione a propriedade 'marcadores' com o valor selecionado do combo
+                  marcadores: marcadorValue, // Adicione a propriedade 'marcadores' com o valor selecionado do combo
                   data_pedido: dataVenda,
                 },
               };
@@ -217,7 +221,7 @@ document.addEventListener("DOMContentLoaded", function() {
   $(".btn-confirmar-pedido").click(function() {
     const pedidoId = $(this).closest(".pedido-row").data("pedido-id");
     const dataVenda = $(this).closest(".pedido-row").find("td:nth-child(10)").text();
-
+    console.log(dataVenda);
     // Chame a função para salvar o pedido
     salvarPedido(pedidoId,dataVenda);
   });
