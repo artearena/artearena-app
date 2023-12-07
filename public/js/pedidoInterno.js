@@ -100,7 +100,6 @@ function salvarPedido(pedidoId, dataVenda) {
         alert('Nenhum produto encontrado no pedido. Por favor, adicione produtos ao pedido.');
         return;
       }
-
       // Mapeia a lista de produtos do pedido para obter códigos de todos os produtos
       const promessasProdutos = data.map(produtoPedido => {
         // Segunda requisição para buscar produto pelo nome
@@ -127,13 +126,11 @@ function salvarPedido(pedidoId, dataVenda) {
             return null;
           });
       });
-
       // Aguarda todas as promessas serem resolvidas
       Promise.all(promessasProdutos)
         .then(produtosValidos => {
           // Filtra os produtos encontrados, removendo os nulos
           const produtosFiltrados = produtosValidos.filter(produto => produto !== null);
-
           // Terceira requisição para obter dados do cliente
           fetch('/cadastro/show/' + pedidoId)
             .then(response => response.json())
@@ -165,11 +162,10 @@ function salvarPedido(pedidoId, dataVenda) {
                       },
                     };
                   }),
-                 // marcadores[]
+                  marcadores: document.getElementById('marcador').value, // Adicione a propriedade 'marcadores' com o valor selecionado do combo
                   data_pedido: dataVenda,
                 },
               };
-
               // Quarta requisição para salvar o pedido
               fetch('https://artearena.kinghost.net/criar-pedido-tiny', {
                 method: 'POST',
@@ -203,8 +199,6 @@ function salvarPedido(pedidoId, dataVenda) {
       alert('Erro ao obter os produtos do pedido. Por favor, tente novamente.');
     });
 }
-
-
 // Evento de clique no botão "Confirmar Pedido"
 document.addEventListener('click', function(event) {
   if (event.target.classList.contains('btn-confirmar-pedido')) {
