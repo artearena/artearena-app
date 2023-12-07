@@ -165,7 +165,7 @@ function salvarPedido(pedidoId, dataVenda) {
                       },
                     };
                   }),
-                  marcadores[]
+                  marcadores: document.getElementById('marcador').value, // Adicione a propriedade 'marcadores' com o valor selecionado do combo
                   data_pedido: dataVenda,
                 },
               };
