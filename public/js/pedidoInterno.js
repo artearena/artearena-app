@@ -90,7 +90,7 @@ function confirmarLink(link) {
       return false; // Cancela o evento de clique
   }
 }
-function salvarPedido(pedidoId, dataVenda) {
+function salvarPedido(pedidoId, dataVenda, marcadorValue) {
   // Primeira requisição para obter produtos do pedido
   fetch('/pedidoInterno/get-produtos-pedido/' + pedidoId)
     .then(response => response.json())
@@ -138,11 +138,7 @@ function salvarPedido(pedidoId, dataVenda) {
           fetch('/cadastro/show/' + pedidoId)
             .then(response => response.json())
             .then(clienteData => {
-              // Mapeia o clienteData para o formato esperado pela API do Tiny
-              var pedidoRow = this.closest('.pedido-row');
-              // Obtenha o valor do marcador
-              var marcadorValue = pedidoRow.querySelector('td:nth-child(9)').textContent;
-      
+
               const pedidoData = {
                 pedido: {
                   cliente: {
@@ -220,10 +216,10 @@ document.addEventListener('click', function(event) {
 document.addEventListener("DOMContentLoaded", function() {
   $(".btn-confirmar-pedido").click(function() {
     const pedidoId = $(this).closest(".pedido-row").data("pedido-id");
+    const marcadorValue = $(this).closest(".pedido-row").find("td:nth-child(9)").text();
     const dataVenda = $(this).closest(".pedido-row").find("td:nth-child(10)").text();
-    console.log(dataVenda);
-    // Chame a função para salvar o pedido
-    salvarPedido(pedidoId,dataVenda);
+    
+    salvarPedido(pedidoId,dataVenda, marcadorValue);
   });
 
   const btnConsultarListaUniforme = document.getElementsByClassName('btn-consultar-lista-uniforme');

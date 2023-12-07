@@ -123,7 +123,6 @@
         
     <div class="alert-table">
     <h2 class="red-text text-center">Alertas</h2>
-    <div class="alert-table">
         <table id="alertasTable" class="dataTable">
             <thead>
                 <tr>
@@ -159,7 +158,6 @@
                 @endisset
             </tbody>
         </table>
-    </div>
     </div>
         <hr>
         
