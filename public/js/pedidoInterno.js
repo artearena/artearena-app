@@ -165,6 +165,7 @@ function salvarPedido(pedidoId, dataVenda) {
                       },
                     };
                   }),
+                 // marcadores[]
                   data_pedido: dataVenda,
                 },
               };
