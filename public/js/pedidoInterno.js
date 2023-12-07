@@ -165,7 +165,14 @@ function salvarPedido(pedidoId, dataVenda, marcadorValue) {
                       },
                     };
                   }),
-                  marcadores: marcadorValue, // Adicione a propriedade 'marcadores' com o valor selecionado do combo
+                  marcadores: [
+                    {
+                      marcador: {
+                        id: 1, // ID do marcador
+                        descricao: marcadorValue, // Valor do marcador selecionado
+                      },
+                    },
+                  ],                  
                   data_pedido: dataVenda,
                 },
               };
