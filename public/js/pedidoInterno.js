@@ -90,8 +90,26 @@ function confirmarLink(link) {
       return false; // Cancela o evento de clique
   }
 }
+function formatarData(data) {
+  var dataObjeto = new Date(data);
+  var dia = dataObjeto.getDate();
+  var mes = dataObjeto.getMonth() + 1; // Lembrando que os meses em JavaScript são indexados a partir de 0
+  var ano = dataObjeto.getFullYear();
+
+  // Adiciona zeros à esquerda se necessário
+  if (dia < 10) {
+    dia = '0' + dia;
+  }
+  if (mes < 10) {
+    mes = '0' + mes;
+  }
+
+  return dia + '/' + mes + '/' + ano;
+}
 function salvarPedido(pedidoId, dataVenda, marcadorValue) {
   // Primeira requisição para obter produtos do pedido
+  var dataVenda = formatarData(dataVenda);
+
   fetch('/pedidoInterno/get-produtos-pedido/' + pedidoId)
     .then(response => response.json())
     .then(data => {
