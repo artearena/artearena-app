@@ -128,8 +128,6 @@ document.addEventListener("DOMContentLoaded", function() {
         <label for="marcador">Marcador:</label>
         <select class="form-control" id="marcador" name="marcador">
           <option value="">Selecione um marcador</option>
-          <option value="Configuração de marcadores">Configuração de marcadores</option>
-          <option value="Pedidos de venda">Pedidos de venda</option>
           <option value="ADM - TERCEIRIZADO EM IMPRESSÃO">ADM - TERCEIRIZADO EM IMPRESSÃO</option>
           <option value="ADM - TERCEIRIZADO EM PRODUÇÃO">ADM - TERCEIRIZADO EM PRODUÇÃO</option>
           <option value="ADM - TERCEIRZADO">ADM - TERCEIRZADO</option>
