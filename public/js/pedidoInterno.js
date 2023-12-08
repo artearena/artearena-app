@@ -109,6 +109,7 @@ function formatarData(data) {
 function salvarPedido(pedidoId, dataVenda, marcadorValue, dataEnvio) {
   // Primeira requisição para obter produtos do pedido
   var dataVenda = formatarData(dataVenda);
+  var dataEnvio = formatarData(dataEnvio);
   fetch('/pedidoInterno/get-produtos-pedido/' + pedidoId)
     .then(response => response.json())
     .then(data => {
