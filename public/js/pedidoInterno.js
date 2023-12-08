@@ -106,7 +106,7 @@ function formatarData(data) {
 
   return dia + '/' + mes + '/' + ano;
 }
-function salvarPedido(pedidoId, dataVenda, marcadorValue) {
+function salvarPedido(pedidoId, dataVenda, marcadorValue, dataEnvio) {
   // Primeira requisição para obter produtos do pedido
   var dataVenda = formatarData(dataVenda);
   fetch('/pedidoInterno/get-produtos-pedido/' + pedidoId)
@@ -187,6 +187,7 @@ function salvarPedido(pedidoId, dataVenda, marcadorValue) {
                     },
                   ],
                   data_pedido: dataVenda,
+                  data_prevista: dataEnvio,
                 },
               };
               console.log(pedidoData);
@@ -235,7 +236,7 @@ function salvarPedido(pedidoId, dataVenda, marcadorValue) {
         const dataVenda = $(this).closest(".pedido-row").find("td:nth-child(10)").text();
         Swal.fire({
           title: 'Confirmar Pedido',
-          html: '<label for="data-envio">Data de envio</label><input type="date" id="data-envio" class="swal2-input">',
+          html: '<label for="data-envio">Data prevista</label><input type="date" id="data-envio" class="swal2-input">',
           icon: 'question',
           showCancelButton: true,
           confirmButtonText: 'Confirmar',
