@@ -190,7 +190,7 @@ function salvarPedido(pedidoId, dataVenda, marcadorValue) {
                 },
               };
               console.log(pedidoData);
-              // Quarta requisição para salvar o pedido
+              
               fetch('https://artearena.kinghost.net/criar-pedido-tiny', {
                 method: 'POST',
                 headers: {
@@ -201,11 +201,15 @@ function salvarPedido(pedidoId, dataVenda, marcadorValue) {
                 .then(response => response.json())
                 .then(data => {
                   console.log('Resposta da API:', data);
-                  Swal.fire('Sucesso', 'Pedido salvo com sucesso!', 'success');
+                  if (data.status === "OK" && data.registros.registro.status === "OK") {
+                    Swal.fire('Sucesso', 'Pedido salvo com sucesso!', 'success');
+                  } else {
+                    throw new Error('Erro ao salvar o pedido. Por favor, tente novamente.');
+                  }
                 })
                 .catch(error => {
                   console.error('Erro na requisição POST:', error);
-                  Swal.fire('Erro', 'Erro ao salvar o pedido. Por favor, tente novamente.', 'error');
+                  Swal.fire('Erro', error.message, 'error');
                 });
             })
             .catch(error => {
