@@ -135,6 +135,10 @@ class CadastroController extends Controller
     {
         return view('pages.cadastro.sucesso');
     }
+    public function acessonegado()
+    {
+        return view('pages.cadastro.acessonegado');
+    }
     public function invalidateToken($token)
     {
         // Remove o token do banco de dados
