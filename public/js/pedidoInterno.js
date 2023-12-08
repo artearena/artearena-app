@@ -229,32 +229,7 @@ function salvarPedido(pedidoId, dataVenda, marcadorValue) {
 }
 
 document.addEventListener("DOMContentLoaded", function() {
-  $(".btn-confirmar-pedido").click(function() {
-    const pedidoId = $(this).closest(".pedido-row").data("pedido-id");
-    const marcadorValue = $(this).closest(".pedido-row").find("td:nth-child(9)").text();
-    const dataVenda = $(this).closest(".pedido-row").find("td:nth-child(10)").text();
-  
-    Swal.fire({
-      title: 'Confirmar Pedido',
-      html: '<input type="date" id="data-envio" class="swal2-input">',
-      icon: 'question',
-      showCancelButton: true,
-      confirmButtonText: 'Confirmar',
-      cancelButtonText: 'Cancelar',
-      preConfirm: () => {
-        const dataEnvio = document.getElementById('data-envio').value;
-        if (!dataEnvio) {
-          Swal.showValidationMessage('Por favor, selecione a data de envio');
-        }
-        return dataEnvio;
-      }
-    }).then((result) => {
-      if (result.isConfirmed) {
-        const dataEnvio = result.value;
-        salvarPedido(pedidoId, dataVenda, marcadorValue, dataEnvio);
-      }
-    });
-  });
+  <label for="data-envio">Data de envio</label>
   const btnConsultarListaUniforme = document.getElementsByClassName('btn-consultar-lista-uniforme');
   for (let i = 0; i < btnConsultarListaUniforme.length; i++) {
     btnConsultarListaUniforme[i].addEventListener('click', function() {
