@@ -109,7 +109,7 @@ function formatarData(data) {
 function salvarPedido(pedidoId, dataVenda, marcadorValue) {
   // Primeira requisição para obter produtos do pedido
   var dataVenda = formatarData(dataVenda);
-  console.log(dataVenda);
+
   fetch('/pedidoInterno/get-produtos-pedido/' + pedidoId)
     .then(response => response.json())
     .then(data => {
@@ -266,7 +266,24 @@ document.addEventListener("DOMContentLoaded", function() {
       fetch('/gerarLinkCadastroCliente?pedidoId=' + pedidoId)
         .then(response => response.json())
         .then(data => {
-          alert('link temporario: ' + data.link);
+          Swal.fire({
+            title: 'Link temporário',
+            text: data.link,
+            showCancelButton: true,
+            confirmButtonText: 'Copiar link',
+            cancelButtonText: 'Fechar',
+          }).then((result) => {
+            if (result.isConfirmed) {
+              // Copiar o link para a área de transferência
+              const el = document.createElement('textarea');
+              el.value = data.link;
+              document.body.appendChild(el);
+              el.select();
+              document.execCommand('copy');
+              document.body.removeChild(el);
+              Swal.fire('Link copiado!', '', 'success');
+            }
+          });
         });
     });
   }
