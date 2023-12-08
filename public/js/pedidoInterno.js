@@ -236,14 +236,22 @@ document.addEventListener("DOMContentLoaded", function() {
   
     Swal.fire({
       title: 'Confirmar Pedido',
-      text: 'Deseja realmente salvar o pedido?',
+      html: '<input type="date" id="data-envio" class="swal2-input">',
       icon: 'question',
       showCancelButton: true,
       confirmButtonText: 'Confirmar',
       cancelButtonText: 'Cancelar',
+      preConfirm: () => {
+        const dataEnvio = document.getElementById('data-envio').value;
+        if (!dataEnvio) {
+          Swal.showValidationMessage('Por favor, selecione a data de envio');
+        }
+        return dataEnvio;
+      }
     }).then((result) => {
       if (result.isConfirmed) {
-        salvarPedido(pedidoId, dataVenda, marcadorValue);
+        const dataEnvio = result.value;
+        salvarPedido(pedidoId, dataVenda, marcadorValue, dataEnvio);
       }
     });
   });
