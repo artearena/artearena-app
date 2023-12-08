@@ -109,16 +109,14 @@ function formatarData(data) {
 function salvarPedido(pedidoId, dataVenda, marcadorValue) {
   // Primeira requisição para obter produtos do pedido
   var dataVenda = formatarData(dataVenda);
-
   fetch('/pedidoInterno/get-produtos-pedido/' + pedidoId)
     .then(response => response.json())
     .then(data => {
       if (data.length === 0) {
         console.error('Nenhum produto encontrado no pedido.');
-        alert('Nenhum produto encontrado no pedido. Por favor, adicione produtos ao pedido.');
+        Swal.fire('Erro', 'Nenhum produto encontrado no pedido. Por favor, adicione produtos ao pedido.', 'error');
         return;
       }
-
       // Mapeia a lista de produtos do pedido para obter códigos de todos os produtos
       const promessasProdutos = data.map(produtoPedido => {
         // Segunda requisição para buscar produto pelo nome
@@ -135,28 +133,25 @@ function salvarPedido(pedidoId, dataVenda, marcadorValue) {
               };
             } else {
               console.error(`Produto não encontrado: ${produtoPedido.produto_nome}`);
-              alert(`Produto não encontrado: ${produtoPedido.produto_nome}. Por favor, verifique o nome do produto.`);
+              Swal.fire('Erro', `Produto não encontrado: ${produtoPedido.produto_nome}. Por favor, verifique o nome do produto.`, 'error');
               return null;
             }
           })
           .catch(error => {
             console.error('Erro ao buscar produto por nome:', error);
-            alert('Erro ao buscar produto por nome. Por favor, tente novamente.');
+            Swal.fire('Erro', 'Erro ao buscar produto por nome. Por favor, tente novamente.', 'error');
             return null;
           });
       });
-
       // Aguarda todas as promessas serem resolvidas
       Promise.all(promessasProdutos)
         .then(produtosValidos => {
           // Filtra os produtos encontrados, removendo os nulos
           const produtosFiltrados = produtosValidos.filter(produto => produto !== null);
-
           // Terceira requisição para obter dados do cliente
           fetch('/cadastro/show/' + pedidoId)
             .then(response => response.json())
             .then(clienteData => {
-
               const pedidoData = {
                 pedido: {
                   cliente: {
@@ -190,7 +185,7 @@ function salvarPedido(pedidoId, dataVenda, marcadorValue) {
                         descricao: marcadorValue, // Valor do marcador selecionado
                       },
                     },
-                  ],                  
+                  ],
                   data_pedido: dataVenda,
                 },
               };
@@ -206,37 +201,28 @@ function salvarPedido(pedidoId, dataVenda, marcadorValue) {
                 .then(response => response.json())
                 .then(data => {
                   console.log('Resposta da API:', data);
-                  alert('Pedido salvo com sucesso!');
+                  Swal.fire('Sucesso', 'Pedido salvo com sucesso!', 'success');
                 })
                 .catch(error => {
                   console.error('Erro na requisição POST:', error);
-                  alert('Erro ao salvar o pedido. Por favor, tente novamente.');
+                  Swal.fire('Erro', 'Erro ao salvar o pedido. Por favor, tente novamente.', 'error');
                 });
             })
             .catch(error => {
               console.error('Erro ao obter dados do cliente:', error);
-              alert('Erro ao obter os dados do cliente. Por favor, tente novamente.');
+              Swal.fire('Erro', 'Erro ao obter os dados do cliente. Por favor, tente novamente.', 'error');
             });
         })
         .catch(error => {
           console.error('Erro ao buscar códigos dos produtos:', error);
-          alert('Erro ao buscar códigos dos produtos. Por favor, tente novamente.');
+          Swal.fire('Erro', 'Erro ao buscar códigos dos produtos. Por favor, tente novamente.', 'error');
         });
     })
     .catch(error => {
       console.error('Erro ao obter produtos do pedido:', error);
-      alert('Erro ao obter os produtos do pedido. Por favor, tente novamente.');
+      Swal.fire('Erro', 'Erro ao obter os produtos do pedido. Por favor, tente novamente.', 'error');
     });
 }
-
-
-// Evento de clique no botão "Confirmar Pedido"
-document.addEventListener('click', function(event) {
-  if (event.target.classList.contains('btn-confirmar-pedido')) {
-    // Obtenha o ID do pedido a partir do atributo data-pedido-id
-    
-  }
-});
 
 document.addEventListener("DOMContentLoaded", function() {
   $(".btn-confirmar-pedido").click(function() {
