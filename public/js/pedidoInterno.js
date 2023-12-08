@@ -229,7 +229,24 @@ function salvarPedido(pedidoId, dataVenda, marcadorValue) {
 }
 
 document.addEventListener("DOMContentLoaded", function() {
-  <label for="data-envio">Data de envio</label>
+  $(".btn-confirmar-pedido").click(function() {
+    const pedidoId = $(this).closest(".pedido-row").data("pedido-id");
+    const marcadorValue = $(this).closest(".pedido-row").find("td:nth-child(9)").text();
+    const dataVenda = $(this).closest(".pedido-row").find("td:nth-child(10)").text();
+  
+    Swal.fire({
+      title: 'Confirmar Pedido',
+      text: 'Deseja realmente salvar o pedido?',
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonText: 'Confirmar',
+      cancelButtonText: 'Cancelar',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        salvarPedido(pedidoId, dataVenda, marcadorValue);
+      }
+    });
+  });
   const btnConsultarListaUniforme = document.getElementsByClassName('btn-consultar-lista-uniforme');
   for (let i = 0; i < btnConsultarListaUniforme.length; i++) {
     btnConsultarListaUniforme[i].addEventListener('click', function() {
