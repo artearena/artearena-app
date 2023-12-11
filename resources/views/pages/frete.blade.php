@@ -242,7 +242,11 @@
       text-decoration: none;
       cursor: pointer;
     }
-
+    .containergg{
+      justify-content: space-between; 
+      align-items: center;
+      display: flex;
+    }
 </style>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.css">
 
@@ -259,7 +263,7 @@
     <div class="container mt-4">
         <h1>Gerar Orçamentos</h1>
         <hr>
-        <div class="row">
+        <div class="row containergg">
             <div class="col-md-6">
                 <form id="opt-octa-form" method="POST" action="">
                     <div class="form-group">
