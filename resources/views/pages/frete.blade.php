@@ -309,7 +309,7 @@
                         </div>
                     </div>
                     <div class="table-responsive">
-                      <table class="table mt-4">
+                      <table class="table">
                         <thead>
                           <tr>
                             <th hidden>ID</th>
@@ -355,13 +355,13 @@
                         <h4>Detalhes do orçamento:</h4>
                         <div class="details-container">
                             <textarea class="form-control" id="campoTexto" rows="5"></textarea>
-                            <button type="button" class="btn btn-primary mt-2" id="botaoOrcamento">Salvar/Enviar Orçamento</button>                
-                            <button type="button" class="btn btn-secondary mt-2" id="botaoLimparCampos">Novo Orçamento</button>
-                            <button type="button" class="btn btn-primary mt-2" id="botaoCopiar">Copiar</button>
-                            <p class="text-success mt-2" id="avisoCopiado" style="display: none;">Copiado com sucesso!</p>
+                            <button type="button" class="btn btn-primary" id="botaoOrcamento">Salvar/Enviar Orçamento</button>                
+                            <button type="button" class="btn btn-secondary" id="botaoLimparCampos">Novo Orçamento</button>
+                            <button type="button" class="btn btn-primary" id="botaoCopiar">Copiar</button>
+                            <p class="text-success" id="avisoCopiado" style="display: none;">Copiado com sucesso!</p>
                         </div>
                     </div>
-                    <div class="col-sm-12 mt-4">
+                    <div class="col-sm-12">
                         <div class="details-container2">
                             <h4>Detalhes do card</h4>
                             <div class="form-group">
@@ -372,7 +372,7 @@
                                 <label for="descricaoCardTrello">Descrição:</label>
                                 <textarea class="form-control" id="descricaoCardTrello" rows="5"></textarea>
                             </div>
-                            <button type="button" class="btn btn-primary mt-2" id="botaoCardTrello">Gerar Card</button>
+                            <button type="button" class="btn btn-primary" id="botaoCardTrello">Gerar Card</button>
                         </div>
                     </div>
                 </div>
