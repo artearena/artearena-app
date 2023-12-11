@@ -76,6 +76,7 @@
            max-width: 100%;
            display: flex;
            justify-content: space-between;
+           flex-wrap: wrap;
     }
 
     .details-container h4 {
