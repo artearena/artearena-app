@@ -74,6 +74,8 @@
     }
     .container {
            max-width: 100%;
+           display: flex;
+           justify-content: space-between;
     }
 
     .details-container h4 {
@@ -242,11 +244,6 @@
       text-decoration: none;
       cursor: pointer;
     }
-    .containergg{
-      justify-content: space-between; 
-      align-items: center;
-      display: flex;
-    }
 </style>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.css">
 
@@ -260,10 +257,9 @@
 
 @section('content')
 <div class="container">
-    <div class="container mt-4">
         <h1>Gerar Orçamentos</h1>
         <hr>
-        <div class="row containergg">
+        <div class="row">
             <div class="col-md-6">
                 <form id="opt-octa-form" method="POST" action="">
                     <div class="form-group">
