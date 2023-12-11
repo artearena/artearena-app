@@ -24,9 +24,6 @@
         </select>
     </div>
 
-
-
-
     <div class="mb-3">
         <label for="email" class="form-label">E-mail:</label>
         <input type="email" class="form-control" name="email" id="email" required>

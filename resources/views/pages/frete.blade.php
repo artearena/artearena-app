@@ -349,7 +349,7 @@
                 </div>
                 <button type="button" class="btn btn-primary" id="calcularFrete">Calcular</button>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-4">
                 <div class="row">
                     <div class="col-sm-12">
                         <h4>Detalhes do orçamento:</h4>
