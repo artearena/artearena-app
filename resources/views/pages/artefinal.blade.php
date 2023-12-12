@@ -845,7 +845,7 @@ $.ajaxSetup({
             success: function(response) {
                 // Agora, você pode usar o ID do pedido para buscar mais detalhes
                 $.ajax({
-                    url: '/buscar-pedido?id=' + id,
+                    url: '/buscar-pedido?numeroPedido=' + id,
                     method: 'GET',
                     success: function(response) {
 
