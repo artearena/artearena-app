@@ -197,8 +197,8 @@ Consulta de Pedidos
                                     <input type="number" step="0.01" class="form-control" name="medida_linear" id="medida_linear">
                                 </div>
                                 <div class="form-row">
-                                    <label for="observacoes">Observações:</label>
-                                    <textarea class="form-control full-width" name="observacoes" id="observacoes"></textarea>
+                                    <label for="observacao_reposicao">Observações:</label>
+                                    <textarea class="form-control full-width" name="observacao_reposicao" id="observacao_reposicao"></textarea>
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -282,7 +282,7 @@ Consulta de Pedidos
 
                                 <td><input type='number' step='0.01' class='form-control' name='medida_linear' value="{{ $pedido->medida_linear }}"></td>
                                 <td class="expandir-observacoes">
-                                    <input type="text" class="form-control observacoes-field" name="observacoes" value="{{ $pedido->observacoes }}">
+                                    <input type="text" class="form-control observacoes-field" name="observacao_reposicao" value="{{ $pedido->observacao_reposicao }}">
                                 </td>
 
                                 <td>
@@ -496,7 +496,7 @@ $(document).ready(function(){
         var produto = $('#produto').val();
         var material = $('#material').val();
         var medida_linear = $('#medida_linear').val();
-        var observacoes = $('#observacoes').val();
+        var observacao_reposicao = $('#observacao_reposicao').val();
         var status = $('#status').val();
         var rolo = $('#rolo').val();
         var tiny = $('#tiny').val();
@@ -513,7 +513,7 @@ $(document).ready(function(){
                 produto: produto,
                 material: material,
                 medida_linear: medida_linear,
-                observacoes: observacoes,
+                observacao_reposicao: observacao_reposicao,
                 status: status,
                 rolo: rolo,
                     tiny: tiny,
@@ -535,7 +535,7 @@ $(document).ready(function(){
                 newRow += '<td>' + response.pedido.produto + '</td>';
                 newRow += '<td>' + response.pedido.material + '</td>';
                 newRow += '<td>' + response.pedido.medida_linear + '</td>';
-                newRow += '<td>' + response.pedido.observacoes + '</td>';
+                newRow += '<td>' + response.pedido.observacao_reposicao + '</td>';
                 newRow += '<td>' + response.pedido.status + '</td>';
                 newRow += '<td>' + response.pedido.rolo + '</td>';
                 newRow += '<td>' + response.pedido.tiny + '</td>';
