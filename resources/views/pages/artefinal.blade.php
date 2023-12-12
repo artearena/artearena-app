@@ -863,20 +863,16 @@ $.ajaxSetup({
             },
             success: function(response) {
                 // Extrair o ID do pedido da resposta
-                var pedidoId = response.pedido_id;
+                var pedidoId = response.pedido.id;
 
                 // Agora, você pode usar o ID do pedido para buscar mais detalhes
                 $.ajax({
                     url: '/buscar-pedido?id=' + pedidoId,
                     method: 'GET',
                     success: function(response) {
-                    // Extrair o ID do pedido da resposta
-                    var pedidoId = response.pedido.id; // Alterado para acessar o ID diretamente do objeto 'pedido'
-
-                    // Resto do seu código para buscar mais detalhes se necessário
 
                     // Exemplo de como usar o ID do pedido
-                    console.log('ID do pedido:', pedidoId);
+                    console.log('resposta do pedido' + response);
 
                     Swal.fire({
                         title: 'Sucesso!',
