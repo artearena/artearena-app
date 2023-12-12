@@ -247,9 +247,9 @@ Consulta de Pedidos
 
 @section('content')
 <meta name="csrf-token" content="{{ csrf_token() }}">
-<!-- <h2>Modal com Barra de Progresso</h2>
+<h2>Modal com Barra de Progresso</h2>
     <button onclick="openModal()">Abrir Modal</button>
-     -->
+    
 <div class="container-fluid">
     <div class="row">
         <main role="main" class="col-md-10">
