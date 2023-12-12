@@ -240,7 +240,7 @@ Consulta de Pedidos
                                 <th data-filter="true">Produto</th>
                                 <th data-filter="true">Material</th>
                                 <th data-filter="true">Medida Linear</th>
-                                <th data-filter="true">Observações</th>
+                                <th data-filter="true">Observações de Reposição</th>
                                 <th data-filter="true">Status</th>
                                 <th data-filter="true">Rolo</th>
                                 <th>Mover</th>
