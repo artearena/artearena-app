@@ -87,8 +87,6 @@ class PedidoController extends Controller
         // Faça a lógica para buscar os dados do pedido com base no número fornecido
         $pedido = Pedido::where('id', $numeroPedido)->first();
         // Retorne os dados do pedido como uma resposta JSON
-        dd($numeroPedido);
-        dd($pedido);
         if (!$pedido) {
             return response()->json([
                 'error' => 'Pedido não encontrado'
