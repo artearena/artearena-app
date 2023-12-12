@@ -862,35 +862,56 @@ $.ajaxSetup({
                 "_token": "{{ csrf_token() }}" // Adicione o token CSRF do Laravel para prevenir ataques CSRF
             },
             success: function(response) {
-                Swal.fire({
-                    title: 'Sucesso!',
-                    text: 'Pedido criado com sucesso. Atualize a página para que o registro entre em vigor.',
-                    icon: 'success',
-                    timer: 3000, // Defina o tempo que o alerta será exibido (em milissegundos)
-                    showConfirmButton: false // Ocultar o botão "OK"
+                // Extrair o ID do pedido da resposta
+                var pedidoId = response.pedido_id;
+
+                // Agora, você pode usar o ID do pedido para buscar mais detalhes
+                $.ajax({
+                    url: '/buscar-pedido?id=' + pedidoId,
+                    method: 'GET',
+                    success: function(response) {
+                    // Extrair o ID do pedido da resposta
+                    var pedidoId = response.pedido.id; // Alterado para acessar o ID diretamente do objeto 'pedido'
+
+                    // Resto do seu código para buscar mais detalhes se necessário
+
+                    // Exemplo de como usar o ID do pedido
+                    console.log('ID do pedido:', pedidoId);
+
+                    Swal.fire({
+                        title: 'Sucesso!',
+                        text: 'Pedido criado com sucesso. ID do pedido: ' + pedidoId,
+                        icon: 'success',
+                        timer: 3000,
+                        showConfirmButton: false
+                    });
+
+                    // Limpar os campos após o sucesso
+                    $('#id').val('');
+                    $('#data').val('');
+                    $('#material').val('');
+                    $('#medida_linear').val('');
+                    $('#observacoes').val('');
+                    $('#status').val('');
+                    $('#designer').val('');
+                    $('#link_trello').val('');
+                    $('#tipo_pedido').val('');
+                },
+
+                    error: function(xhr, status, error) {
+                        // Tratamento de erro ao buscar o pedido
+                        console.error('Erro ao buscar o pedido:', error);
+
+                        // Pedir ao usuário para reiniciar a página e cadastrar novamente
+                        Swal.fire({
+                            title: 'Erro!',
+                            text: 'Ocorreu um erro ao cadastrar o pedido. Por favor, reinicie a página e tente cadastrar novamente.',
+                            icon: 'error',
+                            showConfirmButton: true
+                        });
+                    }
                 });
-
-                $('#id').val('');
-                $('#data').val('');
-                $('#material').val('');
-                $('#medida_linear').val('');
-                $('#observacoes').val('');
-                $('#status').val('');
-                $('#designer').val('');
-                $('#link_trello').val('');
-                $('#tipo_pedido').val('');
-
             },
-            error: function(xhr, status, error) {
-                // Tratamento de erro: exibir pop-up com a mensagem de erro filtrada
-                var errorMessage = "Erro ao criar pedido: ";
-                if (xhr.responseJSON && xhr.responseJSON.message) {
-                    errorMessage += filtrarMensagemErro(xhr.responseJSON.message);
-                } else {
-                    errorMessage += "Ocorreu um erro inesperado.";
-                }
-                alert(errorMessage);
-            }
         });
     });
     // Estilize o campo form-control com jQuery
