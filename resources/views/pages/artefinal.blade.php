@@ -247,9 +247,7 @@ Consulta de Pedidos
 
 @section('content')
 <meta name="csrf-token" content="{{ csrf_token() }}">
-<h2>Modal com Barra de Progresso</h2>
-    <button onclick="openModal()">Abrir Modal</button>
-    
+
 <div class="container-fluid">
     <div class="row">
         <main role="main" class="col-md-10">
@@ -577,23 +575,6 @@ Consulta de Pedidos
     </div>
   </div>
 </div>
-
-<div id="modal" class="modal">
-    <div class="modal-dialog" id="meuModal">
-        <h3>Checklist</h3>
-        <ul id="checklist" class="fade">
-            <li><input type="checkbox" value="Ilhose">Ilhose</li>
-            <li><input type="checkbox" value="Mastro">Mastro</li>
-            <li><input type="checkbox" value="Vetor">Vetor</li>
-            <li><input type="checkbox" value="Cor">Cor</li>
-            <li><input type="checkbox" value="Fonte">Fonte</li>
-            <li><input type="checkbox" value="Ortografia">Ortografia</li>
-        </ul>
-        <div class="progress-bar">
-            <div class="progress"></div>
-        </div>
-    </div>
-</div>
     
 <script>
     var toggleButton = document.getElementById('toggle-button');
@@ -862,35 +843,49 @@ $.ajaxSetup({
                 "_token": "{{ csrf_token() }}" // Adicione o token CSRF do Laravel para prevenir ataques CSRF
             },
             success: function(response) {
-                Swal.fire({
-                    title: 'Sucesso!',
-                    text: 'Pedido criado com sucesso. Atualize a página para que o registro entre em vigor.',
-                    icon: 'success',
-                    timer: 3000, // Defina o tempo que o alerta será exibido (em milissegundos)
-                    showConfirmButton: false // Ocultar o botão "OK"
+                // Agora, você pode usar o ID do pedido para buscar mais detalhes
+                $.ajax({
+                    url: '/buscar-pedido?id=' + id,
+                    method: 'GET',
+                    success: function(response) {
+
+                    // Exemplo de como usar o ID do pedido
+                    console.log('resposta do pedido' + response);
+
+                    Swal.fire({
+                        title: 'Sucesso!',
+                        text: 'Pedido criado com sucesso. ID do pedido: ' + id,
+                        icon: 'success',
+                        timer: 3000,
+                        showConfirmButton: false
+                    });
+
+                    // Limpar os campos após o sucesso
+                    $('#id').val('');
+                    $('#data').val('');
+                    $('#material').val('');
+                    $('#medida_linear').val('');
+                    $('#observacoes').val('');
+                    $('#status').val('');
+                    $('#designer').val('');
+                    $('#link_trello').val('');
+                    $('#tipo_pedido').val('');
+                },
+
+                    error: function(xhr, status, error) {
+                        // Tratamento de erro ao buscar o pedido
+                        console.error('Erro ao buscar o pedido:', error);
+
+                        // Pedir ao usuário para reiniciar a página e cadastrar novamente
+                        Swal.fire({
+                            title: 'Erro!',
+                            text: 'Ocorreu um erro ao cadastrar o pedido. Por favor, reinicie a página e tente cadastrar novamente.',
+                            icon: 'error',
+                            showConfirmButton: true
+                        });
+                    }
                 });
-
-                $('#id').val('');
-                $('#data').val('');
-                $('#material').val('');
-                $('#medida_linear').val('');
-                $('#observacoes').val('');
-                $('#status').val('');
-                $('#designer').val('');
-                $('#link_trello').val('');
-                $('#tipo_pedido').val('');
-
             },
-            error: function(xhr, status, error) {
-                // Tratamento de erro: exibir pop-up com a mensagem de erro filtrada
-                var errorMessage = "Erro ao criar pedido: ";
-                if (xhr.responseJSON && xhr.responseJSON.message) {
-                    errorMessage += filtrarMensagemErro(xhr.responseJSON.message);
-                } else {
-                    errorMessage += "Ocorreu um erro inesperado.";
-                }
-                alert(errorMessage);
-            }
         });
     });
     // Estilize o campo form-control com jQuery
