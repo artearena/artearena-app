@@ -862,12 +862,9 @@ $.ajaxSetup({
                 "_token": "{{ csrf_token() }}" // Adicione o token CSRF do Laravel para prevenir ataques CSRF
             },
             success: function(response) {
-                // Extrair o ID do pedido da resposta
-                var pedidoId = response.pedido.id;
-
                 // Agora, você pode usar o ID do pedido para buscar mais detalhes
                 $.ajax({
-                    url: '/buscar-pedido?id=' + pedidoId,
+                    url: '/buscar-pedido?id=' + id,
                     method: 'GET',
                     success: function(response) {
 
@@ -876,7 +873,7 @@ $.ajaxSetup({
 
                     Swal.fire({
                         title: 'Sucesso!',
-                        text: 'Pedido criado com sucesso. ID do pedido: ' + pedidoId,
+                        text: 'Pedido criado com sucesso. ID do pedido: ' + id,
                         icon: 'success',
                         timer: 3000,
                         showConfirmButton: false
