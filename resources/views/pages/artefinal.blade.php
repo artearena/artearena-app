@@ -872,18 +872,18 @@ $.ajaxSetup({
                     $('#tipo_pedido').val('');
                 },
 
-                    error: function(xhr, status, error) {
-                        // Tratamento de erro ao buscar o pedido
-                        console.error('Erro ao buscar o pedido:', error);
+                error: function(xhr, status, error) {
+                    // Tratamento de erro ao buscar o pedido
+                    console.error('Erro ao buscar o pedido:', error);
 
-                        // Pedir ao usuário para reiniciar a página e cadastrar novamente
-                        Swal.fire({
-                            title: 'Erro!',
-                            text: 'Ocorreu um erro ao cadastrar o pedido. Por favor, reinicie a página e tente cadastrar novamente.',
-                            icon: 'error',
-                            showConfirmButton: true
-                        });
-                    }
+                    // Pedir ao usuário para reiniciar a página e cadastrar novamente
+                    Swal.fire({
+                        title: 'Erro!',
+                        text: 'Ocorreu um erro ao cadastrar o pedido. Por favor, reinicie a página e tente cadastrar novamente.',
+                        icon: 'error',
+                        showConfirmButton: true
+                    });
+                }
                 });
             },
         });
