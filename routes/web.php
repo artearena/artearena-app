@@ -114,9 +114,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/desenvolvimento', [SiteController::class, 'desenvolvimento'])->name('dev');
    
     Route::prefix('usuarios')->group(function () {
-        Route::any('/', [TelaController::class, 'index'])->name('usuarios');
-        Route::post('/store', [TelaController::class, 'store'])->name('usuarios.store');
-        Route::post('/update', [TelaController::class, 'update'])->name('usuarios.update');
+        Route::any('/', [UsuarioController::class, 'index'])->name('usuarios');
+        Route::post('/store', [UsuarioController::class, 'store'])->name('usuarios.store');
+        Route::post('/update', [UsuarioController::class, 'update'])->name('usuarios.update');
     });
 
     Route::prefix('rotas')->group(function () {
