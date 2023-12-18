@@ -14,7 +14,13 @@ $(document).ready(function(){
                 "value": value
             },
             success: function(response){
-                // Você pode adicionar alguma notificação de sucesso aqui
+                Swal.fire({
+                    title: 'Sucesso!',
+                    text: 'Rota atualizada com sucesso!',
+                    icon: 'success',
+                    timer: 3000,
+                    showConfirmButton: false
+                });            
             }
         });
     });
