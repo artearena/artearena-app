@@ -16,6 +16,7 @@ use App\Http\Controllers\HomologarPedido;
 use App\Http\Controllers\ListaUniformeController;
 use App\Http\Controllers\AcessoTemporarioController;
 use App\Http\Controllers\ProdutoController;
+use App\Http\Controllers\TelaController;
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/', [SiteController::class, 'index'])->name('index');
@@ -111,7 +112,9 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/store', [ErroController::class, 'store'])->name('erros.store');
     });
     Route::get('/desenvolvimento', [SiteController::class, 'desenvolvimento'])->name('dev');
-
+    Route::prefix('rotas')->group(function () {
+        Route::any('/', [TelaController::class, 'index'])->name('rotas');
+    });
 });
 Route::prefix('listaUniformes')->middleware('validar.token')->group(function () {
     //Route::any('/', [ListaUniformeController::class, 'index'])->name('index');
