@@ -1,11 +1,11 @@
 $(document).ready(function(){
-    $('.edit').on('blur', function(){
-        var id = $(this).data('id');
-        var field = $(this).data('field');
-        var value = $(this).text();
+    function updateField(element) {
+        var id = $(element).data('id');
+        var field = $(element).data('field');
+        var value = $(element).val();
 
         $.ajax({
-            url: "/rotas/update", // Substituído pela URL da rota nomeada
+            url: "/rotas/update",
             type: 'post',
             data: {
                 "_token": "{{ csrf_token() }}",
@@ -23,5 +23,9 @@ $(document).ready(function(){
                 });            
             }
         });
+    }
+
+    $('.edit, .edit-select').on('input change', function(){
+        updateField(this);
     });
 });
