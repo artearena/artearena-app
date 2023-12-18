@@ -12,9 +12,15 @@ class SiteController extends Controller
      {
          return view('pages.index');
      }
+     
      public function bandeiras()
      {
          return view('pages.bandeiras');
+     }
+
+     public function desenvolvimento()
+     {
+         return view('pages.desenvolvimentos.index');
      }
 
      public function frete(){

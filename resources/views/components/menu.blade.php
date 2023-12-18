@@ -55,6 +55,7 @@
                             <li><a class="dropdown-item" href="{{ route('impressao') }}">Impressão</a></li>
                             <li><a class="dropdown-item" href="{{ route('confeccao') }}">Confecção</a></li>
                             <li><a class="dropdown-item" href="{{ route('reposicao') }}">Reposição</a></li>
+                            <li><a class="dropdown-item" href="{{ route('dev') }}">Reposição</a></li>
                         </ul>
                     </li>
                     <li class="nav-item dropdown">

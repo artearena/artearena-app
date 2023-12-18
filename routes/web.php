@@ -110,6 +110,8 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/', [ErroController::class, 'index'])->name('erros.index');
         Route::post('/store', [ErroController::class, 'store'])->name('erros.store');
     });
+    Route::get('/desenvolvimento', [SiteController::class, 'desenvolvimento'])->name('dev');
+
 });
 Route::prefix('listaUniformes')->middleware('validar.token')->group(function () {
     //Route::any('/', [ListaUniformeController::class, 'index'])->name('index');
