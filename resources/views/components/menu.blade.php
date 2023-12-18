@@ -64,7 +64,7 @@
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="producaoDropdown">
                             <li><a class="dropdown-item" href="{{ route('erros.index') }}">Erros</a></li>
-                            <li><a class="dropdown-item" href="{{ route('dev') }}">Administrar Usuários</a></li>
+                            <li><a class="dropdown-item" href="{{ route('usuarios.index') }}">Administrar Usuários</a></li>
                             <li><a class="dropdown-item" href="{{ route('rotas') }}">Rotas da aplicação</a></li>
                         </ul>
                     </li>
