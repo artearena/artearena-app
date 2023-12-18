@@ -5,7 +5,7 @@ $(document).ready(function(){
         var value = $(this).text();
 
         $.ajax({
-            url: '/update', // Substitua por sua URL de atualização
+            url: "{{ route('rotas.update') }}", // Substituído pela URL da rota nomeada
             type: 'post',
             data: {
                 "_token": "{{ csrf_token() }}",

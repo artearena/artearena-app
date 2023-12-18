@@ -155,3 +155,6 @@
     </table>
 </div>
 @endsection
+@section('extraScript')
+    <script src="../js/rotas.js"></script>
+@endsection
