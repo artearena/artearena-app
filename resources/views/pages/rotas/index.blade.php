@@ -156,5 +156,66 @@
 </div>
 @endsection
 @section('extraScript')
-    <script src="../js/rotas.js"></script>
+<script>
+    $(document).ready(function(){
+        function updateField(element) {
+            var id = $(element).data('id');
+            var field = $(element).data('field');
+            var value = $(element).val();
+
+            $.ajax({
+                url: "/rotas/update",
+                type: 'POST',
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                    "id": id,
+                    "field": field,
+                    "value": value
+                },
+                success: function(response){
+                    Swal.fire({
+                        title: 'Sucesso!',
+                        text: 'Rota atualizada com sucesso!',
+                        icon: 'success',
+                        timer: 3000,
+                        showConfirmButton: false
+                    });            
+                }
+            });
+        }
+
+        $('.edit, .edit-select').on('input change', function(){
+            updateField(this);
+        });
+        $('form').on('submit', function(e){
+            e.preventDefault();
+
+            var nome_tela = $('#nome_tela').val();
+            var tipo = $('#tipo').val();
+            var descricao = $('#descricao').val();
+            var rota = $('#rota').val();
+
+            $.ajax({
+                url: "{{ route('rotas.store') }}",
+                type: 'POST',
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                    "nome_tela": nome_tela,
+                    "tipo": tipo,
+                    "descricao": descricao,
+                    "rota": rota
+                },
+                success: function(response){
+                    Swal.fire({
+                        title: 'Sucesso!',
+                        text: 'Rota criada com sucesso!',
+                        icon: 'success',
+                        timer: 3000,
+                        showConfirmButton: false
+                    });
+                }
+            });
+        });
+    });
+</script>
 @endsection
