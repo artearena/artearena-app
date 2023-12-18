@@ -110,8 +110,8 @@
                 <td>{{ $tela->nome_tela }}</td>
                 <td><input type="checkbox" name="tipo" value="{{ $tela->tipo }}"></td>
                 <td>{{ $tela->descricao }}</td>
-                <td><a href="{{ $tela->rota }}"><i class="fas fa-external-link-alt"></i></a></td>
                 <td>
+                    <a href="{{ $tela->rota }}"><i class="fas fa-external-link-alt"></i></a>
                     <button class="btn btn-primary"><i class="fas fa-edit"></i></button>
                     <button class="btn btn-danger"><i class="fas fa-trash"></i></button>
                 </td>
