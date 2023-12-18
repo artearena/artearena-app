@@ -99,55 +99,56 @@
 @endsection
 @section('content')
 <div class="app container-with-margin">
-    <form action="{{ route('rotas.store') }}" method="POST">
+    <form action="{{ route('usuarios.store') }}" method="POST">
         @csrf
         <div class="form-group">
-            <label for="nome_tela">Nome da Tela</label>
-            <input type="text" class="form-control" id="nome_tela" name="nome_tela" placeholder="Digite o nome da tela">
+            <label for="nome_usuario">Nome do Usuário</label>
+            <input type="text" class="form-control" id="nome_usuario" name="nome_usuario" placeholder="Digite o nome do usuário">
         </div>
         <div class="form-group">
-            <label for="tipo">Tipo</label>
-            <select class="form-control" id="tipo" name="tipo">
-                <option value="Ativado">Ativado</option>
-                <option value="Desativado">Desativado</option>
-                <option value="Não acessível">Não acessível</option>
+            <label for="email">Email</label>
+            <input type="email" class="form-control" id="email" name="email" placeholder="Digite o email">
+        </div>
+        <div class="form-group">
+            <label for="password">Senha</label>
+            <input type="password" class="form-control" id="password" name="password" placeholder="Digite a senha">
+        </div>
+        <div class="form-group">
+            <label for="permissoes">Permissões</label>
+            <select class="form-control" id="permissoes" name="permissoes">
+                <option value="admin">Admin</option>
+                <option value="user">User</option>
             </select>
         </div>
-        <div class="form-group">
-            <label for="descricao">Descrição</label>
-            <input type="text" class="form-control" id="descricao" name="descricao" placeholder="Digite a descrição">
-        </div>
-        <div class="form-group">
-            <label for="rota">URL</label>
-            <input type="text" class="form-control" id="rota" name="rota" placeholder="Digite a rota">
-        </div>
-        <button type="submit" class="btn btn-primary">Criar Rota</button>
+        <button type="submit" class="btn btn-primary">Criar Usuário</button>
     </form>
-    <table id="tabelaTelas" class="dataTable">
+    <table id="tabelaUsuarios" class="dataTable">
         <thead>
             <tr>
-                <th>Nome da Tela</th>
-                <th>Tipo</th>
-                <th>Descrição</th>
+                <th>Nome do Usuário</th>
+                <th>Email</th>
+                <th>Permissões</th>
                 <th>Ações</th>
             </tr>
         </thead>
         <tbody>
-            @foreach($telas as $tela)
+            @foreach($usuarios as $usuario)
             <tr>
-                <td contenteditable="true" class="edit" data-id="{{ $tela->id }}" data-field="nome_tela">{{ $tela->nome_tela }}</td>
+                <td contenteditable="true" class="edit" data-id="{{ $usuario->id }}" data-field="nome_usuario">{{ $usuario->nome_usuario }}</td>
+                <td contenteditable="true" class="edit" data-id="{{ $usuario->id }}" data-field="email">{{ $usuario->email }}</td>
                 <td>
-                    <select class="form-control edit-select" data-id="{{ $tela->id }}" data-field="tipo">
-                        <option value="Ativado" {{ $tela->tipo == 'Ativado' ? 'selected' : '' }}>Ativado</option>
-                        <option value="Desativado" {{ $tela->tipo == 'Desativado' ? 'selected' : '' }}>Desativado</option>
-                        <option value="Não acessível" {{ $tela->tipo == 'Não acessível' ? 'selected' : '' }}>Não acessível</option>
+                    <select class="form-control edit-select" data-id="{{ $usuario->id }}" data-field="permissoes">
+                        <option value="admin" {{ $usuario->permissoes == 'admin' ? 'selected' : '' }}>Admin</option>
+                        <option value="user" {{ $usuario->permissoes == 'user' ? 'selected' : '' }}>User</option>
                     </select>
                 </td>
-                <td contenteditable="true" class="edit" data-id="{{ $tela->id }}" data-field="descricao">{{ $tela->descricao }}</td>
                 <td>
-                    <a href="https://arte.app.br/{{ $tela->nome_tela }}"><i class="fas fa-external-link-alt"></i></a>
-                    <button class="btn btn-primary"><i class="fas fa-edit"></i></button>
-                    <button class="btn btn-danger"><i class="fas fa-trash"></i></button>
+                    <a href="{{ route('usuarios.edit', $usuario->id) }}" class="btn btn-primary"><i class="fas fa-edit"></i></a>
+                    <form action="{{ route('usuarios.destroy', $usuario->id) }}" method="POST" style="display: inline-block;">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i></button>
+                    </form>
                 </td>
             </tr>
             @endforeach
@@ -158,58 +159,7 @@
 @section('extraScript')
 <script>
     $(document).ready(function(){
-        function updateField(element) {
-            var id = $(element).data('id');
-            var field = $(element).data('field');
-            var value = $(element).is('input, select, textarea') ? $(element).val() : $(element).text();
-
-            $.ajax({
-                url: "/rotas/update",
-                type: 'POST',
-                data: {
-                    "_token": "{{ csrf_token() }}",
-                    "id": id,
-                    "field": field,
-                    "value": value
-                },
-                success: function(response){
-         
-                }
-            });
-        }
-
-        $('.edit, .edit-select').on('input change', function(){
-            updateField(this);
-        });
-        $('form').on('submit', function(e){
-            e.preventDefault();
-
-            var nome_tela = $('#nome_tela').val();
-            var tipo = $('#tipo').val();
-            var descricao = $('#descricao').val();
-            var rota = $('#rota').val();
-
-            $.ajax({
-                url: "{{ route('rotas.store') }}",
-                type: 'POST',
-                data: {
-                    "_token": "{{ csrf_token() }}",
-                    "nome_tela": nome_tela,
-                    "tipo": tipo,
-                    "descricao": descricao,
-                    "rota": rota
-                },
-                success: function(response){
-                    Swal.fire({
-                        title: 'Sucesso!',
-                        text: 'Rota criada com sucesso!',
-                        icon: 'success',
-                        timer: 3000,
-                        showConfirmButton: false
-                    });
-                }
-            });
-        });
+        // Seu JavaScript aqui
     });
 </script>
 @endsection
