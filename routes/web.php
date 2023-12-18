@@ -114,7 +114,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/desenvolvimento', [SiteController::class, 'desenvolvimento'])->name('dev');
     Route::prefix('rotas')->group(function () {
         Route::any('/', [TelaController::class, 'index'])->name('rotas');
-        Route::post('/store', [ErroController::class, 'store'])->name('rotas.store');
+        Route::post('/store', [TelaController::class, 'store'])->name('rotas.store');
+        Route::post('/update', [TelaController::class, 'update'])->name('rotas.update');
     });
 });
 Route::prefix('listaUniformes')->middleware('validar.token')->group(function () {

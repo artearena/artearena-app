@@ -135,15 +135,15 @@
         <tbody>
             @foreach($telas as $tela)
             <tr>
-                <td>{{ $tela->nome_tela }}</td>
+                <td contenteditable="true" class="edit" data-id="{{ $tela->id }}" data-field="nome_tela">{{ $tela->nome_tela }}</td>
                 <td>
-                    <select class="form-control" disabled>
+                    <select class="form-control edit-select" data-id="{{ $tela->id }}" data-field="tipo">
                         <option value="Ativado" {{ $tela->tipo == 'Ativado' ? 'selected' : '' }}>Ativado</option>
                         <option value="Desativado" {{ $tela->tipo == 'Desativado' ? 'selected' : '' }}>Desativado</option>
                         <option value="Não acessível" {{ $tela->tipo == 'Não acessível' ? 'selected' : '' }}>Não acessível</option>
                     </select>
                 </td>
-                <td>{{ $tela->descricao }}</td>
+                <td contenteditable="true" class="edit" data-id="{{ $tela->id }}" data-field="descricao">{{ $tela->descricao }}</td>
                 <td>
                     <a href="{{ $tela->rota }}"><i class="fas fa-external-link-alt"></i></a>
                     <button class="btn btn-primary"><i class="fas fa-edit"></i></button>

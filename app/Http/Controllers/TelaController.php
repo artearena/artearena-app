@@ -23,4 +23,12 @@ class TelaController extends Controller
         $tela = Tela::create($request->all());
         return response()->json($tela, 200);
     }
+
+    public function update(Request $request)
+    {
+        $tela = Tela::find($request->id);
+        $tela->{$request->field} = $request->value;
+        $tela->save();
+    }
+    
 }
