@@ -94,6 +94,30 @@
 @endsection
 @section('content')
 <div class="app">
+    <form action="{{ route('rotas.store') }}" method="POST">
+        @csrf
+        <div class="form-group">
+            <label for="nome_tela">Nome da Tela</label>
+            <input type="text" class="form-control" id="nome_tela" name="nome_tela" placeholder="Digite o nome da tela">
+        </div>
+        <div class="form-group">
+            <label for="tipo">Tipo</label>
+            <select class="form-control" id="tipo" name="tipo">
+                <option value="Ativado">Ativado</option>
+                <option value="Desativado">Desativado</option>
+                <option value="Não acessível">Não acessível</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="descricao">Descrição</label>
+            <input type="text" class="form-control" id="descricao" name="descricao" placeholder="Digite a descrição">
+        </div>
+        <div class="form-group">
+            <label for="rota">Rota</label>
+            <input type="text" class="form-control" id="rota" name="rota" placeholder="Digite a rota">
+        </div>
+        <button type="submit" class="btn btn-primary">Criar Rota</button>
+    </form>
     <table id="tabelaTelas" class="dataTable">
         <thead>
             <tr>
@@ -108,10 +132,16 @@
             @foreach($telas as $tela)
             <tr>
                 <td>{{ $tela->nome_tela }}</td>
-                <td><input type="checkbox" name="tipo" value="{{ $tela->tipo }}"></td>
-                <td>{{ $tela->descricao }}</td>
                 <td>
-                    <a href="{{ $tela->rota }}"><i class="fas fa-external-link-alt"></i></a>
+                    <select class="form-control" disabled>
+                        <option value="Ativado" {{ $tela->tipo == 'Ativado' ? 'selected' : '' }}>Ativado</option>
+                        <option value="Desativado" {{ $tela->tipo == 'Desativado' ? 'selected' : '' }}>Desativado</option>
+                        <option value="Não acessível" {{ $tela->tipo == 'Não acessível' ? 'selected' : '' }}>Não acessível</option>
+                    </select>
+                </td>
+                <td>{{ $tela->descricao }}</td>
+                <td><a href="{{ $tela->rota }}"><i class="fas fa-external-link-alt"></i></a></td>
+                <td>
                     <button class="btn btn-primary"><i class="fas fa-edit"></i></button>
                     <button class="btn btn-danger"><i class="fas fa-trash"></i></button>
                 </td>
