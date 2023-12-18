@@ -17,6 +17,7 @@ use App\Http\Controllers\ListaUniformeController;
 use App\Http\Controllers\AcessoTemporarioController;
 use App\Http\Controllers\ProdutoController;
 use App\Http\Controllers\TelaController;
+use App\Http\Controllers\UsuarioController;
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/', [SiteController::class, 'index'])->name('index');
