@@ -161,8 +161,7 @@
         function updateField(element) {
             var id = $(element).data('id');
             var field = $(element).data('field');
-            var value = $(element).val();
-            console.log(element); // Log the element
+            var value = $(element).is('input, select, textarea') ? $(element).val() : $(element).text();
 
             $.ajax({
                 url: "/rotas/update",
