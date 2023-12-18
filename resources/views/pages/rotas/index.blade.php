@@ -99,9 +99,9 @@
             <tr>
                 <th>Nome da Tela</th>
                 <th>Tipo</th>
+                <th>Descrição</th>
                 <th>Rota</th>
-                <th>Editar Rota</th>
-                <th>Excluir Rota</th>
+                <th>Ações</th>
             </tr>
         </thead>
         <tbody>
@@ -109,9 +109,12 @@
             <tr>
                 <td>{{ $tela->nome_tela }}</td>
                 <td><input type="checkbox" name="tipo" value="{{ $tela->tipo }}"></td>
+                <td>{{ $tela->descricao }}</td>
                 <td><a href="{{ $tela->rota }}"><i class="fas fa-external-link-alt"></i></a></td>
-                <td><button class="btn btn-primary"><i class="fas fa-edit"></i></button></td>
-                <td><button class="btn btn-danger"><i class="fas fa-trash"></i></button></td>
+                <td>
+                    <button class="btn btn-primary"><i class="fas fa-edit"></i></button>
+                    <button class="btn btn-danger"><i class="fas fa-trash"></i></button>
+                </td>
             </tr>
             @endforeach
         </tbody>
