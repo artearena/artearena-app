@@ -87,13 +87,18 @@
             color: red;
         }
     }
+
+    /* New container styles */
+    .container-with-margin {
+        margin: 20px; /* Adjust the margin size as needed */
+    }
 </style>
 <script>
     // Script personalizado
 </script>
 @endsection
 @section('content')
-<div class="app">
+<div class="app container-with-margin">
     <form action="{{ route('rotas.store') }}" method="POST">
         @csrf
         <div class="form-group">
@@ -113,7 +118,7 @@
             <input type="text" class="form-control" id="descricao" name="descricao" placeholder="Digite a descrição">
         </div>
         <div class="form-group">
-            <label for="rota">Rota</label>
+            <label for="rota">URL</label>
             <input type="text" class="form-control" id="rota" name="rota" placeholder="Digite a rota">
         </div>
         <button type="submit" class="btn btn-primary">Criar Rota</button>
