@@ -115,7 +115,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/desenvolvimento', [SiteController::class, 'desenvolvimento'])->name('dev');
    
     Route::prefix('usuarios')->group(function () {
-        Route::any('/', [UsuarioController::class, 'index'])->name('usuarios');
+        Route::any('/', [UsuarioController::class, 'index'])->name('usuarios.index');
         Route::post('/store', [UsuarioController::class, 'store'])->name('usuarios.store');
         Route::post('/update', [UsuarioController::class, 'update'])->name('usuarios.update');
     });
