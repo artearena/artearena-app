@@ -11,14 +11,14 @@ class PermissaoController extends Controller
     public function index()
     {
         $permissoes = Permissao::all();
-        $telas = tela::all();
+        $telas = telas::all();
 
         return view('pages.permissao', compact('permissoes','telas'));
     }
 
     public function create()
     {
-        $telas = Tela::all(); // Obtém todas as telas do banco de dados
+        $telas = telas::all(); // Obtém todas as telas do banco de dados
 
         return view('pages.permissao.create', compact('telas'));
     }
@@ -39,7 +39,7 @@ class PermissaoController extends Controller
     // Criação da permissão no banco de dados
     $permissao = Permissao::create($validatedData);
 
-    $telas = tela::all();
+    $telas = telas::all();
     $permissoes = Permissao::all();
 
     return view('pages.permissao', compact('telas','permissoes'));
@@ -73,7 +73,7 @@ class PermissaoController extends Controller
     {
         $permissao->delete();
 
-        $telas = tela::all();
+        $telas = telas::all();
         $permissoes = Permissao::all();
 
         return view('pages.permissao', compact('telas','permissoes'));
