@@ -112,6 +112,13 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/store', [ErroController::class, 'store'])->name('erros.store');
     });
     Route::get('/desenvolvimento', [SiteController::class, 'desenvolvimento'])->name('dev');
+   
+    Route::prefix('usuarios')->group(function () {
+        Route::any('/', [TelaController::class, 'index'])->name('usuarios');
+        Route::post('/store', [TelaController::class, 'store'])->name('usuarios.store');
+        Route::post('/update', [TelaController::class, 'update'])->name('usuarios.update');
+    });
+
     Route::prefix('rotas')->group(function () {
         Route::any('/', [TelaController::class, 'index'])->name('rotas');
         Route::post('/store', [TelaController::class, 'store'])->name('rotas.store');
