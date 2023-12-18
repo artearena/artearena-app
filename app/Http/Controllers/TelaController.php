@@ -9,8 +9,8 @@ class TelaController extends Controller
 {
     public function index()
     {
-        $Tela = Tela::all();
-        return view('pages.rotas.index', compact('Tela'));
+        $telas = Tela::all();
+        return view('pages.rotas.index', compact('telas'));
     }
 
     public function create()
@@ -20,15 +20,15 @@ class TelaController extends Controller
 
     public function store(Request $request)
     {
-        $tela = Tela::create($request->all());
-        return response()->json($tela, 200);
+        $telas = Tela::create($request->all());
+        return response()->json($telas, 200);
     }
 
     public function update(Request $request)
     {
-        $tela = Tela::find($request->id);
-        $tela->{$request->field} = $request->value;
-        $tela->save();
+        $telas = Tela::find($request->id);
+        $telas->{$request->field} = $request->value;
+        $telas->save();
     }
     
 }
