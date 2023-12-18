@@ -10,7 +10,7 @@ class TelaController extends Controller
     public function index()
     {
         $telas = Tela::all();
-        return response()->json($telas, 200);
+        return view('pages.rotas.index', compact('telas'));
     }
 
     public function create()
