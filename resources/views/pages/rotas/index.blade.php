@@ -145,7 +145,7 @@
                 </td>
                 <td contenteditable="true" class="edit" data-id="{{ $tela->id }}" data-field="descricao">{{ $tela->descricao }}</td>
                 <td>
-                    <a href="https://arte.app.br/{{ $tela->rota }}"><i class="fas fa-external-link-alt"></i></a>
+                    <a href="https://arte.app.br/{{ $tela->nome_rota }}"><i class="fas fa-external-link-alt"></i></a>
                     <button class="btn btn-primary"><i class="fas fa-edit"></i></button>
                     <button class="btn btn-danger"><i class="fas fa-trash"></i></button>
                 </td>
