@@ -162,6 +162,7 @@
             var id = $(element).data('id');
             var field = $(element).data('field');
             var value = $(element).val();
+            console.log(element); // Log the element
 
             $.ajax({
                 url: "/rotas/update",
@@ -173,13 +174,7 @@
                     "value": value
                 },
                 success: function(response){
-                    Swal.fire({
-                        title: 'Sucesso!',
-                        text: 'Rota atualizada com sucesso!',
-                        icon: 'success',
-                        timer: 3000,
-                        showConfirmButton: false
-                    });            
+         
                 }
             });
         }
