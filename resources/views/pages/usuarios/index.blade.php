@@ -117,7 +117,7 @@
             <label for="permissoes">Permissões</label>
             <select class="form-control" id="permissoes" name="permissoes">
                 @foreach($permissoes as $permissao)
-                    <option value="{{ $permissao->id }}" {{ $usuario->permissoes->contains($permissao->id) ? 'selected' : '' }}>{{ $permissao->nome }}</option>
+                    <option value="{{ $permissao->id }}">{{ $permissao->nome }}</option>
                 @endforeach
             </select>
         </div>
