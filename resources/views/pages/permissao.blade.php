@@ -44,7 +44,7 @@ Calculadora de Bandeiras
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ route('permissao.store') }}" method="POST">
+                    <form action="{{ route('permissoes.store') }}" method="POST">
                         @csrf
                         <div class="mb-3">
                             <label for="nome" class="form-label">Nome</label>
