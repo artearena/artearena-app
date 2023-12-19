@@ -27,13 +27,25 @@ class PermissaoController extends Controller
 
     public function store(Request $request)
     {
-        // Lógica para armazenar nova permissão
-        // Certifique-se de validar os dados do formulário
-        // e de tratar a configuração_permissao de acordo com sua estrutura
+        // Validação dos campos do formulário
+        $validatedData = $request->validate([
+            'nome' => 'required',
+            'configuracao_permissao' => 'nullable|array',
+        ]);
 
-        Permissao::create($request->all());
+        // Converter o array de IDs em uma string separada por vírgulas
+        $configuracaoPermissao = implode(',', $validatedData['configuracao_permissao']);
 
-        return redirect()->route('pages.permissao.index')->with('success', 'Permissão criada com sucesso.');
+        // Atualizar o campo 'configuracao_permissao' com a string de IDs
+        $validatedData['configuracao_permissao'] = $configuracaoPermissao;
+
+        // Criação da permissão no banco de dados
+        $permissao = Permissao::create($validatedData);
+
+        $telas = Tela::all();
+        $permissoes = Permissao::all();
+
+        return view('pages.permissao', compact('telas', 'permissoes'));
     }
 
     public function edit($id)
