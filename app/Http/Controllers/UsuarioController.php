@@ -47,14 +47,20 @@ class UsuarioController extends Controller
     }
 
     public function update(Request $request, $id)
-    {
+{
         $usuario = Usuario::find($id);
+
+        if (!$usuario) {
+            return redirect('/usuarios')->with('error', 'Usuário não encontrado!');
+        }
+
         $usuario->nome_usuario = $request->get('nome_usuario');
         $usuario->permissoes = $request->get('permissoes');
         $usuario->email = $request->get('email');
         $usuario->password = bcrypt($request->get('password'));
         $usuario->id_vendedor = $request->get('id_vendedor');
         $usuario->save();
+
         return redirect('/usuarios')->with('success', 'Usuário atualizado!');
     }
 
