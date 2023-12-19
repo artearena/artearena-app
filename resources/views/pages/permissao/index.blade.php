@@ -1,5 +1,9 @@
 @extends('layout.main')
-@section('title', 'Administrar Permissões')
+
+@section('title')
+Calculadora de Bandeiras
+@endsection
+
 @section('content')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
     <div class="container">
@@ -24,14 +28,7 @@
                         <td>{{ $permissao->id }}</td>
                         <td>{{ $permissao->nome }}</td>
                         <td>{{ $permissao->configuracao_permissao }}</td>
-                        <td>
-                            <a href="{{ route('permissoes.edit', $permissao->id) }}" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalEditarPermissao">Editar</a>
-                            <form action="{{ route('permissoes.destroy', $permissao->id) }}" method="POST" style="display: inline-block;">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalConfirmarExclusao">Excluir</button>
-                            </form>
-                        </td>
+
                     </tr>
                 @endforeach
             </tbody>
@@ -63,15 +60,17 @@
                         </div>
 
                         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+                        <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
                         <script>
                             $(document).ready(function() {
                                 $('.select2').select2({
                                     placeholder: 'Selecione as telas',
                                     allowClear: true,
                                     tags: true,
-                                    dropdownParent: $('#modalAdicionarPermissao'), // Especifica o seletor do modal como o contêiner
+                                    dropdownParent: $('#modalAdicionarPermissao') // Especifica o seletor do modal como o contêiner
                                 });
                             });
+
                         </script>
 
                         <button type="submit" class="btn btn-primary">Salvar</button>
@@ -91,3 +90,5 @@
         <!-- Conteúdo do modal de confirmação de exclusão -->
     </div>
 @endsection
+
+
