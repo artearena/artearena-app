@@ -28,14 +28,7 @@ Calculadora de Bandeiras
                         <td>{{ $permissao->id }}</td>
                         <td>{{ $permissao->nome }}</td>
                         <td>{{ $permissao->configuracao_permissao }}</td>
-<!--                         <td>
-                            <a href="{{ route('permissao.edit', $permissao->id) }}" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalEditarPermissao">Editar</a>
-                            <form action="{{ route('permissao.destroy', $permissao->id) }}" method="POST" style="display: inline-block;">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalConfirmarExclusao">Excluir</button>
-                            </form>
-                        </td> -->
+
                     </tr>
                 @endforeach
             </tbody>
