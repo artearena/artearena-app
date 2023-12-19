@@ -82,7 +82,6 @@ Route::middleware(['auth'])->group(function () {
     Route::any('/confeccao', [PedidoController::class, 'confeccaoprovisorio'])->name('confeccao');
     Route::any('/reposicao', [PedidoController::class, 'reposicaoprovisorio'])->name('reposicao');  
 
-    Route::resource('permissao', PermissaoController::class)->except(['show']);
 
     Route::get('/register', [AuthController::class,'register_page'])->name('register_page');
     Route::post('/register', [AuthController::class,'register'])->name('register');
@@ -93,6 +92,9 @@ Route::middleware(['auth'])->group(function () {
     Route::prefix('tiny')->group(function () {
         Route::any('/', [tinyController::class, 'exibirRelatorio'])->name('tiny.relatorio');
         Route::any('/download-pdf', [tinyController::class, 'gerarPdf'])->name('tiny.gerarPdf');
+    });
+    Route::prefix('permissoes')->group(function () {
+        Route::any('/', PermissaoController::class, 'index');
     });
     Route::prefix('crm')->group(function () {
         //Route::any('/', [LeadController::class, 'index'])->name('octa.crm');

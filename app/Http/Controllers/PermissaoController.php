@@ -13,7 +13,7 @@ class PermissaoController extends Controller
         $permissoes = Permissao::all();
         $Tela = Tela::all();
 
-        return view('pages.permissao', compact('permissoes','Tela'));
+        return view('pages.permissao.index', compact('permissoes','Tela'));
     }
 
     public function create()
