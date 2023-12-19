@@ -69,7 +69,7 @@
                                     placeholder: 'Selecione as telas',
                                     allowClear: true,
                                     tags: true,
-                                    dropdownParent: $('#modalAdicionarPermissao') // Especifica o seletor do modal como o contêiner
+                                    dropdownParent: $('#modalAdicionarPermissao'), // Especifica o seletor do modal como o contêiner
                                 });
                             });
                         </script>
