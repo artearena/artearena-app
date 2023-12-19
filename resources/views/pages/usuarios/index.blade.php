@@ -116,8 +116,9 @@
         <div class="form-group">
             <label for="permissoes">Permissões</label>
             <select class="form-control" id="permissoes" name="permissoes">
-                <option value="admin">Admin</option>
-                <option value="user">User</option>
+                @foreach($permissoes as $permissao)
+                    <option value="{{ $permissao->id }}" {{ $usuario->permissoes->contains($permissao->id) ? 'selected' : '' }}>{{ $permissao->nome }}</option>
+                @endforeach
             </select>
         </div>
         <button type="submit" class="btn btn-primary">Criar Usuário</button>
