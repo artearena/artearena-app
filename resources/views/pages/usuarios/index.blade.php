@@ -160,7 +160,58 @@
 @section('extraScript')
 <script>
     $(document).ready(function(){
-        // Seu JavaScript aqui
+        function updateField(element) {
+            var id = $(element).data('id');
+            var field = $(element).data('field');
+            var value = $(element).is('input, select, textarea') ? $(element).val() : $(element).text();
+
+            $.ajax({
+                url: "/usuarios/update",
+                type: 'POST',
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                    "id": id,
+                    "field": field,
+                    "value": value
+                },
+                success: function(response){
+        
+                }
+            });
+        }
+
+        $('.edit, .edit-select').on('input change', function(){
+            updateField(this);
+        });
+        $('form').on('submit', function(e){
+            e.preventDefault();
+
+            var nome_usuario = $('#nome_usuario').val();
+            var email = $('#email').val();
+            var password = $('#password').val();
+            var permissoes = $('#permissoes').val();
+
+            $.ajax({
+                url: "{{ route('usuarios.store') }}",
+                type: 'POST',
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                    "nome_usuario": nome_usuario,
+                    "email": email,
+                    "password": password,
+                    "permissoes": permissoes
+                },
+                success: function(response){
+                    Swal.fire({
+                        title: 'Sucesso!',
+                        text: 'Usuário criado com sucesso!',
+                        icon: 'success',
+                        timer: 3000,
+                        showConfirmButton: false
+                    });
+                }
+            });
+        });
     });
 </script>
 @endsection
