@@ -115,9 +115,13 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/desenvolvimento', [SiteController::class, 'desenvolvimento'])->name('dev');
    
     Route::prefix('usuarios')->group(function () {
-        Route::any('/', [UsuarioController::class, 'index'])->name('usuarios.index');
-        Route::post('/store', [UsuarioController::class, 'store'])->name('usuarios.store');
-        Route::post('/update', [UsuarioController::class, 'update'])->name('usuarios.update');
+        Route::get('/', [UsuarioController::class, 'index'])->name('usuarios.index');
+        Route::get('/create', [UsuarioController::class, 'create'])->name('usuarios.create');
+        Route::post('/', [UsuarioController::class, 'store'])->name('usuarios.store');
+        Route::get('/{id}', [UsuarioController::class, 'show'])->name('usuarios.show');
+        Route::get('/{id}/edit', [UsuarioController::class, 'edit'])->name('usuarios.edit');
+        Route::put('/{id}', [UsuarioController::class, 'update'])->name('usuarios.update');
+        Route::delete('/{id}', [UsuarioController::class, 'destroy'])->name('usuarios.destroy');
     });
 
     Route::prefix('rotas')->group(function () {
