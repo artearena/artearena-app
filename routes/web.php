@@ -93,7 +93,28 @@ Route::middleware(['auth'])->group(function () {
         Route::any('/', [tinyController::class, 'exibirRelatorio'])->name('tiny.relatorio');
         Route::any('/download-pdf', [tinyController::class, 'gerarPdf'])->name('tiny.gerarPdf');
     });
- 
+    Route::prefix('permissoes')->group(function () {
+        // Listar todas as permissões
+        Route::get('/', [PermissaoController::class, 'index'])->name('permissoes.index');
+    
+        // Exibir o formulário de criação de permissão
+        Route::get('/create', [PermissaoController::class, 'create'])->name('permissoes.create');
+    
+        // Processar o formulário de criação de permissão
+        Route::post('/store', [PermissaoController::class, 'store'])->name('permissoes.store');
+    
+        // Exibir detalhes de uma permissão específica
+        Route::get('/{id}', [PermissaoController::class, 'show'])->name('permissoes.show');
+    
+        // Exibir o formulário de edição de uma permissão
+        Route::get('/{id}/edit', [PermissaoController::class, 'edit'])->name('permissoes.edit');
+    
+        // Processar o formulário de edição de permissão
+        Route::put('/{id}', [PermissaoController::class, 'update'])->name('permissoes.update');
+    
+        // Excluir uma permissão
+        Route::delete('/{id}', [PermissaoController::class, 'destroy'])->name('permissoes.destroy');
+    });
     
     Route::prefix('crm')->group(function () {
         //Route::any('/', [LeadController::class, 'index'])->name('octa.crm');
