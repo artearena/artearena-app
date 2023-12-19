@@ -60,7 +60,7 @@ class UsuarioController extends Controller
         $usuario->password = bcrypt($request->get('password'));
         $usuario->id_vendedor = $request->get('id_vendedor');
         $usuario->save();
-
+        dd($usuario);
         return redirect('/usuarios')->with('success', 'Usuário atualizado!');
     }
 
