@@ -13,14 +13,14 @@ class PermissaoController extends Controller
     public function index()
     {
         $permissoes = Permissao::all();
-        return view('permissoes.index', compact('permissoes'));
+        return view('pages.permissao.index', compact('permissoes'));
     }
 
     public function create()
     {
         // Lógica para carregar dados necessários, se necessário
         $telas = Tela::all(); // Substitua Tela pelo nome correto do seu modelo de tela
-        return view('permissoes.create', compact('telas'));
+        return view('pages.permissao.create', compact('telas'));
     }
 
     public function store(Request $request)
@@ -31,7 +31,7 @@ class PermissaoController extends Controller
 
         Permissao::create($request->all());
 
-        return redirect()->route('permissoes.index')->with('success', 'Permissão criada com sucesso.');
+        return redirect()->route('pages.permissao.index')->with('success', 'Permissão criada com sucesso.');
     }
 
     public function edit($id)
@@ -39,7 +39,7 @@ class PermissaoController extends Controller
         $permissao = Permissao::findOrFail($id);
         // Lógica para carregar dados necessários, se necessário
         $telas = Tela::all(); // Substitua Tela pelo nome correto do seu modelo de tela
-        return view('permissoes.edit', compact('permissao', 'telas'));
+        return view('pages.permissao.edit', compact('permissao', 'telas'));
     }
 
     public function update(Request $request, $id)
@@ -51,7 +51,7 @@ class PermissaoController extends Controller
         $permissao = Permissao::findOrFail($id);
         $permissao->update($request->all());
 
-        return redirect()->route('permissoes.index')->with('success', 'Permissão atualizada com sucesso.');
+        return redirect()->route('pages.permissao.index')->with('success', 'Permissão atualizada com sucesso.');
     }
 
     public function destroy($id)
@@ -60,6 +60,6 @@ class PermissaoController extends Controller
         $permissao = Permissao::findOrFail($id);
         $permissao->delete();
 
-        return redirect()->route('permissoes.index')->with('success', 'Permissão excluída com sucesso.');
+        return redirect()->route('pages.permissao.index')->with('success', 'Permissão excluída com sucesso.');
     }
 }
