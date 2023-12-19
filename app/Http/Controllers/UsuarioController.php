@@ -46,14 +46,10 @@ class UsuarioController extends Controller
         return view('pages.usuarios.edit', compact('usuario'));
     }
 
-    public function update(Request $request, $id)
+    /* public function update(Request $request, $id)
     {
         $usuario = Usuario::find($id);
-        dd($usuario);
-        if (!$usuario) {
-            return redirect('/usuarios')->with('error', 'Usuário não encontrado!');
-        }
-        console.log($usuario);
+
         $usuario->nome_usuario = $request->get('nome_usuario');
         $usuario->permissoes = $request->get('permissoes');
         $usuario->email = $request->get('email');
@@ -62,7 +58,7 @@ class UsuarioController extends Controller
         $usuario->save();
 
         return redirect('/usuarios')->with('success', 'Usuário atualizado!');
-    }
+    } */
     public function updateField(Request $request)
     {
         $usuario = Usuario::find($request->id);
