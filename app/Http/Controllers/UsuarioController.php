@@ -46,19 +46,19 @@ class UsuarioController extends Controller
         return view('pages.usuarios.edit', compact('usuario'));
     }
 
-    /* public function update(Request $request, $id)
+    public function update(Request $request, $id)
     {
-        $usuario = Usuario::find($id);
-
-        $usuario->nome_usuario = $request->get('nome_usuario');
-        $usuario->permissoes = $request->get('permissoes');
-        $usuario->email = $request->get('email');
-        $usuario->password = bcrypt($request->get('password'));
-        $usuario->id_vendedor = $request->get('id_vendedor');
+        $usuario = Usuario::find($request->id);
+    
+        if (!$usuario) {
+            return response()->json(['error' => 'Usuário não encontrado!'], 404);
+        }
+    
+        $usuario->{$request->field} = $request->value;
         $usuario->save();
-
-        return redirect('/usuarios')->with('success', 'Usuário atualizado!');
-    } */
+    
+        return response()->json(['success' => 'Usuário atualizado!']);
+    }
     public function updateField(Request $request)
     {
         $usuario = Usuario::find($request->id);
