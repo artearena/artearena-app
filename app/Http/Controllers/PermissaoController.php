@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Permissao;
+use App\Models\Tela;
 
 class PermissaoController extends Controller
 {
