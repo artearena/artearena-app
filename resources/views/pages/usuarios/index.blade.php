@@ -175,7 +175,7 @@
                     "value": value
                 },
                 success: function(response){
-        
+                    console.log(response);
                 }
             });
         }
