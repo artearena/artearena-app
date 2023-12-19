@@ -122,6 +122,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/{id}/edit', [UsuarioController::class, 'edit'])->name('usuarios.edit');
         Route::post('/{id}', [UsuarioController::class, 'update'])->name('usuarios.update');
         Route::delete('/{id}', [UsuarioController::class, 'destroy'])->name('usuarios.destroy');
+        Route::post('/update', [UsuarioController::class, 'updateField'])->name('usuarios.updateField');
     });
 
     Route::prefix('rotas')->group(function () {

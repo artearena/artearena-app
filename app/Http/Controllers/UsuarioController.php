@@ -63,7 +63,19 @@ class UsuarioController extends Controller
 
         return redirect('/usuarios')->with('success', 'Usuário atualizado!');
     }
-
+    public function updateField(Request $request)
+    {
+        $usuario = Usuario::find($request->id);
+    
+        if (!$usuario) {
+            return response()->json(['error' => 'Usuário não encontrado!'], 404);
+        }
+    
+        $usuario->{$request->field} = $request->value;
+        $usuario->save();
+    
+        return response()->json(['success' => 'Usuário atualizado!']);
+    }
     public function destroy($id)
     {
         $usuario = Usuario::find($id);
