@@ -13,7 +13,9 @@ class PermissaoController extends Controller
     public function index()
     {
         $permissoes = Permissao::all();
-        return view('pages.permissao.index', compact('permissoes'));
+        $telas = Tela::all();
+
+        return view('pages.permissao.index', compact('permissoes', 'telas'));
     }
 
     public function create()
