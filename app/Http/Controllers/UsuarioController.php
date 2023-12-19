@@ -10,7 +10,9 @@ class UsuarioController extends Controller
     public function index()
     {
         $usuarios = Usuario::all();
-        return view('pages.usuarios.index', compact('usuarios'));
+        $permissoes = Permissao::all();
+
+        return view('pages.usuarios.index', compact('usuarios', 'permissoes'));
     }
 
     public function create()

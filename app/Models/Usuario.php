@@ -14,4 +14,9 @@ class Usuario extends Authenticatable
     protected $primaryKey = 'id'; // Chave primária
 
     protected $fillable = ['nome_usuario', 'permissoes', 'email', 'password', 'id_vendedor'];
+
+    public function permissao()
+    {
+        return $this->belongsTo('App\Models\Permissao', 'permissoes');
+    }
 }

@@ -138,8 +138,9 @@
                 <td contenteditable="true" class="edit" data-id="{{ $usuario->id }}" data-field="email">{{ $usuario->email }}</td>
                 <td>
                     <select class="form-control edit-select" data-id="{{ $usuario->id }}" data-field="permissoes">
-                        <option value="admin" {{ $usuario->permissoes == 'admin' ? 'selected' : '' }}>Admin</option>
-                        <option value="user" {{ $usuario->permissoes == 'user' ? 'selected' : '' }}>User</option>
+                        @foreach($permissoes as $permissao)
+                            <option value="{{ $permissao->id }}" {{ $usuario->permissoes == $permissao->id ? 'selected' : '' }}>{{ $permissao->nome }}</option>
+                        @endforeach
                     </select>
                 </td>
                 <td>
