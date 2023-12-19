@@ -26,7 +26,7 @@
                         <td>{{ $permissao->configuracao_permissao }}</td>
                         <td>
                             <a href="{{ route('permissoes.edit', $permissao->id) }}" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalEditarPermissao">Editar</a>
-                            <form action="{{ route('permissao.destroy', $permissao->id) }}" method="POST" style="display: inline-block;">
+                            <form action="{{ route('permissoes.destroy', $permissao->id) }}" method="POST" style="display: inline-block;">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalConfirmarExclusao">Excluir</button>
@@ -47,7 +47,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ route('permissao.store') }}" method="POST">
+                    <form action="{{ route('permissoes.store') }}" method="POST">
                         @csrf
                         <div class="mb-3">
                             <label for="nome" class="form-label">Nome</label>
