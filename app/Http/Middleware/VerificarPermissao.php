@@ -26,6 +26,7 @@ class VerificarPermissao
             dd($urlsExcecoes);
             // Verifica se a $urlCompleta está na lista de URLs exceções
             if (in_array($urlCompleta, $urlsExcecoes)) {
+                dd('entrei');
                 return $next($request);
             }
 
