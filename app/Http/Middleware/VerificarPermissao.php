@@ -12,8 +12,9 @@ class VerificarPermissao
 {
     public function handle(Request $request, Closure $next)
     {
-        $usuario = auth()->user();
+        $usuario = Auth::permissao();
         // Verifica se o usuário está autenticado
+        dd($usuario);
         if ($usuario) {
             $urlCompleta = $request->fullUrl();
 
