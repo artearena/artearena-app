@@ -13,11 +13,11 @@ class VerificarPermissao
     public function handle(Request $request, Closure $next, ...$rotas)
     {
         $urlCompleta = $request->fullUrl();
-        dd(Auth::user());
         $usuario = Auth::user();
-        dd($usuario);
+        return $next($request);
+
         if($urlCompleta == 'https://arte.app.br/'){
-            return true;
+            return $next($request);
         }
         if ($this->verificarPermissaoParaRota($usuario, $urlCompleta)) {
             return $next($request);
