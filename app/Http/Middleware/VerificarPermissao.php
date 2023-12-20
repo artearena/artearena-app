@@ -14,9 +14,8 @@ class VerificarPermissao
     {
         $urlCompleta = $request->fullUrl();
         $usuario = Auth::user();
-        return $next($request);
 
-        if($urlCompleta == 'https://arte.app.br/'){
+        if($urlCompleta == 'https://arte.app.br/' || $urlCompleta == 'https://arte.app.br/home'){
             return $next($request);
         }
         if ($this->verificarPermissaoParaRota($usuario, $urlCompleta)) {
