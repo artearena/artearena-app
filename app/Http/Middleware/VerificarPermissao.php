@@ -13,7 +13,6 @@ class VerificarPermissao
     public function handle(Request $request, Closure $next, ...$rotas)
     {
         $usuario = Auth::user();
-        dd($request);
         // Verifica se o usuário está autenticado
         if ($usuario) {
             $urlCompleta = $request->fullUrl();
@@ -34,7 +33,7 @@ class VerificarPermissao
                 return $next($request);
             }
         }
-            return $next($request);
+        return $next($request);
 
         //abort(403, 'Sem permissão para acessar esta página.');
     }
