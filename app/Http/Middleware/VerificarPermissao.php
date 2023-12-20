@@ -59,7 +59,6 @@ class VerificarPermissao
                 }
             }
         }
-        dd('erro');
 
         return false;
     }
