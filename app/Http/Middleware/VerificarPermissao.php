@@ -18,7 +18,7 @@ class VerificarPermissao
             }
         }
 
-        abort(403, 'Sem permissão para acessar esta página.');
+        //abort(403, 'Sem permissão para acessar esta página.');
     }
 
     private function verificarPermissaoParaRota($usuario, $rota)
