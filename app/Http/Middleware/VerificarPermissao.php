@@ -30,12 +30,12 @@ class VerificarPermissao
             }
 
             if ($this->verificarPermissaoParaRota($usuario, $urlCompleta)) {
+                dd('deu certo');
                 return $next($request);
             }
         }
-        return $next($request);
 
-        //abort(403, 'Sem permissão para acessar esta página.');
+        abort(403, 'Sem permissão para acessar esta página.');
     }
     private function verificarPermissaoParaRota($usuario, $urlCompleta)
     {
@@ -53,11 +53,14 @@ class VerificarPermissao
     
                 // Verifica se a urlCompleta está na lista de URLs permitidas
                 if (in_array($urlCompleta, $urlsPermitidas)) {
+                    dd('true');
+
                     return true;
                 }
             }
         }
-    
+        dd('erro');
+
         return false;
     }
     
