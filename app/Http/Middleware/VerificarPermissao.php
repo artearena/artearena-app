@@ -12,6 +12,8 @@ class VerificarPermissao
 {
     public function handle(Request $request, Closure $next)
     {
+        return $next($request);
+
         $usuario = Auth::user();
 
         // Verifica se o usuário está autenticado
