@@ -5,18 +5,15 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Route;
 
 class VerificarPermissao
 {
     public function handle(Request $request, Closure $next, ...$rotas)
     {
         $usuario = Auth::user();
-        // Obtém o nome da rota atual
-        $rotaAtual = $request->route();
 
         // Exibe informações sobre a rota para depuração
-        dd($rotaAtual + 'teste');
+        dd($request);
         foreach ($rotas as $rota) {
             if ($this->verificarPermissaoParaRota($usuario, $rota)) {
                 return $next($request);
