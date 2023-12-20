@@ -18,7 +18,7 @@ class VerificarPermissao
         if (!$usuario) {
             return $next($request);
         }
-        
+
         $urlCompleta = $request->fullUrl();
         $urlsExcecoes = [
             'https://arte.app.br',
@@ -28,7 +28,6 @@ class VerificarPermissao
         ];
         // Verifica se a $urlCompleta está na lista de URLs exceções
         if (in_array($urlCompleta, $urlsExcecoes)) {
-            dd('entrei');
             return $next($request);
         }
 
