@@ -14,6 +14,7 @@ class VerificarPermissao
     {
         $urlCompleta = $request->fullUrl();
         $usuario = Auth::user()->permissoes;
+        dd($usuario);
         
         $urlsExcecoes = [
             'https://arte.app.br',
