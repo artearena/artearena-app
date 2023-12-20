@@ -13,7 +13,7 @@ class VerificarPermissao
     public function handle(Request $request, Closure $next, ...$rotas)
     {
         $urlCompleta = $request->fullUrl();
-
+        dd(Auth::user());
         $usuario = Auth::user();
         dd($usuario);
         if($urlCompleta == 'https://arte.app.br/'){
