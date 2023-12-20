@@ -23,7 +23,7 @@ class VerificarPermissao
                 'https://arte.app.br/logout',
                 'https://arte.app.br/login',
             ];
-
+            dd($urlsExcecoes);
             // Verifica se a $urlCompleta está na lista de URLs exceções
             if (in_array($urlCompleta, $urlsExcecoes)) {
                 return $next($request);
@@ -39,7 +39,7 @@ class VerificarPermissao
     private function verificarPermissaoParaRota($usuario, $urlCompleta)
     {
         $cargo = $usuario->permissoes; // Certifique-se de ter o relacionamento entre Usuario e Cargo
-        
+
         if($cargo && $cargo == 36) {
             return true;
         }
