@@ -5,6 +5,8 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Permissao;
+use App\Models\Tela;
 
 class VerificarPermissao
 {
@@ -13,27 +15,39 @@ class VerificarPermissao
         $urlCompleta = $request->fullUrl();
 
         $usuario = Auth::user();
-
-        // Exibe informações sobre a rota para depuração
-        // dd($request);
-        foreach ($rotas as $rota) {
-            if ($this->verificarPermissaoParaRota($usuario, $rota)) {
-                return $next($request);
-            }
+        if($urlCompleta == 'https://arte.app.br/'){
+            return true;
+        }
+        if ($this->verificarPermissaoParaRota($usuario, $urlCompleta)) {
+            return $next($request);
         }
         return $next($request);
 
         //abort(403, 'Sem permissão para acessar esta página.');
     }
-
-    private function verificarPermissaoParaRota($usuario, $rota)
+    private function verificarPermissaoParaRota($usuario, $urlCompleta)
     {
         $cargo = $usuario->permissoes; // Certifique-se de ter o relacionamento entre Usuario e Cargo
-
-        if ($cargo && in_array($rota, explode(',', $cargo->configuracao_permissao))) {
-            return true;
+    
+        if ($cargo) {
+            // Obtém a lista de telas permitidas para o cargo
+            $permissao = Permissao::find($cargo); // Supondo que $cargo seja o ID da permissão
+    
+            if ($permissao) {
+                $telasPermitidas = explode(',', $permissao->configuracao_permissao);
+                
+                // Obtém a lista de URLs correspondentes às telas permitidas
+                $urlsPermitidas = Tela::whereIn('id', $telasPermitidas)->pluck('url')->toArray();
+    
+                // Verifica se a urlCompleta está na lista de URLs permitidas
+                if (in_array($urlCompleta, $urlsPermitidas)) {
+                    return true;
+                }
+            }
         }
-
-        return true;
+    
+        return false;
     }
+    
+    
 }
