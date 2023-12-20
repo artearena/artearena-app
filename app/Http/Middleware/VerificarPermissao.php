@@ -13,7 +13,7 @@ class VerificarPermissao
     {
         $usuario = Auth::user();
         // Obtém o nome da rota atual
-        $rotaAtual = Route::currentRouteName();
+        $rotaAtual = $request->route();
 
         // Exibe informações sobre a rota para depuração
         dd($rotaAtual);
