@@ -13,8 +13,8 @@ class VerificarPermissao
     public function handle(Request $request, Closure $next, ...$rotas)
     {
         $urlCompleta = $request->fullUrl();
-        $usuario = Auth::user();
-
+        $usuario = Auth::user()->permissoes;
+        
         $urlsExcecoes = [
             'https://arte.app.br',
             'https://arte.app.br/home',
