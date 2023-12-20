@@ -30,7 +30,6 @@ class VerificarPermissao
             }
 
             if ($this->verificarPermissaoParaRota($usuario, $urlCompleta)) {
-                dd('deu certo');
                 return $next($request);
             }
         }
@@ -40,7 +39,10 @@ class VerificarPermissao
     private function verificarPermissaoParaRota($usuario, $urlCompleta)
     {
         $cargo = $usuario->permissoes; // Certifique-se de ter o relacionamento entre Usuario e Cargo
-    
+        if($cargo && $cargo == 36) {
+            return true;
+        }
+
         if ($cargo) {
             // Obtém a lista de telas permitidas para o cargo
             $permissao = Permissao::find($cargo); // Supondo que $cargo seja o ID da permissão
@@ -53,8 +55,6 @@ class VerificarPermissao
     
                 // Verifica se a urlCompleta está na lista de URLs permitidas
                 if (in_array($urlCompleta, $urlsPermitidas)) {
-                    dd('true');
-
                     return true;
                 }
             }
