@@ -54,7 +54,7 @@ Calculadora de Bandeiras
                             <label for="configuracao_permissao" class="form-label">Configuração de Permissão</label>
                             <select class="form-control select2" id="configuracao_permissao" name="configuracao_permissao[]" multiple style="width: 100%">
                                 @foreach ($telas as $tela)
-                                    @if ($tela->tipo == 'Não acessível')
+                                    @if ($tela->tipo == 'Não acessível' || $tela->tipo == 'Desativado')
                                         @continue
                                     @endif
                                     <option value="{{ $tela->id }}">{{ $tela->nome_tela }}</option>
