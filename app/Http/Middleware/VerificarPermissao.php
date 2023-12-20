@@ -13,11 +13,11 @@ class VerificarPermissao
     public function handle(Request $request, Closure $next)
     {
         $usuario = Auth::user();
+        dd($usuario);   
 
         // Verifica se o usuário está autenticado
         if ($usuario) {
             $urlCompleta = $request->fullUrl();
-            dd($usuario);
             $urlsExcecoes = [
                 'https://arte.app.br',
                 'https://arte.app.br/home',
