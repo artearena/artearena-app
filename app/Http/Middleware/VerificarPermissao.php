@@ -12,9 +12,6 @@ class VerificarPermissao
     {
         $urlCompleta = $request->fullUrl();
 
-        // Exibe a URL completa para depuração
-        dd($urlCompleta);
-    
         $usuario = Auth::user();
 
         // Exibe informações sobre a rota para depuração
