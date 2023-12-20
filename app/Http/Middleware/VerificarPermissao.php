@@ -12,10 +12,11 @@ class VerificarPermissao
 {
     public function handle(Request $request, Closure $next, ...$rotas)
     {
+        return $next($request);
+
         $urlCompleta = $request->fullUrl();
-        $usuario = Auth::user()->permissoes;
-        dd($usuario);
-        
+        $usuario = Auth::user();
+
         $urlsExcecoes = [
             'https://arte.app.br',
             'https://arte.app.br/home',
