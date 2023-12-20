@@ -16,7 +16,7 @@ class VerificarPermissao
         $rotaAtual = $request->route();
 
         // Exibe informações sobre a rota para depuração
-        dd($rotaAtual);
+        dd($rotaAtual + 'teste');
         foreach ($rotas as $rota) {
             if ($this->verificarPermissaoParaRota($usuario, $rota)) {
                 return $next($request);
