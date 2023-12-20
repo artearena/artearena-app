@@ -17,7 +17,7 @@ class VerificarPermissao
         // Verifica se o usuário está autenticado
         if ($usuario) {
             $urlCompleta = $request->fullUrl();
-
+            dd($usuario);
             $urlsExcecoes = [
                 'https://arte.app.br',
                 'https://arte.app.br/home',
