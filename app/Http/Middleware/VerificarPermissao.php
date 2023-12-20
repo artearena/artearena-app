@@ -13,7 +13,7 @@ class VerificarPermissao
         $usuario = Auth::user();
 
         // Exibe informações sobre a rota para depuração
-        dd($request);
+        // dd($request);
         foreach ($rotas as $rota) {
             if ($this->verificarPermissaoParaRota($usuario, $rota)) {
                 return $next($request);
