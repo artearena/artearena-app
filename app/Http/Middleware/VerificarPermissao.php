@@ -15,6 +15,7 @@ class VerificarPermissao
         $urlCompleta = $request->fullUrl();
 
         $usuario = Auth::user();
+        dd($usuario);
         if($urlCompleta == 'https://arte.app.br/'){
             return true;
         }
