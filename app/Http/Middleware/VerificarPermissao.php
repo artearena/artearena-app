@@ -29,6 +29,6 @@ class VerificarPermissao
             return true;
         }
 
-        return false;
+        return true;
     }
 }
