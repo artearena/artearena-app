@@ -17,6 +17,7 @@ class VerificarPermissao
                 return $next($request);
             }
         }
+        return $next($request);
 
         //abort(403, 'Sem permissão para acessar esta página.');
     }
