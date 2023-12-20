@@ -39,6 +39,7 @@ class VerificarPermissao
     private function verificarPermissaoParaRota($usuario, $urlCompleta)
     {
         $cargo = $usuario->permissoes; // Certifique-se de ter o relacionamento entre Usuario e Cargo
+        
         if($cargo && $cargo == 36) {
             return true;
         }
