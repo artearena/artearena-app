@@ -12,26 +12,29 @@ class VerificarPermissao
 {
     public function handle(Request $request, Closure $next, ...$rotas)
     {
-        return $next($request);
-
-        $urlCompleta = $request->fullUrl();
         $usuario = Auth::user();
+        dd($request);
+        // Verifica se o usuário está autenticado
+        if ($usuario) {
+            $urlCompleta = $request->fullUrl();
 
-        $urlsExcecoes = [
-            'https://arte.app.br',
-            'https://arte.app.br/home',
-            'https://arte.app.br/logout',
-            'https://arte.app.br/login',
-        ];
+            $urlsExcecoes = [
+                'https://arte.app.br',
+                'https://arte.app.br/home',
+                'https://arte.app.br/logout',
+                'https://arte.app.br/login',
+            ];
 
-        // Verifica se a $urlCompleta está na lista de URLs exceções
-        if (in_array($urlCompleta, $urlsExcecoes)) {
-            return $next($request);
+            // Verifica se a $urlCompleta está na lista de URLs exceções
+            if (in_array($urlCompleta, $urlsExcecoes)) {
+                return $next($request);
+            }
+
+            if ($this->verificarPermissaoParaRota($usuario, $urlCompleta)) {
+                return $next($request);
+            }
         }
-        if ($this->verificarPermissaoParaRota($usuario, $urlCompleta)) {
             return $next($request);
-        }
-        return $next($request);
 
         //abort(403, 'Sem permissão para acessar esta página.');
     }
