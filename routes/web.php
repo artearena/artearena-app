@@ -20,137 +20,140 @@ use App\Http\Controllers\TelaController;
 use App\Http\Controllers\UsuarioController;
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/', [SiteController::class, 'index'])->name('index');
-    Route::get('/home', [SiteController::class, 'index'])->name('home');
-    Route::get('/bandeira', [SiteController::class, 'bandeiras'])->name('bandeira');
-    
-    Route::get('/gerarLinkCadastroCliente', [AcessoTemporarioController::class, 'index']);
-    Route::get('/gerarLinkListaProduto/{id}', [AcessoTemporarioController::class, 'gerarLinkTemporario']);
+    Route::middleware(['perm.rota'])->group(function () {
 
-    Route::prefix('frete')->group(function () {
-        Route::get('/', [SiteController::class, 'frete'])->name('frete');
-        Route::post('/orcamentos-salvar', [OrcamentosController::class, 'salvarOrcamento'])->name('orcamentos.salvar');
-        Route::get('/consultarorcamentos/{id}', [OrcamentosController::class, 'consultarOrcamentos'])->name('orcamentos.consultar');
-        Route::get('/orcamentoProdutos/{id}', [OrcamentosController::class, 'consultarProdutos'])->name('orcamentos.produtos');
-
-    });
-    Route::prefix('pedido')->group(function () {
-        Route::any('/', [PedidoController::class, 'artefinal'])->name('pedido');
-        Route::put('/{id}', [PedidoController::class, 'update'])->name('pedido.update');
-        Route::put('/mover/{id}', [PedidoController::class, 'moverPedido'])->name('pedido.mover');
-        Route::post('/criar', [PedidoController::class, 'criarPedido'])->name('pedido.criar');
-        Route::delete('/{id}', [PedidoController::class, 'excluirPedido'])->name('pedido.excluir');
-    });
-    Route::prefix('producao')->group(function () {
-        Route::any('/', [ProducaoController::class, 'index']);
-        Route::any('/criar', [ProducaoController::class, 'store'])->name('producao.criar');
-    });
-     Route::prefix('pedidoInterno')->group(function () {
-        Route::any('/', [HomologarPedido::class, 'index'])->name('pedidoInterno');
-        Route::any('/criar-pedido/{id}', [HomologarPedido::class, 'criarPedidoOrcamento'])->name('pedidoInterno.criar');
-        Route::post('/criar', [HomologarPedido::class, 'store'])->name('pedidoInterno.salvar');
-        Route::get('/get-produtos-pedido/{id}', [HomologarPedido::class, 'getProdutosDoPedido']);
+        Route::get('/', [SiteController::class, 'index'])->name('index');
+        Route::get('/home', [SiteController::class, 'index'])->name('home');
+        Route::get('/bandeira', [SiteController::class, 'bandeiras'])->name('bandeira');
         
-        // Adicionando rota para atualizar o sexo do produto
-        Route::post('/atualizar-sexo-produto/{pedidoId}/{produtoId}', [HomologarPedido::class, 'atualizarSexoProduto']);
+        Route::get('/gerarLinkCadastroCliente', [AcessoTemporarioController::class, 'index']);
+        Route::get('/gerarLinkListaProduto/{id}', [AcessoTemporarioController::class, 'gerarLinkTemporario']);
 
-        // Adicionando rota para atualizar o pacote do produto
-        Route::post('/atualizar-pacote-produto/{pedidoId}/{produtoId}', [HomologarPedido::class, 'atualizarPacoteProduto']);
+        Route::prefix('frete')->group(function () {
+            Route::get('/', [SiteController::class, 'frete'])->name('frete');
+            Route::post('/orcamentos-salvar', [OrcamentosController::class, 'salvarOrcamento'])->name('orcamentos.salvar');
+            Route::get('/consultarorcamentos/{id}', [OrcamentosController::class, 'consultarOrcamentos'])->name('orcamentos.consultar');
+            Route::get('/orcamentoProdutos/{id}', [OrcamentosController::class, 'consultarProdutos'])->name('orcamentos.produtos');
 
-        // Adicionando rota para atualizar a camisa do produto
-        Route::post('/atualizar-camisa-produto/{pedidoId}/{produtoId}', [HomologarPedido::class, 'atualizarCamisaProduto']);
+        });
+        Route::prefix('pedido')->group(function () {
+            Route::any('/', [PedidoController::class, 'artefinal'])->name('pedido');
+            Route::put('/{id}', [PedidoController::class, 'update'])->name('pedido.update');
+            Route::put('/mover/{id}', [PedidoController::class, 'moverPedido'])->name('pedido.mover');
+            Route::post('/criar', [PedidoController::class, 'criarPedido'])->name('pedido.criar');
+            Route::delete('/{id}', [PedidoController::class, 'excluirPedido'])->name('pedido.excluir');
+        });
+        Route::prefix('producao')->group(function () {
+            Route::any('/', [ProducaoController::class, 'index']);
+            Route::any('/criar', [ProducaoController::class, 'store'])->name('producao.criar');
+        });
+        Route::prefix('pedidoInterno')->group(function () {
+            Route::any('/', [HomologarPedido::class, 'index'])->name('pedidoInterno');
+            Route::any('/criar-pedido/{id}', [HomologarPedido::class, 'criarPedidoOrcamento'])->name('pedidoInterno.criar');
+            Route::post('/criar', [HomologarPedido::class, 'store'])->name('pedidoInterno.salvar');
+            Route::get('/get-produtos-pedido/{id}', [HomologarPedido::class, 'getProdutosDoPedido']);
+            
+            // Adicionando rota para atualizar o sexo do produto
+            Route::post('/atualizar-sexo-produto/{pedidoId}/{produtoId}', [HomologarPedido::class, 'atualizarSexoProduto']);
 
-        // Adicionando rota para atualizar o calção do produto
-        Route::post('/atualizar-calcao-produto/{pedidoId}/{produtoId}', [HomologarPedido::class, 'atualizarCalcaoProduto']);
+            // Adicionando rota para atualizar o pacote do produto
+            Route::post('/atualizar-pacote-produto/{pedidoId}/{produtoId}', [HomologarPedido::class, 'atualizarPacoteProduto']);
 
-    });
+            // Adicionando rota para atualizar a camisa do produto
+            Route::post('/atualizar-camisa-produto/{pedidoId}/{produtoId}', [HomologarPedido::class, 'atualizarCamisaProduto']);
 
-    Route::prefix('produto')->group(function () {
-        // Adicione outras rotas relacionadas a produtos aqui, se necessário
+            // Adicionando rota para atualizar o calção do produto
+            Route::post('/atualizar-calcao-produto/{pedidoId}/{produtoId}', [HomologarPedido::class, 'atualizarCalcaoProduto']);
+
+        });
+
+        Route::prefix('produto')->group(function () {
+            // Adicione outras rotas relacionadas a produtos aqui, se necessário
+        
+            // Rota para buscar um produto por nome
+            Route::get('/buscar-por-nome/{nome}', [ProdutoController::class, 'buscarPorNome'])->name('produto.buscarPorNome');
+        });
+        
+        Route::prefix('consultarcadastro')->group(function () {
+            Route::any('/', [CadastroController::class, 'consultarCadastros'])->name('cadastro.consulta');
+            Route::get('/data', [CadastroController::class, 'getData'])->name('cadastro.data');
+            Route::put('/{id}', [CadastroController::class, 'update'])->name('cadastro.update');
+        });
+
+        Route::any('/impressao', [PedidoController::class, 'impressaoprovisorio'])->name('impressao');
+        Route::any('/confeccao', [PedidoController::class, 'confeccaoprovisorio'])->name('confeccao');
+        Route::any('/reposicao', [PedidoController::class, 'reposicaoprovisorio'])->name('reposicao');  
+
+
+        Route::get('/register', [AuthController::class,'register_page'])->name('register_page');
+        Route::post('/register', [AuthController::class,'register'])->name('register');
+
+        Route::prefix('trello')->group(function () {
+            Route::any('/', [TrelloController::class, 'index'])->name('trello.index');
+        });
+        Route::prefix('tiny')->group(function () {
+            Route::any('/', [tinyController::class, 'exibirRelatorio'])->name('tiny.relatorio');
+            Route::any('/download-pdf', [tinyController::class, 'gerarPdf'])->name('tiny.gerarPdf');
+        });
+        Route::prefix('permissoes')->group(function () {
+            // Listar todas as permissões
+            Route::get('/', [PermissaoController::class, 'index'])->name('permissoes.index');
+        
+            // Exibir o formulário de criação de permissão
+            Route::get('/create', [PermissaoController::class, 'create'])->name('permissoes.create');
+        
+            // Processar o formulário de criação de permissão
+            Route::post('/store', [PermissaoController::class, 'store'])->name('permissoes.store');
+        
+            // Exibir detalhes de uma permissão específica
+            Route::get('/{id}', [PermissaoController::class, 'show'])->name('permissoes.show');
+        
+            // Exibir o formulário de edição de uma permissão
+            Route::get('/{id}/edit', [PermissaoController::class, 'edit'])->name('permissoes.edit');
+        
+            // Processar o formulário de edição de permissão
+            Route::put('/{id}', [PermissaoController::class, 'update'])->name('permissoes.update');
+        
+            // Excluir uma permissão
+            Route::delete('/{id}', [PermissaoController::class, 'destroy'])->name('permissoes.destroy');
+        });
+        
+        Route::prefix('crm')->group(function () {
+            //Route::any('/', [LeadController::class, 'index'])->name('octa.crm');
+            Route::any('/', [LeadController::class, 'indexView'])->name('octa.crm');
+
+            Route::any('/getDados', [LeadController::class, 'getDados'])->name('octa.dados');
+            Route::put('/{id}', [LeadController::class, 'update'])->name('octa.update');
+            Route::put('/atualizar-data/{id}', [LeadController::class, 'atualizarData']);
+            Route::post('/atualizar-mensagem', [LeadController::class, 'atualizarMensagem'])->name('octa.atualizarMensagem');
+            Route::put('/atualizar-vendedor/{id}', [LeadController::class, 'atualizarVendedor']);
+            Route::put('/atualizar-bloqueado/{id}', [LeadController::class, 'atualizarBloqueado']);
+            Route::get('/buscar-registros', [LeadController::class, 'buscarRegistros']);
+        });
+        Route::get('/buscar-pedido', [PedidoController::class, 'buscarPedido'])->name('buscarPedido');
+
+        Route::prefix('erros')->group(function () {
+            Route::get('/', [ErroController::class, 'index'])->name('erros.index');
+            Route::post('/store', [ErroController::class, 'store'])->name('erros.store');
+        });
+        Route::get('/desenvolvimento', [SiteController::class, 'desenvolvimento'])->name('dev');
     
-        // Rota para buscar um produto por nome
-        Route::get('/buscar-por-nome/{nome}', [ProdutoController::class, 'buscarPorNome'])->name('produto.buscarPorNome');
-    });
-    
-    Route::prefix('consultarcadastro')->group(function () {
-        Route::any('/', [CadastroController::class, 'consultarCadastros'])->name('cadastro.consulta');
-        Route::get('/data', [CadastroController::class, 'getData'])->name('cadastro.data');
-        Route::put('/{id}', [CadastroController::class, 'update'])->name('cadastro.update');
-    });
+        Route::prefix('usuarios')->group(function () {
+            Route::get('/', [UsuarioController::class, 'index'])->name('usuarios.index');
+            Route::get('/create', [UsuarioController::class, 'create'])->name('usuarios.create');
+            Route::post('/', [UsuarioController::class, 'store'])->name('usuarios.store');
+            Route::get('/{id}', [UsuarioController::class, 'show'])->name('usuarios.show');
+            Route::get('/{id}/edit', [UsuarioController::class, 'edit'])->name('usuarios.edit');
+            Route::post('/{id}', [UsuarioController::class, 'update'])->name('usuarios.update');
+            Route::delete('/{id}', [UsuarioController::class, 'destroy'])->name('usuarios.destroy');
+            Route::post('/update', [UsuarioController::class, 'updateField'])->name('usuarios.updateField');
+        });
 
-    Route::any('/impressao', [PedidoController::class, 'impressaoprovisorio'])->name('impressao');
-    Route::any('/confeccao', [PedidoController::class, 'confeccaoprovisorio'])->name('confeccao');
-    Route::any('/reposicao', [PedidoController::class, 'reposicaoprovisorio'])->name('reposicao');  
-
-
-    Route::get('/register', [AuthController::class,'register_page'])->name('register_page');
-    Route::post('/register', [AuthController::class,'register'])->name('register');
-
-    Route::prefix('trello')->group(function () {
-        Route::any('/', [TrelloController::class, 'index'])->name('trello.index');
-    });
-    Route::prefix('tiny')->group(function () {
-        Route::any('/', [tinyController::class, 'exibirRelatorio'])->name('tiny.relatorio');
-        Route::any('/download-pdf', [tinyController::class, 'gerarPdf'])->name('tiny.gerarPdf');
-    });
-    Route::prefix('permissoes')->group(function () {
-        // Listar todas as permissões
-        Route::get('/', [PermissaoController::class, 'index'])->name('permissoes.index');
-    
-        // Exibir o formulário de criação de permissão
-        Route::get('/create', [PermissaoController::class, 'create'])->name('permissoes.create');
-    
-        // Processar o formulário de criação de permissão
-        Route::post('/store', [PermissaoController::class, 'store'])->name('permissoes.store');
-    
-        // Exibir detalhes de uma permissão específica
-        Route::get('/{id}', [PermissaoController::class, 'show'])->name('permissoes.show');
-    
-        // Exibir o formulário de edição de uma permissão
-        Route::get('/{id}/edit', [PermissaoController::class, 'edit'])->name('permissoes.edit');
-    
-        // Processar o formulário de edição de permissão
-        Route::put('/{id}', [PermissaoController::class, 'update'])->name('permissoes.update');
-    
-        // Excluir uma permissão
-        Route::delete('/{id}', [PermissaoController::class, 'destroy'])->name('permissoes.destroy');
-    });
-    
-    Route::prefix('crm')->group(function () {
-        //Route::any('/', [LeadController::class, 'index'])->name('octa.crm');
-        Route::any('/', [LeadController::class, 'indexView'])->name('octa.crm');
-
-        Route::any('/getDados', [LeadController::class, 'getDados'])->name('octa.dados');
-        Route::put('/{id}', [LeadController::class, 'update'])->name('octa.update');
-        Route::put('/atualizar-data/{id}', [LeadController::class, 'atualizarData']);
-        Route::post('/atualizar-mensagem', [LeadController::class, 'atualizarMensagem'])->name('octa.atualizarMensagem');
-        Route::put('/atualizar-vendedor/{id}', [LeadController::class, 'atualizarVendedor']);
-        Route::put('/atualizar-bloqueado/{id}', [LeadController::class, 'atualizarBloqueado']);
-        Route::get('/buscar-registros', [LeadController::class, 'buscarRegistros']);
-    });
-    Route::get('/buscar-pedido', [PedidoController::class, 'buscarPedido'])->name('buscarPedido');
-
-    Route::prefix('erros')->group(function () {
-        Route::get('/', [ErroController::class, 'index'])->name('erros.index');
-        Route::post('/store', [ErroController::class, 'store'])->name('erros.store');
-    });
-    Route::get('/desenvolvimento', [SiteController::class, 'desenvolvimento'])->name('dev');
-   
-    Route::prefix('usuarios')->group(function () {
-        Route::get('/', [UsuarioController::class, 'index'])->name('usuarios.index');
-        Route::get('/create', [UsuarioController::class, 'create'])->name('usuarios.create');
-        Route::post('/', [UsuarioController::class, 'store'])->name('usuarios.store');
-        Route::get('/{id}', [UsuarioController::class, 'show'])->name('usuarios.show');
-        Route::get('/{id}/edit', [UsuarioController::class, 'edit'])->name('usuarios.edit');
-        Route::post('/{id}', [UsuarioController::class, 'update'])->name('usuarios.update');
-        Route::delete('/{id}', [UsuarioController::class, 'destroy'])->name('usuarios.destroy');
-        Route::post('/update', [UsuarioController::class, 'updateField'])->name('usuarios.updateField');
-    });
-
-    Route::prefix('rotas')->group(function () {
-        Route::any('/', [TelaController::class, 'index'])->name('rotas');
-        Route::post('/store', [TelaController::class, 'store'])->name('rotas.store');
-        Route::post('/update', [TelaController::class, 'update'])->name('rotas.update');
+        Route::prefix('rotas')->group(function () {
+            Route::any('/', [TelaController::class, 'index'])->name('rotas');
+            Route::post('/store', [TelaController::class, 'store'])->name('rotas.store');
+            Route::post('/update', [TelaController::class, 'update'])->name('rotas.update');
+        });
     });
 });
 Route::prefix('listaUniformes')->middleware('validar.token')->group(function () {
