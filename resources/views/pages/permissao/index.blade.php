@@ -103,7 +103,10 @@
                                         @if ($tela->tipo == 'Não acessível' || $tela->tipo == 'Desativado')
                                             @continue
                                         @endif
-                                        <option value="{{ $tela->id }}">{{ $tela->nome_tela }}</option>
+                                        <option value="{{ $tela->id }}" 
+                                            @if($permissao->telas->contains($tela->id)) selected @endif>
+                                            {{ $tela->nome_tela }}
+                                        </option>
                                     @endforeach
                                 </select>
                             </div>
