@@ -13,11 +13,11 @@ class LogController extends Controller
         $query = Log_pedidos::with('usuario');
 
         if ($request->search) {
-            $query->where('descricao', 'like', '%' . $request->search . '%');
+            $query->where('id_pedido', 'like', '%' . $request->search . '%');
         }
 
-        $logs = $query->paginate(10);
+        $logs = $query->paginate(100);
 
         return view('pages.logs.index', compact('logs'));
     }
-}
+}   
