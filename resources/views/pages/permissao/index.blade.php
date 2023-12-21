@@ -153,11 +153,11 @@
     });
 
     $('#modalEditarPermissao{{ $permissao->id }}').on('shown.bs.modal', function (e) {
-        $('#configuracao_permissao{{ $permissao->id }}').select2({
+        $('#configuracao_permissao').select2({
             placeholder: 'Selecione as telas',
             allowClear: true,
             tags: true,
-            dropdownParent: $('#modalEditarPermissao{{ $permissao->id }}') // Especifica o seletor do modal como o contêiner
+            dropdownParent: $('#modalAdicionarPermissao')
         });
     });
 </script>
