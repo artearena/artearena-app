@@ -65,7 +65,7 @@ class PermissaoController extends Controller
         $permissao = Permissao::findOrFail($id);
         $permissao->update($request->all());
 
-        return redirect()->route('pages.permissao.index')->with('success', 'Permissão atualizada com sucesso.');
+        return redirect()->route('permissoes.index')->with('success', 'Permissão atualizada com sucesso.');
     }
 
     public function destroy($id)
@@ -74,6 +74,6 @@ class PermissaoController extends Controller
         $permissao = Permissao::findOrFail($id);
         $permissao->delete();
 
-        return redirect()->route('pages.permissao.index')->with('success', 'Permissão excluída com sucesso.');
+        return redirect()->route('permissoes.index')->with('success', 'Permissão excluída com sucesso.');
     }
 }

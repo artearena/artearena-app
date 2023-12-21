@@ -97,7 +97,7 @@ Route::middleware(['auth'])->group(function () {
         });
         Route::prefix('permissoes')->group(function () {
             // Listar todas as permissões
-            Route::get('/', [PermissaoController::class, 'index'])->name('pages.permissao.index');
+            Route::get('/', [PermissaoController::class, 'index'])->name('permissoes.index');
         
             // Exibir o formulário de criação de permissão
             Route::get('/create', [PermissaoController::class, 'create'])->name('permissoes.create');
