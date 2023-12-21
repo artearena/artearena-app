@@ -103,7 +103,7 @@
                                         @if ($tela->tipo == 'Não acessível' || $tela->tipo == 'Desativado')
                                             @continue
                                         @endif
-                                        <option value="{{ $tela->id }}" {{ in_array($tela->id, is_array($permissao->configuracao_permissao) ? $permissao->configuracao_permissao : explode(',', $permissao->configuracao_permissao)) ? 'selected' : '' }}>{{ $tela->nome_tela }}</option>                                        @endforeach
+                                        <option value="{{ $tela->id }}">{{ $tela->nome_tela }}</option>
                                 </select>
                             </div>
                             <button type="submit" class="btn btn-primary">Salvar</button>
