@@ -74,8 +74,8 @@
                             <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
                             <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
                             <script>
-                                $(document).ready(function() {
-                                    $('.select2').select2({
+                                $('#modalAdicionarPermissao').on('shown.bs.modal', function (e) {
+                                    $('#configuracao_permissao').select2({
                                         placeholder: 'Selecione as telas',
                                         allowClear: true,
                                         tags: true,
@@ -83,6 +83,14 @@
                                     });
                                 });
 
+                                $('#modalEditarPermissao{{ $permissao->id }}').on('shown.bs.modal', function (e) {
+                                    $('#configuracao_permissao').select2({
+                                        placeholder: 'Selecione as telas',
+                                        allowClear: true,
+                                        tags: true,
+                                        dropdownParent: $('#modalEditarPermissao{{ $permissao->id }}') // Especifica o seletor do modal como o contêiner
+                                    });
+                                });
                             </script>
 
                             <button type="submit" class="btn btn-primary">Salvar</button>
@@ -110,7 +118,14 @@
                             </div>
                             <div class="mb-3">
                                 <label for="configuracao_permissao" class="form-label">Configuração de Permissão</label>
-
+                                <select class="form-control select2" id="configuracao_permissao" name="configuracao_permissao[]" multiple style="width: 100%">
+                                    @foreach ($telas as $tela)
+                                        @if ($tela->tipo == 'Não acessível' || $tela->tipo == 'Desativado')
+                                            @continue
+                                        @endif
+                                        <option value="{{ $tela->id }}" {{ in_array($tela->id, $permissao->configuracao_permissao ?? []) ? 'selected' : '' }}>{{ $tela->nome_tela }}</option>
+                                        @endforeach
+                                </select>
                             </div>
                             <button type="submit" class="btn btn-primary">Salvar</button>
                         </form>
