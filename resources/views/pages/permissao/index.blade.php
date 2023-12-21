@@ -98,7 +98,6 @@
                             </div>
                             <div class="mb-3">
                                 <label for="configuracao_permissao{{ $permissao->id }}" class="form-label">Configuração de Permissão</label>
-                                <?php
                                     @php
                                         $configuracao_permissao = explode(',', $permissao->configuracao_permissao);
                                     @endphp
@@ -114,7 +113,6 @@
                                             </option>
                                         @endforeach
                                     </select>
-                                ?>
                             </div>
                             <button type="submit" class="btn btn-primary">Salvar</button>
                         </form>
