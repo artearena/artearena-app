@@ -104,6 +104,7 @@
                                             @continue
                                         @endif
                                         <option value="{{ $tela->id }}">{{ $tela->nome_tela }}</option>
+                                    @endforeach
                                 </select>
                             </div>
                             <button type="submit" class="btn btn-primary">Salvar</button>
