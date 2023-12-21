@@ -115,7 +115,7 @@
                                         @if ($tela->tipo == 'Não acessível' || $tela->tipo == 'Desativado')
                                             @continue
                                         @endif
-                                        <option value="{{ $tela->id }}" {{ in_array($tela->id, $permissao->configuracao_permissao) ? 'selected' : '' }}>{{ $tela->nome_tela }}</option>
+                                        <option value="{{ $tela->id }}" {{ in_array($tela->id, $permissao->configuracao_permissao ?? []) ? 'selected' : '' }}>{{ $tela->nome_tela }}</option>
                                     @endforeach
                                 </select>
                             </div>
