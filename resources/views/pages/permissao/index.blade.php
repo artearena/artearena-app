@@ -78,7 +78,7 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id                        ="modalEditarPermissaoLabel">Editar Permissão</h5>
+                        <h5 class="modal-title" id="modalEditarPermissaoLabel">Editar Permissão</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
@@ -91,7 +91,7 @@
                             </div>
                             <div class="mb-3">
                                 <label for="configuracao_permissao" class="form-label">Configuração de Permissão</label>
-                                <select class="form-control select2" id="configuracao_permissao" name="configuracao_permissao[]" multiple style="width: 100%">
+                                <select class="form-control select2" id="configuracao_permissao{{ $permissao->id }}" name="configuracao_permissao[]" multiple style="width: 100%">
                                     @foreach ($telas as $tela)
                                         @if ($tela->tipo == 'Não acessível' || $tela->tipo == 'Desativado')
                                             @continue
@@ -108,7 +108,6 @@
                                         </option>
                                     @endforeach
                                 </select>
-
                             </div>
                             <button type="submit" class="btn btn-primary">Salvar</button>
                         </form>
@@ -164,4 +163,3 @@
         @endforeach
     </script>
 @endsection
-
