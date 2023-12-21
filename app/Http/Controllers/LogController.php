@@ -11,6 +11,7 @@ class LogController extends Controller
     public function index(Request $request)
     {
         $query = Log_pedidos::with('usuario');
+        $usuario = Usuario::all();
 
         if ($request->search) {
             $query->where('id_pedido', 'like', '%' . $request->search . '%');
@@ -18,6 +19,6 @@ class LogController extends Controller
 
         $logs = $query->paginate(100);
 
-        return view('pages.logs.index', compact('logs'));
+        return view('pages.logs.index', compact('logs','usuario'));
     }
 }   
