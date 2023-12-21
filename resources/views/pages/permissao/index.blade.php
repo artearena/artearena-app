@@ -98,15 +98,12 @@
                             </div>
                             <div class="mb-3">
                                 <label for="configuracao_permissao{{ $permissao->id }}" class="form-label">Configuração de Permissão</label>
-                                <select class="form-control select2" id="configuracao_permissao{{ $permissao->id }}" name="configuracao_permissao[]" multiple style="width: 100%">
+                                <select class="form-control select2" id="configuracao_permissao" name="configuracao_permissao[]" multiple style="width: 100%">
                                     @foreach ($telas as $tela)
                                         @if ($tela->tipo == 'Não acessível' || $tela->tipo == 'Desativado')
                                             @continue
                                         @endif
-                                        <option value="{{ $tela->id }}" 
-                                            @if($permissao->configuracao_permissao->contains($tela->id)) selected @endif>
-                                            {{ $tela->nome_tela }}
-                                        </option>
+                                        <option value="{{ $tela->id }}">{{ $tela->nome_tela }}</option>
                                     @endforeach
                                 </select>
                             </div>
