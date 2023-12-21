@@ -93,8 +93,37 @@
         </div>
 
         <!-- Modal Editar Permissão -->
-        <div class="modal fade" id="modalEditarPermissao" tabindex="-1" aria-labelledby="modalEditarPermissaoLabel" aria-hidden="true">
-            <!-- Conteúdo do modal de edição -->
+        <div class="modal fade" id="modalEditarPermissao{{ $permissao->id }}" tabindex="-1" aria-labelledby="modalEditarPermissaoLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalEditarPermissaoLabel">Editar Permissão</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="{{ route('permissoes.update', $permissao->id) }}" method="POST">
+                            @csrf
+                            @method('PUT')
+                            <div class="mb-3">
+                                <label for="nome" class="form-label">Nome</label>
+                                <input type="text" class="form-control" id="nome" name="nome" value="{{ $permissao->nome }}" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="configuracao_permissao" class="form-label">Configuração de Permissão</label>
+                                <select class="form-control select2" id="configuracao_permissao" name="configuracao_permissao[]" multiple style="width: 100%">
+                                    @foreach ($telas as $tela)
+                                        @if ($tela->tipo == 'Não acessível' || $tela->tipo == 'Desativado')
+                                            @continue
+                                        @endif
+                                        <option value="{{ $tela->id }}" {{ in_array($tela->id, $permissao->configuracao_permissao) ? 'selected' : '' }}>{{ $tela->nome_tela }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Salvar</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <!-- Modal Confirmar Exclusão -->
