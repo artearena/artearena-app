@@ -104,7 +104,7 @@
                                             @continue
                                         @endif
                                         <option value="{{ $tela->id }}" 
-                                            @if($permissao->telas->contains($tela->id)) selected @endif>
+                                            @if($permissao->configuracao_permissao->contains($tela->id)) selected @endif>
                                             {{ $tela->nome_tela }}
                                         </option>
                                     @endforeach
