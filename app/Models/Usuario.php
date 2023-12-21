@@ -19,4 +19,8 @@ class Usuario extends Authenticatable
     {
         return $this->belongsTo('App\Models\Permissao', 'permissoes');
     }
+    public function usuario()
+    {
+        return $this->belongsTo(Usuario::class, 'updated_by');
+    }
 }

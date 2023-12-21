@@ -27,7 +27,7 @@
                     <td>{{ $log->descricao }}</td>
                     <td>{{ $log->tipo }}</td>
                     <td>{{ $log->data }}</td>
-                    <td>{{ $log->usuario ? $log->usuario->name : '' }}</td>
+                    <td>{{ $log->usuario ? $log->usuario->nome_usuario : '' }}</td>
                 </tr>
             @endforeach
         </tbody>
