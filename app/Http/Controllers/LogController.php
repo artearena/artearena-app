@@ -18,6 +18,6 @@ class LogController extends Controller
 
         $logs = $query->paginate(10);
 
-        return view('logs.index', compact('logs'));
+        return view('pages.logs.index', compact('logs'));
     }
 }
