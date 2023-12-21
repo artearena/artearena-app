@@ -71,27 +71,7 @@
                                 </select>
                             </div>
 
-                            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-                            <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
-                            <script>
-                                $('#modalAdicionarPermissao').on('shown.bs.modal', function (e) {
-                                    $('#configuracao_permissao').select2({
-                                        placeholder: 'Selecione as telas',
-                                        allowClear: true,
-                                        tags: true,
-                                        dropdownParent: $('#modalAdicionarPermissao') // Especifica o seletor do modal como o contêiner
-                                    });
-                                });
-
-                                $('#modalEditarPermissao{{ $permissao->id }}').on('shown.bs.modal', function (e) {
-                                    $('#configuracao_permissao{{ $permissao->id }}').select2({
-                                        placeholder: 'Selecione as telas',
-                                        allowClear: true,
-                                        tags: true,
-                                        dropdownParent: $('#modalEditarPermissao{{ $permissao->id }}') // Especifica o seletor do modal como o contêiner
-                                    });
-                                });
-                            </script>
+                            
 
                             <button type="submit" class="btn btn-primary">Salvar</button>
                         </form>
@@ -155,6 +135,27 @@
                 </div>
             </div>
         </div>
-    @endsection
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+<script>
+    $('#modalAdicionarPermissao').on('shown.bs.modal', function (e) {
+        $('#configuracao_permissao').select2({
+            placeholder: 'Selecione as telas',
+            allowClear: true,
+            tags: true,
+            dropdownParent: $('#modalAdicionarPermissao') // Especifica o seletor do modal como o contêiner
+        });
+    });
+
+    $('#modalEditarPermissao{{ $permissao->id }}').on('shown.bs.modal', function (e) {
+        $('#configuracao_permissao{{ $permissao->id }}').select2({
+            placeholder: 'Selecione as telas',
+            allowClear: true,
+            tags: true,
+            dropdownParent: $('#modalEditarPermissao{{ $permissao->id }}') // Especifica o seletor do modal como o contêiner
+        });
+    });
+</script>
+@endsection
 
 
