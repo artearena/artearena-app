@@ -84,7 +84,7 @@
                                 });
 
                                 $('#modalEditarPermissao{{ $permissao->id }}').on('shown.bs.modal', function (e) {
-                                    $('#configuracao_permissao').select2({
+                                    $('#configuracao_permissao{{ $permissao->id }}').select2({
                                         placeholder: 'Selecione as telas',
                                         allowClear: true,
                                         tags: true,
@@ -117,8 +117,8 @@
                                 <input type="text" class="form-control" id="nome" name="nome" value="{{ $permissao->nome }}" required>
                             </div>
                             <div class="mb-3">
-                                <label for="configuracao_permissao" class="form-label">Configuração de Permissão</label>
-                                <select class="form-control select2" id="configuracao_permissao" name="configuracao_permissao[]" multiple style="width: 100%">
+                                <label for="configuracao_permissao{{ $permissao->id }}" class="form-label">Configuração de Permissão</label>
+                                <select class="form-control select2" id="configuracao_permissao{{ $permissao->id }}" name="configuracao_permissao[]" multiple style="width: 100%">
                                     @foreach ($telas as $tela)
                                         @if ($tela->tipo == 'Não acessível' || $tela->tipo == 'Desativado')
                                             @continue
