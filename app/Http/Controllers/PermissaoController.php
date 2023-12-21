@@ -45,7 +45,7 @@ class PermissaoController extends Controller
         $telas = Tela::all();
         $permissoes = Permissao::all();
 
-        return view('pages.permissao', compact('telas', 'permissoes'));
+        return view('pages.permissao.index', compact('telas', 'permissoes'));
     }
 
     public function edit($id)
