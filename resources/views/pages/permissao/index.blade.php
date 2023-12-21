@@ -34,7 +34,6 @@
                                     Editar
                                 </button>
 
-                                <!-- Botão Excluir -->
                                 <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalConfirmarExclusao{{ $permissao->id }}">
                                     Excluir
                                 </button>
@@ -99,8 +98,26 @@
         </div>
 
         <!-- Modal Confirmar Exclusão -->
-        <div class="modal fade" id="modalConfirmarExclusao" tabindex="-1" aria-labelledby="modalConfirmarExclusaoLabel" aria-hidden="true">
-            <!-- Conteúdo do modal de confirmação de exclusão -->
+        <div class="modal fade" id="modalConfirmarExclusao{{ $permissao->id }}" tabindex="-1" aria-labelledby="modalConfirmarExclusaoLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalConfirmarExclusaoLabel">Confirmar Exclusão</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        Você tem certeza que deseja excluir esta permissão?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        <form action="{{ route('permissoes.destroy', $permissao->id) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger">Excluir</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
     @endsection
 
