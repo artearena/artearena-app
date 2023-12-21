@@ -98,7 +98,6 @@
                             </div>
                             <div class="mb-3">
                                 <label for="configuracao_permissao{{ $permissao->id }}" class="form-label">Configuração de Permissão</label>
-                                <?php
                                     @php
                                         $configuracao_permissao = explode(',', $permissao->configuracao_permissao);
                                     @endphp
@@ -108,13 +107,9 @@
                                             @if ($tela->tipo == 'Não acessível' || $tela->tipo == 'Desativado')
                                                 @continue
                                             @endif
-                                            <option value="{{ $tela->id }}" 
-                                                @if(in_array($tela->id, $configuracao_permissao)) selected @endif>
-                                                {{ $tela->nome_tela }}
-                                            </option>
+                                            <option value="{{ $tela->id }}">{{ $tela->nome_tela }}</option>
                                         @endforeach
                                     </select>
-                                ?>
                             </div>
                             <button type="submit" class="btn btn-primary">Salvar</button>
                         </form>
