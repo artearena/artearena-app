@@ -110,13 +110,7 @@
                             </div>
                             <div class="mb-3">
                                 <label for="configuracao_permissao" class="form-label">Configuração de Permissão</label>
-                                <select class="form-control select2" id="configuracao_permissao" name="configuracao_permissao[]" multiple style="width: 100%">
-                                    @foreach ($telas as $tela)
-                                        @if ($tela->tipo == 'Não acessível' || $tela->tipo == 'Desativado')
-                                            @continue
-                                        @endif
-                                        @endforeach
-                                </select>
+
                             </div>
                             <button type="submit" class="btn btn-primary">Salvar</button>
                         </form>
