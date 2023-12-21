@@ -28,11 +28,9 @@
                         <td>{{ $permissao->nome }}</td>
                         <td>{{ $permissao->configuracao_permissao }}</td>
                         <td>
-                            <!-- Botão Editar -->
                             <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalEditarPermissao{{ $permissao->id }}">
                                 Editar
                             </button>
-
                             <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalConfirmarExclusao{{ $permissao->id }}">
                                 Excluir
                             </button>
@@ -43,7 +41,6 @@
         </table>
     </div>
 
-    <!-- Modal Adicionar Permissão -->
     <div class="modal fade" id="modalAdicionarPermissao" tabindex="-1" aria-labelledby="modalAdicionarPermissaoLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -69,7 +66,6 @@
                                 @endforeach
                             </select>
                         </div>
-
                         <button type="submit" class="btn btn-primary">Salvar</button>
                     </form>
                 </div>
@@ -77,13 +73,12 @@
         </div>
     </div>
 
-    <!-- Modal Editar Permissão -->
     @foreach ($permissoes as $permissao)
         <div class="modal fade" id="modalEditarPermissao{{ $permissao->id }}" tabindex="-1" aria-labelledby="modalEditarPermissaoLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="modalEditarPermissaoLabel">Editar Permissão</h5>
+                        <h5 class="modal-title" id                        ="modalEditarPermissaoLabel">Editar Permissão</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
@@ -96,12 +91,12 @@
                             </div>
                             <div class="mb-3">
                                 <label for="configuracao_permissao" class="form-label">Configuração de Permissão</label>
-                                <select class="form-control select2" id="configuracao_permissao" name="configuracao_permissao[]" multiple style="width: 100%">
+                                <select class="form-control select2" id="configuracao_permissao{{ $permissao->id }}" name="configuracao_permissao[]" multiple style="width: 100%">
                                     @foreach ($telas as $tela)
                                         @if ($tela->tipo == 'Não acessível' || $tela->tipo == 'Desativado')
                                             @continue
                                         @endif
-                                        <option value="{{ $tela->id }}" {{ in_array($tela->id, explode(',', $permissao->configuracao_permissao ?? '')) ? 'selected' : '' }}>{{ $tela->nome_tela }}</option>
+                                        <option value="{{ $tela->id }}" {{ in_array($tela->id, explode(',', $permissao->configuracao_permissao ?? [])) ? 'selected' : '' }}>{{ $tela->nome_tela }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -111,10 +106,7 @@
                 </div>
             </div>
         </div>
-    @endforeach
 
-    <!-- Modal Confirmar Exclusão -->
-    @foreach ($permissoes as $permissao)
         <div class="modal fade" id="modalConfirmarExclusao{{ $permissao->id }}" tabindex="-1" aria-labelledby="modalConfirmarExclusaoLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -146,19 +138,20 @@
                 placeholder: 'Selecione as telas',
                 allowClear: true,
                 tags: true,
-                dropdownParent: $('#modalAdicionarPermissao') // Especifica o seletor do modal como o contêiner
+                dropdownParent: $('#modalAdicionarPermissao')
             });
         });
 
         @foreach ($permissoes as $permissao)
             $('#modalEditarPermissao{{ $permissao->id }}').on('shown.bs.modal', function (e) {
-                $('#configuracao_permissao').select2({
+                $('#configuracao_permissao{{ $permissao->id }}').select2({
                     placeholder: 'Selecione as telas',
                     allowClear: true,
                     tags: true,
-                    dropdownParent: $('#modalEditarPermissao{{ $permissao->id }}') // Especifica o seletor do modal como o contêiner
+                    dropdownParent: $('#modalEditarPermissao{{ $permissao->id }}')
                 });
             });
         @endforeach
     </script>
 @endsection
+
