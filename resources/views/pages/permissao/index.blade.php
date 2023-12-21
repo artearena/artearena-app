@@ -30,7 +30,7 @@
                             <td>{{ $permissao->configuracao_permissao }}</td>
                             <td>
                                 <!-- Botão Editar -->
-                                <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#modalEditarPermissao{{ $permissao->id }}">
+                                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalEditarPermissao{{ $permissao->id }}">
                                     Editar
                                 </button>
 
