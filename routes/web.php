@@ -18,6 +18,7 @@ use App\Http\Controllers\AcessoTemporarioController;
 use App\Http\Controllers\ProdutoController;
 use App\Http\Controllers\TelaController;
 use App\Http\Controllers\UsuarioController;
+use App\Http\Controllers\LogController;
 
 Route::middleware(['auth'])->group(function () {
     Route::middleware(['perm.rota'])->group(function () {
@@ -154,6 +155,8 @@ Route::middleware(['auth'])->group(function () {
             Route::post('/store', [TelaController::class, 'store'])->name('rotas.store');
             Route::post('/update', [TelaController::class, 'update'])->name('rotas.update');
         });
+        Route::get('/logs', [LogController::class, 'index'])->name('logs.index');
+
     });
 });
 Route::prefix('listaUniformes')->middleware('validar.token')->group(function () {

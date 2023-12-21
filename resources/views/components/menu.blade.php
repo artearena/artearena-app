@@ -68,7 +68,6 @@
                             <li><a class="dropdown-item" href="{{ route('permissoes.index') }}">Configurar permissões</a></li>
                             <li><a class="dropdown-item" href="{{ route('rotas') }}">Rotas da aplicação</a></li>
                             <li><a class="dropdown-item" href="{{ route('dev') }}">Logs da aplicação</a></li>
-
                         </ul>
                     </li>
 
