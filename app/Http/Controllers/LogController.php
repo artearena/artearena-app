@@ -10,15 +10,15 @@ class LogController extends Controller
 {
     public function index(Request $request)
     {
-        $query = Log_pedidos::with('usuario');
+        $query = Log_pedidos::with('usuario')->orderBy('id', 'desc');
         $usuario = Usuario::all();
 
         if ($request->search) {
             $query->where('id_pedido', 'like', '%' . $request->search . '%');
         }
 
-        $logs = $query->paginate(100);
+        $logs = $query->paginate(10);
 
         return view('pages.logs.index', compact('logs','usuario'));
     }
-}   
+}
