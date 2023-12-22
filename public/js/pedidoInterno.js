@@ -13,7 +13,7 @@ botoesExpandir.forEach(function(botaoExpandir) {
         return response.json();
       })
       .then(function(produtos) {
-        // Construa o conteúdo do modal
+        // Construa o conteúdo da tabela e do modal
         var modalContent = '<div class="modal fade" id="produtoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">';
         modalContent += '<div class="modal-dialog" role="document">';
         modalContent += '<div class="modal-content">';
@@ -24,35 +24,38 @@ botoesExpandir.forEach(function(botaoExpandir) {
         modalContent += '</button>';
         modalContent += '</div>';
         modalContent += '<div class="modal-body">';
-        
-        // Adicione os detalhes dos produtos ao modal
+        modalContent += '<table class="table">';
+        modalContent += '<thead><tr><th>Produto</th><th>Quantidade</th><th>Sexo</th><th>Arte Aprovada</th><th>Lista Aprovada</th><th>Pacote</th><th>Camisa</th><th>Calção</th><th>Meião</th><th>Nome</th><th>Número</th><th>Tamanho</th><th>ID Lista</th></tr></thead>';
+        modalContent += '<tbody>';
+
+        // Adicione os detalhes dos produtos à tabela e ao modal
         produtos.forEach(function(produto) {
-          modalContent +=
-            '<strong>Produto:</strong> ' + (produto.produto_nome !== undefined ? produto.produto_nome : '') + '<br>' +
-            '<strong>Quantidade:</strong> ' + (produto.quantidade !== undefined ? produto.quantidade : '') + '<br>' +
-            '<strong>Sexo:</strong> <select class="form-control input-sexo">' +
+          modalContent += '<tr>' +
+            '<td contenteditable="true">' + (produto.produto_nome !== undefined ? produto.produto_nome : '') + '</td>' +
+            '<td contenteditable="true">' + (produto.quantidade !== undefined ? produto.quantidade : '') + '</td>' +
+            '<td contenteditable="true"><select class="form-control input-sexo">' +
             '<option value="M" ' + (produto.sexo === 'M' ? 'selected' : '') + '>M</option>' +
             '<option value="F" ' + (produto.sexo === 'F' ? 'selected' : '') + '>F</option>' +
-            '</select><br>' +
-            '<strong>Arte Aprovada:</strong> ' + (produto.arte_aprovada !== undefined ? produto.arte_aprovada : '') + '<br>' +
-            '<strong>Lista Aprovada:</strong> <select class="form-control input-lista-aprovada">' +
+            '</select></td>' +
+            '<td contenteditable="true">' + (produto.arte_aprovada !== undefined ? produto.arte_aprovada : '') + '</td>' +
+            '<td contenteditable="true"><select class="form-control input-lista-aprovada">' +
             '<option value="sim" ' + (produto.lista_aprovada === 'sim' ? 'selected' : '') + '>Sim</option>' +
             '<option value="não" ' + (produto.lista_aprovada === 'não' ? 'selected' : '') + '>Não</option>' +
-            '</select><br>' +
-            '<strong>Pacote:</strong> <select class="form-control input-pacote">' +
+            '</select></td>' +
+            '<td contenteditable="true"><select class="form-control input-pacote">' +
             '<option value="start" ' + (produto.pacote === 'start' ? 'selected' : '') + '>Start</option>' +
             '<option value="prata" ' + (produto.pacote === 'prata' ? 'selected' : '') + '>Prata</option>' +
             '<option value="ouro" ' + (produto.pacote === 'ouro' ? 'selected' : '') + '>Ouro</option>' +
             '<option value="diamante" ' + (produto.pacote === 'diamante' ? 'selected' : '') + '>Diamante</option>' +
             '<option value="premium" ' + (produto.pacote === 'premium' ? 'selected' : '') + '>Premium</option>' +
             '<option value="profissional" ' + (produto.pacote === 'profissional' ? 'selected' : '') + '>Profissional</option>' +
-            '</select><br>' +
-            '<strong>Camisa:</strong> <input type="checkbox" ' + (produto.camisa !== undefined ? 'checked' : '') + ' class="input-camisa">' + '<br>' +
-            '<strong>Calção:</strong> <input type="checkbox" ' + (produto.calcao !== undefined ? 'checked' : '') + ' class="input-calcao">' + '<br>' +
-            '<strong>Meião:</strong> <input type="checkbox" ' + (produto.meiao !== undefined ? 'checked' : '') + ' class="input-meiao">' + '<br>' +
-            '<strong>Nome:</strong> ' + (produto.nome !== undefined ? produto.nome : '') + '<br>' +
-            '<strong>Número:</strong> ' + (produto.numero !== undefined ? produto.numero : '') + '<br>' +
-            '<strong>Tamanho:</strong> <select class="form-control input-tamanho">' +
+            '</select></td>' +
+            '<td contenteditable="true"><input type="checkbox" ' + (produto.camisa !== undefined ? 'checked' : '') + ' class="input-camisa"></td>' +
+            '<td contenteditable="true"><input type="checkbox" ' + (produto.calcao !== undefined ? 'checked' : '') + ' class="input-calcao"></td>' +
+            '<td contenteditable="true"><input type="checkbox" ' + (produto.meiao !== undefined ? 'checked' : '') + ' class="input-meiao"></td>' +
+            '<td contenteditable="true">' + (produto.nome !== undefined ? produto.nome : '') + '</td>' +
+            '<td contenteditable="true">' + (produto.numero !== undefined ? produto.numero : '') + '</td>' +
+            '<td contenteditable="true"><select class="form-control input-tamanho">' +
             '<option value="P" ' + (produto.tamanho === 'P' ? 'selected' : '') + '>P</option>' +
             '<option value="M" ' + (produto.tamanho === 'M' ? 'selected' : '') + '>M</option>' +
             '<option value="G" ' + (produto.tamanho === 'G' ? 'selected' : '') + '>G</option>' +
@@ -60,10 +63,12 @@ botoesExpandir.forEach(function(botaoExpandir) {
             '<option value="XG" ' + (produto.tamanho === 'XG' ? 'selected' : '') + '>XG</option>' +
             '<option value="XGG" ' + (produto.tamanho === 'XGG' ? 'selected' : '') + '>XGG</option>' +
             '<option value="XGGG" ' + (produto.tamanho === 'XGGG' ? 'selected' : '') + '>XGGG</option>' +
-            '</select><br>' +
-            '<strong>ID Lista:</strong> ' + (produto.id_lista !== undefined ? produto.id_lista : '') + '<hr>';
+            '</select></td>' +
+            '<td contenteditable="true">' + (produto.id_lista !== undefined ? produto.id_lista : '') + '</td>' +
+            '</tr>';
         });
 
+        modalContent += '</tbody></table>';
         modalContent += '</div>';
         modalContent += '<div class="modal-footer">';
         modalContent += '<button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>';
