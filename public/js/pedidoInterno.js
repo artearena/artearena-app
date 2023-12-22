@@ -24,6 +24,7 @@ botoesExpandir.forEach(function(botaoExpandir) {
         modalContent += '</button>';
         modalContent += '</div>';
         modalContent += '<div class="modal-body">';
+        modalContent += '<div class="table-responsive">';
         modalContent += '<table class="table">';
         modalContent += '<thead><tr><th>Produto</th><th>Quantidade</th><th>Sexo</th><th>Arte Aprovada</th><th>Lista Aprovada</th><th>Pacote</th><th>Camisa</th><th>Calção</th><th>Meião</th><th>Nome</th><th>Número</th><th>Tamanho</th><th>ID Lista</th></tr></thead>';
         modalContent += '<tbody>';
@@ -69,6 +70,7 @@ botoesExpandir.forEach(function(botaoExpandir) {
         });
 
         modalContent += '</tbody></table>';
+        modalContent += '</div>';
         modalContent += '</div>';
         modalContent += '<div class="modal-footer">';
         modalContent += '<button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>';
