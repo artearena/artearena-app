@@ -82,10 +82,8 @@
             color: red;
         }
     }
-    
-
-    .custom-modal-lg {
-        max-width: 80%;
+    modal-content{
+        min-width: 120vh;
     }
 
 </style>
