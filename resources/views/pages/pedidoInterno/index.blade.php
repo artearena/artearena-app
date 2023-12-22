@@ -82,6 +82,12 @@
             color: red;
         }
     }
+    
+
+    .custom-modal-lg {
+        max-width: 80%;
+    }
+
 </style>
 <script>
     function observacoesChanged(event) {
