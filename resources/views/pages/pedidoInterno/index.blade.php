@@ -82,8 +82,10 @@
             color: red;
         }
     }
-    modal-content{
-        min-width: 120vh !important ;
+    
+
+    .custom-modal-lg {
+        min-width: 120vh;
     }
 
 </style>
