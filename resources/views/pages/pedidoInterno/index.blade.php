@@ -120,9 +120,10 @@
 <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <div class="app">
-        
+
+    @if(isset($pedidosArte) && count($pedidosArte) > 0)
     <div class="alert-table">
-    <h2 class="red-text text-center">Alertas</h2>
+        <h2 class="red-text text-center">Alertas</h2>
         <table id="alertasTable" class="dataTable">
             <thead>
                 <tr>
@@ -159,6 +160,8 @@
             </tbody>
         </table>
     </div>
+    @endif
+
         <hr>
         
         <h1>Tabela de Pedidos</h1>
