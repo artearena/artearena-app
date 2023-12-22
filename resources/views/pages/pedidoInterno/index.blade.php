@@ -82,12 +82,6 @@
             color: red;
         }
     }
-    
-
-    .custom-modal-lg {
-        --bs-modal-width: 120vh; !important
-    }
-
 </style>
 <script>
     function observacoesChanged(event) {

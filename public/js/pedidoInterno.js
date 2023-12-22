@@ -15,7 +15,7 @@ botoesExpandir.forEach(function(botaoExpandir) {
       .then(function(produtos) {
         // Construa o conteúdo da tabela e do modal
         var modalContent = '<div class="modal fade" id="produtoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">';
-        modalContent += '<div class="modal-dialog modal-lg" role="document">'; // Added modal-lg class here
+        modalContent += '<div class="modal-dialog modal-xl" role="document">'; // Added modal-lg class here
         modalContent += '<div class="modal-content">';
         modalContent += '<div class="modal-header">';
         modalContent += '<h5 class="modal-title" id="exampleModalLabel">Detalhes do Produto</h5>';
