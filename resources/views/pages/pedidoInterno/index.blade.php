@@ -83,7 +83,7 @@
         }
     }
     modal-content{
-        min-width: 120vh;
+        min-width: 120vh !important ;
     }
 
 </style>
