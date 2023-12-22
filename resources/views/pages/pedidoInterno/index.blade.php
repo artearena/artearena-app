@@ -85,7 +85,7 @@
     
 
     .custom-modal-lg {
-        min-width: 120vh;
+        --bs-modal-width: 120vh; !important
     }
 
 </style>
