@@ -188,7 +188,7 @@ function criarCelulaCheckbox(produto, campo, pedidoId) {
 }
 
 function atualizarCampoProduto(pedidoId, produtoId, campo, novoValor) {
-  fetch('/atualizar-produto/' + pedidoId + '/' + produtoId, {
+  fetch('/pedidoInterno/atualizar-produto/' + pedidoId + '/' + produtoId, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
