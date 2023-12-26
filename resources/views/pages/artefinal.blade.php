@@ -964,7 +964,7 @@ $.ajaxSetup({
                     Observações: ${observacoes}`;
 
                         // URL para enviar notificação
-                        const url = 'https://artearena.kinghost.net/enviarNotificacaoSlack?mensagem=' + encodeURIComponent(mensagem);
+                        const url = 'https://artearena.kinghost.net/enviarNotificacaoSlackMari?mensagem=' + encodeURIComponent(mensagem);
                         // Enviar requisição
                         fetch(url)
                             .then(response => {
