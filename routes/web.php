@@ -53,6 +53,8 @@ Route::middleware(['auth'])->group(function () {
             Route::any('/criar-pedido/{id}', [HomologarPedido::class, 'criarPedidoOrcamento'])->name('pedidoInterno.criar');
             Route::post('/criar', [HomologarPedido::class, 'store'])->name('pedidoInterno.salvar');
             Route::get('/get-produtos-pedido/{id}', [HomologarPedido::class, 'getProdutosDoPedido']);
+            Route::post('/atualizar-produto/{pedidoId}/{produtoId}', [HomologarPedido::class, '@update']);
+
             
             // Adicionando rota para atualizar o sexo do produto
             Route::post('/atualizar-sexo-produto/{pedidoId}/{produtoId}', [HomologarPedido::class, 'atualizarSexoProduto']);

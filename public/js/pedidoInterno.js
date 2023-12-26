@@ -7,82 +7,138 @@ botoesExpandir.forEach(function(botaoExpandir) {
     // Obtenha o ID do pedido
     var pedidoId = this.closest('.pedido-row').getAttribute('data-pedido-id');
 
-    // Caso contrário, faça a requisição AJAX para obter a lista de produtos
+    // Faça a requisição AJAX para obter a lista de produtos
     fetch('/pedidoInterno/get-produtos-pedido/' + pedidoId)
       .then(function(response) {
         return response.json();
       })
       .then(function(produtos) {
         // Construa o conteúdo da tabela e do modal
-        var modalContent = '<div class="modal fade" id="produtoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">';
-        modalContent += '<div class="modal-dialog modal-xl" role="document">'; // Added modal-lg class here
-        modalContent += '<div class="modal-content">';
-        modalContent += '<div class="modal-header">';
-        modalContent += '<h5 class="modal-title" id="exampleModalLabel">Detalhes do Produto</h5>';
-        modalContent += '<button type="button" class="close" data-dismiss="modal" aria-label="Close">';
-        modalContent += '<span aria-hidden="true">&times;</span>';
-        modalContent += '</button>';
-        modalContent += '</div>';
-        modalContent += '<div class="modal-body">';
-        modalContent += '<div class="table-responsive">';
-        modalContent += '<table class="table">';
-        modalContent += '<thead><tr><th>Produto</th><th>Quantidade</th><th>Sexo</th><th>Arte Aprovada</th><th>Lista Aprovada</th><th>Pacote</th><th>Camisa</th><th>Calção</th><th>Meião</th><th>Nome</th><th>Número</th><th>Tamanho</th><th>ID Lista</th></tr></thead>';
-        modalContent += '<tbody>';
+        var modalContent = document.createElement('div');
+        modalContent.className = 'modal fade';
+        modalContent.id = 'produtoModal';
+        modalContent.tabIndex = -1;
+        modalContent.setAttribute('role', 'dialog');
+        modalContent.setAttribute('aria-labelledby', 'exampleModalLabel');
+        modalContent.setAttribute('aria-hidden', 'true');
 
-        // Adicione os detalhes dos produtos à tabela e ao modal
-        produtos.forEach(function(produto) {
-          modalContent += '<tr>' +
-            '<td contenteditable="true">' + (produto.produto_nome !== undefined ? produto.produto_nome : '') + '</td>' +
-            '<td contenteditable="true">' + (produto.quantidade !== undefined ? produto.quantidade : '') + '</td>' +
-            '<td contenteditable="true"><select class="form-control input-sexo">' +
-            '<option value="M" ' + (produto.sexo === 'M' ? 'selected' : '') + '>M</option>' +
-            '<option value="F" ' + (produto.sexo === 'F' ? 'selected' : '') + '>F</option>' +
-            '</select></td>' +
-            '<td contenteditable="true">' + (produto.arte_aprovada !== undefined ? produto.arte_aprovada : '') + '</td>' +
-            '<td contenteditable="true"><select class="form-control input-lista-aprovada">' +
-            '<option value="sim" ' + (produto.lista_aprovada === 'sim' ? 'selected' : '') + '>Sim</option>' +
-            '<option value="não" ' + (produto.lista_aprovada === 'não' ? 'selected' : '') + '>Não</option>' +
-            '</select></td>' +
-            '<td contenteditable="true"><select class="form-control input-pacote">' +
-            '<option value="start" ' + (produto.pacote === 'start' ? 'selected' : '') + '>Start</option>' +
-            '<option value="prata" ' + (produto.pacote === 'prata' ? 'selected' : '') + '>Prata</option>' +
-            '<option value="ouro" ' + (produto.pacote === 'ouro' ? 'selected' : '') + '>Ouro</option>' +
-            '<option value="diamante" ' + (produto.pacote === 'diamante' ? 'selected' : '') + '>Diamante</option>' +
-            '<option value="premium" ' + (produto.pacote === 'premium' ? 'selected' : '') + '>Premium</option>' +
-            '<option value="profissional" ' + (produto.pacote === 'profissional' ? 'selected' : '') + '>Profissional</option>' +
-            '</select></td>' +
-            '<td contenteditable="true"><input type="checkbox" ' + (produto.camisa !== undefined ? 'checked' : '') + ' class="input-camisa"></td>' +
-            '<td contenteditable="true"><input type="checkbox" ' + (produto.calcao !== undefined ? 'checked' : '') + ' class="input-calcao"></td>' +
-            '<td contenteditable="true"><input type="checkbox" ' + (produto.meiao !== undefined ? 'checked' : '') + ' class="input-meiao"></td>' +
-            '<td contenteditable="true">' + (produto.nome !== undefined ? produto.nome : '') + '</td>' +
-            '<td contenteditable="true">' + (produto.numero !== undefined ? produto.numero : '') + '</td>' +
-            '<td contenteditable="true"><select class="form-control input-tamanho">' +
-            '<option value="P" ' + (produto.tamanho === 'P' ? 'selected' : '') + '>P</option>' +
-            '<option value="M" ' + (produto.tamanho === 'M' ? 'selected' : '') + '>M</option>' +
-            '<option value="G" ' + (produto.tamanho === 'G' ? 'selected' : '') + '>G</option>' +
-            '<option value="GG" ' + (produto.tamanho === 'GG' ? 'selected' : '') + '>GG</option>' +
-            '<option value="XG" ' + (produto.tamanho === 'XG' ? 'selected' : '') + '>XG</option>' +
-            '<option value="XGG" ' + (produto.tamanho === 'XGG' ? 'selected' : '') + '>XGG</option>' +
-            '<option value="XGGG" ' + (produto.tamanho === 'XGGG' ? 'selected' : '') + '>XGGG</option>' +
-            '</select></td>' +
-            '<td contenteditable="true">' + (produto.id_lista !== undefined ? produto.id_lista : '') + '</td>' +
-            '</tr>';
+        var modalDialog = document.createElement('div');
+        modalDialog.className = 'modal-dialog modal-xl';
+        modalDialog.setAttribute('role', 'document');
+
+        var modalContentDiv = document.createElement('div');
+        modalContentDiv.className = 'modal-content';
+
+        var modalHeader = document.createElement('div');
+        modalHeader.className = 'modal-header';
+
+        var modalTitle = document.createElement('h5');
+        modalTitle.className = 'modal-title';
+        modalTitle.id = 'exampleModalLabel';
+        modalTitle.innerText = 'Detalhes do Produto';
+
+        var closeButton = document.createElement('button');
+        closeButton.type = 'button';
+        closeButton.className = 'close';
+        closeButton.setAttribute('data-dismiss', 'modal');
+        closeButton.setAttribute('aria-label', 'Close');
+
+        var closeSpan = document.createElement('span');
+        closeSpan.setAttribute('aria-hidden', 'true');
+        closeSpan.innerHTML = '&times;';
+        closeButton.appendChild(closeSpan);
+
+        modalHeader.appendChild(modalTitle);
+        modalHeader.appendChild(closeButton);
+
+        var modalBody = document.createElement('div');
+        modalBody.className = 'modal-body';
+
+        var tableResponsive = document.createElement('div');
+        tableResponsive.className = 'table-responsive';
+
+        var table = document.createElement('table');
+        table.className = 'table';
+
+        var thead = document.createElement('thead');
+        var trHead = document.createElement('tr');
+        var headers = ['Produto', 'Quantidade', 'Sexo', 'Arte Aprovada', 'Lista Aprovada', 'Pacote', 'Camisa', 'Calção', 'Meião', 'Nome', 'Número', 'Tamanho', 'ID Lista'];
+        headers.forEach(function(header) {
+          var th = document.createElement('th');
+          th.innerText = header;
+          trHead.appendChild(th);
         });
+        thead.appendChild(trHead);
+        table.appendChild(thead);
 
-        modalContent += '</tbody></table>';
-        modalContent += '</div>';
-        modalContent += '</div>';
-        modalContent += '<div class="modal-footer">';
-        modalContent += '<button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>';
-        modalContent += '</div>';
-        modalContent += '</div>';
-        modalContent += '</div>';
-        modalContent += '</div>';
+        var tbody = document.createElement('tbody');
+        produtos.forEach(function(produto) {
+          var tr = document.createElement('tr');
 
-        // Inclua o modal no corpo do documento
-        document.body.insertAdjacentHTML('beforeend', modalContent);
+          var tdNome = criarCelulaEditavel(produto, 'produto_nome', pedidoId);
+          tr.appendChild(tdNome);
 
-        // Ative o modal
+          var tdQuantidade = criarCelulaEditavel(produto, 'quantidade', pedidoId);
+          tr.appendChild(tdQuantidade);
+
+          var tdSexo = criarCelulaSelecionavel(produto, 'sexo', ['M', 'F'], pedidoId);
+          tr.appendChild(tdSexo);
+
+          var tdArteAprovada = criarCelulaEditavel(produto, 'arte_aprovada', pedidoId);
+          tr.appendChild(tdArteAprovada);
+
+          var tdListaAprovada = criarCelulaSelecionavel(produto, 'lista_aprovada', ['sim', 'não'], pedidoId);
+          tr.appendChild(tdListaAprovada);
+
+          var tdPacote = criarCelulaEditavel(produto, 'pacote', pedidoId);
+          tr.appendChild(tdPacote);
+
+          var tdCamisa = criarCelulaCheckbox(produto, 'camisa', pedidoId);
+          tr.appendChild(tdCamisa);
+
+          var tdCalcao = criarCelulaCheckbox(produto, 'calcao', pedidoId);
+          tr.appendChild(tdCalcao);
+
+          var tdMeiao = criarCelulaCheckbox(produto, 'meiao', pedidoId);
+          tr.appendChild(tdMeiao);
+
+          var tdNomeJogador = criarCelulaEditavel(produto, 'nome_jogador', pedidoId);
+          tr.appendChild(tdNomeJogador);
+
+          var tdNumero = criarCelulaEditavel(produto, 'numero', pedidoId);
+          tr.appendChild(tdNumero);
+
+          var tdTamanho = criarCelulaSelecionavel(produto, 'tamanho', ['P', 'M', 'G', 'GG', 'XG', 'XGG', 'XGGG'], pedidoId);
+          tr.appendChild(tdTamanho);
+
+          var tdIdLista = criarCelulaEditavel(produto, 'id_lista', pedidoId);
+          tr.appendChild(tdIdLista);
+
+          tbody.appendChild(tr);
+        });
+        table.appendChild(tbody);
+        tableResponsive.appendChild(table);
+        modalBody.appendChild(tableResponsive);
+
+        modalContentDiv.appendChild(modalHeader);
+        modalContentDiv.appendChild(modalBody);
+
+        var modalFooter = document.createElement('div');
+        modalFooter.className = 'modal-footer';
+        var closeButtonFooter = document.createElement('button');
+        closeButtonFooter.type = 'button';
+        closeButtonFooter.className = 'btn btn-secondary';
+        closeButtonFooter.setAttribute('data-dismiss', 'modal');
+        closeButtonFooter.innerText = 'Fechar';
+        modalFooter.appendChild(closeButtonFooter);
+
+        modalContentDiv.appendChild(modalFooter);
+
+        modalDialog.appendChild(modalContentDiv);
+        modalContent.appendChild(modalDialog);
+
+        document.body.insertAdjacentElement('beforeend', modalContent);
+
         $('#produtoModal').modal('show');
       })
       .catch(function(error) {
@@ -90,6 +146,61 @@ botoesExpandir.forEach(function(botaoExpandir) {
       });
   });
 });
+
+function criarCelulaEditavel(produto, campo, pedidoId) {
+  var td = document.createElement('td');
+  td.contentEditable = 'true';
+  td.innerText = produto[campo] || '';
+  td.addEventListener('input', function() {
+    atualizarCampoProduto(pedidoId, produto.id, campo, this.innerText);
+  });
+  return td;
+}
+
+function criarCelulaSelecionavel(produto, campo, opcoes, pedidoId) {
+  var td = document.createElement('td');
+  var select = document.createElement('select');
+  select.className = 'form-control';
+  opcoes.forEach(function(opcao) {
+    var option = document.createElement('option');
+    option.value = opcao;
+    option.innerText = opcao;
+    option.selected = produto[campo] === opcao;
+    select.appendChild(option);
+  });
+  select.addEventListener('change', function() {
+    atualizarCampoProduto(pedidoId, produto.id, campo, this.value);
+  });
+  td.appendChild(select);
+  return td;
+}
+
+function criarCelulaCheckbox(produto, campo, pedidoId) {
+  var td = document.createElement('td');
+  var input = document.createElement('input');
+  input.type = 'checkbox';
+  input.checked = produto[campo];
+  input.addEventListener('change', function() {
+    atualizarCampoProduto(pedidoId, produto.id, campo, this.checked);
+  });
+  td.appendChild(input);
+  return td;
+}
+
+function atualizarCampoProduto(pedidoId, produtoId, campo, novoValor) {
+  fetch('/atualizar-produto/' + pedidoId + '/' + produtoId, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    },
+    body: JSON.stringify({ campo: campo, valor: novoValor })
+  })
+  .then(response => response.json())
+  .then(data => console.log(data))
+  .catch(error => console.error('Erro ao atualizar produto:', error));
+}
+
 function confirmarLink(link) {
   var confirmacao = confirm("Deseja ir para o link: " + link.href + "?");
   if (confirmacao) {

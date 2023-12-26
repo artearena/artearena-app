@@ -28,7 +28,17 @@ class HomologarPedido extends Controller
     
         return response()->json($produtos);
     }
-    
+
+    public function update(Request $request, $pedidoId, $produtoId)
+{
+    $produto = ProdutoPedido::where('pedido_id', $pedidoId)->findOrFail($produtoId);
+    $campo = $request->campo;
+    $produto->$campo = $request->valor;
+    $produto->save();
+
+    return response()->json(['mensagem' => 'Produto atualizado com sucesso!']);
+}
+
     public function criarPedidoOrcamento($id)
     {
         $vendedores = Usuario::whereIn('permissoes', [17, 18])->pluck('nome_usuario');
