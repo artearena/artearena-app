@@ -924,42 +924,95 @@ $.ajaxSetup({
             const row = $(this).closest('tr');
             // Limpar campo observacoes
             row.find('td.expandir-observacoes input[name="observacoes"]').val('');
-            if (field === 'status' && value === 'Aguardando Cliente') {
-                // Remove the table row
-                row.remove();
-            }
-            $.ajax({
-                url: '/pedido/' + id,
-                method: 'PUT',
-                data: {
-                    observacoes: "",
-                    "_token": "{{ csrf_token() }}",
+
+            Swal.fire({
+                title: 'Digite a observação',
+                input: 'text',
+                inputAttributes: {
+                    autocapitalize: 'off',
+                    required: true
                 },
-                success: function (response) {
-                    console.log('obs vazio');
+                showCancelButton: true,
+                confirmButtonText: 'Salvar',
+                showLoaderOnConfirm: true,
+                preConfirm: (observacao) => {
+                    if (!observacao) {
+                        Swal.showValidationMessage(`Por favor, insira a observação!`)
+                    }
+                    return observacao;
                 },
-                error: function (xhr, status, error) {
-                    console.error(error);
-                }
-            });
-            $.ajax({
-                url: '/pedido/' + id,
-                method: 'PUT',
-                data: {
-                    [field]: value,
-                    "_token": "{{ csrf_token() }}",
-                },
-                success: function (response) {
-                    Swal.fire({
-                        title: 'Sucesso!',
-                        text: 'Pedido atualizado com sucesso.',
-                        icon: 'success',
-                        timer: 1500,
-                        showConfirmButton: false
+                allowOutsideClick: () => !Swal.isLoading()
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Se a observação foi definida, continue com o código existente
+                    if (field === 'status' && value === 'Aguardando Cliente') {
+                        // Remove the table row
+                        const pedidoId = id;
+                        // Obter linha da tabela
+                        const row = $(this).closest('tr');
+                        // Obter designer
+                        const designer = row.find('select[name="designer"]').val();
+                        // Obter link do Trello
+                        const linkTrello = row.find('a[data-id="' + pedidoId + '"]').attr('href');
+                        // Obter observações
+                        const observacoes = result.value;
+                        // Mensagem
+                        const mensagem = `Aguardando o cliente para  o pedido ${pedidoId}!
+
+                    Designer: ${designer}
+                    Link: ${linkTrello}
+                    Observações: ${observacoes}`;
+
+                        // URL para enviar notificação
+                        const url = 'https://artearena.kinghost.net/enviarNotificacaoSlack?mensagem=' + encodeURIComponent(mensagem);
+                        // Enviar requisição
+                        fetch(url)
+                            .then(response => {
+                                if (!response.ok) {
+                                    throw new Error('Erro ao enviar notificação');
+                                }
+                                console.log('Notificação enviada com sucesso!');
+                            })
+                            .catch(error => {
+                                console.error('Erro ao enviar notificação:', error);
+                            });
+
+                        row.remove();
+                    }
+                    $.ajax({
+                        url: '/pedido/' + id,
+                        method: 'PUT',
+                        data: {
+                            observacoes: result.value,
+                            "_token": "{{ csrf_token() }}",
+                        },
+                        success: function (response) {
+                            console.log('obs vazio');
+                        },
+                        error: function (xhr, status, error) {
+                            console.error(error);
+                        }
                     });
-                },
-                error: function (xhr, status, error) {
-                    console.error(error);
+                    $.ajax({
+                        url: '/pedido/' + id,
+                        method: 'PUT',
+                        data: {
+                            [field]: value,
+                            "_token": "{{ csrf_token() }}",
+                        },
+                        success: function (response) {
+                            Swal.fire({
+                                title: 'Sucesso!',
+                                text: 'Pedido atualizado com sucesso.',
+                                icon: 'success',
+                                timer: 1500,
+                                showConfirmButton: false
+                            });
+                        },
+                        error: function (xhr, status, error) {
+                            console.error(error);
+                        }
+                    });
                 }
             });
             return;
