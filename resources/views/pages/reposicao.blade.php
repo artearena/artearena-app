@@ -791,6 +791,23 @@ $('.mover-pedido').click(function () {
                     console.log('Excluído com sucesso');
                     // Feche o modal após a exclusão
                     $('#confirmDeleteModal').modal('hide');
+
+                    // Mensagem
+                    const mensagem = `Pedido ${pedidoId} foi excluído!`;
+
+                    // URL para enviar notificação
+                    const url = 'https://artearena.kinghost.net/enviarNotificacaoSlack?mensagem=' + encodeURIComponent(mensagem);
+                    // Enviar requisição
+                    fetch(url)
+                        .then(response => {
+                            if (!response.ok) {
+                                throw new Error('Erro ao enviar notificação');
+                            }
+                            console.log('Notificação enviada com sucesso!');
+                        })
+                        .catch(error => {
+                            console.error('Erro ao enviar notificação:', error);
+                        });
                 }
             });
         });

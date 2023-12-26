@@ -880,24 +880,41 @@ $('.mover-pedido').click(function () {
 
         // Vincule um evento de clique ao botão "Confirmar" do modal de confirmação
         $('#confirmDeleteButton').off('click').on('click', function() {
-            var pedidoId = $(this).attr('data-id');
-            var row = $('tr[data-id="' + pedidoId + '"]');
+                var pedidoId = $(this).attr('data-id');
+                var row = $('tr[data-id="' + pedidoId + '"]');
 
-            // Enviar a requisição AJAX para excluir o pedido
-            $.ajax({
-                url: "/pedido/" + pedidoId,
-                method: 'DELETE',
-                data: {
-                    "_token": "{{ csrf_token() }}",
-                },
-                success: function(response) {
-                    row.remove();
-                    console.log('Excluído com sucesso');
-                    // Feche o modal após a exclusão
-                    $('#confirmDeleteModal').modal('hide');
-                }
+                // Enviar a requisição AJAX para excluir o pedido
+                $.ajax({
+                    url: "/pedido/" + pedidoId,
+                    method: 'DELETE',
+                    data: {
+                        "_token": "{{ csrf_token() }}",
+                    },
+                    success: function(response) {
+                        row.remove();
+                        console.log('Excluído com sucesso');
+                        // Feche o modal após a exclusão
+                        $('#confirmDeleteModal').modal('hide');
+
+                        // Mensagem
+                        const mensagem = `Pedido ${pedidoId} foi excluído!`;
+
+                        // URL para enviar notificação
+                        const url = 'https://artearena.kinghost.net/enviarNotificacaoSlack?mensagem=' + encodeURIComponent(mensagem);
+                        // Enviar requisição
+                        fetch(url)
+                            .then(response => {
+                                if (!response.ok) {
+                                    throw new Error('Erro ao enviar notificação');
+                                }
+                                console.log('Notificação enviada com sucesso!');
+                            })
+                            .catch(error => {
+                                console.error('Erro ao enviar notificação:', error);
+                            });
+                    }
+                });
             });
-        });
     }
 
         // Função para definir a cor de fundo do campo "Status"
