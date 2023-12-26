@@ -226,7 +226,7 @@ function ehVestuario($nomeProduto) {
 
   // Normaliza o nome do produto
   var $nomeProdutoNormalizado = normalize($nomeProduto);
-  console.log(nomeProdutoNormalizado);
+  console.log($nomeProdutoNormalizado);
 
   for (var i = 0; i < $vestuario.length; i++) {
     var $item = $vestuario[i];
