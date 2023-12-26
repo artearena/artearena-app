@@ -4,16 +4,13 @@ var botoesExpandir = document.querySelectorAll('.btn-expand-produtos');
 // Adicione o evento de clique a todos os botões
 botoesExpandir.forEach(function(botaoExpandir) {
   botaoExpandir.addEventListener('click', function() {
-    // Obtenha o ID do pedido
     var pedidoId = this.closest('.pedido-row').getAttribute('data-pedido-id');
 
-    // Faça a requisição AJAX para obter a lista de produtos
     fetch('/pedidoInterno/get-produtos-pedido/' + pedidoId)
       .then(function(response) {
         return response.json();
       })
       .then(function(produtos) {
-        // Construa o conteúdo da tabela e do modal
         var modalContent = document.createElement('div');
         modalContent.className = 'modal fade';
         modalContent.id = 'produtoModal';
@@ -60,18 +57,8 @@ botoesExpandir.forEach(function(botaoExpandir) {
         var table = document.createElement('table');
         table.className = 'table';
 
-        var thead = document.createElement('thead');
-        var trHead = document.createElement('tr');
-        var headers = ['Produto', 'Quantidade', 'Sexo', 'Arte Aprovada', 'Lista Aprovada', 'Pacote', 'Camisa', 'Calção', 'Meião', 'Nome', 'Número', 'Tamanho', 'ID Lista'];
-        headers.forEach(function(header) {
-          var th = document.createElement('th');
-          th.innerText = header;
-          trHead.appendChild(th);
-        });
-        thead.appendChild(trHead);
-        table.appendChild(thead);
-
         var tbody = document.createElement('tbody');
+
         produtos.forEach(function(produto) {
           var tr = document.createElement('tr');
 
@@ -81,41 +68,44 @@ botoesExpandir.forEach(function(botaoExpandir) {
           var tdQuantidade = criarCelulaEditavel(produto, 'quantidade', pedidoId);
           tr.appendChild(tdQuantidade);
 
-          var tdSexo = criarCelulaSelecionavel(produto, 'sexo', ['M', 'F'], pedidoId);
-          tr.appendChild(tdSexo);
+          if (ehVestuario(produto.produto_nome)) {
+            var tdSexo = criarCelulaSelecionavel(produto, 'sexo', ['M', 'F'], pedidoId);
+            tr.appendChild(tdSexo);
 
-          var tdArteAprovada = criarCelulaEditavel(produto, 'arte_aprovada', pedidoId);
-          tr.appendChild(tdArteAprovada);
+            var tdArteAprovada = criarCelulaEditavel(produto, 'arte_aprovada', pedidoId);
+            tr.appendChild(tdArteAprovada);
 
-          var tdListaAprovada = criarCelulaSelecionavel(produto, 'lista_aprovada', ['sim', 'não'], pedidoId);
-          tr.appendChild(tdListaAprovada);
+            var tdListaAprovada = criarCelulaSelecionavel(produto, 'lista_aprovada', ['sim', 'não'], pedidoId);
+            tr.appendChild(tdListaAprovada);
 
-          var tdPacote = criarCelulaEditavel(produto, 'pacote', pedidoId);
-          tr.appendChild(tdPacote);
+            var tdPacote = criarCelulaEditavel(produto, 'pacote', pedidoId);
+            tr.appendChild(tdPacote);
 
-          var tdCamisa = criarCelulaCheckbox(produto, 'camisa', pedidoId);
-          tr.appendChild(tdCamisa);
+            var tdCamisa = criarCelulaCheckbox(produto, 'camisa', pedidoId);
+            tr.appendChild(tdCamisa);
 
-          var tdCalcao = criarCelulaCheckbox(produto, 'calcao', pedidoId);
-          tr.appendChild(tdCalcao);
+            var tdCalcao = criarCelulaCheckbox(produto, 'calcao', pedidoId);
+            tr.appendChild(tdCalcao);
 
-          var tdMeiao = criarCelulaCheckbox(produto, 'meiao', pedidoId);
-          tr.appendChild(tdMeiao);
+            var tdMeiao = criarCelulaCheckbox(produto, 'meiao', pedidoId);
+            tr.appendChild(tdMeiao);
 
-          var tdNomeJogador = criarCelulaEditavel(produto, 'nome_jogador', pedidoId);
-          tr.appendChild(tdNomeJogador);
+            var tdNomeJogador = criarCelulaEditavel(produto, 'nome_jogador', pedidoId);
+            tr.appendChild(tdNomeJogador);
 
-          var tdNumero = criarCelulaEditavel(produto, 'numero', pedidoId);
-          tr.appendChild(tdNumero);
+            var tdNumero = criarCelulaEditavel(produto, 'numero', pedidoId);
+            tr.appendChild(tdNumero);
 
-          var tdTamanho = criarCelulaSelecionavel(produto, 'tamanho', ['P', 'M', 'G', 'GG', 'XG', 'XGG', 'XGGG'], pedidoId);
-          tr.appendChild(tdTamanho);
+            var tdTamanho = criarCelulaSelecionavel(produto, 'tamanho', ['P', 'M', 'G', 'GG', 'XG', 'XGG', 'XGGG'], pedidoId);
+            tr.appendChild(tdTamanho);
 
-          var tdIdLista = criarCelulaEditavel(produto, 'id_lista', pedidoId);
-          tr.appendChild(tdIdLista);
+            var tdIdLista = criarCelulaEditavel(produto, 'id_lista', pedidoId);
+            tr.appendChild(tdIdLista);
+          }
 
           tbody.appendChild(tr);
         });
+
         table.appendChild(tbody);
         tableResponsive.appendChild(table);
         modalBody.appendChild(tableResponsive);
@@ -199,6 +189,11 @@ function atualizarCampoProduto(pedidoId, produtoId, campo, novoValor) {
   .then(response => response.json())
   .then(data => console.log(data))
   .catch(error => console.error('Erro ao atualizar produto:', error));
+}
+
+function ehVestuario(nomeProduto) {
+  var vestuario = ["Camisa Personalizada", "Boné Premium Personalizado", "Chinelo Slide Personalizado", /* ... outros produtos de vestuário ... */];
+  return vestuario.includes(nomeProduto);
 }
 
 function confirmarLink(link) {
