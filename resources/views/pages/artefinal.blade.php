@@ -954,7 +954,7 @@ $.ajaxSetup({
                         const mensagem = `Aguardando o cliente para o pedido ${pedidoId}!
 
                     Designer: ${designer}
-                    Link: ${link_Trello}
+                    Link: ${link_trello}
                     Observações: ${observacoes}`;
 
                         // URL para enviar notificação
