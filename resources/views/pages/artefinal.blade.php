@@ -1363,7 +1363,7 @@ $.ajaxSetup({
                 $temp.val($(this).text()).select();
                 document.execCommand("copy");
                 $temp.remove();
-                alert('ID copiado: ' + $(this).text());
+                exibirMensagemFlutuante('ID copiado: ' + $(this).text());
             });
 
             $('#cancelExcluirButton').click(function () {
