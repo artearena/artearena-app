@@ -946,15 +946,21 @@ $.ajaxSetup({
                 if (result.isConfirmed) {
                     // Se a observação foi definida, continue com o código existente
                     if (field === 'status' && value === 'Aguardando Cliente') {
-                        // Remove the table row
                         const pedidoId = id;
+                        // Obter linha da tabela
+                        const row = $(this).closest('tr');
+                        console.log(row);
+                        // Obter designer
+                        const designer = row.find('select[name="designer"]').val();
+                        // Obter link do Trello
+                        const linkTrello = row.find('a[data-id="' + pedidoId + '"]').attr('href');
                         // Obter observações
                         const observacoes = result.value;
                         // Mensagem
                         const mensagem = `Aguardando o cliente para o pedido ${pedidoId}!
 
                     Designer: ${designer}
-                    Link: ${link_trello}
+                    Link: ${linkTrello}
                     Observações: ${observacoes}`;
 
                         // URL para enviar notificação
