@@ -1357,7 +1357,14 @@ $.ajaxSetup({
             });
         });
 
-
+            $('#tabela-pedidos').on('click', 'td:first-child', function() {
+                var $temp = $("<input>");
+                $("body").append($temp);
+                $temp.val($(this).text()).select();
+                document.execCommand("copy");
+                $temp.remove();
+                alert('ID copiado: ' + $(this).text());
+            });
 
             $('#cancelExcluirButton').click(function () {
                 $('#confirmDeleteModal').modal('hide');
