@@ -200,14 +200,6 @@ function normalize($text) {
   return $text;
 }
 
-function normalize($text) {
-  // Converte para minúsculas
-  $text = strtolower($text);
-  // Remove acentos
-  $text = iconv('UTF-8', 'ASCII//TRANSLIT', $text);
-  return $text;
-}
-
 function ehVestuario($nomeProduto) {
   $vestuario = [
       "Camisa Personalizada", "Boné Premium Personalizado", "Chinelo Slide Personalizado",
@@ -223,6 +215,7 @@ function ehVestuario($nomeProduto) {
       "Samba Canção Personalizado", "Roupão Personalizado", "Doleira",
       "Shorts Doll Personalizado", "Balaclava Personalizada"
   ];
+  console.log($nomeProduto);
 
   // Normaliza o nome do produto
   var $nomeProdutoNormalizado = normalize($nomeProduto);
