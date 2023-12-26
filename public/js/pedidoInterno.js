@@ -67,8 +67,9 @@ botoesExpandir.forEach(function(botaoExpandir) {
 
           var tdQuantidade = criarCelulaEditavel(produto, 'quantidade', pedidoId);
           tr.appendChild(tdQuantidade);
-
+          console.log(produto.produto_nome);
           if (ehVestuario(produto.produto_nome)) {
+            console.log('É vestuário');
             var tdSexo = criarCelulaSelecionavel(produto, 'sexo', ['M', 'F'], pedidoId);
             tr.appendChild(tdSexo);
 
@@ -191,11 +192,52 @@ function atualizarCampoProduto(pedidoId, produtoId, campo, novoValor) {
   .catch(error => console.error('Erro ao atualizar produto:', error));
 }
 
-function ehVestuario(nomeProduto) {
-  var vestuario = ["Camisa Personalizada", "Boné Premium Personalizado", "Chinelo Slide Personalizado", /* ... outros produtos de vestuário ... */];
-  return vestuario.includes(nomeProduto);
+function normalize($text) {
+  // Converte para minúsculas
+  $text = strtolower($text);
+  // Remove acentos
+  $text = iconv('UTF-8', 'ASCII//TRANSLIT', $text);
+  return $text;
 }
 
+function normalize($text) {
+  // Converte para minúsculas
+  $text = strtolower($text);
+  // Remove acentos
+  $text = iconv('UTF-8', 'ASCII//TRANSLIT', $text);
+  return $text;
+}
+
+function ehVestuario($nomeProduto) {
+  $vestuario = [
+      "Camisa Personalizada", "Boné Premium Personalizado", "Chinelo Slide Personalizado",
+      "Chinelo Adulto Personalizado", "Abadá Personalizado", "Camiseta Personalizada",
+      "Toalha Personalizada", "Colete Personalizado", "Sacochila Personalizada",
+      "Braçadeira Personalizada", "Máscara Personalizada", "Máscara Caveira",
+      "Máscara Pikachu", "Máscara o Máskara", "Máscara La Casa de Papel",
+      "Máscara Homem Aranha", "Máscara Arlequina Coringa", "Máscara Et Alien",
+      "Máscara Girl Power", "Máscara Girl Power - Rosa", "Máscara Girl Power - Branco",
+      "Máscara Girl Power - Preto", "Máscara Good Vibes", "Máscara LGBT",
+      "Máscara Oncinha", "Máscara Resiliência", "Máscara Resiliência - Rosa",
+      "Máscara Resiliência - Preto", "Máscara Coringa", "Máscara Brasil",
+      "Samba Canção Personalizado", "Roupão Personalizado", "Doleira",
+      "Shorts Doll Personalizado", "Balaclava Personalizada"
+  ];
+
+  // Normaliza o nome do produto
+  var $nomeProdutoNormalizado = normalize($nomeProduto);
+  console.log(nomeProdutoNormalizado);
+
+  for (var i = 0; i < $vestuario.length; i++) {
+    var $item = $vestuario[i];
+    if (strpos(normalize($item), $nomeProdutoNormalizado) !== false) {
+      return true;
+    }
+  }
+
+  // Se o nome do produto não foi encontrado na lista de vestuário, retorna false
+  return false;
+}
 function confirmarLink(link) {
   var confirmacao = confirm("Deseja ir para o link: " + link.href + "?");
   if (confirmacao) {
