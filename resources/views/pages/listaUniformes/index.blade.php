@@ -24,7 +24,7 @@
                         $nomeProdutoNormalizado = strtolower($produto->produto_nome);
                     @endphp
 
-                    @if (ehVestuario($nomeProdutoNormalizado))
+                    @if (str_contains($nomeProdutoNormalizado, ['camisa', 'calção', 'meião']))
                         @for ($i = 0; $i < $produto->quantidade; $i++)
                             <tr>
                                 <td>{{ $produto->produto_nome }}</td>
