@@ -16,8 +16,8 @@ class ListaUniformeController extends Controller
 
     public function indexCliente($id)
     {
-        // Adicione este ponto de depuração para verificar se a rota está sendo acessada corretamente
-        $produtos = ProdutoPedido::find($id);
+        // Busca todos os produtos que têm o pedido_id igual ao $id
+        $produtos = ProdutoPedido::where('pedido_id', $id)->get();
         return view('pages.listaUniformes.index', compact('produtos'));
     }
     
