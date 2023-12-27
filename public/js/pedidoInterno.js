@@ -228,9 +228,14 @@ function ehVestuario($nomeProduto) {
     // Verifica se pelo menos uma palavra do nome do item está presente no nome do produto
     var palavraEncontrada = false;
     for (var j = 0; j < palavrasDoItem.length; j++) {
-      if ($nomeProdutoNormalizado.includes(palavrasDoItem[j])) {
-        palavraEncontrada = true;
-        break;
+      var palavraItem = palavrasDoItem[j];
+      
+      // Ignora a palavra "Personalizada" e itens numéricos
+      if (palavraItem.toLowerCase() !== "personalizada" && !/^\d+$/.test(palavraItem)) {
+        if ($nomeProdutoNormalizado.includes(palavraItem)) {
+          palavraEncontrada = true;
+          break;
+        }
       }
     }
     
