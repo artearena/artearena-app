@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\PedidoListView;
+use App\Models\ProdutoPedido;
 use Illuminate\Http\Request;
 use App\Models\ListaUniforme;
 
@@ -10,14 +10,14 @@ class ListaUniformeController extends Controller
 {
     public function index()
     {
-        $listasUniforme = PedidoListView::all();
+        $listasUniforme = ProdutoPedido::all();
         return view('pages.listaUniformes.index', compact('listasUniforme'));
     }
 
     public function indexCliente($id)
     {
         // Adicione este ponto de depuração para verificar se a rota está sendo acessada corretamente
-        $produtos = PedidoListView::find($id);
+        $produtos = ProdutoPedido::find($id);
         return view('pages.listaUniformes.index', compact('produtos'));
     }
     
