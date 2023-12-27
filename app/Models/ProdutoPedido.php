@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class ProdutoPedido extends Model
 {
+    use HasFactory;
+
     protected $table = 'pedido_produtos';
     protected $primaryKey = 'id';
     public $timestamps = false;
@@ -15,6 +17,17 @@ class ProdutoPedido extends Model
         'produto_nome',
         'quantidade',
         'preco_unitario',
+        'sexo',
+        'arte_aprovada',
+        'lista_aprovada',
+        'pacote',
+        'camisa',
+        'calcao',
+        'meiao',
+        'nome_jogador',
+        'numero',
+        'tamanho',
+        'id_lista',
     ];
 
     public function pedido()
