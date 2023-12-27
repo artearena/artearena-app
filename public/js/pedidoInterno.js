@@ -58,7 +58,57 @@ botoesExpandir.forEach(function(botaoExpandir) {
         var thead = document.createElement('thead');
         var tr = document.createElement('tr');
 
-        // Adicionar cabeçalhos da tabela aqui
+        var thNomeProduto = document.createElement('th');
+        thNomeProduto.innerText = 'Nome do Produto';
+        tr.appendChild(thNomeProduto);
+
+        var thQuantidade = document.createElement('th');
+        thQuantidade.innerText = 'Quantidade';
+        tr.appendChild(thQuantidade);
+
+        var thSexo = document.createElement('th');
+        thSexo.innerText = 'Sexo';
+        tr.appendChild(thSexo);
+
+        var thArteAprovada = document.createElement('th');
+        thArteAprovada.innerText = 'Arte Aprovada';
+        tr.appendChild(thArteAprovada);
+
+        var thListaAprovada = document.createElement('th');
+        thListaAprovada.innerText = 'Lista Aprovada';
+        tr.appendChild(thListaAprovada);
+
+        var thPacote = document.createElement('th');
+        thPacote.innerText = 'Pacote';
+        tr.appendChild(thPacote);
+
+        var thCamisa = document.createElement('th');
+        thCamisa.innerText = 'Camisa';
+        tr.appendChild(thCamisa);
+
+        var thCalcao = document.createElement('th');
+        thCalcao.innerText = 'Calção';
+        tr.appendChild(thCalcao);
+
+        var thMeiao = document.createElement('th');
+        thMeiao.innerText = 'Meião';
+        tr.appendChild(thMeiao);
+
+        var thNomeJogador = document.createElement('th');
+        thNomeJogador.innerText = 'Nome do Jogador';
+        tr.appendChild(thNomeJogador);
+
+        var thNumero = document.createElement('th');
+        thNumero.innerText = 'Número';
+        tr.appendChild(thNumero);
+
+        var thTamanho = document.createElement('th');
+        thTamanho.innerText = 'Tamanho';
+        tr.appendChild(thTamanho);
+
+        var thIdLista = document.createElement('th');
+        thIdLista.innerText = 'ID da Lista';
+        tr.appendChild(thIdLista);
 
         thead.appendChild(tr);
         table.appendChild(thead);
@@ -68,22 +118,45 @@ botoesExpandir.forEach(function(botaoExpandir) {
         produtos.forEach(function(produto) {
           var tr = document.createElement('tr');
 
-          // Adicionar células da tabela aqui
-          tr.appendChild(criarCelulaEditavel(produto, 'produto_nome', pedidoId));
-          tr.appendChild(criarCelulaEditavel(produto, 'quantidade', pedidoId));
+          var tdNome = criarCelulaEditavel(produto, 'produto_nome', pedidoId);
+          tr.appendChild(tdNome);
+
+          var tdQuantidade = criarCelulaEditavel(produto, 'quantidade', pedidoId);
+          tr.appendChild(tdQuantidade);
 
           if (ehVestuario(produto.produto_nome)) {
-            tr.appendChild(criarCelulaSelecionavel(produto, 'sexo', ['M', 'F'], pedidoId));
-            tr.appendChild(criarCelulaEditavel(produto, 'arte_aprovada', pedidoId));
-            tr.appendChild(criarCelulaSelecionavel(produto, 'lista_aprovada', ['sim', 'não'], pedidoId));
-            tr.appendChild(criarCelulaSelecionavel(produto, 'pacote', ['Start', 'Prata', 'Ouro', 'Diamante', 'Premium', 'Profissional'], pedidoId));
-            tr.appendChild(criarCelulaCheckbox(produto, 'camisa', pedidoId));
-            tr.appendChild(criarCelulaCheckbox(produto, 'calcao', pedidoId));
-            tr.appendChild(criarCelulaCheckbox(produto, 'meiao', pedidoId));
-            tr.appendChild(criarCelulaEditavel(produto, 'nome_jogador', pedidoId));
-            tr.appendChild(criarCelulaEditavel(produto, 'numero', pedidoId));
-            tr.appendChild(criarCelulaSelecionavel(produto, 'tamanho', ['P', 'M', 'G', 'GG', 'XG', 'XGG', 'XGGG'], pedidoId));
-            tr.appendChild(criarCelulaEditavel(produto, 'id_lista', pedidoId));
+            var tdSexo = criarCelulaSelecionavel(produto, 'sexo', ['M', 'F'], pedidoId);
+            tr.appendChild(tdSexo);
+
+            var tdArteAprovada = criarCelulaEditavel(produto, 'arte_aprovada', pedidoId);
+            tr.appendChild(tdArteAprovada);
+
+            var tdListaAprovada = criarCelulaSelecionavel(produto, 'lista_aprovada', ['sim', 'não'], pedidoId);
+            tr.appendChild(tdListaAprovada);
+
+            var tdPacote = criarCelulaEditavel(produto, 'pacote', pedidoId);
+            tr.appendChild(tdPacote);
+
+            var tdCamisa = criarCelulaCheckbox(produto, 'camisa', pedidoId);
+            tr.appendChild(tdCamisa);
+
+            var tdCalcao = criarCelulaCheckbox(produto, 'calcao', pedidoId);
+            tr.appendChild(tdCalcao);
+
+            var tdMeiao = criarCelulaCheckbox(produto, 'meiao', pedidoId);
+            tr.appendChild(tdMeiao);
+
+            var tdNomeJogador = criarCelulaEditavel(produto, 'nome_jogador', pedidoId);
+            tr.appendChild(tdNomeJogador);
+
+            var tdNumero = criarCelulaEditavel(produto, 'numero', pedidoId);
+            tr.appendChild(tdNumero);
+
+            var tdTamanho = criarCelulaSelecionavel(produto, 'tamanho', ['P', 'M', 'G', 'GG', 'XG', 'XGG', 'XGGG'], pedidoId);
+            tr.appendChild(tdTamanho);
+
+            var tdIdLista = criarCelulaEditavel(produto, 'id_lista', pedidoId);
+            tr.appendChild(tdIdLista);
           }
 
           tbody.appendChild(tr);
@@ -152,7 +225,6 @@ function criarCelulaCheckbox(produto, campo, pedidoId) {
   var td = document.createElement('td');
   var input = document.createElement('input');
   input.type = 'checkbox';
-  input.className = 'form-control';
   input.checked = produto[campo];
   input.addEventListener('change', function() {
     atualizarCampoProduto(pedidoId, produto.id, campo, this.checked);
@@ -160,6 +232,7 @@ function criarCelulaCheckbox(produto, campo, pedidoId) {
   td.appendChild(input);
   return td;
 }
+
 function atualizarCampoProduto(pedidoId, produtoId, campo, novoValor) {
   fetch('/pedidoInterno/atualizar-produto/' + pedidoId + '/' + produtoId, {
     method: 'POST',
