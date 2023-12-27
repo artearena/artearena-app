@@ -457,16 +457,45 @@ function salvarPedido(pedidoId, dataVenda, marcadorValue, dataEnvio) {
         });
       });
   const btnConsultarListaUniforme = document.getElementsByClassName('btn-consultar-lista-uniforme');
+
   for (let i = 0; i < btnConsultarListaUniforme.length; i++) {
     btnConsultarListaUniforme[i].addEventListener('click', function() {
       const pedidoId = this.closest('.pedido-row').getAttribute('data-pedido-id');
       fetch('/gerarLinkListaProduto/' + pedidoId)
         .then(response => response.json())
         .then(data => {
-          alert('link temporario: ' + data.link);
+          Swal.fire({
+            title: 'Link temporário',
+            text: data.link,
+            icon: 'info',
+            showCancelButton: false,
+            showConfirmButton: false,
+            html: `
+              <div>
+                <p>${data.link}</p>
+                <button id="copiar-link-btn" class="btn btn-primary">Copiar Link</button>
+              </div>
+            `,
+            customClass: {
+              content: 'text-center', // Alinha o conteúdo ao centro
+            },
+          });
+
+          // Adicionar evento de clique ao botão "Copiar Link"
+          const copiarLinkBtn = document.getElementById('copiar-link-btn');
+          copiarLinkBtn.addEventListener('click', function() {
+            const el = document.createElement('textarea');
+            el.value = data.link;
+            document.body.appendChild(el);
+            el.select();
+            document.execCommand('copy');
+            document.body.removeChild(el);
+            Swal.fire('Link copiado!', '', 'success');
+          });
         });
     });
   }
+
 
   const btnSalvarConsultarCliente = document.getElementsByClassName('btn-salvar-consultar-cliente');
   for (let i = 0; i < btnSalvarConsultarCliente.length; i++) {
