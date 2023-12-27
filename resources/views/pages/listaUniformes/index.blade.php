@@ -24,22 +24,18 @@
                         $nomeProdutoNormalizado = strtolower($produto->produto_nome);
                     @endphp
 
-                    @if (str_contains($nomeProdutoNormalizado, ['camisa', 'calção', 'meião']))
-                        @for ($i = 0; $i < $produto->quantidade; $i++)
-                            <tr>
-                                <td>{{ $produto->produto_nome }}</td>
-                                <td>{{ $produto->sexo }}</td>
-                                <td>{{ $produto->arte_aprovada }}</td>
-                                <td>{{ $produto->pacote }}</td>
-                                <td>{{ $produto->camisa }}</td>
-                                <td>{{ $produto->calcao }}</td>
-                                <td>{{ $produto->meiao }}</td>
-                                <td>{{ $produto->nome_jogador }}</td>
-                                <td>{{ $produto->numero }}</td>
-                                <td>{{ $produto->tamanho }}</td>
-                            </tr>
-                        @endfor
-                    @endif
+                    <tr class="produto-row" data-nome="{{ $nomeProdutoNormalizado }}">
+                        <td>{{ $produto->produto_nome }}</td>
+                        <td>{{ $produto->sexo }}</td>
+                        <td>{{ $produto->arte_aprovada }}</td>
+                        <td>{{ $produto->pacote }}</td>
+                        <td>{{ $produto->camisa }}</td>
+                        <td>{{ $produto->calcao }}</td>
+                        <td>{{ $produto->meiao }}</td>
+                        <td>{{ $produto->nome_jogador }}</td>
+                        <td>{{ $produto->numero }}</td>
+                        <td>{{ $produto->tamanho }}</td>
+                    </tr>
                 @endforeach
             @endif
         </tbody>
@@ -83,5 +79,30 @@
 
             return false;
         }
+
+        // Função para mostrar/ocultar linhas de produtos com base na categoria
+        function filtrarProdutos(categoria) {
+            var rows = document.querySelectorAll('.produto-row');
+
+            rows.forEach(function(row) {
+                var nomeProduto = row.getAttribute('data-nome');
+                if (ehVestuario(nomeProduto) && categoria === 'vestuario') {
+                    row.style.display = 'table-row';
+                } else if (!ehVestuario(nomeProduto) && categoria === 'outros') {
+                    row.style.display = 'table-row';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        }
+
+        // Adicione um evento de clique aos botões de filtro
+        document.getElementById('btn-vestuario').addEventListener('click', function() {
+            filtrarProdutos('vestuario');
+        });
+
+        document.getElementById('btn-outros').addEventListener('click', function() {
+            filtrarProdutos('outros');
+        });
     </script>
 @endsection
