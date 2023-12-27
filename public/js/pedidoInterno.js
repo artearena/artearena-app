@@ -215,17 +215,19 @@ function ehVestuario($nomeProduto) {
       "Samba Canção Personalizado", "Roupão Personalizado", "Doleira",
       "Shorts Doll Personalizado", "Balaclava Personalizada"
   ];
-  console.log($nomeProduto);
 
   // Normaliza o nome do produto
   var $nomeProdutoNormalizado = normalize($nomeProduto);
   console.log($nomeProdutoNormalizado);
 
+  $nomeProdutoNormalizado = normalize($nomeProduto);
+
   for (var i = 0; i < $vestuario.length; i++) {
-    var $item = $vestuario[i];
-    if (normalize($item).includes($nomeProdutoNormalizado)) {
-      return true;
-    }
+      var $item = normalize($vestuario[i]);
+      if ($item.includes($nomeProdutoNormalizado)) {
+        console.group('deu certo');
+        return true;
+      }
   }
 
   // Se o nome do produto não foi encontrado na lista de vestuário, retorna false
