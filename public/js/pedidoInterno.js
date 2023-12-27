@@ -221,7 +221,20 @@ function ehVestuario($nomeProduto) {
 
   for (var i = 0; i < $vestuario.length; i++) {
     var $item = normalize($vestuario[i]);
-    if ($item.startsWith($nomeProdutoNormalizado)) {
+    
+    // Divide o nome do item em palavras
+    var palavrasDoItem = $item.split(" ");
+    
+    // Verifica se pelo menos uma palavra do nome do item está presente no nome do produto
+    var palavraEncontrada = false;
+    for (var j = 0; j < palavrasDoItem.length; j++) {
+      if ($nomeProdutoNormalizado.includes(palavrasDoItem[j])) {
+        palavraEncontrada = true;
+        break;
+      }
+    }
+    
+    if (palavraEncontrada) {
       console.group('deu certo');
       return true;
     }
