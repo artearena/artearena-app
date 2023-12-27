@@ -55,6 +55,64 @@ botoesExpandir.forEach(function(botaoExpandir) {
         var table = document.createElement('table');
         table.className = 'table';
 
+        var thead = document.createElement('thead');
+        var tr = document.createElement('tr');
+
+        var thNomeProduto = document.createElement('th');
+        thNomeProduto.innerText = 'Nome do Produto';
+        tr.appendChild(thNomeProduto);
+
+        var thQuantidade = document.createElement('th');
+        thQuantidade.innerText = 'Quantidade';
+        tr.appendChild(thQuantidade);
+
+        var thSexo = document.createElement('th');
+        thSexo.innerText = 'Sexo';
+        tr.appendChild(thSexo);
+
+        var thArteAprovada = document.createElement('th');
+        thArteAprovada.innerText = 'Arte Aprovada';
+        tr.appendChild(thArteAprovada);
+
+        var thListaAprovada = document.createElement('th');
+        thListaAprovada.innerText = 'Lista Aprovada';
+        tr.appendChild(thListaAprovada);
+
+        var thPacote = document.createElement('th');
+        thPacote.innerText = 'Pacote';
+        tr.appendChild(thPacote);
+
+        var thCamisa = document.createElement('th');
+        thCamisa.innerText = 'Camisa';
+        tr.appendChild(thCamisa);
+
+        var thCalcao = document.createElement('th');
+        thCalcao.innerText = 'Calção';
+        tr.appendChild(thCalcao);
+
+        var thMeiao = document.createElement('th');
+        thMeiao.innerText = 'Meião';
+        tr.appendChild(thMeiao);
+
+        var thNomeJogador = document.createElement('th');
+        thNomeJogador.innerText = 'Nome do Jogador';
+        tr.appendChild(thNomeJogador);
+
+        var thNumero = document.createElement('th');
+        thNumero.innerText = 'Número';
+        tr.appendChild(thNumero);
+
+        var thTamanho = document.createElement('th');
+        thTamanho.innerText = 'Tamanho';
+        tr.appendChild(thTamanho);
+
+        var thIdLista = document.createElement('th');
+        thIdLista.innerText = 'ID da Lista';
+        tr.appendChild(thIdLista);
+
+        thead.appendChild(tr);
+        table.appendChild(thead);
+
         var tbody = document.createElement('tbody');
 
         produtos.forEach(function(produto) {
@@ -215,7 +273,7 @@ function ehVestuario($nomeProduto) {
 
   for (var i = 0; i < $vestuario.length; i++) {
     var $item = normalize($vestuario[i]);
-    
+
     if ($nomeProdutoNormalizado.includes($item)) {
       return true;
     }
@@ -223,7 +281,6 @@ function ehVestuario($nomeProduto) {
 
   return false;
 }
-
 
 function confirmarLink(link) {
   var confirmacao = confirm("Deseja ir para o link: " + link.href + "?");
