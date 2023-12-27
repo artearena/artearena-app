@@ -221,7 +221,7 @@ function ehVestuario($nomeProduto) {
 
   for (var i = 0; i < $vestuario.length; i++) {
     var $item = normalize($vestuario[i]);
-    if ($item.includes($nomeProdutoNormalizado)) {
+    if ($item.startsWith($nomeProdutoNormalizado)) {
       console.group('deu certo');
       return true;
     }
