@@ -9,10 +9,8 @@
             <thead>
                 <tr>
                     <th>Nome do Produto</th>
-                    <th>Preço Unitário</th>
                     <th>Sexo</th>
                     <th>Arte Aprovada</th>
-                    <th>Lista Aprovada</th>
                     <th>Pacote</th>
                     <th>Camisa</th>
                     <th>Calção</th>
@@ -79,10 +77,8 @@
                         var row = document.createElement('tr');
                         row.innerHTML = `
                             <td>${produto.produto_nome}</td>
-                            <td>${produto.preco_unitario}</td>
                             <td>${produto.sexo}</td>
                             <td>${produto.arte_aprovada}</td>
-                            <td>${produto.lista_aprovada}</td>
                             <td>${produto.pacote}</td>
                             <td>${produto.camisa}</td>
                             <td>${produto.calcao}</td>
