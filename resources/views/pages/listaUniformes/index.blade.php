@@ -51,6 +51,7 @@
         </tbody>
     </table>
 @endsection
+
 @section('extraScript')
     @parent {{-- Mantenha qualquer conteúdo JavaScript existente --}}
     <script>
