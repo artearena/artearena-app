@@ -19,13 +19,15 @@
                     <th>Número</th>
                     <th>Tamanho</th>
                     <th>Gola</th>
-
                 </tr>
             </thead>
             <tbody>
                 <!-- As linhas da tabela serão adicionadas dinamicamente pelo JavaScript -->
             </tbody>
         </table>
+
+        <!-- Botão para salvar a lista de uniformes -->
+        <button onclick="salvarListaUniformes()" class="btn btn-primary">Salvar Lista de Uniformes</button>
     </div>
 @endsection
 
@@ -57,6 +59,33 @@
             }
 
             return false;
+        }
+
+        function salvarListaUniformes() {
+            var listaUniformes = [];
+
+            // Iterar sobre as linhas da tabela e extrair os dados
+            $('tbody tr').each(function() {
+                var uniforme = {
+                    produto_nome: $(this).find('td:nth-child(1)').text(),
+                    sexo: $(this).find('td:nth-child(2)').text(),
+                    arte_aprovada: $(this).find('td:nth-child(3)').text(),
+                    pacote: $(this).find('td:nth-child(4)').text(),
+                    camisa: $(this).find('td:nth-child(5)').text() === 'Sim',
+                    calcao: $(this).find('td:nth-child(6)').text() === 'Sim',
+                    meiao: $(this).find('td:nth-child(7)').text() === 'Sim',
+                    nome_jogador: $(this).find('td:nth-child(8) input').val(),
+                    numero: $(this).find('td:nth-child(9) input').val(),
+                    tamanho: $(this).find('td:nth-child(10) input').val(),
+                    gola: $(this).find('td:nth-child(11) input').val()
+                };
+
+                listaUniformes.push(uniforme);
+            });
+
+            // Agora você pode enviar a listaUniformes para o backend ou fazer o que for necessário com os dados.
+            console.log('Lista de Uniformes:', listaUniformes);
+            alert('Lista de uniformes salva com sucesso!');
         }
 
         document.addEventListener('DOMContentLoaded', function() {
