@@ -1,7 +1,5 @@
-// Selecione o botão "Expandir"
 var botoesExpandir = document.querySelectorAll('.btn-expand-produtos');
 
-// Adicione o evento de clique a todos os botões
 botoesExpandir.forEach(function(botaoExpandir) {
   botaoExpandir.addEventListener('click', function() {
     var pedidoId = this.closest('.pedido-row').getAttribute('data-pedido-id');
@@ -67,9 +65,8 @@ botoesExpandir.forEach(function(botaoExpandir) {
 
           var tdQuantidade = criarCelulaEditavel(produto, 'quantidade', pedidoId);
           tr.appendChild(tdQuantidade);
-          console.log(produto.produto_nome);
+
           if (ehVestuario(produto.produto_nome)) {
-            console.log('É vestuário');
             var tdSexo = criarCelulaSelecionavel(produto, 'sexo', ['M', 'F'], pedidoId);
             tr.appendChild(tdSexo);
 
@@ -193,45 +190,40 @@ function atualizarCampoProduto(pedidoId, produtoId, campo, novoValor) {
 }
 
 function normalize(text) {
-  // Converte para minúsculas
   text = text.toLowerCase();
-  // Remove acentos
   text = text.normalize('NFD').replace(/[\u0300-\u036f]/g, "");
   return text;
 }
 
 function ehVestuario($nomeProduto) {
   $vestuario = [
-      "Camisa Personalizada", "Boné Premium Personalizado", "Chinelo Slide Personalizado",
-      "Chinelo Adulto Personalizado", "Abadá Personalizado", "Camiseta Personalizada",
-      "Toalha Personalizada", "Colete Personalizado", "Sacochila Personalizada",
-      "Braçadeira Personalizada", "Máscara Personalizada", "Máscara Caveira",
-      "Máscara Pikachu", "Máscara o Máskara", "Máscara La Casa de Papel",
-      "Máscara Homem Aranha", "Máscara Arlequina Coringa", "Máscara Et Alien",
-      "Máscara Girl Power", "Máscara Girl Power - Rosa", "Máscara Girl Power - Branco",
-      "Máscara Girl Power - Preto", "Máscara Good Vibes", "Máscara LGBT",
-      "Máscara Oncinha", "Máscara Resiliência", "Máscara Resiliência - Rosa",
-      "Máscara Resiliência - Preto", "Máscara Coringa", "Máscara Brasil",
-      "Samba Canção Personalizado", "Roupão Personalizado", "Doleira",
-      "Shorts Doll Personalizado", "Balaclava Personalizada"
+    "Camisa Personalizada", "Boné Premium Personalizado", "Chinelo Slide Personalizado",
+    "Chinelo Adulto Personalizado", "Abadá Personalizado", "Camiseta Personalizada",
+    "Toalha Personalizada", "Colete Personalizado", "Sacochila Personalizada",
+    "Braçadeira Personalizada", "Máscara Personalizada", "Máscara Caveira",
+    "Máscara Pikachu", "Máscara o Máskara", "Máscara La Casa de Papel",
+    "Máscara Homem Aranha", "Máscara Arlequina Coringa", "Máscara Et Alien",
+    "Máscara Girl Power", "Máscara Girl Power - Rosa", "Máscara Girl Power - Branco",
+    "Máscara Girl Power - Preto", "Máscara Good Vibes", "Máscara LGBT",
+    "Máscara Oncinha", "Máscara Resiliência", "Máscara Resiliência - Rosa",
+    "Máscara Resiliência - Preto", "Máscara Coringa", "Máscara Brasil",
+    "Samba Canção Personalizado", "Roupão Personalizado", "Doleira",
+    "Shorts Doll Personalizado", "Balaclava Personalizada"
   ];
 
-  // Normaliza o nome do produto
   var $nomeProdutoNormalizado = normalize($nomeProduto);
 
   for (var i = 0; i < $vestuario.length; i++) {
     var $item = normalize($vestuario[i]);
     
-    // Verifica se o nome do produto está presente no nome do item
     if ($nomeProdutoNormalizado.includes($item)) {
-      console.group('deu certo');
       return true;
     }
   }
 
-  // Se o nome do produto não foi encontrado na lista de vestuário, retorna false
   return false;
 }
+
 
 function confirmarLink(link) {
   var confirmacao = confirm("Deseja ir para o link: " + link.href + "?");
