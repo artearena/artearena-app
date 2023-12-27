@@ -6,7 +6,6 @@
         <thead>
             <tr>
                 <th>Nome do Produto</th>
-                <th>Quantidade</th>
                 <th>Sexo</th>
                 <th>Arte Aprovada</th>
                 <th>Pacote</th>
@@ -22,29 +21,31 @@
             @if ($produtos)
                 @foreach ($produtos as $produto)
                     @php
-                        $nomeProdutoNormalizado = normalize($produto->produto_nome);
+                        $nomeProdutoNormalizado = strtolower($produto->produto_nome);
                     @endphp
 
                     @if (ehVestuario($nomeProdutoNormalizado))
-                        <tr>
-                            <td>{{ $produto->produto_nome }}</td>
-                            <td>{{ $produto->quantidade }}</td>
-                            <td>{{ $produto->sexo }}</td>
-                            <td>{{ $produto->arte_aprovada }}</td>
-                            <td>{{ $produto->pacote }}</td>
-                            <td>{{ $produto->camisa }}</td>
-                            <td>{{ $produto->calcao }}</td>
-                            <td>{{ $produto->meiao }}</td>
-                            <td>{{ $produto->nome_jogador }}</td>
-                            <td>{{ $produto->numero }}</td>
-                            <td>{{ $produto->tamanho }}</td>
-                        </tr>
+                        @for ($i = 0; $i < $produto->quantidade; $i++)
+                            <tr>
+                                <td>{{ $produto->produto_nome }}</td>
+                                <td>{{ $produto->sexo }}</td>
+                                <td>{{ $produto->arte_aprovada }}</td>
+                                <td>{{ $produto->pacote }}</td>
+                                <td>{{ $produto->camisa }}</td>
+                                <td>{{ $produto->calcao }}</td>
+                                <td>{{ $produto->meiao }}</td>
+                                <td>{{ $produto->nome_jogador }}</td>
+                                <td>{{ $produto->numero }}</td>
+                                <td>{{ $produto->tamanho }}</td>
+                            </tr>
+                        @endfor
                     @endif
                 @endforeach
             @endif
         </tbody>
     </table>
 @endsection
+
 @section('extraScript')
     @parent {{-- Mantenha qualquer conteúdo JavaScript existente --}}
     <script>
