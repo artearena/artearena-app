@@ -82,10 +82,10 @@
                             <td>${camisaChecked}</td>
                             <td>${calcaoChecked}</td>
                             <td>${meiaoChecked}</td>
-                            <td>${produto.nome_jogador ? `<input type='text' value='${produto.nome_jogador}' class='form-control'>` : ''}</td>
-                            <td>${produto.numero ? `<input type='number' value='${produto.numero}' class='form-control'>` : ''}</td>
-                            <td>${produto.tamanho ? `<input type='text' value='${produto.tamanho}' class='form-control'>` : ''}</td>
-                            <td>${produto.gola ? `<input type='text' value='${produto.gola}' class='form-control' readonly>` : ''}</td>
+                            <td>${produto.nome_jogador !== null && produto.nome_jogador !== '' ? `<input type='text' value='${produto.nome_jogador}' class='form-control'>` : ''}</td>
+                            <td>${produto.numero !== null && produto.numero !== '' ? `<input type='number' value='${produto.numero}' class='form-control'>` : ''}</td>
+                            <td>${produto.tamanho !== null && produto.tamanho !== '' ? `<input type='text' value='${produto.tamanho}' class='form-control'>` : ''}</td>
+                            <td>${produto.gola !== null && produto.gola !== '' ? `<input type='text' value='${produto.gola}' class='form-control' readonly>` : ''}</td>
                         `;
                         tbody.appendChild(row);
                     }
