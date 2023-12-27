@@ -18,6 +18,8 @@
                     <th>Nome do Jogador</th>
                     <th>Número</th>
                     <th>Tamanho</th>
+                    <th>Gola</th>
+
                 </tr>
             </thead>
             <tbody>
@@ -67,33 +69,29 @@
                 if (ehVestuario(normalize(produto.produto_nome))) {
                     for (var i = 0; i < produto.quantidade; i++) {
                         var row = document.createElement('tr');
-                        var sexoSelecionadoM = produto.sexo === 'M' ? 'selected' : '';
-                        var sexoSelecionadoF = produto.sexo === 'F' ? 'selected' : '';
-                        var camisaChecked = produto.camisa ? 'checked' : '';
-                        var calcaoChecked = produto.calcao ? 'checked' : '';
-                        var meiaoChecked = produto.meiao ? 'checked' : '';
+                        var sexoCategoria = produto.sexo === 'M' ? 'Masculino' : 'Feminino';
+                        var camisaChecked = produto.camisa ? 'Sim' : 'Não';
+                        var calcaoChecked = produto.calcao ? 'Sim' : 'Não';
+                        var meiaoChecked = produto.meiao ? 'Sim' : 'Não';
 
                         row.innerHTML = `
                             <td>${produto.produto_nome}</td>
-                            <td>
-                                <select class='form-control'>
-                                    <option value='M' ${sexoSelecionadoM}>M</option>
-                                    <option value='F' ${sexoSelecionadoF}>F</option>
-                                </select>
-                            </td>
+                            <td>${sexoCategoria}</td>
                             <td>${produto.arte_aprovada}</td>
                             <td>${produto.pacote}</td>
-                            <td><input type='checkbox' ${camisaChecked} class='form-check-input'></td>
-                            <td><input type='checkbox' ${calcaoChecked} class='form-check-input'></td>
-                            <td><input type='checkbox' ${meiaoChecked} class='form-check-input'></td>
+                            <td>${camisaChecked}</td>
+                            <td>${calcaoChecked}</td>
+                            <td>${meiaoChecked}</td>
                             <td><input type='text' value='${produto.nome_jogador}' class='form-control'></td>
                             <td><input type='number' value='${produto.numero}' class='form-control'></td>
                             <td><input type='text' value='${produto.tamanho}' class='form-control'></td>
+                            <td><input type='text' value='${produto.gola}' class='form-control' readonly></td>
                         `;
                         tbody.appendChild(row);
                     }
                 }
             });
+
 
             $(document).ready(function(){
                 $('input[type="number"]').mask('00000');
