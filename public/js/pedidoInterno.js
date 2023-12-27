@@ -192,12 +192,12 @@ function atualizarCampoProduto(pedidoId, produtoId, campo, novoValor) {
   .catch(error => console.error('Erro ao atualizar produto:', error));
 }
 
-function normalize($text) {
+function normalize(text) {
   // Converte para minúsculas
-  $text = strtolower($text);
+  text = text.toLowerCase();
   // Remove acentos
-  $text = iconv('UTF-8', 'ASCII//TRANSLIT', $text);
-  return $text;
+  text = text.normalize('NFD').replace(/[\u0300-\u036f]/g, "");
+  return text;
 }
 
 function ehVestuario($nomeProduto) {
