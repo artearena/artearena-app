@@ -2,20 +2,6 @@
 
 @section('title', 'Lista de Produtos')
 
-@section('head')
-    @parent
-    <style>
-        .table input[type='text'], .table select, .table input[type='number'] {
-            width: 100%;
-            padding: 5px;
-            box-sizing: border-box;
-        }
-        .table input[type='checkbox'] {
-            margin-left: 5px;
-        }
-    </style>
-@endsection
-
 @section('content')
     <div class="container my-2">
         <h1>Lista de Produtos</h1>
@@ -90,19 +76,19 @@
                         row.innerHTML = `
                             <td>${produto.produto_nome}</td>
                             <td>
-                                <select>
+                                <select class='form-control'>
                                     <option value='M' ${sexoSelecionadoM}>M</option>
                                     <option value='F' ${sexoSelecionadoF}>F</option>
                                 </select>
                             </td>
                             <td>${produto.arte_aprovada}</td>
                             <td>${produto.pacote}</td>
-                            <td><input type='checkbox' ${camisaChecked}></td>
-                            <td><input type='checkbox' ${calcaoChecked}></td>
-                            <td><input type='checkbox' ${meiaoChecked}></td>
-                            <td><input type='text' value='${produto.nome_jogador}'></td>
-                            <td><input type='number' value='${produto.numero}'></td>
-                            <td><input type='text' value='${produto.tamanho}'></td>
+                            <td><input type='checkbox' ${camisaChecked} class='form-check-input'></td>
+                            <td><input type='checkbox' ${calcaoChecked} class='form-check-input'></td>
+                            <td><input type='checkbox' ${meiaoChecked} class='form-check-input'></td>
+                            <td><input type='text' value='${produto.nome_jogador}' class='form-control'></td>
+                            <td><input type='number' value='${produto.numero}' class='form-control'></td>
+                            <td><input type='text' value='${produto.tamanho}' class='form-control'></td>
                         `;
                         tbody.appendChild(row);
                     }
