@@ -2,6 +2,20 @@
 
 @section('title', 'Lista de Produtos')
 
+@section('head')
+    @parent
+    <style>
+        .table input[type='text'], .table select, .table input[type='number'] {
+            width: 100%;
+            padding: 5px;
+            box-sizing: border-box;
+        }
+        .table input[type='checkbox'] {
+            margin-left: 5px;
+        }
+    </style>
+@endsection
+
 @section('content')
     <div class="container my-2">
         <h1>Lista de Produtos</h1>
@@ -29,6 +43,8 @@
 
 @section('extraScript')
     @parent
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
     <script>
         function normalize(text) {
             text = text.toLowerCase();
@@ -91,6 +107,10 @@
                         tbody.appendChild(row);
                     }
                 }
+            });
+
+            $(document).ready(function(){
+                $('input[type="number"]').mask('00000');
             });
         });
     </script>
