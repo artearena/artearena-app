@@ -3,7 +3,7 @@
 @section('title', 'Lista de Produtos')
 
 @section('content')
-    <div class="container my-2"> <!-- Container adicionado para espaçamento -->
+    <div class="container my-2">
         <h1>Lista de Produtos</h1>
         <table class="table">
             <thead>
@@ -28,7 +28,7 @@
 @endsection
 
 @section('extraScript')
-    @parent {{-- Mantenha qualquer conteúdo JavaScript existente --}}
+    @parent
     <script>
         function normalize(text) {
             text = text.toLowerCase();
@@ -49,7 +49,8 @@
                 "Máscara Oncinha", "Máscara Resiliência", "Máscara Resiliência - Rosa",
                 "Máscara Resiliência - Preto", "Máscara Coringa", "Máscara Brasil",
                 "Samba Canção Personalizado", "Roupão Personalizado", "Doleira",
-                "Shorts Doll Personalizado", "Balaclava Personalizada"
+                "Shorts Doll Personalizado", "Balaclava Personalizada",
+                // Adicione mais itens aqui conforme necessário
             ];
 
             var nomeProdutoNormalizado = normalize(nomeProduto);
@@ -77,15 +78,15 @@
                         var row = document.createElement('tr');
                         row.innerHTML = `
                             <td>${produto.produto_nome}</td>
-                            <td>${produto.sexo}</td>
+                            <td><input type='text' value='${produto.sexo}'></td>
                             <td>${produto.arte_aprovada}</td>
                             <td>${produto.pacote}</td>
-                            <td>${produto.camisa}</td>
-                            <td>${produto.calcao}</td>
-                            <td>${produto.meiao}</td>
-                            <td>${produto.nome_jogador}</td>
-                            <td>${produto.numero}</td>
-                            <td>${produto.tamanho}</td>
+                            <td><input type='text' value='${produto.camisa}'></td>
+                            <td><input type='text' value='${produto.calcao}'></td>
+                            <td><input type='text' value='${produto.meiao}'></td>
+                            <td><input type='text' value='${produto.nome_jogador}'></td>
+                            <td><input type='number' value='${produto.numero}'></td>
+                            <td><input type='text' value='${produto.tamanho}'></td>
                         `;
                         tbody.appendChild(row);
                     }
