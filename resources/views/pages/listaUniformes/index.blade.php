@@ -22,24 +22,27 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($produtos as $produto)
-                <tr>
-                    <td>{{ $produto->produto_nome }}</td>
-                    <td>{{ $produto->quantidade }}</td>
-                    <td>{{ $produto->preco_unitario }}</td>
-                    <td>{{ $produto->sexo }}</td>
-                    <td>{{ $produto->arte_aprovada }}</td>
-                    <td>{{ $produto->lista_aprovada }}</td>
-                    <td>{{ $produto->pacote }}</td>
-                    <td>{{ $produto->camisa }}</td>
-                    <td>{{ $produto->calcao }}</td>
-                    <td>{{ $produto->meiao }}</td>
-                    <td>{{ $produto->nome_jogador }}</td>
-                    <td>{{ $produto->numero }}</td>
-                    <td>{{ $produto->tamanho }}</td>
-                    <td>{{ $produto->id_lista }}</td>
-                </tr>
-            @endforeach
+            @if ($produtos)
+                @foreach ($produtos as $produto)
+                    <tr>
+                        <td>{{ $produto->produto_nome }}</td>
+                        <td>{{ $produto->quantidade }}</td>
+                        <td>{{ $produto->preco_unitario }}</td>
+                        <td>{{ $produto->sexo }}</td>
+                        <td>{{ $produto->arte_aprovada }}</td>
+                        <td>{{ $produto->lista_aprovada }}</td>
+                        <td>{{ $produto->pacote }}</td>
+                        <td>{{ $produto->camisa }}</td>
+                        <td>{{ $produto->calcao }}</td>
+                        <td>{{ $produto->meiao }}</td>
+                        <td>{{ $produto->nome_jogador }}</td>
+                        <td>{{ $produto->numero }}</td>
+                        <td>{{ $produto->tamanho }}</td>
+                        <td>{{ $produto->id_lista }}</td>
+                    </tr>
+                @endforeach
+            @endif
+
         </tbody>
     </table>
 @endsection
