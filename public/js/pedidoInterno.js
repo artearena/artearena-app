@@ -223,7 +223,7 @@ function ehVestuario($nomeProduto) {
 
   for (var i = 0; i < $vestuario.length; i++) {
     var $item = $vestuario[i];
-    if (strpos(normalize($item), $nomeProdutoNormalizado) !== false) {
+    if (normalize($item).includes($nomeProdutoNormalizado)) {
       return true;
     }
   }
