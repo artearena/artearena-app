@@ -257,9 +257,10 @@
 
 @section('content')
 <div class="container">
+
+        <div class="row">
         <h1>Gerar Orçamentos</h1>
         <hr>
-        <div class="row">
             <div class="col-md-6">
                 <form id="opt-octa-form" method="POST" action="">
                     <div class="form-group">
