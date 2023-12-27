@@ -134,8 +134,7 @@ botoesExpandir.forEach(function(botaoExpandir) {
             var tdListaAprovada = criarCelulaSelecionavel(produto, 'lista_aprovada', ['sim', 'não'], pedidoId);
             tr.appendChild(tdListaAprovada);
 
-            var tdPacote = criarCelulaEditavel(produto, 'pacote', pedidoId);
-            tr.appendChild(tdPacote);
+            tr.appendChild(criarCelulaSelecionavel(produto, 'pacote', ['Start', 'Prata', 'Ouro', 'Diamante', 'Premium', 'Profissional'], pedidoId));
 
             var tdCamisa = criarCelulaCheckbox(produto, 'camisa', pedidoId);
             tr.appendChild(tdCamisa);
