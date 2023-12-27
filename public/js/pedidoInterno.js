@@ -498,6 +498,7 @@ function salvarPedido(pedidoId, dataVenda, marcadorValue, dataEnvio) {
 
 
   const btnSalvarConsultarCliente = document.getElementsByClassName('btn-salvar-consultar-cliente');
+
   for (let i = 0; i < btnSalvarConsultarCliente.length; i++) {
     btnSalvarConsultarCliente[i].addEventListener('click', function() {
       const pedidoId = this.closest('.pedido-row').getAttribute('data-pedido-id');
@@ -507,6 +508,7 @@ function salvarPedido(pedidoId, dataVenda, marcadorValue, dataEnvio) {
           Swal.fire({
             title: 'Link temporário',
             text: data.link,
+            icon: 'info', // Adicione o ícone aqui (por exemplo, 'info', 'warning', 'error', 'success', etc.)
             showCancelButton: true,
             confirmButtonText: 'Copiar link',
             cancelButtonText: 'Fechar',
@@ -525,6 +527,7 @@ function salvarPedido(pedidoId, dataVenda, marcadorValue, dataEnvio) {
         });
     });
   }
+
 
   // Adicione o evento de alteração para os campos de entrada de sexo, pacote, camisa, calção, etc.
   var inputSexo   = document.querySelectorAll('.input-sexo');
