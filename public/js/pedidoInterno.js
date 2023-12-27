@@ -222,24 +222,8 @@ function ehVestuario($nomeProduto) {
   for (var i = 0; i < $vestuario.length; i++) {
     var $item = normalize($vestuario[i]);
     
-    // Divide o nome do item em palavras
-    var palavrasDoItem = $item.split(" ");
-    
-    // Verifica se pelo menos uma palavra do nome do item está presente no nome do produto
-    var palavraEncontrada = false;
-    for (var j = 0; j < palavrasDoItem.length; j++) {
-      var palavraItem = palavrasDoItem[j];
-      console.log(palavraItem);
-      // Ignora a palavra "Personalizada" e itens numéricos
-      if (palavraItem.toLowerCase() !== "personalizada" && !/^\d+$/.test(palavraItem)) {
-        if ($nomeProdutoNormalizado.includes(palavraItem)) {
-          palavraEncontrada = true;
-          break;
-        }
-      }
-    }
-    
-    if (palavraEncontrada) {
+    // Verifica se o nome do produto está presente no nome do item
+    if ($nomeProdutoNormalizado.includes($item)) {
       console.group('deu certo');
       return true;
     }
@@ -248,6 +232,7 @@ function ehVestuario($nomeProduto) {
   // Se o nome do produto não foi encontrado na lista de vestuário, retorna false
   return false;
 }
+
 function confirmarLink(link) {
   var confirmacao = confirm("Deseja ir para o link: " + link.href + "?");
   if (confirmacao) {
