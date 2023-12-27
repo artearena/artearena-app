@@ -230,7 +230,6 @@ function ehVestuario($nomeProduto) {
     for (var j = 0; j < palavrasDoItem.length; j++) {
       var palavraItem = palavrasDoItem[j];
       console.log(palavraItem);
-      console.log(nomeProdutoNormalizado);
       // Ignora a palavra "Personalizada" e itens numéricos
       if (palavraItem.toLowerCase() !== "personalizada" && !/^\d+$/.test(palavraItem)) {
         if ($nomeProdutoNormalizado.includes(palavraItem)) {
