@@ -24,34 +24,27 @@
         <tbody>
             @if ($produtos)
                 @foreach ($produtos as $produto)
-                    @php
-                        $nomeProdutoNormalizado = normalize($produto->produto_nome);
-                    @endphp
-
-                    @if (ehVestuario($nomeProdutoNormalizado))
-                        <tr>
-                            <td>{{ $produto->produto_nome }}</td>
-                            <td>{{ $produto->quantidade }}</td>
-                            <td>{{ $produto->preco_unitario }}</td>
-                            <td>{{ $produto->sexo }}</td>
-                            <td>{{ $produto->arte_aprovada }}</td>
-                            <td>{{ $produto->lista_aprovada }}</td>
-                            <td>{{ $produto->pacote }}</td>
-                            <td>{{ $produto->camisa }}</td>
-                            <td>{{ $produto->calcao }}</td>
-                            <td>{{ $produto->meiao }}</td>
-                            <td>{{ $produto->nome_jogador }}</td>
-                            <td>{{ $produto->numero }}</td>
-                            <td>{{ $produto->tamanho }}</td>
-                            <td>{{ $produto->id_lista }}</td>
-                        </tr>
-                    @endif
+                    <tr>
+                        <td>{{ $produto->produto_nome }}</td>
+                        <td>{{ $produto->quantidade }}</td>
+                        <td>{{ $produto->preco_unitario }}</td>
+                        <td>{{ $produto->sexo }}</td>
+                        <td>{{ $produto->arte_aprovada }}</td>
+                        <td>{{ $produto->lista_aprovada }}</td>
+                        <td>{{ $produto->pacote }}</td>
+                        <td>{{ $produto->camisa }}</td>
+                        <td>{{ $produto->calcao }}</td>
+                        <td>{{ $produto->meiao }}</td>
+                        <td>{{ $produto->nome_jogador }}</td>
+                        <td>{{ $produto->numero }}</td>
+                        <td>{{ $produto->tamanho }}</td>
+                        <td>{{ $produto->id_lista }}</td>
+                    </tr>
                 @endforeach
             @endif
         </tbody>
     </table>
 @endsection
-
 @section('extraScript')
     @parent {{-- Mantenha qualquer conteúdo JavaScript existente --}}
     <script>
@@ -89,5 +82,40 @@
 
             return false;
         }
+        
+        // Executa a filtragem dos produtos após o carregamento da página
+        document.addEventListener('DOMContentLoaded', function() {
+            var produtos = @json($produtos); // Converte os produtos para um objeto JavaScript
+            
+            // Filtra os produtos
+            var produtosFiltrados = produtos.filter(function(produto) {
+                return ehVestuario(produto.produto_nome);
+            });
+            
+            // Atualiza a tabela com os produtos filtrados
+            var tbody = document.querySelector('tbody');
+            tbody.innerHTML = '';
+            
+            produtosFiltrados.forEach(function(produto) {
+                var row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${produto.produto_nome}</td>
+                    <td>${produto.quantidade}</td>
+                    <td>${produto.preco_unitario}</td>
+                    <td>${produto.sexo}</td>
+                    <td>${produto.arte_aprovada}</td>
+                    <td>${produto.lista_aprovada}</td>
+                    <td>${produto.pacote}</td>
+                    <td>${produto.camisa}</td>
+                    <td>${produto.calcao}</td>
+                    <td>${produto.meiao}</td>
+                    <td>${produto.nome_jogador}</td>
+                    <td>${produto.numero}</td>
+                    <td>${produto.tamanho}</td>
+                    <td>${produto.id_lista}</td>
+                `;
+                tbody.appendChild(row);
+            });
+        });
     </script>
 @endsection
