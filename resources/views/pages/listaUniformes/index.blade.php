@@ -23,30 +23,12 @@
                 </tr>
             </thead>
             <tbody>
-                @if ($produtos)
-                    @foreach ($produtos as $produto)
-                        @for ($i = 0; $i < $produto->quantidade; $i++)
-                            <tr>
-                                <td>{{ $produto->produto_nome }}</td>
-                                <td>{{ $produto->preco_unitario }}</td>
-                                <td>{{ $produto->sexo }}</td>
-                                <td>{{ $produto->arte_aprovada }}</td>
-                                <td>{{ $produto->lista_aprovada }}</td>
-                                <td>{{ $produto->pacote }}</td>
-                                <td>{{ $produto->camisa }}</td>
-                                <td>{{ $produto->calcao }}</td>
-                                <td>{{ $produto->meiao }}</td>
-                                <td>{{ $produto->nome_jogador }}</td>
-                                <td>{{ $produto->numero }}</td>
-                                <td>{{ $produto->tamanho }}</td>
-                            </tr>
-                        @endfor
-                    @endforeach
-                @endif
+                <!-- As linhas da tabela serão adicionadas dinamicamente pelo JavaScript -->
             </tbody>
         </table>
     </div>
 @endsection
+
 @section('extraScript')
     @parent {{-- Mantenha qualquer conteúdo JavaScript existente --}}
     <script>
@@ -85,38 +67,33 @@
             return false;
         }
         
-        // Executa a filtragem dos produtos após o carregamento da página
         document.addEventListener('DOMContentLoaded', function() {
-            var produtos = @json($produtos); // Converte os produtos para um objeto JavaScript
-            
-            // Filtra os produtos
-            var produtosFiltrados = produtos.filter(function(produto) {
-                return ehVestuario(produto.produto_nome);
-            });
-            
-            // Atualiza a tabela com os produtos filtrados
+            var produtos = @json($produtos);
+
             var tbody = document.querySelector('tbody');
             tbody.innerHTML = '';
-            
-            produtosFiltrados.forEach(function(produto) {
-                var row = document.createElement('tr');
-                row.innerHTML = `
-                    <td>${produto.produto_nome}</td>
-                    <td>${produto.quantidade}</td>
-                    <td>${produto.preco_unitario}</td>
-                    <td>${produto.sexo}</td>
-                    <td>${produto.arte_aprovada}</td>
-                    <td>${produto.lista_aprovada}</td>
-                    <td>${produto.pacote}</td>
-                    <td>${produto.camisa}</td>
-                    <td>${produto.calcao}</td>
-                    <td>${produto.meiao}</td>
-                    <td>${produto.nome_jogador}</td>
-                    <td>${produto.numero}</td>
-                    <td>${produto.tamanho}</td>
-                    <td>${produto.id_lista}</td>
-                `;
-                tbody.appendChild(row);
+
+            produtos.forEach(function(produto) {
+                if (ehVestuario(normalize(produto.produto_nome))) {
+                    for (var i = 0; i < produto.quantidade; i++) {
+                        var row = document.createElement('tr');
+                        row.innerHTML = `
+                            <td>${produto.produto_nome}</td>
+                            <td>${produto.preco_unitario}</td>
+                            <td>${produto.sexo}</td>
+                            <td>${produto.arte_aprovada}</td>
+                            <td>${produto.lista_aprovada}</td>
+                            <td>${produto.pacote}</td>
+                            <td>${produto.camisa}</td>
+                            <td>${produto.calcao}</td>
+                            <td>${produto.meiao}</td>
+                            <td>${produto.nome_jogador}</td>
+                            <td>${produto.numero}</td>
+                            <td>${produto.tamanho}</td>
+                        `;
+                        tbody.appendChild(row);
+                    }
+                }
             });
         });
     </script>
