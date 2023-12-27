@@ -3,7 +3,7 @@
 @section('title', 'Lista de Produtos')
 
 @section('content')
-    <div class="container my-4"> <!-- Container adicionado para espaçamento -->
+    <div class="container my-2"> <!-- Container adicionado para espaçamento -->
         <h1>Lista de Produtos</h1>
         <table class="table">
             <thead>
@@ -20,7 +20,6 @@
                     <th>Nome do Jogador</th>
                     <th>Número</th>
                     <th>Tamanho</th>
-                    <th>ID da Lista</th>
                 </tr>
             </thead>
             <tbody>
@@ -40,7 +39,6 @@
                                 <td>{{ $produto->nome_jogador }}</td>
                                 <td>{{ $produto->numero }}</td>
                                 <td>{{ $produto->tamanho }}</td>
-                                <td>{{ $produto->id_lista }}</td>
                             </tr>
                         @endfor
                     @endforeach
