@@ -82,20 +82,20 @@
                             <td>${camisaChecked}</td>
                             <td>${calcaoChecked}</td>
                             <td>${meiaoChecked}</td>
-                            <td><input type='text' value='${produto.nome_jogador}' class='form-control'></td>
-                            <td><input type='number' value='${produto.numero}' class='form-control'></td>
-                            <td><input type='text' value='${produto.tamanho}' class='form-control'></td>
-                            <td><input type='text' value='${produto.gola}' class='form-control' readonly></td>
+                            <td>${produto.nome_jogador ? `<input type='text' value='${produto.nome_jogador}' class='form-control'>` : ''}</td>
+                            <td>${produto.numero ? `<input type='number' value='${produto.numero}' class='form-control'>` : ''}</td>
+                            <td>${produto.tamanho ? `<input type='text' value='${produto.tamanho}' class='form-control'>` : ''}</td>
+                            <td>${produto.gola ? `<input type='text' value='${produto.gola}' class='form-control' readonly>` : ''}</td>
                         `;
                         tbody.appendChild(row);
                     }
                 }
             });
 
-
             $(document).ready(function(){
                 $('input[type="number"]').mask('00000');
             });
         });
+
     </script>
 @endsection
