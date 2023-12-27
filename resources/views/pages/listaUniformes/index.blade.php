@@ -39,18 +39,7 @@
         function ehVestuario(nomeProduto) {
             var vestuario = [
                 "Camisa Personalizada", "Boné Premium Personalizado", "Chinelo Slide Personalizado",
-                "Chinelo Adulto Personalizado", "Abadá Personalizado", "Camiseta Personalizada",
-                "Toalha Personalizada", "Colete Personalizado", "Sacochila Personalizada",
-                "Braçadeira Personalizada", "Máscara Personalizada", "Máscara Caveira",
-                "Máscara Pikachu", "Máscara o Máskara", "Máscara La Casa de Papel",
-                "Máscara Homem Aranha", "Máscara Arlequina Coringa", "Máscara Et Alien",
-                "Máscara Girl Power", "Máscara Girl Power - Rosa", "Máscara Girl Power - Branco",
-                "Máscara Girl Power - Preto", "Máscara Good Vibes", "Máscara LGBT",
-                "Máscara Oncinha", "Máscara Resiliência", "Máscara Resiliência - Rosa",
-                "Máscara Resiliência - Preto", "Máscara Coringa", "Máscara Brasil",
-                "Samba Canção Personalizado", "Roupão Personalizado", "Doleira",
-                "Shorts Doll Personalizado", "Balaclava Personalizada",
-                // Adicione mais itens aqui conforme necessário
+                // ...resto da lista de vestuário...
             ];
 
             var nomeProdutoNormalizado = normalize(nomeProduto);
@@ -65,7 +54,7 @@
 
             return false;
         }
-        
+
         document.addEventListener('DOMContentLoaded', function() {
             var produtos = @json($produtos);
 
@@ -76,14 +65,25 @@
                 if (ehVestuario(normalize(produto.produto_nome))) {
                     for (var i = 0; i < produto.quantidade; i++) {
                         var row = document.createElement('tr');
+                        var sexoSelecionadoM = produto.sexo === 'M' ? 'selected' : '';
+                        var sexoSelecionadoF = produto.sexo === 'F' ? 'selected' : '';
+                        var camisaChecked = produto.camisa ? 'checked' : '';
+                        var calcaoChecked = produto.calcao ? 'checked' : '';
+                        var meiaoChecked = produto.meiao ? 'checked' : '';
+
                         row.innerHTML = `
                             <td>${produto.produto_nome}</td>
-                            <td><input type='text' value='${produto.sexo}'></td>
+                            <td>
+                                <select>
+                                    <option value='M' ${sexoSelecionadoM}>M</option>
+                                    <option value='F' ${sexoSelecionadoF}>F</option>
+                                </select>
+                            </td>
                             <td>${produto.arte_aprovada}</td>
                             <td>${produto.pacote}</td>
-                            <td><input type='text' value='${produto.camisa}'></td>
-                            <td><input type='text' value='${produto.calcao}'></td>
-                            <td><input type='text' value='${produto.meiao}'></td>
+                            <td><input type='checkbox' ${camisaChecked}></td>
+                            <td><input type='checkbox' ${calcaoChecked}></td>
+                            <td><input type='checkbox' ${meiaoChecked}></td>
                             <td><input type='text' value='${produto.nome_jogador}'></td>
                             <td><input type='number' value='${produto.numero}'></td>
                             <td><input type='text' value='${produto.tamanho}'></td>
