@@ -78,7 +78,7 @@
                             <td>${produto.produto_nome}</td>
                             <td>${sexoCategoria}</td>
                             <td>${produto.arte_aprovada}</td>
-                            <td>${produto.pacote}</td>
+                            <td>${produto.pacote !== null && produto.pacote !== '' ? produto.pacote : ''}</td>
                             <td>${camisaChecked}</td>
                             <td>${calcaoChecked}</td>
                             <td>${meiaoChecked}</td>
