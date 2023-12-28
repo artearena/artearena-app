@@ -116,29 +116,27 @@
                             <td>${produto.pacote !== null && produto.pacote !== '' ? produto.pacote : ''}</td>
                             <td>${camisaChecked}</td>
                             <td>${calcaoChecked}</td>
-                            <td>${meiaoChecked}</td>
-                            <td>${produto.nome_jogador !== null && produto.nome_jogador !== '' ? `<input type='text' value='${produto.nome_jogador}' class='form-control'>` : ''}</td>
-                            <td>${produto.numero !== null && produto.numero !== '' ? `<input type='number' value='${produto.numero}' class='form-control'>` : ''}</td>
-                            <td>
-                                <select class='form-control'>
-                                    <!-- Adicione as opções desejadas para Tamanho aqui -->
-                                </select>
-                            </td>
-                            <td>
-                                <select class='form-control'>
-                                    <!-- Adicione as opções desejadas para Gola aqui -->
-                                </select>
-                            </td>
-                        `;
-                        tbody.appendChild(row);
-                    }
-                }
-            });
+                    <td>${meiaoChecked}</td>
+                    <td>${produto.nome_jogador !== null && produto.nome_jogador !== '' ? `<input type='text' value='${produto.nome_jogador}' class='form-control'>` : ''}</td>
+                    <td>${produto.numero !== null && produto.numero !== '' ? `<input type='number' value='${produto.numero}' class='form-control'>` : ''}</td>
+                    <td>
+                        <select class='form-control'>
+                            <!-- Adicione as opções desejadas para Tamanho aqui -->
+                        </select>
+                    </td>
+                    <td>
+                        <select class='form-control'>
+                            <!-- Adicione as opções desejadas para Gola aqui -->
+                        </select>
+                    </td>
+                `;
+                tbody.appendChild(row);
+            }
+        }
+    });
 
-            $(document).ready(function(){
-                $('input[type="number"]').mask('00000');
-            });
-        });
+    // Aplicar máscara após a criação das linhas
+    $('input[type="number"]').mask('00000');
+});
 
-    </script>
-@endsection
+
