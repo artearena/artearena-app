@@ -117,8 +117,8 @@
                             <td>${camisaChecked}</td>
                             <td>${calcaoChecked}</td>
                             <td>${meiaoChecked}</td>
-                            <td>${produto.nome_jogador !== null && produto.nome_jogador !== '' ? `<input type='text' value='${produto.nome_jogador}' class='form-control'>` : ''}</td>
-                            <td>${produto.numero !== null && produto.numero !== '' ? `<input type='number' value='${produto.numero}' class='form-control'>` : ''}</td>
+                            <td>${produto.nome_jogador !== null && produto.nome_jogador !== '' ? `<input type='text' value='${produto.nome_jogador}' class='form-control'>` : `<input type='text' value='' class='form-control'>` }</td>
+                            <td>${produto.numero !== null && produto.numero !== '' ? `<input type='number' value='${produto.numero}' class='form-control'>` : `<input type='number' value='' class='form-control'>` }</td>
                             <td>
                                 <select class='form-control'>
                                     <!-- Adicione as opções desejadas para Tamanho aqui -->
