@@ -129,6 +129,17 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 });
 
+
+function criarCelulaEditavel(produto, campo, pedidoId) {
+  var td = document.createElement('td');
+  td.contentEditable = 'true';
+  td.innerText = produto[campo] || '';
+  td.addEventListener('input', function() {
+    atualizarCampoProduto(pedidoId, produto.id, campo, this.innerText);
+  });
+  return td;
+}
+
 function criarCelulaSelecionavel(produto, campo, opcoes, pedidoId) {
   var td = document.createElement('td');
   var select = document.createElement('select');
