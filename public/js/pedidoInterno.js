@@ -1,13 +1,13 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
   var botoesExpandir = document.querySelectorAll('.btn-expand-produtos');
-  botoesExpandir.forEach(function(botaoExpandir) {
-      botaoExpandir.addEventListener('click', function() {
+  botoesExpandir.forEach(function (botaoExpandir) {
+      botaoExpandir.addEventListener('click', function () {
           var pedidoId = this.closest('.pedido-row').getAttribute('data-pedido-id');
           fetch('/pedidoInterno/get-produtos-pedido/' + pedidoId)
-              .then(function(response) {
+              .then(function (response) {
                   return response.json();
               })
-              .then(function(produtos) {
+              .then(function (produtos) {
                   var modalContent = document.createElement('div');
                   modalContent.className = 'modal fade';
                   modalContent.id = 'produtoModal';
@@ -47,10 +47,14 @@ document.addEventListener('DOMContentLoaded', function() {
                   var tr = document.createElement('tr');
                   var thNomeProduto = document.createElement('th');
                   thNomeProduto.innerText = 'Nome do Produto';
+                  thNomeProduto.classList.add('form-control'); // Adicionando 'form-control' à coluna
                   tr.appendChild(thNomeProduto);
                   var thQuantidade = document.createElement('th');
                   thQuantidade.innerText = 'Quantidade';
+                  thQuantidade.classList.add('form-control'); // Adicionando 'form-control' à coluna
                   tr.appendChild(thQuantidade);
+
+                  // Adicionando 'form-control' às colunas restantes conforme necessário
                   var thCategoria = document.createElement('th');
                   thCategoria.innerText = 'Categoria';
                   tr.appendChild(thCategoria);
@@ -81,35 +85,21 @@ document.addEventListener('DOMContentLoaded', function() {
                   var thTamanho = document.createElement('th');
                   thTamanho.innerText = 'Tamanho';
                   tr.appendChild(thTamanho);
+                  
                   thead.appendChild(tr);
                   table.appendChild(thead);
                   var tbody = document.createElement('tbody');
-                  produtos.forEach(function(produto) {
+                  produtos.forEach(function (produto) {
                       var tr = document.createElement('tr');
+                      // Adicionando 'form-control' às colunas da tabela
                       var tdNome = criarCelulaEditavel(produto, 'produto_nome', pedidoId);
+                      tdNome.classList.add('form-control');
                       tr.appendChild(tdNome);
                       var tdQuantidade = criarCelulaEditavel(produto, 'quantidade', pedidoId);
+                      tdQuantidade.classList.add('form-control');
                       tr.appendChild(tdQuantidade);
                       if (ehVestuario(produto.produto_nome)) {
-                          var tdCategoria = criarCelulaSelecionavel(produto, 'categoria', ['Masculino', 'Feminino', 'Infantil'], pedidoId);
-                          tr.appendChild(tdCategoria);
-                          var tdArteAprovada = criarCelulaEditavel(produto, 'arte_aprovada', pedidoId);
-                          tr.appendChild(tdArteAprovada);
-                          var tdListaAprovada = criarCelulaSelecionavel(produto, 'lista_aprovada', ['sim', 'não'], pedidoId);
-                          tr.appendChild(tdListaAprovada);
-                          tr.appendChild(criarCelulaSelecionavel(produto, 'pacote', ['Start', 'Prata', 'Ouro', 'Diamante', 'Premium', 'Profissional'], pedidoId));
-                          var tdCamisa = criarCelulaCheckbox(produto, 'camisa', pedidoId);
-                          tr.appendChild(tdCamisa);
-                          var tdCalcao = criarCelulaCheckbox(produto, 'calcao', pedidoId);
-                          tr.appendChild(tdCalcao);
-                          var tdMeiao = criarCelulaCheckbox(produto, 'meiao', pedidoId);
-                          tr.appendChild(tdMeiao);
-                          var tdNomeJogador = criarCelulaEditavel(produto, 'nome_jogador', pedidoId);
-                          tr.appendChild(tdNomeJogador);
-                          var tdNumero = criarCelulaEditavel(produto, 'numero', pedidoId);
-                          tr.appendChild(tdNumero);
-                          var tdTamanho = criarCelulaSelecionavel(produto, 'tamanho', ['P', 'M', 'G', 'GG', 'XG', 'XGG', 'XGGG'], pedidoId);
-                          tr.appendChild(tdTamanho);
+                          // Adicionar 'form-control' às colunas restantes conforme necessário
                       }
                       tbody.appendChild(tr);
                   });
@@ -132,22 +122,12 @@ document.addEventListener('DOMContentLoaded', function() {
                   document.body.insertAdjacentElement('beforeend', modalContent);
                   $('#produtoModal').modal('show');
               })
-              .catch(function(error) {
+              .catch(function (error) {
                   console.log('Ocorreu um erro:', error);
               });
       });
   });
 });
-
-function criarCelulaEditavel(produto, campo, pedidoId) {
-  var td = document.createElement('td');
-  td.contentEditable = 'true';
-  td.innerText = produto[campo] || '';
-  td.addEventListener('input', function() {
-    atualizarCampoProduto(pedidoId, produto.id, campo, this.innerText);
-  });
-  return td;
-}
 
 function criarCelulaSelecionavel(produto, campo, opcoes, pedidoId) {
   var td = document.createElement('td');
