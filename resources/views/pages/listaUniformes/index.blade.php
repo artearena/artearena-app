@@ -59,50 +59,48 @@
 
             return false;
         }
-        $(document).ready(function() {
 
-            function salvarListaUniformes() {
-                var listaUniformes = [];
+        function salvarListaUniformes() {
+            var listaUniformes = [];
 
-                // Iterar sobre as linhas da tabela e extrair os dados
-                $('tbody tr').each(function () {
-                    var uniforme = {
-                        produto_nome: $(this).find('td:nth-child(1)').text(),
-                        categoria: $(this).find('td:nth-child(2) select').val(),
-                        arte_aprovada: $(this).find('td:nth-child(3)').text(),
-                        pacote: $(this).find('td:nth-child(4)').text(),
-                        camisa: $(this).find('td:nth-child(5)').text() === 'Sim',
-                        calcao: $(this).find('td:nth-child(6)').text() === 'Sim',
-                        meiao: $(this).find('td:nth-child(7)').text() === 'Sim',
-                        nome_jogador: $(this).find('td:nth-child(8) input').val(),
-                        numero: $(this).find('td:nth-child(9) input').val(),
-                        tamanho: $(this).find('td:nth-child(10) select').val(),
-                        gola: $(this).find('td:nth-child(11) select').val()
-                    };
+            // Iterar sobre as linhas da tabela e extrair os dados
+            $('tbody tr').each(function () {
+                var uniforme = {
+                    produto_nome: $(this).find('td:nth-child(1)').text(),
+                    categoria: $(this).find('td:nth-child(2) select').val(),
+                    arte_aprovada: $(this).find('td:nth-child(3)').text(),
+                    pacote: $(this).find('td:nth-child(4)').text(),
+                    camisa: $(this).find('td:nth-child(5)').text() === 'Sim',
+                    calcao: $(this).find('td:nth-child(6)').text() === 'Sim',
+                    meiao: $(this).find('td:nth-child(7)').text() === 'Sim',
+                    nome_jogador: $(this).find('td:nth-child(8) input').val(),
+                    numero: $(this).find('td:nth-child(9) input').val(),
+                    tamanho: $(this).find('td:nth-child(10) select').val(),
+                    gola: $(this).find('td:nth-child(11) select').val()
+                };
 
-                    listaUniformes.push(uniforme);
-                });
+                listaUniformes.push(uniforme);
+            });
 
-                console.log('Dados a serem enviados:', JSON.stringify(listaUniformes, null, 2)); // Debug
+            console.log('Dados a serem enviados:', JSON.stringify(listaUniformes, null, 2)); // Debug
 
-                $.ajax({
-                    type: 'POST',
-                    url: '/listaUniformes/salvarListaUniformes',
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    },
-                    data: { listaUniformes: listaUniformes },
-                    success: function (response) {
-                        console.log('Resposta do servidor:', response);
-                        alert('Lista de uniformes salva com sucesso!');
-                    },
-                    error: function (error) {
-                        console.error('Erro ao salvar lista de uniformes:', error);
-                        alert('Erro ao salvar lista de uniformes. Verifique o console para mais detalhes.');
-                    },
-                });
-            }
-        });
+            $.ajax({
+                type: 'POST',
+                url: '/listaUniformes/salvarListaUniformes',
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                data: { listaUniformes: listaUniformes },
+                success: function (response) {
+                    console.log('Resposta do servidor:', response);
+                    alert('Lista de uniformes salva com sucesso!');
+                },
+                error: function (error) {
+                    console.error('Erro ao salvar lista de uniformes:', error);
+                    alert('Erro ao salvar lista de uniformes. Verifique o console para mais detalhes.');
+                },
+            });
+        }
 
 
 
