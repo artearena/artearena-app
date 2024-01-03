@@ -19,6 +19,7 @@ use App\Http\Controllers\ProdutoController;
 use App\Http\Controllers\TelaController;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\LogController;
+use App\Http\Controllers\ProdutoListaController;
 
 Route::middleware(['auth'])->group(function () {
     Route::middleware(['perm.rota'])->group(function () {
@@ -164,7 +165,11 @@ Route::middleware(['auth'])->group(function () {
 Route::prefix('listaUniformes')->middleware('validar.token')->group(function () {
     //Route::any('/', [ListaUniformeController::class, 'index'])->name('index');
     Route::any('/{id}', [ListaUniformeController::class, 'indexCliente']);
+    Route::resource('produtos_lista', ProdutoListaController::class);
+    Route::post('/salvarListaUniformes', [ProdutoListaController::class, 'salvarListaUniformes']); // Adicione esta rota para salvar a lista
+
 });
+
 Route::prefix('cadastro')->middleware('validar.token')->group(function () {
     // Rota para listar todos os registros de cadastro
     Route::any('/', [CadastroController::class, 'index'])->name('cadastro.index');

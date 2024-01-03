@@ -82,6 +82,21 @@
                 listaUniformes.push(uniforme);
             });
 
+            // Enviar dados para o Laravel usando AJAX
+            $.ajax({
+                    type: 'POST',
+                    url: '/listaUniformes/salvarListaUniformes', // Substitua pela URL correta do seu endpoint Laravel
+                    data: { listaUniformes: listaUniformes },
+                    success: function (response) {
+                        console.log('Resposta do servidor:', response);
+                        alert('Lista de uniformes salva com sucesso!');
+                    },
+                    error: function (error) {
+                        console.error('Erro ao salvar lista de uniformes:', error);
+                        alert('Erro ao salvar lista de uniformes. Verifique o console para mais detalhes.');
+                    },
+                });
+
             // Agora você pode enviar a listaUniformes para o backend ou fazer o que for necessário com os dados.
             console.log('Lista de Uniformes:', listaUniformes);
             alert('Lista de uniformes salva com sucesso!');
@@ -135,6 +150,7 @@
 
             $(document).ready(function(){
                 $('input[type="number"]').mask('00000');
+
             });
         });
 
