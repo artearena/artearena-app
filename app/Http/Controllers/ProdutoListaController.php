@@ -53,12 +53,12 @@ class ProdutoListaController extends Controller
     public function salvarListaUniformes(Request $request)
     {
         $listaUniformes = $request->input('listaUniformes');
-        
+
         try {
             foreach ($listaUniformes as $uniforme) {
-                ProdutoLista::create([
+                $savedUniforme = ProdutoLista::create([
                     'produto_nome' => $uniforme['produto_nome'],
-                    'sexo' => $uniforme['sexo'],  // Adicione os campos faltantes aqui
+                    'sexo' => $uniforme['sexo'],
                     'arte_aprovada' => $uniforme['arte_aprovada'],
                     'pacote' => $uniforme['pacote'],
                     'camisa' => $uniforme['camisa'],
@@ -70,12 +70,18 @@ class ProdutoListaController extends Controller
                     'gola' => $uniforme['gola'],
                     // Adicione outros campos conforme necessário
                 ]);
-            }   
+
+                // Adiciona logs para depuração
+                \Log::info('ProdutoLista criado:', $savedUniforme->toArray());
+            }
 
             return response()->json(['message' => 'Lista de uniformes salva com sucesso!']);
         } catch (\Exception $e) {
             // Em caso de erro, retorne uma resposta de erro
+            \Log::error('Erro ao salvar lista de uniformes. Detalhes: ' . $e->getMessage());
+
             return response()->json(['error' => 'Erro ao salvar lista de uniformes. Detalhes: ' . $e->getMessage()], 500);
         }
     }
+
 }
