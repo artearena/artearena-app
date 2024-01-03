@@ -20,7 +20,7 @@ class ProdutoLista extends Model
         'numero',
         'tamanho',
         'gola',
-        // Adicione outros campos conforme necessário
+        'id_lista',
     ];
 }
 
