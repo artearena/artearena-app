@@ -72,15 +72,15 @@ document.addEventListener('DOMContentLoaded', function() {
                     var thMeiao = document.createElement('th');
                     thMeiao.innerText = 'Meião';
                     tr.appendChild(thMeiao);
-                    var thNomeJogador = document.createElement('th');
+                   /*  var thNomeJogador = document.createElement('th');
                     thNomeJogador.innerText = 'Nome do Jogador';
-                    tr.appendChild(thNomeJogador);
-                    var thNumero = document.createElement('th');
+                    tr.appendChild(thNomeJogador); */
+/*                     var thNumero = document.createElement('th');
                     thNumero.innerText = 'Número';
                     tr.appendChild(thNumero);
                     var thTamanho = document.createElement('th');
                     thTamanho.innerText = 'Tamanho';
-                    tr.appendChild(thTamanho);
+                    tr.appendChild(thTamanho); */
                     thead.appendChild(tr);
                     table.appendChild(thead);
                     var tbody = document.createElement('tbody');
@@ -104,12 +104,12 @@ document.addEventListener('DOMContentLoaded', function() {
                             tr.appendChild(tdCalcao);
                             var tdMeiao = criarCelulaCheckbox(produto, 'meiao', pedidoId);
                             tr.appendChild(tdMeiao);
-                            var tdNomeJogador = criarCelulaEditavel(produto, 'nome_jogador', pedidoId);
-                            tr.appendChild(tdNomeJogador);
-                            var tdNumero = criarCelulaEditavel(produto, 'numero', pedidoId);
+/*                             var tdNomeJogador = criarCelulaEditavel(produto, 'nome_jogador', pedidoId);
+                            tr.appendChild(tdNomeJogador); */
+/*                             var tdNumero = criarCelulaEditavel(produto, 'numero', pedidoId);
                             tr.appendChild(tdNumero);
                             var tdTamanho = criarCelulaSelecionavel(produto, 'tamanho', ['P', 'M', 'G', 'GG', 'XG', 'XGG', 'XGGG'], pedidoId);
-                            tr.appendChild(tdTamanho);
+                            tr.appendChild(tdTamanho); */
                         }
                         tbody.appendChild(tr);
                     });
