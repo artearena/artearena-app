@@ -143,6 +143,7 @@ function criarCelulaEditavel(produto, campo, pedidoId) {
   var td = document.createElement('td');
   td.contentEditable = 'true';
   td.innerText = produto[campo] || '';
+  td.className = 'form-control'; // Adiciona a classe 'form-control' ao elemento td
   td.addEventListener('input', function() {
     atualizarCampoProduto(pedidoId, produto.id, campo, this.innerText);
   });
@@ -152,7 +153,7 @@ function criarCelulaEditavel(produto, campo, pedidoId) {
 function criarCelulaSelecionavel(produto, campo, opcoes, pedidoId) {
   var td = document.createElement('td');
   var select = document.createElement('select');
-  select.className = 'form-control';
+  select.className = 'form-control'; // Adiciona a classe 'form-control' ao elemento select
   opcoes.forEach(function(opcao) {
     var option = document.createElement('option');
     option.value = opcao;
@@ -171,6 +172,7 @@ function criarCelulaCheckbox(produto, campo, pedidoId) {
   var td = document.createElement('td');
   var input = document.createElement('input');
   input.type = 'checkbox';
+  input.className = 'form-check-input'; // Adiciona a classe 'form-check-input' ao elemento input
   input.checked = produto[campo];
   input.addEventListener('change', function() {
     atualizarCampoProduto(pedidoId, produto.id, campo, this.checked);
