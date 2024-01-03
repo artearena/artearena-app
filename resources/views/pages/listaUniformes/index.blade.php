@@ -104,9 +104,7 @@
 
                         row.innerHTML = `
                             <td>${produto.produto_nome}</td>
-                            <td>
-                                <input type='text' value='${sexoCategoria}' class='form-control' readonly>
-                            </td>
+                            <td>${sexoCategoria}></td>
                             <td>${produto.arte_aprovada}</td>
                             <td>${produto.pacote !== null && produto.pacote !== '' ? produto.pacote : ''}</td>
                             <td>${camisaChecked}</td>
