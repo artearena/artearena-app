@@ -93,7 +93,6 @@
                     listaUniformes: listaUniformes
                 },
                 success: function(response) {
-                    console.log('Resposta do servidor:', response);
                     alert('Lista de uniformes salva com sucesso!');
                 },
                 error: function(error) {
