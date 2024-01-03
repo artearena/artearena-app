@@ -82,18 +82,21 @@
                 listaUniformes.push(uniforme);
             });
 
+            // Obtenha o token CSRF do meta tag
+            var csrfToken = $('meta[name="csrf-token"]').attr('content');
+
             $.ajax({
                 type: 'POST',
-                url: '/listaUniformes/salvarListaUniformes', // Substitua pela URL correta do seu endpoint Laravel
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                url: '/listaUniformes/salvarListaUniformes',
+                data: {
+                    _token: csrfToken, // Adicione o token CSRF aqui
+                    listaUniformes: listaUniformes
                 },
-                data: { listaUniformes: listaUniformes },
-                success: function (response) {
+                success: function(response) {
                     console.log('Resposta do servidor:', response);
                     alert('Lista de uniformes salva com sucesso!');
                 },
-                error: function (error) {
+                error: function(error) {
                     console.error('Erro ao salvar lista de uniformes:', error);
                     alert('Erro ao salvar lista de uniformes. Verifique o console para mais detalhes.');
                 },
@@ -152,8 +155,6 @@
 
             });
         });
-
-
 
     </script>
 @endsection
