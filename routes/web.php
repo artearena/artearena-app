@@ -162,7 +162,7 @@ Route::middleware(['auth'])->group(function () {
 
     });
 });
-Route::prefix('listaUniformes')->middleware('validar.token')->group(function () {
+Route::prefix('listaUniformes')->group(function () {
     //Route::any('/', [ListaUniformeController::class, 'index'])->name('index');
     Route::any('/{id}', [ListaUniformeController::class, 'indexCliente']);
     Route::resource('produtos_lista', ProdutoListaController::class);
