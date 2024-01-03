@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class ProdutoLista extends Model
 {
+    protected $table = 'produtos_lista_uniforme';
+
     protected $fillable = [
         'produto_nome',
         'sexo',
