@@ -49,37 +49,42 @@ class ProdutoListaController extends Controller
     }
 
     public function salvarListaUniformes(Request $request)
-    {
-        $listaUniformes = $request->input('listaUniformes');
-    
-        try {
-            foreach ($listaUniformes as $uniforme) {
-                ProdutoLista::create([
-                    'produto_nome' => $uniforme['produto_nome'],
-                    'sexo' => $uniforme['sexo'],
-                    'arte_aprovada' => $uniforme['arte_aprovada'],
-                    'pacote' => $uniforme['pacote'],
-                    'camisa' => $uniforme['camisa'],
-                    'calcao' => $uniforme['calcao'],
-                    'meiao' => $uniforme['meiao'],
-                    'nome_jogador' => $uniforme['nome_jogador'],
-                    'numero' => $uniforme['numero'],
-                    'tamanho' => $uniforme['tamanho'],
-                    'gola' => $uniforme['gola'],
-                ]);
-        
+        {
+            $listaUniformes = $request->input('listaUniformes');
 
+            try {
+                $produtosSalvos = [];
+
+                foreach ($listaUniformes as $uniforme) {
+                    $novoProduto = ProdutoLista::create([
+                        'produto_nome' => $uniforme['produto_nome'],
+                        'sexo' => $uniforme['sexo'],
+                        'arte_aprovada' => $uniforme['arte_aprovada'],
+                        'pacote' => $uniforme['pacote'],
+                        'camisa' => $uniforme['camisa'],
+                        'calcao' => $uniforme['calcao'],
+                        'meiao' => $uniforme['meiao'],
+                        'nome_jogador' => $uniforme['nome_jogador'],
+                        'numero' => $uniforme['numero'],
+                        'tamanho' => $uniforme['tamanho'],
+                        'gola' => $uniforme['gola'],
+                    ]);
+
+                    // Adiciona o produto salvo à lista de produtos salvos
+                    $produtosSalvos[] = $novoProduto;
+                }
+
+                return response()->json([
+                    'message' => 'Lista de uniformes salva com sucesso!',
+                    'produtosSalvos' => $produtosSalvos,
+                ], 200);
+            } catch (\Exception $e) {
+                // Adiciona logs para depuração em caso de erro
+                \Log::error('Erro ao salvar lista de uniformes. Detalhes: ' . $e->getMessage());
+
+                return response()->json(['error' => 'Erro ao salvar lista de uniformes. Detalhes: ' . $e->getMessage()], 500);
             }
-        
-            return $listaUniformes;
-        
-        } catch (\Exception $e) {
-            // Adiciona logs para depuração em caso de erro
-            \Log::error('Erro ao salvar lista de uniformes. Detalhes: ' . $e->getMessage());
-        
-            return response()->json(['error' => 'Erro ao salvar lista de uniformes. Detalhes: ' . $e->getMessage()], 500);
         }
-    }
     
 
 }
