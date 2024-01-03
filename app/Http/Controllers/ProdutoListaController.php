@@ -54,24 +54,28 @@ class ProdutoListaController extends Controller
     {
         $listaUniformes = $request->input('listaUniformes');
 
-        foreach ($listaUniformes as $uniforme) {
-            // Crie a lógica necessária para salvar cada item da lista no banco de dados
-            // Utilize a model, ProdutoLista, para criar registros no banco
-            ProdutoLista::create([
-                'produto_nome' => $uniforme['produto_nome'],
-                'categoria' => $uniforme['categoria'],
-                'arte_aprovada' => $uniforme['arte_aprovada'],
-                'pacote' => $uniforme['pacote'],
-                'camisa' => $uniforme['camisa'],
-                'calcao' => $uniforme['calcao'],
-                'meiao' => $uniforme['meiao'],
-                'nome_jogador' => $uniforme['nome_jogador'],
-                'numero' => $uniforme['numero'],
-                'tamanho' => $uniforme['tamanho'],
-                'gola' => $uniforme['gola'],
-            ]);
-        }
+        try {
+            foreach ($listaUniformes as $uniforme) {
+                ProdutoLista::create([
+                    'produto_nome' => $uniforme['produto_nome'],
+                    'sexo' => $uniforme['sexo'],  // Adicione os campos faltantes aqui
+                    'arte_aprovada' => $uniforme['arte_aprovada'],
+                    'pacote' => $uniforme['pacote'],
+                    'camisa' => $uniforme['camisa'],
+                    'calcao' => $uniforme['calcao'],
+                    'meiao' => $uniforme['meiao'],
+                    'nome_jogador' => $uniforme['nome_jogador'],
+                    'numero' => $uniforme['numero'],
+                    'tamanho' => $uniforme['tamanho'],
+                    'gola' => $uniforme['gola'],
+                    // Adicione outros campos conforme necessário
+                ]);
+            }
 
-        return response()->json(['message' => 'Lista de uniformes salva com sucesso!']);
+            return response()->json(['message' => 'Lista de uniformes salva com sucesso!']);
+        } catch (\Exception $e) {
+            // Em caso de erro, retorne uma resposta de erro
+            return response()->json(['error' => 'Erro ao salvar lista de uniformes. Detalhes: ' . $e->getMessage()], 500);
+        }
     }
 }
