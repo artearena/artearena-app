@@ -53,6 +53,7 @@ class ProdutoListaController extends Controller
     public function salvarListaUniformes(Request $request)
     {
         $listaUniformes = $request->input('listaUniformes');
+        \Log::info('ProdutoLista criado:', $savedUniforme->toArray());
 
         try {
             foreach ($listaUniformes as $uniforme) {
