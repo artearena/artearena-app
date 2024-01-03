@@ -82,6 +82,8 @@
                 listaUniformes.push(uniforme);
             });
 
+            console.log('Dados a serem enviados:', listaUniformes); // Debug
+
             $.ajax({
                 type: 'POST',
                 url: '/listaUniformes/salvarListaUniformes',
@@ -99,6 +101,7 @@
                 },
             });
         }
+
 
 
         document.addEventListener('DOMContentLoaded', function() {
