@@ -1,7 +1,5 @@
 <?php
 
-// app/Http/Controllers/ProdutoListaController.php
-
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -70,11 +68,10 @@ class ProdutoListaController extends Controller
                     'gola' => $uniforme['gola'],
                 ]);
         
-                // Adiciona logs para depuração
-                \Log::info('ProdutoLista criado:', $savedUniforme->toArray());
+
             }
         
-            return response()->json(['message' => 'Lista de uniformes salva com sucesso!'], 200);
+            return $listaUniformes;
         
         } catch (\Exception $e) {
             // Adiciona logs para depuração em caso de erro
