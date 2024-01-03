@@ -67,12 +67,12 @@
             $('tbody tr').each(function () {
                 var uniforme = {
                     produto_nome: $(this).find('td:nth-child(1)').text(),
-                    categoria: $(this).find('td:nth-child(2) select').val(),
+                    categoria: $(this).find('td:nth-child(2)').val(),
                     arte_aprovada: $(this).find('td:nth-child(3)').text(),
                     pacote: $(this).find('td:nth-child(4)').text(),
-                    camisa: $(this).find('td:nth-child(5)').text() === 'Sim',
-                    calcao: $(this).find('td:nth-child(6)').text() === 'Sim',
-                    meiao: $(this).find('td:nth-child(7)').text() === 'Sim',
+                    camisa: $(this).find('td:nth-child(5)').text(),
+                    calcao: $(this).find('td:nth-child(6)').text(),
+                    meiao: $(this).find('td:nth-child(7)').text(),
                     nome_jogador: $(this).find('td:nth-child(8) input').val(),
                     numero: $(this).find('td:nth-child(9) input').val(),
                     tamanho: $(this).find('td:nth-child(10) select').val(),
