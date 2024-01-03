@@ -82,19 +82,12 @@
                 listaUniformes.push(uniforme);
             });
 
-            // Enviar dados para o Laravel usando AJAX
-            var token = document.head.querySelector('meta[name="csrf-token"]').content;
-
-            // Em seguida, inclua o token na sua solicitação AJAX
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': token
-                }
-            });
-
             $.ajax({
                 type: 'POST',
                 url: '/listaUniformes/salvarListaUniformes', // Substitua pela URL correta do seu endpoint Laravel
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
                 data: { listaUniformes: listaUniformes },
                 success: function (response) {
                     console.log('Resposta do servidor:', response);
