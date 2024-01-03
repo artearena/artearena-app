@@ -75,7 +75,6 @@ class ProdutoListaController extends Controller
                 \Log::info('ProdutoLista criado:', $savedUniforme->toArray());
             }
 
-            return response()->json(['message' => 'Lista de uniformes salva com sucesso!']);
         } catch (\Exception $e) {
             // Em caso de erro, retorne uma resposta de erro
             \Log::error('Erro ao salvar lista de uniformes. Detalhes: ' . $e->getMessage());
