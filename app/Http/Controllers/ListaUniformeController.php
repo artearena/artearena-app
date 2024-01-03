@@ -21,7 +21,6 @@ class ListaUniformeController extends Controller
         return view('pages.listaUniformes.index', compact('produtos'));
     }
     
-    
 
     public function create()
     {

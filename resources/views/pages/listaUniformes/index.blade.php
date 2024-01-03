@@ -105,11 +105,7 @@
                         row.innerHTML = `
                             <td>${produto.produto_nome}</td>
                             <td>
-                                <select class='form-control'>
-                                    <option value='M' ${produto.sexo === 'M' ? 'selected' : ''}>Masculino</option>
-                                    <option value='F' ${produto.sexo === 'F' ? 'selected' : ''}>Feminino</option>
-                                    <option value='I' ${produto.sexo === 'I' ? 'selected' : ''}>Infantil</option>
-                                </select>
+                                <input type='text' value='${sexoCategoria}' class='form-control' readonly>
                             </td>
                             <td>${produto.arte_aprovada}</td>
                             <td>${produto.pacote !== null && produto.pacote !== '' ? produto.pacote : ''}</td>
@@ -143,6 +139,7 @@
                 $('input[type="number"]').mask('00000');
             });
         });
+
 
 
     </script>
