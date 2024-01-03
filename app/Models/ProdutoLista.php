@@ -1,7 +1,5 @@
 <?php
 
-namespace App\Models;
-
 use Illuminate\Database\Eloquent\Model;
 
 class ProdutoLista extends Model
@@ -21,6 +19,13 @@ class ProdutoLista extends Model
         'tamanho',
         'gola',
         'id_lista',
+    ];
+
+    // Defina os campos booleanos
+    protected $casts = [
+        'camisa' => 'boolean',
+        'calcao' => 'boolean',
+        'meiao' => 'boolean',
     ];
 }
 

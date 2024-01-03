@@ -64,7 +64,7 @@
             var listaUniformes = [];
 
             // Iterar sobre as linhas da tabela e extrair os dados
-            $('tbody tr').each(function() {
+            $('tbody tr').each(function () {
                 var uniforme = {
                     produto_nome: $(this).find('td:nth-child(1)').text(),
                     categoria: $(this).find('td:nth-child(2) select').val(),
@@ -82,26 +82,24 @@
                 listaUniformes.push(uniforme);
             });
 
-            // Obtenha o token CSRF do meta tag
-            var csrfToken = $('meta[name="csrf-token"]').attr('content');
-
             $.ajax({
                 type: 'POST',
                 url: '/listaUniformes/salvarListaUniformes',
-                data: {
-                    _token: csrfToken, // Adicione o token CSRF aqui
-                    listaUniformes: listaUniformes
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
-                success: function(response) {
+                data: { listaUniformes: listaUniformes },
+                success: function (response) {
+                    console.log('Resposta do servidor:', response);
                     alert('Lista de uniformes salva com sucesso!');
                 },
-                error: function(error) {
+                error: function (error) {
                     console.error('Erro ao salvar lista de uniformes:', error);
                     alert('Erro ao salvar lista de uniformes. Verifique o console para mais detalhes.');
                 },
             });
-
         }
+
 
         document.addEventListener('DOMContentLoaded', function() {
             var produtos = @json($produtos);
