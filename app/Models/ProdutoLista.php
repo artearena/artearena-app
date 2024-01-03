@@ -21,11 +21,5 @@ class ProdutoLista extends Model
         'id_lista',
     ];
 
-    // Defina os campos booleanos
-    protected $casts = [
-        'camisa' => 'boolean',
-        'calcao' => 'boolean',
-        'meiao' => 'boolean',
-    ];
 }
 
