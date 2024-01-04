@@ -77,8 +77,8 @@ class HomologarPedido extends Controller
         // Verificar os produtos
         if ($request->has('produtos')) {
             foreach ($request->produtos as $produto) {
-                $this->verificarProduto($produto['produto_nome'], $pedidoInterno->id);
-            }
+/*                 $this->verificarProduto($produto['produto_nome'], $pedidoInterno->id);
+ */            }
         }
 
         // Retornar uma resposta de sucesso

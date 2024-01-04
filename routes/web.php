@@ -55,26 +55,9 @@ Route::middleware(['auth'])->group(function () {
             Route::post('/criar', [HomologarPedido::class, 'store'])->name('pedidoInterno.salvar');
             Route::get('/get-produtos-pedido/{id}', [HomologarPedido::class, 'getProdutosDoPedido']);
             Route::post('/atualizar-produto/{pedidoId}/{produtoId}', [HomologarPedido::class, 'update']);
-
-            
-            // Adicionando rota para atualizar o sexo do produto
-            Route::post('/atualizar-sexo-produto/{pedidoId}/{produtoId}', [HomologarPedido::class, 'atualizarSexoProduto']);
-
-            // Adicionando rota para atualizar o pacote do produto
-            Route::post('/atualizar-pacote-produto/{pedidoId}/{produtoId}', [HomologarPedido::class, 'atualizarPacoteProduto']);
-
-            // Adicionando rota para atualizar a camisa do produto
-            Route::post('/atualizar-camisa-produto/{pedidoId}/{produtoId}', [HomologarPedido::class, 'atualizarCamisaProduto']);
-
-            // Adicionando rota para atualizar o calção do produto
-            Route::post('/atualizar-calcao-produto/{pedidoId}/{produtoId}', [HomologarPedido::class, 'atualizarCalcaoProduto']);
-
         });
 
         Route::prefix('produto')->group(function () {
-            // Adicione outras rotas relacionadas a produtos aqui, se necessário
-        
-            // Rota para buscar um produto por nome
             Route::get('/buscar-por-nome/{nome}', [ProdutoController::class, 'buscarPorNome'])->name('produto.buscarPorNome');
         });
         

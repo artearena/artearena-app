@@ -47,35 +47,33 @@ class ProdutoListaController extends Controller
         ProdutoLista::find($id)->delete();
         return redirect()->route('produtos_lista.index')->with('success', 'Produto da lista excluído com sucesso!');
     }
-
+    
     public function gravarLista(Request $request)
     {
-        
         $listaUniformes = $request->input('listaUniformes');
 
         try {
+            // Crie a lista uniforme
+            $novaLista = ListaUniforme::create([
+                'id_pedido' => 1, // Substitua pelo valor real do pedido, se aplicável
+                'data_criacao' => now(),
+                'lista_aprovada' => 'Sim', // Substitua pelo valor real, se aplicável
+            ]);
+
             $produtosSalvos = [];
 
             foreach ($listaUniformes as $uniforme) {
                 // Verifica se todos os campos não estão vazios
-                
-                    $novoProduto = ProdutoLista::create([
-                        'produto_nome' => $uniforme['produto_nome'],
-                        'sexo' => $uniforme['sexo'],
-                        'arte_aprovada' => $uniforme['arte_aprovada'],
-                        'pacote' => $uniforme['pacote'],
-                        'camisa' => $uniforme['camisa'],
-                        'calcao' => $uniforme['calcao'],
-                        'meiao' => $uniforme['meiao'],
-                        'nome_jogador' => $uniforme['nome_jogador'],
-                        'numero' => $uniforme['numero'],
-                        'tamanho' => $uniforme['tamanho'],
-                        'gola' => $uniforme['gola'],
-                    ]);
+                if (!empty($uniforme['produto_nome']) && !empty($uniforme['sexo']) && !empty($uniforme['arte_aprovada'])) {
+                    // Associe o id da lista ao produto
+                    $uniforme['id_lista'] = $novaLista->id;
+
+                    // Crie o novo produto associado à lista
+                    $novoProduto = ProdutoLista::create($uniforme);
 
                     // Adiciona o produto salvo à lista de produtos salvos
                     $produtosSalvos[] = $novoProduto;
-
+                }
             }
 
             return response()->json([

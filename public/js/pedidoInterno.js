@@ -472,7 +472,8 @@ function salvarPedido(pedidoId, dataVenda, marcadorValue, dataEnvio) {
           });
         });
     });
-
+  }
+  
 });
 // Estilização da tabela, não mexer
 const smallBreak = 800;
