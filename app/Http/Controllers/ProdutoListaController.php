@@ -50,6 +50,8 @@ class ProdutoListaController extends Controller
 
     public function salvarListaUniformes(Request $request)
     {
+        \Log::warning('Ignorado produto com campos vazios:', $uniforme);
+
         dd($request);
         $listaUniformes = $request->input('listaUniformes');
 
