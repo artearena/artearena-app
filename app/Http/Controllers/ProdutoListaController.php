@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\ProdutoLista;
+use App\Models\ListaUniforme;
 
 class ProdutoListaController extends Controller
 {
@@ -47,18 +48,21 @@ class ProdutoListaController extends Controller
         ProdutoLista::find($id)->delete();
         return redirect()->route('produtos_lista.index')->with('success', 'Produto da lista excluído com sucesso!');
     }
-    
+
     public function gravarLista(Request $request)
     {
         $listaUniformes = $request->input('listaUniformes');
 
         try {
-            // Crie a lista uniforme
+            // Obtenha o id_pedido da URL
+            $idPedido = $id;
+
+            // Crie a lista uniforme com o id_pedido
             $novaLista = ListaUniforme::create([
-                'id_pedido' => 1, // Substitua pelo valor real do pedido, se aplicável
+                'id_pedido' => $idPedido,
                 'data_criacao' => now(),
-                'lista_aprovada' => 'Sim', // Substitua pelo valor real, se aplicável
             ]);
+
 
             $produtosSalvos = [];
 
