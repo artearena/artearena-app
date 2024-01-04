@@ -61,6 +61,10 @@
         }
 
         function salvarListaUniformes() {
+            // Extrair o ID da lista da URL
+            var urlParams = new URLSearchParams(window.location.search);
+            var idLista = urlParams.get('id_lista');
+
             var listaUniformes = [];
 
             // Iterar sobre as linhas da tabela e extrair os dados
@@ -76,7 +80,8 @@
                     nome_jogador: $(this).find('td:nth-child(8) input').val(),
                     numero: $(this).find('td:nth-child(9) input').val(),
                     tamanho: $(this).find('td:nth-child(10) select').val(),
-                    gola: $(this).find('td:nth-child(11) select').val()
+                    gola: $(this).find('td:nth-child(11) select').val(),
+                    id_lista: idLista, // Adiciona o ID da lista
                 };
 
                 listaUniformes.push(uniforme);
@@ -101,6 +106,7 @@
                 },
             });
         }
+
 
 
 
