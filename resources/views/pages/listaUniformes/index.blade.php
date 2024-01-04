@@ -64,7 +64,7 @@
             // Extrair o ID da lista da URL
             var urlParams = new URLSearchParams(window.location.search);
             var idLista = urlParams.get('id_lista');
-
+            console.log(urlParams);
             var listaUniformes = [];
 
             // Iterar sobre as linhas da tabela e extrair os dados
