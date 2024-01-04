@@ -86,7 +86,7 @@
 
             $.ajax({
                 type: 'POST',
-                url: '/listaUniformes/salvarListaUniformes',
+                url: '/listaUniformes/gravarLista',
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
