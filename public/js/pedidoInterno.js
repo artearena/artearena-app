@@ -547,27 +547,6 @@ function salvarPedido(pedidoId, dataVenda, marcadorValue, dataEnvio) {
     });
   });
 
-  inputCalcao.forEach(function(input) {
-    input.addEventListener('change', function() {
-      var pedidoId = this.closest('.pedido-row').getAttribute('data-pedido-id');
-      var produtoId = this.closest('.produto-dados').getAttribute('data-produto-id');
-      var novoCalcao = this.value;
-      // Faça a requisição AJAX para atualizar o calção do produto
-      fetch('/pedidoInterno/atualizar-calcao-produto/' + pedidoId + '/' + produtoId, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ calcao: novoCalcao }),
-      })
-      .then(function(response) {
-        console.log('Calção atualizado com sucesso!');
-      })
-      .catch(function(error) {
-        console.log('Ocorreu um erro:', error);
-      });
-    });
-  });
 });
 // Estilização da tabela, não mexer
 const smallBreak = 800;
