@@ -49,7 +49,7 @@ class ProdutoListaController extends Controller
         return redirect()->route('produtos_lista.index')->with('success', 'Produto da lista excluído com sucesso!');
     }
 
-    public function gravarLista(Request $request)
+    public function gravarLista(Request $request, $id)
     {
         $listaUniformes = $request->input('listaUniformes');
 
