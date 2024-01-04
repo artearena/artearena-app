@@ -50,6 +50,7 @@ class ProdutoListaController extends Controller
 
     public function salvarListaUniformes(Request $request)
     {
+        dd($request);
         $listaUniformes = $request->input('listaUniformes');
 
         try {
