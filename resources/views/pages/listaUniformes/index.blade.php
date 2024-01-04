@@ -67,7 +67,7 @@
             $('tbody tr').each(function () {
                 var uniforme = {
                     produto_nome: $(this).find('td:nth-child(1)').text(),
-                    categoria: $(this).find('td:nth-child(2)').val(),
+                    sexo: $(this).find('td:nth-child(2)').val(),
                     arte_aprovada: $(this).find('td:nth-child(3)').text(),
                     pacote: $(this).find('td:nth-child(4)').text(),
                     camisa: $(this).find('td:nth-child(5)').text(),
