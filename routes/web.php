@@ -166,7 +166,7 @@ Route::middleware(['auth'])->group(function () {
 Route::prefix('listaUniformes')->group(function () {
     //Route::any('/', [ListaUniformeController::class, 'index'])->name('index');
     Route::any('/{id}', [ListaUniformeController::class, 'indexCliente']);
-    Route::post('/salvarListaUniformes', [ProdutoListaController::class, 'salvarListaUniformes']); // Adicione esta rota para salvar a lista
+    Route::post('/gravarLista', [ProdutoListaController::class, 'gravarLista']); // Adicione esta rota para salvar a lista
 });
 
 Route::prefix('cadastro')->middleware('validar.token')->group(function () {
