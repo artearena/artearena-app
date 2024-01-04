@@ -162,13 +162,12 @@ Route::middleware(['auth'])->group(function () {
 
     });
 });
-
-Route::prefix('listaUniformes')->group(function () {
+Route::prefix('listaUniformes')->middleware('validar.token')->group(function () {
     //Route::any('/', [ListaUniformeController::class, 'index'])->name('index');
     Route::any('/{id}', [ListaUniformeController::class, 'indexCliente']);
-    Route::post('/gravarLista', [ProdutoListaController::class, 'gravarLista']); // Adicione esta rota para salvar a lista
+    
 });
-
+Route::post('gravarLista', [ProdutoListaController::class,'gravarLista']);
 Route::prefix('cadastro')->middleware('validar.token')->group(function () {
     // Rota para listar todos os registros de cadastro
     Route::any('/', [CadastroController::class, 'index'])->name('cadastro.index');
