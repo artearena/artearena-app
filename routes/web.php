@@ -168,6 +168,8 @@ Route::prefix('listaUniformes')->middleware('validar.token')->group(function () 
     
 });
 Route::post('gravarLista', [ProdutoListaController::class,'gravarLista']);
+
+
 Route::prefix('cadastro')->middleware('validar.token')->group(function () {
     // Rota para listar todos os registros de cadastro
     Route::any('/', [CadastroController::class, 'index'])->name('cadastro.index');
