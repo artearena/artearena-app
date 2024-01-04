@@ -49,7 +49,7 @@ class ProdutoListaController extends Controller
         return redirect()->route('produtos_lista.index')->with('success', 'Produto da lista excluído com sucesso!');
     }
 
-    public function gravarLista(Request $request, $id)
+    public function gravarLista(Request $request)
     {
         $listaUniformes = $request->input('listaUniformes');
 
@@ -67,8 +67,6 @@ class ProdutoListaController extends Controller
             $produtosSalvos = [];
 
             foreach ($listaUniformes as $uniforme) {
-                // Verifica se todos os campos não estão vazios
-                if (!empty($uniforme['produto_nome']) && !empty($uniforme['sexo']) && !empty($uniforme['arte_aprovada'])) {
                     // Associe o id da lista ao produto
                     $uniforme['id_lista'] = $novaLista->id;
 
@@ -78,7 +76,6 @@ class ProdutoListaController extends Controller
                     // Adiciona o produto salvo à lista de produtos salvos
                     $produtosSalvos[] = $novoProduto;
                 }
-            }
 
             return response()->json([
                 'message' => 'Lista de uniformes salva com sucesso!',
