@@ -17,8 +17,8 @@ class HomologarPedido extends Controller
     {
         $pedidos = PedidoInterno::all();
         $pedidosArte = Pedido::where('status', 'Aguardando Cliente')->get();        
-        $listaProdutos = PedidoListView::all();
-        return view('pages.pedidoInterno.index', compact('pedidos', 'listaProdutos','pedidosArte'));
+        
+        return view('pages.pedidoInterno.index', compact('pedidos', 'pedidosArte'));
     }
     
 
