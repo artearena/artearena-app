@@ -99,7 +99,7 @@
                     // Adicionar evento de alteração para sincronizar tamanhos
                     selectTamanho.addEventListener('change', function () {
                         var novaOpcao = $(this).val();
-                        sincronizarTamanhosStart(novaOpcao, idLista);
+                        sincronizarTamanhosStart(novaOpcao);
                     });
 
                     // Desabilitar a entrada do nome
