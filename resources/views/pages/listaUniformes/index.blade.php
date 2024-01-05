@@ -174,17 +174,17 @@
                         console.log(produto);
 
                         switch (sexo) {
-                            case 'M' || 'Masculino':
+                            case 'M':
                                 sexoCategoria = 'Masculino';
                                 break;
-                            case 'F' || 'Feminino':
+                            case 'F':
                                 sexoCategoria = 'Feminino';
                                 break;
-                            case 'I' ||'Infantil':
+                            case 'I':
                                 sexoCategoria = 'Infantil';
                                 break;
                             default:
-                                sexoCategoria = 'Masculino';
+                                sexoCategoria = sexo;
                                 break;
                         }                        
                         var camisaChecked = produto.camisa ? 'Sim' : 'Não';
