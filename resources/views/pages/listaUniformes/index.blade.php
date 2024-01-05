@@ -117,13 +117,9 @@
                     // A única opção de gola será "Careca"
 
                     var selectGola = document.querySelector('td:nth-child(12) select');
-                    if (selectGola) {
-                        selectGola.innerHTML = '<option value="Careca">Careca</option>';
-                    }
+                    selectGola.innerHTML = '<option value="Careca">Careca</option>';
 
-                    // As opções de tamanho serão M ou G
                     var selectTamanho = document.querySelector('td:nth-child(11) select');
-                    if (selectTamanho) {
                         selectTamanho.innerHTML = `
                             <option value='M'>Médio (M)</option>
                             <option value='G'>Grande (G)</option>
