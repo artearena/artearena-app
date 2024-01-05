@@ -3,7 +3,7 @@
 @section('title', 'Lista de Produtos')
 
 @section('content')
-    <div class="container-xl my-2">
+    <div class="container-fluid my-2">
         <h1>Lista de Produtos</h1>
         <table class="table">
             <thead>
