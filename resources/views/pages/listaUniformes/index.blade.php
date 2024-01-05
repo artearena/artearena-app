@@ -116,9 +116,7 @@
                     // Regras para o Pacote Start
                     // A única opção de gola será "Careca"
                     var selectGola = row.querySelector('td:nth-child(12) select');
-                    if (selectGola) {
-                        selectGola.innerHTML = '<option value="Careca">Careca</option>';
-                    }
+                    selectGola.innerHTML = '<option value="Careca">Careca</option>';
 
                     // As opções de tamanho serão M ou G
                     var selectTamanho = row.querySelector('td:nth-child(11) select');
