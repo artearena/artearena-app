@@ -76,6 +76,20 @@
                 }
             });
         }
+        // Função para sincronizar nomes entre produtos do pacote Prata
+        function sincronizarNomesPrata(novoNome, idLista) {
+            $('tbody tr').each(function () {
+                var pacote = $(this).find('td:nth-child(5)').text();
+                var idListaAtual = $(this).find('td:nth-child(1)').text();
+
+                if (pacote === 'Prata' && idListaAtual !== idLista) {
+                    var inputNome = $(this).find('td:nth-child(9) input');
+
+                    // Sincronizar o nome
+                    inputNome.val(novoNome);
+                }
+            });
+        }
 
         // Função para aplicar regras por pacote
         function aplicarRegrasPorPacote(pacote, row) {
