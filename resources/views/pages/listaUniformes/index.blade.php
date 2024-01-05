@@ -236,7 +236,31 @@
                             <option value='XXXG'>Extra Grande 3 (XXXG)</option>
                         `;
 
-                        break;         
+                        break;      
+                    case 'Premium':
+                        // Regras para o Pacote Prata
+                        var selectGola = row.querySelector('td:nth-child(12) select');
+                        if (selectGola) {
+                            selectGola.innerHTML = `<option value="Careca">Careca</option>
+                                                    <option value="V">V</option>
+                                                    <option value="Bayard">Bayard</option>
+                                                    <option value="Polo">Polo</option>
+                                                    `;
+                        }
+
+                        // As opções de tamanho serão M ou G
+                        var selectTamanho = row.querySelector('td:nth-child(11) select');
+                        selectTamanho.innerHTML = `
+                            <option value='P'>Pequeno (P)</option>
+                            <option value='M'>Médio (M)</option>    
+                            <option value='G'>Grande (G)</option>
+                            <option value='GG'>Muito Grande (GG)</option>
+                            <option value='XG'>Extra Grande (XG)</option>
+                            <option value='XXG'>Extra Grande 2 (XXG)</option>
+                            <option value='XXXG'>Extra Grande 3 (XXXG)</option>
+                        `;
+
+                        break;    
                 default:
                     // Regras padrão, caso nenhum pacote específico seja correspondido
                     break;
