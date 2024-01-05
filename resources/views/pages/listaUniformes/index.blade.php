@@ -116,10 +116,12 @@
                     // Regras para o Pacote Start
                     // A única opção de gola será "Careca"
 
-                    var selectGola = document.querySelector('td:nth-child(12) select');
+                    var selectGola = row.querySelector('td:nth-child(12) select');
                     selectGola.innerHTML = '<option value="Careca">Careca</option>';
 
-                    var selectTamanho = document.querySelector('td:nth-child(11) select');
+                    // As opções de tamanho serão M ou G
+                    var selectTamanho = row.querySelector('td:nth-child(11) select');
+                    if (selectTamanho) {
                         selectTamanho.innerHTML = `
                             <option value='M'>Médio (M)</option>
                             <option value='G'>Grande (G)</option>
@@ -149,6 +151,8 @@
             var tbody = document.querySelector('tbody');
             tbody.innerHTML = '';
 
+            // ...
+
             produtos.forEach(function (produto) {
                 if (ehVestuario(normalize(produto.produto_nome))) {
                     for (var i = 0; i < produto.quantidade; i++) {
@@ -158,9 +162,6 @@
                         var calcaoChecked = produto.calcao ? 'Sim' : 'Não';
                         var meiaoChecked = produto.meiao ? 'Sim' : 'Não';
 
-                        // Aplicar regras específicas por pacote
-                        aplicarRegrasPorPacote(produto.pacote, row);
-                        
                         row.innerHTML = `
                             <td style="display: none">${produto.pedido_id}</td> 
                             <td>${produto.produto_nome}</td>
@@ -186,10 +187,17 @@
                                 </select>
                             </td>
                         `;
+                        
+                        // Aplicar regras específicas por pacote
+                        aplicarRegrasPorPacote(produto.pacote, row);
+
                         tbody.appendChild(row);
                     }
                 }
             });
+
+            // ...
+
 
             $(document).ready(function(){
                 $('input[type="number"]').mask('00000');
