@@ -200,21 +200,23 @@ function normalize(text) {
 }
 
 function ehVestuario($nomeProduto) {
-  $vestuario = [
-    "Camisa Personalizada", "Boné Premium Personalizado", "Chinelo Slide Personalizado",
-    "Chinelo Adulto Personalizado", "Abadá Personalizado", "Camiseta Personalizada",
-    "Toalha Personalizada", "Colete Personalizado", "Sacochila Personalizada",
-    "Braçadeira Personalizada", "Máscara Personalizada", "Máscara Caveira",
-    "Máscara Pikachu", "Máscara o Máskara", "Máscara La Casa de Papel",
-    "Máscara Homem Aranha", "Máscara Arlequina Coringa", "Máscara Et Alien",
-    "Máscara Girl Power", "Máscara Girl Power - Rosa", "Máscara Girl Power - Branco",
-    "Máscara Girl Power - Preto", "Máscara Good Vibes", "Máscara LGBT",
-    "Máscara Oncinha", "Máscara Resiliência", "Máscara Resiliência - Rosa",
-    "Máscara Resiliência - Preto", "Máscara Coringa", "Máscara Brasil",
-    "Samba Canção Personalizado", "Roupão Personalizado", "Doleira",
-    "Shorts Doll Personalizado", "Balaclava Personalizada"
+    $vestuario = [
+      "camisa personalizada", "boné premium personalizado", "chinelo slide personalizado",  
+      'uniforme',
+      'balaclava',
+      'calcao',
+      'camisa',
+      'camisao',
+      'camiseta',
+      'colete',
+      'meiao',
+      'samba',
+      'abada',
+      'roupao',
+      'corte',
+      'chinelo',
+      'shorts'
   ];
-
   var $nomeProdutoNormalizado = normalize($nomeProduto);
 
   for (var i = 0; i < $vestuario.length; i++) {
