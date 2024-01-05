@@ -171,8 +171,8 @@
                         var row = document.createElement('tr');
                         var sexo = produto.categoria; // Caso o sexo não esteja definido
                         var sexoCategoria = '';
-                        console.log(produto);
-                        switch (sexo.toUpperCase()) {
+
+                        switch (sexo) {
                             case 'M' || 'Masculino':
                                 sexoCategoria = 'Masculino';
                                 break;
