@@ -109,8 +109,20 @@
                     }
                     break;
 
-                // Adicione mais casos conforme necessário
-
+                    case 'Prata':
+                        // Regras para o Pacote Prata
+                        // Permitir nomes, sincronizar conforme digitado
+                        var inputNomePrata = row.querySelector('td:nth-child(9) input');
+                        
+                        if (inputNomePrata) {
+                            // Adicionar evento de digitação para sincronizar nomes
+                            inputNomePrata.addEventListener('input', function () {
+                                var novoNome = $(this).val();
+                                var idLista = $(this).closest('tr').find('td:nth-child(1)').text();
+                                sincronizarNomesPrata(novoNome, idLista);
+                            });
+                        }
+                        break;                          
                 default:
                     // Regras padrão, caso nenhum pacote específico seja correspondido
                     break;
