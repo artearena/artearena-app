@@ -124,6 +124,22 @@
 
                     case 'Prata':
                         // Regras para o Pacote Prata
+                        var selectGola = row.querySelector('td:nth-child(12) select');
+                        if (selectGola) {
+                            selectGola.innerHTML = '<option value="Careca">Careca</option>';
+                        }
+
+                        // As opções de tamanho serão M ou G
+                        var selectTamanho = row.querySelector('td:nth-child(11) select');
+                        selectTamanho.innerHTML = `
+                            <option value='P'>Médio (M)</option>
+                            <option value='M'>Grande (G)</option>    
+                            <option value='G'>Médio (M)</option>
+                            <option value='GG'>Grande (G)</option>
+                            <option value='XG'>Grande (G)</option>
+                            <option value='XXG'>Grande (G)</option>
+                            <option value='XXXG'>Grande (G)</option>
+                        `;
                         // Permitir nomes, sincronizar conforme digitado
                         var inputNomePrata = row.querySelector('td:nth-child(9) input');
                         
