@@ -46,8 +46,21 @@
         // Função para verificar se é vestuário
         function ehVestuario(nomeProduto) {
             var vestuario = [
-                "camisa personalizada", "boné premium personalizado", "chinelo slide personalizado",
-                // ...resto da lista de vestuário...
+                "camisa personalizada", "boné premium personalizado", "chinelo slide personalizado",  
+                'uniforme',
+                'balaclava',
+                'calcao',
+                'camisa',
+                'camisao',
+                'camiseta',
+                'colete',
+                'meiao',
+                'samba',
+                'abada',
+                'roupao',
+                'corte',
+                'chinelo',
+                'shorts'
             ];
 
             var nomeProdutoNormalizado = normalize(nomeProduto);
