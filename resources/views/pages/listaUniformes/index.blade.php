@@ -70,24 +70,25 @@
             // Iterar sobre as linhas da tabela e extrair os dados
             $('tbody tr').each(function () {
                 var uniforme = {
-                    produto_nome: $(this).find('td:nth-child(1)').text(),
-                    sexo: $(this).find('td:nth-child(2)').text(),
-                    arte_aprovada: $(this).find('td:nth-child(3)').text(),
-                    pacote: $(this).find('td:nth-child(4)').text(),
-                    camisa: $(this).find('td:nth-child(5)').text(),
-                    calcao: $(this).find('td:nth-child(6)').text(),
-                    meiao: $(this).find('td:nth-child(7)').text(),
-                    nome_jogador: $(this).find('td:nth-child(8) input').val(),
-                    numero: $(this).find('td:nth-child(9) input').val(),
-                    tamanho: $(this).find('td:nth-child(10) select').val(),
-                    gola: $(this).find('td:nth-child(11) select').val(),
+                    pedido_id: $(this).find('td:nth-child(1)').text(),
+                    produto_nome: $(this).find('td:nth-child(2)').text(),
+                    sexo: $(this).find('td:nth-child(3)').text(),
+                    arte_aprovada: $(this).find('td:nth-child(4)').text(),
+                    pacote: $(this).find('td:nth-child(5)').text(),
+                    camisa: $(this).find('td:nth-child(6)').text(),
+                    calcao: $(this).find('td:nth-child(7)').text(),
+                    meiao: $(this).find('td:nth-child(8)').text(),
+                    nome_jogador: $(this).find('td:nth-child(9) input').val(),
+                    numero: $(this).find('td:nth-child(10) input').val(),
+                    tamanho: $(this).find('td:nth-child(11) select').val(),
+                    gola: $(this).find('td:nth-child(12) select').val(),
                     id_lista: idLista, // Adiciona o ID da lista
                 };
 
                 listaUniformes.push(uniforme);
             });
 
-            console.log('Dados a serem enviados:', JSON.stringify(listaUniformes, null, 2)); // Debug
+            console.log('Dados a serem enviados:', JSON.stringify({ pedido_id: idLista, listaUniformes: listaUniformes }, null, 2)); // Debug
 
             $.ajax({
                 type: 'POST',
@@ -95,7 +96,7 @@
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
-                data: { listaUniformes: listaUniformes },
+                data: { pedido_id: idLista, listaUniformes: listaUniformes },
                 success: function (response) {
                     console.log('Resposta do servidor:', response);
                     alert('Lista de uniformes salva com sucesso!');
@@ -106,10 +107,6 @@
                 },
             });
         }
-
-
-
-
 
         document.addEventListener('DOMContentLoaded', function() {
             var produtos = @json($produtos);
@@ -159,9 +156,7 @@
 
             $(document).ready(function(){
                 $('input[type="number"]').mask('00000');
-
             });
         });
-
     </script>
 @endsection
