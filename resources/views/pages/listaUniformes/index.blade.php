@@ -121,12 +121,10 @@
 
                     // As opções de tamanho serão M ou G
                     var selectTamanho = row.querySelector('td:nth-child(11) select');
-                    if (selectTamanho) {
-                        selectTamanho.innerHTML = `
-                            <option value='M'>Médio (M)</option>
-                            <option value='G'>Grande (G)</option>
-                        `;
-                    }
+                    selectTamanho.innerHTML = `
+                        <option value='M'>Médio (M)</option>
+                        <option value='G'>Grande (G)</option>
+                    `;
 
                     // Desabilitar a entrada do nome
                     var inputNome = document.querySelector('td:nth-child(9) input');
