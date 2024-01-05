@@ -50,44 +50,44 @@ class ProdutoListaController extends Controller
     }
 
     public function gravarLista(Request $request)
-    {
-        $listaUniformes = $request->input('listaUniformes');
+{
+    $listaUniformes = $request->input('listaUniformes');
 
-        try {
-            // Obtenha o id_pedido da URL
-            $idPedido = $id;
+    try {
+        $produtosSalvos = [];
+
+        foreach ($listaUniformes as $uniforme) {
+            // Obtenha o id_pedido do array $listaUniformes
+            $pedido_id = $uniforme['pedido_id'];
 
             // Crie a lista uniforme com o id_pedido
             $novaLista = ListaUniforme::create([
-                'id_pedido' => $idPedido,
+                'id_pedido' => $pedido_id,
                 'data_criacao' => now(),
             ]);
 
+            // Associe o id da lista ao produto
+            $uniforme['id_lista'] = $novaLista->id;
 
-            $produtosSalvos = [];
+            // Crie o novo produto associado à lista
+            $novoProduto = ProdutoLista::create($uniforme);
 
-            foreach ($listaUniformes as $uniforme) {
-                    // Associe o id da lista ao produto
-                    $uniforme['id_lista'] = $novaLista->id;
-
-                    // Crie o novo produto associado à lista
-                    $novoProduto = ProdutoLista::create($uniforme);
-
-                    // Adiciona o produto salvo à lista de produtos salvos
-                    $produtosSalvos[] = $novoProduto;
-                }
-
-            return response()->json([
-                'message' => 'Lista de uniformes salva com sucesso!',
-                'produtosSalvos' => $produtosSalvos,
-            ], 200);
-        } catch (\Exception $e) {
-            // Adiciona logs para depuração em caso de erro
-            \Log::error('Erro ao salvar lista de uniformes. Detalhes: ' . $e->getMessage());
-
-            return response()->json(['error' => 'Erro ao salvar lista de uniformes. Detalhes: ' . $e->getMessage()], 500);
+            // Adiciona o produto salvo à lista de produtos salvos
+            $produtosSalvos[] = $novoProduto;
         }
+
+        return response()->json([
+            'message' => 'Lista de uniformes salva com sucesso!',
+            'produtosSalvos' => $produtosSalvos,
+        ], 200);
+    } catch (\Exception $e) {
+        // Adiciona logs para depuração em caso de erro
+        \Log::error('Erro ao salvar lista de uniformes. Detalhes: ' . $e->getMessage());
+
+        return response()->json(['error' => 'Erro ao salvar lista de uniformes. Detalhes: ' . $e->getMessage()], 500);
     }
+}
+
 
     
 
