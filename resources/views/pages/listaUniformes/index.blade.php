@@ -77,12 +77,11 @@
             });
         }
         // Função para sincronizar nomes entre produtos do pacote Prata
-        function sincronizarNomesPrata(novoNome, idLista) {
+        function sincronizarNomesPrata(novoNome) {
             $('tbody tr').each(function () {
                 var pacote = $(this).find('td:nth-child(5)').text();
-                var idListaAtual = $(this).find('td:nth-child(1)').text();
 
-                if (pacote === 'Prata' && idListaAtual !== idLista) {
+                if (pacote === 'Prata') {
                     var inputNome = $(this).find('td:nth-child(9) input');
 
                     // Sincronizar o nome
