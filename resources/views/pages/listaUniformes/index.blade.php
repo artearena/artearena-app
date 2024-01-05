@@ -117,8 +117,9 @@
                     // A única opção de gola será "Careca"
 
                     var selectGola = row.querySelector('td:nth-child(12) select');
-                    selectGola.innerHTML = '<option value="Careca">Careca</option>';
-
+                    if (selectGola) {
+                        selectGola.innerHTML = '<option value="Careca">Careca</option>';
+                    }
                     // As opções de tamanho serão M ou G
                     var selectTamanho = row.querySelector('td:nth-child(11) select');
                     selectTamanho.innerHTML = `
@@ -127,12 +128,11 @@
                     `;
 
                     // Desabilitar a entrada do nome
-                    var inputNome = document.querySelector('td:nth-child(9) input');
+                    var inputNome = row.querySelector('td:nth-child(9) input');
                     if (inputNome) {
                         inputNome.setAttribute('disabled', 'disabled');
                     }
                     break;
-                    console.log(document.querySelector('td:nth-child(12) select'));
 
                 // Adicione mais casos conforme necessário
 
