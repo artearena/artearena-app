@@ -116,18 +116,24 @@
                     // Regras para o Pacote Start
                     // A única opção de gola será "Careca"
                     var selectGola = row.querySelector('td:nth-child(12) select');
-                    selectGola.innerHTML = '<option value="Careca">Careca</option>';
+                    if (selectGola) {
+                        selectGola.innerHTML = '<option value="Careca">Careca</option>';
+                    }
 
                     // As opções de tamanho serão M ou G
                     var selectTamanho = row.querySelector('td:nth-child(11) select');
-                    selectTamanho.innerHTML = `
-                        <option value='M'>Médio (M)</option>
-                        <option value='G'>Grande (G)</option>
-                    `;
+                    if (selectTamanho) {
+                        selectTamanho.innerHTML = `
+                            <option value='M'>Médio (M)</option>
+                            <option value='G'>Grande (G)</option>
+                        `;
+                    }
 
                     // Desabilitar a entrada do nome
                     var inputNome = row.querySelector('td:nth-child(9) input');
-                    inputNome.setAttribute('disabled', 'disabled');
+                    if (inputNome) {
+                        inputNome.setAttribute('disabled', 'disabled');
+                    }
                     break;
 
                 // Adicione mais casos conforme necessário
@@ -137,6 +143,7 @@
                     break;
             }
         }
+
 
         document.addEventListener('DOMContentLoaded', function () {
             var produtos = @json($produtos);
