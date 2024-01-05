@@ -172,7 +172,7 @@
                         var sexo = produto.categoria; // Caso o sexo não esteja definido
                         var sexoCategoria = '';
                         console.log(produto);
-                        console.log(sexo);
+
                         switch (sexo) {
                             case 'M' || 'Masculino':
                                 sexoCategoria = 'Masculino';
@@ -190,6 +190,7 @@
                         var camisaChecked = produto.camisa ? 'Sim' : 'Não';
                         var calcaoChecked = produto.calcao ? 'Sim' : 'Não';
                         var meiaoChecked = produto.meiao ? 'Sim' : 'Não';
+                        console.log(sexoCategoria);
 
                         row.innerHTML = `
                             <td style="display: none">${produto.pedido_id}</td> 
