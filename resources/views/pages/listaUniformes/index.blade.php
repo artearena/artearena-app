@@ -109,13 +109,42 @@
             });
         }
 
-        document.addEventListener('DOMContentLoaded', function() {
+        function aplicarRegrasPorPacote(pacote, row) {
+            // Adicione aqui as regras específicas para cada pacote
+            switch (pacote) {
+                case 'Start':
+                    // Regras para o Pacote Start
+                    // A única opção de gola será "Careca"
+                    var selectGola = row.querySelector('td:nth-child(12) select');
+                    selectGola.innerHTML = '<option value="Careca">Careca</option>';
+
+                    // As opções de tamanho serão M ou G
+                    var selectTamanho = row.querySelector('td:nth-child(11) select');
+                    selectTamanho.innerHTML = `
+                        <option value='M'>Médio (M)</option>
+                        <option value='G'>Grande (G)</option>
+                    `;
+
+                    // Desabilitar a entrada do nome
+                    var inputNome = row.querySelector('td:nth-child(9) input');
+                    inputNome.setAttribute('disabled', 'disabled');
+                    break;
+
+                // Adicione mais casos conforme necessário
+
+                default:
+                    // Regras padrão, caso nenhum pacote específico seja correspondido
+                    break;
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
             var produtos = @json($produtos);
 
             var tbody = document.querySelector('tbody');
             tbody.innerHTML = '';
 
-            produtos.forEach(function(produto) {
+            produtos.forEach(function (produto) {
                 if (ehVestuario(normalize(produto.produto_nome))) {
                     for (var i = 0; i < produto.quantidade; i++) {
                         var row = document.createElement('tr');
@@ -123,6 +152,9 @@
                         var camisaChecked = produto.camisa ? 'Sim' : 'Não';
                         var calcaoChecked = produto.calcao ? 'Sim' : 'Não';
                         var meiaoChecked = produto.meiao ? 'Sim' : 'Não';
+
+                        // Aplicar regras específicas por pacote
+                        aplicarRegrasPorPacote(produto.pacote, row);
 
                         row.innerHTML = `
                             <td style="display: none">${produto.pedido_id}</td> 
@@ -133,8 +165,8 @@
                             <td>${camisaChecked}</td>
                             <td>${calcaoChecked}</td>
                             <td>${meiaoChecked}</td>
-                            <td>${produto.nome_jogador !== null && produto.nome_jogador !== '' ? `<input type='text' value='${produto.nome_jogador}' class='form-control'>` : `<input type='text' value='' class='form-control'>` }</td>
-                            <td>${produto.numero !== null && produto.numero !== '' ? `<input type='number' value='${produto.numero}' class='form-control'>` : `<input type='number' value='' class='form-control'>` }</td>
+                            <td>${produto.nome_jogador !== null && produto.nome_jogador !== '' ? `<input type='text' value='${produto.nome_jogador}' class='form-control'>` : `<input type='text' value='' class='form-control'>`}</td>
+                            <td>${produto.numero !== null && produto.numero !== '' ? `<input type='number' value='${produto.numero}' class='form-control'>` : `<input type='number' value='' class='form-control'>`}</td>
                             <td>
                                 <select class='form-control'>
                                     <option value='P'>Pequeno (P)</option>
@@ -145,9 +177,7 @@
                             </td>
                             <td>
                                 <select class='form-control'>
-                                    <option value='GolaV'>Gola V</option>
-                                    <option value='GolaRedonda'>Gola Redonda</option>
-                                    <option value='GolaPolo'>Gola Polo</option>
+                                    <!-- Opções de gola serão preenchidas dinamicamente pela função aplicarRegrasPorPacote -->
                                 </select>
                             </td>
                         `;

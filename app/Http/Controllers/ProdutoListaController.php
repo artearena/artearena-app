@@ -60,6 +60,7 @@ class ProdutoListaController extends Controller
         foreach ($listaUniformes as $uniforme) {
             $pedido_id = $uniforme['pedido_id'];
         }
+        
         // Crie a lista uniforme com o id_pedido
         $novaLista = ListaUniforme::create([
             'id_pedido' => $pedido_id,
