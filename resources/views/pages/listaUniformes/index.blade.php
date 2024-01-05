@@ -115,7 +115,6 @@
                 case 'Start':
                     // Regras para o Pacote Start
                     // A única opção de gola será "Careca"
-                    console.log(document.querySelector('td:nth-child(12) select'));
 
                     var selectGola = document.querySelector('td:nth-child(12) select');
                     if (selectGola) {
@@ -137,6 +136,7 @@
                         inputNome.setAttribute('disabled', 'disabled');
                     }
                     break;
+                    console.log(document.querySelector('td:nth-child(12) select'));
 
                 // Adicione mais casos conforme necessário
 
