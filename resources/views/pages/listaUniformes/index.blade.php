@@ -171,7 +171,7 @@
                         var row = document.createElement('tr');
                         var sexo = produto.sexo || 'Não definido'; // Caso o sexo não esteja definido
                         var sexoCategoria = '';
-
+                        console.log(sexo);
                         switch (sexo.toUpperCase()) {
                             case 'M' || 'Masculino':
                                 sexoCategoria = 'Masculino';
