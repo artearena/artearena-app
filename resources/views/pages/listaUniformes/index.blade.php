@@ -126,8 +126,8 @@
                         // Regras para o Pacote Prata
                         var selectGola = row.querySelector('td:nth-child(12) select');
                         if (selectGola) {
-                            selectGola.innerHTML = '<option value="Careca">Careca</option>';
-                            selectGola.innerHTML = '<option value="V">V</option>';
+                            selectGola.innerHTML = `<option value="Careca">Careca</option>
+                                                    <option value="V">V</option>`;
                         }
 
                         // As opções de tamanho serão M ou G
