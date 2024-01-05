@@ -169,7 +169,23 @@
                 if (ehVestuario(normalize(produto.produto_nome))) {
                     for (var i = 0; i < produto.quantidade; i++) {
                         var row = document.createElement('tr');
-                        var sexoCategoria = produto.sexo === 'M' ? 'Masculino' : (produto.sexo === 'F' ? 'Feminino' : 'Infantil');
+                        var sexo = produto.sexo || 'Não definido'; // Caso o sexo não esteja definido
+                        var sexoCategoria = '';
+
+                        switch (sexo.toUpperCase()) {
+                            case 'M' || 'Masculino':
+                                sexoCategoria = 'Masculino';
+                                break;
+                            case 'F' || 'Feminino':
+                                sexoCategoria = 'Feminino';
+                                break;
+                            case 'I' ||'Infantil':
+                                sexoCategoria = 'Infantil';
+                                break;
+                            default:
+                                sexoCategoria = 'Não definido';
+                                break;
+                        }                        
                         var camisaChecked = produto.camisa ? 'Sim' : 'Não';
                         var calcaoChecked = produto.calcao ? 'Sim' : 'Não';
                         var meiaoChecked = produto.meiao ? 'Sim' : 'Não';
