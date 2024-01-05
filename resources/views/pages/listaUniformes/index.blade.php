@@ -237,7 +237,7 @@
                         `;
 
                         break;      
-                    case 'Premium':
+                    case 'Profissional':
                         // Regras para o Pacote Prata
                         var selectGola = row.querySelector('td:nth-child(12) select');
                         if (selectGola) {
