@@ -64,12 +64,11 @@
         }
 
         // Função para sincronizar tamanhos entre produtos do pacote Start
-        function sincronizarTamanhosStart(novaOpcao, idLista) {
+        function sincronizarTamanhosStart(novaOpcao) {
             $('tbody tr').each(function () {
                 var pacote = $(this).find('td:nth-child(5)').text();
-                var idListaAtual = $(this).find('td:nth-child(1)').text();
 
-                if (pacote === 'Start' && idListaAtual !== idLista) {
+                if (pacote === 'Start') {
                     var selectTamanho = $(this).find('td:nth-child(11) select');
 
                     // Sincronizar o tamanho
@@ -100,7 +99,6 @@
                     // Adicionar evento de alteração para sincronizar tamanhos
                     selectTamanho.addEventListener('change', function () {
                         var novaOpcao = $(this).val();
-                        var idLista = $(this).closest('tr').find('td:nth-child(1)').text();
                         sincronizarTamanhosStart(novaOpcao, idLista);
                     });
 
