@@ -183,6 +183,9 @@
                             case 'I':
                                 sexoCategoria = 'Infantil';
                                 break;
+                            case is_null(sexo):
+                                sexoCategoria = 'Masculino';
+                                break;
                             default:
                                 sexoCategoria = sexo;
                                 break;
