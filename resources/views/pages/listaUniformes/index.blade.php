@@ -115,15 +115,15 @@
                 case 'Start':
                     // Regras para o Pacote Start
                     // A única opção de gola será "Careca"
-                    console.log(row.querySelector('td:nth-child(12) select'));
+                    console.log(document.querySelector('td:nth-child(12) select'));
 
-                    var selectGola = row.querySelector('td:nth-child(12) select');
+                    var selectGola = document.querySelector('td:nth-child(12) select');
                     if (selectGola) {
                         selectGola.innerHTML = '<option value="Careca">Careca</option>';
                     }
 
                     // As opções de tamanho serão M ou G
-                    var selectTamanho = row.querySelector('td:nth-child(11) select');
+                    var selectTamanho = document.querySelector('td:nth-child(11) select');
                     if (selectTamanho) {
                         selectTamanho.innerHTML = `
                             <option value='M'>Médio (M)</option>
@@ -132,7 +132,7 @@
                     }
 
                     // Desabilitar a entrada do nome
-                    var inputNome = row.querySelector('td:nth-child(9) input');
+                    var inputNome = document.querySelector('td:nth-child(9) input');
                     if (inputNome) {
                         inputNome.setAttribute('disabled', 'disabled');
                     }
