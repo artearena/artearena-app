@@ -8,6 +8,7 @@
         <table class="table">
             <thead>
                 <tr>
+                    <th style="display: none">ID do pedido</th>
                     <th>Nome do Produto</th>
                     <th>Categoria</th>
                     <th>Arte Aprovada</th>
@@ -43,7 +44,7 @@
 
         function ehVestuario(nomeProduto) {
             var vestuario = [
-                "Camisa Personalizada", "Boné Premium Personalizado", "Chinelo Slide Personalizado",
+                "camisa personalizada", "boné premium personalizado", "chinelo slide personalizado",
                 // ...resto da lista de vestuário...
             ];
 
@@ -71,8 +72,8 @@
             $('tbody tr').each(function () {
                 var uniforme = {
                     pedido_id: $(this).find('td:nth-child(1)').text(),
-                    produto_nome: $(this).find('td:nth-child(2)').text(),
-                    sexo: $(this).find('td:nth-child(3)').text(),
+                    produto_nome: $(this).find('td:nth-child(2)').text(), // Corrigido para usar o nome do produto
+                    sexo: $(this).find('td:nth-child(3)').text(), // Atualizado para a coluna correta
                     arte_aprovada: $(this).find('td:nth-child(4)').text(),
                     pacote: $(this).find('td:nth-child(5)').text(),
                     camisa: $(this).find('td:nth-child(6)').text(),
@@ -81,14 +82,14 @@
                     nome_jogador: $(this).find('td:nth-child(9) input').val(),
                     numero: $(this).find('td:nth-child(10) input').val(),
                     tamanho: $(this).find('td:nth-child(11) select').val(),
-                    gola: $(this).find('td:nth-child(12) select').val(),
+                    gola: $(this).find('td:nth-child(12) select').val(), // Atualizado para a coluna correta
                     id_lista: idLista, // Adiciona o ID da lista
                 };
 
                 listaUniformes.push(uniforme);
             });
 
-            console.log('Dados a serem enviados:', JSON.stringify({ pedido_id: idLista, listaUniformes: listaUniformes }, null, 2)); // Debug
+            console.log('Dados a serem enviados:', JSON.stringify(listaUniformes, null, 2)); // Debug
 
             $.ajax({
                 type: 'POST',
@@ -96,7 +97,7 @@
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
-                data: { pedido_id: idLista, listaUniformes: listaUniformes },
+                data: { listaUniformes: listaUniformes },
                 success: function (response) {
                     console.log('Resposta do servidor:', response);
                     alert('Lista de uniformes salva com sucesso!');
@@ -124,6 +125,7 @@
                         var meiaoChecked = produto.meiao ? 'Sim' : 'Não';
 
                         row.innerHTML = `
+                            <td style="display: none">${produto.pedido_id}</td> 
                             <td>${produto.produto_nome}</td>
                             <td>${sexoCategoria}</td>
                             <td>${produto.arte_aprovada}</td>
