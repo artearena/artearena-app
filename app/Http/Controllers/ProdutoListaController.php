@@ -55,6 +55,10 @@ class ProdutoListaController extends Controller
 
     try {
         $produtosSalvos = [];
+
+        // Obtenha o id_pedido do array $listaUniformes
+        $pedido_id = $uniforme['pedido_id'];
+
         // Crie a lista uniforme com o id_pedido
         $novaLista = ListaUniforme::create([
             'id_pedido' => $pedido_id,
@@ -62,8 +66,6 @@ class ProdutoListaController extends Controller
         ]);
 
         foreach ($listaUniformes as $uniforme) {
-            // Obtenha o id_pedido do array $listaUniformes
-            $pedido_id = $uniforme['pedido_id'];
 
             // Associe o id da lista ao produto
             $uniforme['id_lista'] = $novaLista->id;
