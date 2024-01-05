@@ -265,7 +265,7 @@
                     // Regras padrão, caso nenhum pacote específico seja correspondido
                     break;
             }
-            if(categoria == 'I' || categoria == 'Infantil')){
+            if(categoria == 'I' || categoria == 'Infantil'){
                 var selectTamanho = row.querySelector('td:nth-child(11) select');
                     selectTamanho.innerHTML = `
                         <option value='2'>Pequeno 2</option>
