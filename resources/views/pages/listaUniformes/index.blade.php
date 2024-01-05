@@ -116,7 +116,9 @@
                     // Regras para o Pacote Start
                     // A única opção de gola será "Careca"
                     console.log(row.querySelector('td:nth-child(12) select'));
+
                     var selectGola = row.querySelector('td:nth-child(12) select');
+                    if (selectGola) {
                         selectGola.innerHTML = '<option value="Careca">Careca</option>';
                     }
 
@@ -162,7 +164,7 @@
 
                         // Aplicar regras específicas por pacote
                         aplicarRegrasPorPacote(produto.pacote, row);
-                        console.log(produto.pacote);
+                        
                         row.innerHTML = `
                             <td style="display: none">${produto.pedido_id}</td> 
                             <td>${produto.produto_nome}</td>
