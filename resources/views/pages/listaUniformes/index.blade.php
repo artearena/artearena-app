@@ -169,7 +169,7 @@
                 if (ehVestuario(normalize(produto.produto_nome))) {
                     for (var i = 0; i < produto.quantidade; i++) {
                         var row = document.createElement('tr');
-                        var sexo = produto.sexo; // Caso o sexo não esteja definido
+                        var sexo = produto.categoria; // Caso o sexo não esteja definido
                         var sexoCategoria = '';
                         console.log(produto);
                         switch (sexo.toUpperCase()) {
