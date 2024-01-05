@@ -104,7 +104,7 @@
         }
 
         // Função para aplicar regras por pacote
-        function aplicarRegrasPorPacote(pacote, row) {
+        function aplicarRegrasPorPacote(pacote, row, categoria) {
             // Adicione aqui as regras específicas para cada pacote
             switch (pacote) {
                 case 'Start':
@@ -265,6 +265,20 @@
                     // Regras padrão, caso nenhum pacote específico seja correspondido
                     break;
             }
+            if(categoria == 'I' || categoria == 'Infantil')){
+                var selectTamanho = row.querySelector('td:nth-child(11) select');
+                    selectTamanho.innerHTML = `
+                        <option value='2'>Pequeno 2</option>
+                        <option value='4'>Médio 4</option>    
+                        <option value='6'>Grande 6</option>
+                        <option value='8'>Muito Grande 8</option>
+                        <option value='10'>Extra Grande 10</option>
+                        <option value='12'>2 Extra Grande 12 </option>
+                        <option value='14'>3 Extra Grande 14 </option>
+                        <option value='16'>4 Extra Grande 16 </option>
+                    `;
+            }
+        
         }
 
 
@@ -327,7 +341,7 @@
                         `;
 
                         // Aplicar regras específicas por pacote
-                        aplicarRegrasPorPacote(produto.pacote, row);
+                        aplicarRegrasPorPacote(produto.pacote, row, produto.categoria);
 
                         tbody.appendChild(row);
                     }
