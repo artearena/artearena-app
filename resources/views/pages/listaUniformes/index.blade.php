@@ -184,7 +184,7 @@
                                 sexoCategoria = 'Infantil';
                                 break;
                             default:
-                                sexoCategoria = 'Não definido';
+                                sexoCategoria = 'Masculino';
                                 break;
                         }                        
                         var camisaChecked = produto.camisa ? 'Sim' : 'Não';
