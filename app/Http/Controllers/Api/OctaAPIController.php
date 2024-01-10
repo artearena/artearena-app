@@ -39,6 +39,7 @@ class OctaAPIController extends Controller
         info('Cliente não encontrado!');
         return response()->json(['message' => 'Cliente não encontrado.']);
     }
+
     public function getContatoBloqueado(Request $request)
     {
         $contatoCliente = $request->input('contato_cliente');
@@ -46,6 +47,7 @@ class OctaAPIController extends Controller
         info($contatoClienteSemEspacos);
         $clientes = Cliente::orderBy('created_at', 'desc')->get();        
         $clienteEncontrado = null;
+
         foreach ($clientes as $cliente) {
             $telefone = str_replace(['+', ' '], '', $cliente->telefone);
             if ($telefone === $contatoClienteSemEspacos) {
@@ -54,17 +56,17 @@ class OctaAPIController extends Controller
                 break;
             }
         }
+
         if ($clienteEncontrado) {
             $contatoBloqueado = $clienteEncontrado->contato_bloqueado;
-            if ($contatoBloqueado == 1) {
-                return response()->json(['error' => 'Cliente bloqueado'], 400);
 
-            }
-            else if($contatoBloqueado == 0){
-                return response()->json(['sucesso' => 'Cliente não bloqueado'], 200);
+            if ($contatoBloqueado == 1) {
+                return response()->json(['sucesso' => 'Cliente bloqueado'], 200);
+            } else if ($contatoBloqueado == 0) {
+                return response()->json(['error' => 'Cliente não bloqueado'], 400);
             }
         }
-        return response()->json(['sucesso' => 'Cliente não encontrado'], 200);
-    }
-    
+
+        return response()->json(['error' => 'Cliente não encontrado'], 400);
+    }   
 }
