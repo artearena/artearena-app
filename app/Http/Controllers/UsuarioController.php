@@ -34,11 +34,6 @@ class UsuarioController extends Controller
         return redirect('/usuarios')->with('success', 'Usuário salvo!');
     }
 
-    public function show($id)
-    {
-        $usuario = Usuario::find($id);
-        return view('pages.usuarios.show', compact('usuario'));
-    }
 
     public function edit($id)
     {
