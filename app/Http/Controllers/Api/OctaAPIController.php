@@ -56,7 +56,7 @@ class OctaAPIController extends Controller
                 break;
             }
         }
-
+        info($clienteEncontrado);
         if ($clienteEncontrado) {
             $contatoBloqueado = $clienteEncontrado->contato_bloqueado;
 
