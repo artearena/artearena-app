@@ -131,7 +131,7 @@ Route::middleware(['auth'])->group(function () {
             Route::post('/', [UsuarioController::class, 'store'])->name('usuarios.store');
             Route::get('/{id}', [UsuarioController::class, 'show'])->name('usuarios.show');
             Route::get('/{id}/edit', [UsuarioController::class, 'edit'])->name('usuarios.edit');
-            Route::post('/{id}', [UsuarioController::class, 'update'])->name('usuarios.update');
+            Route::post('/updateall', [UsuarioController::class, 'update'])->name('usuarios.update');
             Route::delete('/{id}', [UsuarioController::class, 'destroy'])->name('usuarios.destroy');
             Route::post('/update', [UsuarioController::class, 'updateField'])->name('usuarios.updateField');
         });
