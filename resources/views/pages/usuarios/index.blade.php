@@ -93,10 +93,107 @@
         margin: 20px; /* Adjust the margin size as needed */
     }
 </style>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <script>
     // Script personalizado
+    $(document).ready(function(){
+        function updateField(element) {
+            var id = $(element).data('id');
+            var field = $(element).data('field');
+            var value = $(element).is('input, select, textarea') ? $(element).val() : $(element).text();
+
+            $.ajax({
+                url: "/usuarios/update",
+                type: 'POST',
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                    "id": id,
+                    "field": field,
+                    "value": value
+                },
+                success: function(response){
+                    console.log(response);
+                }
+            });
+        }
+
+        $('.edit, .edit-select').on('input change', function(){
+            updateField(this);
+        });
+
+        $('form').on('submit', function(e){
+            e.preventDefault();
+
+            var nome_usuario = $('#nome_usuario').val();
+            var email = $('#email').val();
+            var password = $('#password').val();
+            var permissoes = $('#permissoes').val();
+
+            $.ajax({
+                url: "{{ route('usuarios.store') }}",
+                type: 'POST',
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                    "nome_usuario": nome_usuario,
+                    "email": email,
+                    "password": password,
+                    "permissoes": permissoes
+                },
+                success: function(response){
+                    Swal.fire({
+                        title: 'Sucesso!',
+                        text: 'Usuário criado com sucesso!',
+                        icon: 'success',
+                        timer: 3000,
+                        showConfirmButton: false
+                    });
+                }
+            });
+        });
+
+        // Adicionando o SweetAlert para a exclusão de usuários
+        $('#tabelaUsuarios').on('click', '.btn-danger', function(e){
+            e.preventDefault();
+
+            var form = $(this).closest('form');
+            var userId = form.data('user-id');
+
+            Swal.fire({
+                title: 'Tem certeza de que deseja excluir este usuário?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Sim, excluir!',
+                cancelButtonText: 'Cancelar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: "/usuarios/" + userId,
+                        type: 'DELETE',
+                        data: {
+                            "_token": "{{ csrf_token() }}",
+                        },
+                        success: function(response){
+                            Swal.fire({
+                                title: 'Sucesso!',
+                                text: 'Usuário excluído com sucesso!',
+                                icon: 'success',
+                                timer: 3000,
+                                showConfirmButton: false
+                            });
+
+                            // Remover a linha da tabela
+                            form.closest('tr').remove();
+                        }
+                    });
+                }
+            });
+        });
+    });
 </script>
 @endsection
+
 @section('content')
 <div class="app container-with-margin">
     <form action="{{ route('usuarios.store') }}" method="POST">
@@ -146,7 +243,7 @@
                 </td>
                 <td>
                     <a href="{{ route('usuarios.edit', $usuario->id) }}" class="btn btn-primary"><i class="fas fa-edit"></i></a>
-                    <form action="{{ route('usuarios.destroy', $usuario->id) }}" method="POST" style="display: inline-block;">
+                    <form action="{{ route('usuarios.destroy', $usuario->id) }}" method="POST" style="display: inline-block;" data-user-id="{{ $usuario->id }}">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i></button>
@@ -157,62 +254,4 @@
         </tbody>
     </table>
 </div>
-@endsection
-@section('extraScript')
-<script>
-    $(document).ready(function(){
-        function updateField(element) {
-            var id = $(element).data('id');
-            var field = $(element).data('field');
-            var value = $(element).is('input, select, textarea') ? $(element).val() : $(element).text();
-
-            $.ajax({
-                url: "/usuarios/update",
-                type: 'POST',
-                data: {
-                    "_token": "{{ csrf_token() }}",
-                    "id": id,
-                    "field": field,
-                    "value": value
-                },
-                success: function(response){
-                    console.log(response);
-                }
-            });
-        }
-
-        $('.edit, .edit-select').on('input change', function(){
-            updateField(this);
-        });
-        $('form').on('submit', function(e){
-            e.preventDefault();
-
-            var nome_usuario = $('#nome_usuario').val();
-            var email = $('#email').val();
-            var password = $('#password').val();
-            var permissoes = $('#permissoes').val();
-
-            $.ajax({
-                url: "{{ route('usuarios.store') }}",
-                type: 'POST',
-                data: {
-                    "_token": "{{ csrf_token() }}",
-                    "nome_usuario": nome_usuario,
-                    "email": email,
-                    "password": password,
-                    "permissoes": permissoes
-                },
-                success: function(response){
-                    Swal.fire({
-                        title: 'Sucesso!',
-                        text: 'Usuário criado com sucesso!',
-                        icon: 'success',
-                        timer: 3000,
-                        showConfirmButton: false
-                    });
-                }
-            });
-        });
-    });
-</script>
 @endsection
