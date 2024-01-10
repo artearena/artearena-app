@@ -131,7 +131,7 @@
                     var field = 'password'; // Defina o campo a ser atualizado como 'password'
                     
                     return $.ajax({
-                        url: "/usuarios/update" + userId,
+                        url: "/usuarios/update/" + userId,
                         type: 'POST',
                         data: {
                             "_token": "{{ csrf_token() }}",
