@@ -63,16 +63,16 @@ class UsuarioController extends Controller
     public function editarSenha(Request $request)
     {
         $usuario = Usuario::find($request->id);
-
+    
         if (!$usuario) {
             return response()->json(['error' => 'Usuário não encontrado!'], 404);
         }
-
-        $usuario->password = bcrypt($request->novaSenha);
-        $usuario->save();
-
+    
+        $usuario->update(['password' => bcrypt($request->novaSenha)]);
+    
         return response()->json(['success' => 'Senha editada com sucesso!']);
     }
+    
 
     public function destroy($id)
     {
