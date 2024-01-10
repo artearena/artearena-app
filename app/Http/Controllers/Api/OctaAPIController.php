@@ -44,7 +44,7 @@ class OctaAPIController extends Controller
     {
         $contatoCliente = $request->input('contato_cliente');
         $contatoClienteSemEspacos = str_replace(['+', ' '], '', $contatoCliente);
-        $clientes = Cliente::orderBy('created_at', 'desc')->get();        
+        $clientes = Cliente::orderBy('contato_bloqueado', 'desc')->get();        
         $clienteEncontrado = null;
 
         foreach ($clientes as $cliente) {
