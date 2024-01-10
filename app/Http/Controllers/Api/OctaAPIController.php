@@ -44,16 +44,14 @@ class OctaAPIController extends Controller
     {
         $contatoCliente = $request->input('contato_cliente');
         $contatoClienteSemEspacos = str_replace(['+', ' '], '', $contatoCliente);
-        info($contatoClienteSemEspacos);
         $clientes = Cliente::orderBy('created_at', 'desc')->get();        
         $clienteEncontrado = null;
-        info($contatoClienteSemEspacos);
-        info($clientes);
 
         foreach ($clientes as $cliente) {
             $telefone = str_replace(['+', ' '], '', $cliente->telefone);
             if ($telefone === $contatoClienteSemEspacos) {
                 info($telefone);
+                info($contatoClienteSemEspacos);
                 $clienteEncontrado = $cliente;
                 break;
             }
