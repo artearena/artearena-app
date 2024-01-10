@@ -45,7 +45,7 @@ class UsuarioController extends Controller
         $usuario = Usuario::find($id);
         return view('pages.usuarios.edit', compact('usuario'));
     }
-/* 
+
     public function update(Request $request, $id)
     {
         $usuario = Usuario::find($request->id);
@@ -59,7 +59,7 @@ class UsuarioController extends Controller
         $usuario->save();
     
         return response()->json(['success' => 'Usuário atualizado!']);
-    } */
+    }
     public function editarSenha(Request $request)
     {
         $usuario = Usuario::find($request->id);

@@ -103,7 +103,7 @@
             var value = $(element).is('input, select, textarea') ? $(element).val() : $(element).text();
 
             $.ajax({
-                url: "/usuarios/update",
+                url: "/usuarios/update" + id,
                 type: 'POST',
                 data: {
                     "_token": "{{ csrf_token() }}",
