@@ -116,7 +116,41 @@
                 }
             });
         }
+        $('.editar-senha').on('click', function(){
+            var userId = $(this).data('user-id');
 
+            Swal.fire({
+                title: 'Editar Senha',
+                input: 'password',
+                inputPlaceholder: 'Digite a nova senha',
+                showCancelButton: true,
+                confirmButtonText: 'Salvar',
+                cancelButtonText: 'Cancelar',
+                showLoaderOnConfirm: true,
+                preConfirm: (novaSenha) => {
+                    return $.ajax({
+                        url: "/usuarios/editar-senha",
+                        type: 'POST',
+                        data: {
+                            "_token": "{{ csrf_token() }}",
+                            "id": userId,
+                            "novaSenha": novaSenha
+                        }
+                    });
+                },
+                allowOutsideClick: () => !Swal.isLoading()
+            }).then((result) => {
+                if (result.value) {
+                    Swal.fire({
+                        title: 'Sucesso!',
+                        text: 'Senha editada com sucesso!',
+                        icon: 'success',
+                        timer: 3000,
+                        showConfirmButton: false
+                    });
+                }
+            });
+        });
         $('.edit, .edit-select').on('input change', function(){
             updateField(this);
         });
@@ -242,7 +276,7 @@
                     </select>
                 </td>
                 <td>
-                    <a href="{{ route('usuarios.edit', $usuario->id) }}" class="btn btn-primary"><i class="fas fa-edit"></i></a>
+                    <button class="btn btn-warning editar-senha" data-user-id="{{ $usuario->id }}"><i class="fas fa-key"></i></button>
                     <form action="{{ route('usuarios.destroy', $usuario->id) }}" method="POST" style="display: inline-block;" data-user-id="{{ $usuario->id }}">
                         @csrf
                         @method('DELETE')
