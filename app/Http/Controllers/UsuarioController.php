@@ -49,7 +49,7 @@ class UsuarioController extends Controller
     public function update(Request $request, $id)
     {
         $usuario = Usuario::find($id);
-    
+        dd($id);
         if (!$usuario) {
             return response()->json(['error' => 'Usuário não encontrado!'], 404);
         }
