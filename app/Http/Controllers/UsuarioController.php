@@ -48,30 +48,25 @@ class UsuarioController extends Controller
 
     public function update(Request $request, $id)
     {
-        $usuario = Usuario::find($request->id);
+        $usuario = Usuario::find($id);
     
         if (!$usuario) {
             return response()->json(['error' => 'Usuário não encontrado!'], 404);
         }
     
-        $value = $request->field == 'password' ? bcrypt($request->value) : $request->value;
-        $usuario->{$request->field} = $value;
-        $usuario->save();
+        if ($request->field == 'password') {
+            // Se o campo for 'password', atualize a senha
+            $usuario->update(['password' => bcrypt($request->value)]);
+        } else {
+            // Para outros campos, atualize normalmente
+            $value = $request->value;
+            $usuario->{$request->field} = $value;
+            $usuario->save();
+        }
     
         return response()->json(['success' => 'Usuário atualizado!']);
     }
-    public function editarSenha(Request $request)
-    {
-        $usuario = Usuario::find($request->id);
     
-        if (!$usuario) {
-            return response()->json(['error' => 'Usuário não encontrado!'], 404);
-        }
-    
-        $usuario->update(['password' => bcrypt($request->novaSenha)]);
-    
-        return response()->json(['success' => 'Senha editada com sucesso!']);
-    }
     
 
     public function destroy($id)

@@ -103,7 +103,7 @@
             var value = $(element).is('input, select, textarea') ? $(element).val() : $(element).text();
 
             $.ajax({
-                url: "/usuarios/update" + id,
+                url: "/usuarios/update",
                 type: 'POST',
                 data: {
                     "_token": "{{ csrf_token() }}",
@@ -128,13 +128,16 @@
                 cancelButtonText: 'Cancelar',
                 showLoaderOnConfirm: true,
                 preConfirm: (novaSenha) => {
+                    var field = 'password'; // Defina o campo a ser atualizado como 'password'
+                    
                     return $.ajax({
-                        url: "/usuarios/editar-senha",
+                        url: "/usuarios/update",
                         type: 'POST',
                         data: {
                             "_token": "{{ csrf_token() }}",
                             "id": userId,
-                            "novaSenha": novaSenha
+                            "field": field,
+                            "value": novaSenha
                         }
                     });
                 },
@@ -151,6 +154,7 @@
                 }
             });
         });
+
         $('.edit, .edit-select').on('input change', function(){
             updateField(this);
         });
