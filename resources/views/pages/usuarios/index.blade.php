@@ -103,7 +103,7 @@
             var value = $(element).is('input, select, textarea') ? $(element).val() : $(element).text();
 
             $.ajax({
-                url: "/usuarios/update",
+                url: "/usuarios/updateall",
                 type: 'POST',
                 data: {
                     "_token": "{{ csrf_token() }}",
@@ -131,7 +131,7 @@
                     var field = 'password'; // Defina o campo a ser atualizado como 'password'
                     
                     return $.ajax({
-                        url: "/usuarios/update/",
+                        url: "/usuarios/updateall/",
                         type: 'POST',
                         data: {
                             "_token": "{{ csrf_token() }}",
