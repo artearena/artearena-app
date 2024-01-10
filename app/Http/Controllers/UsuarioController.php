@@ -46,10 +46,10 @@ class UsuarioController extends Controller
         return view('pages.usuarios.edit', compact('usuario'));
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        $usuario = Usuario::find($id);
-        dd($id);
+        $usuario = Usuario::find($request->id);
+        dd($usuario);
         if (!$usuario) {
             return response()->json(['error' => 'Usuário não encontrado!'], 404);
         }
