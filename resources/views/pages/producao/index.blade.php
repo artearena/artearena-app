@@ -9,34 +9,7 @@
 @endsection
 
 @section('content')
-<div class="row">
-    <div class="col-md-6">
-        <form action="{{ route('producao.criar') }}" method="POST">
-            @csrf
-            <div class="form-group">
-                <label for="produtos">Produtos:</label>
-                <input type="text" class="form-control" id="produtos" name="produtos">
-            </div>
-            <div class="form-group">
-                <label for="confeccao">Confecção:</label>
-                <input type="text" class="form-control" id="confeccao" name="confeccao">
-            </div>
-            <div class="form-group">
-                <label for="fase">Fase:</label>
-                <input type="text" class="form-control" id="fase" name="fase">
-            </div>
-            <div class="form-group">
-                <label for="tempo_por_peca">Tempo por peça:</label>
-                <input type="text" class="form-control" id="tempo_por_peca" name="tempo_por_peca">
-            </div>
-            <div class="form-group">
-                <label for="pronto">Pronto:</label>
-                <input type="text" class="form-control" id="pronto" name="pronto">
-            </div>
-            <button type="submit" class="btn btn-primary">Cadastrar Pedido</button>
-        </form>
-    </div>
-    <div class="col-md-6">
+
         <table id="tabela-produtos" class="table">
             <thead>
                 <tr>
@@ -94,8 +67,6 @@
                 @endforelse
             </tbody>
         </table>
-    </div>
-</div>
 @endsection
 
 @section('extraScript')
