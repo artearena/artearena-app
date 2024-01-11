@@ -62,7 +62,7 @@
                 @empty
 
                     <tr>
-                        <td colspan="20">Nenhum produto disponível</td>
+                        <td colspan="20">Nenhum produto disponível $produtos_confeccao $pedidos $produtos_info </td>
                     </tr>
                 @endforelse
             </tbody>
