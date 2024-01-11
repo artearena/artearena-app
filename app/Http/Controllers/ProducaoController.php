@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Pedido;
 use App\Models\Produto;
 use App\Models\ProdutoPedido;
+use App\Models\PedidoInterno;
 
 use Illuminate\Http\Request;
 
