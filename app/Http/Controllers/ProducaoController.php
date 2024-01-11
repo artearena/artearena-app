@@ -20,7 +20,7 @@ class ProducaoController extends Controller
         // Para cada pedido, obtenha os produtos de confeccao associados
         foreach ($pedidos as $pedido) {
             // Supondo que haja uma relação entre Pedidos e ProdutoPedido através de um método chamado produtosPedido
-            $produtosPedido = $pedidco->produtosPedido;
+            $produtosPedido = $pedido->produtosPedido;
 
             // Para cada produtoPedido, obtenha o produto associado
             foreach ($produtosPedido as $produtoPedido) {
