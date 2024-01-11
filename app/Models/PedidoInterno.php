@@ -26,4 +26,5 @@ class PedidoInterno extends Model
     {
         return $this->hasMany(ProdutoPedido::class, 'pedido_id', 'id');
     }
+    
 }

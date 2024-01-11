@@ -13,7 +13,7 @@ class ProducaoController extends Controller
     public function index()
     {
         // Busque os pedidos na etapa 'C'
-        $pedidos = Pedido::where('etapa', 'C')->get();
+        $pedidos = PedidoInterno::where('etapa', 'C')->get();
 
         // Inicialize um array para armazenar os produtos relacionados
         $produtos_confeccao = [];
@@ -24,10 +24,8 @@ class ProducaoController extends Controller
             $ids_pedidos_c = $pedidos->pluck('id')->toArray();
 
             // Consulta Eloquent para obter os produtos de confecção associados aos pedidos na etapa 'C'
-            $produtos_confeccao = ProdutoPedido::whereHas('pedidoTinyInterno', function ($query) use ($ids_pedidos_c) {
-                $query->whereIn('cliente_id', function ($subquery) use ($ids_pedidos_c) {
-                    $subquery->select('id')->from('arte02.pedidos')->whereIn('id', $ids_pedidos_c);
-                });
+            $produtos_confeccao = ProdutoPedido::whereHas('pedido', function ($query) use ($ids_pedidos_c) {
+                $query->whereIn('cliente_id', $ids_pedidos_c);
             })->get();
         }
 
@@ -36,6 +34,7 @@ class ProducaoController extends Controller
 
         return view('pages.producao.index', compact('pedidos', 'produtos_info', 'produtos_confeccao'));
     }
+
 
 
     public function create()
