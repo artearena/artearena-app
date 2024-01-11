@@ -158,6 +158,29 @@
         </tbody>
     </table>
 </div>
+]<!-- Add this modal at the end of your 'content' section -->
+<div class="modal fade" id="editUrlModal" tabindex="-1" role="dialog" aria-labelledby="editUrlModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editUrlModalLabel">Editar URL</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="editUrl">Nova URL</label>
+                    <input type="text" class="form-control" id="editUrl" placeholder="Digite a nova URL">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                <button type="button" class="btn btn-primary" onclick="updateUrl()">Salvar</button>
+            </div>
+        </div>
+    </div>
+</div>
 @endsection
 @section('extraScript')
 <script>
@@ -247,6 +270,44 @@
                         // Handle error response
                     }
                 });
+            }
+        });
+    }
+    function openEditUrlModal(id, currentUrl) {
+        // Set the current URL in the modal input
+        $('#editUrl').val(currentUrl);
+        // Set the data-id attribute to store the ID for later use
+        $('#editUrlModal').data('id', id);
+        // Open the modal
+        $('#editUrlModal').modal('show');
+    }
+    function updateUrl() {
+        var id = $('#editUrlModal').data('id');
+        var newUrl = $('#editUrl').val();
+
+        $.ajax({
+            url: "/rotas/update",
+            type: 'POST',
+            data: {
+                "_token": "{{ csrf_token() }}",
+                "id": id,
+                "field": "url",
+                "value": newUrl
+            },
+            success: function(response){
+                Swal.fire({
+                    title: 'Sucesso!',
+                    text: response.message,
+                    icon: 'success',
+                    timer: 3000,
+                    showConfirmButton: false
+                });
+                // Add code to refresh or update your table or UI as needed
+                $('#editUrlModal').modal('hide');
+            },
+            error: function(error) {
+                console.error(error);
+                // Handle error response
             }
         });
     }
