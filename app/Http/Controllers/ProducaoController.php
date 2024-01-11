@@ -11,38 +11,31 @@ class ProducaoController extends Controller
 {
     public function index()
     {
-        // Busque todos os pedidos na etapa 'C'
+        // Busque os pedidos na etapa 'C'
         $pedidos = Pedido::where('etapa', 'C')->get();
-
+    
         // Inicialize um array para armazenar os produtos relacionados
         $produtos_confeccao = [];
-
+    
         // Verifique se há pedidos na etapa 'C' antes de continuar
         if ($pedidos->isNotEmpty()) {
-            // Para cada pedido, obtenha os produtos de confecção associados
-            foreach ($pedidos as $pedido) {
-                // Supondo que haja uma relação entre Pedidos e ProdutoPedido através de um método chamado produtosPedido
-                $produtosPedido = $pedido->produtosPedido;
-                
-                // Verifique se $produtosPedido não é nulo antes de iterar sobre ele
-                if ($produtosPedido) {
-                    // Para cada produtoPedido, obtenha o produto associado
-                    dd($produtoPedido);
-                    foreach ($produtosPedido as $produtoPedido) {
-                        $produto = $produtoPedido->produto;
-
-                        // Adicione o produto ao array
-                        $produtos_confeccao[] = $produto;
-                    }
-                }
-            }
+            // Obtenha os IDs dos pedidos na etapa 'C'
+            $ids_pedidos_c = $pedidos->pluck('id')->toArray();
+    
+            // Consulta Eloquent para obter os produtos de confecção associados aos pedidos na etapa 'C'
+            $produtos_confeccao = PedidoProduto::whereHas('pedidoTinyInterno', function ($query) use ($ids_pedidos_c) {
+                $query->whereIn('cliente_id', function ($subquery) use ($ids_pedidos_c) {
+                    $subquery->select('id')->from('arte02.pedidos')->whereIn('id', $ids_pedidos_c);
+                });
+            })->get();
         }
-
+    
         // Carregue os produtos de info
         $produtos_info = Produto::all();
-
+    
         return view('pages.producao.index', compact('pedidos', 'produtos_info', 'produtos_confeccao'));
     }
+    
 
 
     public function create()
