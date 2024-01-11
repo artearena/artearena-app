@@ -14,7 +14,7 @@ class ProducaoController extends Controller
     public function index()
     {
         // Busque os pedidos na etapa 'C'
-        $pedidos = PedidoInterno::where('etapa', 'C')->get();
+        $pedidos = Pedido::where('etapa', 'C')->get();
 
         // Inicialize um array para armazenar os produtos relacionados
         $produtos_confeccao = [];
