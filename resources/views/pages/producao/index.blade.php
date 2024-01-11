@@ -87,6 +87,7 @@
                         <!-- Adicione mais colunas conforme necessário -->
                     </tr>
                 @empty
+                
                     <tr>
                         <td colspan="20">Nenhum produto disponível</td>
                     </tr>
