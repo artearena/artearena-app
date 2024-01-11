@@ -147,7 +147,9 @@
                 <td>
                     <a href="{{ $tela->url }}"><i class="fas fa-external-link-alt"></i></a>
                     <button class="btn btn-primary"><i class="fas fa-edit"></i></button>
-                    <button class="btn btn-danger"><i class="fas fa-trash"></i></button>
+                    <button class="btn btn-danger" onclick="deleteRoute('{{ $tela->id }}')">
+                        <i class="fas fa-trash"></i>
+                    </button>                
                 </td>
             </tr>
             @endforeach
@@ -211,5 +213,40 @@
             });
         });
     });
+    function deleteRoute(id) {
+        Swal.fire({
+            title: 'Você tem certeza?',
+            text: 'Esta ação não pode ser desfeita!',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Sim, excluir!',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    url: "/rotas/destroy/" + id,
+                    type: 'DELETE',
+                    data: {
+                        "_token": "{{ csrf_token() }}",
+                    },
+                    success: function(response) {
+                        Swal.fire({
+                            title: 'Sucesso!',
+                            text: response.message,
+                            icon: 'success',
+                            timer: 3000,
+                            showConfirmButton: false
+                        });
+                        // Add code to refresh or update your table or UI as needed
+                    },
+                    error: function(error) {
+                        console.error(error);
+                        // Handle error response
+                    }
+                });
+            }
+        });
+    }
 </script>
 @endsection

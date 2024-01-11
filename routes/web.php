@@ -140,7 +140,9 @@ Route::middleware(['auth'])->group(function () {
             Route::any('/', [TelaController::class, 'index'])->name('rotas');
             Route::post('/store', [TelaController::class, 'store'])->name('rotas.store');
             Route::post('/update', [TelaController::class, 'update'])->name('rotas.update');
+            Route::delete('/destroy/{id}', [TelaController::class, 'destroy'])->name('rotas.destroy');
         });
+        
         Route::get('/logs', [LogController::class, 'index'])->name('logs.index');
 
     });

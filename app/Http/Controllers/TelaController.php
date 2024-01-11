@@ -20,15 +20,22 @@ class TelaController extends Controller
 
     public function store(Request $request)
     {
-        $telas = Tela::create($request->all());
-        return response()->json($telas, 200);
+        $tela = Tela::create($request->all());
+        return response()->json($tela, 200);
     }
 
     public function update(Request $request)
     {
-        $telas = Tela::find($request->id);
-        $telas->{$request->field} = $request->value;
-        $telas->save();
+        $tela = Tela::find($request->id);
+        $tela->{$request->field} = $request->value;
+        $tela->save();
+        return response()->json(['message' => 'Tela atualizada com sucesso!']);
     }
-    
+
+    public function destroy($id)
+    {
+        $tela = Tela::findOrFail($id);
+        $tela->delete();
+        return response()->json(['message' => 'Tela excluída com sucesso!']);
+    }
 }
