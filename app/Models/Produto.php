@@ -24,6 +24,6 @@ class Produto extends Model
         'ALTURA',
         'COMPRIMENTO',
         'LARGURA',
-
+        'TEMPO_CONFECCAOMIN',
     ];
 }
