@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Pedidos;
+use App\Models\Pedido;
 use App\Models\Produtos;
 
 use Illuminate\Http\Request;
@@ -12,7 +12,7 @@ class ProducaoController extends Controller
     public function index()
     {
         // Busque todos os pedidos na etapa 'C'
-        $pedidos = Pedidos::where('etapa', 'C')->get();
+        $pedidos = Pedido::where('etapa', 'C')->get();
 
         // Inicialize um array para armazenar os produtos relacionados
         $produtos_confeccao = [];
