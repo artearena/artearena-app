@@ -23,10 +23,11 @@ class ProducaoController extends Controller
             foreach ($pedidos as $pedido) {
                 // Supondo que haja uma relação entre Pedidos e ProdutoPedido através de um método chamado produtosPedido
                 $produtosPedido = $pedido->produtosPedido;
-
+                
                 // Verifique se $produtosPedido não é nulo antes de iterar sobre ele
                 if ($produtosPedido) {
                     // Para cada produtoPedido, obtenha o produto associado
+                    dd($produtoPedido);
                     foreach ($produtosPedido as $produtoPedido) {
                         $produto = $produtoPedido->produto;
 
