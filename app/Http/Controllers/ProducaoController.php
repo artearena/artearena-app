@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Pedido;
 use App\Models\Produto;
-use App\Models\PedidoProduto;
+use App\Models\ProdutoPedido;
 
 use Illuminate\Http\Request;
 
@@ -24,7 +24,7 @@ class ProducaoController extends Controller
             $ids_pedidos_c = $pedidos->pluck('id')->toArray();
 
             // Consulta Eloquent para obter os produtos de confecção associados aos pedidos na etapa 'C'
-            $produtos_confeccao = PedidoProduto::whereHas('pedidoTinyInterno', function ($query) use ($ids_pedidos_c) {
+            $produtos_confeccao = ProdutoPedido::whereHas('pedidoTinyInterno', function ($query) use ($ids_pedidos_c) {
                 $query->whereIn('cliente_id', function ($subquery) use ($ids_pedidos_c) {
                     $subquery->select('id')->from('arte02.pedidos')->whereIn('id', $ids_pedidos_c);
                 });
