@@ -43,7 +43,6 @@ class UsuarioController extends Controller
 
     public function update(Request $request)
     {
-        dd($request);
         $usuario = Usuario::find($request->id);
         
         if (!$usuario) {
