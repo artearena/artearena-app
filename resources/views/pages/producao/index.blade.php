@@ -62,7 +62,7 @@
                 @empty
 
                     <tr>
-                        <td colspan="20">Nenhum produto disponível $produtos_confeccao $pedidos $produtos_info </td>
+                        <td colspan="20">Nenhum produto disponível - produtos_confeccao: {{ count($produtos_confeccao) }}, pedidos: {{ count($pedidos) }}, produtos_info: {{ count($produtos_info) }}</td>
                     </tr>
                 @endforelse
             </tbody>
