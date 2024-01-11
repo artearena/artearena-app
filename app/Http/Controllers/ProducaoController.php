@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pedido;
-use App\Models\Produtos;
+use App\Models\Produto;
 
 use Illuminate\Http\Request;
 
@@ -33,7 +33,7 @@ class ProducaoController extends Controller
 
 
         // Carregue os produtos de info
-        $produtos_info = Produtos::all();
+        $produtos_info = Produto::all();
 
         return view('pages.producao.index', compact('pedidos', 'produtos_info', 'produtos_confeccao'));
     }
