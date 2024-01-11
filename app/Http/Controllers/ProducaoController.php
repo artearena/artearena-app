@@ -37,6 +37,7 @@ class ProducaoController extends Controller
 
         return view('pages.producao.index', compact('pedidos', 'produtos_info', 'produtos_confeccao'));
     }
+    
 
     public function create()
     {
