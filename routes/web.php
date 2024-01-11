@@ -157,8 +157,8 @@ Route::prefix('cadastro')->middleware('validar.token')->group(function () {
     // Rota para listar todos os registros de cadastro
     Route::any('/', [CadastroController::class, 'index'])->name('cadastro.index');
     // Rota para exibir o formulário de criação de cadastro
-    Route::get('/create', [CadastroController::class, 'create'])->name('cadastro.create');
-    // Rota para armazenar um novo registro de cadastro
+/*     Route::get('/create', [CadastroController::class, 'create'])->name('cadastro.create');
+ */    // Rota para armazenar um novo registro de cadastro
     Route::post('/', [CadastroController::class, 'store'])->name('cadastro.store');
     // Rota para exibir um registro específico de cadastro
     Route::get('/show/{id}', [CadastroController::class, 'show'])->name('cadastro.show');
