@@ -146,7 +146,9 @@
                 <td contenteditable="true" class="edit" data-id="{{ $tela->id }}" data-field="descricao">{{ $tela->descricao }}</td>
                 <td>
                     <a href="{{ $tela->url }}"><i class="fas fa-external-link-alt"></i></a>
-                    <button class="btn btn-primary"><i class="fas fa-edit"></i></button>
+                    <button class="btn btn-primary" onclick="openEditUrlModal('{{ $tela->id }}', '{{ $tela->url }}')">
+                        <i class="fas fa-edit"></i>
+                    </button>                    
                     <button class="btn btn-danger" onclick="deleteRoute('{{ $tela->id }}')">
                         <i class="fas fa-trash"></i>
                     </button>                
