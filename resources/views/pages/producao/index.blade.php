@@ -63,7 +63,7 @@
                 </tr>
             </thead>
             <tbody>
-                @forelse ($pedidoProdutos as $produto)
+                @forelse ($produtos_confeccao as $produto)
                     <tr>
                         <td>{{ $produto->id }}</td>
                         <td>{{ $produto->pedido_id }}</td>
@@ -87,7 +87,7 @@
                         <!-- Adicione mais colunas conforme necessário -->
                     </tr>
                 @empty
-                
+
                     <tr>
                         <td colspan="20">Nenhum produto disponível</td>
                     </tr>
