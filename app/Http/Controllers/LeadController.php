@@ -114,11 +114,29 @@ class LeadController extends Controller
     {
         $cliente = Cliente::findOrFail($id);
 
-        $cliente->contato_bloqueado =  $request->input('bloqueado') ;
+        $bloqueado = $request->input('bloqueado');
 
-        $cliente->save();
+        // Check if the value is changing
+        if ($cliente->contato_bloqueado != $bloqueado) {
+            $cliente->contato_bloqueado = $bloqueado;
+            $cliente->save();
 
-        return response()->json(['message' => 'Bloqueado atualizado com sucesso!']);
+            // Update other clients with the same phone number
+            if ($bloqueado == 1) {
+                Cliente::where('telefone', $cliente->telefone)
+                    ->where('id', '<>', $cliente->id)
+                    ->update(['contato_bloqueado' => 1]);
+            } elseif ($bloqueado == 0) {
+                Cliente::where('telefone', $cliente->telefone)
+                    ->where('id', '<>', $cliente->id)
+                    ->update(['contato_bloqueado' => 0]);
+            }
+        }
+
+        // Fetch the list of clients with the same phone number
+        $clientsWithSamePhone = Cliente::where('telefone', $cliente->telefone)->get();
+
+        return response()->json(['message' => 'Bloqueado atualizado com sucesso!', 'clientsWithSamePhone' => $clientsWithSamePhone]);
     }
 }
 
