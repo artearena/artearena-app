@@ -66,14 +66,14 @@
             <thead>
                 <tr>
                     <th>Vendedor</th>
-                    <th>Soma Total em Reais</th>
+                    <th>Soma Total</th>
                 </tr>
             </thead>
             <tbody>
                 @forelse($dados as $item)
                     <tr>
                         <td>{{ $item->nome_vendedor }}</td>
-                        <td>R$ {{ number_format($item->soma_total_reais, 2, ',', '.') }}</td>
+                        <td>{{ $item->soma_total_reais }}</td>
                     </tr>
                 @empty
                     <tr>
@@ -84,10 +84,11 @@
             <tfoot>
                 <tr>
                     <td><strong>Total</strong></td>
-                    <td><strong>R$ {{ number_format($somaTotalPorVendedor->sum('soma_total_reais'), 2, ',', '.') }}</strong></td>
+                    <td><strong>{{ $dados->sum('soma_total_reais') }}</strong></td>
                 </tr>
             </tfoot>
         </table>
+
 
     </div>
 
