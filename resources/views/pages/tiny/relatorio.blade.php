@@ -77,7 +77,7 @@
                 </tr>
             </thead>
             <tbody>
-                @forelse($dados as $item)
+                @forelse($dados->sortByDesc('soma_total_reais') as $item)
                     <tr>
                         <td>{{ $item->nome_vendedor ?: 'Sem vendedor' }}</td>
                         <td>{{ $item->soma_total_reais }}</td>
@@ -92,15 +92,13 @@
                 <tr>
                     <td><strong>Total</strong></td>
                     <td><strong>R$ {{ number_format($dados->sum(function($item) {
-                        // Remover "R$" e vírgulas, em seguida, converter para float
                         $valorFloat = str_replace(['R$', ','], ['', ''], $item->soma_total_reais);
                         return floatval($valorFloat);
                     }), 2, ',', '.') }}</strong></td>
                 </tr>
             </tfoot>
-
-
         </table>
+
 
 
     </div>
