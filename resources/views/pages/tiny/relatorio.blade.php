@@ -116,13 +116,18 @@
             var situacaoOptions = [
                 { id: 'Aprovado', text: 'Aprovado' },
                 { id: 'Entregue', text: 'Entregue' },
-                // Adicione mais opções conforme necessário
+                { id: 'Cancelado', text: 'Cancelado' },
+                { id: 'Não entregue', text: 'Não entregue' },
+                { id: 'Dados incompletos', text: 'Dados incompletos' },
+                { id: 'Enviado', text: 'Enviado' },
+                { id: 'Pronto para envio', text: 'Pronto para envio' },
             ];
 
             $('#situacao').select2({
                 data: situacaoOptions,
                 placeholder: 'Selecione as situações',
             });
+
         });
     </script>
 @endsection
