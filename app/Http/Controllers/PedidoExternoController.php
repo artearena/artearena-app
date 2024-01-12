@@ -17,7 +17,7 @@ class PedidoExternoController extends Controller
 
         $dados = PedidoExterno::obterSomaTotalPorVendedor($dataInicial, $dataFinal, $situacoes);
 
-        return view('pages.tiny.relatorio', compact('dados'));
+        return view('pages.tiny.relatorio', compact('dados', 'dataInicial', 'dataFinal', 'situacoes'));
     }
 
     public function show($id)

@@ -85,8 +85,8 @@
                 <tr>
                     <td><strong>Total</strong></td>
                     <td><strong>R$ {{ number_format($dados->sum(function($item) {
-                        // Remover "R$" e converter para float
-                        return floatval(str_replace('R$ ', '', $item->soma_total_reais));
+                        // Remover "R$" e substituir vírgulas por pontos, em seguida, converter para float
+                        return floatval(str_replace(['R$', ','], ['', '.'], $item->soma_total_reais));
                     }), 2, ',', '.') }}</strong></td>
                 </tr>
             </tfoot>
