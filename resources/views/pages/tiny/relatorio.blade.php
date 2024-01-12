@@ -55,13 +55,14 @@
                 <div class="col-md-4">
                     <label for="situacao" class="form-label">Situação</label>
                     <select class="form-control select2" id="situacao" name="situacao[]" multiple>
-                        @foreach($situacoes as $option)
-                            <option value="{{ $option['id'] }}" selected>
-                                {{ $option['text'] }}
+                        @foreach($situacoes as $situacao)
+                            <option value="{{ $situacao }}" selected>
+                                {{ $situacao }}
                             </option>
                         @endforeach
                     </select>
                 </div>
+
 
             </div>
             <button type="submit" class="btn btn-primary">Filtrar</button>
