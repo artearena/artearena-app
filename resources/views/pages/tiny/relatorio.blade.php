@@ -84,7 +84,6 @@
             <tfoot>
                 <tr>
                     <td><strong>Total</strong></td>
-                    <td><strong>{{ $dados->sum('soma_total_reais') }}</strong></td>
                 </tr>
             </tfoot>
         </table>
