@@ -12,7 +12,8 @@ class PedidoExternoController extends Controller
     public function index()
     {
         $pedidos = Pedido::all();
-        return response()->json($pedidos);
+        return view('pages.tiny.relatorio', compact('pedidos'));
+
     }
 
     public function show($id)
