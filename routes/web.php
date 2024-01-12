@@ -80,7 +80,7 @@ Route::middleware(['auth'])->group(function () {
             Route::any('/', [TrelloController::class, 'index'])->name('trello.index');
         });
         Route::prefix('tiny')->group(function () {
-            Route::any('/', [PedidoExternoController::class, 'exibirRelatorio'])->name('tiny.relatorio');
+            Route::any('/', [PedidoExternoController::class, 'index'])->name('tiny.relatorio');
         });
         Route::prefix('permissoes')->group(function () {
             // Listar todas as permissões
