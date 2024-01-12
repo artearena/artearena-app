@@ -79,7 +79,7 @@
             <tbody>
                 @forelse($dados as $item)
                     <tr>
-                        <td>{{ $item->nome_vendedor }}</td>
+                        <td>{{ $item->nome_vendedor ?: 'Sem vendedor' }}</td>
                         <td>{{ $item->soma_total_reais }}</td>
                     </tr>
                 @empty
