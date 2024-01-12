@@ -82,7 +82,7 @@
             <tfoot>
                 <tr>
                     <td><strong>Total</strong></td>
-                    <td><strong>R$ {{ number_format($dados->sum('soma_total_reais'), 2, ',', '.') }}</strong></td>
+                    <td><strong>{{ $dados->soma_total_reais }}</strong></td>
                 </tr>
             </tfoot>
         </table>
