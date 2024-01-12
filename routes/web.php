@@ -20,7 +20,8 @@ use App\Http\Controllers\TelaController;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\LogController;
 use App\Http\Controllers\ProdutoListaController;
-use App\Http\Controllers\PedidoExternoController
+use App\Http\Controllers\PedidoExternoController;
+
 Route::middleware(['auth'])->group(function () {
     Route::middleware(['perm.rota'])->group(function () {
 
