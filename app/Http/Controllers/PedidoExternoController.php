@@ -13,7 +13,7 @@ class PedidoExternoController extends Controller
     {
         $dataInicial = $request->input('dataInicial', date('Y-m-01'));
         $dataFinal = $request->input('dataFinal', date('Y-m-t'));
-        $situacoes = $request->input('situacao', ['Aprovado', 'Entregue']);
+        $situacoes = $request->input('situacao', ['Aprovado', 'Entregue', 'Cancelado', 'Não entregue', 'Dados incompletos', 'Enviado', 'Pronto para envio']);
 
         // Adicione logs para verificar os valores
         \Log::info('Data Inicial: ' . $dataInicial);

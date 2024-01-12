@@ -55,9 +55,16 @@
                 <div class="col-md-4">
                     <label for="situacao" class="form-label">Situação</label>
                     <select class="form-control select2" id="situacao" name="situacao[]" multiple>
-                        <!-- Opções para Situação -->
+                        <option value="Aprovado" selected>Aprovado</option>
+                        <option value="Entregue" selected>Entregue</option>
+                        <option value="Cancelado" selected>Cancelado</option>
+                        <option value="Não entregue" selected>Não entregue</option>
+                        <option value="Dados incompletos" selected>Dados incompletos</option>
+                        <option value="Enviado" selected>Enviado</option>
+                        <option value="Pronto para envio" selected>Pronto para envio</option>
                     </select>
                 </div>
+
             </div>
             <button type="submit" class="btn btn-primary">Filtrar</button>
         </form>
