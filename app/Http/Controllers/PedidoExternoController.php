@@ -15,9 +15,9 @@ class PedidoExternoController extends Controller
         $dataFinal = $request->input('dataFinal', date('Y-m-t'));
         $situacoes = $request->input('situacao', ['Aprovado', 'Entregue']); // Valor padrão ou lógica conforme necessário
 
-        $somaTotalPorVendedor = PedidoExterno::obterSomaTotalPorVendedor($dataInicial, $dataFinal, $situacoes);
+        $pedidos = PedidoExterno::obterSomaTotalPorVendedor($dataInicial, $dataFinal, $situacoes);
 
-        return view('pages.tiny.relatorio', compact('somaTotalPorVendedor'));
+        return view('pages.tiny.relatorio', compact('pedidos'));
     }
 
     public function show($id)
