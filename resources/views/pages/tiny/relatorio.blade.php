@@ -81,7 +81,7 @@
                     // Remover "R$" e vírgulas, em seguida, converter para float
                     $item->soma_total_reais = floatval(str_replace(['R$', ','], ['', ''], $item->soma_total_reais));
                     return $item;
-                })->sortByDesc('soma_total_reais') as $item)
+                })->sortByAsc('soma_total_reais') as $item)
                     <tr>
                         <td>{{ $item->nome_vendedor ?: 'Sem vendedor' }}</td>
                         <td>{{ $item->soma_total_reais }}</td>
