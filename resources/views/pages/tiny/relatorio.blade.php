@@ -82,7 +82,7 @@
             $item->soma_total_reais_original = $item->soma_total_reais;
             $item->soma_total_reais = floatval(str_replace(['R$', ','], ['', ''], $item->soma_total_reais));
             return $item;
-        })->sortByDesc('soma_total_reais') as $item)
+        })->sortBy('soma_total_reais') as $item)
             <tr>
                 <td>{{ $item->nome_vendedor ?: 'Sem vendedor' }}</td>
                 <td>R$ {{ number_format($item->soma_total_reais, 2, ',', '.') }}</td>
