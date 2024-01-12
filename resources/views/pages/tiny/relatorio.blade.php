@@ -44,14 +44,15 @@
         <h1>Relatório tiny</h1>
         <form method="get" action="{{ route('tiny.relatorio') }}">
             <div class="row mb-3">
-                <div class="col-md-4">
-                    <label for="dataInicial" class="form-label">Data Inicial</label>
-                    <input type="date" class="form-control" id="dataInicial" name="dataInicial" value="{{ date('Y-m-01') }}">
-                </div>
-                <div class="col-md-4">
-                    <label for="dataFinal" class="form-label">Data Final</label>
-                    <input type="date" class="form-control" id="dataFinal" name="dataFinal" value="{{ date('Y-m-t') }}">
-                </div>
+            <div class="col-md-4">
+                <label for="dataInicial" class="form-label">Data Inicial</label>
+                <input type="date" class="form-control" id="dataInicial" name="dataInicial" value="{{ old('dataInicial', $dataInicial ?? date('Y-m-01')) }}">
+            </div>
+            <div class="col-md-4">
+                <label for="dataFinal" class="form-label">Data Final</label>
+                <input type="date" class="form-control" id="dataFinal" name="dataFinal" value="{{ old('dataFinal', $dataFinal ?? date('Y-m-t')) }}">
+            </div>
+
                 <div class="col-md-4">
                     <label for="situacao" class="form-label">Situação</label>
                     <select class="form-control select2" id="situacao" name="situacao[]" multiple>
