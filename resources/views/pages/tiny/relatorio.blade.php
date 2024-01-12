@@ -55,7 +55,7 @@
                 <div class="col-md-4">
                     <label for="situacao" class="form-label">Situação</label>
                     <select class="form-control select2" id="situacao" name="situacao[]" multiple>
-                        @foreach($situacaoOptions as $option)
+                        @foreach($situacao as $option)
                             <option value="{{ $option['id'] }}" selected>
                                 {{ $option['text'] }}
                             </option>
