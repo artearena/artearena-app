@@ -57,7 +57,7 @@
                     <select class="form-control select2" id="situacao" name="situacao[]" multiple>
                         <option value="Aprovado" selected>Aprovado</option>
                         <option value="Entregue" selected>Entregue</option>
-                        <option value="Cancelado" selected>Cancelado</option>
+                        <option value="Cancelado">Cancelado</option>
                         <option value="Não entregue" selected>Não entregue</option>
                         <option value="Dados incompletos" selected>Dados incompletos</option>
                         <option value="Enviado" selected>Enviado</option>
