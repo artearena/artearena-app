@@ -53,19 +53,19 @@
                 <input type="date" class="form-control" id="dataFinal" name="dataFinal" value="{{ old('dataFinal', $dataFinal ?? date('Y-m-t')) }}">
             </div>
 
-                <div class="col-md-4">
-                    <label for="situacao" class="form-label">Situação</label>
-                    <select class="form-control select2" id="situacao" name="situacao[]" multiple>
-                        @foreach($situacoes as $situacao)
+            <div class="col-md-4">
+                <label for="situacao" class="form-label">Situação</label>
+                <select class="form-control select2" id="situacao" name="situacao[]" multiple>
+                    @foreach($situacoes as $situacao)
+                        @if($situacao !== 'Cancelado')
                             <option value="{{ $situacao }}" selected>
                                 {{ $situacao }}
                             </option>
-                        @endforeach
-                    </select>
-                </div>
-
-
+                        @endif
+                    @endforeach
+                </select>
             </div>
+
             <button type="submit" class="btn btn-primary">Filtrar</button>
         </form>
 
