@@ -4,21 +4,25 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Pedido;
+use App\Models\PedidoExterno;
 use Illuminate\Http\Request;
 
 class PedidoExternoController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $pedidos = Pedido::all();
-        return view('pages.tiny.relatorio', compact('pedidos'));
+        $dataInicial = $request->input('dataInicial', date('Y-m-01'));
+        $dataFinal = $request->input('dataFinal', date('Y-m-t'));
+        $situacoes = $request->input('situacao', ['Aprovado', 'Entregue']); // Valor padrão ou lógica conforme necessário
 
+        $somaTotalPorVendedor = PedidoExterno::obterSomaTotalPorVendedor($dataInicial, $dataFinal, $situacoes);
+
+        return view('pages.tiny.relatorio', compact('somaTotalPorVendedor'));
     }
 
     public function show($id)
     {
-        $pedido = Pedido::find($id);
+        $pedido = PedidoExterno::find($id);
 
         if ($pedido) {
             return response()->json($pedido);
@@ -27,3 +31,4 @@ class PedidoExternoController extends Controller
         }
     }
 }
+
