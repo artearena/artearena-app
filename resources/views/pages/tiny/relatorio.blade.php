@@ -70,7 +70,7 @@
                 </tr>
             </thead>
             <tbody>
-                @forelse($somaTotalPorVendedor as $item)
+                @forelse($dados as $item)
                     <tr>
                         <td>{{ $item->nome_vendedor }}</td>
                         <td>R$ {{ number_format($item->soma_total_reais, 2, ',', '.') }}</td>
