@@ -46,16 +46,21 @@
             <div class="row mb-3">
                 <div class="col-md-4">
                     <label for="dataInicial" class="form-label">Data Inicial</label>
-                    <input type="date" class="form-control" id="dataInicial" name="dataInicial" value="{{ date('Y-m-01') }}">
+                    <input type="date" class="form-control" id="dataInicial" name="dataInicial" value="{{ $dataInicial }}">
                 </div>
                 <div class="col-md-4">
                     <label for="dataFinal" class="form-label">Data Final</label>
-                    <input type="date" class="form-control" id="dataFinal" name="dataFinal" value="{{ date('Y-m-t') }}">
+                    <input type="date" class="form-control" id="dataFinal" name="dataFinal" value="{{ $dataFinal }}">
                 </div>
                 <div class="col-md-4">
                     <label for="situacao" class="form-label">Situação</label>
                     <select class="form-control select2" id="situacao" name="situacao[]" multiple>
                         <!-- Opções para Situação -->
+                        @foreach($situacaoOptions as $option)
+                            <option value="{{ $option['id'] }}" {{ in_array($option['id'], $situacoes) ? 'selected' : '' }}>
+                                {{ $option['text'] }}
+                            </option>
+                        @endforeach
                     </select>
                 </div>
             </div>
@@ -117,3 +122,4 @@
         });
     </script>
 @endsection
+        
