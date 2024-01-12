@@ -20,7 +20,7 @@ use App\Http\Controllers\TelaController;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\LogController;
 use App\Http\Controllers\ProdutoListaController;
-
+use App\Http\Controllers\PedidoExternoController
 Route::middleware(['auth'])->group(function () {
     Route::middleware(['perm.rota'])->group(function () {
 
@@ -79,8 +79,7 @@ Route::middleware(['auth'])->group(function () {
             Route::any('/', [TrelloController::class, 'index'])->name('trello.index');
         });
         Route::prefix('tiny')->group(function () {
-            Route::any('/', [tinyController::class, 'exibirRelatorio'])->name('tiny.relatorio');
-            Route::any('/download-pdf', [tinyController::class, 'gerarPdf'])->name('tiny.gerarPdf');
+            Route::any('/', [PedidoExternoController::class, 'exibirRelatorio'])->name('tiny.relatorio');
         });
         Route::prefix('permissoes')->group(function () {
             // Listar todas as permissões
