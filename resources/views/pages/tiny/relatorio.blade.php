@@ -63,31 +63,31 @@
         </form>
 
         <table class="mt-3">
-    <thead>
-        <tr>
-            <th>Vendedor</th>
-            <th>Soma Total em Reais</th>
-        </tr>
-    </thead>
-    <tbody>
-        @forelse($somaTotalPorVendedor as $item)
-            <tr>
-                <td>{{ $item->nome_vendedor }}</td>
-                <td>R$ {{ number_format($item->soma_total_reais, 2, ',', '.') }}</td>
-            </tr>
-        @empty
-            <tr>
-                <td colspan="2">Nenhum dado encontrado</td>
-            </tr>
-        @endforelse
-    </tbody>
-    <tfoot>
-        <tr>
-            <td><strong>Total</strong></td>
-            <td><strong>R$ {{ number_format($somaTotalPorVendedor->sum('soma_total_reais'), 2, ',', '.') }}</strong></td>
-        </tr>
-    </tfoot>
-</table>
+            <thead>
+                <tr>
+                    <th>Vendedor</th>
+                    <th>Soma Total em Reais</th>
+                </tr>
+            </thead>
+            <tbody>
+                @forelse($somaTotalPorVendedor as $item)
+                    <tr>
+                        <td>{{ $item->nome_vendedor }}</td>
+                        <td>R$ {{ number_format($item->soma_total_reais, 2, ',', '.') }}</td>
+                    </tr>
+                @empty
+                    <tr>
+                        <td colspan="2">Nenhum dado encontrado</td>
+                    </tr>
+                @endforelse
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td><strong>Total</strong></td>
+                    <td><strong>R$ {{ number_format($somaTotalPorVendedor->sum('soma_total_reais'), 2, ',', '.') }}</strong></td>
+                </tr>
+            </tfoot>
+        </table>
 
     </div>
 
