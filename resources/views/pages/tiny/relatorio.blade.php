@@ -42,7 +42,7 @@
 @section('content')
     <div class="container">
         <h1>Relatório tiny</h1>
-        <form method="get" action="{{ route('relatorio.tiny') }}">
+        <form method="get" action="{{ route('tiny.relatorio') }}">
             <div class="row mb-3">
                 <div class="col-md-4">
                     <label for="dataInicial" class="form-label">Data Inicial</label>
