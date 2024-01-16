@@ -72,13 +72,14 @@ class VerificarPermissao
 
             // Verifica se a urlPrincipal está na lista de URLs permitidas
             if ($this->verificarUrlPermitida($urlPrincipal, $urlsPermitidas)) {
+                return true;
+
                 dd([
                     'Permissao' => $permissao,
                     'urlCompleta' => $urlCompleta,
                     'urlsPermitidas' => $urlsPermitidas,
                     'Resultado' => 'Permitido'
                 ]);
-                return true;
             } else {
                 dd([
                     'Permissao' => $permissao,
@@ -104,7 +105,7 @@ private function verificarUrlPermitida($urlCompleta, $urlsPermitidas)
     }
     return false;
 }
-    
+
 
 
     
