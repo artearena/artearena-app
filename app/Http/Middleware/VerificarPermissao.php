@@ -42,6 +42,7 @@ class VerificarPermissao
         
         abort(403, 'Sem permissão para acessar esta página.');
     }
+
     private function verificarPermissaoParaRota($usuario, $urlCompleta)
     {
         $cargo = $usuario->permissoes; // Certifique-se de ter o relacionamento entre Usuario e Cargo
@@ -68,7 +69,7 @@ class VerificarPermissao
 
                 // Verifica se a urlCompleta está na lista de URLs permitidas
                  if (in_array($urlCompleta, $urlsPermitidas)) {
-                    return $next($request);
+                    return true;
 
                     dd([
                         'Permissao' => $permissao,
