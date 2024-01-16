@@ -70,6 +70,9 @@ class VerificarPermissao
             // Obtém a lista de URLs correspondentes às telas permitidas
             $urlsPermitidas = Tela::whereIn('id', $telasPermitidas)->pluck('url')->toArray();
 
+            // Extrai a parte principal da URL (ignorando os parâmetros)
+            $urlPrincipal = strtok($urlCompleta, '?');
+
             // Verifica se a urlPrincipal está na lista de URLs permitidas
             if ($this->verificarUrlPermitida($urlPrincipal, $urlsPermitidas)) {
                 return true;
