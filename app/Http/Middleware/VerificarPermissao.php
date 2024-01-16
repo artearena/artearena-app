@@ -32,11 +32,14 @@ class VerificarPermissao
             'https://arte.app.br/buscar-pedido',
         ];
         // Verifica se a $urlCompleta está na lista de URLs exceções
-        if (in_array($urlCompleta, $urlsExcecoes)) {
+        $urlPrincipal = strtok($urlCompleta, '?');
+
+        if (in_array($urlPrincipal, $urlsExcecoes)) {
+
             return $next($request);
         }
 
-        if ($this->verificarPermissaoParaRota($usuario, $urlCompleta)) {
+        if ($this->verificarPermissaoParaRota($usuario, $urlPrincipal)) {
             return $next($request);
         }
         
@@ -66,9 +69,6 @@ class VerificarPermissao
 
             // Obtém a lista de URLs correspondentes às telas permitidas
             $urlsPermitidas = Tela::whereIn('id', $telasPermitidas)->pluck('url')->toArray();
-
-            // Extrai a parte principal da URL (ignorando os parâmetros)
-            $urlPrincipal = strtok($urlCompleta, '?');
 
             // Verifica se a urlPrincipal está na lista de URLs permitidas
             if ($this->verificarUrlPermitida($urlPrincipal, $urlsPermitidas)) {
