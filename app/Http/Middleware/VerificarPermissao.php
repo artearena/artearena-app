@@ -65,9 +65,19 @@ class VerificarPermissao
         
                 // Verifica se a urlCompleta está na lista de URLs permitidas
                 if (in_array($urlCompleta, $urlsPermitidas)) {
-                    dd("Permitido"); // Adicionei um dd para mostrar o resultado
+                    dd([
+                        'Permissao' => $permissao,
+                        'urlCompleta' => $urlCompleta,
+                        'urlsPermitidas' => $urlsPermitidas,
+                        'Resultado' => 'Permitido'
+                    ]);
                 } else {
-                    dd("Não permitido"); // Adicionei um dd para mostrar o resultado
+                    dd([
+                        'Permissao' => $permissao,
+                        'urlCompleta' => $urlCompleta,
+                        'urlsPermitidas' => $urlsPermitidas,
+                        'Resultado' => 'Não permitido'
+                    ]);
                 }
             }
         }
