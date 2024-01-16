@@ -50,19 +50,23 @@ class VerificarPermissao
         if ($cargo) {
             // Obtém a lista de telas permitidas para o cargo
             $permissao = Permissao::find($cargo); // Supondo que $cargo seja o ID da permissão
-    
+            
             if ($permissao) {
-                $telasPermitidas = explode(',', $permissao->configuracao_permissao);
+                // Garante que $permissao->configuracao_permissao seja um array
+                $telasPermitidas = is_array($permissao->configuracao_permissao)
+                    ? $permissao->configuracao_permissao
+                    : explode(',', $permissao->configuracao_permissao);
                 
                 // Obtém a lista de URLs correspondentes às telas permitidas
                 $urlsPermitidas = Tela::whereIn('id', $telasPermitidas)->pluck('url')->toArray();
-    
+        
                 // Verifica se a urlCompleta está na lista de URLs permitidas
                 if (in_array($urlCompleta, $urlsPermitidas)) {
                     return true;
                 }
             }
         }
+        
 
         return false;
     }
