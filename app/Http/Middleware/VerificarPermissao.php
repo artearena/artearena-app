@@ -71,30 +71,22 @@ class VerificarPermissao
                 $urlPrincipal = strtok($urlCompleta, '?');
 
                 // Verifica se a urlPrincipal está na lista de URLs permitidas
-                if (in_array($urlPrincipal, $urlsPermitidas)) {
+                if ($this->verificarUrlPermitida($urlPrincipal, $urlsPermitidas)) {
                     return true;
-
-                    dd([
-                        'Permissao' => $permissao,
-                        'urlCompleta' => $urlCompleta,
-                        'urlsPermitidas' => $urlsPermitidas,
-                        'Resultado' => 'Permitido'
-                    ]);
-                } else {
-                    return false;
-
-                    dd([
-                        'Permissao' => $permissao,
-                        'urlCompleta' => $urlCompleta,
-                        'urlsPermitidas' => $urlsPermitidas,
-                        'Resultado' => 'Não permitido'
-                    ]);
                 }
             }
         }
 
         return false;
     }
+
+    // Função auxiliar para verificar se uma URL está na lista de URLs permitidas
+    private function verificarUrlPermitida($url, $urlsPermitidas)
+    {
+        $url = rtrim($url, '/');  // Remove a barra final, se houver
+        return in_array($url, $urlsPermitidas);
+    }
+
 
 
     
