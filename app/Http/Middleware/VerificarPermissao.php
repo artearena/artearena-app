@@ -27,6 +27,8 @@ class VerificarPermissao
             'https://arte.app.br/home',
             'https://arte.app.br/logout',
             'https://arte.app.br/login',
+            'https://arte.app.br/dev',
+            'https://arte.app.br/acessonegado',
         ];
         // Verifica se a $urlCompleta está na lista de URLs exceções
         if (in_array($urlCompleta, $urlsExcecoes)) {
