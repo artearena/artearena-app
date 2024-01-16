@@ -56,6 +56,9 @@ class VerificarPermissao
                 $telasPermitidas = is_array($permissao->configuracao_permissao)
                     ? $permissao->configuracao_permissao
                     : explode(',', $permissao->configuracao_permissao);
+        
+                // Remove possíveis espaços em branco nos elementos do array
+                $telasPermitidas = array_map('trim', $telasPermitidas);
                 
                 // Obtém a lista de URLs correspondentes às telas permitidas
                 $urlsPermitidas = Tela::whereIn('id', $telasPermitidas)->pluck('url')->toArray();
