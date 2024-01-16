@@ -71,7 +71,7 @@ class VerificarPermissao
             $urlPrincipal = strtok($urlCompleta, '?');
 
             // Verifica se a urlPrincipal está na lista de URLs permitidas
-            if (verificarUrlPermitida($urlPrincipal, $urlsPermitidas)) {
+            if ($this->verificarUrlPermitida($urlPrincipal, $urlsPermitidas)) {
                 dd([
                     'Permissao' => $permissao,
                     'urlCompleta' => $urlCompleta,
@@ -88,6 +88,7 @@ class VerificarPermissao
                 ]);
                 return false;
             }
+
         }
     }
 
