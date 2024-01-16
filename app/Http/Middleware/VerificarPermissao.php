@@ -95,14 +95,16 @@ class VerificarPermissao
     return false;
 }
 
-// Função auxiliar para verificar se uma URL está na lista de URLs permitidas
-private function verificarUrlPermitida($url, $urlsPermitidas)
+private function verificarUrlPermitida($urlCompleta, $urlsPermitidas)
 {
-    $urlPrincipal = strtok($url, '/');  // Extrai a parte principal da URL até o primeiro '/'
-    $urlPrincipal = rtrim($urlPrincipal, '/');  // Remove a barra final, se houver
-    return in_array($urlPrincipal, $urlsPermitidas);
+    foreach ($urlsPermitidas as $urlPermitida) {
+        if (strpos($urlCompleta, $urlPermitida) === 0) {
+            return true;
+        }
+    }
+    return false;
 }
-
+    
 
 
     
