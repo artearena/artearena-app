@@ -84,13 +84,14 @@ class VerificarPermissao
                     'Resultado' => 'Permitido'
                 ]);
             } else {
+                return false;
+
                 dd([
                     'Permissao' => $permissao,
                     'urlCompleta' => $urlCompleta,
                     'urlsPermitidas' => $urlsPermitidas,
                     'Resultado' => 'Não permitido'
                 ]);
-                return false;
             }
 
         }
