@@ -64,7 +64,7 @@ class VerificarPermissao
                 $urlsPermitidas = Tela::whereIn('id', $telasPermitidas)->pluck('url')->toArray();
 
                 // Verifica se a urlCompleta está na lista de URLs permitidas
-                if (in_array($urlCompleta, $urlsPermitidas)) {
+                /* if (in_array($urlCompleta, $urlsPermitidas)) {
                     dd([
                         'Permissao' => $permissao,
                         'urlCompleta' => $urlCompleta,
@@ -78,7 +78,7 @@ class VerificarPermissao
                         'urlsPermitidas' => $urlsPermitidas,
                         'Resultado' => 'Não permitido'
                     ]);
-                }
+                } */
             }
         }
 
