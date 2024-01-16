@@ -67,8 +67,11 @@ class VerificarPermissao
                 // Obtém a lista de URLs correspondentes às telas permitidas
                 $urlsPermitidas = Tela::whereIn('id', $telasPermitidas)->pluck('url')->toArray();
 
-                // Verifica se a urlCompleta está na lista de URLs permitidas
-                 if (in_array($urlCompleta, $urlsPermitidas)) {
+                // Extrai a parte principal da URL (ignorando os parâmetros)
+                $urlPrincipal = strtok($urlCompleta, '?');
+
+                // Verifica se a urlPrincipal está na lista de URLs permitidas
+                if (in_array($urlPrincipal, $urlsPermitidas)) {
                     return true;
 
                     dd([
@@ -86,13 +89,13 @@ class VerificarPermissao
                         'urlsPermitidas' => $urlsPermitidas,
                         'Resultado' => 'Não permitido'
                     ]);
-
-                } 
+                }
             }
         }
 
         return false;
     }
+
 
     
     
