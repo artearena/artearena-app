@@ -8,15 +8,16 @@
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.0"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
 
 <script>
     // Recupere os dados do controlador e passe para o gráfico
     var labels = @json($labels);
     var data = @json($data);
 
-    // Converta os dados de DateTime para Date usando JavaScript nativo
+    // Converta os dados de DateTime para Date usando Moment.js
     var convertedData = data.map(function (item) {
-        return new Date(item);
+        return moment(item).toDate();
     });
 
     var ctx = document.getElementById('myChart').getContext('2d');
