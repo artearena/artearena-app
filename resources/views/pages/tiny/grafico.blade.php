@@ -11,51 +11,53 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.0"></script>
 
 <script>
-    // Configurar o adaptador de data para 'moment'
-    Chart.register({
-        id: 'moment',
-        beforeInit: function (chart, _options) {
-            chart.$adapter = Chart._adapters._date.adapters.moment;
-            chart._date = moment;
-        },
-    });
+    document.addEventListener('DOMContentLoaded', function () {
+        // Configurar o adaptador de data para 'moment'
+        Chart.register({
+            id: 'moment',
+            beforeInit: function (chart, _options) {
+                chart.$adapter = Chart._adapters._date.adapters.moment;
+                chart._date = moment;
+            },
+        });
 
-    var dadosGrafico = @json($dadosGrafico);
+        var dadosGrafico = @json($dadosGrafico);
 
-    // Processar dados para o gráfico
-    var labels = dadosGrafico.map(function (item) {
-        return moment(item.data_pedido).toDate();
-    });
+        // Processar dados para o gráfico
+        var labels = dadosGrafico.map(function (item) {
+            return moment(item.data_pedido).toDate();
+        });
 
-    var data = dadosGrafico.map(function (item) {
-        return parseFloat(item.soma_total_reais.replace('R$ ', ''));
-    });
+        var data = dadosGrafico.map(function (item) {
+            return parseFloat(item.soma_total_reais.replace('R$ ', ''));
+        });
 
-    var ctx = document.getElementById('myChart').getContext('2d');
-    var myChart = new Chart(ctx, {
-        type: 'line',
-        data: {
-            labels: labels,
-            datasets: [{
-                label: 'Total de Vendas por Vendedor',
-                data: data,
-                borderColor: 'rgba(75, 192, 192, 1)',
-                borderWidth: 2,
-                fill: false,
-            }]
-        },
-        options: {
-            scales: {
-                x: {
-                    type: 'time',
-                    time: {
-                        unit: 'day',
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Total de Vendas por Vendedor',
+                    data: data,
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 2,
+                    fill: false,
+                }]
+            },
+            options: {
+                scales: {
+                    x: {
+                        type: 'time',
+                        time: {
+                            unit: 'day',
+                        }
+                    },
+                    y: {
+                        beginAtZero: true
                     }
-                },
-                y: {
-                    beginAtZero: true
                 }
             }
-        }
+        });
     });
 </script>
