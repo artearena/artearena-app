@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container-md">
     <div class="card">
         <div class="card-header">Seu Gráfico Evolutivo</div>
         <div class="card-body">
