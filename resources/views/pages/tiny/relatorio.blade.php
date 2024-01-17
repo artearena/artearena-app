@@ -126,7 +126,7 @@
         var convertedData = data.map(function (item) {
             return moment(item).toDate();
         });
-
+        console.log(convertedData);
         var ctx = document.getElementById('myChart').getContext('2d');
         var myChart = new Chart(ctx, {
             type: 'line',
