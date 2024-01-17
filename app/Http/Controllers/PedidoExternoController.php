@@ -22,6 +22,7 @@ class PedidoExternoController extends Controller
 
         // Obter dados do gráfico para o vendedor autenticado
         $dadosGrafico = PedidoExterno::obterSomaTotalPorVendedorEData($dataInicial, $dataFinal, $situacoes, $idVendedor);
+        $dados = PedidoExterno::obterSomaTotalPorVendedorEData($dataInicial, $dataFinal, $situacoes, $idVendedor);
 
         // Calcular o número de dias entre a data inicial e final
         $diferencaDias = (new \DateTime($dataFinal))->diff(new \DateTime($dataInicial))->days;
@@ -39,7 +40,7 @@ class PedidoExternoController extends Controller
         // Ajustar a largura do gráfico com base na diferença de dias
         $larguraGrafico = $diferencaDias * 20; // Ajuste conforme necessário
 
-        return view('pages.tiny.relatorio', compact('dadosGrafico', 'dataInicial', 'dataFinal', 'situacoes', 'labels', 'data', 'larguraGrafico'));
+        return view('pages.tiny.relatorio', compact('dados','dadosGrafico', 'dataInicial', 'dataFinal', 'situacoes', 'labels', 'data', 'larguraGrafico'));
     }
 
 
