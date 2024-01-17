@@ -21,8 +21,8 @@ class PedidoExternoController extends Controller
         $idVendedor = Auth::user()->id_vendedor;
 
         // Obter dados do gráfico para o vendedor autenticado
-        $dadosGrafico = PedidoExterno::obterSomaTotalPorVendedorEData($dataInicial, $dataFinal, $situacoes, $idVendedor);
-        $dados = PedidoExterno::obterSomaTotalPorVendedorEData($dataInicial, $dataFinal, $situacoes, $idVendedor);
+        $dadosGrafico = PedidoExterno::obterSomaTotalPorVendedor($dataInicial, $dataFinal, $situacoes, $idVendedor);
+        $dados = PedidoExterno::obterSomaTotalPorVendedor($dataInicial, $dataFinal, $situacoes);
 
         // Calcular o número de dias entre a data inicial e final
         $diferencaDias = (new \DateTime($dataFinal))->diff(new \DateTime($dataInicial))->days;
