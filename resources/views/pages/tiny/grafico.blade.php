@@ -11,15 +11,15 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
-        var dadosGrafico = @json($dadosGrafico);
+        var dadosGrafico = [{"id_vendedor":704965097,"nome_vendedor":"Elieth","data_pedido":"2024-01-05","soma_total_reais":"1,080.10"},{"id_vendedor":704965097,"nome_vendedor":"Elieth","data_pedido":"2024-01-06","soma_total_reais":"170.00"},{"id_vendedor":704965097,"nome_vendedor":"Elieth","data_pedido":"2024-01-08","soma_total_reais":"2,676.50"},{"id_vendedor":704965097,"nome_vendedor":"Elieth","data_pedido":"2024-01-09","soma_total_reais":"2,595.00"},{"id_vendedor":704965097,"nome_vendedor":"Elieth","data_pedido":"2024-01-10","soma_total_reais":"780.65"},{"id_vendedor":704965097,"nome_vendedor":"Elieth","data_pedido":"2024-01-11","soma_total_reais":"2,846.27"},{"id_vendedor":704965097,"nome_vendedor":"Elieth","data_pedido":"2024-01-12","soma_total_reais":"1,756.43"},{"id_vendedor":704965097,"nome_vendedor":"Elieth","data_pedido":"2024-01-15","soma_total_reais":"2,264.00"},{"id_vendedor":704965097,"nome_vendedor":"Elieth","data_pedido":"2024-01-16","soma_total_reais":"1,017.00"},{"id_vendedor":704965097,"nome_vendedor":"Elieth","data_pedido":"2024-01-17","soma_total_reais":"496.00"}];
 
         // Processar dados para o gráfico
         var labels = dadosGrafico.map(function (item) {
-            return item.data_pedido; // A data já está no formato adequado
+            return item.data_pedido;
         });
 
         var data = dadosGrafico.map(function (item) {
-            return parseFloat(item.soma_total_reais.replace('R$ ', ''));
+            return parseFloat(item.soma_total_reais.replace('R$ ', '').replace(',', '.'));
         });
 
         var ctx = document.getElementById('myChart').getContext('2d');
@@ -41,8 +41,8 @@
                         type: 'time',
                         time: {
                             unit: 'day',
-                            parser: 'YYYY-MM-DD', // Formato da data
-                            tooltipFormat: 'll', // Formato da data no tooltip
+                            parser: 'YYYY-MM-DD',
+                            tooltipFormat: 'll',
                         }
                     },
                     y: {
