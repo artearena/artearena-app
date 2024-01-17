@@ -106,8 +106,9 @@
 @endsection
 
 @section('extraScript')
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css">
+
 <script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css">
 
     $(document).ready(function () {
         // Inicializar o Select2
