@@ -8,6 +8,7 @@
 </div>
 
 <!-- Adicione o Moment.js antes do Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/moment@2.29.1"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.0"></script>
 
 <script>
@@ -16,6 +17,7 @@
         id: 'moment',
         beforeInit: function (chart, _options) {
             chart.$adapter = Chart._adapters._date.adapters.moment;
+            chart._date = moment;
         },
     });
 </script>
@@ -57,4 +59,3 @@
         }
     });
 </script>
-
