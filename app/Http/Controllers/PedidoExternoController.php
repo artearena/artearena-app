@@ -25,7 +25,9 @@ class PedidoExternoController extends Controller
         $dados = PedidoExterno::obterSomaTotalPorVendedor($dataInicial, $dataFinal, $situacoes);
 
         // Processar dados para o gráfico
-        $labels = $dadosGrafico->pluck('nome_vendedor')->toArray();
+        $labels = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
+         
+        //$dadosGrafico->pluck('nome_vendedor')->toArray();
         $data = $dadosGrafico->pluck('soma_total_reais')->toArray();
 
         // Carregar a visão com os dados
