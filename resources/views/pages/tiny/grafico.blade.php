@@ -24,6 +24,7 @@
     });
 </script>
 
+<!-- Script para inicializar o gráfico com os dados -->
 <script>
     // Recupere os dados do controlador e passe para o gráfico
     var labels = @json($labels);
@@ -45,10 +46,9 @@
         options: {
             scales: {
                 x: {
-                    type: 'timeseries', // Tipo de escala para o eixo X
+                    type: 'time', // Tipo de escala para o eixo X
                     time: {
-                        parser: 'luxon', // Usar o adaptador de data Luxon
-                        unit: 'day', // Ajuste conforme necessário (day, month, year, etc.)
+                        unit: 'day' // Ajuste conforme necessário (day, month, year, etc.)
                     }
                 },
                 y: {
@@ -58,4 +58,3 @@
         }
     });
 </script>
-

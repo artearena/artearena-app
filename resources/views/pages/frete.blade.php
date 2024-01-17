@@ -1139,6 +1139,8 @@ const id_cliente = document.getElementById('id').value;
           // Adiciona um evento de clique ao botão
           botaoOrcamento.addEventListener('click', function() {
               // Chama a função salvarOrcamento()
+              $('#botaoCopiar').trigger('click');
+
               salvarOrcamento();
           });
 
