@@ -6,26 +6,16 @@
     </div>
 </div>
 
-<!-- Adicione o Moment.js antes do Chart.js -->
-<script src="https://cdn.jsdelivr.net/npm/moment@2.29.1"></script>
+<!-- Adicione o Chart.js -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.0"></script>
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
-        // Configurar o adaptador de data para 'moment'
-        Chart.register({
-            id: 'moment',
-            beforeInit: function (chart, _options) {
-                chart.$adapter = Chart._adapters._date.adapters.moment;
-                chart._date = moment;
-            },
-        });
-
         var dadosGrafico = @json($dadosGrafico);
 
         // Processar dados para o gráfico
         var labels = dadosGrafico.map(function (item) {
-            return moment(item.data_pedido).toDate();
+            return item.data_pedido; // A data já está no formato adequado
         });
 
         var data = dadosGrafico.map(function (item) {
@@ -51,6 +41,8 @@
                         type: 'time',
                         time: {
                             unit: 'day',
+                            parser: 'YYYY-MM-DD', // Formato da data
+                            tooltipFormat: 'll', // Formato da data no tooltip
                         }
                     },
                     y: {
