@@ -25,16 +25,22 @@ class PedidoExterno extends Model
         'codigo_rastreamento',
         'url_rastreamento',
     ];
-    public static function obterSomaTotalPorVendedor($dataInicial, $dataFinal, $situacoes, $idVendedor)
+
+    public static function obterSomaTotalPorVendedor($dataInicial, $dataFinal, $situacoes, $idVendedor = null)
     {
-        return self::select('id_vendedor', 'nome_vendedor')
+        $query = self::select('id_vendedor', 'nome_vendedor')
             ->selectRaw('CONCAT("R$ ", FORMAT(SUM(CASE WHEN situacao <> "Cancelado" THEN valor ELSE 0 END), 2)) AS soma_total_reais')
-            ->where('id_vendedor', $idVendedor)
             ->whereBetween('data_pedido', [$dataInicial, $dataFinal])
             ->whereIn('situacao', $situacoes)
-            ->groupBy('id_vendedor', 'nome_vendedor')
-            ->get();
+            ->groupBy('id_vendedor', 'nome_vendedor');
+
+        if ($idVendedor !== null) {
+            $query->where('id_vendedor', $idVendedor);
+        }
+
+        return $query->get();
     }
+
     
     public function vendedor()
     {
