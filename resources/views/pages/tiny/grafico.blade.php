@@ -13,8 +13,17 @@
 
 <!-- Inclusão do script para gerar o gráfico -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/luxon@2.0.0/dist/luxon.min.js"></script>
+<!-- Adicione isso antes do script de criação do gráfico -->
+<script>
+    Chart.register({
+        id: 'luxon',
+        beforeInit: function (chart, _options) {
+            chart.$adapter = new Chart._adapters._date.adapters.luxon;
+        },
+    });
+</script>
 
-<!-- Script para inicializar o gráfico com os dados -->
 <script>
     // Recupere os dados do controlador e passe para o gráfico
     var labels = @json($labels);
@@ -36,9 +45,10 @@
         options: {
             scales: {
                 x: {
-                    type: 'time', // Tipo de escala para o eixo X
+                    type: 'timeseries', // Tipo de escala para o eixo X
                     time: {
-                        unit: 'day' // Ajuste conforme necessário (day, month, year, etc.)
+                        parser: 'luxon', // Usar o adaptador de data Luxon
+                        unit: 'day', // Ajuste conforme necessário (day, month, year, etc.)
                     }
                 },
                 y: {
@@ -48,3 +58,4 @@
         }
     });
 </script>
+
