@@ -102,7 +102,7 @@
         </table>
 
     </div>
-    @include('grafico')
+    @include('pages.tiny.grafico')
 @endsection
 
 @section('extraScript')
