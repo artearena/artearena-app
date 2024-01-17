@@ -5,7 +5,13 @@
         </div>
     </div>
 </div>
-<!-- Adicione o Chart.js -->
+html
+<!-- Adicione o Moment.js -->
+<script src="https://cdn.jsdelivr.net/npm/moment@2.29.1/moment.min.js"></script>
+<!-- Adicione o adaptador do Moment.js para o Chart.js -->
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.0/dist/adapters/moment.min.js"></script>
+
 <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.0"></script>
 <script>
     document.addEventListener('DOMContentLoaded', function () {
