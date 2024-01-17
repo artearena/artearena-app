@@ -1,12 +1,3 @@
-<div class="container">
-    <div class="card mt-3">
-        <div class="card-header">Seu Gráfico Evolutivo</div>
-        <div class="card-body">
-            <canvas id="myChart" width="800" height="400"></canvas>
-        </div>
-    </div>
-</div>
-
 <!-- Adicione o Moment.js antes do Chart.js -->
 <script src="https://cdn.jsdelivr.net/npm/moment@2.29.1"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.0"></script>
@@ -20,9 +11,7 @@
             chart._date = moment;
         },
     });
-</script>
 
-<script>
     var labels = @json($labels);
     var data = @json($data);
 

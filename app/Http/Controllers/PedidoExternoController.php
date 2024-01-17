@@ -12,7 +12,7 @@ class PedidoExternoController extends Controller
 {
     public function index(Request $request)
     {
-        // Obter os dados para o gráfico (se necessário)
+        // Obter os demais dados para o gráfico (se necessário)
         $dataInicial = $request->input('dataInicial', date('Y-m-01'));
         $dataFinal = $request->input('dataFinal', date('Y-m-t'));
         $situacoes = $request->input('situacao', ['Aprovado', 'Entregue', 'Cancelado', 'Não entregue', 'Dados incompletos', 'Enviado', 'Pronto para envio']);
@@ -24,26 +24,13 @@ class PedidoExternoController extends Controller
         $dadosGrafico = PedidoExterno::obterSomaTotalPorVendedor($dataInicial, $dataFinal, $situacoes, $idVendedor);
         $dados = PedidoExterno::obterSomaTotalPorVendedor($dataInicial, $dataFinal, $situacoes);
 
-        // Calcular o número de dias entre a data inicial e final
-        $diferencaDias = (new \DateTime($dataFinal))->diff(new \DateTime($dataInicial))->days;
-
         // Processar dados para o gráfico
-        $labels = $dadosGrafico->map(function ($item) use ($diferencaDias) {
-            return $item->nome_vendedor . ' - ' . $item->data_pedido;
-        })->toArray();
+        $labels = $dadosGrafico->pluck('nome_vendedor')->toArray();
+        $data = $dadosGrafico->pluck('soma_total_reais')->toArray();
 
-        // Remover "R$" e transformar em número
-        $data = $dadosGrafico->map(function ($item) {
-            return floatval(str_replace('R$ ', '', $item->soma_total_reais));
-        })->toArray();
-
-        // Ajustar a largura do gráfico com base na diferença de dias
-        $larguraGrafico = $diferencaDias * 20; // Ajuste conforme necessário
-
-        return view('pages.tiny.relatorio', compact('dados','dadosGrafico', 'dataInicial', 'dataFinal', 'situacoes', 'labels', 'data', 'larguraGrafico'));
+        // Carregar a visão com os dados
+        return view('pages.tiny.relatorio', compact('dados', 'dadosGrafico', 'dataInicial', 'dataFinal', 'situacoes', 'labels', 'data'));
     }
-
-
 
 
 
