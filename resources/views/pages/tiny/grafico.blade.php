@@ -25,10 +25,10 @@
         var myChart = new Chart(ctx, {
             type: 'line',
             data: {
-                labels: labels,
+                labels: Utils.months({count: 12});,
                 datasets: [{
                     label: 'Total de Vendas por Vendedor',
-                    data: data,
+                    data: [100,100,200,200,300,300],
                     borderColor: 'rgba(75, 192, 192, 1)',
                     borderWidth: 2,
                     fill: false,
