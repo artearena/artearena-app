@@ -8,16 +8,24 @@
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.0"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/dayjs@1.10.6"></script>
 
 <script>
     // Recupere os dados do controlador e passe para o gráfico
     var labels = @json($labels);
     var data = @json($data);
 
-    // Converta os dados de DateTime para Date usando Moment.js
+    // Configurar o adaptador de data para 'dayjs'
+    Chart.register({
+        id: 'dayjs',
+        beforeInit: function (chart, _options) {
+            chart.$adapter = Chart._adapters._date.adapters.dayjs;
+        },
+    });
+
+    // Converta os dados de DateTime para Date usando 'dayjs'
     var convertedData = data.map(function (item) {
-        return moment(item).toDate();
+        return dayjs(item).toDate();
     });
 
     var ctx = document.getElementById('myChart').getContext('2d');
@@ -48,3 +56,4 @@
         }
     });
 </script>
+    
