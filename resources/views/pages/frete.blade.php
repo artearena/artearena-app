@@ -85,6 +85,7 @@
     #botaoCopiar {
         float: right;
         margin-top: 5px;
+        display: none;
     }
 
     #avisoCopiado {
