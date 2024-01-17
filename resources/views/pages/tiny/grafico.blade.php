@@ -7,15 +7,27 @@
     </div>
 </div>
 
+<!-- Adicione o Moment.js antes do Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/moment@2.29.1"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.0"></script>
+
+<script>
+    // Configurar o adaptador de data para 'moment'
+    Chart.register({
+        id: 'moment',
+        beforeInit: function (chart, _options) {
+            chart.$adapter = Chart._adapters._date.adapters.moment;
+        },
+    });
+</script>
 
 <script>
     var labels = @json($labels);
     var data = @json($data);
 
-    // Converta os dados de DateTime para Date usando 'dayjs'
+    // Converta os dados de DateTime para Date usando 'moment'
     var convertedData = data.map(function (item) {
-        return new Date(item);
+        return moment(item).toDate();
     });
 
     var ctx = document.getElementById('myChart').getContext('2d');
@@ -46,3 +58,4 @@
         }
     });
 </script>
+
