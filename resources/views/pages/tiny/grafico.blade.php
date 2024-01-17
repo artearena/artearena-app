@@ -7,14 +7,11 @@
     </div>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.0"></script>
+<!-- Adicione o Day.js antes do Chart.js -->
 <script src="https://cdn.jsdelivr.net/npm/dayjs@1.10.6"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.0"></script>
 
 <script>
-    // Recupere os dados do controlador e passe para o gráfico
-    var labels = @json($labels);
-    var data = @json($data);
-
     // Configurar o adaptador de data para 'dayjs'
     Chart.register({
         id: 'dayjs',
@@ -22,6 +19,12 @@
             chart.$adapter = Chart._adapters._date.adapters.dayjs;
         },
     });
+</script>
+
+<script>
+    // Recupere os dados do controlador e passe para o gráfico
+    var labels = @json($labels);
+    var data = @json($data);
 
     // Converta os dados de DateTime para Date usando 'dayjs'
     var convertedData = data.map(function (item) {
@@ -56,4 +59,3 @@
         }
     });
 </script>
-    
