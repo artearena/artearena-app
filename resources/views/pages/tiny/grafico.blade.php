@@ -6,7 +6,7 @@
     <div class="card mt-3">
         <div class="card-header">Seu Gráfico Evolutivo</div>
         <div class="card-body">
-            <canvas id="myChart" width="400" height="200"></canvas>
+            <canvas id="myChart" width="800" height="400"></canvas>
         </div>
     </div>
 </div>
@@ -22,19 +22,25 @@
 
     var ctx = document.getElementById('myChart').getContext('2d');
     var myChart = new Chart(ctx, {
-        type: 'bar',
+        type: 'line', // Tipo de gráfico de linha do tempo
         data: {
             labels: labels,
             datasets: [{
                 label: 'Total de Vendas por Vendedor',
                 data: data,
-                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                fill: false, // Não preencher a área abaixo da linha
                 borderColor: 'rgba(75, 192, 192, 1)',
-                borderWidth: 1
+                borderWidth: 2
             }]
         },
         options: {
             scales: {
+                x: {
+                    type: 'time', // Tipo de escala para o eixo X
+                    time: {
+                        unit: 'day' // Ajuste conforme necessário (day, month, year, etc.)
+                    }
+                },
                 y: {
                     beginAtZero: true
                 }
