@@ -13,7 +13,7 @@ class Usuario extends Authenticatable
     protected $table = 'usuarios'; // Nome da tabela
     protected $primaryKey = 'id'; // Chave primária
 
-    protected $fillable = ['nome_usuario', 'permissoes', 'email', 'password', 'id_vendedor'];
+    protected $fillable = ['nome_usuario', 'permissoes', 'email', 'password', 'id_vendedor', 'foto_perfil'];
 
     public function permissao()
     {

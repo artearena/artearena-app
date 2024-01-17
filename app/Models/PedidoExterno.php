@@ -34,5 +34,9 @@ class PedidoExterno extends Model
             ->groupBy('id_vendedor', 'nome_vendedor')
             ->get();
     }
-    // Adicione outras relações ou métodos conforme necessário
+
+    public function vendedor()
+    {
+        return $this->belongsTo(Usuario::class, 'id_vendedor', 'id_vendedor');
+    }
 }

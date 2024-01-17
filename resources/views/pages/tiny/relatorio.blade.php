@@ -65,71 +65,69 @@
                     @endforeach
                 </select>
             </div>
-    </div>
+        </div>
             <button type="submit" class="btn btn-primary">Filtrar</button>
         </form>
 
         <table class="mt-3">
-    <thead>
-        <tr>
-            <th>Vendedor</th>
-            <th>Soma Total</th>
-        </tr>
-    </thead>
-    <tbody>
-        @forelse($dados->map(function ($item) {
-            // Remover "R$" e vírgulas, em seguida, converter para float
-            $item->soma_total_reais_original = $item->soma_total_reais;
-            $item->soma_total_reais = floatval(str_replace(['R$', ','], ['', ''], $item->soma_total_reais));
-            return $item;
-        })->sortBy('soma_total_reais') as $item)
-            <tr>
-                <td>{{ $item->nome_vendedor ?: 'Sem vendedor' }}</td>
-                <td>R$ {{ number_format($item->soma_total_reais, 2, ',', '.') }}</td>
-            </tr>
-        @empty
-            <tr>
-                <td colspan="2">Nenhum dado encontrado</td>
-            </tr>
-        @endforelse
-    </tbody>
-    <tfoot>
-        <tr>
-            <td><strong>Total</strong></td>
-            <td><strong>R$ {{ number_format($dados->sum('soma_total_reais'), 2, ',', '.') }}</strong></td>
-        </tr>
-    </tfoot>
-</table>
-
-
-
-
+            <thead>
+                <tr>
+                    <th>Vendedor</th>
+                    <th>Soma Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                @forelse($dados->map(function ($item) {
+                    // Remover "R$" e vírgulas, em seguida, converter para float
+                    $item->soma_total_reais_original = $item->soma_total_reais;
+                    $item->soma_total_reais = floatval(str_replace(['R$', ','], ['', ''], $item->soma_total_reais));
+                    return $item;
+                })->sortBy('soma_total_reais') as $item)
+                    <tr>
+                        <td>{{ $item->nome_vendedor ?: 'Sem vendedor' }}</td>
+                        <td>R$ {{ number_format($item->soma_total_reais, 2, ',', '.') }}</td>
+                    </tr>
+                @empty
+                    <tr>
+                        <td colspan="2">Nenhum dado encontrado</td>
+                    </tr>
+                @endforelse
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td><strong>Total</strong></td>
+                    <td><strong>R$ {{ number_format($dados->sum('soma_total_reais'), 2, ',', '.') }}</strong></td>
+                </tr>
+            </tfoot>
+        </table>
 
     </div>
+    @include('grafico')
+@endsection
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
-    <script>
-        $(document).ready(function () {
-            // Inicializar o Select2
-            $('.select2').select2();
+@section('extraScript')
+<script>
+    $(document).ready(function () {
+        // Inicializar o Select2
+        $('.select2').select2();
 
-            // Adicionar opções ao Select2 para Situação
-            var situacaoOptions = [
-                { id: 'Aprovado', text: 'Aprovado' },
-                { id: 'Entregue', text: 'Entregue' },
-                { id: 'Cancelado', text: 'Cancelado' },
-                { id: 'Não entregue', text: 'Não entregue' },
-                { id: 'Dados incompletos', text: 'Dados incompletos' },
-                { id: 'Enviado', text: 'Enviado' },
-                { id: 'Pronto para envio', text: 'Pronto para envio' },
-            ];
+        // Adicionar opções ao Select2 para Situação
+        var situacaoOptions = [
+            { id: 'Aprovado', text: 'Aprovado' },
+            { id: 'Entregue', text: 'Entregue' },
+            { id: 'Cancelado', text: 'Cancelado' },
+            { id: 'Não entregue', text: 'Não entregue' },
+            { id: 'Dados incompletos', text: 'Dados incompletos' },
+            { id: 'Enviado', text: 'Enviado' },
+            { id: 'Pronto para envio', text: 'Pronto para envio' },
+        ];
 
-            $('#situacao').select2({
-                data: situacaoOptions,
-                placeholder: 'Selecione as situações',
-            });
-
+        $('#situacao').select2({
+            data: situacaoOptions,
+            placeholder: 'Selecione as situações',
         });
-    </script>
+
+    });
+</script>
+
 @endsection

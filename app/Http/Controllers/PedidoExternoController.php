@@ -15,11 +15,6 @@ class PedidoExternoController extends Controller
         $dataFinal = $request->input('dataFinal', date('Y-m-t'));
         $situacoes = $request->input('situacao', ['Aprovado', 'Entregue', 'Cancelado', 'Não entregue', 'Dados incompletos', 'Enviado', 'Pronto para envio']);
 
-        // Adicione logs para verificar os valores
-        \Log::info('Data Inicial: ' . $dataInicial);
-        \Log::info('Data Final: ' . $dataFinal);
-        \Log::info('Situações: ' . implode(', ', $situacoes));
-
         $dados = PedidoExterno::obterSomaTotalPorVendedor($dataInicial, $dataFinal, $situacoes);
 
         return view('pages.tiny.relatorio', compact('dados', 'dataInicial', 'dataFinal', 'situacoes'));
