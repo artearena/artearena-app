@@ -37,7 +37,6 @@
             width: 100% !important;
         }
     </style>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css">
 @endsection
 @section('content')
     <div class="container">
@@ -106,7 +105,6 @@
 @endsection
 
 @section('extraScript')
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css">
 
 <script>
 
