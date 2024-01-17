@@ -17,7 +17,11 @@ class PedidoExternoController extends Controller
 
         $dados = PedidoExterno::obterSomaTotalPorVendedor($dataInicial, $dataFinal, $situacoes);
 
-        return view('pages.tiny.relatorio', compact('dados', 'dataInicial', 'dataFinal', 'situacoes'));
+        // Processar dados para o gráfico
+        $labels = $dados->pluck('nome_vendedor')->toArray();
+        $data = $dados->pluck('soma_total_reais')->toArray();
+
+        return view('pages.tiny.relatorio', compact('dados', 'dataInicial', 'dataFinal', 'situacoes', 'labels', 'data'));
     }
 
 
