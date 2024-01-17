@@ -22,7 +22,7 @@
         var myChart = new Chart(ctx, {
             type: 'line',
             data: {
-                labels: Utils.months({count: 12}),
+                labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
                 datasets: [{
                     label: 'Total de Vendas por Vendedor',
                     data: [100,100,200,200,300,300],
