@@ -84,7 +84,7 @@ class VerificarPermissao
                     'Resultado' => 'Permitido'
                 ]);
             } else {
-               // return false;
+                return false;
 
                 dd([
                     'Permissao' => $permissao,
