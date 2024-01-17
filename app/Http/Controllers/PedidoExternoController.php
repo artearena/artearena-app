@@ -22,17 +22,29 @@ class PedidoExternoController extends Controller
 
         // Obter dados do gráfico para o vendedor autenticado
         $dadosGrafico = PedidoExterno::obterSomaTotalPorVendedorEData($dataInicial, $dataFinal, $situacoes, $idVendedor);
-        $dados = PedidoExterno::obterSomaTotalPorVendedor($dataInicial, $dataFinal, $situacoes);
+
+        // Organizar os dados por mês
+        $dadosPorMes = $dadosGrafico->groupBy(function($item) {
+            return \Carbon\Carbon::parse($item->data_pedido)->format('F'); // 'F' retorna o nome do mês
+        });
+
+        // Calcular a soma total para cada mês
+        $somaTotalPorMes = [];
+        foreach ($dadosPorMes as $mes => $dados) {
+            $somaTotalPorMes[$mes] = $dados->sum('soma_total_reais');
+        }
 
         // Processar dados para o gráfico
-        $labels = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
-         
-        //$dadosGrafico->pluck('nome_vendedor')->toArray();
-        $data = $dadosGrafico->pluck('soma_total_reais')->toArray();
+        $labels = array_keys($somaTotalPorMes);
+        $data = array_values($somaTotalPorMes);
+
+        // Obter dados do gráfico para o vendedor autenticado sem filtrar por mês
+        $dados = PedidoExterno::obterSomaTotalPorVendedor($dataInicial, $dataFinal, $situacoes);
 
         // Carregar a visão com os dados
         return view('pages.tiny.relatorio', compact('dados', 'dadosGrafico', 'dataInicial', 'dataFinal', 'situacoes', 'labels', 'data'));
     }
+
 
 
 
