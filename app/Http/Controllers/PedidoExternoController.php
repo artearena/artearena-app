@@ -28,11 +28,14 @@ class PedidoExternoController extends Controller
             return \Carbon\Carbon::parse($item->data_pedido)->format('F'); // 'F' retorna o nome do mês
         });
 
-        // Calcular a soma total para cada mês
         $somaTotalPorMes = [];
+
         foreach ($dadosPorMes as $mes => $dados) {
-            $somaTotalPorMes[$mes] = $dados->sum('soma_total_reais');
+            $somaTotalPorMes[$mes] = $dados->sum(function($item) {
+                return is_numeric($item->soma_total_reais) ? $item->soma_total_reais : 0;
+            });
         }
+
 
         // Processar dados para o gráfico
         $labels = array_keys($somaTotalPorMes);
