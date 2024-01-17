@@ -21,17 +21,28 @@ class PedidoExternoController extends Controller
         $idVendedor = Auth::user()->id_vendedor;
 
         // Obter dados do gráfico para o vendedor autenticado
-        $dadosGrafico = PedidoExterno::obterSomaTotalPorVendedor($dataInicial, $dataFinal, $situacoes, $idVendedor);
+        $dadosGrafico = PedidoExterno::obterSomaTotalPorVendedorEData($dataInicial, $dataFinal, $situacoes, $idVendedor);
 
-        // Obter dados adicionais para o gráfico (se necessário)
-        $dados = PedidoExterno::obterSomaTotalPorVendedor($dataInicial, $dataFinal, $situacoes);
+        // Calcular o número de dias entre a data inicial e final
+        $diferencaDias = (new \DateTime($dataFinal))->diff(new \DateTime($dataInicial))->days;
 
         // Processar dados para o gráfico
-        $labels = $dadosGrafico->pluck('nome_vendedor')->toArray();
-        $data = $dadosGrafico->pluck('soma_total_reais')->toArray();
+        $labels = $dadosGrafico->map(function ($item) use ($diferencaDias) {
+            return $item->nome_vendedor . ' - ' . $item->data_pedido;
+        })->toArray();
 
-        return view('pages.tiny.relatorio', compact('dados', 'dadosGrafico', 'dataInicial', 'dataFinal', 'situacoes', 'labels', 'data'));
+        // Remover "R$" e transformar em número
+        $data = $dadosGrafico->map(function ($item) {
+            return floatval(str_replace('R$ ', '', $item->soma_total_reais));
+        })->toArray();
+
+        // Ajustar a largura do gráfico com base na diferença de dias
+        $larguraGrafico = $diferencaDias * 20; // Ajuste conforme necessário
+
+        return view('pages.tiny.relatorio', compact('dadosGrafico', 'dataInicial', 'dataFinal', 'situacoes', 'labels', 'data', 'larguraGrafico'));
     }
+
+
 
 
 

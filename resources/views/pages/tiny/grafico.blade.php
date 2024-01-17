@@ -1,5 +1,9 @@
-<div class="container-md">
-    <div class="card">
+<!-- Conteúdo da página de relatório -->
+<div class="container">
+    <!-- Seção do Relatório de Tabela -->
+
+    <!-- Seção do Gráfico -->
+    <div class="card mt-3">
         <div class="card-header">Seu Gráfico Evolutivo</div>
         <div class="card-body">
             <canvas id="myChart" width="400" height="200"></canvas>
@@ -7,8 +11,10 @@
     </div>
 </div>
 
+<!-- Inclusão do script para gerar o gráfico -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
+<!-- Script para inicializar o gráfico com os dados -->
 <script>
     // Recupere os dados do controlador e passe para o gráfico
     var labels = @json($labels);
