@@ -44,8 +44,15 @@
                     y: {
                         beginAtZero: true
                     }
+                },
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: 'top'
+                    }
                 }
             }
+
         });
     });
 </script>
