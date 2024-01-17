@@ -12,12 +12,15 @@
         },
     });
 
-    var labels = @json($labels);
-    var data = @json($data);
+    var dadosGrafico = @json($dadosGrafico);
 
-    // Converta os dados de DateTime para Date usando 'moment'
-    var convertedData = data.map(function (item) {
-        return moment(item).toDate();
+    // Processar dados para o gráfico
+    var labels = dadosGrafico.map(function (item) {
+        return moment(item.data_pedido).toDate();
+    });
+
+    var data = dadosGrafico.map(function (item) {
+        return parseFloat(item.soma_total_reais.replace('R$ ', ''));
     });
 
     var ctx = document.getElementById('myChart').getContext('2d');
@@ -27,7 +30,7 @@
             labels: labels,
             datasets: [{
                 label: 'Total de Vendas por Vendedor',
-                data: convertedData,
+                data: data,
                 borderColor: 'rgba(75, 192, 192, 1)',
                 borderWidth: 2,
                 fill: false,
