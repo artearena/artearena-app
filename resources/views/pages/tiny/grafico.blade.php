@@ -1,7 +1,26 @@
-<canvas id="myChart" width="400" height="200"></canvas>
+<div class="container">
+        @auth
+            @if(Auth::user()->id == $user->id) {{-- Verifica se o usuário logado é o mesmo que está acessando a página --}}
+                <div class="card">
+                    <div class="card-header">Seu Gráfico Evolutivo</div>
+                    <div class="card-body">
+                        <canvas id="myChart" width="400" height="200"></canvas>
+                    </div>
+                </div>
+            @else
+                <div class="alert alert-danger" role="alert">
+                    Você não tem permissão para visualizar este gráfico.
+                </div>
+            @endif
+        @else
+            <div class="alert alert-info" role="alert">
+                Você precisa estar logado para visualizar este gráfico.
+            </div>
+        @endauth
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
     <script>
         // Recupere os dados do controlador e passe para o gráfico
         var labels = @json($labels);
