@@ -26,19 +26,28 @@ class PedidoExterno extends Model
         'url_rastreamento',
     ];
 
-    public static function obterSomaTotalPorVendedor($dataInicial, $dataFinal, $situacoes, $idVendedor = null)
+    public static function obterSomaTotalPorVendedor($dataInicial, $dataFinal, $situacoes)
     {
-        $query = self::select('id_vendedor', 'nome_vendedor', 'data_pedido')
+        return self::select('nome_vendedor', 'data_pedido')
             ->selectRaw('CONCAT("R$ ", FORMAT(SUM(CASE WHEN situacao <> "Cancelado" THEN valor ELSE 0 END), 2)) AS soma_total_reais')
             ->whereBetween('data_pedido', [$dataInicial, $dataFinal])
             ->whereIn('situacao', $situacoes)
-            ->groupBy('id_vendedor', 'nome_vendedor');
+            ->groupBy('nome_vendedor', 'data_pedido')
+            ->get();
+    }
+    
+    public static function obterSomaTotalPorVendedorEData($dataInicial, $dataFinal, $situacoes, $idVendedor = null)
+    {
+        $query = self::select('id_vendedor', 'nome_vendedor', 'data_pedido')
+            ->selectRaw('FORMAT(SUM(CASE WHEN situacao <> "Cancelado" THEN valor ELSE 0 END), 2) AS soma_total_reais')
+            ->whereBetween('data_pedido', [$dataInicial, $dataFinal])
+            ->whereIn('situacao', $situacoes);
 
         if ($idVendedor !== null) {
             $query->where('id_vendedor', $idVendedor);
         }
 
-        return $query->get();
+        return $query->groupBy('id_vendedor', 'nome_vendedor', 'data_pedido')->get();
     }
 
     
