@@ -1,3 +1,11 @@
+<div class="container">
+    <div class="row mt-3">
+        <div class="col-md-12">
+            <canvas id="myChart"></canvas>
+        </div>
+    </div>
+</div>
+
 <!-- Adicione o Moment.js antes do Chart.js -->
 <script src="https://cdn.jsdelivr.net/npm/moment@2.29.1"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.0"></script>
