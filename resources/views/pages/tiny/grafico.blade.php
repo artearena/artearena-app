@@ -15,6 +15,11 @@
     var labels = @json($labels);
     var data = @json($data);
 
+    // Converta os dados de DateTime para Date
+    var convertedData = data.map(function (item) {
+        return item.toDate();
+    });
+
     var ctx = document.getElementById('myChart').getContext('2d');
     var myChart = new Chart(ctx, {
         type: 'line', // Tipo de gráfico de linha do tempo
@@ -22,7 +27,7 @@
             labels: labels,
             datasets: [{
                 label: 'Total de Vendas por Vendedor',
-                data: data,
+                data: convertedData,
                 fill: false, // Não preencher a área abaixo da linha
                 borderColor: 'rgba(75, 192, 192, 1)',
                 borderWidth: 2
