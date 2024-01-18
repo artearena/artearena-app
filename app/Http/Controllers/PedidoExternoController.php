@@ -25,7 +25,7 @@ class PedidoExternoController extends Controller
         // Obter dados do gráfico para o vendedor autenticado
         $dadosGrafico = PedidoExterno::obterSomaTotalPorVendedorEData($dataInicial, $dataFinal, $situacoes, $idVendedor);
 
-       // Preencher o array de data com os valores reais para cada mês
+        // Preencher o array de data com os valores reais para cada mês
         $data = [];
 
         foreach ($meses as $mes) {
@@ -43,13 +43,13 @@ class PedidoExternoController extends Controller
             }
         }
 
-
         // Obter dados do gráfico para o vendedor autenticado sem filtrar por mês
         $dados = PedidoExterno::obterSomaTotalPorVendedor($dataInicial, $dataFinal, $situacoes);
 
         // Carregar a visão com os dados
         return view('pages.tiny.relatorio', compact('dados', 'dadosGrafico', 'dataInicial', 'dataFinal', 'situacoes', 'meses', 'data'));
     }
+
 
 
 
