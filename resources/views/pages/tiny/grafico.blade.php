@@ -8,8 +8,9 @@
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
+    var labels = @json($labels);
+    //var data = @json($data);
     // Dados de exemplo
-    var labels = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho"];
     var data = [65, 59, 80, 81, 56, 55, 40];
 
     var ctx = document.getElementById('myChart').getContext('2d');
