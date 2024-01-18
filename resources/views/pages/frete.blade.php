@@ -169,7 +169,7 @@
 
     .table th,
     .table td {
-      padding: 4px 8px; /* Ajusta o espaçamento interno das células */
+      padding: 1px 2px; /* Ajusta o espaçamento interno das células */
       text-align: center; /* Centraliza o texto nas células */
     }
 
