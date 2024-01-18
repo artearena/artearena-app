@@ -82,7 +82,7 @@
                 <div style="display: flex; align-items: center; margin-right: 20px;">
                     @if(auth()->user()->foto_perfil)
                         <?php $base64Image = base64_encode(auth()->user()->foto_perfil); ?>
-                        <img src="{{ 'data:image/png;base64,'.$base64Image }}" alt="Foto de Perfil" style="width: 60px; height: 60px; border-radius: 50%; margin-right: 10px; object-fit: cover;">
+                        <img src="{{ 'data:image/png;base64,'.$base64Image }}" alt="Foto de Perfil" style="width: 46.7px; height: 60px; border-radius: 50%; margin-right: 10px; object-fit: cover;">
                     @endif
                     <div>
                         Bem-vindo, <b class="text-white">{{ auth()->user()->nome_usuario }}</b>
