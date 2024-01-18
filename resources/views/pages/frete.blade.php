@@ -953,26 +953,71 @@ const id_cliente = document.getElementById('id').value;
 
             data.forEach(produto => {
               const newRow = document.createElement("tr");
-              console.log(produto);
-              console.log(produto.id);
-              console.log(produto.nome_produto);
-              console.log(produto.valor_unitario);
-              newRow.innerHTML = `
-                <td hidden>${produto.id}</td>
-                <td>${produto.nome_produto}</td>
-                <td>${produto.valor_unitario}</td>
-                <td>${produto.peso_unitario}</td>
-                <td>${produto.quantidade}</td>
-                <td>${produto.prazo_individual}</td>
-                <td></td>
-                <td></td>
-                <td</td>
-                <td></td>
-                <td></td>
-                <td>
-                  <button class="btn btn-primary btn-carregar" onclick="carregarDados(this)">Carregar</button>
-                </td>
-              `;
+
+              const idCell = document.createElement("td");
+              idCell.hidden = true;
+              idCell.textContent = produto.id;
+              newRow.appendChild(idCell);
+
+              const nomeProdutoCell = document.createElement("td");
+              const nomeProdutoInput = document.createElement("input");
+              nomeProdutoInput.type = "text";
+              nomeProdutoInput.className = "form-control";
+              nomeProdutoInput.value = produto.nome_produto;
+              newRow.appendChild(nomeProdutoCell.appendChild(nomeProdutoInput));
+
+              const valorUnitarioCell = document.createElement("td");
+              const valorUnitarioInput = document.createElement("input");
+              valorUnitarioInput.type = "text";
+              valorUnitarioInput.className = "form-control";
+              valorUnitarioInput.value = produto.valor_unitario;
+              newRow.appendChild(valorUnitarioCell.appendChild(valorUnitarioInput));
+
+              const pesoCell = document.createElement("td");
+              const pesoInput = document.createElement("input");
+              pesoInput.type = "number";
+              pesoInput.className = "form-control";
+              pesoInput.value = produto.peso_unitario;
+              newRow.appendChild(pesoCell.appendChild(pesoInput));
+
+              const quantidadeCell = document.createElement("td");
+              const quantidadeInput = document.createElement("input");
+              quantidadeInput.type = "number";
+              quantidadeInput.className = "form-control";
+              quantidadeInput.value = produto.quantidade;
+              newRow.appendChild(quantidadeCell.appendChild(quantidadeInput));
+
+              const prazoCell = document.createElement("td");
+              const prazoInput = document.createElement("input");
+              prazoInput.type = "number";
+              prazoInput.className = "form-control prazo-confeccao";
+              prazoInput.value = produto.prazo_individual;
+              newRow.appendChild(prazoCell.appendChild(prazoInput));
+
+              const ilhoseCell = document.createElement("td");
+              const ilhoseCheckbox = document.createElement("input");
+              ilhoseCheckbox.type = "checkbox";
+              ilhoseCheckbox.className = "form-check-input";
+              ilhoseCell.appendChild(ilhoseCheckbox);
+              newRow.appendChild(ilhoseCell);
+
+              const mastroCell = document.createElement("td");
+              const mastroCheckbox = document.createElement("input");
+              mastroCheckbox.type = "checkbox";
+              mastroCheckbox.className = "form-check-input";
+              mastroCell.appendChild(mastroCheckbox);
+              newRow.appendChild(mastroCell);
+
+              const removerCell = document.createElement("td");
+              const removerButton = document.createElement("button");
+              removerButton.className = "btn btn-danger";
+              removerButton.textContent = "Remover";
+              removerButton.onclick = function () {
+                var tableRow = this.closest('tr');
+                tableRow.remove();
+              };
+              removerCell.appendChild(removerButton);
+              newRow.appendChild(removerCell);
 
               tabelaBody.appendChild(newRow);
             });
@@ -981,7 +1026,7 @@ const id_cliente = document.getElementById('id').value;
             document.getElementById("campoTexto").value = descricaoOrcamento;
             document.getElementById("cep").value = cepFrete;
             document.getElementById("endereco").value = enderecoFrete;
-            
+
           })
           .catch(error => {
             console.error('Erro ao obter os produtos do orçamento:', error);
@@ -991,6 +1036,7 @@ const id_cliente = document.getElementById('id').value;
         $('#calcularFrete').click();
         $('#orcamentosModal').modal('hide');
       }
+
       function criarPedido(idOrcamento) {
   // Redirecionar p<ara a URL com o ID do orçamento
         window.location.href = `/pedidoInterno/criar-pedido/${idOrcamento}`;
