@@ -16,6 +16,8 @@
     // var labels = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho",];
     // var data = [65, 59, 80, 81, 56, 55, 40];
     console.log(data);
+    console.log(dadosGrafico);
+
     var ctx = document.getElementById('myChart').getContext('2d');
     var myChart = new Chart(ctx, {
         type: 'line',
