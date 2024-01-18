@@ -13,14 +13,14 @@
     // Dados de exemplo
     // var labels = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho",];
     // var data = [65, 59, 80, 81, 56, 55, 40];
-
+    console.log(data);
     var ctx = document.getElementById('myChart').getContext('2d');
     var myChart = new Chart(ctx, {
         type: 'line',
         data: {
             labels: labels,
             datasets: [{
-                label: 'Exemplo de Vendas Mensais',
+                label: 'Vendas Mensais',
                 data: data,
                 backgroundColor: 'rgba(75, 192, 192, 0.2)',
                 borderColor: 'rgba(75, 192, 192, 1)',
