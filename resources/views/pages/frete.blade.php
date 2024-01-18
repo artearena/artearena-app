@@ -5,7 +5,7 @@
 @section('style')
 <style>
 
-  .container {
+    .container-app {
       max-width: 90%;
       display: flex;
       justify-content: space-between;
@@ -257,8 +257,7 @@
 @endsection
 
   @section('content')
-    <div class="app-container">
-      <div class="container">
+      <div class=".container-app">
 
             <div class="row">
             <h1>Gerar Orçamentos</h1>
@@ -381,7 +380,6 @@
             </div>
         </div>
     </div>
-  </div>
   <!-- Modal -->
   <div class="modal fade" id="modalPedidos" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
