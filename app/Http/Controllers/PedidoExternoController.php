@@ -12,7 +12,7 @@ class PedidoExternoController extends Controller
 {
     public function index(Request $request)
     {
-        $dataInicial = $request->input('dataInicial', date('Y-m-d'));
+        $dataInicial = $request->input('dataInicial', date('Y-m-01'));
         $dataFinal = $request->input('dataFinal', date('Y-m-d'));
         $situacoes = $request->input('situacao', ['Aprovado', 'Entregue', 'Cancelado', 'Não entregue', 'Dados incompletos', 'Enviado', 'Pronto para envio']);
 
