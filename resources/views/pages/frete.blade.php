@@ -268,7 +268,7 @@
                         </div>
                       </div>
                       <button type="button" class="btn btn-secondary" id="botaoLimparCampos">Novo Orçamento</button>
-
+                      <hr>
                       <div class="form-group">
                           <div class="container">
                               <div class="form-group">
@@ -333,7 +333,7 @@
                           <input type="text" class="form-control" id="endereco" name="endereco" readonly="" style="background-color: #f2f2f2;">
                       </div>
                   </form>
-                  <div class="col-md-6">
+                  <div class="col-md-auto">
                       <div id="transp-title">
                           <h3>Transportadoras:</h3>
                       </div>
