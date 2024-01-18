@@ -4,7 +4,15 @@
 @endsection
 @section('style')
 <style>
-
+  .container {
+      max-width: 100%;
+      display: flex;
+      justify-content: space-between;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave para o container */
+      padding: 20px; /* Adicione algum preenchimento interno */
+      border-radius: 8px; /* Bordas arredondadas para o container */
+      background-color: #fff; /* Cor de fundo do container */
+    }
     .btn-primary, .btn-secondary {
         transition: background-color 0.3s ease; /* Animação suave ao passar o mouse sobre botões */
         font-weight: bold;
