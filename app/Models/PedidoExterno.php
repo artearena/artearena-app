@@ -40,17 +40,18 @@ class PedidoExterno extends Model
     {
         $query = self::select('id_vendedor', 'nome_vendedor')
             ->selectRaw('YEAR(data_pedido) AS ano')
-            ->selectRaw('MONTHNAME(data_pedido) AS mes')
+            ->selectRaw("DATE_FORMAT(data_pedido, '%M') AS mes") // Use DATE_FORMAT para obter o nome do mês em português
             ->selectRaw('SUM(CASE WHEN situacao <> "Cancelado" THEN valor ELSE 0 END) AS soma_total_reais')
             ->whereBetween('data_pedido', [$dataInicial, $dataFinal])
             ->whereIn('situacao', $situacoes);
-
+    
         if ($idVendedor !== null) {
             $query->where('id_vendedor', $idVendedor);
         }
-
+    
         return $query->groupBy('id_vendedor', 'nome_vendedor', 'ano', 'mes')->get();
     }
+    
 
 
     
