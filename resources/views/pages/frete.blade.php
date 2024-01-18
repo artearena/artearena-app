@@ -39,7 +39,7 @@
         cursor: pointer;
     }
     .form-group {
-        margin-bottom: 10px;
+        margin-bottom: 5px;
     }
     #cep-form {
     display: flex;
