@@ -29,7 +29,7 @@
     }
     
     .top-margin{
-      margin-top: 3px;
+      margin-top: 6px;
     }
     .close {
         font-size: 24px; /* Tamanho do ícone de fechar */
