@@ -896,7 +896,7 @@ const id_cliente = document.getElementById('id').value;
                     <button class="btn btn-primary btn-carregar" onclick="carregarDados(this)">Carregar</button>
                     <button class="btn btn-success btn-criar-pedido" onclick="criarPedido(${orcamento.id})">Cria Pedido</button>
                   </td>
-                  <td>${orcamento.cep_frete}</td>
+                  <td style="display:none;">${orcamento.cep_frete}</td>
                 </tr>
               `;
             });
