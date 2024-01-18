@@ -313,9 +313,6 @@
                               <th>Confecção</th>
                               <th>Ilhose</th>
                               <th>Mastro</th>
-                              <th>Alt.</th>
-                              <th>Comp.</th>
-                              <th>Larg.</th>
                               <th>Ação</th>
                             </tr>
                           </thead>
