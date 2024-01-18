@@ -98,11 +98,6 @@
         height: auto;
         margin-bottom: 1em;
     }
-    .container {
-           max-width: 100%;
-           display: flex;
-           justify-content: space-between;
-    }
 
     .details-container h4 {
         margin-bottom: 10px;
