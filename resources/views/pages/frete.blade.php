@@ -293,10 +293,11 @@
                             </div>
                         </div>
                     </form>
+                    <hr>
                     <form id="produto-form" method="POST" action="">
                         @csrf
                         <div class="form-group">
-                            <div class="container-lg">
+                            <div class="container">
                                 <div class="form-group">
                                     <label for="produto">Produto:</label>
                                     <select class="form-control select2" id="produto" name="produto">
@@ -332,6 +333,7 @@
                           </table>
                         </div>
                     </form>
+                    <hr>
                     <form id="cep-form" method="POST" action="">
                         @csrf
                         <div class="form-group">
