@@ -4,44 +4,46 @@
 @endsection
 @section('style')
 <style>
-    body {
-        background-color: #f8f9fa;
-        color: #333;
-        font-family: 'Arial', sans-serif;
-    }
+  body {
+      background-color: #f8f9fa; /* Cor de fundo suave */
+      color: #333; /* Cor do texto principal */
+      font-family: 'Arial', sans-serif; /* Escolha uma fonte mais suave */
+  }
 
-    h1, h4 {
-        color: #007bff;
-    }
+  h1, h4 {
+      color: #007bff; /* Cor mais suave para títulos */
+  }
 
-    .form-group, .container, .card, .modal-content, .modal-body, .modal-title, .btn {
-        border-radius: 8px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        margin-bottom: 15px;
-    }
-
-    .form-control {
-        background-color: #f2f2f2;
-        border: 1px solid #ccc;
+  .form-group, .container, .card, .modal-content, .modal-body, .modal-title, .btn {
+        border-radius: 8px; /* Bordas arredondadas para elementos */
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra suave para elementos */
+  }
+  .form-control {
+        background-color: #f2f2f2; /* Cor de fundo suave para campos de entrada */
+        border: 1px solid #ccc; /* Bordas suaves para campos de entrada */
     }
 
     .table {
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave para tabelas */
+        border-radius: 8px; /* Bordas arredondadas para tabelas */
     }
 
     .btn-primary, .btn-secondary {
-        transition: background-color 0.3s ease;
+        transition: background-color 0.3s ease; /* Animação suave ao passar o mouse sobre botões */
         font-weight: bold;
     }
 
     .btn-primary:hover, .btn-secondary:hover {
-        background-color: #0056b3;
+        background-color: #0056b3; /* Cor mais escura ao passar o mouse sobre botões */
     }
 
+    
+
+    
+
     .close {
-        font-size: 24px;
-        color: #333;
+        font-size: 24px; /* Tamanho do ícone de fechar */
+        color: #333; /* Cor do ícone de fechar */
     }
 
     .close:hover,
@@ -50,157 +52,106 @@
         text-decoration: none;
         cursor: pointer;
     }
-
-    .close {
-        position: absolute;
-        top: 0;
-        right: 0;
-        padding: 0;
-        margin: 0;
-        font-size: 21px;
-        font-weight: bold;
-        line-height: 1;
-        text-align: center;
-        text-decoration: none;
-        color: #000;
-        background-color: transparent;
-        border: 0;
-    }
-
-    .close:hover,
-    .close:focus {
-        color: #000;
-        text-decoration: none;
-        cursor: pointer;
-    }
-
     .form-group {
         margin-bottom: 10px;
     }
-
     #cep-form {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     }
-
     #transp-title {
         display: flex;
         justify-content: center;
-    }
-
-    #calcularFrete {
-        width: 30%;
+      }
+    .form-group{
+        width: 100%;
         height: auto;
-        margin-top: 10px;
-        background-color: #007bff;
-        border-color: #007bff;
-        color: #fff;
-        font-weight: bold;
-        border-radius: 5px;
     }
-
+    #calcularFrete {
+    width: 30%;
+    height: auto;
+    margin-top: 10px;
+    }
     .cards-container {
         display: flex;
         flex-wrap: wrap;
-        gap: 15px;
     }
 
     .card {
         width: calc(25% - 20px);
         margin: 10px;
-        padding: 15px;
-        border: 1px solid #ddd;
-        border-radius: 8px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
     }
 
     .card.selected {
-        border-color: #007bff;
+        border-color: blue;
     }
-
     .modal-dialog {
-        margin: 5% auto;
-        min-width: 80vw;
+      margin: 5% auto;
+      min-width: 190vh;
     }
-
     .card img {
-        max-width: 100%;
+        max-width: 20%;
         height: auto;
         margin-bottom: 1em;
     }
-
     .container {
-        max-width: 100%;
-        display: flex;
-        justify-content: space-between;
+           max-width: 100%;
+           display: flex;
+           justify-content: space-between;
     }
 
     .details-container h4 {
-        margin-bottom: 15px;
-        color: #007bff;
+        margin-bottom: 10px;
     }
 
     #botaoCopiar {
         float: right;
-        margin-top: 10px;
+        margin-top: 5px;
         display: none;
-        background-color: #007bff;
-        border-color: #007bff;
-        color: #fff;
-        font-weight: bold;
-        border-radius: 5px;
     }
 
     #avisoCopiado {
         float: right;
-        margin-top: 15px;
-        color: #28a745;
-        font-weight: bold;
+        margin-top: 10px;
     }
 
     .col-md-6 {
         display: flex;
         flex-direction: column;
     }
-
     table {
         width: 100%;
         border-collapse: collapse;
     }
-
     th, td {
         padding: 8px;
         text-align: left;
         border-bottom: 1px solid #ddd;
     }
-
     th {
         background-color: #f2f2f2;
         font-weight: bold;
         text-align: center;
     }
-
     td {
         font-size: .9em;
     }
-
     tfoot td {
         font-weight: bold;
     }
-
     tbody tr:nth-child(even) {
         background-color: #f5f5f5;
     }
-
     tbody tr:hover {
         background-color: #ebebeb;
     }
-
-    #campoTexto {
+    #campoTexto{
         min-height: 300px;
     }
-
     .radio-container {
         display: flex;
         align-items: center;
@@ -210,113 +161,86 @@
     .radio-container label {
         margin-bottom: 0;
     }
-
     P {
-        margin-bottom: 0;
+      margin-bottom: 0;
     }
-
     .blue-text {
-        color: #4169e1;
+      color: #4169e1;
     }
-
     .center-icon {
-        display: block;
-        margin: 0 auto;
-        min-width: none;
-        min-height:
+      display: block;
+      margin: 0 auto;
+      min-width: none;
+      min-height:
     }
-
     .logo-container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 1005; /* Defina o tamanho desejado para a div */
-        height: 1005; /* Defina o tamanho desejado para a div */
-        margin: 0 auto; /* Centraliza a div horizontalmente */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 1005; /* Defina o tamanho desejado para a div */
+      height: 1005; /* Defina o tamanho desejado para a div */
+      margin: 0 auto; /* Centraliza a div horizontalmente */
     }
-
-    #descricaoCardTrello {
-        min-height: 350px;
+    #descricaoCardTrello{
+      min-height: 350px;
     }
-
     .table-responsive::-webkit-scrollbar {
-        width: 8px;
+      width: 8px;
     }
 
     .table-responsive::-webkit-scrollbar-track {
-        background-color: #f1f1f1;
+      background-color: #f1f1f1;
     }
 
     .table-responsive::-webkit-scrollbar-thumb {
-        background-color: #888;
-        border-radius: 4px;
+      background-color: #888;
+      border-radius: 4px;
     }
 
     .table-responsive::-webkit-scrollbar-thumb:hover {
-        background-color: #555;
+      background-color: #555;
     }
-
     .descricao-orcamento {
-        min-width: 400px;
+      min-width: 400px;
     }
 
     .modal-content {
-        width: 100%;
-        height: 100%;
-        padding: 20px;
+      width: 100%;
+      height: 100%;
+      padding: 20px;
     }
 
     .modal-body {
-        height: 400px;
+      height: 400px;
     }
 
     .modal-title {
-        font-size: 24px;
-        font-weight: bold;
-        margin-bottom: 20px;
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 20px;
     }
 
     .form-group {
-        margin-bottom: 20px;
+      margin-bottom: 20px;
     }
 
     label {
-        font-weight: bold;
+      font-weight: bold;
     }
 
     textarea {
-        height: 150px;
+      height: 150px;
     }
-
-    .btn-primary {
-        background-color: #007bff;
-        border-color: #007bff;
-        color: #fff;
+    .btn-primary, .btn-secondary {
+        transition: background-color 0.3s ease; /* Animação suave ao passar o mouse sobre botões */
         font-weight: bold;
-        padding: 15px 25px;
-        border-radius: 5px;
     }
 
-    .btn-primary:hover {
-        background-color: #0069d9;
-        border-color: #0062cc;
+    .btn-primary:hover, .btn-secondary:hover {
+        background-color: #0056b3; /* Cor mais escura ao passar o mouse sobre botões */
     }
 
-    .btn-secondary {
-        background-color: #6c757d;
-        border-color: #6c757d;
-        color: #fff;
-        font-weight: bold;
-        padding: 15px 25px;
-        border-radius: 5px;
-    }
-
-    .btn-secondary:hover {
-        background-color: #5a6268;
-        border-color: #545b62;
-    }
 </style>
-
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.css">
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
