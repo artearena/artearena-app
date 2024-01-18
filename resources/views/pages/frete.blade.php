@@ -4,29 +4,6 @@
 @endsection
 @section('style')
 <style>
-  body {
-      background-color: #f8f9fa; /* Cor de fundo suave */
-      color: #333; /* Cor do texto principal */
-      font-family: 'Arial', sans-serif; /* Escolha uma fonte mais suave */
-  }
-
-  h1, h4 {
-      color: #007bff; /* Cor mais suave para títulos */
-  }
-
-  .form-group, .container, .card, .modal-content, .modal-body, .modal-title, .btn {
-        border-radius: 8px; /* Bordas arredondadas para elementos */
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra suave para elementos */
-  }
-  .form-control {
-        background-color: #f2f2f2; /* Cor de fundo suave para campos de entrada */
-        border: 1px solid #ccc; /* Bordas suaves para campos de entrada */
-    }
-
-    .table {
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave para tabelas */
-        border-radius: 8px; /* Bordas arredondadas para tabelas */
-    }
 
     .btn-primary, .btn-secondary {
         transition: background-color 0.3s ease; /* Animação suave ao passar o mouse sobre botões */
