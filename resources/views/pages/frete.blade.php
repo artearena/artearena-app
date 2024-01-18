@@ -939,8 +939,8 @@ const id_cliente = document.getElementById('id').value;
       function carregarDados(button) {
           const row = button.closest("tr");
           const descricaoOrcamento = row.querySelector(".descricao-orcamento").textContent;
-          const cepFrete = row.cells[2].textContent;
-          const enderecoFrete = row.cells[3].textContent;
+          const cepFrete = row.cells[1].textContent;
+          const enderecoFrete = row.cells[2].textContent;
 
           // Obter os produtos relacionados ao orçamento
           const orcamentoId = row.querySelector("td:first-child").textContent;
