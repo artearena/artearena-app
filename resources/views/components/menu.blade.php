@@ -6,9 +6,9 @@
                 <img src="../../images/logo.png" alt="" class="logo-img" style="width: 15vh; margin-right: 10px;">
             </a>
         @endif
-            @if(request()->path() == 'cadastro' && request()->path() == 'acessonegado' && request()->path() == 'sucessocadastro')
-                <img src="../../images/logo.png" alt="" class="logo-img" style="width: 15vh; margin-right: 10px;">
-            @endif
+        @if(!in_array(request()->path(), ['cadastro', 'acessonegado', 'sucessocadastro']))
+            <img src="../../images/logo.png" alt="" class="logo-img" style="width: 15vh; margin-right: 10px;">
+        @endif
         @else
             <a class="navbar-brand" href="{{ route('home') }}">
                 <img src="../../images/logo.png" alt="" class="logo-img" style="width: 15vh; margin-right: 10px;">
