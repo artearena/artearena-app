@@ -4,6 +4,15 @@
 @endsection
 @section('style')
 <style>
+  body {
+      background-color: #f8f9fa; /* Cor de fundo suave */
+      color: #333; /* Cor do texto principal */
+      font-family: 'Arial', sans-serif; /* Escolha uma fonte mais suave */
+  }
+
+  h1, h4 {
+      color: #007bff; /* Cor mais suave para títulos */
+  }
   .close {
     position: absolute;
     top: 0;
