@@ -5,7 +5,7 @@
 @section('style')
 <style>
 
-    .container-app {
+    .app-container {
       max-width: 90%;
       display: flex;
       justify-content: space-between;
@@ -257,7 +257,8 @@
 @endsection
 
   @section('content')
-      <div class=".container-app">
+    <div class="app-container">
+      <div class="container">
 
             <div class="row">
             <h1>Gerar Orçamentos</h1>
@@ -279,7 +280,7 @@
                         <button type="button" class="btn btn-secondary" id="botaoLimparCampos">Novo Orçamento</button>
                         <hr>
                         <div class="form-group">
-                            <div class=".container-app">
+                            <div class="container">
                                 <div class="form-group">
                                     <label for="id">ID Cliente:</label>
                                     <div class="input-group">
@@ -380,6 +381,7 @@
             </div>
         </div>
     </div>
+  </div>
   <!-- Modal -->
   <div class="modal fade" id="modalPedidos" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
