@@ -5,7 +5,7 @@
 @section('style')
 <style>
 
-    .app-container {
+    .container-lg {
       max-width: 90%;
       display: flex;
       justify-content: space-between;
