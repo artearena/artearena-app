@@ -38,23 +38,26 @@ class PedidoExterno extends Model
     }
     
     public static function obterSomaTotalPorVendedorEData($dataInicial, $dataFinal, $situacoes, $idVendedor = null)
-    {
-        $query = self::select('id_vendedor', 'nome_vendedor')
-            ->selectRaw('YEAR(data_pedido) AS ano')
-            ->selectRaw('MONTHNAME(data_pedido) AS mes')
-            ->selectRaw('SUM(CASE WHEN situacao <> "Cancelado" THEN valor ELSE 0 END) AS soma_total_reais')
-            ->whereBetween('data_pedido', [$dataInicial, $dataFinal])
-            ->whereIn('situacao', $situacoes);
-    
-        if ($idVendedor !== null) {
-            $query->where('id_vendedor', $idVendedor);
-        }
-    
-        // Força o idioma em português
-        $query->selectRaw('SET lc_time_names = "pt_BR", 1')->addSelect(DB::raw('1'));
-    
-        return $query->groupBy('id_vendedor', 'nome_vendedor', 'ano', 'mes')->get();
+{
+    // Configuração da localização fora da consulta principal
+    DB::statement('SET lc_time_names = "pt_BR"');
+
+    // Consulta principal
+    $query = self::select('id_vendedor', 'nome_vendedor')
+        ->selectRaw('YEAR(data_pedido) AS ano')
+        ->selectRaw('MONTHNAME(data_pedido) AS mes')
+        ->selectRaw('SUM(CASE WHEN situacao <> "Cancelado" THEN valor ELSE 0 END) AS soma_total_reais')
+        ->whereBetween('data_pedido', [$dataInicial, $dataFinal])
+        ->whereIn('situacao', $situacoes);
+
+    if ($idVendedor !== null) {
+        $query->where('id_vendedor', $idVendedor);
     }
+
+    // Executa a consulta
+    return $query->groupBy('id_vendedor', 'nome_vendedor', 'ano', 'mes')->get();
+}
+
     
 
 
