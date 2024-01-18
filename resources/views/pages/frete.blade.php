@@ -164,11 +164,13 @@
     .table {
       width: 100%;
       max-width: 100%;
-      font-size: 8px; /* Tamanho da fonte reduzido */
+      font-size: 14px; /* Ajusta o tamanho da fonte */
     }
 
-    .table th, .table td {
-      padding: 4px; /* Reduz o espaçamento interno das células */
+    .table th,
+    .table td {
+      padding: 4px 8px; /* Ajusta o espaçamento interno das células */
+      text-align: center; /* Centraliza o texto nas células */
     }
 
     .table-responsive::-webkit-scrollbar {
