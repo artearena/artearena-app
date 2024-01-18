@@ -6,7 +6,7 @@
 <style>
 
   .container {
-      max-width: 80%;
+      max-width: 90%;
       display: flex;
       justify-content: space-between;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave para o container */
