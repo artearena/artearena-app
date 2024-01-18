@@ -75,18 +75,23 @@
             @endguest
             <span class="navbar-text" style="margin-right: 40px;">
             @guest
-            @if(request()->path() !== 'cadastro' && request()->path() !== 'acessonegado' && request()->path() !== 'sucessocadastro')
-                    <a href="{{ route('login_page') }}">Login</a>
+                @if(request()->path() !== 'cadastro' && request()->path() !== 'acessonegado' && request()->path() !== 'sucessocadastro')
+                        <a href="{{ route('login_page') }}">Login</a>
+                    @endif
+                @else
+                <div style="display: flex; align-items: center; margin-right: 20px;">
+                @if(auth()->user()->foto_perfil)
+                    <img src="{{ 'data:image/png;base64,'.auth()->user()->foto_perfil }}" alt="Foto de Perfil" style="width: 30px; height: 30px; border-radius: 50%; margin-right: 10px;">
                 @endif
-            @else
-                    <div>
-                        Bem-vindo, <b class="text-white">{{ auth()->user()->nome_usuario }}</b>
-                        <br>
-                        <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                            @csrf
-                        </form>
-                    </div>
+                <div>
+                    Bem-vindo, <b class="text-white">{{ auth()->user()->nome_usuario }}</b>
+                    <br>
+                    <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
+                </div>
+            </div>
                 @endguest
             </span>
         </div>
