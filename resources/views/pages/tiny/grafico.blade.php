@@ -24,7 +24,7 @@
         data: {
             labels: labels,
             datasets: [{
-                label: 'Vendas Mensais',
+                label: 'Suas Vendas Mensais',
                 data: data,
                 backgroundColor: 'rgba(75, 192, 192, 0.2)',
                 borderColor: 'rgba(75, 192, 192, 1)',
