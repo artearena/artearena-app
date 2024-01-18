@@ -333,7 +333,7 @@
                           <input type="text" class="form-control" id="endereco" name="endereco" readonly="" style="background-color: #f2f2f2;">
                       </div>
                   </form>
-                  <div class="col-sm-8">
+                  <div class="col-md-6">
                       <div id="transp-title">
                           <h3>Transportadoras:</h3>
                       </div>
