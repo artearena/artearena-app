@@ -209,7 +209,7 @@
 
     .descricao-orcamento {
       min-width: 100px;
-      max-width: 250px;
+      max-width: 400px;
 
     }
 
