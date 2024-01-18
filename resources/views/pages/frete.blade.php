@@ -4,128 +4,162 @@
 @endsection
 @section('style')
 <style>
-  .close {
-    position: absolute;
-    top: 0;
-    right: 0;
-    padding: 0;
-    margin: 0;
-    font-size: 21px;
-    font-weight: bold;
-    line-height: 1;
-    text-align: center;
-    text-decoration: none;
-    color: #000;
-    background-color: transparent;
-    border: 0;
-  }
+    body {
+        background-color: #f8f9fa;
+        color: #333;
+        font-family: 'Arial', sans-serif;
+    }
 
-  .close:hover,
-  .close:focus {
-    color: #000;
-    text-decoration: none;
-    cursor: pointer;
-  }
-    .form-group {
-        margin-bottom: 10px;
+    h1, h4 {
+        color: #007bff;
     }
-    #cep-form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+
+    .form-group, .container, .card, .modal-content, .modal-body, .modal-title, .btn {
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        margin-bottom: 15px;
     }
-    #transp-title {
-        display: flex;
-        justify-content: center;
-      }
-    .form-group{
-        width: 100%;
-        height: auto;
+
+    .form-control {
+        background-color: #f2f2f2;
+        border: 1px solid #ccc;
     }
+
+    .table {
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+    }
+
+    .btn-primary, .btn-secondary {
+        transition: background-color 0.3s ease;
+        font-weight: bold;
+    }
+
+    .btn-primary:hover, .btn-secondary:hover {
+        background-color: #0056b3;
+    }
+
+    .close {
+        font-size: 24px;
+        font-weight: bold;
+        color: #000;
+    }
+
+    .close:hover,
+    .close:focus {
+        color: #000;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    /* Adicionando algumas modificações para elementos específicos */
+
     #calcularFrete {
-    width: 30%;
-    height: auto;
-    margin-top: 10px;
+        width: 30%;
+        height: auto;
+        margin-top: 10px;
+        background-color: #007bff;
+        border-color: #007bff;
+        color: #fff;
+        font-weight: bold;
+        border-radius: 5px;
     }
+
     .cards-container {
         display: flex;
         flex-wrap: wrap;
+        gap: 15px;
     }
 
     .card {
         width: calc(25% - 20px);
         margin: 10px;
-        padding: 10px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
+        padding: 15px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
 
     .card.selected {
-        border-color: blue;
+        border-color: #007bff;
     }
+
     .modal-dialog {
-      margin: 5% auto;
-      min-width: 190vh;
+        margin: 5% auto;
+        min-width: 80vw;
     }
+
     .card img {
-        max-width: 20%;
+        max-width: 100%;
         height: auto;
         margin-bottom: 1em;
     }
-    .container {
-           max-width: 100%;
-           display: flex;
-           justify-content: space-between;
-    }
 
     .details-container h4 {
-        margin-bottom: 10px;
+        margin-bottom: 15px;
+        color: #007bff;
     }
 
     #botaoCopiar {
         float: right;
-        margin-top: 5px;
+        margin-top: 10px;
         display: none;
+        background-color: #007bff;
+        border-color: #007bff;
+        color: #fff;
+        font-weight: bold;
+        border-radius: 5px;
     }
 
     #avisoCopiado {
         float: right;
-        margin-top: 10px;
+        margin-top: 15px;
+        color: #28a745;
+        font-weight: bold;
     }
 
     .col-md-6 {
         display: flex;
         flex-direction: column;
     }
+
     table {
         width: 100%;
         border-collapse: collapse;
     }
+
     th, td {
-        padding: 8px;
+        padding: 12px;
         text-align: left;
         border-bottom: 1px solid #ddd;
     }
+
     th {
         background-color: #f2f2f2;
         font-weight: bold;
         text-align: center;
     }
+
     td {
-        font-size: .9em;
+        font-size: 1em;
     }
+
     tfoot td {
         font-weight: bold;
     }
+
     tbody tr:nth-child(even) {
         background-color: #f5f5f5;
     }
+
     tbody tr:hover {
         background-color: #ebebeb;
     }
-    #campoTexto{
+
+    #campoTexto {
         min-height: 300px;
     }
+
     .radio-container {
         display: flex;
         align-items: center;
@@ -135,117 +169,118 @@
     .radio-container label {
         margin-bottom: 0;
     }
-    P {
-      margin-bottom: 0;
+
+    p {
+        margin-bottom: 0;
     }
+
     .blue-text {
-      color: #4169e1;
+        color: #4169e1;
     }
+
     .center-icon {
-      display: block;
-      margin: 0 auto;
-      min-width: none;
-      min-height:
+        display: block;
+        margin: 0 auto;
+        min-width: none;
+        min-height: auto;
     }
+
     .logo-container {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 1005; /* Defina o tamanho desejado para a div */
-      height: 1005; /* Defina o tamanho desejado para a div */
-      margin: 0 auto; /* Centraliza a div horizontalmente */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 1005px;
+        height: 1005px;
+        margin: 0 auto;
     }
-    #descricaoCardTrello{
-      min-height: 350px;
+
+    #descricaoCardTrello {
+        min-height: 350px;
     }
+
     .table-responsive::-webkit-scrollbar {
-      width: 8px;
+        width: 8px;
     }
 
     .table-responsive::-webkit-scrollbar-track {
-      background-color: #f1f1f1;
+        background-color: #f1f1f1;
     }
 
     .table-responsive::-webkit-scrollbar-thumb {
-      background-color: #888;
-      border-radius: 4px;
+        background-color: #888;
+        border-radius: 4px;
     }
 
     .table-responsive::-webkit-scrollbar-thumb:hover {
-      background-color: #555;
+        background-color: #555;
     }
+
     .descricao-orcamento {
-      min-width: 400px;
+        min-width: 400px;
     }
 
     .modal-content {
-      width: 100%;
-      height: 100%;
-      padding: 20px;
+        width: 100%;
+        height: 100%;
+        padding: 20px;
     }
 
     .modal-body {
-      height: 400px;
+        height: 400px;
     }
 
     .modal-title {
-      font-size: 24px;
-      font-weight: bold;
-      margin-bottom: 20px;
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: 20px;
+        color: #007bff;
     }
 
     .form-group {
-      margin-bottom: 20px;
+        margin-bottom: 20px;
     }
 
     label {
-      font-weight: bold;
+        font-weight: bold;
+        color: #333;
     }
 
     textarea {
-      height: 150px;
+        height: 150px;
+        border: 1px solid #ccc;
+        background-color: #f2f2f2;
     }
+
     .btn-primary {
-      background-color: #007bff;
-      border-color: #007bff;
-      color: #fff;
-      font-weight: bold;
-      padding: 10px 20px;
-      border-radius: 5px;
+        background-color: #007bff;
+        border-color: #007bff;
+        color: #fff;
+        font-weight: bold;
+        padding: 15px 25px;
+        border-radius: 5px;
     }
 
     .btn-primary:hover {
-      background-color: #0069d9;
-      border-color: #0062cc;
+        background-color: #0069d9;
+        border-color: #0062cc;
     }
 
     .btn-secondary {
-      background-color: #6c757d;
-      border-color: #6c757d;
-      color: #fff;
-      font-weight: bold;
-      padding: 10px 20px;
-      border-radius: 5px;
+        background-color: #6c757d;
+        border-color: #6c757d;
+        color: #fff;
+        font-weight: bold;
+        padding: 15px 25px;
+        border-radius: 5px;
     }
 
     .btn-secondary:hover {
-      background-color: #5a6268;
-      border-color: #545b62;
+        background-color: #5a6268;
+        border-color: #545b62;
     }
 
-    .close {
-      font-size: 28px;
-      font-weight: bold;
-      color: #000;
-    }
-
-    .close:hover,
-    .close:focus {
-      color: #000;
-      text-decoration: none;
-      cursor: pointer;
-    }
 </style>
+
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.css">
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
