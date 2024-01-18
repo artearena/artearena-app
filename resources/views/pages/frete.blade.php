@@ -254,7 +254,7 @@
 @endsection
 
   @section('content')
-  <div class="container col-6">
+  <div class=".container-xxl">
 
           <div class="row">
           <h1>Gerar Orçamentos</h1>
