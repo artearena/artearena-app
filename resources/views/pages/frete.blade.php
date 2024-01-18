@@ -157,13 +157,13 @@
       min-height: 350px;
     }
     .table-responsive {
-      max-width: 30%; /* Defina a largura máxima desejada para a tabela responsiva */
+      max-width: 80%; /* Defina a largura máxima desejada para a tabela responsiva */
       margin: auto; /* Centraliza a tabela horizontalmente */
       overflow-x: auto; /* Adiciona rolagem horizontal caso a tabela seja muito larga */
     }
 
     .table {
-      width: 100%; /* Faz a tabela ocupar 100% da largura da tabela responsiva */
+      width: 50%; /* Faz a tabela ocupar 100% da largura da tabela responsiva */
       max-width: 100%; /* Define uma largura máxima para a tabela */
     }
     .table-responsive::-webkit-scrollbar {
