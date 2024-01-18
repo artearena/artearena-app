@@ -8,7 +8,7 @@
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
-    var labels = @json($labels);
+    var labels = @json($meses);
     //var data = @json($data);
     // Dados de exemplo
     var labels = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho",];
