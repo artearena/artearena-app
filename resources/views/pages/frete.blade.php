@@ -13,6 +13,7 @@
   h1, h4 {
       color: #007bff; /* Cor mais suave para títulos */
   }
+  
   .form-group, .container, .card, .modal-content, .modal-body, .modal-title, .btn {
         border-radius: 8px; /* Bordas arredondadas para elementos */
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra suave para elementos */
