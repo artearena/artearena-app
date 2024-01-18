@@ -29,13 +29,16 @@ class PedidoExternoController extends Controller
         $data = [];
 
         foreach ($meses as $mes) {
+            // Inicializar o valor para o mês como 0
+            $data[$mes] = 0;
+    
             // Verificar se o mês está nos dados retornados da query
-            if (isset($dadosGrafico[$mes])) {
-                // Preencher com o valor correspondente
-                $data[$mes] = $dadosGrafico[$mes];
-            } else {
-                // Tratar os meses não retornados como 0
-                $data[$mes] = 0;
+            foreach ($dadosGrafico as $item) {
+                $mesPedido = \Carbon\Carbon::parse($item->data_pedido)->format('F');
+                if ($mes === $mesPedido) {
+                    // Preencher com o valor correspondente
+                    $data[$mes] += str_replace(',', '', $item->soma_total_reais);
+                }
             }
         }
 
