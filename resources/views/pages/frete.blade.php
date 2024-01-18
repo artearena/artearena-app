@@ -267,6 +267,8 @@
                             </div>
                         </div>
                       </div>
+                      <button type="button" class="btn btn-secondary" id="botaoLimparCampos">Novo Orçamento</button>
+
                       <div class="form-group">
                           <div class="container">
                               <div class="form-group">
@@ -346,7 +348,6 @@
                           <div class="details-container">
                               <textarea class="form-control" id="campoTexto" rows="5"></textarea>
                               <button type="button" class="btn btn-primary" id="botaoOrcamento">Salvar/Enviar Orçamento</button>                
-                              <button type="button" class="btn btn-secondary" id="botaoLimparCampos">Novo Orçamento</button>
                               <button type="button" class="btn btn-primary" id="botaoCopiar">Copiar</button>
                               <p class="text-success" id="avisoCopiado" style="display: none;">Copiado com sucesso!</p>
                           </div>
