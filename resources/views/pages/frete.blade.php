@@ -23,9 +23,10 @@
         background-color: #0056b3; /* Cor mais escura ao passar o mouse sobre botões */
     }
 
-    
-
-    
+    .col-sm-8 {
+      border-right: 2px solid #ccc; /* Adiciona uma linha separadora de 2px à direita */
+      padding-right: 15px; /* Espaçamento interno à direita da linha */
+    }
 
     .close {
         font-size: 24px; /* Tamanho do ícone de fechar */
