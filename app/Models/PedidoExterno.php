@@ -51,7 +51,7 @@ class PedidoExterno extends Model
         }
     
         // Força o idioma em português
-        $query->selectRaw('SET lc_time_names = "pt_BR"')->addSelect(DB::raw('1'));
+        $query->selectRaw('SET lc_time_names = "pt_BR", 1')->addSelect(DB::raw('1'));
     
         return $query->groupBy('id_vendedor', 'nome_vendedor', 'ano', 'mes')->get();
     }
