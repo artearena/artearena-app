@@ -52,12 +52,6 @@ class PedidoExternoController extends Controller
     }
 
 
-
-
-
-
-
-
     public function show($id)
     {
         $pedido = PedidoExterno::find($id);
