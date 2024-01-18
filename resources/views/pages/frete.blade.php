@@ -5,7 +5,7 @@
 @section('style')
 <style>3
   .app-container {
-      max-width: 100%;
+      max-width: 80%;
       display: flex;
       justify-content: space-between;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave para o container */
@@ -15,7 +15,7 @@
       margin: 30px;
   }
   .container {
-      max-width: 100%;
+      max-width: 80%;
       display: flex;
       justify-content: space-between;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave para o container */
