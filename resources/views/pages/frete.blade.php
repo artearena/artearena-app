@@ -157,14 +157,15 @@
       min-height: 350px;
     }
     .table-responsive {
-      width: 80%; /* Defina a largura máxima desejada para a tabela responsiva */
-      margin: auto; /* Centraliza a tabela horizontalmente */
+      width: 80%;
+      margin: auto;
     }
 
     .table {
-      width: 100%; /* Faz a tabela ocupar 100% da largura da tabela responsiva */
-      max-width: 100%; /* Define uma largura máxima para a tabela */
+      width: 100%;
+      max-width: 100%;
     }
+
     .table-responsive::-webkit-scrollbar {
       width: 8px;
     }
@@ -181,6 +182,7 @@
     .table-responsive::-webkit-scrollbar-thumb:hover {
       background-color: #555;
     }
+
     .descricao-orcamento {
       min-width: 400px;
     }
