@@ -879,7 +879,7 @@ const id_cliente = document.getElementById('id').value;
               tabelaHtml += `
                 <tr>
                   <td style="display: none;">${orcamento.id}</td>
-                  <td class="descricao-orcamento">${orcamento.detalhes_orcamento}...</td>
+                  <td class="descricao-orcamento">${orcamento.detalhes_orcamento}</td>
                   <td>${orcamento.endereco_frete}</td>
                   <td>${orcamento.nome_transportadora}</td>
                   <td>${orcamento.valor_frete}</td>
