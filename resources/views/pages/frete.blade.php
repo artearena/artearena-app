@@ -12,6 +12,7 @@
       padding: 20px; /* Adicione algum preenchimento interno */
       border-radius: 8px; /* Bordas arredondadas para o container */
       background-color: #fff; /* Cor de fundo do container */
+      margin: 30px;
   }
   .container {
       max-width: 100%;
