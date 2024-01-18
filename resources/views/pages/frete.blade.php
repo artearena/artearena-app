@@ -157,7 +157,7 @@
       min-height: 350px;
     }
     .table-responsive {
-      max-width: 80%; /* Defina a largura máxima desejada para a tabela responsiva */
+      max-width: 30%; /* Defina a largura máxima desejada para a tabela responsiva */
       margin: auto; /* Centraliza a tabela horizontalmente */
       overflow-x: auto; /* Adiciona rolagem horizontal caso a tabela seja muito larga */
     }
