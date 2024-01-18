@@ -266,7 +266,7 @@
             <hr>
                 <div class="col-sm-8">
                     <form id="opt-octa-form" method="POST" action="">
-                        <div class="form-group">
+                      <div class="form-group d-flex justify-content-between">
                           <div class="radio-container">
                               <div class="custom-control custom-radio">
                                   <input type="radio" id="gerarRascunho" name="tipoDocumento" class="custom-control-input" onclick="desmarcarOrcamento()">
@@ -277,8 +277,8 @@
                                   <label class="custom-control-label" for="gerarOrcamento">Gerar Orçamento</label>
                               </div>
                           </div>
-                        </div>
-                        <button type="button" class="btn btn-secondary" id="botaoLimparCampos">Novo Orçamento</button>
+                          <button type="button" class="btn btn-secondary" id="botaoLimparCampos">Novo Orçamento</button>
+                      </div>
                         <hr>
                         <div class="form-group">
                             <div class="container-lg">
