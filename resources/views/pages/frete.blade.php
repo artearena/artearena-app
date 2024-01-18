@@ -872,6 +872,7 @@ const id_cliente = document.getElementById('id').value;
                     <th>Data Prevista</th>
                     <th>Logo Frete</th>
                     <th>Ação</th>
+                    <th style="display: none;">cep</th>                  
                   </tr>
                 </thead>
                 <tbody>
@@ -895,6 +896,7 @@ const id_cliente = document.getElementById('id').value;
                     <button class="btn btn-primary btn-carregar" onclick="carregarDados(this)">Carregar</button>
                     <button class="btn btn-success btn-criar-pedido" onclick="criarPedido(${orcamento.id})">Cria Pedido</button>
                   </td>
+                  <td>${orcamento.cep_frete}</td>
                 </tr>
               `;
             });
@@ -942,7 +944,7 @@ const id_cliente = document.getElementById('id').value;
       function carregarDados(button) {
           const row = button.closest("tr");
           const descricaoOrcamento = row.querySelector(".descricao-orcamento").textContent;
-          const cepFrete = "";
+          const cepFrete = row.cells[9].textContent;
           const enderecoFrete = row.cells[2].textContent;
 
           // Obter os produtos relacionados ao orçamento
