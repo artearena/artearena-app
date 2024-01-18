@@ -361,7 +361,7 @@
                             <div class="details-container">
                                 <textarea class="form-control" id="campoTexto" rows="5"></textarea>
                                 <div class="text-center">
-                                  <button type="button" class="btn btn-primary" id="botaoOrcamento">Salvar/Enviar Orçamento</button>                
+                                  <button type="button" class="btn btn-primary top-margin" id="botaoOrcamento">Salvar/Enviar Orçamento</button>                
                                 </div>
                                 <button type="button" class="btn btn-primary" id="botaoCopiar">Copiar</button>
                                 <p class="text-success" id="avisoCopiado" style="display: none;">Copiado com sucesso!</p>
