@@ -253,171 +253,171 @@
 
 @endsection
 
-@section('content')
-<div class="container">
+  @section('content')
+  <div class="container col-6 col-md-4">
 
-        <div class="row">
-        <h1>Gerar Orçamentos</h1>
-        <hr>
-            <div class="col-md-6">
-                <form id="opt-octa-form" method="POST" action="">
-                    <div class="form-group">
-                      <div class="radio-container">
-                          <div class="custom-control custom-radio">
-                              <input type="radio" id="gerarRascunho" name="tipoDocumento" class="custom-control-input" onclick="desmarcarOrcamento()">
-                              <label class="custom-control-label" for="gerarRascunho">Gerar Rascunho</label>
-                          </div>
-                          <div class="custom-control custom-radio">
-                              <input type="radio" id="gerarOrcamento" name="tipoDocumento" class="custom-control-input" onclick="desmarcarRascunho()" checked>
-                              <label class="custom-control-label" for="gerarOrcamento">Gerar Orçamento</label>
+          <div class="row">
+          <h1>Gerar Orçamentos</h1>
+          <hr>
+              <div class="col-md-6">
+                  <form id="opt-octa-form" method="POST" action="">
+                      <div class="form-group">
+                        <div class="radio-container">
+                            <div class="custom-control custom-radio">
+                                <input type="radio" id="gerarRascunho" name="tipoDocumento" class="custom-control-input" onclick="desmarcarOrcamento()">
+                                <label class="custom-control-label" for="gerarRascunho">Gerar Rascunho</label>
+                            </div>
+                            <div class="custom-control custom-radio">
+                                <input type="radio" id="gerarOrcamento" name="tipoDocumento" class="custom-control-input" onclick="desmarcarRascunho()" checked>
+                                <label class="custom-control-label" for="gerarOrcamento">Gerar Orçamento</label>
+                            </div>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                          <div class="container">
+                              <div class="form-group">
+                                  <label for="id">ID Cliente:</label>
+                                  <div class="input-group">
+                                      <input type="text" id="id" class="form-control"></input>
+                                      <div class="input-group-append">
+                                          <button id="buscar_orcamento" class="btn btn-primary" type="button">Buscar Orçamentos</button>
+                                      </div>
+                                  </div>
+                              </div>
                           </div>
                       </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="container">
-                            <div class="form-group">
-                                <label for="id">ID Cliente:</label>
-                                <div class="input-group">
-                                    <input type="text" id="id" class="form-control"></input>
-                                    <div class="input-group-append">
-                                        <button id="buscar_orcamento" class="btn btn-primary" type="button">Buscar Orçamentos</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </form>
-                <form id="produto-form" method="POST" action="">
-                    @csrf
-                    <div class="form-group">
-                        <div class="container">
-                            <div class="form-group">
-                                <label for="produto">Produto:</label>
-                                <select class="form-control select2" id="produto" name="produto">
-                                    <option value="">Selecione um produto</option>
-                                    <option value="personalizado">Produto Personalizado</option>
-                                    @foreach ($produtos->sortBy('NOME')->sortBy(function($produto) {
-                                    return strpos($produto->NOME, 'Bandeira Personalizada') !== false ? 0 : 1;
-                                    }) as $produto)
-                                    @if ($produto->NOME !== 'Bandeira Personalizada')
-                                    <option value="{{ $produto->id }}">{{ $produto->NOME }}</option>
-                                    @endif
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="table-responsive">
-                      <table class="table">
-                        <thead>
-                          <tr>
-                            <th hidden>ID</th>
-                            <th>Produto</th>
-                            <th>R$</th>
-                            <th>Kg</th>
-                            <th>Qtd</th>
-                            <th>Confecção</th>
-                            <th>Ilhose</th>
-                            <th>Mastro</th>
-                            <th>Alt.</th>
-                            <th>Comp.</th>
-                            <th>Larg.</th>
-                            <th>Ação</th>
-                          </tr>
-                        </thead>
-                        <tbody id="produtoTableBody"></tbody>
-                      </table>
-                    </div>
-                </form>
-                <form id="cep-form" method="POST" action="">
-                    @csrf
-                    <div class="form-group">
-                        <label for="cep">CEP:</label>
-                        <input type="text" class="form-control" id="cep" name="cep" placeholder="CEP">
-                    </div>
-                    <div class="form-group">
-                        <label for="endereco">Endereço:</label>
-                        <input type="text" class="form-control" id="endereco" name="endereco" readonly="" style="background-color: #f2f2f2;">
-                    </div>
-                </form>
-                <div class="col-md-12">
-                    <div id="transp-title">
-                        <h3>Transportadoras:</h3>
-                    </div>
-                    <div class="cards-container" id="cardsContainer"></div>
-                </div>
-                <button type="button" class="btn btn-primary" id="calcularFrete">Calcular</button>
-            </div>
-            <div class="col-md-4">
-                <div class="row">
-                    <div class="col-sm-12">
-                        <h4>Detalhes do orçamento:</h4>
-                        <div class="details-container">
-                            <textarea class="form-control" id="campoTexto" rows="5"></textarea>
-                            <button type="button" class="btn btn-primary" id="botaoOrcamento">Salvar/Enviar Orçamento</button>                
-                            <button type="button" class="btn btn-secondary" id="botaoLimparCampos">Novo Orçamento</button>
-                            <button type="button" class="btn btn-primary" id="botaoCopiar">Copiar</button>
-                            <p class="text-success" id="avisoCopiado" style="display: none;">Copiado com sucesso!</p>
-                        </div>
-                    </div>
-                    <div class="col-sm-12">
-                        <div class="details-container2">
-                            <h4>Detalhes do card</h4>
-                            <div class="form-group">
-                                <label for="tituloCardTrello">Título:</label>
-                                <input type="text" class="form-control" id="tituloCardTrello">
-                            </div>
-                            <div class="form-group">
-                                <label for="descricaoCardTrello">Descrição:</label>
-                                <textarea class="form-control" id="descricaoCardTrello" rows="5"></textarea>
-                            </div>
-                            <button type="button" class="btn btn-primary" id="botaoCardTrello">Gerar Card</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+                  </form>
+                  <form id="produto-form" method="POST" action="">
+                      @csrf
+                      <div class="form-group">
+                          <div class="container">
+                              <div class="form-group">
+                                  <label for="produto">Produto:</label>
+                                  <select class="form-control select2" id="produto" name="produto">
+                                      <option value="">Selecione um produto</option>
+                                      <option value="personalizado">Produto Personalizado</option>
+                                      @foreach ($produtos->sortBy('NOME')->sortBy(function($produto) {
+                                      return strpos($produto->NOME, 'Bandeira Personalizada') !== false ? 0 : 1;
+                                      }) as $produto)
+                                      @if ($produto->NOME !== 'Bandeira Personalizada')
+                                      <option value="{{ $produto->id }}">{{ $produto->NOME }}</option>
+                                      @endif
+                                      @endforeach
+                                  </select>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="table-responsive">
+                        <table class="table">
+                          <thead>
+                            <tr>
+                              <th hidden>ID</th>
+                              <th>Produto</th>
+                              <th>R$</th>
+                              <th>Kg</th>
+                              <th>Qtd</th>
+                              <th>Confecção</th>
+                              <th>Ilhose</th>
+                              <th>Mastro</th>
+                              <th>Alt.</th>
+                              <th>Comp.</th>
+                              <th>Larg.</th>
+                              <th>Ação</th>
+                            </tr>
+                          </thead>
+                          <tbody id="produtoTableBody"></tbody>
+                        </table>
+                      </div>
+                  </form>
+                  <form id="cep-form" method="POST" action="">
+                      @csrf
+                      <div class="form-group">
+                          <label for="cep">CEP:</label>
+                          <input type="text" class="form-control" id="cep" name="cep" placeholder="CEP">
+                      </div>
+                      <div class="form-group">
+                          <label for="endereco">Endereço:</label>
+                          <input type="text" class="form-control" id="endereco" name="endereco" readonly="" style="background-color: #f2f2f2;">
+                      </div>
+                  </form>
+                  <div class="col-md-12">
+                      <div id="transp-title">
+                          <h3>Transportadoras:</h3>
+                      </div>
+                      <div class="cards-container" id="cardsContainer"></div>
+                  </div>
+                  <button type="button" class="btn btn-primary" id="calcularFrete">Calcular</button>
+              </div>
+              <div class="col-md-4">
+                  <div class="row">
+                      <div class="col-sm-12">
+                          <h4>Detalhes do orçamento:</h4>
+                          <div class="details-container">
+                              <textarea class="form-control" id="campoTexto" rows="5"></textarea>
+                              <button type="button" class="btn btn-primary" id="botaoOrcamento">Salvar/Enviar Orçamento</button>                
+                              <button type="button" class="btn btn-secondary" id="botaoLimparCampos">Novo Orçamento</button>
+                              <button type="button" class="btn btn-primary" id="botaoCopiar">Copiar</button>
+                              <p class="text-success" id="avisoCopiado" style="display: none;">Copiado com sucesso!</p>
+                          </div>
+                      </div>
+                      <div class="col-sm-12">
+                          <div class="details-container2">
+                              <h4>Detalhes do card</h4>
+                              <div class="form-group">
+                                  <label for="tituloCardTrello">Título:</label>
+                                  <input type="text" class="form-control" id="tituloCardTrello">
+                              </div>
+                              <div class="form-group">
+                                  <label for="descricaoCardTrello">Descrição:</label>
+                                  <textarea class="form-control" id="descricaoCardTrello" rows="5"></textarea>
+                              </div>
+                              <button type="button" class="btn btn-primary" id="botaoCardTrello">Gerar Card</button>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
 
-<!-- Modal -->
-<div class="modal fade" id="modalPedidos" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-    
-      <!-- Cabeçalho do modal -->
-      <div class="modal-header">
-        <h5 class="modal-title" id="modalLabel">Criar Pedido</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
+  <!-- Modal -->
+  <div class="modal fade" id="modalPedidos" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
       
-      <!-- Corpo do modal -->
-      <div class="modal-body">
-        <div class="form-group">
-          <label for="idPedido">ID:</label>
-          <input type="text" class="form-control" id="idPedido">
+        <!-- Cabeçalho do modal -->
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalLabel">Criar Pedido</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+            <span aria-hidden="true">&times;</span>
+          </button>
         </div>
-        <div class="form-group">
-          <label for="clientePedido">Cliente:</label>
-          <input type="text" class="form-control" id="clientePedido">
+        
+        <!-- Corpo do modal -->
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="idPedido">ID:</label>
+            <input type="text" class="form-control" id="idPedido">
+          </div>
+          <div class="form-group">
+            <label for="clientePedido">Cliente:</label>
+            <input type="text" class="form-control" id="clientePedido">
+          </div>
+          <div class="form-group">
+            <label for="produtosPedido">Produtos:</label>
+            <textarea class="form-control" id="produtosPedido"></textarea>
+          </div>
         </div>
-        <div class="form-group">
-          <label for="produtosPedido">Produtos:</label>
-          <textarea class="form-control" id="produtosPedido"></textarea>
+        
+        <!-- Rodapé do modal -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary">Salvar</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
         </div>
+        
       </div>
-      
-      <!-- Rodapé do modal -->
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary">Salvar</button>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-      </div>
-      
     </div>
   </div>
-</div>
 
 @endsection
 @section('extraScript')
