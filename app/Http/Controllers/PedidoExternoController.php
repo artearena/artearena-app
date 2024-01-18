@@ -20,7 +20,7 @@ class PedidoExternoController extends Controller
         $idVendedor = Auth::user()->id_vendedor;
 
         // Obter dados do gráfico para o vendedor autenticado
-        $meses = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
+        $meses = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
 
         // Obter dados do gráfico para o vendedor autenticado
         $dadosGrafico = PedidoExterno::obterSomaTotalPorVendedorEData($dataInicial, $dataFinal, $situacoes, $idVendedor);
@@ -31,13 +31,14 @@ class PedidoExternoController extends Controller
         foreach ($meses as $mes) {
             // Inicializar o valor para o mês como 0
             $data[$mes] = 0;
-    
+
             // Verificar se o mês está nos dados retornados da query
             foreach ($dadosGrafico as $item) {
                 $mesPedido = \Carbon\Carbon::parse($item->data_pedido)->format('F');
                 if ($mes === $mesPedido) {
                     // Preencher com o valor correspondente
-                    $data[$mes] += str_replace(',', '', $item->soma_total_reais);
+                    $data[$mes] = str_replace(',', '', $item->soma_total_reais);
+                    break; // Parar de procurar assim que encontrar o mês
                 }
             }
         }
@@ -48,6 +49,7 @@ class PedidoExternoController extends Controller
         // Carregar a visão com os dados
         return view('pages.tiny.relatorio', compact('dados', 'dadosGrafico', 'dataInicial', 'dataFinal', 'situacoes', 'meses', 'data'));
     }
+
 
 
 
