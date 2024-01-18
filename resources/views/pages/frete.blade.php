@@ -879,7 +879,7 @@ const id_cliente = document.getElementById('id').value;
               tabelaHtml += `
                 <tr>
                   <td style="display: none;">${orcamento.id}</td>
-                  <td class="descricao-orcamento">${orcamento.detalhes_orcamento}</td>
+                  <td class="descricao-orcamento" style="max-width:150px;">${orcamento.detalhes_orcamento}</td>
                   <td>${orcamento.endereco_frete}</td>
                   <td>${orcamento.nome_transportadora}</td>
                   <td>${orcamento.valor_frete}</td>
@@ -939,7 +939,7 @@ const id_cliente = document.getElementById('id').value;
       function carregarDados(button) {
           const row = button.closest("tr");
           const descricaoOrcamento = row.querySelector(".descricao-orcamento").textContent;
-          const cepFrete = row.cells[1].textContent;
+          const cepFrete = "";
           const enderecoFrete = row.cells[2].textContent;
 
           // Obter os produtos relacionados ao orçamento
