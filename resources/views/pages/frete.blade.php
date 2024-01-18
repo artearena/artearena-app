@@ -157,7 +157,26 @@
       min-height: 350px;
     }
 
+    .table-responsive-sm {
+      overflow-x: auto;
+    }
 
+    .table {
+      width: 100%; /* Ajuste a largura da tabela conforme necessário */
+      max-width: 100%;
+      margin: auto;
+    }
+
+    .table th,
+    .table td {
+      max-width: 200px; /* Ajuste a largura máxima das células conforme necessário */
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .form-control {
+      width: 100%;
+    }
     .table-responsive::-webkit-scrollbar {
       width: 8px;
     }
