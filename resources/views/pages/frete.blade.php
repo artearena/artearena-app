@@ -4,54 +4,248 @@
 @endsection
 @section('style')
 <style>
-    body {
-        background-color: #f8f9fa; /* Cor de fundo suave */
-        color: #333; /* Cor do texto principal */
-        font-family: 'Arial', sans-serif; /* Escolha uma fonte mais suave */
+  .close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 0;
+    margin: 0;
+    font-size: 21px;
+    font-weight: bold;
+    line-height: 1;
+    text-align: center;
+    text-decoration: none;
+    color: #000;
+    background-color: transparent;
+    border: 0;
+  }
+
+  .close:hover,
+  .close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+  }
+    .form-group {
+        margin-bottom: 10px;
+    }
+    #cep-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    }
+    #transp-title {
+        display: flex;
+        justify-content: center;
+      }
+    .form-group{
+        width: 100%;
+        height: auto;
+    }
+    #calcularFrete {
+    width: 30%;
+    height: auto;
+    margin-top: 10px;
+    }
+    .cards-container {
+        display: flex;
+        flex-wrap: wrap;
     }
 
-    h1, h4 {
-        color: #007bff; /* Cor mais suave para títulos */
+    .card {
+        width: calc(25% - 20px);
+        margin: 10px;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
     }
 
-    .form-group, .container, .card, .modal-content, .modal-body, .modal-title, .btn {
-        border-radius: 8px; /* Bordas arredondadas para elementos */
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra suave para elementos */
-        margin-bottom: 15px; /* Espaçamento entre elementos */
+    .card.selected {
+        border-color: blue;
+    }
+    .modal-dialog {
+      margin: 5% auto;
+      min-width: 190vh;
+    }
+    .card img {
+        max-width: 20%;
+        height: auto;
+        margin-bottom: 1em;
+    }
+    .container {
+           max-width: 100%;
+           display: flex;
+           justify-content: space-between;
     }
 
-    .form-control {
-        background-color: #f2f2f2; /* Cor de fundo suave para campos de entrada */
-        border: 1px solid #ccc; /* Bordas suaves para campos de entrada */
+    .details-container h4 {
+        margin-bottom: 10px;
     }
 
-    .table {
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave para tabelas */
-        border-radius: 8px; /* Bordas arredondadas para tabelas */
+    #botaoCopiar {
+        float: right;
+        margin-top: 5px;
+        display: none;
     }
 
-    .btn-primary, .btn-secondary {
-        transition: background-color 0.3s ease; /* Animação suave ao passar o mouse sobre botões */
+    #avisoCopiado {
+        float: right;
+        margin-top: 10px;
+    }
+
+    .col-md-6 {
+        display: flex;
+        flex-direction: column;
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    th, td {
+        padding: 8px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+    th {
+        background-color: #f2f2f2;
+        font-weight: bold;
+        text-align: center;
+    }
+    td {
+        font-size: .9em;
+    }
+    tfoot td {
         font-weight: bold;
     }
+    tbody tr:nth-child(even) {
+        background-color: #f5f5f5;
+    }
+    tbody tr:hover {
+        background-color: #ebebeb;
+    }
+    #campoTexto{
+        min-height: 300px;
+    }
+    .radio-container {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
 
-    .btn-primary:hover, .btn-secondary:hover {
-        background-color: #0056b3; /* Cor mais escura ao passar o mouse sobre botões */
+    .radio-container label {
+        margin-bottom: 0;
+    }
+    P {
+      margin-bottom: 0;
+    }
+    .blue-text {
+      color: #4169e1;
+    }
+    .center-icon {
+      display: block;
+      margin: 0 auto;
+      min-width: none;
+      min-height:
+    }
+    .logo-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 1005; /* Defina o tamanho desejado para a div */
+      height: 1005; /* Defina o tamanho desejado para a div */
+      margin: 0 auto; /* Centraliza a div horizontalmente */
+    }
+    #descricaoCardTrello{
+      min-height: 350px;
+    }
+    .table-responsive::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    .table-responsive::-webkit-scrollbar-track {
+      background-color: #f1f1f1;
+    }
+
+    .table-responsive::-webkit-scrollbar-thumb {
+      background-color: #888;
+      border-radius: 4px;
+    }
+
+    .table-responsive::-webkit-scrollbar-thumb:hover {
+      background-color: #555;
+    }
+    .descricao-orcamento {
+      min-width: 400px;
+    }
+
+    .modal-content {
+      width: 100%;
+      height: 100%;
+      padding: 20px;
+    }
+
+    .modal-body {
+      height: 400px;
+    }
+
+    .modal-title {
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    label {
+      font-weight: bold;
+    }
+
+    textarea {
+      height: 150px;
+    }
+    .btn-primary {
+      background-color: #007bff;
+      border-color: #007bff;
+      color: #fff;
+      font-weight: bold;
+      padding: 10px 20px;
+      border-radius: 5px;
+    }
+
+    .btn-primary:hover {
+      background-color: #0069d9;
+      border-color: #0062cc;
+    }
+
+    .btn-secondary {
+      background-color: #6c757d;
+      border-color: #6c757d;
+      color: #fff;
+      font-weight: bold;
+      padding: 10px 20px;
+      border-radius: 5px;
+    }
+
+    .btn-secondary:hover {
+      background-color: #5a6268;
+      border-color: #545b62;
     }
 
     .close {
-        font-size: 24px; /* Tamanho do ícone de fechar */
-        color: #333; /* Cor do ícone de fechar */
+      font-size: 28px;
+      font-weight: bold;
+      color: #000;
     }
 
     .close:hover,
     .close:focus {
-        color: #333;
-        text-decoration: none;
-        cursor: pointer;
+      color: #000;
+      text-decoration: none;
+      cursor: pointer;
     }
 </style>
-
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.css">
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
