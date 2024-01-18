@@ -27,7 +27,10 @@
       border-right: 2px solid #ccc; /* Adiciona uma linha separadora de 2px à direita */
       padding-right: 15px; /* Espaçamento interno à direita da linha */
     }
-
+    
+    .top-margin{
+      margin-top: 3px;
+    }
     .close {
         font-size: 24px; /* Tamanho do ícone de fechar */
         color: #333; /* Cor do ícone de fechar */
@@ -349,7 +352,7 @@
                         </div>
                         <div class="cards-container" id="cardsContainer"></div>
                     </div>
-                    <button type="button" class="btn btn-primary" id="calcularFrete">Calcular</button>
+                    <button type="button" class="btn btn-primary top-margin" id="calcularFrete">Calcular</button>
                 </div>
                 <div class="col-md-4">
                     <div class="row">
@@ -357,7 +360,9 @@
                             <h4>Detalhes do orçamento:</h4>
                             <div class="details-container">
                                 <textarea class="form-control" id="campoTexto" rows="5"></textarea>
-                                <button type="button" class="btn btn-primary" id="botaoOrcamento">Salvar/Enviar Orçamento</button>                
+                                <div class="text-center">
+                                  <button type="button" class="btn btn-primary" id="botaoOrcamento">Salvar/Enviar Orçamento</button>                
+                                </div>
                                 <button type="button" class="btn btn-primary" id="botaoCopiar">Copiar</button>
                                 <p class="text-success" id="avisoCopiado" style="display: none;">Copiado com sucesso!</p>
                             </div>
@@ -373,7 +378,7 @@
                                     <label for="descricaoCardTrello">Descrição:</label>
                                     <textarea class="form-control" id="descricaoCardTrello" rows="5"></textarea>
                                 </div>
-                                <button type="button" class="btn btn-primary" id="botaoCardTrello">Gerar Card</button>
+                                <button type="button" class="btn btn-primary top-margin" id="botaoCardTrello">Gerar Card</button>
                             </div>
                         </div>
                     </div>
