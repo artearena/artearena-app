@@ -36,7 +36,7 @@ class PedidoExternoController extends Controller
             $item = collect($dadosGrafico)->first(function ($item) use ($mes) {
                 return strtolower($mes) === strtolower(\Carbon\Carbon::parse($item->data_pedido)->format('F'));
             });
-
+            dd($item);
             // Se encontrou o item, atualiza o valor do mês
             if ($item) {
                 $data[$mes] = floatval(str_replace(',', '', $item->soma_total_reais));
