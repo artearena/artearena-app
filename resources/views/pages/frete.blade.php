@@ -157,7 +157,7 @@
       min-height: 350px;
     }
     .table-responsive {
-      width: 80%;
+      width: 100%;
       margin: auto;
     }
 
