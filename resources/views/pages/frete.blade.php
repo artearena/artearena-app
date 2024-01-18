@@ -1454,6 +1454,6 @@ const id_cliente = document.getElementById('id').value;
 
   });
 </script>
-<script src="../js/orcamento.js"></script>
+
 
 @endsection
