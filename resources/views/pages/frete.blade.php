@@ -208,8 +208,11 @@
     }
 
     .descricao-orcamento {
-      min-width: 400px;
+      min-width: 100px;
+      max-width: 250px;
+
     }
+
 
     .modal-content {
       width: 100%;
