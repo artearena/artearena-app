@@ -258,7 +258,7 @@
 
   @section('content')
     <div class="app-container">
-      <div class="container">
+      <div class="container-lg">
 
             <div class="row">
             <h1>Gerar Orçamentos</h1>
