@@ -280,7 +280,7 @@
                         <button type="button" class="btn btn-secondary" id="botaoLimparCampos">Novo Orçamento</button>
                         <hr>
                         <div class="form-group">
-                            <div class="container">
+                            <div class="container-lg">
                                 <div class="form-group">
                                     <label for="id">ID Cliente:</label>
                                     <div class="input-group">
@@ -296,7 +296,7 @@
                     <form id="produto-form" method="POST" action="">
                         @csrf
                         <div class="form-group">
-                            <div class="container">
+                            <div class="container-lg">
                                 <div class="form-group">
                                     <label for="produto">Produto:</label>
                                     <select class="form-control select2" id="produto" name="produto">
