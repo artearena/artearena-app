@@ -16,7 +16,6 @@
   .form-group, .container, .card, .modal-content, .modal-body, .modal-title, .btn {
         border-radius: 8px; /* Bordas arredondadas para elementos */
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra suave para elementos */
-        margin-bottom: 5px; /* Espaçamento entre elementos */
   }
   .close {
     position: absolute;
