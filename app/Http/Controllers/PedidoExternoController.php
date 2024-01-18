@@ -34,13 +34,14 @@ class PedidoExternoController extends Controller
 
             // Encontrar o item correspondente ao mês nos dados retornados da query
             $item = collect($dadosGrafico)->first(function ($item) use ($mes) {
-                return strtolower($mes) === strtolower(\Carbon\Carbon::parse($item->data_pedido)->format('F'));
+                return strtolower($mes) === strtolower($item->mes);
             });
-            dd($item);
+
             // Se encontrou o item, atualiza o valor do mês
             if ($item) {
                 $data[$mes] = floatval(str_replace(',', '', $item->soma_total_reais));
             }
+
         }
 
         // Obter dados do gráfico para o vendedor autenticado sem filtrar por mês
