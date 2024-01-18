@@ -157,13 +157,18 @@
       min-height: 350px;
     }
     .table-responsive {
-      width: 100%;
+      width: 80%;
       margin: auto;
     }
 
     .table {
       width: 100%;
       max-width: 100%;
+      font-size: 8px; /* Tamanho da fonte reduzido */
+    }
+
+    .table th, .table td {
+      padding: 4px; /* Reduz o espaçamento interno das células */
     }
 
     .table-responsive::-webkit-scrollbar {
