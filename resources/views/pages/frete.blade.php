@@ -937,105 +937,110 @@ const id_cliente = document.getElementById('id').value;
       document.getElementById('buscar_orcamento').addEventListener('click', consultarOrcamentos);
 
       function carregarDados(button) {
-        const row = button.closest("tr");
-        const descricaoOrcamento = row.querySelector(".descricao-orcamento").textContent;
-        const cepFrete = row.cells[2].textContent;
-        const enderecoFrete = row.cells[3].textContent;
+          const row = button.closest("tr");
+          const descricaoOrcamento = row.querySelector(".descricao-orcamento").textContent;
+          const cepFrete = row.cells[2].textContent;
+          const enderecoFrete = row.cells[3].textContent;
 
-        // Obter os produtos relacionados ao orçamento
-        const orcamentoId = row.querySelector("td:first-child").textContent;
-        fetch(`/frete/orcamentoProdutos/${orcamentoId}`)
-          .then(response => response.json())
-          .then(data => {
-            // Preencher a tabela com os dados dos produtos
-            const tabelaBody = document.getElementById("produtoTableBody");
-            tabelaBody.innerHTML = ""; // Limpar o conteúdo existente da tabela
+          // Obter os produtos relacionados ao orçamento
+          const orcamentoId = row.querySelector("td:first-child").textContent;
+          fetch(`/frete/orcamentoProdutos/${orcamentoId}`)
+            .then(response => response.json())
+            .then(data => {
+              // Preencher a tabela com os dados dos produtos
+              const tabelaBody = document.getElementById("produtoTableBody");
+              tabelaBody.innerHTML = ""; // Limpar o conteúdo existente da tabela
 
-            data.forEach(produto => {
-              const newRow = document.createElement("tr");
+              data.forEach(produto => {
+                const newRow = document.createElement("tr");
 
-              const idCell = document.createElement("td");
-              idCell.hidden = true;
-              idCell.textContent = produto.id;
-              newRow.appendChild(idCell);
+                const idCell = document.createElement("td");
+                idCell.hidden = true;
+                idCell.textContent = produto.id;
+                newRow.appendChild(idCell);
 
-              const nomeProdutoCell = document.createElement("td");
-              const nomeProdutoInput = document.createElement("input");
-              nomeProdutoInput.type = "text";
-              nomeProdutoInput.className = "form-control";
-              nomeProdutoInput.value = produto.nome_produto;
-              newRow.appendChild(nomeProdutoCell.appendChild(nomeProdutoInput));
+                const nomeProdutoCell = document.createElement("td");
+                const nomeProdutoInput = document.createElement("input");
+                nomeProdutoInput.type = "text";
+                nomeProdutoInput.className = "form-control";
+                nomeProdutoInput.value = produto.nome_produto;
+                nomeProdutoCell.appendChild(nomeProdutoInput);
+                newRow.appendChild(nomeProdutoCell);
 
-              const valorUnitarioCell = document.createElement("td");
-              const valorUnitarioInput = document.createElement("input");
-              valorUnitarioInput.type = "text";
-              valorUnitarioInput.className = "form-control";
-              valorUnitarioInput.value = produto.valor_unitario;
-              newRow.appendChild(valorUnitarioCell.appendChild(valorUnitarioInput));
+                const valorUnitarioCell = document.createElement("td");
+                const valorUnitarioInput = document.createElement("input");
+                valorUnitarioInput.type = "text";
+                valorUnitarioInput.className = "form-control";
+                valorUnitarioInput.value = produto.valor_unitario;
+                valorUnitarioCell.appendChild(valorUnitarioInput);
+                newRow.appendChild(valorUnitarioCell);
 
-              const pesoCell = document.createElement("td");
-              const pesoInput = document.createElement("input");
-              pesoInput.type = "number";
-              pesoInput.className = "form-control";
-              pesoInput.value = produto.peso_unitario;
-              newRow.appendChild(pesoCell.appendChild(pesoInput));
+                const pesoCell = document.createElement("td");
+                const pesoInput = document.createElement("input");
+                pesoInput.type = "number";
+                pesoInput.className = "form-control";
+                pesoInput.value = produto.peso_unitario;
+                pesoCell.appendChild(pesoInput);
+                newRow.appendChild(pesoCell);
 
-              const quantidadeCell = document.createElement("td");
-              const quantidadeInput = document.createElement("input");
-              quantidadeInput.type = "number";
-              quantidadeInput.className = "form-control";
-              quantidadeInput.value = produto.quantidade;
-              newRow.appendChild(quantidadeCell.appendChild(quantidadeInput));
+                const quantidadeCell = document.createElement("td");
+                const quantidadeInput = document.createElement("input");
+                quantidadeInput.type = "number";
+                quantidadeInput.className = "form-control";
+                quantidadeInput.value = produto.quantidade;
+                quantidadeCell.appendChild(quantidadeInput);
+                newRow.appendChild(quantidadeCell);
 
-              const prazoCell = document.createElement("td");
-              const prazoInput = document.createElement("input");
-              prazoInput.type = "number";
-              prazoInput.className = "form-control prazo-confeccao";
-              prazoInput.value = produto.prazo_individual;
-              newRow.appendChild(prazoCell.appendChild(prazoInput));
+                const prazoCell = document.createElement("td");
+                const prazoInput = document.createElement("input");
+                prazoInput.type = "number";
+                prazoInput.className = "form-control prazo-confeccao";
+                prazoInput.value = produto.prazo_individual;
+                prazoCell.appendChild(prazoInput);
+                newRow.appendChild(prazoCell);
 
-              const ilhoseCell = document.createElement("td");
-              const ilhoseCheckbox = document.createElement("input");
-              ilhoseCheckbox.type = "checkbox";
-              ilhoseCheckbox.className = "form-check-input";
-              ilhoseCell.appendChild(ilhoseCheckbox);
-              newRow.appendChild(ilhoseCell);
+                const ilhoseCell = document.createElement("td");
+                const ilhoseCheckbox = document.createElement("input");
+                ilhoseCheckbox.type = "checkbox";
+                ilhoseCheckbox.className = "form-check-input";
+                ilhoseCell.appendChild(ilhoseCheckbox);
+                newRow.appendChild(ilhoseCell);
 
-              const mastroCell = document.createElement("td");
-              const mastroCheckbox = document.createElement("input");
-              mastroCheckbox.type = "checkbox";
-              mastroCheckbox.className = "form-check-input";
-              mastroCell.appendChild(mastroCheckbox);
-              newRow.appendChild(mastroCell);
+                const mastroCell = document.createElement("td");
+                const mastroCheckbox = document.createElement("input");
+                mastroCheckbox.type = "checkbox";
+                mastroCheckbox.className = "form-check-input";
+                mastroCell.appendChild(mastroCheckbox);
+                newRow.appendChild(mastroCell);
 
-              const removerCell = document.createElement("td");
-              const removerButton = document.createElement("button");
-              removerButton.className = "btn btn-danger";
-              removerButton.textContent = "Remover";
-              removerButton.onclick = function () {
-                var tableRow = this.closest('tr');
-                tableRow.remove();
-              };
-              removerCell.appendChild(removerButton);
-              newRow.appendChild(removerCell);
+                const removerCell = document.createElement("td");
+                const removerButton = document.createElement("button");
+                removerButton.className = "btn btn-danger";
+                removerButton.textContent = "Remover";
+                removerButton.onclick = function () {
+                  var tableRow = this.closest('tr');
+                  tableRow.remove();
+                };
+                removerCell.appendChild(removerButton);
+                newRow.appendChild(removerCell);
 
-              tabelaBody.appendChild(newRow);
+                tabelaBody.appendChild(newRow);
+              });
+
+              // Preencher os campos da tela com os dados do orçamento
+              document.getElementById("campoTexto").value = descricaoOrcamento;
+              document.getElementById("cep").value = cepFrete;
+              document.getElementById("endereco").value = enderecoFrete;
+
+            })
+            .catch(error => {
+              console.error('Erro ao obter os produtos do orçamento:', error);
             });
 
-            // Preencher os campos da tela com os dados do orçamento
-            document.getElementById("campoTexto").value = descricaoOrcamento;
-            document.getElementById("cep").value = cepFrete;
-            document.getElementById("endereco").value = enderecoFrete;
-
-          })
-          .catch(error => {
-            console.error('Erro ao obter os produtos do orçamento:', error);
-          });
-
-        // Feche o modal com o ID específico
-        $('#calcularFrete').click();
-        $('#orcamentosModal').modal('hide');
-      }
+          // Feche o modal com o ID específico
+          $('#calcularFrete').click();
+          $('#orcamentosModal').modal('hide');
+        }
 
       function criarPedido(idOrcamento) {
   // Redirecionar p<ara a URL com o ID do orçamento
