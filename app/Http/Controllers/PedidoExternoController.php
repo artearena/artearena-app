@@ -12,9 +12,8 @@ class PedidoExternoController extends Controller
 {
     public function index(Request $request)
     {
-        // Obter os demais dados para o gráfico (se necessário)
-        $dataInicial = $request->input('dataInicial', date('Y-m-01'));
-        $dataFinal = $request->input('dataFinal', date('Y-m-t'));
+        $dataInicial = $request->input('dataInicial', date('Y-m-d'));
+        $dataFinal = $request->input('dataFinal', date('Y-m-d'));
         $situacoes = $request->input('situacao', ['Aprovado', 'Entregue', 'Cancelado', 'Não entregue', 'Dados incompletos', 'Enviado', 'Pronto para envio']);
 
         // Obter o id_vendedor do usuário autenticado
@@ -24,22 +23,21 @@ class PedidoExternoController extends Controller
         $dadosGrafico = PedidoExterno::obterSomaTotalPorVendedorEData($dataInicial, $dataFinal, $situacoes, $idVendedor);
 
         // Organizar os dados por mês
-        $dadosPorMes = $dadosGrafico->groupBy(function($item) {
+        $dadosPorMes = $dadosGrafico->groupBy(function ($item) {
             return \Carbon\Carbon::parse($item->data_pedido)->format('F'); // 'F' retorna o nome do mês
         });
 
-        $somaTotalPorMes = [];
+        // Criar um array com os rótulos dos meses
+        $meses = $dadosPorMes->keys()->toArray();
 
-        foreach ($dadosPorMes as $mes => $dados) {
-            $somaTotalPorMes[$mes] = $dados->sum(function($item) {
+        // Preencher o array de data com os valores reais para cada mês
+        $data = [];
+
+        foreach ($meses as $mes) {
+            $data[$mes] = $dadosPorMes->get($mes)->sum(function ($item) {
                 return is_numeric($item->soma_total_reais) ? $item->soma_total_reais : 0;
             });
         }
-
-
-        // Processar dados para o gráfico
-        $labels = array_keys($somaTotalPorMes);
-        $data = array_values($somaTotalPorMes);
 
         // Obter dados do gráfico para o vendedor autenticado sem filtrar por mês
         $dados = PedidoExterno::obterSomaTotalPorVendedor($dataInicial, $dataFinal, $situacoes);
