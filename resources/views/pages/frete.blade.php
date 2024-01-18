@@ -156,22 +156,7 @@
     #descricaoCardTrello{
       min-height: 350px;
     }
-    .table-responsive {
-      width: 100%;
-      margin: auto;
-    }
 
-    .table {
-      width: 100%;
-      max-width: 100%;
-      font-size: 14px; /* Ajusta o tamanho da fonte */
-    }
-
-    .table th,
-    .table td {
-      padding: 1px 2px; /* Ajusta o espaçamento interno das células */
-      text-align: center; /* Centraliza o texto nas células */
-    }
 
     .table-responsive::-webkit-scrollbar {
       width: 8px;
@@ -297,7 +282,7 @@
                               </div>
                           </div>
                       </div>
-                      <div class="table-responsive">
+                      <div class="table-responsive-sm">
                         <table class="table">
                           <thead>
                             <tr>
