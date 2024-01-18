@@ -3,17 +3,8 @@
   Gerar Orçamento
 @endsection
 @section('style')
-<style>3
-  .app-container {
-      max-width: 80%;
-      display: flex;
-      justify-content: space-between;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave para o container */
-      padding: 20px; /* Adicione algum preenchimento interno */
-      border-radius: 8px; /* Bordas arredondadas para o container */
-      background-color: #fff; /* Cor de fundo do container */
-      margin: 30px;
-  }
+<style>
+
   .container {
       max-width: 80%;
       display: flex;
