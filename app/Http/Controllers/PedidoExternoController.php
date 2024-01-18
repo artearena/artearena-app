@@ -26,7 +26,6 @@ class PedidoExternoController extends Controller
         $dadosGrafico = PedidoExterno::obterSomaTotalPorVendedorEData($dataInicial, $dataFinal, $situacoes, $idVendedor);
 
         // Preencher o array de data com os valores reais para cada mês
-        // Preencher o array de data com os valores reais para cada mês
         $data = [];
 
         foreach ($meses as $mes) {
@@ -35,16 +34,14 @@ class PedidoExternoController extends Controller
 
             // Verificar se o mês está nos dados retornados da query
             foreach ($dadosGrafico as $item) {
-                $mesPedido = \Carbon\Carbon::parse($item->data_pedido)->format('F'); // Mudança aqui
-                if ($mes === $mesPedido) {
+                $mesPedido = \Carbon\Carbon::parse($item->data_pedido)->format('Y-m'); // Manter o formato como 'Y-m'
+                if ($mes === \Carbon\Carbon::parse($mesPedido)->format('F')) {
                     // Preencher com o valor correspondente
                     $data[$mes] = str_replace(',', '', $item->soma_total_reais);
                     break; // Parar de procurar assim que encontrar o mês
                 }
             }
         }
-
-
 
         // Obter dados do gráfico para o vendedor autenticado sem filtrar por mês
         $dados = PedidoExterno::obterSomaTotalPorVendedor($dataInicial, $dataFinal, $situacoes);
