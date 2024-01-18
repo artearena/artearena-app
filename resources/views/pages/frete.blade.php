@@ -279,7 +279,7 @@
                         <button type="button" class="btn btn-secondary" id="botaoLimparCampos">Novo Orçamento</button>
                         <hr>
                         <div class="form-group">
-                            <div class="container">
+                            <div class=".container-app">
                                 <div class="form-group">
                                     <label for="id">ID Cliente:</label>
                                     <div class="input-group">
