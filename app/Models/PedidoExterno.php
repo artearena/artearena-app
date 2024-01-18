@@ -38,7 +38,8 @@ class PedidoExterno extends Model
     
     public static function obterSomaTotalPorVendedorEData($dataInicial, $dataFinal, $situacoes, $idVendedor = null)
     {
-        $query = self::select('id_vendedor', 'nome_vendedor', 'data_pedido')
+        $query = self::select('id_vendedor', 'nome_vendedor')
+            ->selectRaw('DATE_FORMAT(data_pedido, "%Y-%m") AS mes_ano')
             ->selectRaw('SUM(CASE WHEN situacao <> "Cancelado" THEN valor ELSE 0 END) AS soma_total_reais')
             ->whereBetween('data_pedido', [$dataInicial, $dataFinal])
             ->whereIn('situacao', $situacoes);
@@ -47,7 +48,7 @@ class PedidoExterno extends Model
             $query->where('id_vendedor', $idVendedor);
         }
 
-        return $query->groupBy('id_vendedor', 'nome_vendedor', 'data_pedido')->get();
+        return $query->groupBy('id_vendedor', 'nome_vendedor', 'mes_ano')->get();
     }
 
 
