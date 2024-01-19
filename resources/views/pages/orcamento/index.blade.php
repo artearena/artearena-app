@@ -29,7 +29,7 @@
 @endsection
 
 @section('content')
-<div class="app container">
+<div class="app container-lg">
     <h1>Tabela de Orçamentos</h1>
     
     <!-- Link para a página de criação de novo orçamento -->
