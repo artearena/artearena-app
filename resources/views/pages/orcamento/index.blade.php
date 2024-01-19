@@ -63,7 +63,7 @@
                         @if($orcamento->usuario)
                             {{ $orcamento->usuario->nome_usuario }}
                         @else
-                            
+                            -
                         @endif
                     </td>
                     <td>{{ $orcamento->created_at->format('d/m/Y H:i:s') }}</td>
