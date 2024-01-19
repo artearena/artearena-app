@@ -258,9 +258,6 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
 
-<!-- Bootstrap JavaScript -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
 @endsection
 
   @section('content')
@@ -912,7 +909,7 @@ const id_cliente = document.getElementById('id').value;
             const modal = document.createElement('div');
             modal.classList.add('modal');
             modal.innerHTML = `
-              <div id="orcamentosModal" class="modal-dialog">
+              <div class="modal-dialog">
                 <div class="modal-content">
                   <div class="modal-header">
                     <h5 class="modal-title">Orçamentos</h5>
@@ -1049,16 +1046,7 @@ const id_cliente = document.getElementById('id').value;
 
             $('#orcamentosModal').modal('hide');
 
-
-
         }
-      // Adicione esta linha ao final do seu código JavaScript
-      $('.modal .close').on('click', function() {
-        $(document).ready(function() {
-            $('#orcamentosModal').modal('hide');
-        });
-
-      });
 
       function criarPedido(idOrcamento) {
       // Redirecionar p<ara a URL com o ID do orçamento
