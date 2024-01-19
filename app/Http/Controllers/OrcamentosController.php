@@ -12,6 +12,12 @@ use Illuminate\Support\Facades\DB;
 class OrcamentosController extends Controller
 {
 
+    use Illuminate\Support\Facades\DB;
+use App\Models\Orcamentos;
+
+use Illuminate\Support\Facades\DB;
+use App\Models\Orcamentos;
+
     public function index(Request $request)
     {
         // Verifique se há uma consulta de pesquisa
@@ -35,6 +41,8 @@ class OrcamentosController extends Controller
 
         return view('pages.orcamento.index', compact('orcamentos'));
     }
+
+
 
 
     public function orcamento(){
