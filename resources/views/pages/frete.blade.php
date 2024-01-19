@@ -1049,7 +1049,7 @@ const id_cliente = document.getElementById('id').value;
         }
       // Adicione esta linha ao final do seu código JavaScript
       $('.modal .close').on('click', function() {
-          $('.modal').modal('hide');
+          $('#orcamentosModal').modal('hide');
       });
 
       function criarPedido(idOrcamento) {
