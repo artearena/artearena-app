@@ -76,7 +76,7 @@
                         <a href="#" class="btn btn-warning">Editar</a>
 
                         <!-- Botão para excluir o orçamento -->
-                        <button class="btn btn-danger" onclick="deleteOrcamento({{ $orcamento->id }})>Excluir</button>
+                        <button class="btn btn-danger">Excluir</button>
                     </td>
                 </tr>
                 @empty
