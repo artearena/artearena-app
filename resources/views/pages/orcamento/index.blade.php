@@ -59,7 +59,13 @@
                     <td style="max-width: 500px; overflow: hidden; text-overflow: ellipsis;">{{ $orcamento->detalhes_orcamento }}</td>
                     <td>{{ $orcamento->nome_transportadora }}</td>
                     <td>{{ $orcamento->valor_frete }}</td>
-                    <td>{{ $orcamento->usuario->nome_usuario }}</td>
+                    <td>
+                        @if($orcamento->usuario)
+                            {{ $orcamento->usuario->nome_usuario }}
+                        @else
+                            
+                        @endif
+                    </td>
                     <td>{{ $orcamento->created_at->format('d/m/Y H:i:s') }}</td>
                     <td>{{ $orcamento->quantidade_repeticoes }}</td>
                     <td>
