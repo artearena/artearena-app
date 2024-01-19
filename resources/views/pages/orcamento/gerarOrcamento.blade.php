@@ -838,7 +838,8 @@
       **Mastro:** Sim`;
           }
           const descricaoProduto = row.querySelector("td:nth-child(7) input").value;
-          descricao += `**Descrição:**
+          descricao += `
+          **Descrição:**
       ---
       `;
         });
