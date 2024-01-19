@@ -817,6 +817,7 @@
         const produtosSelecionados = obterListaProdutos();
         let descricao = "#Produtos  ";
         const rows = document.querySelectorAll("#produtoTableBody tr");
+
         rows.forEach(row => {
           const ilhoseCheckbox = row.querySelector("#ilhosesCheckbox");
           const mastroCheckbox = row.querySelector("#mastroCheckbox");
@@ -825,35 +826,40 @@
           const produto = row.querySelector("td:nth-child(2) input").value;
           const tamanho = produto.split(" - ")[1];
           const faces = produto.split(" - ")[2];
+
           descricao += `
       **Tipo:** ${produto.split(" - ")[0]}
-      **Material:** 
+      **Material:** ?  // Add your material information here
       **Tamanho:** ${tamanho}  
       **Faces:** ${faces}`;
-      if (ilhoseChecked) {
-        descricao += `
+
+          if (ilhoseChecked) {
+            descricao += `
       **Ilhoses:** Sim`;
-      else {
-        descricao += `
+          } else {
+            descricao += `
       **Ilhoses:**`;
-      }
-      if (mastroChecked) {
-        descricao += `
+          }
+
+          if (mastroChecked) {
+            descricao += `
       **Mastro:** Sim`;
-      } else {
-        descricao += `
+          } else {
+            descricao += `
       **Mastro:**`;
-      }
+          }
+
           const descricaoProduto = row.querySelector("td:nth-child(7) input").value;
           descricao += `
-      **Descrição:**
-
+      **Descrição:** ${descricaoProduto}
       ---
       `;
         });
-  document.getElementById('tituloCardTrello').value = '';
-  document.getElementById('descricaoCardTrello').value = descricao;
-}
+
+        document.getElementById('tituloCardTrello').value = '';
+        document.getElementById('descricaoCardTrello').value = descricao;
+      }
+
 const id_cliente = document.getElementById('id').value;
 
       function consultarOrcamentos() {
