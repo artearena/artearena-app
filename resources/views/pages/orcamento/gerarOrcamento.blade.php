@@ -271,8 +271,8 @@
                               </div>
                           </div>
                           <div>
-                            <button type="button" class="btn btn-secondary" id="botaoLimparCampos">Consultar Orçamentos</button>
-                            <a href="{{ route('dev') }}" class="btn btn-primary">Novo orçamento</a>
+                            <button type="button" class="btn btn-secondary" id="botaoLimparCampos">Novo orçamento</button>
+                            <a href="{{ route('dev') }}" class="btn btn-primary">Consultar Orçamentos</a>
                           </div>
                         </div>
                         <hr>
