@@ -23,10 +23,7 @@ class SiteController extends Controller
         return view('pages.desenvolvimentos.index');
     }
 
-    public function orcamento(){
-        $produtos = Produto::all();
-        return view('pages.orcamento.gerarOrcamento', compact('produtos'));
-    }
+   
 
 
 }

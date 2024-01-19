@@ -9,6 +9,11 @@ use App\Models\OrcamentoProdutos;
 
 class OrcamentosController extends Controller
 {
+    public function orcamento(){
+        $produtos = Produto::all();
+        return view('pages.orcamento.gerarOrcamento', compact('produtos'));
+    }
+    
     public function salvarOrcamento(Request $request)
     {
 

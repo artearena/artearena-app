@@ -32,8 +32,8 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/gerarLinkCadastroCliente', [AcessoTemporarioController::class, 'index']);
         Route::get('/gerarLinkListaProduto/{id}', [AcessoTemporarioController::class, 'gerarLinkTemporario']);
 
-        Route::prefix('frete')->group(function () {
-            Route::get('/', [SiteController::class, 'frete'])->name('frete');
+        Route::prefix('orcamento')->group(function () {
+            Route::get('/', [OrcamentosController::class, 'orcamento'])->name('orcamento');
             Route::post('/orcamentos-salvar', [OrcamentosController::class, 'salvarOrcamento'])->name('orcamentos.salvar');
             Route::get('/consultarorcamentos/{id}', [OrcamentosController::class, 'consultarOrcamentos'])->name('orcamentos.consultar');
             Route::get('/orcamentoProdutos/{id}', [OrcamentosController::class, 'consultarProdutos'])->name('orcamentos.produtos');
