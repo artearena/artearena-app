@@ -38,7 +38,17 @@ Route::middleware(['auth'])->group(function () {
             Route::post('/orcamentos-salvar', [OrcamentosController::class, 'salvarOrcamento'])->name('orcamentos.salvar');
             Route::get('/consultarorcamentos/{id}', [OrcamentosController::class, 'consultarOrcamentos'])->name('orcamentos.consultar');
             Route::get('/orcamentoProdutos/{id}', [OrcamentosController::class, 'consultarProdutos'])->name('orcamentos.produtos');
-
+   
+            // Rota para salvar um novo orçamento
+            Route::post('/store', [OrcamentosController::class, 'store'])->name('orcamentos.store');
+            // Rota para exibir detalhes de um orçamento
+            Route::get('/show/{id}', [OrcamentosController::class, 'show'])->name('orcamentos.show');
+            // Rota para exibir o formulário de edição de um orçamento
+            Route::get('/edit/{id}', [OrcamentosController::class, 'edit'])->name('orcamentos.edit');
+            // Rota para atualizar um orçamento
+            Route::put('/update/{id}', [OrcamentosController::class, 'update'])->name('orcamentos.update');
+            // Rota para excluir um orçamento
+            Route::delete('/destroy/{id}', [OrcamentosController::class, 'destroy'])->name('orcamentos.destroy');
         });
         Route::prefix('pedido')->group(function () {
             Route::any('/', [PedidoController::class, 'artefinal'])->name('pedido');
@@ -47,7 +57,7 @@ Route::middleware(['auth'])->group(function () {
             Route::post('/criar', [PedidoController::class, 'criarPedido'])->name('pedido.criar');
             Route::delete('/{id}', [PedidoController::class, 'excluirPedido'])->name('pedido.excluir');
         });
-        
+
         Route::prefix('producao')->group(function () {
             Route::any('/', [ProducaoController::class, 'index']);
             Route::any('/criar', [ProducaoController::class, 'store'])->name('producao.criar');
