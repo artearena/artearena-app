@@ -931,7 +931,7 @@ const id_cliente = document.getElementById('id').value;
             // Adicionar o modal ao body
             document.body.appendChild(modal);
             // Abrir o modal
-            $('.modal').modal('show');
+            modal.style.display = 'block';
           })
           .catch(error => {
             console.error('Erro ao consultar os orçamentos:', error);
@@ -1049,7 +1049,7 @@ const id_cliente = document.getElementById('id').value;
         }
 
       function criarPedido(idOrcamento) {
-  // Redirecionar p<ara a URL com o ID do orçamento
+      // Redirecionar p<ara a URL com o ID do orçamento
         window.location.href = `/pedidoInterno/criar-pedido/${idOrcamento}`;
       }
       function gerarCard() {
