@@ -1042,6 +1042,9 @@ const id_cliente = document.getElementById('id').value;
               document.getElementById("campoTexto").value = descricaoOrcamento;
               document.getElementById("cep").value = cepFrete;
               document.getElementById("endereco").value = enderecoFrete;
+              console.log(document.getElementById("cep").value);
+              console.log(cepFrete);
+
               // Feche o modal com o ID específico
               $('#calcularFrete').click();
               $('#orcamentosModal').modal('hide');
