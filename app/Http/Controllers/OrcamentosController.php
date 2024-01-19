@@ -14,7 +14,7 @@ class OrcamentosController extends Controller
         $orcamentos = Orcamentos::all();
         return view('pages.orcamento.index', compact('orcamentos'));
     }
-    
+
     public function orcamento(){
         $produtos = Produto::all();
         return view('pages.orcamento.gerarOrcamento', compact('produtos'));
@@ -75,5 +75,75 @@ class OrcamentosController extends Controller
             // Retornar uma resposta de erro caso o orçamento não seja encontrado
             return response()->json(['message' => 'Orçamento não encontrado'], 404);
         }
+    }
+    public function create()
+    {
+        // Retorna a view para criar um novo orçamento
+        return view('pages.orcamento.create');
+    }
+
+    public function store(Request $request)
+    {
+        // Validação dos dados do formulário
+        $request->validate([
+            'id_octa' => 'required',
+            'detalhes_orcamento' => 'required',
+            // ... (Adicione as validações necessárias para os outros campos)
+        ]);
+
+        // Criação de um novo objeto de orçamento
+        $orcamento = new Orcamentos($request->all());
+
+        // Salvar o orçamento no banco de dados
+        $orcamento->save();
+
+        // Retornar uma resposta ou redirecionar para outra página
+        return redirect()->route('orcamentos.index')->with('success', 'Orçamento criado com sucesso');
+    }
+
+    public function show($id)
+    {
+        // Consultar o orçamento pelo ID
+        $orcamento = Orcamentos::findOrFail($id);
+
+        // Retorna a view para exibir detalhes do orçamento
+        return view('pages.orcamento.show', compact('orcamento'));
+    }
+
+    public function edit($id)
+    {
+        // Consultar o orçamento pelo ID
+        $orcamento = Orcamentos::findOrFail($id);
+
+        // Retorna a view para editar o orçamento
+        return view('pages.orcamento.edit', compact('orcamento'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        // Validação dos dados do formulário
+        $request->validate([
+            'id_octa' => 'required',
+            'detalhes_orcamento' => 'required',
+            // ... (Adicione as validações necessárias para os outros campos)
+        ]);
+
+        // Consultar o orçamento pelo ID
+        $orcamento = Orcamentos::findOrFail($id);
+
+        // Atualizar os dados do orçamento
+        $orcamento->update($request->all());
+
+        // Retornar uma resposta ou redirecionar para outra página
+        return redirect()->route('orcamentos.index')->with('success', 'Orçamento atualizado com sucesso');
+    }
+
+    public function destroy($id)
+    {
+        // Consultar o orçamento pelo ID e excluir
+        Orcamentos::findOrFail($id)->delete();
+
+        // Retornar uma resposta ou redirecionar para outra página
+        return redirect()->route('orcamentos.index')->with('success', 'Orçamento excluído com sucesso');
     }
 }
