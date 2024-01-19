@@ -1045,10 +1045,12 @@ const id_cliente = document.getElementById('id').value;
             });
 
             $('#orcamentosModal').modal('hide');
+            console.log('to aqui');
 
         }
       // Adicione esta linha ao final do seu código JavaScript
       $('.modal .close').on('click', function() {
+          console.log('to aqui');
           $('#orcamentosModal').modal('hide');
       });
 
