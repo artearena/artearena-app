@@ -829,7 +829,7 @@
 
           descricao += `
       **Tipo:** ${produto.split(" - ")[0]}
-      **Material:** ?  // Add your material information here
+      **Material:** ? 
       **Tamanho:** ${tamanho}  
       **Faces:** ${faces}`;
 
@@ -851,7 +851,7 @@
 
           const descricaoProduto = row.querySelector("td:nth-child(7) input").value;
           descricao += `
-      **Descrição:** ${descricaoProduto}
+      **Descrição:** 
       ---
       `;
         });
