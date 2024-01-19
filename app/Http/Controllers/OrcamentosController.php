@@ -12,22 +12,19 @@ class OrcamentosController extends Controller
 {
     public function index(Request $request)
     {
-        // Obtenha todos os orçamentos do banco de dados
-        $orcamentos = Orcamentos::all();
+        // Obtenha todos os orçamentos do banco de dados com paginação
+        $orcamentos = Orcamentos::paginate(10);
 
         // Verifique se há uma consulta de pesquisa
         $search = $request->input('search');
+
         if ($search) {
             // Filtrar orçamentos com base na pesquisa
-            $orcamentos = $orcamentos->filter(function ($orcamento) use ($search) {
-                return stripos($orcamento->detalhes_orcamento, $search) !== false
-                    || stripos($orcamento->nome_transportadora, $search) !== false
-                    || stripos((string) $orcamento->valor_frete, $search) !== false;
-            });
+            $orcamentos = Orcamento::where('detalhes_orcamento', 'like', '%' . $search . '%')
+                ->orWhere('nome_transportadora', 'like', '%' . $search . '%')
+                ->orWhere('valor_frete', 'like', '%' . $search . '%')
+                ->paginate(10);
         }
-
-        // Paginação com 10 resultados por página (você pode ajustar conforme necessário)
-        $orcamentos = $orcamentos->paginate(10);
 
         return view('orcamentos.index', compact('orcamentos'));
     }
