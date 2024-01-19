@@ -1045,6 +1045,8 @@ const id_cliente = document.getElementById('id').value;
             });
 
             $('#orcamentosModal').modal('hide');
+            console.log($('#orcamentosModal'));
+
             console.log('to aqui');
 
         }
