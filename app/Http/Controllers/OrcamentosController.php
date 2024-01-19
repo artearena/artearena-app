@@ -29,7 +29,7 @@ class OrcamentosController extends Controller
 
         // Adicione a subconsulta para contar repetições
         $orcamentos = $orcamentosQuery
-            ->select('orcamentos.*', DB::raw('(SELECT COUNT(*) FROM orcamento as o WHERE o.id_octa = orcamentos.id_octa) as quantidade_repeticoes'))
+            ->select('orcamento.*', DB::raw('(SELECT COUNT(*) FROM orcamento as o WHERE o.id_octa = orcamento.id_octa) as quantidade_repeticoes'))
             ->orderBy('created_at', 'desc') // Adicione esta linha para ordenar por data de criação decrescente
             ->get();
 
