@@ -16,7 +16,7 @@ class OrcamentosController extends Controller
         $search = $request->input('search');
 
         // Obtenha todos os orçamentos do banco de dados
-        $orcamentosQuery = Orcamentos::query();
+        $orcamentosQuery = Orcamento::query();
 
         if ($search) {
             // Filtrar orçamentos com base na pesquisa
@@ -25,8 +25,10 @@ class OrcamentosController extends Controller
                 ->orWhere('valor_frete', 'like', '%' . $search . '%');
         }
 
-        // Obtenha os orçamentos sem paginá-los
-        $orcamentos = $orcamentosQuery->get();
+        // Adicione a subconsulta para contar repetições
+        $orcamentos = $orcamentosQuery
+            ->select('orcamentos.*', DB::raw('(SELECT COUNT(*) FROM orcamentos as o WHERE o.id_octa = orcamentos.id_octa) as repeticoes_count'))
+            ->get();
 
         return view('pages.orcamento.index', compact('orcamentos'));
     }
