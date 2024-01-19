@@ -18,7 +18,7 @@ class OrcamentosController extends Controller
         $search = $request->input('search');
 
         // Obtenha todos os orçamentos do banco de dados
-        $orcamentosQuery = Orcamento::query();
+        $orcamentosQuery = Orcamentos::query();
 
         if ($search) {
             // Filtrar orçamentos com base na pesquisa
