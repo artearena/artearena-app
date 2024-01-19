@@ -32,22 +32,6 @@
       margin-top: 6px;
     }
 
-    .close {
-        position: absolute;
-        top: 15px;
-        right: 15px;
-        font-size: 30px;
-        font-weight: bold;
-        color: #000; /* Cor do ícone (pode ser ajustada) */
-        opacity: 0.7; /* Opacidade padrão */
-        transition: opacity 0.3s ease;
-    }
-
-    .close:hover {
-        opacity: 1; /* Aumenta a opacidade ao passar o mouse */
-        color: #ff0000; /* Cor do ícone ao passar o mouse (pode ser ajustada) */
-    }
-
     .form-group {
         margin-bottom: 5px;
     }
