@@ -814,38 +814,39 @@
         });
       });
       function carregarInfoCard() {
-  const produtosSelecionados = obterListaProdutos();
-  let descricao = "#Produtos  ";
-  const rows = document.querySelectorAll("#produtoTableBody tr");
-  rows.forEach(row => {
-    const ilhoseCheckbox = row.querySelector("#ilhosesCheckbox");
-    const mastroCheckbox = row.querySelector("#mastroCheckbox");
-    const ilhoseChecked = ilhoseCheckbox.checked;
-    const mastroChecked = mastroCheckbox.checked;
-    const produto = row.querySelector("td:nth-child(2) input").value;
-    const tamanho = produto.split(" - ")[1];
-    const faces = produto.split(" - ")[2];
-    descricao += `
-**Tipo:** ${produto.split(" - ")[0]}  
-**Tamanho:** ${tamanho}  
-**Faces:** ${faces}`;
-    if (ilhoseChecked) {
-      descricao += `
-**Ilhoses:** Sim`;
-    }
-    if (mastroChecked) {
-      descricao += `
-**Mastro:** Sim`;
-    }
-    const descricaoProduto = row.querySelector("td:nth-child(7) input").value;
-    descricao += `**Descrição:**
----
-`;
-  });
+        const produtosSelecionados = obterListaProdutos();
+        let descricao = "#Produtos  ";
+        const rows = document.querySelectorAll("#produtoTableBody tr");
+        rows.forEach(row => {
+          const ilhoseCheckbox = row.querySelector("#ilhosesCheckbox");
+          const mastroCheckbox = row.querySelector("#mastroCheckbox");
+          const ilhoseChecked = ilhoseCheckbox.checked;
+          const mastroChecked = mastroCheckbox.checked;
+          const produto = row.querySelector("td:nth-child(2) input").value;
+          const tamanho = produto.split(" - ")[1];
+          const faces = produto.split(" - ")[2];
+          descricao += `
+      **Tipo:** ${produto.split(" - ")[0]}  
+      **Tamanho:** ${tamanho}  
+      **Faces:** ${faces}`;
+          if (ilhoseChecked) {
+            descricao += `
+      **Ilhoses:** Sim`;
+          }
+          if (mastroChecked) {
+            descricao += `
+      **Mastro:** Sim`;
+          }
+          const descricaoProduto = row.querySelector("td:nth-child(7) input").value;
+          descricao += `**Descrição:**
+      ---
+      `;
+        });
   document.getElementById('tituloCardTrello').value = '';
   document.getElementById('descricaoCardTrello').value = descricao;
 }
 const id_cliente = document.getElementById('id').value;
+
       function consultarOrcamentos() {
         const id_cliente = document.getElementById('id').value;
         console.log(id_cliente);

@@ -33,7 +33,7 @@
     <h1>Tabela de Orçamentos</h1>
     
     <!-- Link para a página de criação de novo orçamento -->
-    <a href="{{ route('orcamentos.create') }}" class="btn btn-primary">Novo Orçamento</a>
+    <a href="{{ route('orcamento') }}" class="btn btn-primary">Novo Orçamento</a>
 
     <!-- Tabela de Orçamentos -->
     <div class="table-container">
