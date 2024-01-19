@@ -4,10 +4,13 @@
     <!-- Adicione seus estilos específicos aqui, se necessário -->
     <style>
         /* Adicione estilos específicos para a tabela, se necessário */
+        .table-container {
+            margin-top: 20px;
+        }
+
         #tabelaOrcamentos {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 20px;
         }
 
         #tabelaOrcamentos th, #tabelaOrcamentos td {
@@ -32,50 +35,56 @@
     <!-- Link para a página de criação de novo orçamento -->
     <a href="{{ route('orcamentos.create') }}" class="btn btn-primary">Novo Orçamento</a>
 
-    <!-- Campo de pesquisa -->
     <div class="float-right mb-3">
-        <label for="search">Pesquisar: </label>
-        <input type="text" id="search" class="form-control">
+        <!-- Campo de pesquisa -->
+        <div class="input-group">
+            <input type="text" id="search" class="form-control" placeholder="Pesquisar...">
+            <div class="input-group-append">
+                <button class="btn btn-outline-secondary" type="button" onclick="pesquisar()">Pesquisar</button>
+            </div>
+        </div>
     </div>
 
     <!-- Tabela de Orçamentos -->
-    <table id="tabelaOrcamentos">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>ID Octa</th>
-                <th>Detalhes do Orçamento</th>
-                <th>Nome da Transportadora</th>
-                <th>Valor do Frete</th>
-                <th>Ações</th>
-            </tr>
-        </thead>
-        <tbody>
-            @forelse($orcamentos as $orcamento)
-            <tr>
-                <td>{{ $orcamento->id }}</td>
-                <td>{{ $orcamento->id_octa }}</td>
-                <td>{{ $orcamento->detalhes_orcamento }}</td>
-                <td>{{ $orcamento->nome_transportadora }}</td>
-                <td>{{ $orcamento->valor_frete }}</td>
-                <td>
-                    <!-- Link para visualizar detalhes do orçamento -->
-                    <a href="{{ route('orcamentos.show', $orcamento->id) }}" class="btn btn-info">Detalhes</a>
+    <div class="table-container">
+        <table id="tabelaOrcamentos">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>ID Octa</th>
+                    <th>Detalhes do Orçamento</th>
+                    <th>Nome da Transportadora</th>
+                    <th>Valor do Frete</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                @forelse($orcamentos as $orcamento)
+                <tr>
+                    <td>{{ $orcamento->id }}</td>
+                    <td>{{ $orcamento->id_octa }}</td>
+                    <td>{{ $orcamento->detalhes_orcamento }}</td>
+                    <td>{{ $orcamento->nome_transportadora }}</td>
+                    <td>{{ $orcamento->valor_frete }}</td>
+                    <td>
+                        <!-- Link para visualizar detalhes do orçamento -->
+                        <a href="{{ route('orcamentos.show', $orcamento->id) }}" class="btn btn-info">Detalhes</a>
 
-                    <!-- Link para editar o orçamento -->
-                    <a href="{{ route('orcamentos.edit', $orcamento->id) }}" class="btn btn-warning">Editar</a>
+                        <!-- Link para editar o orçamento -->
+                        <a href="{{ route('orcamentos.edit', $orcamento->id) }}" class="btn btn-warning">Editar</a>
 
-                    <!-- Botão para excluir o orçamento -->
-                    <button class="btn btn-danger" onclick="deleteOrcamento({{ $orcamento->id }})">Excluir</button>
-                </td>
-            </tr>
-            @empty
-            <tr>
-                <td colspan="6">Nenhum orçamento encontrado.</td>
-            </tr>
-            @endforelse
-        </tbody>
-    </table>
+                        <!-- Botão para excluir o orçamento -->
+                        <button class="btn btn-danger" onclick="deleteOrcamento({{ $orcamento->id }})">Excluir</button>
+                    </td>
+                </tr>
+                @empty
+                <tr>
+                    <td colspan="6">Nenhum orçamento encontrado.</td>
+                </tr>
+                @endforelse
+            </tbody>
+        </table>
+    </div>
 </div>
 
 <!-- Adicione seus modais ou scripts específicos aqui, se necessário -->
@@ -88,7 +97,7 @@
     $(document).ready(function() {
         // Inicializar DataTable
         var tabelaOrcamentos = $('#tabelaOrcamentos').DataTable({
-            searching: true, // Ativar a funcionalidade de busca
+            searching: false, // Desativar a funcionalidade de busca inicialmente
             paging: true, // Ativar a paginação
         });
 
@@ -97,6 +106,12 @@
             tabelaOrcamentos.search(this.value).draw();
         });
     });
+
+    function pesquisar() {
+        // Ativar a funcionalidade de busca ao clicar no botão Pesquisar
+        var tabelaOrcamentos = $('#tabelaOrcamentos').DataTable();
+        tabelaOrcamentos.search($('#search').val()).draw();
+    }
 
     function deleteOrcamento(id) {
         Swal.fire({
