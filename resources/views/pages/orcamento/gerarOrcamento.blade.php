@@ -846,7 +846,7 @@ const id_cliente = document.getElementById('id').value;
       function consultarOrcamentos() {
         const id_cliente = document.getElementById('id').value;
         console.log(id_cliente);
-        fetch(`/frete/consultarorcamentos/${id_cliente}`)
+        fetch(`/orcamento/consultarorcamentos/${id_cliente}`)
           .then(response => response.json())
           .then(data => {
             // Criar o conteúdo da tabela
@@ -942,7 +942,7 @@ const id_cliente = document.getElementById('id').value;
           const enderecoFrete = row.cells[2].textContent;
           // Obter os produtos relacionados ao orçamento
           const orcamentoId = row.querySelector("td:first-child").textContent;
-          fetch(`/frete/orcamentoProdutos/${orcamentoId}`)
+          fetch(`/orcamento/orcamentoProdutos/${orcamentoId}`)
             .then(response => response.json())
             .then(data => {
               // Preencher a tabela com os dados dos produtos
@@ -1222,7 +1222,7 @@ const id_cliente = document.getElementById('id').value;
             }
             // Enviar a requisição AJAX para salvar o pedido
             $.ajax({
-              url: '/frete/orcamentos-salvar',
+              url: '/orcamento/orcamentos-salvar',
               method: 'POST',
               data: {
                 id_octa: detalhesFrete.id,
