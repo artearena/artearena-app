@@ -919,7 +919,7 @@ const id_cliente = document.getElementById('id').value;
                 <div class="modal-content">
                   <div class="modal-header">
                     <h5 class="modal-title">Orçamentos</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Fechar" onclick="fecharModal()">
+                    <button type="button" class="btn-close" data-dismiss="modal" aria-label="Fechar" onclick="fecharModal()">
                         <span aria-hidden="true">&times;</span>
                     </button>
                   </div>
