@@ -272,7 +272,7 @@
                           </div>
                           <div>
                             <button type="button" class="btn btn-secondary" id="botaoLimparCampos">Novo orçamento</button>
-                            <a href="{{ route('dev') }}" class="btn btn-primary">Consultar Orçamentos</a>
+                            <a href="{{ route('orcamento.index') }}" class="btn btn-primary">Consultar Orçamentos</a>
                           </div>
                         </div>
                         <hr>

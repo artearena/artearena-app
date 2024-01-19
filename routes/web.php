@@ -34,7 +34,7 @@ Route::middleware(['auth'])->group(function () {
 
         Route::prefix('orcamento')->group(function () {
             Route::get('/', [OrcamentosController::class, 'orcamento'])->name('orcamento');
-            Route::get('/consultar', [OrcamentosController::class, 'index'])->name('index');
+            Route::get('/consultar', [OrcamentosController::class, 'index'])->name('orcamento.index');
             Route::post('/orcamentos-salvar', [OrcamentosController::class, 'salvarOrcamento'])->name('orcamentos.salvar');
             Route::get('/consultarorcamentos/{id}', [OrcamentosController::class, 'consultarOrcamentos'])->name('orcamentos.consultar');
             Route::get('/orcamentoProdutos/{id}', [OrcamentosController::class, 'consultarProdutos'])->name('orcamentos.produtos');

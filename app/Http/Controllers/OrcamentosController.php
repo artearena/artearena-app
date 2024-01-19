@@ -31,7 +31,6 @@ class OrcamentosController extends Controller
         return view('pages.orcamento.index', compact('orcamentos'));
     }
 
-
     public function orcamento(){
         $produtos = Produto::all();
         return view('pages.orcamento.gerarOrcamento', compact('produtos'));
