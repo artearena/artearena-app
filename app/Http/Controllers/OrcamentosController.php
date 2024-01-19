@@ -26,7 +26,7 @@ class OrcamentosController extends Controller
                 ->paginate(10);
         }
 
-        return view('orcamentos.index', compact('orcamentos'));
+        return view('pages.orcamentos.index', compact('orcamentos'));
     }
 
     public function orcamento(){
