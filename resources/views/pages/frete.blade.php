@@ -562,6 +562,8 @@
       function consultaCepOrcamentoFunc(){
         console.log(document.getElementById('cep').value);
         cepO = document.getElementById('cep').value;
+        console.log(cepO);
+
         return cepO;
       }
       $(function() {
