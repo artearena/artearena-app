@@ -1,13 +1,15 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Models\Orcamentos;
 use App\Models\OrcamentoProdutos;
 use App\Models\Produto;
-use Illuminate\Support\Facades\DB;
+use App\Models\LogsOrcamento;
 
 class OrcamentosController extends Controller
 {
@@ -46,7 +48,6 @@ class OrcamentosController extends Controller
 
     public function salvarOrcamento(Request $request)
     {
-
         // Criação de um novo objeto de orçamento
         $orcamento = new Orcamentos();
         $orcamento->id_octa = $request->input('id_octa');
@@ -62,7 +63,6 @@ class OrcamentosController extends Controller
         // Salvar o orçamento no banco de dados
         $orcamento->save();
 
-
         // Salvar os produtos relacionados ao orçamento
         $produtos = $request->input('produtos');
         $produtosParaSalvar = [];
@@ -77,9 +77,20 @@ class OrcamentosController extends Controller
         }
         $orcamento->produtos()->saveMany($produtosParaSalvar);
 
+        // Obtém o ID do usuário autenticado
+        $idUsuario = Auth::id();
+
+        // Atualiza a tabela logs_orcamento
+        LogsOrcamento::where('id_orcamento', $orcamento->id)
+            ->update([
+                'id_user' => $idUsuario,
+                // Outros campos que você deseja atualizar
+            ]);
+
         // Retornar uma resposta ou redirecionar para outra página
         return response()->json(['message' => 'Orçamento salvo com sucesso']);
     }
+
     public function consultarProdutos($orcamentoId)
     {
         $produtos = OrcamentoProdutos::where('id_orcamento', $orcamentoId)->get();
