@@ -909,7 +909,7 @@ const id_cliente = document.getElementById('id').value;
             const modal = document.createElement('div');
             modal.classList.add('modal');
             modal.innerHTML = `
-              <div class="modal-dialog">
+              <div id="orcamentosModal" class="modal-dialog">
                 <div class="modal-content">
                   <div class="modal-header">
                     <h5 class="modal-title">Orçamentos</h5>
