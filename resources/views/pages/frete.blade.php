@@ -913,8 +913,8 @@ const id_cliente = document.getElementById('id').value;
                 <div class="modal-content">
                   <div class="modal-header">
                     <h5 class="modal-title">Orçamentos</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
-                      <span aria-hidden="true">&times;</span>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Fechar" onclick="fecharModal()">
+                        <span aria-hidden="true">&times;</span>
                     </button>
                   </div>
                   <div class="modal-body">
@@ -941,6 +941,9 @@ const id_cliente = document.getElementById('id').value;
 
       // Adicionar o evento de clique ao botão "Buscar Orçamentos"
       document.getElementById('buscar_orcamento').addEventListener('click', consultarOrcamentos);
+      function fecharModal() {
+          $('.modal').modal('hide');
+      }
 
       function carregarDados(button) {
           const row = button.closest("tr");
@@ -1044,7 +1047,7 @@ const id_cliente = document.getElementById('id').value;
               console.error('Erro ao obter os produtos do orçamento:', error);
             });
 
-            $('.modal').modal('hide');
+            fecharModal();
 
         }
 
