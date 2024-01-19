@@ -1044,7 +1044,7 @@ const id_cliente = document.getElementById('id').value;
               console.error('Erro ao obter os produtos do orçamento:', error);
             });
 
-            $('#orcamentosModal').modal('toggle');
+            $('#orcamentosModal').modal('hide');
 
 
 
