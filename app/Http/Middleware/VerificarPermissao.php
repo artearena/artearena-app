@@ -12,7 +12,8 @@ class VerificarPermissao
 {
     public function handle(Request $request, Closure $next)
     {
-        return $next($request);
+        // Utilizar para desativar permissões
+        //return $next($request);
 
         $usuario = Auth::user();
 
