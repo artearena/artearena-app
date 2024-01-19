@@ -58,13 +58,13 @@
                     <td>{{ $orcamento->valor_frete }}</td>
                     <td>
                         <!-- Link para visualizar detalhes do orçamento -->
-                        <a href="{{ route('orcamentos.show', $orcamento->id) }}" class="btn btn-info">Detalhes</a>
+                        <a href="#" class="btn btn-info">Detalhes</a>
 
                         <!-- Link para editar o orçamento -->
-                        <a href="{{ route('orcamentos.edit', $orcamento->id) }}" class="btn btn-warning">Editar</a>
+                        <a href="#" class="btn btn-warning">Editar</a>
 
                         <!-- Botão para excluir o orçamento -->
-                        <button class="btn btn-danger" onclick="deleteOrcamento({{ $orcamento->id }})">Excluir</button>
+                        <button class="btn btn-danger">Excluir</button>
                     </td>
                 </tr>
                 @empty
