@@ -10,6 +10,11 @@ use App\Models\Produto;
 
 class OrcamentosController extends Controller
 {
+    public function index(){
+        $orcamentos = Orcamentos::all();
+        return view('pages.orcamento.index', compact('orcamentos'));
+    }
+    
     public function orcamento(){
         $produtos = Produto::all();
         return view('pages.orcamento.gerarOrcamento', compact('produtos'));
