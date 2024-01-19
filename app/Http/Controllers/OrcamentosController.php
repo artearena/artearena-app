@@ -13,7 +13,7 @@ class OrcamentosController extends Controller
     public function index(Request $request)
     {
         // Obtenha todos os orçamentos do banco de dados
-        $orcamentos = Orcamento::all();
+        $orcamentos = Orcamentos::all();
 
         // Verifique se há uma consulta de pesquisa
         $search = $request->input('search');
