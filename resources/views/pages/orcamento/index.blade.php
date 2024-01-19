@@ -36,7 +36,6 @@
     <a href="{{ route('orcamentos.create') }}" class="btn btn-primary">Novo Orçamento</a>
 
     <!-- Tabela de Orçamentos -->
-    <!-- Tabela de Orçamentos -->
     <div class="table-container">
         <table id="tabelaOrcamentos">
             <thead>
@@ -56,7 +55,7 @@
                 <tr>
                     <td>{{ $orcamento->id }}</td>
                     <td>{{ $orcamento->id_octa }}</td>
-                    <td style="max-width: 150px; overflow: hidden; text-overflow: ellipsis;">{{ $orcamento->detalhes_orcamento }}</td>
+                    <td style="max-width: 500px; overflow: hidden; text-overflow: ellipsis;">{{ $orcamento->detalhes_orcamento }}</td>
                     <td>{{ $orcamento->nome_transportadora }}</td>
                     <td>{{ $orcamento->valor_frete }}</td>
                     <td>{{ $orcamento->created_at->format('d/m/Y H:i:s') }}</td>
