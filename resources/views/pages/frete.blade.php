@@ -1039,13 +1039,13 @@ const id_cliente = document.getElementById('id').value;
 
               // Feche o modal com o ID específico
               $('#calcularFrete').click();
-              $('#orcamentosModal').modal('hide');
             })
             .catch(error => {
               console.error('Erro ao obter os produtos do orçamento:', error);
             });
 
-          
+            $('#orcamentosModal').modal('hide');
+
         }
 
       function criarPedido(idOrcamento) {
