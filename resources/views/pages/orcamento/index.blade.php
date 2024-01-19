@@ -37,7 +37,7 @@
 
     <!-- Tabela de Orçamentos -->
     <div class="table-container">
-        <table id="tabelaOrcamentos">
+        <table id="tabelaOrcamentos" class="text-center">
             <thead>
                 <tr>
                     <th>ID</th>
