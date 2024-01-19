@@ -89,7 +89,7 @@
             bInfo: false, // Remover informações de quantidade de registros
             dom: 'lBfrtip', // Definir layout personalizado
             language: {
-                url: 'https://cdn.datatables.net/plug-ins/1.11.6/i18n/Portuguese-Brasil.json'
+                url: '//cdn.datatables.net/plug-ins/1.13.7/i18n/pt-BR.json',
             },
             buttons: [
                 'excel', 'pdf', 'print' // Adicionar botões para exportar
