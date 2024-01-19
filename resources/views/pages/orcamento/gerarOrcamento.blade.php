@@ -271,7 +271,7 @@
                               </div>
                           </div>
                           <button type="button" class="btn btn-primary" id="botaoLimparCampos">Consultar Orçamentos</button>
-                          <a href="{{ route('octa.crm') }}" class="btn btn-primary">Novo orçamento</a>
+                          <a href="{{ route('dev') }}" class="btn btn-primary">Novo orçamento</a>
                       </div>
                         <hr>
                         <div class="form-group">
