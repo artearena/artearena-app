@@ -826,21 +826,28 @@
           const tamanho = produto.split(" - ")[1];
           const faces = produto.split(" - ")[2];
           descricao += `
-      **Tipo:** ${produto.split(" - ")[0]}  
+      **Tipo:** ${produto.split(" - ")[0]}
+      **Material:** 
       **Tamanho:** ${tamanho}  
       **Faces:** ${faces}`;
-          if (ilhoseChecked) {
-            descricao += `
+      if (ilhoseChecked) {
+        descricao += `
       **Ilhoses:** Sim`;
-          }
-          if (mastroChecked) {
-            descricao += `
+      else {
+        descricao += `
+      **Ilhoses:**`;
+      }
+      if (mastroChecked) {
+        descricao += `
       **Mastro:** Sim`;
-          }
+      } else {
+        descricao += `
+      **Mastro:**`;
+      }
           const descricaoProduto = row.querySelector("td:nth-child(7) input").value;
           descricao += `
       **Descrição:**
-      
+
       ---
       `;
         });
