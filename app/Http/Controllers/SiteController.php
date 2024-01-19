@@ -8,24 +8,24 @@ use App\Models\Produto;
 class SiteController extends Controller
 {
 
-     public function index()
-     {
-         return view('pages.index');
-     }
-     
-     public function bandeiras()
-     {
-         return view('pages.bandeiras');
-     }
+    public function index()
+    {
+        return view('pages.index');
+    }
+    
+    public function bandeiras()
+    {
+        return view('pages.bandeiras');
+    }
 
-     public function desenvolvimento()
-     {
-         return view('pages.desenvolvimentos.index');
-     }
+    public function desenvolvimento()
+    {
+        return view('pages.desenvolvimentos.index');
+    }
 
-     public function frete(){
+    public function orcamento(){
         $produtos = Produto::all();
-        return view('pages.frete', compact('produtos'));
+        return view('pages.orcamento.gerarOrcamento', compact('produtos'));
     }
 
 
