@@ -89,13 +89,18 @@
 
 <!-- Adicione seus modais ou scripts específicos aqui, se necessário -->
 @endsection
-
 @section('extraScript')
 <script>
     $(document).ready(function() {
         // Inicializar DataTable
         var tabelaOrcamentos = $('#tabelaOrcamentos').DataTable({
             paging: true, // Ativar a paginação
+            searching: true, // Desativar a funcionalidade de busca inicialmente
+            bInfo: false, // Remover informações de quantidade de registros
+            dom: 'lBfrtip', // Definir layout personalizado
+            buttons: [
+                'excel', 'pdf', 'print' // Adicionar botões para exportar
+            ]
         });
 
         // Adicionar campo de pesquisa
@@ -154,4 +159,52 @@
         });
     }
 </script>
+@endsection
+
+@section('style')
+<style>
+    /* Estilos específicos para a tabela, se necessário */
+    .table-container {
+        margin-top: 20px;
+    }
+
+    #tabelaOrcamentos {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    #tabelaOrcamentos th,
+    #tabelaOrcamentos td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+    }
+
+    #tabelaOrcamentos th {
+        background-color: #f2f2f2;
+    }
+
+    /* Estilos para os botões de exportação */
+    .dt-buttons {
+        margin-bottom: 10px;
+    }
+
+    .dt-button {
+        background-color: #007bff;
+        color: #fff;
+        border: 1px solid #007bff;
+        border-radius: 5px;
+        margin-right: 10px;
+    }
+
+    /* Estilos para os inputs de pesquisa */
+    input[type="text"] {
+        width: 100%;
+        padding: 8px;
+        box-sizing: border-box;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        margin-bottom: 12px;
+    }
+</style>
 @endsection
