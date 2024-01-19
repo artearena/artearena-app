@@ -35,6 +35,6 @@ class Orcamentos extends Model
 
     public function usuario()
     {
-        return $this->belongsTo(Usuarios::class, 'id_user');
+        return $this->belongsTo(Usuario::class, 'id_user');
     }
 }
