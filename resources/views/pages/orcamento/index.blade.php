@@ -45,6 +45,7 @@
                     <th>Detalhes do Orçamento</th>
                     <th>Nome da Transportadora</th>
                     <th>Valor do Frete</th>
+                    <th>Data de Criação</th>
                     <th>Ações</th>
                 </tr>
             </thead>
@@ -56,6 +57,8 @@
                     <td>{{ $orcamento->detalhes_orcamento }}</td>
                     <td>{{ $orcamento->nome_transportadora }}</td>
                     <td>{{ $orcamento->valor_frete }}</td>
+                    <td>{{ $orcamento->created_at->format('d/m/Y H:i:s') }}</td>
+
                     <td>
                         <!-- Link para visualizar detalhes do orçamento -->
                         <a href="#" class="btn btn-info">Detalhes</a>
