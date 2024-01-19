@@ -91,26 +91,32 @@
 @endsection
 
 @section('extraScript')
-
 <script>
     $(document).ready(function() {
         // Inicializar DataTable
         var tabelaOrcamentos = $('#tabelaOrcamentos').DataTable({
-            searching: false, // Desativar a funcionalidade de busca inicialmente
             paging: true, // Ativar a paginação
         });
 
-        // Adicionar evento de input para a pesquisa
-        $('#search').on('keyup', function () {
-            tabelaOrcamentos.search(this.value).draw();
+        // Adicionar campo de pesquisa
+        $('#tabelaOrcamentos thead th').each(function() {
+            var title = $(this).text();
+            $(this).html('<input type="text" placeholder="Pesquisar ' + title + '" />');
+        });
+
+        // Aplicar a pesquisa no DataTable
+        tabelaOrcamentos.columns().every(function() {
+            var that = this;
+
+            $('input', this.header()).on('keyup change', function() {
+                if (that.search() !== this.value) {
+                    that
+                        .search(this.value)
+                        .draw();
+                }
+            });
         });
     });
-
-    function pesquisar() {
-        // Ativar a funcionalidade de busca ao clicar no botão Pesquisar
-        var tabelaOrcamentos = $('#tabelaOrcamentos').DataTable();
-        tabelaOrcamentos.search($('#search').val()).draw();
-    }
 
     function deleteOrcamento(id) {
         Swal.fire({
