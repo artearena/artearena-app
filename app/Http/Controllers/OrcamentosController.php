@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Orcamentos;
 use App\Models\OrcamentoProdutos;
+use App\Models\Produto;
 
 class OrcamentosController extends Controller
 {
@@ -13,7 +14,7 @@ class OrcamentosController extends Controller
         $produtos = Produto::all();
         return view('pages.orcamento.gerarOrcamento', compact('produtos'));
     }
-    
+
     public function salvarOrcamento(Request $request)
     {
 
