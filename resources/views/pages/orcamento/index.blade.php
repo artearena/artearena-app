@@ -36,6 +36,7 @@
     <a href="{{ route('orcamentos.create') }}" class="btn btn-primary">Novo Orçamento</a>
 
     <!-- Tabela de Orçamentos -->
+    <!-- Tabela de Orçamentos -->
     <div class="table-container">
         <table id="tabelaOrcamentos">
             <thead>
@@ -46,6 +47,7 @@
                     <th>Nome da Transportadora</th>
                     <th>Valor do Frete</th>
                     <th>Data de Criação</th>
+                    <th>Quantidade de Repetições</th>
                     <th>Ações</th>
                 </tr>
             </thead>
@@ -54,11 +56,11 @@
                 <tr>
                     <td>{{ $orcamento->id }}</td>
                     <td>{{ $orcamento->id_octa }}</td>
-                    <td>{{ $orcamento->detalhes_orcamento }}</td>
+                    <td style="max-width: 150px; overflow: hidden; text-overflow: ellipsis;">{{ $orcamento->detalhes_orcamento }}</td>
                     <td>{{ $orcamento->nome_transportadora }}</td>
                     <td>{{ $orcamento->valor_frete }}</td>
                     <td>{{ $orcamento->created_at->format('d/m/Y H:i:s') }}</td>
-
+                    <td>{{ $orcamento->quantidade_repeticoes }}</td>
                     <td>
                         <!-- Link para visualizar detalhes do orçamento -->
                         <a href="#" class="btn btn-info">Detalhes</a>
@@ -72,12 +74,13 @@
                 </tr>
                 @empty
                 <tr>
-                    <td colspan="6">Nenhum orçamento encontrado.</td>
+                    <td colspan="8">Nenhum orçamento encontrado.</td>
                 </tr>
                 @endforelse
             </tbody>
         </table>
     </div>
+
 </div>
 
 <!-- Adicione seus modais ou scripts específicos aqui, se necessário -->
