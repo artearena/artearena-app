@@ -95,7 +95,7 @@
         // Inicializar DataTable
         var tabelaOrcamentos = $('#tabelaOrcamentos').DataTable({
             paging: true, // Ativar a paginação
-            searching: false, // Desativar a funcionalidade de busca inicialmente
+            searching: true, // Desativar a funcionalidade de busca inicialmente
             bInfo: false, // Remover informações de quantidade de registros
             dom: 'lBfrtip', // Definir layout personalizado
             buttons: [
