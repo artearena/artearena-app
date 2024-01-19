@@ -270,9 +270,11 @@
                                   <label class="custom-control-label" for="gerarOrcamento">Gerar Orçamento</label>
                               </div>
                           </div>
-                          <button type="button" class="btn btn-secondary" id="botaoLimparCampos">Consultar Orçamentos</button>
-                          <a href="{{ route('dev') }}" class="btn btn-primary">Novo orçamento</a>
-                      </div>
+                          <div>
+                            <button type="button" class="btn btn-secondary" id="botaoLimparCampos">Consultar Orçamentos</button>
+                            <a href="{{ route('dev') }}" class="btn btn-primary">Novo orçamento</a>
+                          </div>
+                        </div>
                         <hr>
                         <div class="form-group">
                             <div class="container-lg">
