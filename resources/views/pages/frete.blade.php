@@ -1044,16 +1044,18 @@ const id_cliente = document.getElementById('id').value;
               console.error('Erro ao obter os produtos do orçamento:', error);
             });
 
-            $('#orcamentosModal').modal('hide');
-            console.log($('#orcamentosModal'));
+            $(document).ready(function() {
+                $('#orcamentosModal').modal('hide');
+            });
 
-            console.log('to aqui');
 
         }
       // Adicione esta linha ao final do seu código JavaScript
       $('.modal .close').on('click', function() {
-          console.log('to aqui');
-          $('#orcamentosModal').modal('hide');
+        $(document).ready(function() {
+            $('#orcamentosModal').modal('hide');
+        });
+
       });
 
       function criarPedido(idOrcamento) {
