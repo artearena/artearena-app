@@ -270,7 +270,8 @@
                                   <label class="custom-control-label" for="gerarOrcamento">Gerar Orçamento</label>
                               </div>
                           </div>
-                          <button type="button" class="btn btn-secondary" id="botaoLimparCampos">Novo Orçamento</button>
+                          <button type="button" class="btn btn-primary" id="botaoLimparCampos">Consultar Orçamentos</button>
+                          <a href="{{ route('octa.crm') }}" class="btn btn-primary">Novo orçamento</a>
                       </div>
                         <hr>
                         <div class="form-group">
