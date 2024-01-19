@@ -1042,15 +1042,15 @@ const id_cliente = document.getElementById('id').value;
               document.getElementById("campoTexto").value = descricaoOrcamento;
               document.getElementById("cep").value = cepFrete;
               document.getElementById("endereco").value = enderecoFrete;
-
+              // Feche o modal com o ID específico
+              $('#calcularFrete').click();
+              $('#orcamentosModal').modal('hide');
             })
             .catch(error => {
               console.error('Erro ao obter os produtos do orçamento:', error);
             });
 
-          // Feche o modal com o ID específico
-          $('#calcularFrete').click();
-          $('#orcamentosModal').modal('hide');
+          
         }
 
       function criarPedido(idOrcamento) {
