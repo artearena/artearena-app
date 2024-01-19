@@ -560,7 +560,8 @@
           consultarCep();
       });
       function consultaCepOrcamentoFunc(){
-        
+        console.log(document.getElementById('cep').value);
+        cepO = document.getElementById('cep').value;
         return cepO;
       }
       $(function() {
@@ -568,8 +569,7 @@
       $('#calcularFrete').click(function() {
         const url = "https://artearena.kinghost.net/consultar-kangu";
         
-        console.log(document.getElementById("cep").value);
-        const cepDestino = document.getElementById("cep").value;
+        const cepDestino = consultaCepOrcamentoFunc();
         var peso_total = 0;
         var valor_total = 0;
         var produtos = [];
