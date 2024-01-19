@@ -35,16 +35,6 @@
     <!-- Link para a página de criação de novo orçamento -->
     <a href="{{ route('orcamentos.create') }}" class="btn btn-primary">Novo Orçamento</a>
 
-    <div class="float-right mb-3">
-        <!-- Campo de pesquisa -->
-        <div class="input-group">
-            <input type="text" id="search" class="form-control" placeholder="Pesquisar...">
-            <div class="input-group-append">
-                <button class="btn btn-outline-secondary" type="button" onclick="pesquisar()">Pesquisar</button>
-            </div>
-        </div>
-    </div>
-
     <!-- Tabela de Orçamentos -->
     <div class="table-container">
         <table id="tabelaOrcamentos">
@@ -98,6 +88,9 @@
             searching: true, // Desativar a funcionalidade de busca inicialmente
             bInfo: false, // Remover informações de quantidade de registros
             dom: 'lBfrtip', // Definir layout personalizado
+            language: {
+                url: 'https://cdn.datatables.net/plug-ins/1.11.6/i18n/Portuguese-Brasil.json'
+            },
             buttons: [
                 'excel', 'pdf', 'print' // Adicionar botões para exportar
             ]
