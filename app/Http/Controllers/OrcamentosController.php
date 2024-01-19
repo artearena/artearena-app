@@ -9,7 +9,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Orcamentos;
 use App\Models\OrcamentoProdutos;
 use App\Models\Produto;
-use App\Models\LogsOrcamento;
+use App\Models\Log_orcamento;
 
 class OrcamentosController extends Controller
 {
@@ -37,9 +37,6 @@ class OrcamentosController extends Controller
 
         return view('pages.orcamento.index', compact('orcamentos'));
     }
-
-
-
 
     public function orcamento(){
         $produtos = Produto::all();
@@ -81,7 +78,7 @@ class OrcamentosController extends Controller
         $idUsuario = Auth::id();
 
         // Atualiza a tabela logs_orcamento
-        LogsOrcamento::where('id_orcamento', $orcamento->id)
+        Log_orcamento::where('id_orcamento', $orcamento->id)
             ->update([
                 'id_user' => $idUsuario,
                 // Outros campos que você deseja atualizar

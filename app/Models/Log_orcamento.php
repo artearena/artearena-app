@@ -1,12 +1,12 @@
 <?php
 
-// app/Models/LogsOrcamento.php
+// app/Models/Log_orcamento.php
 
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class LogsOrcamento extends Model
+class Log_orcamento extends Model
 {
     protected $table = 'logs_orcamento';
 
