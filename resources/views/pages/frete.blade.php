@@ -227,7 +227,6 @@
     }
 
     .modal-body {
-        height: 400px; /* Ajuste conforme necessário */
         overflow-y: auto; /* Adiciona overflow vertical */
     }
 
