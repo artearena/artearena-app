@@ -7,9 +7,11 @@ use Illuminate\Http\Request;
 use App\Models\Orcamentos;
 use App\Models\OrcamentoProdutos;
 use App\Models\Produto;
+use Illuminate\Support\Facades\DB;
 
 class OrcamentosController extends Controller
 {
+
     public function index(Request $request)
     {
         // Verifique se há uma consulta de pesquisa
@@ -27,11 +29,13 @@ class OrcamentosController extends Controller
 
         // Adicione a subconsulta para contar repetições
         $orcamentos = $orcamentosQuery
-            ->select('orcamentos.*', DB::raw('(SELECT COUNT(*) FROM orcamentos as o WHERE o.id_octa = orcamentos.id_octa) as repeticoes_count'))
+            ->select('orcamentos.*', DB::raw('(SELECT COUNT(*) FROM orcamentos as o WHERE o.id_octa = orcamentos.id_octa) as quantidade_repeticoes'))
+            ->orderBy('created_at', 'desc') // Adicione esta linha para ordenar por data de criação decrescente
             ->get();
 
         return view('pages.orcamento.index', compact('orcamentos'));
     }
+
 
     public function orcamento(){
         $produtos = Produto::all();
