@@ -32,7 +32,7 @@ class OrcamentosController extends Controller
         // Adicione a subconsulta para contar repetições
         $orcamentos = $orcamentosQuery
             ->select('orcamento.*', DB::raw('(SELECT COUNT(*) FROM orcamento as o WHERE o.id_octa = orcamento.id_octa) as quantidade_repeticoes'))
-            ->orderBy('created_at', 'desc') // Adicione esta linha para ordenar por data de criação decrescente
+            ->orderBy('created_at', 'desc') // Ordenar por data de criação decrescente
             ->get();
 
         return view('pages.orcamento.index', compact('orcamentos'));
@@ -45,6 +45,9 @@ class OrcamentosController extends Controller
 
     public function salvarOrcamento(Request $request)
     {
+
+        $idUsuario = Auth::id();
+
         // Criação de um novo objeto de orçamento
         $orcamento = new Orcamentos();
         $orcamento->id_octa = $request->input('id_octa');
@@ -56,6 +59,7 @@ class OrcamentosController extends Controller
         $orcamento->prazo_entrega = $request->input('prazo_entrega');
         $orcamento->data_prevista = $request->input('data_prevista');
         $orcamento->logo_frete = $request->input('logo_frete');
+        $orcamento->id_user = $idUsuario;
 
         // Salvar o orçamento no banco de dados
         $orcamento->save();
@@ -73,9 +77,6 @@ class OrcamentosController extends Controller
             ]);
         }
         $orcamento->produtos()->saveMany($produtosParaSalvar);
-
-        // Obtém o ID do usuário autenticado
-        $idUsuario = Auth::id();
 
         // Atualiza a tabela logs_orcamento
         Log_orcamento::where('id_orcamento', $orcamento->id)

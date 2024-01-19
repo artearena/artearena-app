@@ -32,4 +32,9 @@ class Orcamentos extends Model
     {
         return $this->hasMany(OrcamentoProdutos::class, 'id_orcamento');
     }
+
+    public function usuario()
+    {
+        return $this->belongsTo(Usuarios::class, 'id_user');
+    }
 }

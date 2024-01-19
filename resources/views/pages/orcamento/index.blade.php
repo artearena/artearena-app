@@ -45,6 +45,7 @@
                     <th>Detalhes do Orçamento</th>
                     <th>Nome da Transportadora</th>
                     <th>Valor do Frete</th>
+                    <th>Criado por</th>
                     <th>Data de Criação</th>
                     <th>Qtd. por cliente</th>
                     <th>Ações</th>
@@ -58,6 +59,7 @@
                     <td style="max-width: 500px; overflow: hidden; text-overflow: ellipsis;">{{ $orcamento->detalhes_orcamento }}</td>
                     <td>{{ $orcamento->nome_transportadora }}</td>
                     <td>{{ $orcamento->valor_frete }}</td>
+                    <td>{{ $orcamento->user->nome_usuario }}</td>
                     <td>{{ $orcamento->created_at->format('d/m/Y H:i:s') }}</td>
                     <td>{{ $orcamento->quantidade_repeticoes }}</td>
                     <td>
