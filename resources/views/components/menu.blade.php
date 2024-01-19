@@ -31,7 +31,7 @@
                         <ul class="dropdown-menu" aria-labelledby="comercialDropdown">
                             <li><a class="dropdown-item" href="{{ route('octa.crm') }}">CRM Octa</a></li>
                             <li><a class="dropdown-item" href="{{ route('bandeira') }}">Bandeira</a></li>
-                            <li><a class="dropdown-item" href="{{ route('frete') }}">Gerar Orçamento</a></li>
+                            <li><a class="dropdown-item" href="{{ route('orcamento') }}">Gerar Orçamento</a></li>
                             <li><a class="dropdown-item" href="{{ route('tiny.relatorio') }}">Tiny Relatório</a></li>
                             <li><a class="dropdown-item" href="{{ route('pedidoInterno')}}">Pedido Interno</a></li>
                             <li><a class="dropdown-item" href="#">Encurtar Link</a></li>
