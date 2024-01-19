@@ -29,7 +29,7 @@
 @endsection
 
 @section('content')
-<div class="app container-with-margin">
+<div class="app container">
     <h1>Tabela de Orçamentos</h1>
     
     <!-- Link para a página de criação de novo orçamento -->
@@ -37,7 +37,7 @@
 
     <!-- Tabela de Orçamentos -->
     <div class="table-container">
-        <table id="tabelaOrcamentos" class="text-center">
+        <table id="tabelaOrcamentos">
             <thead>
                 <tr>
                     <th>ID</th>
