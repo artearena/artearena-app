@@ -931,7 +931,7 @@ const id_cliente = document.getElementById('id').value;
             // Adicionar o modal ao body
             document.body.appendChild(modal);
             // Abrir o modal
-            modal.style.display = 'block';
+            $('.modal').modal('show');
           })
           .catch(error => {
             console.error('Erro ao consultar os orçamentos:', error);
@@ -1047,6 +1047,10 @@ const id_cliente = document.getElementById('id').value;
             $('#orcamentosModal').modal('hide');
 
         }
+      // Adicione esta linha ao final do seu código JavaScript
+      $('.modal .close').on('click', function() {
+          $('.modal').modal('hide');
+      });
 
       function criarPedido(idOrcamento) {
       // Redirecionar p<ara a URL com o ID do orçamento
