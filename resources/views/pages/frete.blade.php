@@ -559,13 +559,17 @@
       $('#cep').on('blur', function() {
           consultarCep();
       });
-
+      function consultaCepOrcamentoFunc(){
+        
+        return cepO;
+      }
       $(function() {
       // Evento de clique no botão "Calcular frete"
       $('#calcularFrete').click(function() {
         const url = "https://artearena.kinghost.net/consultar-kangu";
-
-        const cepDestino = consultaCepOrcamento;
+        
+        console.log(document.getElementById("cep").value);
+        const cepDestino = document.getElementById("cep").value;
         var peso_total = 0;
         var valor_total = 0;
         var produtos = [];
@@ -947,7 +951,6 @@ const id_cliente = document.getElementById('id').value;
           const descricaoOrcamento = row.querySelector(".descricao-orcamento").textContent;
           const cepFrete = row.cells[9].textContent;
           const enderecoFrete = row.cells[2].textContent;
-          consultaCepOrcamento = cepFrete;
           // Obter os produtos relacionados ao orçamento
           const orcamentoId = row.querySelector("td:first-child").textContent;
           fetch(`/frete/orcamentoProdutos/${orcamentoId}`)
