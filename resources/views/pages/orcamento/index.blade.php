@@ -3,12 +3,21 @@
 @section('style')
     <!-- Adicione seus estilos específicos aqui, se necessário -->
     <style>
-        .dataTable {
-            /* Adicione estilos específicos para a tabela, se necessário */
+        /* Adicione estilos específicos para a tabela, se necessário */
+        #tabelaOrcamentos {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
         }
 
-        .dataTable th, .dataTable td {
-            /* Adicione estilos específicos para as células da tabela, se necessário */
+        #tabelaOrcamentos th, #tabelaOrcamentos td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        #tabelaOrcamentos th {
+            background-color: #f2f2f2;
         }
 
         /* Adicione mais estilos conforme necessário */
@@ -23,8 +32,14 @@
     <!-- Link para a página de criação de novo orçamento -->
     <a href="{{ route('orcamentos.create') }}" class="btn btn-primary">Novo Orçamento</a>
 
+    <!-- Campo de pesquisa -->
+    <div class="float-right mb-3">
+        <label for="search">Pesquisar: </label>
+        <input type="text" id="search" class="form-control">
+    </div>
+
     <!-- Tabela de Orçamentos -->
-    <table id="tabelaOrcamentos" class="dataTable">
+    <table id="tabelaOrcamentos">
         <thead>
             <tr>
                 <th>ID</th>
@@ -72,9 +87,14 @@
 <script>
     $(document).ready(function() {
         // Inicializar DataTable
-        $('#tabelaOrcamentos').DataTable({
+        var tabelaOrcamentos = $('#tabelaOrcamentos').DataTable({
             searching: true, // Ativar a funcionalidade de busca
             paging: true, // Ativar a paginação
+        });
+
+        // Adicionar evento de input para a pesquisa
+        $('#search').on('keyup', function () {
+            tabelaOrcamentos.search(this.value).draw();
         });
     });
 
