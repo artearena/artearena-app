@@ -821,8 +821,8 @@
         rows.forEach(row => {
           const ilhoseCheckbox = row.querySelector("#ilhosesCheckbox");
           const mastroCheckbox = row.querySelector("#mastroCheckbox");
-          const ilhoseChecked = ilhoseCheckbox.checked;
-          const mastroChecked = mastroCheckbox.checked;
+          const ilhoseChecked = ilhoseCheckbox ? ilhoseCheckbox.checked : false;
+          const mastroChecked = mastroCheckbox ? mastroCheckbox.checked : false;
           const produto = row.querySelector("td:nth-child(2) input").value;
           const tamanho = produto.split(" - ")[1];
           const faces = produto.split(" - ")[2];
