@@ -46,7 +46,7 @@
                     <th>Nome da Transportadora</th>
                     <th>Valor do Frete</th>
                     <th>Data de Criação</th>
-                    <th>Qtd. Orçamentos por cliente</th>
+                    <th>Qtd. por cliente</th>
                     <th>Ações</th>
                 </tr>
             </thead>
