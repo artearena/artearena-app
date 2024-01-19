@@ -13,6 +13,7 @@
 
         /* Adicione mais estilos conforme necessário */
     </style>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.6/css/jquery.dataTables.min.css">
 @endsection
 
 @section('content')
@@ -66,7 +67,17 @@
 @endsection
 
 @section('extraScript')
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.datatables.net/1.11.6/js/jquery.dataTables.min.js"></script>
 <script>
+    $(document).ready(function() {
+        // Inicializar DataTable
+        $('#tabelaOrcamentos').DataTable({
+            searching: true, // Ativar a funcionalidade de busca
+            paging: true, // Ativar a paginação
+        });
+    });
+
     function deleteOrcamento(id) {
         Swal.fire({
             title: 'Você tem certeza?',
