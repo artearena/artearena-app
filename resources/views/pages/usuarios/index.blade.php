@@ -259,40 +259,39 @@
                 }
             });
         });
-            $('.carregar-imagem').click(function() {
-                Swal.fire({
-                    title: 'Imagem do Usuário',
-                    html: '<label for="imagem" class="btn btn-primary">Anexe ou arraste um arquivo</label><input type="file" id="imagem" accept="image/*" style="display: none;">',
-                    showCloseButton: true,
-                    showConfirmButton: true,
-                    confirmButtonText: 'Salvar',
-                    showLoaderOnConfirm: true,
-                    preConfirm: () => {
-                        return new Promise((resolve) => {
-                            const imagem = document.getElementById('imagem').files[0];
-                            const formData = new FormData();
-                            formData.append('id', $(this).data('user-id')); // Passa o ID do usuário para o servidor
-                            formData.append('imagem', imagem);
-                            
-                            $.ajax({
-                                url: '{{ route("usuarios.uploadImagem") }}',
-                                type: 'POST',
-                                data: formData,
-                                processData: false,
-                                contentType: false,
-                                success: function(response) {
-                                    console.log(response);
-                                    resolve();
-                                },
-                                error: function(xhr, status, error) {
-                                    console.error(xhr.responseText);
-                                    resolve();
-                                }
-                            });
-                        });
-                    }
+        $('.carregar-imagem').click(function() {
+        Swal.fire({
+            title: 'Imagem do Usuário',
+            html: '<label for="imagem" class="btn btn-primary">Anexe ou arraste um arquivo</label><input type="file" id="imagem" accept="image/*" style="display: none;">',
+            showCloseButton: true,
+            showConfirmButton: true,
+            confirmButtonText: 'Salvar',
+            showLoaderOnConfirm: true,
+            preConfirm: () => {
+                return new Promise((resolve) => {
+                    const imagem = document.getElementById('imagem').files[0];
+                    const formData = new FormData();
+                    formData.append('id', $(this).data('user-id')); // Passa o ID do usuário para o servidor
+                    formData.append('imagem', imagem);
+                    
+                    $.ajax({
+                        url: '{{ route("usuarios.uploadImagem") }}',
+                        type: 'POST',
+                        data: formData,
+                        processData: false,
+                        contentType: false,
+                        success: function(response) {
+                            console.log(response);
+                            resolve();
+                        },
+                        error: function(xhr, status, error) {
+                            console.error(xhr.responseText);
+                            resolve();
+                        }
+                    });
                 });
-            });
+            }
+        });
 
         // Adicionando o SweetAlert para a exclusão de usuários
         $('#tabelaUsuarios').on('click', '.btn-danger', function(e){
