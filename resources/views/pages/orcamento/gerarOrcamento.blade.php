@@ -374,8 +374,10 @@
                                     <label for="descricaoCardTrello">Descrição:</label>
                                     <textarea class="form-control" id="descricaoCardTrello" rows="5"></textarea>
                                 </div>
+                                <button type="button" class="btn btn-primary top-margin" id="botaoCardTrello">Gerar Card</button>
+
                                 <div class="container">
-                                    <button type="button" class="btn btn-primary top-margin" id="tt">Gerar Card</button>
+                                  <button type="button" class="btn btn-primary top-margin" id="tt">Anexos</button>
                                     <div id="dropArea">Arraste e solte arquivos aqui para anexar</div>
                                     <div id="arquivosAnexados"></div> <!-- Div para exibir os arquivos anexados -->
                                 </div>                              
