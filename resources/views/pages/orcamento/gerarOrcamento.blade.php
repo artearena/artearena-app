@@ -816,6 +816,8 @@
       function carregarInfoCard() {
     const produtosSelecionados = obterListaProdutos();
     let descricao = "#Produtos ";
+    let titulo = '';
+
     const rows = document.querySelectorAll("#produtoTableBody tr");
 
     rows.forEach(row => {
@@ -828,7 +830,6 @@
         const faces = produto.split(" - ")[2];
         const tipo = produto.split(" - ")[0];
         const id = document.getElementById('id').value;
-        var titulo = '';
 
         if(tipo.includes('Bandeira de Mesa')) {
             titulo += `Bandeira de Mesa - `;
