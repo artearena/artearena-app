@@ -35,7 +35,7 @@ class OrcamentosController extends Controller
         $orcamentos = $orcamentosQuery
             ->select('orcamento.*', DB::raw('(SELECT COUNT(*) FROM orcamento o WHERE o.id_octa = orcamento.id_octa) as quantidade_repeticoes'))
             ->orderByDesc('created_at') // Ordenar por data de criação decrescente
-            ->paginate(10); // Paginação com 10 registros por página
+            ->paginate(100); // Paginação com 10 registros por página
 
         return view('pages.orcamento.index', compact('orcamentos'));
     }
