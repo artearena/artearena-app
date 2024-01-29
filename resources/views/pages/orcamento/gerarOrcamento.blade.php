@@ -440,6 +440,7 @@
             // Adicionar arquivo ao array de arquivos anexados
             arquivosAnexados.push(arquivo);
             // Atualizar a exibição dos arquivos anexados
+            console.log(arquivosAnexados);
             exibirArquivosAnexados();
         }
 
