@@ -846,6 +846,18 @@ descricao += `
 `;   
 //fim---------------//---------------//---------------//---------------//---------------//---------------//---------------
 
+        } else if(tipo.includes('Bandeira') && tipo.includes('Oficial')) {
+            titulo += `Bandeira Oficial - `;
+//inicio---------------//---------------//---------------//---------------//---------------//---------------//---------------
+descricao += `
+**Tipo: ${tipo}** 
+**Material:** Tactel / Bember / Oxford / Cetim
+**Tamanho:** ?
+**Descrição:** ?
+**Faces**: ${faces}
+
+`;
+//fim---------------//---------------//---------------//---------------//---------------//---------------//---------------
         } else if (tipo.includes('Bandeira') || tipo.includes('Faixa')) {
           // Obtém o ID do campo de texto
           // Define o título com o ID concatenado
@@ -876,19 +888,7 @@ descricao += `
 `;
 //fim---------------//---------------//---------------//---------------//---------------//---------------//---------------
         } 
-        if(tipo.includes('Bandeira') && tipo.includes('Oficial')) {
-            titulo += `Bandeira Oficial - `;
-//inicio---------------//---------------//---------------//---------------//---------------//---------------//---------------
-descricao += `
-**Tipo: ${tipo}** 
-**Material:** Tactel / Bember / Oxford / Cetim
-**Tamanho:** ?
-**Descrição:** ?
-**Faces**: ${faces}
-
-`;
-//fim---------------//---------------//---------------//---------------//---------------//---------------//---------------
-        } 
+        
         
         
       descricao = descricao.replace(/undefined/g, '?');
