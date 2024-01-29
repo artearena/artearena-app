@@ -101,24 +101,67 @@
             var id = $(element).data('id');
             var field = $(element).data('field');
             var value = $(element).is('input, select, textarea') ? $(element).val() : $(element).text();
-            
-            console.log(field);
-            console.log(value);
-            
-            $.ajax({
-                url: "/usuarios/updateall",
-                type: 'POST',
-                data: {
-                    "_token": "{{ csrf_token() }}",
-                    "id": id,
-                    "field": field,
-                    "value": value
-                },
-                success: function(response){
-                    console.log(response);
-                }
-            });
+
+            // Verificar se o campo é "permissões" e o valor é "17"
+            if (field === "permissoes" && value === "17") {
+                swal({
+                    title: "ID do vendedor",
+                    text: "Por favor, insira o ID do vendedor:",
+                    content: "input",
+                    button: {
+                        text: "OK",
+                        closeModal: false,
+                    },
+                })
+                .then((vendedorId) => {
+                    if (vendedorId) {
+                        // Se o usuário inseriu um ID de vendedor, fazer a solicitação AJAX
+                        $.ajax({
+                            url: "/usuarios/updateall",
+                            type: 'POST',
+                            data: {
+                                "_token": "{{ csrf_token() }}",
+                                "id": id,
+                                "field": id_vendedor,
+                                "value": vendedorId,
+                            },
+                            success: function(response){
+                                console.log(response);
+                                swal("Sucesso!", "Campo atualizado com sucesso!", "success");
+                            },
+                            error: function(xhr, status, error) {
+                                console.error(xhr.responseText);
+                                swal("Erro!", "Ocorreu um erro ao atualizar o campo.", "error");
+                            }
+                        });
+                    } else {
+                        // Se o usuário cancelou ou não inseriu um ID de vendedor
+                        swal("Operação Cancelada", "Nenhuma atualização foi feita.", "info");
+                    }
+                });
+            } else {
+                // Se não for necessário inserir o ID do vendedor, fazer a solicitação AJAX normalmente
+                $.ajax({
+                    url: "/usuarios/updateall",
+                    type: 'POST',
+                    data: {
+                        "_token": "{{ csrf_token() }}",
+                        "id": id,
+                        "field": field,
+                        "value": value
+                    },
+                    success: function(response){
+                        console.log(response);
+                        swal("Sucesso!", "Campo atualizado com sucesso!", "success");
+                    },
+                    error: function(xhr, status, error) {
+                        console.error(xhr.responseText);
+                        swal("Erro!", "Ocorreu um erro ao atualizar o campo.", "error");
+                    }
+                });
+            }
         }
+
         $('.editar-senha').on('click', function(){
             var userId = $(this).data('user-id');
 
