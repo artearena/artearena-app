@@ -839,8 +839,8 @@
             **Material:** ?
             **Tamanho:** ${tamanho}
             **Faces:** ${faces}
-            **Ilhoses:** ${ilhoseChecked ? 'Sim' : ''}
-            **Mastro:** ${mastroChecked ? 'Sim' : ''}
+            **Ilhoses:** ${ilhoseChecked ? 'Sim' : 'Não'}
+            **Mastro:** ${mastroChecked ? 'Sim' : 'Não'}
             **Descrição:** 
             ---
             `;
