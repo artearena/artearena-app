@@ -375,7 +375,11 @@
                                     <textarea class="form-control" id="descricaoCardTrello" rows="5"></textarea>
                                 </div>
                                 <button type="button" class="btn btn-primary top-margin" id="botaoCardTrello">Gerar Card</button>
-                            </div>
+                                <div class="container">
+                                    <button type="button" class="btn btn-primary top-margin" id="botaoCardTrello">Gerar Card</button>
+                                    <div id="dropArea">Arraste e solte arquivos aqui para anexar</div>
+                                </div>                              
+                              </div>
                         </div>
                     </div>
                 </div>
@@ -426,6 +430,31 @@
 @section('extraScript')
   <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
   <script>
+    $(document).ready(function(){
+        // Função para anexar arquivos ao card
+        function anexarArquivo(arquivo) {
+            // Aqui você pode implementar a lógica para anexar o arquivo ao card
+            console.log("Arquivo anexado:", arquivo.name);
+        }
+
+        // Evento de clique no botão
+        $("#botaoCardTrello").click(function(){
+            // Aqui você pode chamar a função para gerar o card no Trello
+            console.log("Card gerado no Trello");
+        });
+
+        // Evento de soltar arquivo na área de drop
+        $("#dropArea").on("drop", function(event) {
+            event.preventDefault();
+            var arquivo = event.originalEvent.dataTransfer.files[0];
+            anexarArquivo(arquivo);
+        });
+
+        // Prevenir comportamento padrão para o evento de soltar
+        $("#dropArea").on("dragover", function(event) {
+            event.preventDefault();
+        });
+    });
     $(function() {
       const botaoCardTrello = document.getElementById('botaoCardTrello');
       botaoCardTrello.addEventListener('click', gerarCard);
