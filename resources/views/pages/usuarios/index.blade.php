@@ -114,7 +114,7 @@
                     preConfirm: (vendedorId) => {
                         return new Promise((resolve) => {
                             if (vendedorId) {
-                                // Se o usuário inseriu um ID de vendedor, fazer a solicitação AJAX
+                                // Se o usuário inseriu um ID de vendedor, fazer a primeira solicitação AJAX
                                 $.ajax({
                                     url: "/usuarios/updateall",
                                     type: 'POST',
@@ -126,7 +126,25 @@
                                     },
                                     success: function(response){
                                         console.log(response);
-                                        resolve();
+                                        // Se a primeira solicitação AJAX for bem-sucedida, fazer a segunda solicitação AJAX
+                                        $.ajax({
+                                            url: "/usuarios/updateall",
+                                            type: 'POST',
+                                            data: {
+                                                "_token": "{{ csrf_token() }}",
+                                                "id": id,
+                                                "field": field,
+                                                "value": value
+                                            },
+                                            success: function(response){
+                                                console.log(response);
+                                                resolve();
+                                            },
+                                            error: function(xhr, status, error) {
+                                                console.error(xhr.responseText);
+                                                resolve();
+                                            }
+                                        });
                                     },
                                     error: function(xhr, status, error) {
                                         console.error(xhr.responseText);
