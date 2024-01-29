@@ -815,7 +815,7 @@
       });
       function carregarInfoCard() {
     const produtosSelecionados = obterListaProdutos();
-    let descricao = "#Produtos  ";
+    let descricao = "#Produtos ";
     const rows = document.querySelectorAll("#produtoTableBody tr");
 
     rows.forEach(row => {
