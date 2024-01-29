@@ -40,7 +40,30 @@ class UsuarioController extends Controller
         $usuario = Usuario::find($id);
         return view('pages.usuarios.edit', compact('usuario'));
     }
-
+    
+    public function uploadImagem(Request $request)
+    {
+        // Verifica se há uma imagem enviada
+        if ($request->hasFile('imagem') && $request->file('imagem')->isValid()) {
+            // Obtém o conteúdo do arquivo da imagem
+            $imagem = $request->file('imagem');
+            $conteudoImagem = file_get_contents($imagem->getRealPath());
+    
+            // Atualiza o usuário com o conteúdo da imagem no banco de dados
+            $usuario = Usuario::find($request->id);
+            if ($usuario) {
+                $usuario->foto_perfil = $conteudoImagem;
+                $usuario->save();
+                
+                return response()->json(['success' => 'Imagem enviada e usuário atualizado!']);
+            } else {
+                return response()->json(['error' => 'Usuário não encontrado!'], 404);
+            }
+        } else {
+            return response()->json(['error' => 'Falha ao enviar a imagem!'], 400);
+        }
+    }
+    
     public function update(Request $request)
     {
         $usuario = Usuario::find($request->id);

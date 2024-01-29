@@ -142,6 +142,7 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/', [UsuarioController::class, 'index'])->name('usuarios.index');
             Route::get('/create', [UsuarioController::class, 'create'])->name('usuarios.create');
             Route::post('/', [UsuarioController::class, 'store'])->name('usuarios.store');
+            Route::post('/upload-imagem', [UsuarioController::class, 'uploadImagem'])->name('usuarios.uploadImagem');
 
             Route::get('/{id}/edit', [UsuarioController::class, 'edit'])->name('usuarios.edit');
             Route::any('/updateall', [UsuarioController::class, 'update'])->name('usuarios.update');
