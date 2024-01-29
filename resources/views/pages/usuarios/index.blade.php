@@ -104,39 +104,46 @@
 
             // Verificar se o campo é "permissões" e o valor é "17"
             if (field === "permissoes" && value === "17") {
-                swal({
+                Swal.fire({
                     title: "ID do vendedor",
                     text: "Por favor, insira o ID do vendedor:",
-                    content: "input",
-                    button: {
-                        text: "OK",
-                        closeModal: false,
-                    },
-                })
-                .then((vendedorId) => {
-                    if (vendedorId) {
-                        // Se o usuário inseriu um ID de vendedor, fazer a solicitação AJAX
-                        $.ajax({
-                            url: "/usuarios/updateall",
-                            type: 'POST',
-                            data: {
-                                "_token": "{{ csrf_token() }}",
-                                "id": id,
-                                "field": id_vendedor,
-                                "value": vendedorId,
-                            },
-                            success: function(response){
-                                console.log(response);
-                                swal("Sucesso!", "Campo atualizado com sucesso!", "success");
-                            },
-                            error: function(xhr, status, error) {
-                                console.error(xhr.responseText);
-                                swal("Erro!", "Ocorreu um erro ao atualizar o campo.", "error");
+                    input: "text",
+                    showCancelButton: true,
+                    confirmButtonText: "OK",
+                    showLoaderOnConfirm: true,
+                    preConfirm: (vendedorId) => {
+                        return new Promise((resolve) => {
+                            if (vendedorId) {
+                                // Se o usuário inseriu um ID de vendedor, fazer a solicitação AJAX
+                                $.ajax({
+                                    url: "/usuarios/updateall",
+                                    type: 'POST',
+                                    data: {
+                                        "_token": "{{ csrf_token() }}",
+                                        "id": id,
+                                        "field": id_vendedor,
+                                        "value": vendedorId,
+                                    },
+                                    success: function(response){
+                                        console.log(response);
+                                        resolve();
+                                    },
+                                    error: function(xhr, status, error) {
+                                        console.error(xhr.responseText);
+                                        Swal.showValidationMessage("Erro ao atualizar o campo");
+                                        resolve();
+                                    }
+                                });
+                            } else {
+                                // Se o usuário cancelou ou não inseriu um ID de vendedor
+                                resolve();
                             }
                         });
-                    } else {
-                        // Se o usuário cancelou ou não inseriu um ID de vendedor
-                        swal("Operação Cancelada", "Nenhuma atualização foi feita.", "info");
+                    },
+                    allowOutsideClick: () => !Swal.isLoading()
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        Swal.fire("Sucesso!", "Campo atualizado com sucesso!", "success");
                     }
                 });
             } else {
@@ -152,11 +159,11 @@
                     },
                     success: function(response){
                         console.log(response);
-                        swal("Sucesso!", "Campo atualizado com sucesso!", "success");
+                        Swal.fire("Sucesso!", "Campo atualizado com sucesso!", "success");
                     },
                     error: function(xhr, status, error) {
                         console.error(xhr.responseText);
-                        swal("Erro!", "Ocorreu um erro ao atualizar o campo.", "error");
+                        Swal.fire("Erro!", "Ocorreu um erro ao atualizar o campo.", "error");
                     }
                 });
             }
