@@ -20,20 +20,24 @@ class OrcamentosController extends Controller
         $search = $request->input('search');
 
         // Obtenha todos os orçamentos do banco de dados
-        $orcamentosQuery = Orcamentos::query();
+        $orcamentosQuery = Orcamentos::query()
+            ->select('orcamento.*')
+            ->orderByDesc('created_at'); // Ordenar por data de criação decrescente
 
+        // Se houver uma pesquisa, aplique os filtros
         if ($search) {
-            // Filtrar orçamentos com base na pesquisa
-            $orcamentosQuery->where('detalhes_orcamento', 'like', '%' . $search . '%')
-                ->orWhere('nome_transportadora', 'like', '%' . $search . '%')
-                ->orWhere('valor_frete', 'like', '%' . $search . '%');
+            $orcamentosQuery->where(function ($query) use ($search) {
+                $query->where('detalhes_orcamento', 'like', '%' . $search . '%')
+                    ->orWhere('nome_transportadora', 'like', '%' . $search . '%')
+                    ->orWhere('valor_frete', 'like', '%' . $search . '%');
+            });
         }
 
         // Adicione a subconsulta para contar repetições
-        $orcamentos = $orcamentosQuery
-            ->select('orcamento.*', DB::raw('(SELECT COUNT(*) FROM orcamento as o WHERE o.id_octa = orcamento.id_octa) as quantidade_repeticoes'))
-            ->orderBy('created_at', 'desc') // Ordenar por data de criação decrescente
-            ->get();
+        $orcamentosQuery->withCount('repeticoes as quantidade_repeticoes');
+
+        // Execute a consulta e obtenha os resultados paginados
+        $orcamentos = $orcamentosQuery->paginate(10);
 
         return view('pages.orcamento.index', compact('orcamentos'));
     }
