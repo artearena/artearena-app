@@ -827,31 +827,65 @@
         const tamanho = produto.split(" - ")[1];
         const faces = produto.split(" - ")[2];
         const tipo = produto.split(" - ")[0];
+        const id = document.getElementById('id').value;
         let titulo = '';
 
         if (tipo.includes('Bandeira') || tipo.includes('Faixa')) {
-            // Obtém o ID do campo de texto
-            const id = document.getElementById('id').value;
-            // Define o título com o ID concatenado
-            titulo = tipo.includes('Bandeira') ? `Bandeira - ${id}` : `Faixa - ${id}`;
+          // Obtém o ID do campo de texto
+          // Define o título com o ID concatenado
+          titulo = tipo.includes('Bandeira') ? `Bandeira - ${id}` : `Faixa - ${id}`;
+//---------------//---------------//---------------//---------------//---------------//---------------//---------------
 descricao += `
 **Tipo:** ${tipo}
-**Material:** ?
+**Material:** Tactel / Oxford
 **Tamanho:** ${tamanho}
 **Faces:** ${faces}
 **Ilhoses:** ${ilhoseChecked ? 'Sim' : 'Não'}
 **Mastro:** ${mastroChecked ? 'Sim' : 'Não'} 
 **Descrição:** ?
 `;
+//---------------//---------------//---------------//---------------//---------------//---------------//---------------
+           
+        } else if(tipo.includes('Bandana')) {
+            titulo = `Bandana - ${id}`;
+//---------------//---------------//---------------//---------------//---------------//---------------//---------------
+descricao += `
+**Tipo:** ${tipo}
 
-            // Define o título do card como 'Bandeira + ID'
-            document.getElementById('tituloCardTrello').value = titulo;
-            // Define a descrição do card
-            document.getElementById('descricaoCardTrello').value = descricao;
-        } else if(tipo.includes('Bandeira')) {
-            // Outro tipo de produto
-            // Lógica para outros tipos de produtos
+**Material:** Tactel / Bember / Oxford / Helanca
+
+**Descrição:** ?
+
+**Tamanho:** ?
+
+`;
+//---------------//---------------//---------------//---------------//---------------//---------------//---------------
+        } else if(tipo.includes('Bandeira de mesa')) {
+            titulo = `Bandeira de Mesa - ${id}`;
+//---------------//---------------//---------------//---------------//---------------//---------------//---------------
+descricao += `
+**Tipo:** ${tipo} 
+
+**Material:** Tactel / Oxford 
+
+**Haste/base:** Madeira / Plástico 
+
+**Base/Haste Cor:** ? 
+
+**Numero de hastes:** ?
+
+**Descrição:** ? 
+
+Faces: ${faces}
+`;
+//---------------//---------------//---------------//---------------//---------------//---------------//---------------
         }
+        
+
+      // Define o título do card como 'Bandeira + ID'
+      document.getElementById('tituloCardTrello').value = titulo;
+      // Define a descrição do card
+      document.getElementById('descricaoCardTrello').value = descricao;
     });
 }
 
