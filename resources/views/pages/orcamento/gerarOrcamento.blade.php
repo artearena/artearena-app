@@ -814,83 +814,47 @@
         });
       });
       function carregarInfoCard() {
-        const produtosSelecionados = obterListaProdutos();
-        let descricao = "#Produtos  ";
-        const rows = document.querySelectorAll("#produtoTableBody tr");
+    const produtosSelecionados = obterListaProdutos();
+    let descricao = "#Produtos  ";
+    const rows = document.querySelectorAll("#produtoTableBody tr");
 
-        rows.forEach(row => {
-          const ilhoseCheckbox = row.querySelector("#ilhosesCheckbox");
-          const mastroCheckbox = row.querySelector("#mastroCheckbox");
-          const ilhoseChecked = ilhoseCheckbox ? ilhoseCheckbox.checked : false;
-          const mastroChecked = mastroCheckbox ? mastroCheckbox.checked : false;
-          const produto = row.querySelector("td:nth-child(2) input").value;
-          const tamanho = produto.split(" - ")[1];
-          const faces = produto.split(" - ")[2];
-          const tipo = produto.split(" - ")[0];
-          descricao = '';
-          
-          if (tipo.includes('Bandeira')) {
-          // tipo, material, tamanho, faces, ilhose,mastro, desc empty
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-descricao +=`
-**Tipo:** ${tipo}
-**Material:** Tactel
-**Tamanho:** ${tamanho}  
-**Faces:** ${faces};
-`
-if (ilhoseChecked) {
-descricao += `
-**Ilhoses:** Sim`;
-} else {
-descricao += `
-**Ilhoses:**`;
+    rows.forEach(row => {
+        const ilhoseCheckbox = row.querySelector("#ilhosesCheckbox");
+        const mastroCheckbox = row.querySelector("#mastroCheckbox");
+        const ilhoseChecked = ilhoseCheckbox ? ilhoseCheckbox.checked : false;
+        const mastroChecked = mastroCheckbox ? mastroCheckbox.checked : false;
+        const produto = row.querySelector("td:nth-child(2) input").value;
+        const tamanho = produto.split(" - ")[1];
+        const faces = produto.split(" - ")[2];
+        const tipo = produto.split(" - ")[0];
+        let titulo = '';
+
+        if (tipo.includes('Bandeira')) {
+            // Obtém o ID do campo de texto
+            const id = document.getElementById('id').value;
+            // Define o título com o ID concatenado
+            titulo = `Bandeira ${id}`;
+            descricao += `
+            **Tipo:** ${tipo}
+            **Material:** ?
+            **Tamanho:** ${tamanho}
+            **Faces:** ${faces}
+            **Ilhoses:** ${ilhoseChecked ? 'Sim' : ''}
+            **Mastro:** ${mastroChecked ? 'Sim' : ''}
+            **Descrição:** 
+            ---
+            `;
+
+            // Define o título do card como 'Bandeira + ID'
+            document.getElementById('tituloCardTrello').value = titulo;
+            // Define a descrição do card
+            document.getElementById('descricaoCardTrello').value = descricao;
+        } else {
+            // Outro tipo de produto
+            // Lógica para outros tipos de produtos
+        }
+    });
 }
-if (mastroChecked) {
-descricao += `
-**Mastro:** Sim`;
-} else {
-descricao += `
-**Mastro:**`;
-}
-descricao += `
-**Descrição:** 
----
-`;
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-          
-          }
-/*            += `
-      **Tipo:** ${tipo}
-      **Material:** ? 
-      **Tamanho:** ${tamanho}  
-      **Faces:** ${faces}`;
-
-          if (ilhoseChecked) {
-            descricao += `
-      **Ilhoses:** Sim`;
-          } else {
-            descricao += `
-      **Ilhoses:**`;
-          }
-
-          if (mastroChecked) {
-            descricao += `
-      **Mastro:** Sim`;
-          } else {
-            descricao += `
-      **Mastro:**`;
-          }
-
-          const descricaoProduto = row.querySelector("td:nth-child(7) input").value;
-          descricao += `
-      **Descrição:** 
-      ---
-      `;*/
-        }); 
-
-        document.getElementById('tituloCardTrello').value = '';
-        document.getElementById('descricaoCardTrello').value = descricao;
-      }
 
 const id_cliente = document.getElementById('id').value;
 
