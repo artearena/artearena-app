@@ -835,13 +835,13 @@
             titulo += `Bandeira de Mesa - `;
 //inicio---------------//---------------//---------------//---------------//---------------//---------------//---------------
 descricao += `
-**Tipo:** ${tipo} 
+**Tipo: ${tipo}** 
 **Material:** Tactel / Oxford 
 **Haste/base:** Madeira / Plástico 
 **Base/Haste Cor:** ? 
 **Numero de hastes:** ?
 **Descrição:** ? 
-*Faces*: ${faces}
+**Faces**: ${faces}
 
 `;   
 //fim---------------//---------------//---------------//---------------//---------------//---------------//---------------
@@ -852,7 +852,7 @@ descricao += `
           titulo += tipo.includes('Bandeira') ? `Bandeira - ` : `Faixa - `;
 //inicio---------------//---------------//---------------//---------------//---------------//---------------//---------------
 descricao += `
-**Tipo:** ${tipo}
+**Tipo: ${tipo}** 
 **Material:** Tactel / Oxford
 **Tamanho:** ${tamanho}
 **Faces:** ${faces}
@@ -868,7 +868,7 @@ descricao += `
             titulo += `Bandana - `;
 //inicio---------------//---------------//---------------//---------------//---------------//---------------//---------------
 descricao += `
-**Tipo:** ${tipo}
+**Tipo: ${tipo}** 
 **Material:** Tactel / Bember / Oxford / Helanca
 **Descrição:** ?
 **Tamanho:** ?
