@@ -826,6 +826,13 @@
           const produto = row.querySelector("td:nth-child(2) input").value;
           const tamanho = produto.split(" - ")[1];
           const faces = produto.split(" - ")[2];
+          console.log(ilhoseCheckbox);
+          console.log(mastroCheckbox);
+          console.log(ilhoseChecked);
+          console.log(mastroChecked);
+          console.log(produto);
+          console.log(tamanho);
+          console.log(faces);
 
           descricao += `
       **Tipo:** ${produto.split(" - ")[0]}
@@ -855,6 +862,8 @@
       ---
       `;
         });
+
+        console.log(descricao);
 
         document.getElementById('tituloCardTrello').value = '';
         document.getElementById('descricaoCardTrello').value = descricao;
