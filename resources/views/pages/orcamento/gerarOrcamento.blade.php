@@ -885,8 +885,8 @@ descricao += `
           descricao += `
       **Descrição:** 
       ---
-      `;
-        }); */
+      `;*/
+        }); 
 
         document.getElementById('tituloCardTrello').value = '';
         document.getElementById('descricaoCardTrello').value = descricao;
