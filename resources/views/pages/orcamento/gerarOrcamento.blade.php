@@ -830,37 +830,7 @@
         const id = document.getElementById('id').value;
         let titulo = '';
 
-        if (tipo.includes('Bandeira') || tipo.includes('Faixa')) {
-          // Obtém o ID do campo de texto
-          // Define o título com o ID concatenado
-          titulo = tipo.includes('Bandeira') ? `Bandeira - ${id}` : `Faixa - ${id}`;
-//---------------//---------------//---------------//---------------//---------------//---------------//---------------
-descricao += `
-**Tipo:** ${tipo}
-**Material:** Tactel / Oxford
-**Tamanho:** ${tamanho}
-**Faces:** ${faces}
-**Ilhoses:** ${ilhoseChecked ? 'Sim' : 'Não'}
-**Mastro:** ${mastroChecked ? 'Sim' : 'Não'} 
-**Descrição:** ?
-`;
-//---------------//---------------//---------------//---------------//---------------//---------------//---------------
-           
-        } else if(tipo.includes('Bandana')) {
-            titulo = `Bandana - ${id}`;
-//---------------//---------------//---------------//---------------//---------------//---------------//---------------
-descricao += `
-**Tipo:** ${tipo}
-
-**Material:** Tactel / Bember / Oxford / Helanca
-
-**Descrição:** ?
-
-**Tamanho:** ?
-
-`;
-//---------------//---------------//---------------//---------------//---------------//---------------//---------------
-        } else if(tipo.includes('Bandeira de Mesa')) {
+        if(tipo.includes('Bandeira de Mesa')) {
             titulo = `Bandeira de Mesa - ${id}`;
 //---------------//---------------//---------------//---------------//---------------//---------------//---------------
 descricao += `
@@ -877,8 +847,39 @@ descricao += `
 **Descrição:** ? 
 
 Faces: ${faces}
+`;   
+//---------------//---------------//---------------//---------------//---------------//---------------//---------------
+
+        } else if(tipo.includes('Bandana')) {
+            titulo = `Bandana - ${id}`;
+//---------------//---------------//---------------//---------------//---------------//---------------//---------------
+descricao += `
+**Tipo:** ${tipo}
+
+**Material:** Tactel / Bember / Oxford / Helanca
+
+**Descrição:** ?
+
+**Tamanho:** ?
+
 `;
 //---------------//---------------//---------------//---------------//---------------//---------------//---------------
+        } else if (tipo.includes('Bandeira') || tipo.includes('Faixa')) {
+          // Obtém o ID do campo de texto
+          // Define o título com o ID concatenado
+          titulo = tipo.includes('Bandeira') ? `Bandeira - ${id}` : `Faixa - ${id}`;
+//---------------//---------------//---------------//---------------//---------------//---------------//---------------
+descricao += `
+**Tipo:** ${tipo}
+**Material:** Tactel / Oxford
+**Tamanho:** ${tamanho}
+**Faces:** ${faces}
+**Ilhoses:** ${ilhoseChecked ? 'Sim' : 'Não'}
+**Mastro:** ${mastroChecked ? 'Sim' : 'Não'} 
+**Descrição:** ?
+`;
+//---------------//---------------//---------------//---------------//---------------//---------------//---------------
+        
         }
         
 
