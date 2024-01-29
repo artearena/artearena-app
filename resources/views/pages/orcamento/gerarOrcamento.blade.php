@@ -831,7 +831,7 @@
         var titulo = '';
 
         if(tipo.includes('Bandeira de Mesa')) {
-            titulo += `Bandeira de Mesa - ${id}`;
+            titulo += `Bandeira de Mesa - `;
 //inicio---------------//---------------//---------------//---------------//---------------//---------------//---------------
 descricao += `
 **Tipo:** ${tipo} 
