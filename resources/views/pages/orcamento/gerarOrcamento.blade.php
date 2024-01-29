@@ -813,58 +813,12 @@
           });
         });
       });
-      function gerarDescricaoProduto(tipo, tamanho, faces, ilhoseChecked, mastroChecked, descricaoProduto) {
-        let descricao = `
-            **Tipo:** ${tipo}
-            **Material:** ? 
-            **Tamanho:** ${tamanho}  
-            **Faces:** ${faces}`;
+      function carregarInfoCard() {
+        const produtosSelecionados = obterListaProdutos();
+        let descricao = "#Produtos  ";
+        const rows = document.querySelectorAll("#produtoTableBody tr");
 
-        // Adicione descrições específicas para diferentes tipos de produto
-        if (tipo === "Tipo1") {
-            // Descrição para o Tipo1
-            descricao += `
-            **Descrição para Tipo1:**`;
-        } else if (tipo === "Tipo2") {
-            // Descrição para o Tipo2
-            descricao += `
-            **Descrição para Tipo2:**`;
-        } else {
-            // Outro tipo de produto
-            descricao += `
-            **Descrição para Outros Tipos:**`;
-        }
-
-        if (ilhoseChecked) {
-            descricao += `
-            **Ilhoses:** Sim`;
-        } else {
-            descricao += `
-            **Ilhoses:**`;
-        }
-
-        if (mastroChecked) {
-            descricao += `
-            **Mastro:** Sim`;
-        } else {
-            descricao += `
-            **Mastro:**`;
-        }
-
-        descricao += `
-            **Descrição:** ${descricaoProduto}
-            ---
-            `;
-
-        return descricao;
-    }
-
-    function carregarInfoCard() {
-      const produtosSelecionados = obterListaProdutos();
-      let descricao = "#Produtos  ";
-      const rows = document.querySelectorAll("#produtoTableBody tr");
-
-      rows.forEach(row => {
+        rows.forEach(row => {
           const ilhoseCheckbox = row.querySelector("#ilhosesCheckbox");
           const mastroCheckbox = row.querySelector("#mastroCheckbox");
           const ilhoseChecked = ilhoseCheckbox ? ilhoseCheckbox.checked : false;
@@ -872,28 +826,39 @@
           const produto = row.querySelector("td:nth-child(2) input").value;
           const tamanho = produto.split(" - ")[1];
           const faces = produto.split(" - ")[2];
-          const tipo = produto.split(" - ")[0]; // Obtém o tipo de produto
+
+          descricao += `
+      **Tipo:** ${produto.split(" - ")[0]}
+      **Material:** ? 
+      **Tamanho:** ${tamanho}  
+      **Faces:** ${faces}`;
+
+          if (ilhoseChecked) {
+            descricao += `
+      **Ilhoses:** Sim`;
+          } else {
+            descricao += `
+      **Ilhoses:**`;
+          }
+
+          if (mastroChecked) {
+            descricao += `
+      **Mastro:** Sim`;
+          } else {
+            descricao += `
+      **Mastro:**`;
+          }
+
           const descricaoProduto = row.querySelector("td:nth-child(7) input").value;
+          descricao += `
+      **Descrição:** 
+      ---
+      `;
+        });
 
-          console.log('ilhoseCheckbox:', ilhoseCheckbox);
-          console.log('mastroCheckbox:', mastroCheckbox);
-          console.log('ilhoseChecked:', ilhoseChecked);
-          console.log('mastroChecked:', mastroChecked);
-          console.log('produto:', produto);
-          console.log('tamanho:', tamanho);
-          console.log('faces:', faces);
-          console.log('tipo:', tipo);
-          console.log('descricaoProduto:', descricaoProduto);
-
-          // Chama a função gerarDescricaoProduto para obter a descrição do produto
-          descricao += gerarDescricaoProduto(tipo, tamanho, faces, ilhoseChecked, mastroChecked, descricaoProduto);
-      });
-
-      document.getElementById('tituloCardTrello').value = '';
-      document.getElementById('descricaoCardTrello').value = descricao;
-  }
-
-
+        document.getElementById('tituloCardTrello').value = '';
+        document.getElementById('descricaoCardTrello').value = descricao;
+      }
 
 const id_cliente = document.getElementById('id').value;
 
