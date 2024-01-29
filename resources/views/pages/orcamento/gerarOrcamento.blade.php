@@ -819,23 +819,13 @@
         const rows = document.querySelectorAll("#produtoTableBody tr");
 
         rows.forEach(row => {
-            const ilhoseCheckbox = row.querySelector("td:nth-child(5) input[type='checkbox']");
-            const mastroCheckbox = row.querySelector("td:nth-child(6) input[type='checkbox']");
-            const ilhoseChecked = ilhoseCheckbox ? ilhoseCheckbox.checked : false;
-            const mastroChecked = mastroCheckbox ? mastroCheckbox.checked : false;
-            const produto = row.querySelector("td:nth-child(2) input").value;
-            const tamanho = produto.split(" - ")[1];
-            const faces = produto.split(" - ")[2];
-            const tipo = produto.split(" - ")[0]; // Obtém o tipo de produto
-          console.log(ilhoseCheckbox);
-          console.log(mastroCheckbox);
-          console.log(ilhoseChecked);
-          console.log(mastroChecked);
-          console.log(produto);
-          console.log(tamanho);
-          console.log(faces);
-          console.log(tipo);
-          console.log(row);
+          const ilhoseCheckbox = row.querySelector("#ilhosesCheckbox");
+          const mastroCheckbox = row.querySelector("#mastroCheckbox");
+          const ilhoseChecked = ilhoseCheckbox ? ilhoseCheckbox.checked : false;
+          const mastroChecked = mastroCheckbox ? mastroCheckbox.checked : false;
+          const produto = row.querySelector("td:nth-child(2) input").value;
+          const tamanho = produto.split(" - ")[1];
+          const faces = produto.split(" - ")[2];
 
           descricao += `
       **Tipo:** ${produto.split(" - ")[0]}
@@ -859,13 +849,12 @@
       **Mastro:**`;
           }
 
+          const descricaoProduto = row.querySelector("td:nth-child(7) input").value;
           descricao += `
       **Descrição:** 
       ---
       `;
         });
-
-        console.log(descricao);
 
         document.getElementById('tituloCardTrello').value = '';
         document.getElementById('descricaoCardTrello').value = descricao;
@@ -1031,6 +1020,7 @@ const id_cliente = document.getElementById('id').value;
                 const ilhoseCheckbox = document.createElement("input");
                 ilhoseCheckbox.type = "checkbox";
                 ilhoseCheckbox.className = "form-check-input";
+                ilhoseCheckbox.id = "ilhosesCheckbox";
                 ilhoseCell.appendChild(ilhoseCheckbox);
                 newRow.appendChild(ilhoseCell);
 
@@ -1038,6 +1028,7 @@ const id_cliente = document.getElementById('id').value;
                 const mastroCheckbox = document.createElement("input");
                 mastroCheckbox.type = "checkbox";
                 mastroCheckbox.className = "form-check-input";
+                mastroCheckbox.id = "mastroCheckbox";
                 mastroCell.appendChild(mastroCheckbox);
                 newRow.appendChild(mastroCell);
 
