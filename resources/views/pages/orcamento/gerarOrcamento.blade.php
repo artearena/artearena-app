@@ -831,7 +831,7 @@
         let titulo = '';
 
         if(tipo.includes('Bandeira de Mesa')) {
-            titulo = `Bandeira de Mesa - ${id}`;
+            titulo += `Bandeira de Mesa - ${id}`;
 //inicio---------------//---------------//---------------//---------------//---------------//---------------//---------------
 descricao += `
 **Tipo:** ${tipo} 
@@ -851,7 +851,7 @@ Faces: ${faces}
 //fim---------------//---------------//---------------//---------------//---------------//---------------//---------------
 
         } else if(tipo.includes('Bandana')) {
-            titulo = `Bandana - ${id}`;
+            titulo += `Bandana - `;
 //inicio---------------//---------------//---------------//---------------//---------------//---------------//---------------
 descricao += `
 **Tipo:** ${tipo}
@@ -867,7 +867,7 @@ descricao += `
         } else if (tipo.includes('Bandeira') || tipo.includes('Faixa')) {
           // Obtém o ID do campo de texto
           // Define o título com o ID concatenado
-          titulo = tipo.includes('Bandeira') ? `Bandeira - ${id}` : `Faixa - ${id}`;
+          titulo += tipo.includes('Bandeira') ? `Bandeira - ` : `Faixa - `;
 //inicio---------------//---------------//---------------//---------------//---------------//---------------//---------------
 descricao += `
 **Tipo:** ${tipo}
@@ -884,7 +884,7 @@ descricao += `
         
 
       // Define o título do card como 'Bandeira + ID'
-      document.getElementById('tituloCardTrello').value = titulo;
+      document.getElementById('tituloCardTrello').value = titulo + id;
       // Define a descrição do card
       document.getElementById('descricaoCardTrello').value = descricao;
     });
