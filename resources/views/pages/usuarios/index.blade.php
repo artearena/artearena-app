@@ -259,7 +259,6 @@
                 }
             });
         });
-        $('.carregar-imagem').click(function() {
             $('.carregar-imagem').click(function() {
                 Swal.fire({
                     title: 'Imagem do Usuário',
