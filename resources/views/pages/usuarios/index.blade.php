@@ -351,6 +351,7 @@
                     </select>
                 </td>
                 <td>
+                    <button class="btn btn-info carregar-imagem" data-user-id="{{ $usuario->id }}"><i class="fas fa-image"></i></button>
                     <button class="btn btn-warning editar-senha" data-user-id="{{ $usuario->id }}"><i class="fas fa-key"></i></button>
                     <form action="{{ route('usuarios.destroy', $usuario->id) }}" method="POST" style="display: inline-block;" data-user-id="{{ $usuario->id }}">
                         @csrf
