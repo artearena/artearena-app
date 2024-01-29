@@ -265,7 +265,7 @@
                 html: `
                     <p>Por favor, selecione uma imagem com as dimensões ideais de 1419 x 1822 pixels.</p>
                     <p>Se precisar, você pode redimensionar sua imagem para uma proporção menor ou maior. mantendo-as equivalentes</p>
-                    <label for="imagem" class="btn btn-primary">Anexe ou arraste um arquivo</label>
+                    <label for="imagem" class="btn btn-primary">Anexe a imagem</label>
                     <input type="file" id="imagem" accept="image/*" style="display: none;">
                 `,
                 showCloseButton: true,
