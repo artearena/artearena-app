@@ -130,6 +130,7 @@ Route::middleware(['auth'])->group(function () {
             Route::put('/atualizar-bloqueado/{id}', [LeadController::class, 'atualizarBloqueado']);
             Route::get('/buscar-registros', [LeadController::class, 'buscarRegistros']);
         });
+        
         Route::get('/buscar-pedido', [PedidoController::class, 'buscarPedido'])->name('buscarPedido');
 
         Route::prefix('erros')->group(function () {
