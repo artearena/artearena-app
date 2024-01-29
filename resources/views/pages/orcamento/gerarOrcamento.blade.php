@@ -819,7 +819,7 @@
         const rows = document.querySelectorAll("#produtoTableBody tr");
 
         rows.forEach(row => {
-          const ilhoseCheckbox = row.querySelector("td:nth-child(5) input[type='checkbox']");
+            const ilhoseCheckbox = row.querySelector("td:nth-child(5) input[type='checkbox']");
             const mastroCheckbox = row.querySelector("td:nth-child(6) input[type='checkbox']");
             const ilhoseChecked = ilhoseCheckbox ? ilhoseCheckbox.checked : false;
             const mastroChecked = mastroCheckbox ? mastroCheckbox.checked : false;
@@ -835,6 +835,7 @@
           console.log(tamanho);
           console.log(faces);
           console.log(tipo);
+          console.log(row);
 
           descricao += `
       **Tipo:** ${produto.split(" - ")[0]}
