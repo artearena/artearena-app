@@ -836,18 +836,13 @@
 //inicio---------------//---------------//---------------//---------------//---------------//---------------//---------------
 descricao += `
 **Tipo:** ${tipo} 
-
 **Material:** Tactel / Oxford 
-
 **Haste/base:** Madeira / Plástico 
-
 **Base/Haste Cor:** ? 
-
 **Numero de hastes:** ?
-
 **Descrição:** ? 
+*Faces*: ${faces}
 
-Faces: ${faces}
 `;   
 //fim---------------//---------------//---------------//---------------//---------------//---------------//---------------
 
@@ -864,6 +859,7 @@ descricao += `
 **Ilhoses:** ${ilhoseChecked ? 'Sim' : 'Não'}
 **Mastro:** ${mastroChecked ? 'Sim' : 'Não'} 
 **Descrição:** ?
+
 `;
 //fim---------------//---------------//---------------//---------------//---------------//---------------//---------------
         
@@ -873,11 +869,8 @@ descricao += `
 //inicio---------------//---------------//---------------//---------------//---------------//---------------//---------------
 descricao += `
 **Tipo:** ${tipo}
-
 **Material:** Tactel / Bember / Oxford / Helanca
-
 **Descrição:** ?
-
 **Tamanho:** ?
 
 `;
@@ -885,6 +878,7 @@ descricao += `
         } 
         
         
+      descricao = descricao.replace(/undefined/g, '?');
 
       // Define o título do card como 'Bandeira + ID'
       document.getElementById('tituloCardTrello').value = titulo + id;
