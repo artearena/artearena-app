@@ -834,16 +834,16 @@
             const id = document.getElementById('id').value;
             // Define o título com o ID concatenado
             titulo = tipo.includes('Bandeira') ? `Bandeira - ${id}` : `Faixa - ${id}`;
-            descricao += `
+descricao += `
 **Tipo:** ${tipo}
 **Material:** ?
 **Tamanho:** ${tamanho}
 **Faces:** ${faces}
 **Ilhoses:** ${ilhoseChecked ? 'Sim' : 'Não'}
 **Mastro:** ${mastroChecked ? 'Sim' : 'Não'}
-**Descrição:** 
-            ---
-            `;
+**Descrição:** ?
+---
+`;
 
             // Define o título do card como 'Bandeira + ID'
             document.getElementById('tituloCardTrello').value = titulo;
