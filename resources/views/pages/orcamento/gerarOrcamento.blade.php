@@ -376,7 +376,7 @@
                                 </div>
                                 <button type="button" class="btn btn-primary top-margin" id="botaoCardTrello">Gerar Card</button>
                                 <div class="container">
-                                    <button type="button" class="btn btn-primary top-margin" id="botaoCardTrello">Gerar Card</button>
+                                    <button type="button" class="btn btn-primary top-margin" id="tt">Gerar Card</button>
                                     <div id="dropArea">Arraste e solte arquivos aqui para anexar</div>
                                 </div>                              
                               </div>
