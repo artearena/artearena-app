@@ -262,7 +262,7 @@
         $('.carregar-imagem').click(function() {
             Swal.fire({
                 title: 'Imagem do Usuário',
-                html: '<label for="imagem" class="btn btn-primary">Anexe ou arraste um arquivo</label><input type="file" id="imagem" accept="image/*" style="display: none;">',
+                html: '<label for="imagem" class="btn btn-primary">Anexe uma imagem</label><input type="file" id="imagem" accept="image/*" style="display: none;">',
                 showCloseButton: true,
                 showConfirmButton: true,
                 confirmButtonText: 'Salvar',
