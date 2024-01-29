@@ -845,7 +845,6 @@ descricao += `
 
 `;   
 //fim---------------//---------------//---------------//---------------//---------------//---------------//---------------
-
         } else if(tipo.includes('Bandeira') && tipo.includes('Oficial')) {
             titulo += `Bandeira Oficial - `;
 //inicio---------------//---------------//---------------//---------------//---------------//---------------//---------------
@@ -874,7 +873,6 @@ descricao += `
 
 `;
 //fim---------------//---------------//---------------//---------------//---------------//---------------//---------------
-        
         }
         if(tipo.includes('Bandana')) {
             titulo += `Bandana - `;
@@ -904,8 +902,6 @@ descricao += `
 //inicio---------------//---------------//---------------//---------------//---------------//---------------//---------------
 descricao += `
 **Tipo: ${tipo}** 
-**Material:** Neoprene
-**Descrição:** ?
 **Faces**: ${faces}
 **Franja**: ? 
 **Cor Franja**: ? 
@@ -914,8 +910,31 @@ descricao += `
 `;
 //fim---------------//---------------//---------------//---------------//---------------//---------------//---------------
         } 
-        
-        
+        if(tipo.includes('Caneca Alumínio')) {
+            titulo += `Caneca Alumínio - `;
+//inicio---------------//---------------//---------------//---------------//---------------//---------------//---------------
+descricao += `
+**Tipo: ${tipo}** 
+**Faces**: ${faces}
+**Franja**: ? 
+**Cor Franja**: ? 
+**Descrição:** ?
+
+`;
+        }
+        if(tipo.includes('Capa de Corte')) {
+            titulo += `Capa de Barbeiro - `;
+//inicio---------------//---------------//---------------//---------------//---------------//---------------//---------------
+descricao += `
+**Tipo: ${tipo}** 
+**Material**: Tactel
+**Elástico:** SIM / NÃO
+**Botões:** SIM / NÃO
+**Descrição:** ?
+**Tamanho:** ?
+
+`;
+        }
       descricao = descricao.replace(/undefined/g, '?');
 
       // Define o título do card como 'Bandeira + ID'
