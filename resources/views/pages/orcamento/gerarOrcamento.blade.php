@@ -841,7 +841,7 @@ descricao += `
 **Faces:** ${faces}
 **Ilhoses:** ${ilhoseChecked ? 'Sim' : 'Não'}
 **Mastro:** ${mastroChecked ? 'Sim' : 'Não'} 
-**Descrição:**?
+**Descrição:** ?
 `;
 
             // Define o título do card como 'Bandeira + ID'
