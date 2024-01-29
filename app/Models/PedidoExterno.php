@@ -30,7 +30,7 @@ class PedidoExterno extends Model
     public static function obterSomaTotalPorVendedor($dataInicial, $dataFinal, $situacoes)
     {
         return self::select('id_vendedor', 'nome_vendedor', 'data_pedido')
-            ->selectRaw('CONCAT("R$ ", FORMAT(SUM(COALESCE(valor - (SELECT COALESCE(SUM(valor_frete), 0) FROM pedido_externo_info WHERE numero = pedido_tiny_externo.numero), valor), 0), 2)) AS soma_total_reais')
+            ->selectRaw('CONCAT("R$ ", FORMAT(SUM(COALESCE(valor - (SELECT COALESCE(SUM(valor_frete), 0) FROM pedido_externo_info WHERE numero = pedido_tiny_externo.numero), 0)), 2)) AS soma_total_reais')
             ->whereBetween('data_pedido', [$dataInicial, $dataFinal])
             ->whereIn('situacao', $situacoes)
             ->groupBy('id_vendedor', 'nome_vendedor')
