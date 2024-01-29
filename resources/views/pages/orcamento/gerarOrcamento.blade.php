@@ -819,8 +819,8 @@
         const rows = document.querySelectorAll("#produtoTableBody tr");
 
         rows.forEach(row => {
-            const ilhoseCheckbox = row.querySelector("td:nth-child(5) input[type='checkbox']");
-            const mastroCheckbox = row.querySelector("td:nth-child(6) input[type='checkbox']");
+            const ilhoseCheckbox = row.querySelector("td:nth-child(6) input[type='checkbox']");
+            const mastroCheckbox = row.querySelector("td:nth-child(7) input[type='checkbox']");
             const ilhoseChecked = ilhoseCheckbox ? ilhoseCheckbox.checked : false;
             const mastroChecked = mastroCheckbox ? mastroCheckbox.checked : false;
             const produto = row.querySelector("td:nth-child(2) input").value;
