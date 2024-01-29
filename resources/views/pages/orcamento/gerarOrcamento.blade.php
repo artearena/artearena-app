@@ -374,10 +374,10 @@
                                     <label for="descricaoCardTrello">Descrição:</label>
                                     <textarea class="form-control" id="descricaoCardTrello" rows="5"></textarea>
                                 </div>
-                                <button type="button" class="btn btn-primary top-margin" id="botaoCardTrello">Gerar Card</button>
                                 <div class="container">
                                     <button type="button" class="btn btn-primary top-margin" id="tt">Gerar Card</button>
                                     <div id="dropArea">Arraste e solte arquivos aqui para anexar</div>
+                                    <div id="arquivosAnexados"></div> <!-- Div para exibir os arquivos anexados -->
                                 </div>                              
                               </div>
                         </div>
@@ -431,14 +431,28 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
   <script>
     $(document).ready(function(){
+        var arquivosAnexados = []; // Array para armazenar os arquivos anexados
+
         // Função para anexar arquivos ao card
         function anexarArquivo(arquivo) {
-            // Aqui você pode implementar a lógica para anexar o arquivo ao card
-            console.log("Arquivo anexado:", arquivo.name);
+            // Adicionar arquivo ao array de arquivos anexados
+            arquivosAnexados.push(arquivo);
+            // Atualizar a exibição dos arquivos anexados
+            exibirArquivosAnexados();
+        }
+
+        // Função para exibir os arquivos anexados
+        function exibirArquivosAnexados() {
+            var html = "<p>Arquivos Anexados:</p><ul>";
+            arquivosAnexados.forEach(function(arquivo) {
+                html += "<li>" + arquivo.name + "</li>";
+            });
+            html += "</ul>";
+            $("#arquivosAnexados").html(html);
         }
 
         // Evento de clique no botão
-        $("#botaoCardTrello").click(function(){
+        $("#tt").click(function(){
             // Aqui você pode chamar a função para gerar o card no Trello
             console.log("Card gerado no Trello");
         });
