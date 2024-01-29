@@ -834,6 +834,7 @@
           console.log(produto);
           console.log(tamanho);
           console.log(faces);
+          console.log(tipo);
 
           descricao += `
       **Tipo:** ${produto.split(" - ")[0]}
