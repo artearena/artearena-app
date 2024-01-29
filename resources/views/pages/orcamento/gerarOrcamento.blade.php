@@ -828,7 +828,7 @@
         const faces = produto.split(" - ")[2];
         const tipo = produto.split(" - ")[0];
         const id = document.getElementById('id').value;
-        let titulo = '';
+        var titulo = '';
 
         if(tipo.includes('Bandeira de Mesa')) {
             titulo += `Bandeira de Mesa - ${id}`;
