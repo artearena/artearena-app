@@ -121,7 +121,7 @@
                                     data: {
                                         "_token": "{{ csrf_token() }}",
                                         "id": id,
-                                        "field": id_vendedor,
+                                        "field": 'id_vendedor',
                                         "value": vendedorId,
                                     },
                                     success: function(response){
