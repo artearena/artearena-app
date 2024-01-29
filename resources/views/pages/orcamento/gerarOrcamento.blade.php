@@ -819,13 +819,14 @@
         const rows = document.querySelectorAll("#produtoTableBody tr");
 
         rows.forEach(row => {
-          const ilhoseCheckbox = row.querySelector("#ilhosesCheckbox");
-          const mastroCheckbox = row.querySelector("#mastroCheckbox");
-          const ilhoseChecked = ilhoseCheckbox ? ilhoseCheckbox.checked : false;
-          const mastroChecked = mastroCheckbox ? mastroCheckbox.checked : false;
-          const produto = row.querySelector("td:nth-child(2) input").value;
-          const tamanho = produto.split(" - ")[1];
-          const faces = produto.split(" - ")[2];
+          const ilhoseCheckbox = row.querySelector("td:nth-child(5) input[type='checkbox']");
+            const mastroCheckbox = row.querySelector("td:nth-child(6) input[type='checkbox']");
+            const ilhoseChecked = ilhoseCheckbox ? ilhoseCheckbox.checked : false;
+            const mastroChecked = mastroCheckbox ? mastroCheckbox.checked : false;
+            const produto = row.querySelector("td:nth-child(2) input").value;
+            const tamanho = produto.split(" - ")[1];
+            const faces = produto.split(" - ")[2];
+            const tipo = produto.split(" - ")[0]; // Obtém o tipo de produto
           console.log(ilhoseCheckbox);
           console.log(mastroCheckbox);
           console.log(ilhoseChecked);
