@@ -264,7 +264,7 @@
                 title: 'Imagem do Usuário',
                 html: `
                     <p>Por favor, selecione uma imagem com as dimensões ideais de 1419 x 1822 pixels.</p>
-                    <p>Se precisar, você pode redimensionar sua imagem para uma proporção menor, como 30-40%.</p>
+                    <p>Se precisar, você pode redimensionar sua imagem para uma proporção menor ou maior. mantendo-as equivalentes</p>
                     <label for="imagem" class="btn btn-primary">Anexe ou arraste um arquivo</label>
                     <input type="file" id="imagem" accept="image/*" style="display: none;">
                 `,
@@ -279,26 +279,30 @@
                 preConfirm: () => {
                     return new Promise((resolve) => {
                         const imagem = document.getElementById('imagem').files[0];
-                        const formData = new FormData();
-                        formData.append('id', $(this).data('user-id'));
-                        formData.append('imagem', imagem);
-                        formData.append('_token', $('meta[name="csrf-token"]').attr('content'));
+                        if (imagem) {
+                            const formData = new FormData();
+                            formData.append('id', $(this).data('user-id'));
+                            formData.append('imagem', imagem);
+                            formData.append('_token', $('meta[name="csrf-token"]').attr('content'));
 
-                        $.ajax({
-                            url: '{{ route("usuarios.uploadImagem") }}',
-                            type: 'POST',
-                            data: formData,
-                            processData: false,
-                            contentType: false,
-                            success: function(response) {
-                                console.log(response);
-                                resolve();
-                            },
-                            error: function(xhr, status, error) {
-                                console.error(xhr.responseText);
-                                resolve();
-                            }
-                        });
+                            $.ajax({
+                                url: '{{ route("usuarios.uploadImagem") }}',
+                                type: 'POST',
+                                data: formData,
+                                processData: false,
+                                contentType: false,
+                                success: function(response) {
+                                    console.log(response);
+                                    resolve();
+                                },
+                                error: function(xhr, status, error) {
+                                    console.error(xhr.responseText);
+                                    resolve();
+                                }
+                            });
+                        } else {
+                            resolve(); // Se nenhuma imagem for selecionada, apenas resolva a promessa
+                        }
                     });
                 }
             }).then((result) => {
@@ -308,8 +312,30 @@
             });
         });
 
+        // Habilita o botão de confirmação quando uma imagem é selecionada
         $(document).on('change', '#imagem', function() {
             $('.swal2-confirm').prop('disabled', false);
+        });
+
+        // Manipuladores de eventos para arrastar e soltar
+        $('#imagem').on('dragover', function(event) {
+            event.preventDefault();
+            event.stopPropagation();
+        });
+
+        $('#imagem').on('drop', function(event) {
+            event.preventDefault();
+            event.stopPropagation();
+
+            const file = event.originalEvent.dataTransfer.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    $('#imagem').attr('src', e.target.result);
+                    $('.swal2-confirm').prop('disabled', false); // Habilita o botão de confirmação
+                };
+                reader.readAsDataURL(file);
+            }
         });
 
 
