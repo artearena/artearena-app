@@ -20,9 +20,7 @@ class OrcamentosController extends Controller
         $search = $request->input('search');
 
         // Obtenha todos os orçamentos do banco de dados
-        $orcamentosQuery = Orcamentos::query()
-            ->select('orcamento.*')
-            ->orderByDesc('created_at'); // Ordenar por data de criação decrescente
+        $orcamentosQuery = Orcamentos::query();
 
         // Se houver uma pesquisa, aplique os filtros
         if ($search) {
@@ -33,14 +31,15 @@ class OrcamentosController extends Controller
             });
         }
 
-        // Adicione a subconsulta para contar repetições
-        $orcamentosQuery->withCount('repeticoes as quantidade_repeticoes');
-
-        // Execute a consulta e obtenha os resultados paginados
-        $orcamentos = $orcamentosQuery->paginate(10);
+        // Adicione a subconsulta para contar as repetições
+        $orcamentos = $orcamentosQuery
+            ->select('orcamento.*', DB::raw('(SELECT COUNT(*) FROM orcamento o WHERE o.id_octa = orcamento.id_octa) as quantidade_repeticoes'))
+            ->orderByDesc('created_at') // Ordenar por data de criação decrescente
+            ->get();
 
         return view('pages.orcamento.index', compact('orcamentos'));
     }
+
 
     public function orcamento(){
         $produtos = Produto::all();
