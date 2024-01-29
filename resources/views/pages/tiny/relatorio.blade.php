@@ -72,33 +72,34 @@
             <thead>
                 <tr>
                     <th>Vendedor</th>
-                    <th>Soma Total</th>
+                    <th>Valor do Frete</th>
+                    <th>Valor Total</th>
+                    <th>Valor Descontando o Frete</th>
                 </tr>
             </thead>
             <tbody>
-                @forelse($dados->map(function ($item) {
-                    // Remover "R$" e vírgulas, em seguida, converter para float
-                    $item->soma_total_reais_original = $item->soma_total_reais;
-                    $item->soma_total_reais = floatval(str_replace(['R$', ','], ['', ''], $item->soma_total_reais));
-                    return $item;
-                })->sortBy('soma_total_reais') as $item)
+                @forelse($dados as $item)
                     <tr>
                         <td>{{ $item->nome_vendedor ?: 'Sem vendedor' }}</td>
-                        <td>R$ {{ number_format($item->soma_total_reais, 2, ',', '.') }}</td>
+                        <td>R$ {{ number_format($item->soma_total_frete, 2, ',', '.') }}</td>
+                        <td>R$ {{ number_format($item->soma_total, 2, ',', '.') }}</td>
+                        <td>{{ $item->soma_total_reais }}</td>
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="2">Nenhum dado encontrado</td>
+                        <td colspan="4">Nenhum dado encontrado</td>
                     </tr>
                 @endforelse
             </tbody>
             <tfoot>
                 <tr>
-                    <td><strong>Total</strong></td>
-                    <td><strong>R$ {{ number_format($dados->sum('soma_total_reais'), 2, ',', '.') }}</strong></td>
+                    <td colspan="2"><strong>Total</strong></td>
+                    <td>R$ {{ number_format($dados->sum('soma_total'), 2, ',', '.') }}</td>
+                    <td><strong>R$ {{ number_format($dados->sum('soma_total') - $dados->sum('soma_total_frete'), 2, ',', '.') }}</strong></td>
                 </tr>
             </tfoot>
         </table>
+
 
     </div>
     @include('pages.tiny.grafico')
