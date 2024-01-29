@@ -447,11 +447,18 @@
         // Função para exibir os arquivos anexados
         function exibirArquivosAnexados() {
             var html = "<p>Arquivos Anexados:</p><ul>";
-            arquivosAnexados.forEach(function(arquivo) {
-                html += "<li>" + arquivo.name + "</li>";
+            arquivosAnexados.forEach(function(arquivo, index) {
+                html += "<li>" + arquivo.name + " <a href='#' class='download-link' data-index='" + index + "'>Download</a></li>";
             });
             html += "</ul>";
             $("#arquivosAnexados").html(html);
+
+            // Associar evento de clique aos links de download
+            $(".download-link").click(function(event) {
+                event.preventDefault();
+                var index = $(this).data("index");
+                baixarArquivo(arquivosAnexados[index]);
+            });
         }
 
         // Evento de clique no botão
