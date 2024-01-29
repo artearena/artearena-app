@@ -262,23 +262,26 @@
         $('.carregar-imagem').click(function() {
             Swal.fire({
                 title: 'Imagem do Usuário',
-                html: '<label for="imagem" class="btn btn-primary">Anexe uma imagem</label><input type="file" id="imagem" accept="image/*" style="display: none;">',
+                html: `
+                    <p>Por favor, selecione uma imagem com as dimensões ideais de 1419 x 1822 pixels.</p>
+                    <p>Se precisar, você pode redimensionar sua imagem para uma proporção menor, como 30-40%.</p>
+                    <label for="imagem" class="btn btn-primary">Anexe ou arraste um arquivo</label>
+                    <input type="file" id="imagem" accept="image/*" style="display: none;">
+                `,
                 showCloseButton: true,
                 showConfirmButton: true,
                 confirmButtonText: 'Salvar',
                 showLoaderOnConfirm: true,
-                allowOutsideClick: false, // Evita que o usuário clique fora do modal enquanto carrega a imagem
+                allowOutsideClick: false,
                 onBeforeOpen: () => {
-                    $('.swal2-confirm').prop('disabled', true); // Desabilita o botão de confirmação inicialmente
+                    $('.swal2-confirm').prop('disabled', true);
                 },
                 preConfirm: () => {
                     return new Promise((resolve) => {
                         const imagem = document.getElementById('imagem').files[0];
                         const formData = new FormData();
-                        formData.append('id', $(this).data('user-id')); // Passa o ID do usuário para o servidor
+                        formData.append('id', $(this).data('user-id'));
                         formData.append('imagem', imagem);
-
-                        // Adiciona o token CSRF ao FormData
                         formData.append('_token', $('meta[name="csrf-token"]').attr('content'));
 
                         $.ajax({
@@ -304,6 +307,11 @@
                 }
             });
         });
+
+        $(document).on('change', '#imagem', function() {
+            $('.swal2-confirm').prop('disabled', false);
+        });
+
 
         // Habilita o botão de confirmação quando uma imagem é selecionada
         $(document).on('change', '#imagem', function() {
