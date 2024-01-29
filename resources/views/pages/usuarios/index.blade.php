@@ -101,7 +101,10 @@
             var id = $(element).data('id');
             var field = $(element).data('field');
             var value = $(element).is('input, select, textarea') ? $(element).val() : $(element).text();
-
+            
+            console.log(field);
+            console.log(value);
+            
             $.ajax({
                 url: "/usuarios/updateall",
                 type: 'POST',
