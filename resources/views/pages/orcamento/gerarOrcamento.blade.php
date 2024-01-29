@@ -850,7 +850,8 @@ Faces: ${faces}
 `;   
 //fim---------------//---------------//---------------//---------------//---------------//---------------//---------------
 
-        } else if(tipo.includes('Bandana')) {
+        } 
+        if(tipo.includes('Bandana')) {
             titulo += `Bandana - `;
 //inicio---------------//---------------//---------------//---------------//---------------//---------------//---------------
 descricao += `
@@ -864,7 +865,8 @@ descricao += `
 
 `;
 //fim---------------//---------------//---------------//---------------//---------------//---------------//---------------
-        } else if (tipo.includes('Bandeira') || tipo.includes('Faixa')) {
+        } 
+        if (tipo.includes('Bandeira') || tipo.includes('Faixa')) {
           // Obtém o ID do campo de texto
           // Define o título com o ID concatenado
           titulo += tipo.includes('Bandeira') ? `Bandeira - ` : `Faixa - `;
