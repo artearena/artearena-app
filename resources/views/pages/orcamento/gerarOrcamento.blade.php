@@ -826,9 +826,41 @@
           const produto = row.querySelector("td:nth-child(2) input").value;
           const tamanho = produto.split(" - ")[1];
           const faces = produto.split(" - ")[2];
-
-          descricao += `
-      **Tipo:** ${produto.split(" - ")[0]}
+          const tipo = produto.split(" - ")[0];
+          descricao = '';
+          
+          if (tipo.includes('Bandeira')) {
+          // tipo, material, tamanho, faces, ilhose,mastro, desc empty
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+descricao +=`
+**Tipo:** ${tipo}
+**Material:** Tactel
+**Tamanho:** ${tamanho}  
+**Faces:** ${faces};
+`
+if (ilhoseChecked) {
+descricao += `
+**Ilhoses:** Sim`;
+} else {
+descricao += `
+**Ilhoses:**`;
+}
+if (mastroChecked) {
+descricao += `
+**Mastro:** Sim`;
+} else {
+descricao += `
+**Mastro:**`;
+}
+descricao += `
+**Descrição:** 
+---
+`;
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+          
+          }
+/*            += `
+      **Tipo:** ${tipo}
       **Material:** ? 
       **Tamanho:** ${tamanho}  
       **Faces:** ${faces}`;
@@ -854,7 +886,7 @@
       **Descrição:** 
       ---
       `;
-        });
+        }); */
 
         document.getElementById('tituloCardTrello').value = '';
         document.getElementById('descricaoCardTrello').value = descricao;
