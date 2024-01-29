@@ -850,23 +850,7 @@ Faces: ${faces}
 `;   
 //fim---------------//---------------//---------------//---------------//---------------//---------------//---------------
 
-        } 
-        if(tipo.includes('Bandana')) {
-            titulo += `Bandana - `;
-//inicio---------------//---------------//---------------//---------------//---------------//---------------//---------------
-descricao += `
-**Tipo:** ${tipo}
-
-**Material:** Tactel / Bember / Oxford / Helanca
-
-**Descrição:** ?
-
-**Tamanho:** ?
-
-`;
-//fim---------------//---------------//---------------//---------------//---------------//---------------//---------------
-        } 
-        if (tipo.includes('Bandeira') || tipo.includes('Faixa')) {
+        } else if (tipo.includes('Bandeira') || tipo.includes('Faixa')) {
           // Obtém o ID do campo de texto
           // Define o título com o ID concatenado
           titulo += tipo.includes('Bandeira') ? `Bandeira - ` : `Faixa - `;
@@ -883,6 +867,22 @@ descricao += `
 //fim---------------//---------------//---------------//---------------//---------------//---------------//---------------
         
         }
+        if(tipo.includes('Bandana')) {
+            titulo += `Bandana - `;
+//inicio---------------//---------------//---------------//---------------//---------------//---------------//---------------
+descricao += `
+**Tipo:** ${tipo}
+
+**Material:** Tactel / Bember / Oxford / Helanca
+
+**Descrição:** ?
+
+**Tamanho:** ?
+
+`;
+//fim---------------//---------------//---------------//---------------//---------------//---------------//---------------
+        } 
+        
         
 
       // Define o título do card como 'Bandeira + ID'
