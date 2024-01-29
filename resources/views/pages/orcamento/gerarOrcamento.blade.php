@@ -460,6 +460,16 @@
                 baixarArquivo(arquivosAnexados[index]);
             });
         }
+        // Função para baixar o arquivo
+        function baixarArquivo(arquivo) {
+            var url = URL.createObjectURL(arquivo);
+            var link = document.createElement('a');
+            link.href = url;
+            link.download = arquivo.name;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
 
         // Evento de clique no botão
         $("#tt").click(function(){
