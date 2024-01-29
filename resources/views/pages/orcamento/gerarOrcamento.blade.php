@@ -829,19 +829,19 @@
         const tipo = produto.split(" - ")[0];
         let titulo = '';
 
-        if (tipo.includes('Bandeira')) {
+        if (tipo.includes('Bandeira') || tipo.includes('Faixa')) {
             // Obtém o ID do campo de texto
             const id = document.getElementById('id').value;
             // Define o título com o ID concatenado
-            titulo = `Bandeira ${id}`;
+            titulo = tipo.includes('Bandeira') ? `Bandeira - ${id}` : `Faixa - ${id}`;
             descricao += `
-            **Tipo:** ${tipo}
-            **Material:** ?
-            **Tamanho:** ${tamanho}
-            **Faces:** ${faces}
-            **Ilhoses:** ${ilhoseChecked ? 'Sim' : 'Não'}
-            **Mastro:** ${mastroChecked ? 'Sim' : 'Não'}
-            **Descrição:** 
+**Tipo:** ${tipo}
+**Material:** ?
+**Tamanho:** ${tamanho}
+**Faces:** ${faces}
+**Ilhoses:** ${ilhoseChecked ? 'Sim' : 'Não'}
+**Mastro:** ${mastroChecked ? 'Sim' : 'Não'}
+**Descrição:** 
             ---
             `;
 
@@ -849,7 +849,7 @@
             document.getElementById('tituloCardTrello').value = titulo;
             // Define a descrição do card
             document.getElementById('descricaoCardTrello').value = descricao;
-        } else {
+        } else if(tipo.includes('Bandeira')) {
             // Outro tipo de produto
             // Lógica para outros tipos de produtos
         }
