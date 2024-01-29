@@ -259,7 +259,17 @@
                 }
             });
         });
-
+        $('.carregar-imagem').click(function() {
+            Swal.fire({
+                title: 'Imagem do Usuário',
+                html: '<img src="/caminho/para/sua/imagem" style="max-width: 100%;" />',
+                showCloseButton: true,
+                showConfirmButton: false,
+                customClass: {
+                    closeButton: 'btn btn-primary'
+                }
+            });
+        });
         // Adicionando o SweetAlert para a exclusão de usuários
         $('#tabelaUsuarios').on('click', '.btn-danger', function(e){
             e.preventDefault();
