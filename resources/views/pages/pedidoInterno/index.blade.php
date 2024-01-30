@@ -285,6 +285,8 @@
                         generateTemporaryLink(pedidoId);
                     } else {
                         // Lógica para consultar as listas
+                        console.log('modal5');
+
                         openListasModal(pedidoId);
                     }
                 }
