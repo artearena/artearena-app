@@ -28,6 +28,7 @@ class ProdutoPedido extends Model
         'numero',
         'tamanho',
         'id_lista',
+        'inativar'
     ];
 
     public function pedido()
