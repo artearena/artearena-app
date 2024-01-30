@@ -17,8 +17,9 @@ class HomologarPedido extends Controller
     {
         $pedidos = PedidoInterno::all();
         $pedidosArte = Pedido::where('status', 'Aguardando Cliente')->get();        
-        
-        return view('pages.pedidoInterno.index', compact('pedidos', 'pedidosArte'));
+        $listaCriada = ListaUniforme::exists();
+
+        return view('pages.pedidoInterno.index', compact('pedidos', 'pedidosArte', 'listaCriada'));
     }
     
 
@@ -30,14 +31,14 @@ class HomologarPedido extends Controller
     }
 
     public function update(Request $request, $pedidoId, $produtoId)
-{
-    $produto = ProdutoPedido::where('pedido_id', $pedidoId)->findOrFail($produtoId);
-    $campo = $request->campo;
-    $produto->$campo = $request->valor;
-    $produto->save();
+    {
+        $produto = ProdutoPedido::where('pedido_id', $pedidoId)->findOrFail($produtoId);
+        $campo = $request->campo;
+        $produto->$campo = $request->valor;
+        $produto->save();
 
-    return response()->json(['mensagem' => 'Produto atualizado com sucesso!']);
-}
+        return response()->json(['mensagem' => 'Produto atualizado com sucesso!']);
+    }
 
     public function criarPedidoOrcamento($id)
     {

@@ -58,4 +58,8 @@ class ListaUniformeController extends Controller
         // Remove o token do banco de dados
         DB::table('acesso_temporario')->where('token', $token)->delete();
     }
+    public function hasListaUniforme($pedidoId)
+    {
+        return ListaUniforme::where('pedido_id', $pedidoId)->exists();
+    }
 }
