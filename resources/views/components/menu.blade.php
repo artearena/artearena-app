@@ -6,7 +6,7 @@
                 <img src="../../images/logo.png" alt="" class="logo-img" style="width: 15vh; margin-right: 10px;">
             </a>
         @endif
-        @if(!in_array(request()->path(), ['cadastro', 'acessonegado', 'sucessocadastro']))
+        @if(!in_array(request()->path(), ['cadastro', 'acessonegado', 'sucessocadastro', 'login']))
             <img src="../../images/logo.png" alt="" class="logo-img" style="width: 15vh; margin-right: 10px;">
         @endif
         @else
@@ -21,7 +21,7 @@
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 @guest
                 @else
-                    <li class="nav-item">
+                    <li class="nav-item">   
                         <a class="nav-link {{ request()->is('/') ? 'active' : '' }}" href="{{ route('home') }}">Início</a>
                     </li>
                     <li class="nav-item dropdown">
