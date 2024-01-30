@@ -347,43 +347,43 @@
                             const tabId = 'lista-tab-' + index;
                             const contentId = 'lista-content-' + index;
 
-                    // Determina o nome da lista com base no índice
-                    let nomeLista;
-                    switch(index) {
-                        case 0:
-                            nomeLista = "Primeira Lista";
-                            break;
-                        case 1:
-                            nomeLista = "Segunda Lista";
-                            break;
-                        case 2:
-                            nomeLista = "Terceira Lista";
-                            break;
-                        case 3:
-                            nomeLista = "Quarta Lista";
-                            break;
-                        case 4:
-                            nomeLista = "Quinta Lista";
-                            break;
-                        case 5:
-                            nomeLista = "Sexta Lista";
-                            break;
-                        case 6:
-                            nomeLista = "Sétima Lista";
-                            break;
-                        case 7:
-                            nomeLista = "Oitava Lista";
-                            break;
-                        case 8:
-                            nomeLista = "Nona Lista";
-                            break;
-                        case 9:
-                            nomeLista = "Décima Lista";
-                            break;
-                        default:
-                            nomeLista = `Lista ${index + 1}`;
-                            break;
-                    }
+                            // Determina o nome da lista com base no índice
+                            let nomeLista;
+                            switch(index) {
+                                case 0:
+                                    nomeLista = "Primeira Lista";
+                                    break;
+                                case 1:
+                                    nomeLista = "Segunda Lista";
+                                    break;
+                                case 2:
+                                    nomeLista = "Terceira Lista";
+                                    break;
+                                case 3:
+                                    nomeLista = "Quarta Lista";
+                                    break;
+                                case 4:
+                                    nomeLista = "Quinta Lista";
+                                    break;
+                                case 5:
+                                    nomeLista = "Sexta Lista";
+                                    break;
+                                case 6:
+                                    nomeLista = "Sétima Lista";
+                                    break;
+                                case 7:
+                                    nomeLista = "Oitava Lista";
+                                    break;
+                                case 8:
+                                    nomeLista = "Nona Lista";
+                                    break;
+                                case 9:
+                                    nomeLista = "Décima Lista";
+                                    break;
+                                default:
+                                    nomeLista = `Lista ${index + 1}`;
+                                    break;
+                            }
                             // Adiciona a aba
                             tabsContainer.append(`<li class="nav-item"><a class="nav-link" id="${tabId}" data-toggle="tab" href="#${contentId}" role="tab" aria-controls="${contentId}" aria-selected="true">${nomeLista}</a></li>`);
                             console.log(lista.produtos);
@@ -436,6 +436,11 @@
                         contentContainer.append(`<p>Não há listas disponíveis.</p>`);
                     }
 
+                    // Ativação das abas
+                    $('.nav-tabs a').click(function(){
+                        $(this).tab('show');
+                    });
+
                     // Abre o modal
                     modal.modal('show');
                 })
@@ -444,12 +449,7 @@
                     // Trate o erro conforme necessário
                 });
         }
-        $(document).ready(function() {
-            // Ativação das abas
-            $('.nav-tabs a').click(function(){
-                $(this).tab('show');
-            });
-        });
+
 
 
     </script>
