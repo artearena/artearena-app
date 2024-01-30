@@ -211,7 +211,7 @@
                                     <button class="btn btn-success btn-confirmar-pedido">
                                         <i class="fas fa-check"></i>
                                     </button>
-                                    <button onclick="openSwal(this)" class="btn btn-primary btn-consultar-lista-uniforme 
+                                    <button onclick="openSwal(this)" class="btn btn-primary
                                         @if($listaUniformePorPedido[$pedido->id])
                                             btn-success
                                         @elseif(\App\Models\AcessoTemporario::linkCriadoParaPedido($pedido->id))
