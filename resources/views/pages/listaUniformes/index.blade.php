@@ -288,7 +288,7 @@
             tbody.innerHTML = '';
 
             produtos.forEach(function (produto) {
-                if (ehVestuario(normalize(produto.produto_nome))) {
+                if (ehVestuario(normalize(produto.produto_nome))&& !produto.inativar) {
                     for (var i = 0; i < produto.quantidade; i++) {
                         var row = document.createElement('tr');
                         var sexo = produto.categoria; // Caso o sexo não esteja definido
