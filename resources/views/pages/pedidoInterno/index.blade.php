@@ -270,6 +270,10 @@
         });
     </script>
     <script>
+        // Adiciona um evento de clique ao botão "Consultar Listas"
+        document.getElementById('consultar-listas-btn').addEventListener('click', () => {
+            openListasModal(pedidoId);
+        });
         function openSwal(button) {
             const pedidoId = button.getAttribute('data-pedido-id');
 
@@ -280,18 +284,11 @@
                 showLoaderOnConfirm: true,
                 html: `
                     <div>
-                        <button id="consultar-listas-btn" class="btn btn-secondary">Consultar Listas</button>
+                        <button id="consultar-listas-btn" class="btn btn-primary">Consultar Listas</button>
                     </div>
                 `,
                 customClass: {
                     content: 'text-center',
-                },
-                onOpen: () => {
-                    // Adiciona um evento de clique ao botão "Consultar Listas"
-                    document.getElementById('consultar-listas-btn').addEventListener('click', () => {
-                        openListasModal(pedidoId);
-                        Swal.close(); // Fecha o modal após a ação
-                    });
                 },
                 preConfirm: () => {
                     generateTemporaryLink(pedidoId);
