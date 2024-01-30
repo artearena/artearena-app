@@ -273,21 +273,25 @@
             const pedidoId = button.getAttribute('data-pedido-id');
 
             Swal.fire({
-                title: 'Escolha uma opção',
-                showCancelButton: true,
-                confirmButtonText: 'Gerar Link Temporário',
-                cancelButtonText: 'Consultar Listas',
-                showLoaderOnConfirm: true,
-                willClose: (dismiss) => {
-                    if (dismiss.dismiss === Swal.DismissReason.cancel) {
-                        openListasModal(pedidoId);
-                    }
-                }
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    generateTemporaryLink(pedidoId);
-                }
-            });
+            title: 'Escolha uma opção',
+            showCancelButton: true,
+            confirmButtonText: 'Gerar Link Temporário',
+            cancelButtonText: 'Consultar Listas',
+            showLoaderOnConfirm: true,
+            preConfirm: () => {
+                return new Promise((resolve) => {
+                    // Esta é uma função de espaço reservado. Substitua pelo seu código de confirmação.
+                    resolve();
+                });
+            }
+        }).then((result) => {
+            if (result.isConfirmed) {
+                generateTemporaryLink(pedidoId);
+            } else if (result.dismiss === Swal.DismissReason.cancel) {
+                openListasModal(pedidoId);
+            }
+        });
+
 
         }
         function generateTemporaryLink(pedidoId) {
