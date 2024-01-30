@@ -5,6 +5,7 @@
     /* =============================================================================
     Responsive Table CSS
     ========================================================================== */
+    
     .dataTable {
         display: block;
         width: 100%;
@@ -196,7 +197,7 @@
                             <td>{{ $pedido->forma_pagamento }}</td>
                             <td>{{ $pedido->transportadora }}</td>
                             <td>{{ $pedido->valor_frete }}</td>
-                            <td id="observacao" style="overflow: auto;" lang="pt">{{ $pedido->observacao }}</td>
+                            <td class="expandir-observacoes" id="observacao" style="overflow: auto;" lang="pt">{{ $pedido->observacao }}</td>
                             <td>{{ $pedido->marcador }}</td>
                             <td>{{ date('Y-m-d', strtotime($pedido->data_venda)) }}</td>
                             <td>
@@ -221,4 +222,14 @@
 @endsection
 @section('extraScript')
     <script src="../js/pedidoInterno.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#pedidosTable tbody').on('mouseenter', 'td.expandir-observacoes', function() {
+                var td = $(this);
+                var fullText = td.text();
+                td.attr('title', fullText);
+            });
+        });
+    </script>
+
 @endsection
