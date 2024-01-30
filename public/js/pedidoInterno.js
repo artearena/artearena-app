@@ -146,7 +146,12 @@ document.addEventListener('DOMContentLoaded', function() {
       });
   });
 });
-
+const closeButtons = document.querySelectorAll('[data-dismiss="modal"]');
+closeButtons.forEach(button => {
+    button.addEventListener('click', function() {
+        $('#produtoModal').modal('hide');
+    });
+});
 
 function criarCelulaEditavel(produto, campo, pedidoId) {
   var td = document.createElement('td');
