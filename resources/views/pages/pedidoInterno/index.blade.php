@@ -235,6 +235,7 @@
             </tbody>
         </table>
     </div>
+
     <div class="modal fade" id="modalListasUniforme" tabindex="-1" role="dialog" aria-labelledby="modalListasUniformeLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
@@ -324,6 +325,8 @@
                 });
         }
         function openListasModal(pedidoId) {
+            console.log('modal1');
+
             fetch('/listaUniformes/consultarListas/' + pedidoId) // Rota para recuperar as listas de Uniforme do pedido
                 .then(response => response.json())
                 .then(data => {
@@ -387,7 +390,7 @@
                                                     </table>
                                                 </div>`);
                     });
-
+                    console.log('modal3');
                     // Abre o modal
                     modal.modal('show');
                 });
