@@ -212,15 +212,13 @@
                                         <i class="fas fa-check"></i>
                                     </button>
                                     <button class="btn btn-primary btn-consultar-lista-uniforme 
-                                        @if(\App\Models\AcessoTemporario::linkCriadoParaPedido($pedido->id))
-                                            @if($listaUniformePorPedido[$pedido->id])
-                                                btn-success
-                                            @else
-                                                btn-warning
-                                            @endif
-                                        @else
-                                            btn-danger
-                                        @endif" 
+                                    @if($listaUniformePorPedido[$pedido->id])
+                                        btn-success
+                                    @elseif(\App\Models\AcessoTemporario::linkCriadoParaPedido($pedido->id))
+                                        btn-warning
+                                    @else
+                                        btn-danger
+                                    @endif
                                         data-toggle="modal" data-target="#modalListaUniforme" data-pedido-id="{{ $pedido->id }}">
                                         <i class="fas fa-tshirt"></i>
                                     </button>
