@@ -235,6 +235,27 @@
             </tbody>
         </table>
     </div>
+    <div class="modal fade" id="modalListasUniforme" tabindex="-1" role="dialog" aria-labelledby="modalListasUniformeLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalListasUniformeLabel">Listas de Uniforme</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <ul class="nav nav-tabs" id="listasUniformeTabs" role="tablist">
+                <!-- Abas serão inseridas dinamicamente aqui -->
+                </ul>
+                <div class="tab-content" id="listasUniformeContent">
+                <!-- Conteúdo das abas serão inseridos dinamicamente aqui -->
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+
 @endsection
 @section('extraScript')
     <script src="../js/pedidoInterno.js"></script>
@@ -302,6 +323,77 @@
                     });
                 });
         }
+        function openListasModal(pedidoId) {
+            fetch('/listaUniformes/consultarListas/' + pedidoId) // Rota para recuperar as listas de Uniforme do pedido
+                .then(response => response.json())
+                .then(data => {
+                    const modal = $('#modalListasUniforme');
+                    const tabsContainer = $('#listasUniformeTabs');
+                    const contentContainer = $('#listasUniformeContent');
+
+                    // Limpa as abas e o conteúdo anterior
+                    tabsContainer.empty();
+                    contentContainer.empty();
+
+                    // Renderiza uma aba para cada lista de Uniforme
+                    data.forEach((lista, index) => {
+                        const tabId = 'lista-tab-' + index;
+                        const contentId = 'lista-content-' + index;
+
+                        // Adiciona a aba
+                        tabsContainer.append(`<li class="nav-item"><a class="nav-link" id="${tabId}" data-toggle="tab" href="#${contentId}" role="tab" aria-controls="${contentId}" aria-selected="true">${lista.nome}</a></li>`);
+
+                        // Adiciona o conteúdo da aba
+                        const produtosHTML = lista.produtos.map(produto => {
+                            return `
+                                <tr>
+                                    <td>${produto.produto_nome}</td>
+                                    <td>${produto.sexo}</td>
+                                    <td>${produto.arte_aprovada}</td>
+                                    <td>${produto.pacote}</td>
+                                    <td>${produto.camisa}</td>
+                                    <td>${produto.calcao}</td>
+                                    <td>${produto.meiao}</td>
+                                    <td>${produto.nome_jogador}</td>
+                                    <td>${produto.numero}</td>
+                                    <td>${produto.tamanho}</td>
+                                    <td>${produto.gola}</td>
+                                    <!-- Adicione mais informações do produto conforme necessário -->
+                                </tr>
+                            `;
+                        }).join('');
+
+                        contentContainer.append(`<div class="tab-pane fade" id="${contentId}" role="tabpanel" aria-labelledby="${tabId}">
+                                                    <table class="table">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Produto</th>
+                                                                <th>Sexo</th>
+                                                                <th>Arte Aprovada</th>
+                                                                <th>Pacote</th>
+                                                                <th>Camisa</th>
+                                                                <th>Calção</th>
+                                                                <th>Meião</th>
+                                                                <th>Nome do Jogador</th>
+                                                                <th>Número</th>
+                                                                <th>Tamanho</th>
+                                                                <th>Gola</th>
+                                                                <!-- Adicione mais cabeçalhos de coluna conforme necessário -->
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            ${produtosHTML}
+                                                        </tbody>
+                                                    </table>
+                                                </div>`);
+                    });
+
+                    // Abre o modal
+                    modal.modal('show');
+                });
+        }
+
+
     </script>
     
 @endsection

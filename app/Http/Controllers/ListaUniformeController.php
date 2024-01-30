@@ -1,11 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 use App\Models\ProdutoPedido;
-use Illuminate\Http\Request;
+use App\Models\ProdutoLista;
 use App\Models\ListaUniforme;
-use Illuminate\Support\Facades\DB;
 
 class ListaUniformeController extends Controller
 {
@@ -22,6 +23,14 @@ class ListaUniformeController extends Controller
         return view('pages.listaUniformes.index', compact('produtos'));
     }
     
+    public function consultarListas($id)
+    {
+        // Busca todas as listas de uniforme associadas ao pedido
+        $listasUniforme = ListaUniforme::where('pedido_id', $id)->with('produtos')->get();
+
+        // Retorna os dados como JSON
+        return response()->json($listasUniforme);
+    }
 
     public function create()
     {
