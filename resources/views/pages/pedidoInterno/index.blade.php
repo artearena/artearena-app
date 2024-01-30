@@ -211,7 +211,7 @@
                                     <button class="btn btn-success btn-confirmar-pedido">
                                         <i class="fas fa-check"></i>
                                     </button>
-                                    <button class="btn btn-primary btn-consultar-lista-uniforme 
+                                    <button onclick="openSwal('{{ $pedido->id }}')" class="btn btn-primary 
                                         @if($listaUniformePorPedido[$pedido->id])
                                             btn-success
                                         @elseif(\App\Models\AcessoTemporario::linkCriadoParaPedido($pedido->id))
@@ -246,5 +246,25 @@
             });
         });
     </script>
-
+    <script>
+        function openSwal(pedidoId) {
+            Swal.fire({
+                title: 'Escolha uma opção',
+                showCancelButton: true,
+                confirmButtonText: 'Gerar Link Temporário',
+                cancelButtonText: 'Consultar Listas',
+                showLoaderOnConfirm: true,
+                preConfirm: (choice) => {
+                    if (choice) {
+                        // Lógica para gerar o link temporário
+                        generateTemporaryLink({{ pedidoId }});
+                    } else {
+                        // Lógica para consultar as listas
+                        openListasModal(pedidoId);
+                    }
+                }
+            });
+        }
+    </script>
+    
 @endsection
