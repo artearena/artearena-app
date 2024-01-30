@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     var closeButton = document.createElement('button');
                     closeButton.type = 'button';
                     closeButton.className = 'btn-close';
-                    closeButton.setAttribute('data-dismiss', 'modal','onclick="fecharModal()"');
+                    closeButton.setAttribute('data-dismiss', 'moda''l','onclick="fecharModal()"');
                     closeButton.setAttribute('aria-label', 'Close');
                     closeButton.addEventListener('click', function() {
                         var modal = document.getElementById('produtoModal');
