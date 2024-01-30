@@ -349,7 +349,7 @@
                         tabsContainer.append(`<li class="nav-item"><a class="nav-link" id="${tabId}" data-toggle="tab" href="#${contentId}" role="tab" aria-controls="${contentId}" aria-selected="true">${lista.nome}</a></li>`);
 
                         // Adiciona o conteúdo da aba
-                        const produtosHTML = lista.produtos.map(produto => {
+                        const produtosHTML = lista.lista.map(produto => {
                             return `
                                 <tr>
                                     <td>${produto.produto_nome}</td>
@@ -359,8 +359,8 @@
                                     <td>${produto.camisa}</td>
                                     <td>${produto.calcao}</td>
                                     <td>${produto.meiao}</td>
-                                    <td>${produto.nome_jogador}</td>
-                                    <td>${produto.numero}</td>
+                                    <td>${produto.nome_jogador || ''}</td>
+                                    <td>${produto.numero || ''}</td>
                                     <td>${produto.tamanho}</td>
                                     <td>${produto.gola}</td>
                                     <!-- Adicione mais informações do produto conforme necessário -->
@@ -397,6 +397,7 @@
                     modal.modal('show');
                 });
         }
+
 
 
     </script>
