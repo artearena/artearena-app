@@ -270,10 +270,13 @@
         });
     </script>
     <script>
-        // Adiciona um evento de clique ao botão "Consultar Listas"
-        document.getElementById('consultar-listas-btn').addEventListener('click', () => {
-            openListasModal(pedidoId);
+        document.addEventListener("DOMContentLoaded", function() {
+            // Adiciona um evento de clique ao botão "Consultar Listas"
+            document.getElementById('consultar-listas-btn').addEventListener('click', () => {
+                openListasModal(pedidoId);
+            });
         });
+
         function openSwal(button) {
             const pedidoId = button.getAttribute('data-pedido-id');
 
