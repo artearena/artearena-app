@@ -275,22 +275,31 @@
 
             Swal.fire({
                 title: 'Escolha uma opção',
-                showCancelButton: true,
+                showCancelButton: false, // Remove o botão de cancelar
                 confirmButtonText: 'Gerar Link Temporário',
-                cancelButtonText: 'Consultar Listas',
                 showLoaderOnConfirm: true,
-                preConfirm: (choice) => {
-                    if (choice) {
-                        // Lógica para gerar o link temporário
-                        generateTemporaryLink(pedidoId);
-                    } else {
-                        // Lógica para consultar as listas
-                        console.log('modal5');
-
+                html: `
+                    <div>
+                        <p>Escolha uma opção:</p>
+                        <button id="gerar-link-btn" class="btn btn-primary">Gerar Link Temporário</button>
+                        <button id="consultar-listas-btn" class="btn btn-secondary">Consultar Listas</button>
+                    </div>
+                `,
+                customClass: {
+                    content: 'text-center',
+                },
+                onOpen: () => {
+                    // Adiciona um evento de clique ao botão "Consultar Listas"
+                    document.getElementById('consultar-listas-btn').addEventListener('click', () => {
                         openListasModal(pedidoId);
-                    }
+                        Swal.close(); // Fecha o modal após a ação
+                    });
+                },
+                preConfirm: () => {
+                    generateTemporaryLink(pedidoId);
                 }
             });
+
         }
         function generateTemporaryLink(pedidoId) {
             fetch('/gerarLinkListaProduto/' + pedidoId)
