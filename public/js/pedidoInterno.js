@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', function() {
                   modalTitle.innerText = 'Detalhes do Produto';
                   var closeButton = document.createElement('button');
                   closeButton.type = 'button';
-                  closeButton.className = 'close';
+                  closeButton.className = 'close btn-close';
                   closeButton.setAttribute('data-dismiss', 'modal');
                   closeButton.setAttribute('aria-label', 'Close');
                   closeButton.addEventListener('click', function() {
@@ -126,13 +126,15 @@ document.addEventListener('DOMContentLoaded', function() {
                   modalFooter.className = 'modal-footer';
                   var closeButtonFooter = document.createElement('button');
                   closeButtonFooter.type = 'button';
-                  closeButtonFooter.className = 'btn btn-secondary close';
+                  closeButtonFooter.className = 'btn btn-secondary btn-close close';
                   closeButtonFooter.setAttribute('data-dismiss', 'modal');
+                  closeButtonFooter.setAttribute('aria-label', 'Close'); // Adicionando o atributo aria-label
                   closeButtonFooter.innerText = 'Fechar';
                   closeButtonFooter.addEventListener('click', function() {
                       var modal = document.getElementById('produtoModal');
                       modal.style.display = 'none';
                   });
+
                   modalFooter.appendChild(closeButtonFooter);
                   modalContentDiv.appendChild(modalFooter);
                   modalDialog.appendChild(modalContentDiv);
