@@ -280,8 +280,6 @@
                 showLoaderOnConfirm: true,
                 html: `
                     <div>
-                        <p>Escolha uma opção:</p>
-                        <button id="gerar-link-btn" class="btn btn-primary">Gerar Link Temporário</button>
                         <button id="consultar-listas-btn" class="btn btn-secondary">Consultar Listas</button>
                     </div>
                 `,
