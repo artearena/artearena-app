@@ -593,3 +593,11 @@ $(document).ready(function() {
 
  
 });
+// Encontra o botão de fechar dentro do modal modalListasUniforme
+var closeButtonListasUniforme = document.querySelector('#modalListasUniforme .btn-close');
+
+// Adiciona um evento de clique ao botão de fechar
+closeButtonListasUniforme.addEventListener('click', function() {
+    // Oculta o modal usando jQuery
+    $('#modalListasUniforme').modal('hide');
+});
