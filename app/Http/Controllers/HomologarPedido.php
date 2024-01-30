@@ -11,12 +11,20 @@ use App\Models\Orcamentos;
 use App\Models\ListaUniforme;
 use App\Models\ProdutoPedido;
 use App\Models\Pedido;
+use App\Models\AcessoTemporario;
+
 class HomologarPedido extends Controller
 {
+
     public function index()
     {
         $pedidos = PedidoInterno::all();
-        $pedidosArte = Pedido::where('status', 'Aguardando Cliente')->get();        
+
+        // Verifica se cada pedido tem um link criado na tabela acesso_temporario
+        $linkCriadoPorPedido = [];
+        foreach ($pedidos as $pedido) {
+            $linkCriadoPorPedido[$pedido->id] = AcessoTemporario::where('pedido_id', $pedido->id)->exists();
+        }
 
         // Verifica se cada pedido tem uma lista uniforme criada
         $listaUniformePorPedido = [];
@@ -24,7 +32,7 @@ class HomologarPedido extends Controller
             $listaUniformePorPedido[$pedido->id] = ListaUniforme::where('id_pedido', $pedido->id)->exists();
         }
 
-        return view('pages.pedidoInterno.index', compact('pedidos', 'pedidosArte', 'listaUniformePorPedido'));
+        return view('pages.pedidoInterno.index', compact('pedidos', 'linkCriadoPorPedido', 'listaUniformePorPedido'));
     }
     
 
