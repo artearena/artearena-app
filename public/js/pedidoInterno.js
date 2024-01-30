@@ -125,7 +125,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     modalFooter.className = 'modal-footer';
                     var closeButtonFooter = document.createElement('button');
                     closeButtonFooter.type = 'button';
-                    closeButtonFooter.className = 'btn btn-close';
+                    closeButtonFooter.className = 'btn btn-secondary';
                     closeButtonFooter.setAttribute('data-dismiss', 'modal');
                     closeButtonFooter.innerText = 'Fechar';
                     closeButtonFooter.addEventListener('click', function() {
