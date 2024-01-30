@@ -335,12 +335,12 @@
                     const modal = $('#modalListasUniforme');
                     const tabsContainer = $('#listasUniformeTabs');
                     const contentContainer = $('#listasUniformeContent');
-                    console.log(data);
+
                     // Limpa as abas e o conteúdo anterior
                     tabsContainer.empty();
                     contentContainer.empty();
 
-                   // Renderiza uma aba para cada lista de Uniforme
+                    // Renderiza uma aba para cada lista de Uniforme
                     data.forEach((lista, index) => {
                         const tabId = 'lista-tab-' + index;
                         const contentId = 'lista-content-' + index;
@@ -398,6 +398,13 @@
                         }
                     });
 
+                    // Abre o modal
+                    modal.modal('show');
+                })
+                .catch(error => {
+                    console.error('Erro ao carregar listas de uniformes:', error);
+                    // Trate o erro conforme necessário
+                });
         }
 
 
