@@ -1,143 +1,152 @@
 document.addEventListener('DOMContentLoaded', function() {
-    var botoesExpandir = document.querySelectorAll('.btn-expand-produtos');
-    botoesExpandir.forEach(function(botaoExpandir) {
-        botaoExpandir.addEventListener('click', function() {
-            var pedidoId = this.closest('.pedido-row').getAttribute('data-pedido-id');
-            fetch('/pedidoInterno/get-produtos-pedido/' + pedidoId)
-                .then(function(response) {
-                    return response.json();
-                })
-                .then(function(produtos) {
-                    var modalContent = document.createElement('div');
-                    modalContent.className = 'modal fade';
-                    modalContent.id = 'produtoModal';
-                    modalContent.tabIndex = -1;
-                    modalContent.setAttribute('role', 'dialog');
-                    modalContent.setAttribute('aria-labelledby', 'exampleModalLabel');
-                    modalContent.setAttribute('aria-hidden', 'true');
-                    var modalDialog = document.createElement('div');
-                    modalDialog.className = 'modal-dialog modal-xl';
-                    modalDialog.setAttribute('role', 'document');
-                    var modalContentDiv = document.createElement('div');
-                    modalContentDiv.className = 'modal-content';
-                    var modalHeader = document.createElement('div');
-                    modalHeader.className = 'modal-header';
-                    var modalTitle = document.createElement('h5');
-                    modalTitle.className = 'modal-title';
-                    modalTitle.id = 'exampleModalLabel';
-                    modalTitle.innerText = 'Detalhes do Produto';
-                    var closeButton = document.createElement('button');
-                    closeButton.type = 'button';
-                    closeButton.className = 'close';
-                    closeButton.setAttribute('data-dismiss', 'modal');
-                    closeButton.setAttribute('aria-label', 'Close');
-                    var closeSpan = document.createElement('span');
-                    closeSpan.setAttribute('aria-hidden', 'true');
-                    closeSpan.innerHTML = '×';
-                    closeButton.appendChild(closeSpan);
-                    modalHeader.appendChild(modalTitle);
-                    modalHeader.appendChild(closeButton);
-                    var modalBody = document.createElement('div');
-                    modalBody.className = 'modal-body';
-                    var tableResponsive = document.createElement('div');
-                    tableResponsive.className = 'table-responsive';
-                    var table = document.createElement('table');
-                    table.className = 'table';
-                    var thead = document.createElement('thead');
-                    var tr = document.createElement('tr');
-                    var thNomeProduto = document.createElement('th');
-                    thNomeProduto.innerText = 'Nome do Produto';
-                    tr.appendChild(thNomeProduto);
-                    var thQuantidade = document.createElement('th');
-                    thQuantidade.innerText = 'Quantidade';
-                    tr.appendChild(thQuantidade);
-                    var thCategoria = document.createElement('th');
-                    thCategoria.innerText = 'Categoria';
-                    tr.appendChild(thCategoria);
-                    var thArteAprovada = document.createElement('th');
-                    thArteAprovada.innerText = 'Arte Aprovada';
-                    tr.appendChild(thArteAprovada);
-                    var thListaAprovada = document.createElement('th');
-                    thListaAprovada.innerText = 'Lista Aprovada';
-                    tr.appendChild(thListaAprovada);
-                    var thPacote = document.createElement('th');
-                    thPacote.innerText = 'Pacote';
-                    tr.appendChild(thPacote);
-                    var thCamisa = document.createElement('th');
-                    thCamisa.innerText = 'Camisa';
-                    tr.appendChild(thCamisa);
-                    var thCalcao = document.createElement('th');
-                    thCalcao.innerText = 'Calção';
-                    tr.appendChild(thCalcao);
-                    var thMeiao = document.createElement('th');
-                    thMeiao.innerText = 'Meião';
-                    tr.appendChild(thMeiao);
-                    var thInativarProduto = document.createElement('th');
-                    thInativarProduto.innerText = 'Inativar';
-                    tr.appendChild(thInativarProduto);
+  var botoesExpandir = document.querySelectorAll('.btn-expand-produtos');
+  botoesExpandir.forEach(function(botaoExpandir) {
+      botaoExpandir.addEventListener('click', function() {
+          var pedidoId = this.closest('.pedido-row').getAttribute('data-pedido-id');
+          fetch('/pedidoInterno/get-produtos-pedido/' + pedidoId)
+              .then(function(response) {
+                  return response.json();
+              })
+              .then(function(produtos) {
+                  var modalContent = document.createElement('div');
+                  modalContent.className = 'modal fade';
+                  modalContent.id = 'produtoModal';
+                  modalContent.tabIndex = -1;
+                  modalContent.setAttribute('role', 'dialog');
+                  modalContent.setAttribute('aria-labelledby', 'exampleModalLabel');
+                  modalContent.setAttribute('aria-hidden', 'true');
+                  var modalDialog = document.createElement('div');
+                  modalDialog.className = 'modal-dialog modal-xl';
+                  modalDialog.setAttribute('role', 'document');
+                  var modalContentDiv = document.createElement('div');
+                  modalContentDiv.className = 'modal-content';
+                  var modalHeader = document.createElement('div');
+                  modalHeader.className = 'modal-header';
+                  var modalTitle = document.createElement('h5');
+                  modalTitle.className = 'modal-title';
+                  modalTitle.id = 'exampleModalLabel';
+                  modalTitle.innerText = 'Detalhes do Produto';
+                  var closeButton = document.createElement('button');
+                  closeButton.type = 'button';
+                  closeButton.className = 'close';
+                  closeButton.setAttribute('data-dismiss', 'modal');
+                  closeButton.setAttribute('aria-label', 'Close');
+                  closeButton.addEventListener('click', function() {
+                      var modal = document.getElementById('produtoModal');
+                      modal.style.display = 'none';
+                  });
+                  var closeSpan = document.createElement('span');
+                  closeSpan.setAttribute('aria-hidden', 'true');
+                  closeSpan.innerHTML = '×';
+                  closeButton.appendChild(closeSpan);
+                  modalHeader.appendChild(modalTitle);
+                  modalHeader.appendChild(closeButton);
+                  var modalBody = document.createElement('div');
+                  modalBody.className = 'modal-body';
+                  var tableResponsive = document.createElement('div');
+                  tableResponsive.className = 'table-responsive';
+                  var table = document.createElement('table');
+                  table.className = 'table';
+                  var thead = document.createElement('thead');
+                  var tr = document.createElement('tr');
+                  var thNomeProduto = document.createElement('th');
+                  thNomeProduto.innerText = 'Nome do Produto';
+                  tr.appendChild(thNomeProduto);
+                  var thQuantidade = document.createElement('th');
+                  thQuantidade.innerText = 'Quantidade';
+                  tr.appendChild(thQuantidade);
+                  var thCategoria = document.createElement('th');
+                  thCategoria.innerText = 'Categoria';
+                  tr.appendChild(thCategoria);
+                  var thArteAprovada = document.createElement('th');
+                  thArteAprovada.innerText = 'Arte Aprovada';
+                  tr.appendChild(thArteAprovada);
+                  var thListaAprovada = document.createElement('th');
+                  thListaAprovada.innerText = 'Lista Aprovada';
+                  tr.appendChild(thListaAprovada);
+                  var thPacote = document.createElement('th');
+                  thPacote.innerText = 'Pacote';
+                  tr.appendChild(thPacote);
+                  var thCamisa = document.createElement('th');
+                  thCamisa.innerText = 'Camisa';
+                  tr.appendChild(thCamisa);
+                  var thCalcao = document.createElement('th');
+                  thCalcao.innerText = 'Calção';
+                  tr.appendChild(thCalcao);
+                  var thMeiao = document.createElement('th');
+                  thMeiao.innerText = 'Meião';
+                  tr.appendChild(thMeiao);
+                  var thInativarProduto = document.createElement('th');
+                  thInativarProduto.innerText = 'Inativar';
+                  tr.appendChild(thInativarProduto);
 /*                     var thNumero = document.createElement('th');
-                    thNumero.innerText = 'Número';
-                    tr.appendChild(thNumero);
-                    var thTamanho = document.createElement('th');
-                    thTamanho.innerText = 'Tamanho';
-                    tr.appendChild(thTamanho); */
-                    thead.appendChild(tr);
-                    table.appendChild(thead);
-                    var tbody = document.createElement('tbody');
-                    produtos.forEach(function(produto) {
-                        var tr = document.createElement('tr');
-                        var tdNome = criarCelulaEditavel(produto, 'produto_nome', pedidoId);
-                        tr.appendChild(tdNome);
-                        var tdQuantidade = criarCelulaEditavel(produto, 'quantidade', pedidoId);
-                        tr.appendChild(tdQuantidade);
-                        if (ehVestuario(produto.produto_nome)) {
-                            var tdCategoria = criarCelulaSelecionavel(produto, 'categoria', ['Masculino', 'Feminino', 'Infantil'], pedidoId);
-                            tr.appendChild(tdCategoria);
-                            var tdArteAprovada = criarCelulaEditavel(produto, 'arte_aprovada', pedidoId);
-                            tr.appendChild(tdArteAprovada);
-                            var tdListaAprovada = criarCelulaSelecionavel(produto, 'lista_aprovada', ['sim', 'não'], pedidoId);
-                            tr.appendChild(tdListaAprovada);
-                            tr.appendChild(criarCelulaSelecionavel(produto, 'pacote', ['Start', 'Prata', 'Ouro', 'Diamante', 'Premium', 'Profissional'], pedidoId));
-                            var tdCamisa = criarCelulaCheckbox(produto, 'camisa', pedidoId);
-                            tr.appendChild(tdCamisa);
-                            var tdCalcao = criarCelulaCheckbox(produto, 'calcao', pedidoId);
-                            tr.appendChild(tdCalcao);
-                            var tdMeiao = criarCelulaCheckbox(produto, 'meiao', pedidoId);
-                            tr.appendChild(tdMeiao);
-                            var tdInativarProduto = criarCelulaCheckbox(produto, 'inativar', pedidoId);
-                            tr.appendChild(tdInativarProduto); 
+                  thNumero.innerText = 'Número';
+                  tr.appendChild(thNumero);
+                  var thTamanho = document.createElement('th');
+                  thTamanho.innerText = 'Tamanho';
+                  tr.appendChild(thTamanho); */
+                  thead.appendChild(tr);
+                  table.appendChild(thead);
+                  var tbody = document.createElement('tbody');
+                  produtos.forEach(function(produto) {
+                      var tr = document.createElement('tr');
+                      var tdNome = criarCelulaEditavel(produto, 'produto_nome', pedidoId);
+                      tr.appendChild(tdNome);
+                      var tdQuantidade = criarCelulaEditavel(produto, 'quantidade', pedidoId);
+                      tr.appendChild(tdQuantidade);
+                      if (ehVestuario(produto.produto_nome)) {
+                          var tdCategoria = criarCelulaSelecionavel(produto, 'categoria', ['Masculino', 'Feminino', 'Infantil'], pedidoId);
+                          tr.appendChild(tdCategoria);
+                          var tdArteAprovada = criarCelulaEditavel(produto, 'arte_aprovada', pedidoId);
+                          tr.appendChild(tdArteAprovada);
+                          var tdListaAprovada = criarCelulaSelecionavel(produto, 'lista_aprovada', ['sim', 'não'], pedidoId);
+                          tr.appendChild(tdListaAprovada);
+                          tr.appendChild(criarCelulaSelecionavel(produto, 'pacote', ['Start', 'Prata', 'Ouro', 'Diamante', 'Premium', 'Profissional'], pedidoId));
+                          var tdCamisa = criarCelulaCheckbox(produto, 'camisa', pedidoId);
+                          tr.appendChild(tdCamisa);
+                          var tdCalcao = criarCelulaCheckbox(produto, 'calcao', pedidoId);
+                          tr.appendChild(tdCalcao);
+                          var tdMeiao = criarCelulaCheckbox(produto, 'meiao', pedidoId);
+                          tr.appendChild(tdMeiao);
+                          var tdInativarProduto = criarCelulaCheckbox(produto, 'inativar', pedidoId);
+                          tr.appendChild(tdInativarProduto); 
 /*                             var tdNumero = criarCelulaEditavel(produto, 'numero', pedidoId);
-                            tr.appendChild(tdNumero);
-                            var tdTamanho = criarCelulaSelecionavel(produto, 'tamanho', ['P', 'M', 'G', 'GG', 'XG', 'XGG', 'XGGG'], pedidoId);
-                            tr.appendChild(tdTamanho); */
-                        }
-                        tbody.appendChild(tr);
-                    });
-                    table.appendChild(tbody);
-                    tableResponsive.appendChild(table);
-                    modalBody.appendChild(tableResponsive);
-                    modalContentDiv.appendChild(modalHeader);
-                    modalContentDiv.appendChild(modalBody);
-                    var modalFooter = document.createElement('div');
-                    modalFooter.className = 'modal-footer';
-                    var closeButtonFooter = document.createElement('button');
-                    closeButtonFooter.type = 'button';
-                    closeButtonFooter.className = 'btn btn-secondary';
-                    closeButtonFooter.setAttribute('data-dismiss', 'modal');
-                    closeButtonFooter.innerText = 'Fechar';
-                    modalFooter.appendChild(closeButtonFooter);
-                    modalContentDiv.appendChild(modalFooter);
-                    modalDialog.appendChild(modalContentDiv);
-                    modalContent.appendChild(modalDialog);
-                    document.body.insertAdjacentElement('beforeend', modalContent);
-                    $('#produtoModal').modal('show');
-                })
-                .catch(function(error) {
-                    console.log('Ocorreu um erro:', error);
-                });
-        });
-    });
+                          tr.appendChild(tdNumero);
+                          var tdTamanho = criarCelulaSelecionavel(produto, 'tamanho', ['P', 'M', 'G', 'GG', 'XG', 'XGG', 'XGGG'], pedidoId);
+                          tr.appendChild(tdTamanho); */
+                      }
+                      tbody.appendChild(tr);
+                  });
+                  table.appendChild(tbody);
+                  tableResponsive.appendChild(table);
+                  modalBody.appendChild(tableResponsive);
+                  modalContentDiv.appendChild(modalHeader);
+                  modalContentDiv.appendChild(modalBody);
+                  var modalFooter = document.createElement('div');
+                  modalFooter.className = 'modal-footer';
+                  var closeButtonFooter = document.createElement('button');
+                  closeButtonFooter.type = 'button';
+                  closeButtonFooter.className = 'btn btn-secondary';
+                  closeButtonFooter.setAttribute('data-dismiss', 'modal');
+                  closeButtonFooter.innerText = 'Fechar';
+                  closeButtonFooter.addEventListener('click', function() {
+                      var modal = document.getElementById('produtoModal');
+                      modal.style.display = 'none';
+                  });
+                  modalFooter.appendChild(closeButtonFooter);
+                  modalContentDiv.appendChild(modalFooter);
+                  modalDialog.appendChild(modalContentDiv);
+                  modalContent.appendChild(modalDialog);
+                  document.body.insertAdjacentElement('beforeend', modalContent);
+                  $('#produtoModal').modal('show');
+              })
+              .catch(function(error) {
+                  console.log('Ocorreu um erro:', error);
+              });
+      });
+  });
 });
+
 
 function criarCelulaEditavel(produto, campo, pedidoId) {
   var td = document.createElement('td');
