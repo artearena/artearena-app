@@ -22,11 +22,11 @@ class ListaUniformeController extends Controller
         $produtos = ProdutoPedido::where('pedido_id', $id)->get();
         return view('pages.listaUniformes.index', compact('produtos'));
     }
-    
+
     public function consultarListas($id)
     {
         // Busca todas as listas de uniforme associadas ao pedido
-        $listasUniforme = ListaUniforme::where('pedido_id', $id)->with('produtos')->get();
+        $listasUniforme = ListaUniforme::where('id_pedido', $id)->with('produtos')->get();
 
         // Retorna os dados como JSON
         return response()->json($listasUniforme);
