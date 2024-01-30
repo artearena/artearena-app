@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     modalTitle.innerText = 'Detalhes do Produto';
                     var closeButton = document.createElement('button');
                     closeButton.type = 'button';
-                    closeButton.className = 'close btn-close';
+                    closeButton.className = 'btn-close';
                     closeButton.setAttribute('data-dismiss', 'modal','onclick="fecharModal()"');
                     closeButton.setAttribute('aria-label', 'Close');
                     closeButton.addEventListener('click', function() {
@@ -146,10 +146,9 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+
 function fecharModal() {
-  $('.modal').modal('hide');
-}
-function fecharModal() {
+  console.log('fechei');
   $('#produtoModal').modal('hide');
 }
 
