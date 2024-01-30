@@ -29,12 +29,11 @@ document.addEventListener('DOMContentLoaded', function() {
                     var closeButton = document.createElement('button');
                     closeButton.type = 'button';
                     closeButton.className = 'btn-close';
-                    closeButton.setAttribute('data-dismiss', 'moda' ,'onclick="fecharModal()"');
+                    closeButton.setAttribute('data-dismiss', 'moda' );
                     closeButton.setAttribute('aria-label', 'Close');
                     closeButton.addEventListener('click', function() {
-                        var modal = document.getElementById('produtoModal');
-                        modal.style.display = 'none';
-                    });
+                        $('#produtoModal').modal('hide');
+                      });
                     var closeSpan = document.createElement('span');
                     closeSpan.setAttribute('aria-hidden', 'true');
                     closeSpan.innerHTML = '×';
@@ -127,11 +126,10 @@ document.addEventListener('DOMContentLoaded', function() {
                     var closeButtonFooter = document.createElement('button');
                     closeButtonFooter.type = 'button';
                     closeButtonFooter.className = 'btn btn-close';
-                    closeButtonFooter.setAttribute('data-dismiss', 'modal', 'onclick="fecharModal()"');
+                    closeButtonFooter.setAttribute('data-dismiss', 'modal');
                     closeButtonFooter.innerText = 'Fechar';
                     closeButtonFooter.addEventListener('click', function() {
-                        var modal = document.getElementById('produtoModal');
-                        modal.style.display = 'none';
+                      $('#produtoModal').modal('hide');
                     });
                     modalFooter.appendChild(closeButtonFooter);
                     modalContentDiv.appendChild(modalFooter);
@@ -149,7 +147,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
 function fecharModal() {
   console.log('fechei');
-  $('#produtoModal').modal('hide');
 }
 
 function criarCelulaEditavel(produto, campo, pedidoId) {
