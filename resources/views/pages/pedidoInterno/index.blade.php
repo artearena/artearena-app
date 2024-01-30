@@ -338,7 +338,7 @@
 
                     // Limpa as abas e o conteúdo anterior
                     tabsContainer.empty();
-                    contentContainer.empty();
+                    contentContainer.empty(); 
 
                     // Renderiza uma aba para cada lista de Uniforme
                     data.forEach((lista, index) => {
