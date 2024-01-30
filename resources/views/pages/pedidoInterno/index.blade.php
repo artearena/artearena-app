@@ -211,7 +211,7 @@
                                     <button class="btn btn-success btn-confirmar-pedido">
                                         <i class="fas fa-check"></i>
                                     </button>
-                                    <button onclick="openSwal('{{ $pedido->id }}')" class="btn btn-primary 
+                                    <button onclick="openSwal(this)" class="btn btn-primary btn-consultar-lista-uniforme 
                                         @if($listaUniformePorPedido[$pedido->id])
                                             btn-success
                                         @elseif(\App\Models\AcessoTemporario::linkCriadoParaPedido($pedido->id))
@@ -222,6 +222,7 @@
                                         data-toggle="modal" data-target="#modalListaUniforme" data-pedido-id="{{ $pedido->id }}">
                                         <i class="fas fa-tshirt"></i>
                                     </button>
+
 
                                     <button class="btn btn-warning btn-salvar-consultar-cliente" data-cliente-id="{{ $pedido->cliente_id }}">
                                         <i class="fas fa-link"></i>
@@ -247,7 +248,9 @@
         });
     </script>
     <script>
-        function openSwal(pedidoId) {
+        function openSwal(button) {
+            const pedidoId = button.getAttribute('data-pedido-id');
+
             Swal.fire({
                 title: 'Escolha uma opção',
                 showCancelButton: true,
@@ -257,7 +260,7 @@
                 preConfirm: (choice) => {
                     if (choice) {
                         // Lógica para gerar o link temporário
-                        generateTemporaryLink({{ pedidoId }});
+                        generateTemporaryLink(pedidoId);
                     } else {
                         // Lógica para consultar as listas
                         openListasModal(pedidoId);
@@ -265,6 +268,7 @@
                 }
             });
         }
+
     </script>
     
 @endsection

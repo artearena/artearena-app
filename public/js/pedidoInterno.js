@@ -440,6 +440,7 @@ function salvarPedido(pedidoId, dataVenda, marcadorValue, dataEnvio) {
             });
     }
     
+    
   const btnConsultarListaUniforme = document.getElementsByClassName('btn-consultar-lista-uniforme');
 
   for (let i = 0; i < btnConsultarListaUniforme.length; i++) {
