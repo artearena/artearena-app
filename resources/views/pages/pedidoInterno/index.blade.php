@@ -235,7 +235,6 @@
             </tbody>
         </table>
     </div>
-
     <div class="modal fade" id="modalListasUniforme" tabindex="-1" role="dialog" aria-labelledby="modalListasUniformeLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
@@ -270,30 +269,22 @@
         });
     </script>
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            // Adiciona um evento de clique ao botão "Consultar Listas"
-            document.getElementById('consultar-listas-btn').addEventListener('click', () => {
-                openListasModal(pedidoId);
-            });
-        });
-
         function openSwal(button) {
             const pedidoId = button.getAttribute('data-pedido-id');
 
             Swal.fire({
                 title: 'Escolha uma opção',
-                showCancelButton: false, // Remove o botão de cancelar
+                showCancelButton: true,
                 confirmButtonText: 'Gerar Link Temporário',
+                cancelButtonText: 'Consultar Listas',
                 showLoaderOnConfirm: true,
-                html: `
-                    <div>
-                        <button id="consultar-listas-btn" class="btn btn-primary">Consultar Listas</button>
-                    </div>
-                `,
-                customClass: {
-                    content: 'text-center',
-                },
-                preConfirm: () => {
+                willClose: (dismiss) => {
+                    if (dismiss.dismiss === Swal.DismissReason.cancel) {
+                        openListasModal(pedidoId);
+                    }
+                }
+            }).then((result) => {
+                if (result.isConfirmed) {
                     generateTemporaryLink(pedidoId);
                 }
             });
@@ -334,8 +325,6 @@
                 });
         }
         function openListasModal(pedidoId) {
-            console.log('modal1');
-
             fetch('/listaUniformes/consultarListas/' + pedidoId) // Rota para recuperar as listas de Uniforme do pedido
                 .then(response => response.json())
                 .then(data => {
@@ -399,7 +388,7 @@
                                                     </table>
                                                 </div>`);
                     });
-                    console.log('modal3');
+
                     // Abre o modal
                     modal.modal('show');
                 });
