@@ -167,7 +167,7 @@ Route::prefix('listaUniformes')->middleware('validar.token')->group(function () 
     Route::any('/{id}', [ListaUniformeController::class, 'indexCliente']);
     
 });
-Route::post('listaUniformes/consultarListas/{id}', [ListaUniformeController::class,'consultarListas']);
+Route::get('listaUniformes/consultarListas/{id}', [ListaUniformeController::class,'consultarListas']);
 Route::post('gravarLista', [ProdutoListaController::class,'gravarLista']);
 
 Route::prefix('cadastro')->middleware('validar.token')->group(function () {

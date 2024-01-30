@@ -284,13 +284,13 @@
                     resolve();
                 });
             }
-        }).then((result) => {
-            if (result.isConfirmed) {
-                generateTemporaryLink(pedidoId);
-            } else if (result.dismiss === Swal.DismissReason.cancel) {
-                openListasModal(pedidoId);
-            }
-        });
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    generateTemporaryLink(pedidoId);
+                } else if (result.dismiss === Swal.DismissReason.cancel) {
+                    openListasModal(pedidoId);
+                }
+            });
 
 
         }
