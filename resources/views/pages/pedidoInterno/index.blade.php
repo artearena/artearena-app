@@ -386,7 +386,7 @@
                     }
                             // Adiciona a aba
                             tabsContainer.append(`<li class="nav-item"><a class="nav-link" id="${tabId}" data-toggle="tab" href="#${contentId}" role="tab" aria-controls="${contentId}" aria-selected="true">${nomeLista}</a></li>`);
-                            console.log(lista);
+                            console.log(lista.produtos);
                             // Adiciona o conteúdo da aba
                             const produtosHTML = lista.produtos.map(produto => {
                                 return `
