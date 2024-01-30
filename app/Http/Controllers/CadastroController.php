@@ -118,10 +118,10 @@ class CadastroController extends Controller
             $validatedData = $request->validate($rules);
             $validatedData['id_cliente_pedido'] = $request->id_cliente_pedido;
 
-            $this->invalidateToken($request->token);
-
             // Crie um novo registro de cadastro com os dados validados
             Cadastro::create($validatedData);
+
+            $this->invalidateToken($request->token);
 
             return view('pages.cadastro.sucesso');
 

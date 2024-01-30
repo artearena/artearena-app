@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\ProdutoPedido;
 use Illuminate\Http\Request;
 use App\Models\ListaUniforme;
+use Illuminate\Support\Facades\DB;
 
 class ListaUniformeController extends Controller
 {
@@ -30,6 +31,9 @@ class ListaUniformeController extends Controller
     public function store(Request $request)
     {
         $lista = ListaUniforme::create($request->all());
+
+        $this->invalidateToken($request->token);
+
         return redirect()->route('listas_uniforme.index')->with('success', 'Lista de uniforme criada com sucesso!');
     }
 
@@ -48,5 +52,10 @@ class ListaUniformeController extends Controller
     {
         $lista->delete();
         return redirect()->route('listas_uniforme.index')->with('success', 'Lista de uniforme excluída com sucesso!');
+    }
+    public function invalidateToken($token)
+    {
+        // Remove o token do banco de dados
+        DB::table('acesso_temporario')->where('token', $token)->delete();
     }
 }

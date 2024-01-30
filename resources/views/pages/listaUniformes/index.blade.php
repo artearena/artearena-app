@@ -360,6 +360,8 @@
         function salvarListaUniformes() {
             var urlParams = new URLSearchParams(window.location.search);
             var idLista = urlParams.get('id_lista');
+            var token = urlParams.get('token'); 
+            
             var listaUniformes = [];
 
             $('tbody tr').each(function () {
@@ -377,8 +379,9 @@
                     tamanho: $(this).find('td:nth-child(11) select').val(),
                     gola: $(this).find('td:nth-child(12) select').val(),
                     id_lista: idLista,
+                    token,
                 };
-
+                console.log(token);
                 listaUniformes.push(uniforme);
             });
 
