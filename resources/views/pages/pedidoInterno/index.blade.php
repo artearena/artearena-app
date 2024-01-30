@@ -340,7 +340,7 @@
                     tabsContainer.empty();
                     contentContainer.empty();
 
-                    // Renderiza uma aba para cada lista de Uniforme
+                   // Renderiza uma aba para cada lista de Uniforme
                     data.forEach((lista, index) => {
                         const tabId = 'lista-tab-' + index;
                         const contentId = 'lista-content-' + index;
@@ -397,6 +397,10 @@
                                                     </div>`);
                         }
                     });
+
+        }
+
+
 
 
     </script>
