@@ -17,9 +17,14 @@ class HomologarPedido extends Controller
     {
         $pedidos = PedidoInterno::all();
         $pedidosArte = Pedido::where('status', 'Aguardando Cliente')->get();        
-        $listaCriada = ListaUniforme::exists();
 
-        return view('pages.pedidoInterno.index', compact('pedidos', 'pedidosArte', 'listaCriada'));
+        // Verifica se cada pedido tem uma lista uniforme criada
+        $listaUniformePorPedido = [];
+        foreach ($pedidos as $pedido) {
+            $listaUniformePorPedido[$pedido->id] = ListaUniforme::where('id_pedido', $pedido->id)->exists();
+        }
+
+        return view('pages.pedidoInterno.index', compact('pedidos', 'pedidosArte', 'listaUniformePorPedido'));
     }
     
 
