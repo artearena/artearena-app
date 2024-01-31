@@ -347,7 +347,7 @@
                         data.forEach((lista, index) => {
                             const tabId = 'lista-tab-' + index;
                             const contentId = 'lista-content-' + index;
-                            const listaId = lista.id; // Obtém o id_lista
+                            const listaId = lista.id_lista; // Obtém o id_lista
 
                             // Determina o nome da lista com base no índice
                             let nomeLista;
