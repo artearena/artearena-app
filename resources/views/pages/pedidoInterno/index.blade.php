@@ -336,7 +336,7 @@
                         const modal = $('#modalListasUniforme');
                         const tabsContainer = $('#listasUniformeTabs');
                         const contentContainer = $('#listasUniformeContent');
-                        const listaId = lista.id;
+                        
 
                         // Limpa as abas e o conteúdo anterior
                         tabsContainer.empty();
@@ -348,7 +348,8 @@
                             data.forEach((lista, index) => {
                                 const tabId = 'lista-tab-' + index;
                                 const contentId = 'lista-content-' + index;
-
+                                const listaId = lista.id;
+                                
                                 // Determina o nome da lista com base no índice
                                 let nomeLista;
                                 switch(index) {
