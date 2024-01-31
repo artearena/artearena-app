@@ -1036,6 +1036,8 @@ $.ajaxSetup({
                 showCancelButton: true,
                 confirmButtonText: 'Sim, declaro ciente',
                 cancelButtonText: 'Cancelar',
+                allowOutsideClick: () => !Swal.isLoading()
+
             }).then((result) => {
                 if (result.isConfirmed) {
                     // Se o usuário confirmar, atualiza o campo "etapa" para "I"
