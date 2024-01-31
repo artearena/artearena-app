@@ -1041,7 +1041,7 @@ $.ajaxSetup({
             }).then((result) => {
                 if (result.isConfirmed) {
                     $.ajax({
-                        url: "/pedido/mover/" + pedidoId,
+                        url: "/pedido/mover/" + id,
                         method: 'PUT',
                         data: {
                             etapa: 'I', // Considerando 'I' como a etapa de "Impressão"
@@ -1050,7 +1050,7 @@ $.ajaxSetup({
                         success: function(response) {
 
                             var table = $('#tabela-pedidos').DataTable();
-                            var row = table.row($('tr[data-id="' + pedidoId + '"]'));
+                            var row = table.row($('tr[data-id="' + id + '"]'));
 
                             // Remova a linha da tabela após o movimento bem-sucedido
                             row.remove().draw(false);
