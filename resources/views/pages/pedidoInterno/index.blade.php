@@ -413,32 +413,35 @@
                             }).join('');
 
                             contentContainer.append(`<div class="tab-pane fade" id="${contentId}" role="tabpanel" aria-labelledby="${tabId}">
-                                                        <div class="d-flex justify-content-between align-items-center mb-3">
-                                                            <span class="badge badge-primary">ID Lista: ${listaId}</span>
-                                                            <button type="button" class="btn btn-success" data-lista-id="${listaId}">Aprovar Lista</button>
-                                                        </div>
-                                                        <table class="table">
-                                                            <thead>
-                                                                <tr>
-                                                                    <th>Produto</th>
-                                                                    <th>Sexo</th>
-                                                                    <th>Arte Aprovada</th>
-                                                                    <th>Pacote</th>
-                                                                    <th>Camisa</th>
-                                                                    <th>Calção</th>
-                                                                    <th>Meião</th>
-                                                                    <th>Nome do Jogador</th>
-                                                                    <th>Número</th>
-                                                                    <th>Tamanho</th>
-                                                                    <th>Gola</th>
-                                                                    <!-- Adicione mais cabeçalhos de coluna conforme necessário -->
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody>
-                                                                ${produtosHTML}
-                                                            </tbody>
-                                                        </table>
-                                                    </div>`);
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <span class="badge badge-primary">ID Lista: ${listaId}</span>
+                                    <div class="mt-2 mb-2">
+                                        <button type="button" class="btn btn-success mr-2" data-lista-id="${listaId}">Aprovar Lista</button>
+                                    </div>
+                                </div>
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Produto</th>
+                                            <th>Sexo</th>
+                                            <th>Arte Aprovada</th>
+                                            <th>Pacote</th>
+                                            <th>Camisa</th>
+                                            <th>Calção</th>
+                                            <th>Meião</th>
+                                            <th>Nome do Jogador</th>
+                                            <th>Número</th>
+                                            <th>Tamanho</th>
+                                            <th>Gola</th>
+                                            <!-- Adicione mais cabeçalhos de coluna conforme necessário -->
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        ${produtosHTML}
+                                    </tbody>
+                                </table>
+                            </div>`);
+
                         });
 
                         // Ativação das abas
