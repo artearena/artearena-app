@@ -110,49 +110,53 @@
 
     <script>
         $(window).on('load', function () {
-            // Inicializar o Select2
-            $('.select2').select2();
+        // Inicializar o Select2
+        $('.select2').select2();
 
-            // Adicionar opções ao Select2 para Situação
-            var situacaoOptions = [
-                { id: 'Aprovado', text: 'Aprovado' },
-                { id: 'Entregue', text: 'Entregue' },
-                { id: 'Cancelado', text: 'Cancelado' },
-                { id: 'Não entregue', text: 'Não entregue' },
-                { id: 'Dados incompletos', text: 'Dados incompletos' },
-                { id: 'Enviado', text: 'Enviado' },
-                { id: 'Pronto para envio', text: 'Pronto para envio' },
-            ];
+        // Adicionar opções ao Select2 para Situação
+        var situacaoOptions = [
+            { id: 'Aprovado', text: 'Aprovado' },
+            { id: 'Entregue', text: 'Entregue' },
+            { id: 'Cancelado', text: 'Cancelado' },
+            { id: 'Não entregue', text: 'Não entregue' },
+            { id: 'Dados incompletos', text: 'Dados incompletos' },
+            { id: 'Enviado', text: 'Enviado' },
+            { id: 'Pronto para envio', text: 'Pronto para envio' },
+        ];
 
-            $('#situacao').select2({
-                data: situacaoOptions,
-                placeholder: 'Selecione as situações',
-            });
-
-            // Ordenar a tabela pelo valor total após a renderização completa da página
-            $('#dataTable').ready(function () {
-                var rows = $('#dataTable tbody tr').get();
-
-                rows.sort(function (a, b) {
-                    var aValue = parseFloat($(a).find('td:eq(2)').text().replace('R$ ', '').replace('.', '').replace(',', '.'));
-                    var bValue = parseFloat($(b).find('td:eq(2)').text().replace('R$ ', '').replace('.', '').replace(',', '.'));
-
-                    return aValue - bValue;
-                });
-
-                $.each(rows, function (index, row) {
-                    $('#dataTable').children('tbody').append(row);
-                });
-
-                // Adicionar "R$" aos valores na tabela após a ordenação
-                $('#dataTable tbody td:nth-child(3)').each(function () {
-                    var value = parseFloat($(this).text().replace('R$ ', '').replace('.', '').replace(',', '.'));
-                    var formattedValue = 'R$ ' + value.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,').replace('.', ',');
-                    $(this).text(formattedValue);
-                });
-
-            });
+        $('#situacao').select2({
+            data: situacaoOptions,
+            placeholder: 'Selecione as situações',
         });
+
+        // Ordenar a tabela pelo valor total após a renderização completa da página
+        $('#dataTable').ready(function () {
+            var rows = $('#dataTable tbody tr').get();
+
+            rows.sort(function (a, b) {
+                var aValue = parseFloat($(a).find('td:eq(2)').text().replace('R$ ', '').replace('.', '').replace(',', '.'));
+                var bValue = parseFloat($(b).find('td:eq(2)').text().replace('R$ ', '').replace('.', '').replace(',', '.'));
+
+                return aValue - bValue;
+            });
+
+            $.each(rows, function (index, row) {
+                $('#dataTable').children('tbody').append(row);
+            });
+
+            // Adicionar "R$" aos valores na tabela após a ordenação
+            $('#dataTable tbody td:nth-child(3)').each(function () {
+                var value = parseFloat($(this).text().replace('R$ ', '').replace('.', '').replace(',', '.'));
+                var formattedValue = 'R$ ' + value.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+                $(this).text(formattedValue);
+            });
+
+            // Inverter o ponto e a vírgula no valor final
+            var finalValue = parseFloat($('#dataTable tfoot td:nth-child(3)').text().replace('R$ ', '').replace('.', '').replace(',', '.'));
+            var formattedFinalValue = 'R$ ' + finalValue.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,').replace('.', ',');
+            $('#dataTable tfoot td:nth-child(3)').text(formattedFinalValue);
+        });
+    });
 
     </script>
     @endsection
