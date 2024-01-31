@@ -162,7 +162,7 @@ Route::middleware(['auth'])->group(function () {
         
         Route::get('listaUniformes/consultarListas/{id}', [ListaUniformeController::class,'consultarListas']);
         Route::get('listaUniformes/verificarAprovacao/{id}', [ListaUniformeController::class, 'verificarAprovacao']);
-        Route::get('listaUniformes/aprovarLista/{id}', [ListaUniformeController::class, 'aprovarLista']);
+        Route::post('listaUniformes/aprovarLista/{id}', [ListaUniformeController::class, 'aprovarLista']);
 
     });
 });
