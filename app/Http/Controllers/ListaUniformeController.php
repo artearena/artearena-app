@@ -103,12 +103,16 @@ class ListaUniformeController extends Controller
     {
         try {
             $lista = ListaUniforme::findOrFail($id);
-            $lista->aprovada = !$request->aprovada; // Inverte o status de aprovação
+
+            // Inverte o status de aprovação
+            $lista->lista_aprovada = $lista->lista_aprovada === 'Aprovada' ? 'Não Aprovada' : 'Aprovada';
             $lista->save();
 
-            return response()->json(['aprovada' => $lista->aprovada], 200);
+            return response()->json(['aprovada' => $lista->lista_aprovada], 200);
         } catch (\Exception $e) {
             return response()->json(['error' => 'Erro ao aprovar lista'], 500);
         }
     }
+
+
 }
