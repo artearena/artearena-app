@@ -336,6 +336,7 @@
                         const modal = $('#modalListasUniforme');
                         const tabsContainer = $('#listasUniformeTabs');
                         const contentContainer = $('#listasUniformeContent');
+                        const listaId = lista.id;
 
                         // Limpa as abas e o conteúdo anterior
                         tabsContainer.empty();
@@ -347,7 +348,7 @@
                             data.forEach((lista, index) => {
                                 const tabId = 'lista-tab-' + index;
                                 const contentId = 'lista-content-' + index;
-                                console.log(lista);
+
                                 // Determina o nome da lista com base no índice
                                 let nomeLista;
                                 switch(index) {
@@ -385,12 +386,9 @@
                                         nomeLista = `Lista ${index + 1}`;
                                         break;
                                 }
-                                
-                                // Adiciona a aba com a etiqueta do id_lista
-                                tabsContainer.append(`<li class="nav-item">
-                                    <a class="nav-link" id="${tabId}" data-toggle="tab" href="#${contentId}" role="tab" aria-controls="${contentId}" aria-selected="true">${nomeLista}</a>
-                                    <span class="badge badge-primary ml-2">${lista.id_lista}</span>
-                                </li>`);
+                                // Adiciona a aba
+                                tabsContainer.append(`<li class="nav-item"><a class="nav-link" id="${tabId}" data-toggle="tab" href="#${contentId}" role="tab" aria-controls="${contentId}" aria-selected="true">${nomeLista}</a></li>`);
+                                console.log(lista.produtos);
                                 // Adiciona o conteúdo da aba
                                 const produtosHTML = lista.produtos.map(produto => {
                                     return `
@@ -437,6 +435,11 @@
                                                             </table>
                                                         </div>`);
                             });
+                             // Adiciona o label do ID da lista e o botão "Aprovar Lista"
+                            const listaIdLabel = `<span class="badge badge-primary mr-2">ID Lista: ${listaId}</span>`;
+                            const aprovarListaButton = `<button type="button" class="btn btn-success float-right">Aprovar Lista</button>`;
+                            const headerContent = `<div>${listaIdLabel}${aprovarListaButton}</div>`;
+                            $('.modal-header').append(headerContent);
                         } else {
                             // Caso não haja dados retornados
                             contentContainer.append(`<p>Não há listas disponíveis.</p>`);
