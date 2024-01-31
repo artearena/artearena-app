@@ -152,8 +152,7 @@
             });
 
             // Inverter o ponto e a vírgula no valor final
-            var finalValue = parseFloat($('#dataTable tfoot td:nth-child(3)').text().replace('R$ ', '').replace('.', '').replace(',', '.'));
-            var formattedFinalValue = 'R$ ' + finalValue.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,').replace('.', ',');
+            var formattedFinalValue = 'R$ ' + formattedValue.replace(/\d(?=(\d{3})+\.)/g, '$&,').replace('.', '.');
             $('#dataTable tfoot td:nth-child(3)').text(formattedFinalValue);
         });
     });
