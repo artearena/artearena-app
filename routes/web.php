@@ -159,15 +159,19 @@ Route::middleware(['auth'])->group(function () {
         });
         
         Route::get('/logs', [LogController::class, 'index'])->name('logs.index');
-
+        
+        Route::get('listaUniformes/consultarListas/{id}', [ListaUniformeController::class,'consultarListas']);
+        Route::get('listaUniformes/verificarAprovacao/{id}', [ListaUniformeController::class, 'verificarAprovacao']);
+        
     });
 });
+
 Route::prefix('listaUniformes')->middleware('validar.token')->group(function () {
     //Route::any('/', [ListaUniformeController::class, 'index'])->name('index');
     Route::any('/{id}', [ListaUniformeController::class, 'indexCliente']);
     
 });
-Route::get('listaUniformes/consultarListas/{id}', [ListaUniformeController::class,'consultarListas']);
+
 Route::post('gravarLista', [ProdutoListaController::class,'gravarLista']);
 
 Route::prefix('cadastro')->middleware('validar.token')->group(function () {

@@ -71,4 +71,44 @@ class ListaUniformeController extends Controller
     {
         return ListaUniforme::where('pedido_id', $pedidoId)->exists();
     }
+    public function verificarAprovacao(Request $request)
+    {
+        try {
+            // Busca todas as listas de uniforme
+            $listas = ListaUniforme::all();
+
+            // Array para armazenar o status de aprovação de cada lista
+            $aprovacaoListas = [];
+
+            // Verifica o status de aprovação de cada lista
+            foreach ($listas as $lista) {
+                // Verifica se a lista está aprovada
+                $aprovada = $lista->lista_aprovada ? 'Aprovada' : 'Não Aprovada';
+
+                // Adiciona o status de aprovação da lista ao array
+                $aprovacaoListas[] = [
+                    'id' => $lista->id,
+                    'status' => $aprovada
+                ];
+            }
+
+            // Retorna o array com o status de aprovação de cada lista
+            return response()->json($aprovacaoListas);
+        } catch (\Exception $e) {
+            // Em caso de erro, retorna uma resposta de erro
+            return response()->json(['error' => 'Erro ao verificar aprovação das listas'], 500);
+        }
+    }
+    public function aprovarLista(Request $request, $id)
+    {
+        try {
+            $lista = ListaUniforme::findOrFail($id);
+            $lista->aprovada = !$request->aprovada; // Inverte o status de aprovação
+            $lista->save();
+
+            return response()->json(['aprovada' => $lista->aprovada], 200);
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Erro ao aprovar lista'], 500);
+        }
+    }
 }
