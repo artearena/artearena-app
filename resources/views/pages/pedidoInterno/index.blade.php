@@ -403,6 +403,7 @@
                                         <td>${produto.numero || ''}</td>
                                         <td>${produto.tamanho}</td>
                                         <td>${produto.gola}</td>
+                                        <td style="display:'none'">${produto.id_lista}</td>
                                         <!-- Adicione mais informações do produto conforme necessário -->
                                     </tr>
                                 `;
@@ -423,6 +424,7 @@
                                                                     <th>Número</th>
                                                                     <th>Tamanho</th>
                                                                     <th>Gola</th>
+                                                                    <th style="display:'none'">ID Lista</th>
                                                                     <!-- Adicione mais cabeçalhos de coluna conforme necessário -->
                                                                 </tr>
                                                             </thead>
