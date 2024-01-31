@@ -1885,10 +1885,58 @@ $.ajaxSetup({
                 checkbox.addEventListener("change", checkProgress);
             });
         </script>
-        <script>
+       <script>
             $(document).ready(function() {
+                // Delega o evento de clique para o elemento pai da tabela
+                $(document).on('click', '.ingressar-no-card', function() {
+                    var pedidoId = $(this).data('pedido');
+                    var designerName = '{{ auth()->user()->nome_usuario }}';
+
+                    // Cache para o botão
+                    var $button = $(this);
+
+                    // Verifica se já há um designer atribuído ao pedido
+                    if ($button.closest('tr').find('td:first').text() !== designerName) {
+                        // Se não houver designer atribuído, enviar solicitação AJAX para atribuir o designer
+                        $.ajax({
+                            url: '/pedido/' + pedidoId,
+                            method: 'PUT',
+                            data: {
+                                designer: designerName,
+                                "_token": "{{ csrf_token() }}",
+                            },
+                            success: function(response) {
+                                Swal.fire({
+                                    title: 'Sucesso!',
+                                    text: 'Você foi atribuído como designer para este pedido.',
+                                    icon: 'success',
+                                    timer: 1500,
+                                    showConfirmButton: false
+                                });
+                                // Substitui o botão pelo nome do designer
+                                $button.closest('td').html('<span class="designer-name" data-pedido="' + pedidoId + '">' + designerName + '</span>');
+                            },
+                            error: function(xhr, status, error) {
+                                console.error(error);
+                                Swal.fire({
+                                    title: 'Erro!',
+                                    text: 'Ocorreu um erro ao atribuir você como designer para este pedido.',
+                                    icon: 'error',
+                                });
+                            }
+                        });
+                    } else {
+                        // Se o designer já estiver atribuído, exibe uma mensagem informando
+                        Swal.fire({
+                            icon: 'info',
+                            title: 'Oops...',
+                            text: 'Você já está no card deste pedido.',
+                        });
+                    }
+                });
+
                 // Adiciona evento de clique com botão direito do mouse ao nome do designer
-                $('.designer-name').contextmenu(function(e) {
+                $(document).on('contextmenu', '.designer-name', function(e) {
                     e.preventDefault();
 
                     var pedidoId = $(this).data('pedido');
@@ -1912,8 +1960,8 @@ $.ajaxSetup({
                                     timer: 1500,
                                     showConfirmButton: false
                                 });
-                                // Atualiza o nome do designer para vazio
-                                $('.designer-name[data-pedido="' + pedidoId + '"]').text('');
+                                // Substitui o nome do designer pelo botão "Ingressar no Card"
+                                $('.designer-name[data-pedido="' + pedidoId + '"]').replaceWith('<button class="btn btn-primary ingressar-no-card" data-pedido="' + pedidoId + '">Ingressar no Card</button>');
                             },
                             error: function(xhr, status, error) {
                                 console.error(error);
