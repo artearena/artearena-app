@@ -1027,6 +1027,43 @@ $.ajaxSetup({
             });
             return;
         }
+        // Verifica se o campo designer está preenchido
+        if (field === 'status' && value === 'Arte OK') {
+            Swal.fire({
+                title: 'Confirmação',
+                text: 'Declaro estar ciente das informações e itens no pedido. ✅',
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonText: 'Sim, declaro ciente',
+                cancelButtonText: 'Cancelar',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Se o usuário confirmar, atualiza o campo "etapa" para "I"
+                    $.ajax({
+                        url: '/pedido/' + id,
+                        method: 'PUT',
+                        data: {
+                            'etapa': 'I',
+                            "_token": "{{ csrf_token() }}",
+                        },
+                        success: function (response) {
+                            Swal.fire({
+                                title: 'Sucesso!',
+                                text: 'Pedido atualizado com sucesso.',
+                                icon: 'success',
+                                timer: 1500,
+                                showConfirmButton: false
+                            });
+                        },
+                        error: function (xhr, status, error) {
+                            console.error(error);
+                        }
+                    });
+                }
+            });
+        } else {
+           return;
+        }
 
         if (field === 'data') {
                 var dateParts = value.split('/');
