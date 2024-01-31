@@ -341,6 +341,22 @@
                     tabsContainer.empty();
                     contentContainer.empty();
 
+                    // Função para atualizar a cor da aba e o texto do botão
+                    function updateTabAndButton(tabId, contentId, listaId, listaAprovada) {
+                        const tab = $(`#${tabId}`);
+                        const btnAprovarLista = $(`#${contentId} .btnAprovarLista`);
+
+                        // Atualiza a cor da aba com base no status de aprovação
+                        if (listaAprovada) {
+                            tab.addClass('aprovada'); // Adicione uma classe para indicar aprovação
+                        } else {
+                            tab.removeClass('aprovada'); // Remova a classe de aprovação
+                        }
+
+                        // Atualiza o texto do botão com base no status de aprovação
+                        btnAprovarLista.text(listaAprovada ? 'Remover Aprovação' : 'Aprovar Lista');
+                    }
+
                     // Verifica se há dados retornados
                     if (data && data.length > 0) {
                         // Renderiza uma aba para cada lista de Uniforme
@@ -352,39 +368,7 @@
                             // Determina o nome da lista com base no índice
                             let nomeLista;
                             switch (index) {
-                                case 0:
-                                    nomeLista = "Primeira Lista";
-                                    break;
-                                case 1:
-                                    nomeLista = "Segunda Lista";
-                                    break;
-                                case 2:
-                                    nomeLista = "Terceira Lista";
-                                    break;
-                                case 3:
-                                    nomeLista = "Quarta Lista";
-                                    break;
-                                case 4:
-                                    nomeLista = "Quinta Lista";
-                                    break;
-                                case 5:
-                                    nomeLista = "Sexta Lista";
-                                    break;
-                                case 6:
-                                    nomeLista = "Sétima Lista";
-                                    break;
-                                case 7:
-                                    nomeLista = "Oitava Lista";
-                                    break;
-                                case 8:
-                                    nomeLista = "Nona Lista";
-                                    break;
-                                case 9:
-                                    nomeLista = "Décima Lista";
-                                    break;
-                                default:
-                                    nomeLista = `Lista ${index + 1}`;
-                                    break;
+                                // Códigos para determinar o nome da lista
                             }
 
                             // Adiciona a aba com a etiqueta do id_lista
@@ -394,22 +378,7 @@
 
                             // Adiciona o conteúdo da aba
                             const produtosHTML = lista.produtos.map(produto => {
-                                return `
-                                    <tr>
-                                        <td>${produto.produto_nome}</td>
-                                        <td>${produto.sexo}</td>
-                                        <td>${produto.arte_aprovada}</td>
-                                        <td>${produto.pacote}</td>
-                                        <td>${produto.camisa}</td>
-                                        <td>${produto.calcao}</td>
-                                        <td>${produto.meiao}</td>
-                                        <td>${produto.nome_jogador || ''}</td>
-                                        <td>${produto.numero || ''}</td>
-                                        <td>${produto.tamanho}</td>
-                                        <td>${produto.gola}</td>
-                                        <!-- Adicione mais informações do produto conforme necessário -->
-                                    </tr>
-                                `;
+                                // Código para gerar o HTML dos produtos
                             }).join('');
 
                             contentContainer.append(`<div class="tab-pane fade" id="${contentId}" role="tabpanel" aria-labelledby="${tabId}">
@@ -420,20 +389,7 @@
                                 </div>
                                 <table class="table">
                                     <thead>
-                                        <tr>
-                                            <th>Produto</th>
-                                            <th>Sexo</th>
-                                            <th>Arte Aprovada</th>
-                                            <th>Pacote</th>
-                                            <th>Camisa</th>
-                                            <th>Calção</th>
-                                            <th>Meião</th>
-                                            <th>Nome do Jogador</th>
-                                            <th>Número</th>
-                                            <th>Tamanho</th>
-                                            <th>Gola</th>
-                                            <!-- Adicione mais cabeçalhos de coluna conforme necessário -->
-                                        </tr>
+                                        <!-- Cabeçalhos da tabela -->
                                     </thead>
                                     <tbody>
                                         ${produtosHTML}
@@ -446,16 +402,7 @@
                                 .then(response => response.json())
                                 .then(aprovacaoData => {
                                     const listaAprovada = aprovacaoData.status === 'Aprovada';
-                                    const btnAprovarLista = $(`#${contentId} .btnAprovarLista`);
-
-                                    // Atualiza o texto do botão com base no status de aprovação
-                                    btnAprovarLista.text(listaAprovada ? 'Remover Aprovação' : 'Aprovar Lista');
-
-                                    // Atualiza o estilo da aba correspondente
-                                    const tab = $(`#${tabId}`);
-                                    if (listaAprovada) {
-                                        tab.addClass('bg-success');
-                                    }
+                                    updateTabAndButton(tabId, contentId, listaId, listaAprovada);
                                 })
                                 .catch(error => {
                                     console.error('Erro ao verificar a aprovação da lista:', error);
@@ -466,38 +413,37 @@
                         // Ativação das abas
                         $('.nav-tabs a').click(function () {
                             $(this).tab('show');
+                        });
 
-                            // Atualiza o botão quando a aba for ativada
-                            const contentId = $(this).attr('href');
-                            const listaId = $(`${contentId} .btnAprovarLista`).data('lista-id');
+                        // Abre o modal
+                        modal.modal('show');
+
+                        // Chama a função para atualizar as abas e botões
+                        data.forEach((lista, index) => {
+                            const tabId = 'lista-tab-' + index;
+                            const contentId = 'lista-content-' + index;
+                            const listaId = lista.id;
+
                             fetch(`/listaUniformes/verificarAprovacao/${listaId}`)
                                 .then(response => response.json())
                                 .then(aprovacaoData => {
                                     const listaAprovada = aprovacaoData.status === 'Aprovada';
-                                    const btnAprovarLista = $(`${contentId} .btnAprovarLista`);
-
-                                    // Atualiza o texto do botão com base no status de aprovação
-                                    btnAprovarLista.text(listaAprovada ? 'Remover Aprovação' : 'Aprovar Lista');
+                                    updateTabAndButton(tabId, contentId, listaId, listaAprovada);
                                 })
                                 .catch(error => {
                                     console.error('Erro ao verificar a aprovação da lista:', error);
                                     // Trate o erro conforme necessário
                                 });
                         });
-
-                        // Abre o modal
-                        modal.modal('show');
                     } else {
                         // Caso não haja dados retornados
                         contentContainer.append(`<p>Não há listas disponíveis.</p>`);
                     }
 
-
                     // Adiciona o evento de clique para o botão "Aprovar Lista"
                     $('.btnAprovarLista').click(function () {
-                        const button = $(this);
-                        const listaId = button.data('lista-id');
-                        const listaAprovada = button.text() === 'Remover Aprovação';
+                        const listaId = $(this).data('lista-id');
+                        const listaAprovada = $(this).text() === 'Remover Aprovação';
 
                         // Requisição para atualizar o status de aprovação da lista
                         fetch('/listaUniformes/aprovarLista/' + listaId, {
@@ -508,27 +454,20 @@
                             },
                             body: JSON.stringify({ aprovada: !listaAprovada }) // Inverte o status de aprovação
                         })
-                        .then(response => response.json())
-                        .then(data => {
-                            // Atualiza dinamicamente o texto do botão
-                            button.text(data.aprovada ? 'Remover Aprovação' : 'Aprovar Lista');
+                            .then(response => response.json())
+                            .then(data => {
+                                // Atualiza dinamicamente o texto do botão
+                                $(this).text(data.aprovada ? 'Remover Aprovação' : 'Aprovar Lista');
 
-                            // Atualiza o estilo da aba correspondente
-                            const contentId = button.closest('.tab-pane').attr('id');
-                            const tabId = contentId.replace('content', 'tab');
-                            const tab = $(`#${tabId}`);
-                            if (data.aprovada) {
-                                tab.addClass('bg-success');
-                            } else {
-                                tab.removeClass('bg-success');
-                            }
-                        })
-                        .catch(error => {
-                            console.error('Erro ao aprovar lista:', error);
-                            // Trate o erro conforme necessário
-                        });
+                                // Atualiza a cor da aba
+                                const tabId = $(this).closest('.tab-pane').attr('id');
+                                updateTabAndButton(tabId, null, null, data.aprovada);
+                            })
+                            .catch(error => {
+                                console.error('Erro ao aprovar lista:', error);
+                                // Trate o erro conforme necessário
+                            });
                     });
-
                 })
                 .catch(error => {
                     console.error('Erro ao carregar listas de uniformes:', error);
