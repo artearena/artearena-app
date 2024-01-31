@@ -1049,7 +1049,7 @@ $.ajaxSetup({
                         success: function (response) {
                             Swal.fire({
                                 title: 'Sucesso!',
-                                text: 'Pedido atualizado com sucesso.',
+                                text: 'Pedido enviado para impressão com sucesso.',
                                 icon: 'success',
                                 timer: 1500,
                                 showConfirmButton: false
