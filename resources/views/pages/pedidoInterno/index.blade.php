@@ -413,7 +413,7 @@
                             }).join('');
 
                             contentContainer.append(`<div class="tab-pane fade" id="${contentId}" role="tabpanel" aria-labelledby="${tabId}">
-                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                <div>
                                     <div class="mt-2 mb-2">
                                         <span class="badge badge-dark">ID Lista: ${listaId}</span>
                                         <button type="button" class="btn btn-success mr-2" data-lista-id="${listaId}">Aprovar Lista</button>
