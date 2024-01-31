@@ -108,9 +108,9 @@
 @section('extraScript')
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
-    
+
 <script>
-    $(document).ready(function () {
+    $(window).on('load', function () {
         // Inicializar o Select2
         $('.select2').select2();
 
@@ -130,18 +130,20 @@
             placeholder: 'Selecione as situações',
         });
 
-        // Ordenar a tabela pelo valor total na inicialização
-        var rows = $('#dataTable tbody tr').get();
+        // Ordenar a tabela pelo valor total após a renderização completa da página
+        $('#dataTable').ready(function () {
+            var rows = $('#dataTable tbody tr').get();
 
-        rows.sort(function (a, b) {
-            var aValue = parseFloat($(a).find('td:eq(2)').text().replace('R$ ', '').replace('.', '').replace(',', '.'));
-            var bValue = parseFloat($(b).find('td:eq(2)').text().replace('R$ ', '').replace('.', '').replace(',', '.'));
+            rows.sort(function (a, b) {
+                var aValue = parseFloat($(a).find('td:eq(2)').text().replace('R$ ', '').replace('.', '').replace(',', '.'));
+                var bValue = parseFloat($(b).find('td:eq(2)').text().replace('R$ ', '').replace('.', '').replace(',', '.'));
 
-            return aValue - bValue;
-        });
+                return aValue - bValue;
+            });
 
-        $.each(rows, function (index, row) {
-            $('#dataTable').children('tbody').append(row);
+            $.each(rows, function (index, row) {
+                $('#dataTable').children('tbody').append(row);
+            });
         });
     });
 </script>
