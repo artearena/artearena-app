@@ -143,6 +143,12 @@
             $.each(rows, function (index, row) {
                 $('#dataTable').children('tbody').append(row);
             });
+
+            // Adicionar "R$" aos valores na tabela após a ordenação
+            $('#dataTable tbody td:nth-child(3)').each(function () {
+                var value = parseFloat($(this).text().replace('R$ ', '').replace('.', '').replace(',', '.'));
+                $(this).text('R$ ' + value.toFixed(2).replace('.', ','));
+            });
         });
     });
 </script>
