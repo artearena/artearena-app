@@ -1061,6 +1061,7 @@ $.ajaxSetup({
                     });
                 }
             });
+           return;
         } else {
            return;
         }
