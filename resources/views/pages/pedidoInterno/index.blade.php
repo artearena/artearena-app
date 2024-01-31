@@ -347,14 +347,14 @@
                         const btnAprovarLista = $(`#${contentId} .btnAprovarLista`);
 
                         // Atualiza a cor de fundo da aba com base no status de aprovação
-                        if (listaAprovada) {
+                        if (listaAprovada === 'Aprovada') {
                             tab.css('background-color', 'lightgreen');
                         } else {
                             tab.css('background-color', '');
                         }
 
                         // Atualiza o texto do botão com base no status de aprovação
-                        btnAprovarLista.text(listaAprovada ? 'Remover Aprovação' : 'Aprovar Lista');
+                        btnAprovarLista.text(listaAprovada === 'Aprovada' ? 'Remover Aprovação' : 'Aprovar Lista');
                     }
 
                     // Verifica se há dados retornados
