@@ -368,7 +368,39 @@
                             // Determina o nome da lista com base no índice
                             let nomeLista;
                             switch (index) {
-                                // Códigos para determinar o nome da lista
+                                case 0:
+                                    nomeLista = "Primeira Lista";
+                                    break;
+                                case 1:
+                                    nomeLista = "Segunda Lista";
+                                    break;
+                                case 2:
+                                    nomeLista = "Terceira Lista";
+                                    break;
+                                case 3:
+                                    nomeLista = "Quarta Lista";
+                                    break;
+                                case 4:
+                                    nomeLista = "Quinta Lista";
+                                    break;
+                                case 5:
+                                    nomeLista = "Sexta Lista";
+                                    break;
+                                case 6:
+                                    nomeLista = "Sétima Lista";
+                                    break;
+                                case 7:
+                                    nomeLista = "Oitava Lista";
+                                    break;
+                                case 8:
+                                    nomeLista = "Nona Lista";
+                                    break;
+                                case 9:
+                                    nomeLista = "Décima Lista";
+                                    break;
+                                default:
+                                    nomeLista = `Lista ${index + 1}`;
+                                    break;
                             }
 
                             // Adiciona a aba com a etiqueta do id_lista
@@ -378,7 +410,22 @@
 
                             // Adiciona o conteúdo da aba
                             const produtosHTML = lista.produtos.map(produto => {
-                                // Código para gerar o HTML dos produtos
+                                return `
+                                    <tr>
+                                        <td>${produto.produto_nome}</td>
+                                        <td>${produto.sexo}</td>
+                                        <td>${produto.arte_aprovada}</td>
+                                        <td>${produto.pacote}</td>
+                                        <td>${produto.camisa}</td>
+                                        <td>${produto.calcao}</td>
+                                        <td>${produto.meiao}</td>
+                                        <td>${produto.nome_jogador || ''}</td>
+                                        <td>${produto.numero || ''}</td>
+                                        <td>${produto.tamanho}</td>
+                                        <td>${produto.gola}</td>
+                                        <!-- Adicione mais informações do produto conforme necessário -->
+                                    </tr>
+                                `;
                             }).join('');
 
                             contentContainer.append(`<div class="tab-pane fade" id="${contentId}" role="tabpanel" aria-labelledby="${tabId}">
@@ -389,7 +436,20 @@
                                 </div>
                                 <table class="table">
                                     <thead>
-                                        <!-- Cabeçalhos da tabela -->
+                                        <tr>
+                                            <th>Produto</th>
+                                            <th>Sexo</th>
+                                            <th>Arte Aprovada</th>
+                                            <th>Pacote</th>
+                                            <th>Camisa</th>
+                                            <th>Calção</th>
+                                            <th>Meião</th>
+                                            <th>Nome do Jogador</th>
+                                            <th>Número</th>
+                                            <th>Tamanho</th>
+                                            <th>Gola</th>
+                                            <!-- Adicione mais cabeçalhos de coluna conforme necessário -->
+                                        </tr>
                                     </thead>
                                     <tbody>
                                         ${produtosHTML}
@@ -474,8 +534,6 @@
                     // Trate o erro conforme necessário
                 });
         }
-
-
 
        
 
