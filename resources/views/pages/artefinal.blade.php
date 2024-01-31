@@ -430,17 +430,22 @@ Consulta de Pedidos
                                     </select>
                                 </td>
                                 <td>
-                                    <select class='form-control' name='designer'>
-                                        @foreach($designers as $designer)
-                                        <option value="{{ $designer }}" {{ $pedido->designer == $designer ? 'selected' : '' }}>
-                                            {{ $designer }}
-                                        </option>
-                                        @endforeach
-                                        <option value="{{ $pedido->designer }}" {{ !in_array($pedido->designer, $designers->toArray()) ? 'selected' : '' }}>
-                                            {{ $pedido->designer }}
-                                        </option>
-                                    </select>
+                                    @if(in_array(auth()->user()->nome_usuario, $designers->toArray()))
+                                        <!-- Se o usuário for um designer, exibe o botão "Ingressar no Card" -->
+                                        <button class="btn btn-primary ingressar-no-card" data-pedido="{{ $pedido->id }}">Ingressar no Card</button>
+                                    @else
+                                        <!-- Se o usuário não for um designer, exibe um botão desabilitado e um alerta -->
+                                        <button class="btn btn-secondary" disabled>Ingressar no Card</button>
+                                        <script>
+                                            Swal.fire({
+                                                icon: 'error',
+                                                title: 'Oops...',
+                                                text: 'Você não tem permissão para ingressar no card.',
+                                            });
+                                        </script>
+                                    @endif
                                 </td>
+
                                 <td>
                                     <select class='form-control' name='status'>
                                         <option value="Pendente" {{ $pedido->status == 'Pendente' ? 'selected' : '' }}>Pendente</option>
@@ -1882,6 +1887,40 @@ $.ajaxSetup({
             
             checkboxes.forEach(function(checkbox) {
                 checkbox.addEventListener("change", checkProgress);
+            });
+        </script>
+        <script>
+            $(document).ready(function() {
+                $('.ingressar-no-card').click(function() {
+                    var pedidoId = $(this).closest('tr').data('id');
+
+                    // Envie uma solicitação AJAX para atualizar o designer do pedido
+                    $.ajax({
+                        url: '/pedido/' + pedidoId,
+                        method: 'PUT',
+                        data: {
+                            designer: '{{ auth()->user()->nome_usuario }}', // Nome do usuário atual como designer
+                            "_token": "{{ csrf_token() }}",
+                        },
+                        success: function(response) {
+                            Swal.fire({
+                                title: 'Sucesso!',
+                                text: 'Designer do pedido atualizado com sucesso.',
+                                icon: 'success',
+                                timer: 1500,
+                                showConfirmButton: false
+                            });
+                        },
+                        error: function(xhr, status, error) {
+                            console.error(error);
+                            Swal.fire({
+                                title: 'Erro!',
+                                text: 'Ocorreu um erro ao atualizar o designer do pedido.',
+                                icon: 'error',
+                            });
+                        }
+                    });
+                });
             });
         </script>
 @endsection
