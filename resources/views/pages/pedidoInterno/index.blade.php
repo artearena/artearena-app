@@ -385,9 +385,8 @@
                                     nomeLista = `Lista ${index + 1}`;
                                     break;
                             }
-                            // Adiciona a aba
-                            tabsContainer.append(`<li class="nav-item"><a class="nav-link" id="${tabId}" data-toggle="tab" href="#${contentId}" role="tab" aria-controls="${contentId}" aria-selected="true">${nomeLista}</a></li>`);
-                            console.log(lista.produtos);
+
+                            // Verifica se o primeiro produto tem um ID de lista
                             if (lista.produtos.length > 0 && lista.produtos[0].id_lista) {
                                 // Adiciona o botão "Aprovar Lista" ao lado direito das abas
                                 tabsContainer.parent().addClass('d-flex justify-content-between align-items-center');
@@ -440,7 +439,12 @@
                                                                 </tbody>
                                                             </table>
                                                         </div>`);
-                            });
+                            }
+                            else {
+                                // Adiciona a aba sem o botão "Aprovar Lista"
+                                tabsContainer.append(`<li class="nav-item"><a class="nav-link" id="${tabId}" data-toggle="tab" href="#${contentId}" role="tab" aria-controls="${contentId}" aria-selected="true">${nomeLista}</a></li>`);
+                            }
+                        });
                     } else {
                         // Caso não haja dados retornados
                         contentContainer.append(`<p>Não há listas disponíveis.</p>`);
@@ -459,6 +463,7 @@
                     // Trate o erro conforme necessário
                 });
         }
+
 
        
 
