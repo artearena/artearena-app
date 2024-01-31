@@ -1040,25 +1040,23 @@ $.ajaxSetup({
 
             }).then((result) => {
                 if (result.isConfirmed) {
-                    // Se o usuário confirmar, atualiza o campo "etapa" para "I"
                     $.ajax({
-                        url: '/pedido/' + id,
+                        url: "/pedido/mover/" + pedidoId,
                         method: 'PUT',
                         data: {
-                            'etapa': 'I',
-                            "_token": "{{ csrf_token() }}",
+                            etapa: 'I', // Considerando 'I' como a etapa de "Impressão"
+                            "_token": "{{ csrf_token() }}", // Adicione o token CSRF do Laravel para prevenir ataques CSRF
                         },
-                        success: function (response) {
-                            Swal.fire({
-                                title: 'Sucesso!',
-                                text: 'Pedido enviado para impressão com sucesso.',
-                                icon: 'success',
-                                timer: 1500,
-                                showConfirmButton: false
-                            });
+                        success: function(response) {
+
+                            var table = $('#tabela-pedidos').DataTable();
+                            var row = table.row($('tr[data-id="' + pedidoId + '"]'));
+
+                            // Remova a linha da tabela após o movimento bem-sucedido
+                            row.remove().draw(false);
                         },
                         error: function (xhr, status, error) {
-                            console.error(error);
+                            console.error(error); // Log any errors that occur during the AJAX request.
                         }
                     });
                 }
