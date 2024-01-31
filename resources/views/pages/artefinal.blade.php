@@ -438,7 +438,7 @@ Consulta de Pedidos
                                         <button class="btn btn-primary ingressar-no-card" data-pedido="{{ $pedido->id }}">Ingressar</button>
                                     @else
                                         <!-- Se o usuário não for um designer, exibe um botão desabilitado e um alerta -->
-                                        <button class="btn btn-secondary" disabled>Ingressar no Card</button>
+                                        <button class="btn btn-secondary" disabled>Ingressar</button>
                                     @endif
                                 </td>
                                 <td>
