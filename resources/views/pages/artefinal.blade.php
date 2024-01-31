@@ -1890,8 +1890,11 @@ $.ajaxSetup({
                     var pedidoId = $(this).data('pedido');
                     var designerName = '{{ auth()->user()->nome_usuario }}';
 
+                    // Cache para o botão
+                    var $button = $(this);
+
                     // Verifica se já há um designer atribuído ao pedido
-                    if ($(this).closest('tr').find('td:first').text() !== designerName) {
+                    if ($button.closest('tr').find('td:first').text() !== designerName) {
                         // Se não houver designer atribuído, enviar solicitação AJAX para atribuir o designer
                         $.ajax({
                             url: '/pedido/' + pedidoId,
@@ -1908,8 +1911,8 @@ $.ajaxSetup({
                                     timer: 1500,
                                     showConfirmButton: false
                                 });
-                                // Atualiza o nome do designer na linha da tabela
-                                $(this).closest('tr').find('td:first').text(designerName);
+                                // Substitui o botão pelo nome do designer
+                                $button.closest('td').html(designerName);
                             },
                             error: function(xhr, status, error) {
                                 console.error(error);
