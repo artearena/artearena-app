@@ -435,7 +435,7 @@ Consulta de Pedidos
                                         {{ $pedido->designer }}
                                     @elseif (in_array(auth()->user()->nome_usuario, $designers->toArray()))
                                         <!-- Se o usuário for um designer, exibe o botão "Ingressar no Card" -->
-                                        <button class="btn btn-primary ingressar-no-card" data-pedido="{{ $pedido->id }}">Ingressar no Card</button>
+                                        <button class="btn btn-primary ingressar-no-card" data-pedido="{{ $pedido->id }}">Ingressar</button>
                                     @else
                                         <!-- Se o usuário não for um designer, exibe um botão desabilitado e um alerta -->
                                         <button class="btn btn-secondary" disabled>Ingressar no Card</button>
