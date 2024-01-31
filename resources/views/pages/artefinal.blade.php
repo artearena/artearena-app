@@ -430,16 +430,17 @@ Consulta de Pedidos
                                     </select>
                                 </td>
                                 <td>
-                                    @if(in_array(auth()->user()->nome_usuario, $designers->toArray()))
+                                    @if ($pedido->designer)
+                                        <!-- Se já houver um designer atribuído ao pedido, mostrar o nome do designer -->
+                                        {{ $pedido->designer }}
+                                    @elseif (in_array(auth()->user()->nome_usuario, $designers->toArray()))
                                         <!-- Se o usuário for um designer, exibe o botão "Ingressar no Card" -->
                                         <button class="btn btn-primary ingressar-no-card" data-pedido="{{ $pedido->id }}">Ingressar no Card</button>
                                     @else
                                         <!-- Se o usuário não for um designer, exibe um botão desabilitado e um alerta -->
                                         <button class="btn btn-secondary" disabled>Ingressar no Card</button>
-
                                     @endif
                                 </td>
-
                                 <td>
                                     <select class='form-control' name='status'>
                                         <option value="Pendente" {{ $pedido->status == 'Pendente' ? 'selected' : '' }}>Pendente</option>
@@ -1883,38 +1884,52 @@ $.ajaxSetup({
                 checkbox.addEventListener("change", checkProgress);
             });
         </script>
-        <script>
+       <script>
             $(document).ready(function() {
                 $('.ingressar-no-card').click(function() {
-                    var pedidoId = $(this).closest('tr').data('id');
+                    var pedidoId = $(this).data('pedido');
+                    var designerName = '{{ auth()->user()->nome_usuario }}';
 
-                    // Envie uma solicitação AJAX para atualizar o designer do pedido
-                    $.ajax({
-                        url: '/pedido/' + pedidoId,
-                        method: 'PUT',
-                        data: {
-                            designer: '{{ auth()->user()->nome_usuario }}', // Nome do usuário atual como designer
-                            "_token": "{{ csrf_token() }}",
-                        },
-                        success: function(response) {
-                            Swal.fire({
-                                title: 'Sucesso!',
-                                text: 'Designer do pedido atualizado com sucesso.',
-                                icon: 'success',
-                                timer: 1500,
-                                showConfirmButton: false
-                            });
-                        },
-                        error: function(xhr, status, error) {
-                            console.error(error);
-                            Swal.fire({
-                                title: 'Erro!',
-                                text: 'Ocorreu um erro ao atualizar o designer do pedido.',
-                                icon: 'error',
-                            });
-                        }
-                    });
+                    // Verifica se já há um designer atribuído ao pedido
+                    if ($(this).closest('tr').find('td:first').text() !== designerName) {
+                        // Se não houver designer atribuído, enviar solicitação AJAX para atribuir o designer
+                        $.ajax({
+                            url: '/pedido/' + pedidoId,
+                            method: 'PUT',
+                            data: {
+                                designer: designerName,
+                                "_token": "{{ csrf_token() }}",
+                            },
+                            success: function(response) {
+                                Swal.fire({
+                                    title: 'Sucesso!',
+                                    text: 'Você foi atribuído como designer para este pedido.',
+                                    icon: 'success',
+                                    timer: 1500,
+                                    showConfirmButton: false
+                                });
+                                // Atualiza o nome do designer na linha da tabela
+                                $(this).closest('tr').find('td:first').text(designerName);
+                            },
+                            error: function(xhr, status, error) {
+                                console.error(error);
+                                Swal.fire({
+                                    title: 'Erro!',
+                                    text: 'Ocorreu um erro ao atribuir você como designer para este pedido.',
+                                    icon: 'error',
+                                });
+                            }
+                        });
+                    } else {
+                        // Se o designer já estiver atribuído, exibe uma mensagem informando
+                        Swal.fire({
+                            icon: 'info',
+                            title: 'Oops...',
+                            text: 'Você já está no card deste pedido.',
+                        });
+                    }
                 });
             });
         </script>
+
 @endsection
