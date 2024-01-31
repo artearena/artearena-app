@@ -388,52 +388,59 @@
                             // Adiciona a aba
                             tabsContainer.append(`<li class="nav-item"><a class="nav-link" id="${tabId}" data-toggle="tab" href="#${contentId}" role="tab" aria-controls="${contentId}" aria-selected="true">${nomeLista}</a></li>`);
                             console.log(lista.produtos);
-                            // Adiciona o conteúdo da aba
-                            const produtosHTML = lista.produtos.map(produto => {
-                                return `
-                                    <tr>
-                                        <td>${produto.produto_nome}</td>
-                                        <td>${produto.sexo}</td>
-                                        <td>${produto.arte_aprovada}</td>
-                                        <td>${produto.pacote}</td>
-                                        <td>${produto.camisa}</td>
-                                        <td>${produto.calcao}</td>
-                                        <td>${produto.meiao}</td>
-                                        <td>${produto.nome_jogador || ''}</td>
-                                        <td>${produto.numero || ''}</td>
-                                        <td>${produto.tamanho}</td>
-                                        <td>${produto.gola}</td>
-                                        <td style="display: none">${produto.id_lista}</td>
-                                        <!-- Adicione mais informações do produto conforme necessário -->
-                                    </tr>
+                            if (lista.produtos.length > 0 && lista.produtos[0].id_lista) {
+                                // Adiciona o botão "Aprovar Lista" ao lado direito das abas
+                                tabsContainer.parent().addClass('d-flex justify-content-between align-items-center');
+                                const produtosHTML = `
+                                    ${lista.produtos.map(produto => {
+                                        return `
+                                            <tr>
+                                                <td>${produto.produto_nome}</td>
+                                                <td>${produto.sexo}</td>
+                                                <td>${produto.arte_aprovada}</td>
+                                                <td>${produto.pacote}</td>
+                                                <td>${produto.camisa}</td>
+                                                <td>${produto.calcao}</td>
+                                                <td>${produto.meiao}</td>
+                                                <td>${produto.nome_jogador || ''}</td>
+                                                <td>${produto.numero || ''}</td>
+                                                <td>${produto.tamanho}</td>
+                                                <td>${produto.gola}</td>
+                                                <td style="display: none">${produto.id_lista}</td>
+                                                <!-- Adicione mais informações do produto conforme necessário -->
+                                            </tr>
+                                        `;
+                                    }).join('')}
                                 `;
-                            }).join('');
-
-                            contentContainer.append(`<div class="tab-pane fade" id="${contentId}" role="tabpanel" aria-labelledby="${tabId}">
-                                                        <table class="table">
-                                                            <thead>
-                                                                <tr>
-                                                                    <th>Produto</th>
-                                                                    <th>Sexo</th>
-                                                                    <th>Arte Aprovada</th>
-                                                                    <th>Pacote</th>
-                                                                    <th>Camisa</th>
-                                                                    <th>Calção</th>
-                                                                    <th>Meião</th>
-                                                                    <th>Nome do Jogador</th>
-                                                                    <th>Número</th>
-                                                                    <th>Tamanho</th>
-                                                                    <th>Gola</th>
-                                                                    <th style="display: none">ID Lista</th>
-                                                                    <!-- Adicione mais cabeçalhos de coluna conforme necessário -->
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody>
-                                                                ${produtosHTML}
-                                                            </tbody>
-                                                        </table>
-                                                    </div>`);
-                        });
+                                contentContainer.append(`<div class="tab-pane fade" id="${contentId}" role="tabpanel" aria-labelledby="${tabId}">
+                                                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                                                <h4>${nomeLista}</h4>
+                                                                <button type="button" class="btn btn-primary btn-aprovar-lista">Aprovar Lista</button>
+                                                            </div>
+                                                            <table class="table">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th>Produto</th>
+                                                                        <th>Sexo</th>
+                                                                        <th>Arte Aprovada</th>
+                                                                        <th>Pacote</th>
+                                                                        <th>Camisa</th>
+                                                                        <th>Calção</th>
+                                                                        <th>Meião</th>
+                                                                        <th>Nome do Jogador</th>
+                                                                        <th>Número</th>
+                                                                        <th>Tamanho</th>
+                                                                        <th>Gola</th>
+                                                                        <th style="display: none">ID Lista</th>
+                                                                        <!-- Adicione mais cabeçalhos de coluna conforme necessário -->
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    ${produtosHTML}
+                                                                </tbody>
+                                                            </table>
+                                                        </div>`);
+                            });
                     } else {
                         // Caso não haja dados retornados
                         contentContainer.append(`<p>Não há listas disponíveis.</p>`);
