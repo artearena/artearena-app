@@ -471,8 +471,9 @@
 
                     // Adiciona o evento de clique para o botão "Aprovar Lista"
                     $('.btnAprovarLista').click(function () {
-                        const listaId = $(this).data('lista-id');
-                        const listaAprovada = $(this).text() === 'Remover Aprovação';
+                        const button = $(this);
+                        const listaId = button.data('lista-id');
+                        const listaAprovada = button.text() === 'Remover Aprovação';
 
                         // Requisição para atualizar o status de aprovação da lista
                         fetch('/listaUniformes/aprovarLista/' + listaId, {
@@ -483,16 +484,30 @@
                             },
                             body: JSON.stringify({ aprovada: !listaAprovada }) // Inverte o status de aprovação
                         })
-                            .then(response => response.json())
-                            .then(data => {
-                                // Atualiza dinamicamente o texto do botão
-                                $(this).text(data.aprovada ? 'Remover Aprovação' : 'Aprovar Lista');
-                            })
-                            .catch(error => {
-                                console.error('Erro ao aprovar lista:', error);
-                                // Trate o erro conforme necessário
-                            });
+                        .then(response => response.json())
+                        .then(data => {
+                            // Atualiza dinamicamente o texto do botão
+                            button.text(data.aprovada ? 'Remover Aprovação' : 'Aprovar Lista');
+
+                            // Atualiza o estilo da aba correspondente apenas se a lista estiver aprovada
+                            const contentId = button.closest('.tab-pane').attr('id');
+                            const tabId = contentId.replace('content', 'tab');
+                            const tab = $(`#${tabId}`);
+
+                            if (data.aprovada) {
+                                // Lista aprovada: adiciona classe de fundo verde
+                                tab.addClass('bg-success');
+                            } else {
+                                // Lista não aprovada: remove qualquer classe de fundo que possa ter sido adicionada
+                                tab.removeClass('bg-success');
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Erro ao aprovar lista:', error);
+                            // Trate o erro conforme necessário
+                        });
                     });
+
                 })
                 .catch(error => {
                     console.error('Erro ao carregar listas de uniformes:', error);
