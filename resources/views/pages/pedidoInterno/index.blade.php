@@ -342,15 +342,15 @@
                     contentContainer.empty();
 
                     // Função para atualizar a cor da aba e o texto do botão
-                    function updateTabAndButton(tabId, contentId, listaId, listaAprovada) {
+                    function updateTabAndButton(tabId, contentId, listaAprovada) {
                         const tab = $(`#${tabId}`);
                         const btnAprovarLista = $(`#${contentId} .btnAprovarLista`);
 
-                        // Atualiza a cor da aba com base no status de aprovação
+                        // Atualiza a cor de fundo da aba com base no status de aprovação
                         if (listaAprovada) {
-                            tab.addClass('aprovada'); // Adicione uma classe para indicar aprovação
+                            tab.css('background-color', 'lightgreen');
                         } else {
-                            tab.removeClass('aprovada'); // Remova a classe de aprovação
+                            tab.css('background-color', '');
                         }
 
                         // Atualiza o texto do botão com base no status de aprovação
@@ -364,6 +364,7 @@
                             const tabId = 'lista-tab-' + index;
                             const contentId = 'lista-content-' + index;
                             const listaId = lista.id; // Obtém o id_lista
+                            const listaAprovada = lista.lista_aprovada;
 
                             // Determina o nome da lista com base no índice
                             let nomeLista;
@@ -457,17 +458,33 @@
                                 </table>
                             </div>`);
 
-                            // Verifica a aprovação da lista e atualiza o botão correspondente
-                            fetch(`/listaUniformes/verificarAprovacao/${listaId}`)
-                                .then(response => response.json())
-                                .then(aprovacaoData => {
-                                    const listaAprovada = aprovacaoData.status === 'Aprovada';
-                                    updateTabAndButton(tabId, contentId, listaId, listaAprovada);
+                            // Atualiza a cor de fundo da aba e o texto do botão
+                            updateTabAndButton(tabId, contentId, listaAprovada);
+
+                            // Adiciona o evento de clique para o botão "Aprovar Lista"
+                            $(`#${contentId} .btnAprovarLista`).click(function () {
+                                const listaId = $(this).data('lista-id');
+                                const listaAprovada = !$(this).hasClass('btn-success');
+
+                                // Requisição para atualizar o status de aprovação da lista
+                                fetch('/listaUniformes/aprovarLista/' + listaId, {
+                                    method: 'POST',
+                                    headers: {
+                                        'Content-Type': 'application/json',
+                                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                                    },
+                                    body: JSON.stringify({ aprovada: listaAprovada }) // Define o status de aprovação
                                 })
-                                .catch(error => {
-                                    console.error('Erro ao verificar a aprovação da lista:', error);
-                                    // Trate o erro conforme necessário
-                                });
+                                    .then(response => response.json())
+                                    .then(data => {
+                                        // Atualiza dinamicamente o texto do botão
+                                        updateTabAndButton(tabId, contentId, data.aprovada);
+                                    })
+                                    .catch(error => {
+                                        console.error('Erro ao aprovar lista:', error);
+                                        // Trate o erro conforme necessário
+                                    });
+                            });
                         });
 
                         // Ativação das abas
@@ -477,63 +494,17 @@
 
                         // Abre o modal
                         modal.modal('show');
-
-                        // Chama a função para atualizar as abas e botões
-                        data.forEach((lista, index) => {
-                            const tabId = 'lista-tab-' + index;
-                            const contentId = 'lista-content-' + index;
-                            const listaId = lista.id;
-
-                            fetch(`/listaUniformes/verificarAprovacao/${listaId}`)
-                                .then(response => response.json())
-                                .then(aprovacaoData => {
-                                    const listaAprovada = aprovacaoData.status === 'Aprovada';
-                                    updateTabAndButton(tabId, contentId, listaId, listaAprovada);
-                                })
-                                .catch(error => {
-                                    console.error('Erro ao verificar a aprovação da lista:', error);
-                                    // Trate o erro conforme necessário
-                                });
-                        });
                     } else {
                         // Caso não haja dados retornados
                         contentContainer.append(`<p>Não há listas disponíveis.</p>`);
                     }
-
-                    // Adiciona o evento de clique para o botão "Aprovar Lista"
-                    $('.btnAprovarLista').click(function () {
-                        const listaId = $(this).data('lista-id');
-                        const listaAprovada = $(this).text() === 'Remover Aprovação';
-
-                        // Requisição para atualizar o status de aprovação da lista
-                        fetch('/listaUniformes/aprovarLista/' + listaId, {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json',
-                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                            },
-                            body: JSON.stringify({ aprovada: !listaAprovada }) // Inverte o status de aprovação
-                        })
-                            .then(response => response.json())
-                            .then(data => {
-                                // Atualiza dinamicamente o texto do botão
-                                $(this).text(data.aprovada ? 'Remover Aprovação' : 'Aprovar Lista');
-
-                                // Atualiza a cor da aba
-                                const tabId = $(this).closest('.tab-pane').attr('id');
-                                updateTabAndButton(tabId, null, null, data.aprovada);
-                            })
-                            .catch(error => {
-                                console.error('Erro ao aprovar lista:', error);
-                                // Trate o erro conforme necessário
-                            });
-                    });
                 })
                 .catch(error => {
                     console.error('Erro ao carregar listas de uniformes:', error);
                     // Trate o erro conforme necessário
                 });
         }
+
 
        
 
