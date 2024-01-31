@@ -413,7 +413,7 @@
                             }).join('');
 
                             contentContainer.append(`<div class="tab-pane fade" id="${contentId}" role="tabpanel" aria-labelledby="${tabId}">
-                                                        <div class="d-flex justify-content-between mb-3">
+                                                        <div class="d-flex justify-content-between align-items-center mb-3">
                                                             <span class="badge badge-primary">ID Lista: ${listaId}</span>
                                                             <button type="button" class="btn btn-success" data-lista-id="${listaId}">Aprovar Lista</button>
                                                         </div>
@@ -465,6 +465,7 @@
                     // Trate o erro conforme necessário
                 });
         }
+
 
        
 
