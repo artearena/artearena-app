@@ -110,7 +110,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
     
 <script>
-
     $(document).ready(function () {
         // Inicializar o Select2
         $('.select2').select2();
@@ -131,7 +130,19 @@
             placeholder: 'Selecione as situações',
         });
 
+        // Ordenar a tabela pelo valor total na inicialização
+        var rows = $('#dataTable tbody tr').get();
+
+        rows.sort(function (a, b) {
+            var aValue = parseFloat($(a).find('td:eq(2)').text().replace('R$ ', '').replace('.', '').replace(',', '.'));
+            var bValue = parseFloat($(b).find('td:eq(2)').text().replace('R$ ', '').replace('.', '').replace(',', '.'));
+
+            return aValue - bValue;
+        });
+
+        $.each(rows, function (index, row) {
+            $('#dataTable').children('tbody').append(row);
+        });
     });
 </script>
-
 @endsection
