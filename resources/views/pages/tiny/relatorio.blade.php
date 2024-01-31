@@ -146,10 +146,11 @@
 
                 // Adicionar "R$" aos valores na tabela após a ordenação
                 $('#dataTable tbody td:nth-child(3)').each(function () {
-                    var value = parseFloat($(this).text().replace('R$ ', '').replace('.', '').replace(',', '.'));
-                    var formattedValue = 'R$ ' + value.toFixed(2).replace(/\d(?=(\d{3})+,)/g, '$&,').replace('.', ',');
+                    var value = parseFloat($(this).text().replace('R$ ', '').replace(/\./g, '').replace(',', '.'));
+                    var formattedValue = 'R$ ' + value.toFixed(2).replace(/\d(?=(\d{3})+\,)/g, '$&,');
                     $(this).text(formattedValue);
                 });
+
 
             });
         });
