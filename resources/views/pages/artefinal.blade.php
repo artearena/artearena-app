@@ -436,13 +436,7 @@ Consulta de Pedidos
                                     @else
                                         <!-- Se o usuário não for um designer, exibe um botão desabilitado e um alerta -->
                                         <button class="btn btn-secondary" disabled>Ingressar no Card</button>
-                                        <script>
-                                            Swal.fire({
-                                                icon: 'error',
-                                                title: 'Oops...',
-                                                text: 'Você não tem permissão para ingressar no card.',
-                                            });
-                                        </script>
+
                                     @endif
                                 </td>
 
