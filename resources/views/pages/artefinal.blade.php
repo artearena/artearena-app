@@ -1030,8 +1030,8 @@ $.ajaxSetup({
         // Verifica se o campo designer está preenchido
         if (field === 'status' && value === 'Arte OK') {
             Swal.fire({
-                title: 'Confirmação',
-                text: 'Declaro estar ciente das informações e itens no pedido. ✅',
+                title: 'Confirmação para o pedido: ' + id,
+                text: 'Declaro estar ciente das informações e itens no pedido ao enviar para a etapa de impressão. ✅',
                 icon: 'question',
                 showCancelButton: true,
                 confirmButtonText: 'Sim, declaro ciente',
