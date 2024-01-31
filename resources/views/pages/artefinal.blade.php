@@ -1961,7 +1961,7 @@ $.ajaxSetup({
                                     showConfirmButton: false
                                 });
                                 // Substitui o nome do designer pelo botão "Ingressar no Card"
-                                $('.designer-name[data-pedido="' + pedidoId + '"]').replaceWith('<button class="btn btn-primary ingressar-no-card" data-pedido="' + pedidoId + '">Ingressar no Card</button>');
+                                $('.designer-name[data-pedido="' + pedidoId + '"]').replaceWith('<button class="btn btn-primary ingressar-no-card" data-pedido="' + pedidoId + '">Ingressar</button>');
                             },
                             error: function(xhr, status, error) {
                                 console.error(error);
