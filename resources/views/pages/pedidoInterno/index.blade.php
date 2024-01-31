@@ -478,7 +478,8 @@
                         fetch('/listaUniformes/aprovarLista/' + listaId, {
                             method: 'POST',
                             headers: {
-                                'Content-Type': 'application/json'
+                                'Content-Type': 'application/json',
+                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                             },
                             body: JSON.stringify({ aprovada: !listaAprovada }) // Inverte o status de aprovação
                         })
