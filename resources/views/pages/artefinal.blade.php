@@ -1065,7 +1065,7 @@ $.ajaxSetup({
             });
             return;
         } else {
-           return;
+
         }
 
         if (field === 'data') {
