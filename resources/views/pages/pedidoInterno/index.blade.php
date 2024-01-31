@@ -388,7 +388,7 @@
                                 
                                             // Adiciona a aba com a etiqueta do id_lista
                                             tabsContainer.append(`<li class="nav-item">
-                                                <a class="nav-link" id="${tabId}" data-toggle="tab" href="#${contentId}" role="tab" aria-controls="${contentId}" aria-selected="true">${nomeLista}</a>
+                                                <a class="nav-link" id="${tabId}" data-toggle="tab" href="#${contentId}" role="tab" aria-controls="${contentId}" aria-selected="true"></a>
                                                 <span class="badge badge-primary ml-2">${lista.id_lista}</span>
                                            </li>`);                                console.log(lista.produtos);
                                 // Adiciona o conteúdo da aba
