@@ -94,11 +94,11 @@
 @endsection
 @section('extraScript')
 <script>
-    $(document).ready(function() {
+   $(document).ready(function() {
         // Inicializar DataTable
         var tabelaOrcamentos = $('#tabelaOrcamentos').DataTable({
             paging: true, // Ativar a paginação
-            searching: true, // Desativar a funcionalidade de busca inicialmente
+            searching: true, // Ativar a funcionalidade de busca
             bInfo: false, // Remover informações de quantidade de registros
             dom: 'lBfrtip', // Definir layout personalizado
             language: {

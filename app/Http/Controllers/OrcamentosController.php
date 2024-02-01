@@ -31,13 +31,15 @@ class OrcamentosController extends Controller
             });
         }
 
-        // Adicione a subconsulta para contar as repetições
-        $orcamentos = $orcamentosQuery
-            ->select('orcamento.*', DB::raw('(SELECT COUNT(*) FROM orcamento o WHERE o.id_octa = orcamento.id_octa) as quantidade_repeticoes'))
-            ->orderByDesc('created_at'); // Ordenar por data de criação decrescente
+    // Adicione a subconsulta para contar as repetições
+    $orcamentos = $orcamentosQuery
+        ->select('orcamento.*', DB::raw('(SELECT COUNT(*) FROM orcamento o WHERE o.id_octa = orcamento.id_octa) as quantidade_repeticoes'))
+        ->orderByDesc('created_at') // Ordenar por data de criação decrescente
+        ->simplePaginate(); // Paginação com todos os registros
 
-        return view('pages.orcamento.index', compact('orcamentos'));
-    }
+    return view('pages.orcamento.index', compact('orcamentos'));
+}
+
 
 
 
