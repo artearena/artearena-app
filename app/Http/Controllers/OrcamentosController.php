@@ -19,7 +19,7 @@ class OrcamentosController extends Controller
         // Verifique se há uma consulta de pesquisa
         $search = $request->input('search');
 
-        // Obtenha todos os orçamentos do banco de dados sem paginação
+        // Obtenha todos os orçamentos do banco de dados com paginação
         $orcamentosQuery = Orcamentos::query();
 
         // Se houver uma pesquisa, aplique os filtros
@@ -35,11 +35,11 @@ class OrcamentosController extends Controller
         $orcamentos = $orcamentosQuery
             ->select('orcamento.*', DB::raw('(SELECT COUNT(*) FROM orcamento o WHERE o.id_octa = orcamento.id_octa) as quantidade_repeticoes'))
             ->orderByDesc('created_at') // Ordenar por data de criação decrescente
-            ->get(); // Obter todos os registros sem limitação de paginação
+            ->paginate(10); // Paginação com 10 registros por página
 
         return view('pages.orcamento.index', compact('orcamentos'));
     }
-
+    
 
 
 
