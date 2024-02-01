@@ -51,10 +51,11 @@ class OrcamentosController extends Controller
             ->paginate(10);
 
         // Renderizar a tabela com os orçamentos encontrados
-        $html = view('orcamentos.table', compact('orcamentos'))->render();
+        $html = view('pages.partials.orcamento-row', compact('orcamentos'))->render();
 
         return $html;
     }
+
 
 
     public function orcamento(){
