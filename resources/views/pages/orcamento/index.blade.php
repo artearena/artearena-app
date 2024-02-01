@@ -112,7 +112,7 @@
     </div>
 
     <!-- Adicione a paginação aqui -->
-    {{ $orcamentos->links() }}
+    {{ $orcamentos->links("pagination::bootstrap-4") }}
 
 </div>
 
