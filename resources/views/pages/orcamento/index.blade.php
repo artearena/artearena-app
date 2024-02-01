@@ -28,7 +28,23 @@
             margin-top: 10px;
         }
 
-        /* Adicione mais estilos conforme necessário */
+        /* Estilos para o campo de pesquisa */
+        #searchInput {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-bottom: 12px;
+        }
+
+        /* Estilos para expandir observações */
+        .expandir-observacoes {
+            max-width: 200px; /* Defina a largura máxima que deseja */
+            white-space: nowrap; /* Evita que o texto quebre em várias linhas */
+            overflow: auto; /* Adiciona uma barra de rolagem horizontal quando necessário */
+            text-overflow: ellipsis; /* Adiciona reticências (...) quando o texto estiver além da largura máxima */
+        }
     </style>
 @endsection
 
@@ -38,6 +54,9 @@
     
     <!-- Link para a página de criação de novo orçamento -->
     <a href="{{ route('orcamento') }}" class="btn btn-primary">Novo Orçamento</a>
+    
+    <!-- Campo de pesquisa -->
+    <input type="text" id="searchInput" placeholder="Pesquisar...">
 
     <!-- Tabela de Orçamentos -->
     <div class="table-container">
@@ -60,7 +79,7 @@
                 <tr>
                     <td>{{ $orcamento->id }}</td>
                     <td>{{ $orcamento->id_octa }}</td>
-                    <td style="max-width: 500px; overflow: hidden; text-overflow: ellipsis;">{{ $orcamento->detalhes_orcamento }}</td>
+                    <td class="expandir-observacoes" title="{{ $orcamento->detalhes_orcamento }}">{{ $orcamento->detalhes_orcamento }}</td>
                     <td>{{ $orcamento->nome_transportadora }}</td>
                     <td>{{ $orcamento->valor_frete }}</td>
                     <td>
@@ -102,7 +121,13 @@
 
 @section('extraScript')
 <script>
-
+    $(document).ready(function() {
+        $('#tabelaOrcamentos tbody').on('mouseenter', 'td.expandir-observacoes', function() {
+            var td = $(this);
+            var fullText = td.text();
+            td.attr('title', fullText);
+        });
+    });
     function deleteOrcamento(id) {
         Swal.fire({
             title: 'Você tem certeza?',
