@@ -18,7 +18,7 @@ class PedidoExternoController extends Controller
 
         // Obter o id_vendedor do usuário autenticado
         $idVendedor = Auth::user()->id_vendedor;
-
+ 
         // Obter dados do gráfico para o vendedor autenticado
         $meses = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
 
