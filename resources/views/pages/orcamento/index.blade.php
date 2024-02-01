@@ -1,7 +1,6 @@
 @extends('layout.main')
 @section('title', 'Tabela de Orçamentos')
 @section('style')
-    <!-- Adicione seus estilos específicos aqui, se necessário -->
     <style>
         /* Adicione estilos específicos para a tabela, se necessário */
         .table-container {
@@ -29,21 +28,29 @@
         }
 
         /* Estilos para o campo de pesquisa */
+        .search-container {
+            margin-top: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
         #searchInput {
-            width: 100%;
+            width: 180px; /* Defina o tamanho do campo de busca */
             padding: 8px;
             box-sizing: border-box;
             border: 1px solid #ccc;
             border-radius: 4px;
-            margin-bottom: 12px;
+            margin-right: 10px; /* Adicione margem à direita */
         }
 
-        /* Estilos para expandir observações */
-        .expandir-observacoes {
-            max-width: 250px; /* Defina a largura máxima que deseja */
-            white-space: nowrap; /* Evita que o texto quebre em várias linhas */
-            overflow: hidden; /* Adiciona uma barra de rolagem horizontal quando necessário */
-            text-overflow: ellipsis; /* Adiciona reticências (...) quando o texto estiver além da largura máxima */
+        #search-button {
+            padding: 8px 15px; /* Adicione preenchimento ao botão */
+            background-color: #007bff; /* Cor de fundo azul */
+            color: #fff; /* Cor do texto branco */
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
         }
     </style>
 @endsection
@@ -58,7 +65,10 @@
     <!-- Campo de pesquisa -->
     <div class="search-container">
         <input type="text" id="searchInput" placeholder="Pesquisar...">
-        <button type="button" id="search-button">Buscar</button>
+        <button type="button" id="search-button" class="btn btn-primary">
+            <i class="fas fa-search"></i> <!-- Ícone de pesquisa do Font Awesome -->
+            <!-- <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Ícone de pesquisa do Bootstrap -->
+        </button>    
     </div>
 
     <!-- Tabela de Orçamentos -->
