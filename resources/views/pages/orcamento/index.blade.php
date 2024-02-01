@@ -102,22 +102,6 @@
 
 @section('extraScript')
 <script>
-   $(document).ready(function() {
-        // Adicionar campo de pesquisa
-        $('#tabelaOrcamentos').DataTable({
-            paging: true, // Ativar a paginação
-            searching: true, // Ativar a funcionalidade de busca
-            bInfo: false, // Remover informações de quantidade de registros
-            language: {
-                url: '//cdn.datatables.net/plug-ins/1.13.7/i18n/pt-BR.json',
-            },
-            order: [[5, 'desc']],
-            buttons: [
-                'excel', 'pdf', 'print' // Adicionar botões para exportar
-            ]
-        });
-
-    });
 
     function deleteOrcamento(id) {
         Swal.fire({
