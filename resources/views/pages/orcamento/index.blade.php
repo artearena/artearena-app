@@ -23,9 +23,13 @@
             background-color: #f2f2f2;
         }
 
+        /* Estilos para os botões de paginação */
+        .pagination {
+            margin-top: 10px;
+        }
+
         /* Adicione mais estilos conforme necessário */
     </style>
-
 @endsection
 
 @section('content')
@@ -88,28 +92,17 @@
         </table>
     </div>
 
+    <!-- Adicione a paginação aqui -->
+    {{ $orcamentos->links() }}
+
 </div>
 
 <!-- Adicione seus modais ou scripts específicos aqui, se necessário -->
 @endsection
+
 @section('extraScript')
 <script>
    $(document).ready(function() {
-        // Inicializar DataTable
-        var tabelaOrcamentos = $('#tabelaOrcamentos').DataTable({
-            paging: true, // Ativar a paginação
-            searching: true, // Ativar a funcionalidade de busca
-            bInfo: false, // Remover informações de quantidade de registros
-            dom: 'lBfrtip', // Definir layout personalizado
-            language: {
-                url: '//cdn.datatables.net/plug-ins/1.13.7/i18n/pt-BR.json',
-            },
-            order: [[5, 'desc']],
-            buttons: [
-                'excel', 'pdf', 'print' // Adicionar botões para exportar
-            ]
-        });
-
         // Adicionar campo de pesquisa
         $('#tabelaOrcamentos thead th').each(function() {
             var title = $(this).text();
@@ -117,16 +110,17 @@
         });
 
         // Aplicar a pesquisa no DataTable
-        tabelaOrcamentos.columns().every(function() {
-            var that = this;
-
-            $('input', this.header()).on('keyup change', function() {
-                if (that.search() !== this.value) {
-                    that
-                        .search(this.value)
-                        .draw();
-                }
-            });
+        $('#tabelaOrcamentos').DataTable({
+            paging: false, // Desativar a paginação
+            searching: true, // Ativar a funcionalidade de busca
+            bInfo: false, // Remover informações de quantidade de registros
+            language: {
+                url: '//cdn.datatables.net/plug-ins/1.13.7/i18n/pt-BR.json',
+            },
+            order: [[5, 'desc']],
+            buttons: [
+                'excel', 'pdf', 'print' // Adicionar botões para exportar
+            ]
         });
     });
 
@@ -166,52 +160,4 @@
         });
     }
 </script>
-@endsection
-
-@section('style')
-<style>
-    /* Estilos específicos para a tabela, se necessário */
-    .table-container {
-        margin-top: 20px;
-    }
-
-    #tabelaOrcamentos {
-        width: 100%;
-        border-collapse: collapse;
-    }
-
-    #tabelaOrcamentos th,
-    #tabelaOrcamentos td {
-        border: 1px solid #ddd;
-        padding: 8px;
-        text-align: left;
-    }
-
-    #tabelaOrcamentos th {
-        background-color: #f2f2f2;
-    }
-
-    /* Estilos para os botões de exportação */
-    .dt-buttons {
-        margin-bottom: 10px;
-    }
-
-    .dt-button {
-        background-color: #007bff;
-        color: #fff;
-        border: 1px solid #007bff;
-        border-radius: 5px;
-        margin-right: 10px;
-    }
-
-    /* Estilos para os inputs de pesquisa */
-    input[type="text"] {
-        width: 100%;
-        padding: 8px;
-        box-sizing: border-box;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        margin-bottom: 12px;
-    }
-</style>
 @endsection
