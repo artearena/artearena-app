@@ -45,18 +45,22 @@ class OrcamentosController extends Controller
         $searchQuery = $request->input('search');
 
         // Consulta para buscar os orçamentos com base na consulta de pesquisa
-        $orcamentos = Orcamentos::where('detalhes_orcamento', 'LIKE', '%' . $searchQuery . '%')
+        $orcamentos = Orcamentos::where('id', 'LIKE', '%' . $searchQuery . '%')
+            ->orWhere('id_octa', 'LIKE', '%' . $searchQuery . '%')
+            ->orWhere('detalhes_orcamento', 'LIKE', '%' . $searchQuery . '%')
+            ->orWhere('cep_frete', 'LIKE', '%' . $searchQuery . '%')
+            ->orWhere('endereco_frete', 'LIKE', '%' . $searchQuery . '%')
             ->orWhere('nome_transportadora', 'LIKE', '%' . $searchQuery . '%')
             ->orWhere('valor_frete', 'LIKE', '%' . $searchQuery . '%')
+            ->orWhere('prazo_entrega', 'LIKE', '%' . $searchQuery . '%')
+            ->orWhere('data_prevista', 'LIKE', '%' . $searchQuery . '%')
             ->paginate(10);
 
         // Renderizar a tabela com os orçamentos encontrados
-        $html = view('pages.partials.orcamento-row', compact('orcamentos'))->render();
+        $html = view('orcamento-row', compact('orcamentos'))->render();
 
         return $html;
     }
-
-
 
     public function orcamento(){
         $produtos = Produto::all();
