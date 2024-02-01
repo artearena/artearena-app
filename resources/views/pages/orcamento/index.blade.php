@@ -1,6 +1,7 @@
 @extends('layout.main')
 @section('title', 'Tabela de Orçamentos')
 @section('style')
+    <!-- Adicione seus estilos específicos aqui, se necessário -->
     <style>
         /* Adicione estilos específicos para a tabela, se necessário */
         .table-container {
@@ -36,7 +37,7 @@
         }
 
         #searchInput {
-            width: 180px; /* Defina o tamanho do campo de busca */
+            flex: 1; /* Ocupa todo o espaço restante */
             padding: 8px;
             box-sizing: border-box;
             border: 1px solid #ccc;
@@ -53,6 +54,7 @@
             cursor: pointer;
         }
     </style>
+
 @endsection
 
 @section('content')
@@ -64,11 +66,11 @@
     
     <!-- Campo de pesquisa -->
     <div class="search-container">
-        <input type="text" id="searchInput" placeholder="Pesquisar...">
+        <input type="text" id="searchInput" placeholder="Pesquisar..." onkeydown="if (event.keyCode === 13) document.getElementById('search-button').click()">
         <button type="button" id="search-button" class="btn btn-primary">
             <i class="fas fa-search"></i> <!-- Ícone de pesquisa do Font Awesome -->
             <!-- <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Ícone de pesquisa do Bootstrap -->
-        </button>    
+        </button>
     </div>
 
     <!-- Tabela de Orçamentos -->
