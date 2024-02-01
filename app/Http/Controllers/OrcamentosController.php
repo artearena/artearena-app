@@ -40,7 +40,21 @@ class OrcamentosController extends Controller
         return view('pages.orcamento.index', compact('orcamentos'));
     }
     
+    public function buscarOrcamentos(Request $request)
+    {
+        $searchQuery = $request->input('search');
 
+        // Consulta para buscar os orçamentos com base na consulta de pesquisa
+        $orcamentos = Orcamentos::where('detalhes_orcamento', 'LIKE', '%' . $searchQuery . '%')
+            ->orWhere('nome_transportadora', 'LIKE', '%' . $searchQuery . '%')
+            ->orWhere('valor_frete', 'LIKE', '%' . $searchQuery . '%')
+            ->paginate(10);
+
+        // Renderizar a tabela com os orçamentos encontrados
+        $html = view('orcamentos.table', compact('orcamentos'))->render();
+
+        return $html;
+    }
 
 
     public function orcamento(){

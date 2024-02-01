@@ -38,7 +38,8 @@ Route::middleware(['auth'])->group(function () {
             Route::post('/orcamentos-salvar', [OrcamentosController::class, 'salvarOrcamento'])->name('orcamentos.salvar');
             Route::get('/consultarorcamentos/{id}', [OrcamentosController::class, 'consultarOrcamentos'])->name('orcamentos.consultar');
             Route::get('/orcamentoProdutos/{id}', [OrcamentosController::class, 'consultarProdutos'])->name('orcamentos.produtos');
-   
+            Route::get('/buscar-orcamentos', [OrcamentosController::class, 'buscarOrcamentos'])->name('orcamentos.buscar');
+            
             Route::get('/orcamentos/create', [OrcamentosController::class, 'create'])->name('orcamentos.create');
             // Rota para salvar um novo orçamento
             Route::post('/store', [OrcamentosController::class, 'store'])->name('orcamentos.store');

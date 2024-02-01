@@ -56,7 +56,10 @@
     <a href="{{ route('orcamento') }}" class="btn btn-primary">Novo Orçamento</a>
     
     <!-- Campo de pesquisa -->
-    <input type="text" id="searchInput" placeholder="Pesquisar...">
+    <div class="search-container">
+        <input type="text" id="searchInput" placeholder="Pesquisar...">
+        <button type="button" id="search-button">Buscar</button>
+    </div>
 
     <!-- Tabela de Orçamentos -->
     <div class="table-container">
@@ -126,6 +129,24 @@
             var td = $(this);
             var fullText = td.text();
             td.attr('title', fullText);
+        });
+    });
+    $('#search-button').on('click', function() {
+        var searchQuery = $('#searchInput').val();
+        // Enviar solicitação AJAX para buscar os orçamentos
+        $.ajax({
+            url: '{{ route("orcamentos.buscar") }}',
+            method: 'GET',
+            data: {
+                search: searchQuery
+            },
+            success: function(response) {
+                // Atualizar a tabela com os orçamentos encontrados
+                $('#tabelaOrcamentos tbody').html(response);
+            },
+            error: function(xhr, status, error) {
+                console.log(error);
+            }
         });
     });
     function deleteOrcamento(id) {
