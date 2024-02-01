@@ -123,6 +123,8 @@
         { id: 'Enviado', text: 'Enviado' },
         { id: 'Pronto para envio', text: 'Pronto para envio' },
         { id: 'Em aberto', text: 'Em aberto' },
+        { id: 'Faturado', text: 'Faturado' },
+
     ];
 
     $('#situacao').select2({
