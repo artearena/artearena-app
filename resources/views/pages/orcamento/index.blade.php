@@ -42,7 +42,7 @@
         .expandir-observacoes {
             max-width: 250px; /* Defina a largura máxima que deseja */
             white-space: nowrap; /* Evita que o texto quebre em várias linhas */
-            overflow: auto; /* Adiciona uma barra de rolagem horizontal quando necessário */
+            overflow: hidden; /* Adiciona uma barra de rolagem horizontal quando necessário */
             text-overflow: ellipsis; /* Adiciona reticências (...) quando o texto estiver além da largura máxima */
         }
     </style>
