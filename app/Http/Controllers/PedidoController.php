@@ -10,16 +10,16 @@ use App\Models\CategoriaProduto;
 
 class PedidoController extends Controller
 {
-    public function artefinal()
-    {
-        $pedidos = Pedido::all();
-        $designers = Usuario::where('permissoes', 2)->pluck('nome_usuario');
-        $categoriasProduto = CategoriaProduto::all(); // Buscar todas as categorias de produto
-        $materiais = Material::all();
-        $pedidos = Pedido::orderBy('id', 'desc')->get();
+        public function artefinal()
+        {
+            $pedidos = Pedido::all();
+            $designers = Usuario::where('permissoes', 2)->pluck('nome_usuario');
+            $categoriasProduto = CategoriaProduto::all(); // Buscar todas as categorias de produto
+            $materiais = Material::all();
+            $pedidos = Pedido::orderBy('id', 'desc')->get();
 
-        return view('pages.artefinal', compact('pedidos', 'designers', 'categoriasProduto', 'materiais'));
-    }
+            return view('pages.artefinal', compact('pedidos', 'designers', 'categoriasProduto', 'materiais'));
+        }
     public function artefinal2()
     {
         $pedidos = Pedido::all();
