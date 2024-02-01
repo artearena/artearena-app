@@ -14,7 +14,7 @@ class PedidoExternoController extends Controller
     {
         $dataInicial = $request->input('dataInicial', date('Y-m-01'));
         $dataFinal = $request->input('dataFinal', date('Y-m-d'));
-        $situacoes = $request->input('situacao', ['Aprovado', 'Entregue', 'Cancelado', 'Não entregue', 'Dados incompletos', 'Enviado', 'Pronto para envio']);
+        $situacoes = $request->input('situacao', ['Aprovado', 'Entregue', 'Cancelado', 'Não entregue', 'Dados incompletos', 'Enviado', 'Pronto para envio', 'Em aberto', 'Faturado']);
 
         // Obter o id_vendedor do usuário autenticado
         $idVendedor = Auth::user()->id_vendedor;
