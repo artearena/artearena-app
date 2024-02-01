@@ -104,14 +104,8 @@
 <script>
    $(document).ready(function() {
         // Adicionar campo de pesquisa
-        $('#tabelaOrcamentos thead th').each(function() {
-            var title = $(this).text();
-            $(this).html('<input type="text" placeholder="Pesquisar ' + title + '" />');
-        });
-
-        // Aplicar a pesquisa no DataTable
         $('#tabelaOrcamentos').DataTable({
-            paging: false, // Desativar a paginação
+            paging: true, // Ativar a paginação
             searching: true, // Ativar a funcionalidade de busca
             bInfo: false, // Remover informações de quantidade de registros
             language: {
@@ -122,6 +116,7 @@
                 'excel', 'pdf', 'print' // Adicionar botões para exportar
             ]
         });
+
     });
 
     function deleteOrcamento(id) {
