@@ -122,6 +122,7 @@
         { id: 'Dados incompletos', text: 'Dados incompletos' },
         { id: 'Enviado', text: 'Enviado' },
         { id: 'Pronto para envio', text: 'Pronto para envio' },
+        { id: 'Em aberto', text: 'Em aberto' },
     ];
 
     $('#situacao').select2({
