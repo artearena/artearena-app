@@ -359,25 +359,34 @@ function salvarPedido(pedidoId, dataVenda, marcadorValue, dataEnvio, forma_pagam
               console.log(pedidoData);
               
               fetch('https://artearena.kinghost.net/criar-pedido-tiny', {
-                method: 'POST',
-                headers: {
-                  'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(pedidoData),
+                  method: 'POST',
+                  headers: {
+                      'Content-Type': 'application/json',
+                  },
+                  body: JSON.stringify(pedidoData),
               })
-                .then(response => response.json())
-                .then(data => {
+              .then(response => response.json())
+              .then(data => {
                   console.log('Resposta da API:', data);
-                  if (data.retorno.registros.registro.status === "OK") {
-                    Swal.fire('Sucesso', 'Pedido salvo com sucesso!', 'success');
+                  if (data.retorno && data.retorno.registros && data.retorno.registros.registro) {
+                      if (data.retorno.registros.registro.status === "OK") {
+                          Swal.fire('Sucesso', 'Pedido salvo com sucesso!', 'success');
+                      } else {
+                          // Verifica se o erro contém a palavra "cliente"
+                          if (data.retorno.registros.registro.erros && data.retorno.registros.registro.erros[0].erro.includes("cliente")) {
+                              Swal.fire('Erro', 'O cliente deve ser cadastrado.', 'error');
+                          } else {
+                              throw new Error(data.retorno.registros.registro.erros[0].erro);
+                          }
+                      }
                   } else {
-                    throw new Error(data.retorno.registros.registro.erros[0].erro);
+                      throw new Error('Resposta inválida da API');
                   }
-                })
-                .catch(error => {
+              })
+              .catch(error => {
                   console.error('Erro na requisição POST:', error);
                   Swal.fire('Erro', error.message, 'error');
-                });
+              });
             })
             .catch(error => {
               console.error('Erro ao obter dados do cliente:', error);
