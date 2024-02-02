@@ -3,6 +3,9 @@
   Criar pedido interno
 @endsection
 @section('style')
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0/js/select2.min.js"></script>
+
 <style> 
     #observacao{
       min-height: 200px;
