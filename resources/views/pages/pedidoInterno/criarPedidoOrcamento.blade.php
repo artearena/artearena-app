@@ -10,6 +10,7 @@
 </style>
 <script src="../../js/pedidoInterno.js"></script>
 <script>
+$('#marcador').select2();
 
 document.addEventListener("DOMContentLoaded", function() {
   document.getElementById('btnCriarPedido').addEventListener('click', function(event) {
@@ -101,7 +102,7 @@ document.addEventListener("DOMContentLoaded", function() {
       </div>
       <div class="form-group">
         <label for="forma_pagamento">Forma de Pagamento:</label>
-        <select class="form-control" id="forma_pagamento" name="forma_pagamento">
+        <select class="form-control select2" id="forma_pagamento" name="forma_pagamento" multiple>
           <option value="Pix">Pix</option>
           <option value="Dinheiro">Dinherio</option>
           <option value="Boleto">Boleto</option>
