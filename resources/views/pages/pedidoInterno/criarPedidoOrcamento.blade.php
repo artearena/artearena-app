@@ -104,7 +104,6 @@ document.addEventListener("DOMContentLoaded", function() {
         <select class="form-control" id="forma_pagamento" name="forma_pagamento">
           <option value="Pix">Pix</option>
           <option value="Dinheiro">Dinherio</option>
-
           <option value="Boleto">Boleto</option>
           <option value="Cartão de Crédito">Cartão de Crédito</option>
           <option value="Cartão de Débito">Cartão de Débito</option>

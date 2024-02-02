@@ -59,7 +59,7 @@
 
 @section('content')
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
 
 <div class="app container-lg">
     <h1>Tabela de Orçamentos</h1>
@@ -146,6 +146,8 @@
             td.attr('title', fullText);
         });
     });
+    $('#marcador').select2();
+
     $('#search-button').on('click', function() {
         var searchQuery = $('#searchInput').val();
         // Enviar solicitação AJAX para buscar os orçamentos
