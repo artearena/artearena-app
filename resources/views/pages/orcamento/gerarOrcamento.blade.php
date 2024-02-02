@@ -258,7 +258,6 @@
             <h1>Gerar Orçamentos</h1>
             <hr>
                 <div class="col-sm-8">
-                    <form id="opt-octa-form" method="POST" action="">
                       <div class="form-group d-flex justify-content-between">
                           <div class="radio-container">
                               <div class="custom-control custom-radio">
@@ -276,20 +275,15 @@
                           </div>
                         </div>
                         <hr>
-                        <div class="form-group">
-                            <div class="container-lg">
-                                <div class="form-group">
-                                    <label for="id">ID Cliente:</label>
-                                    <div class="input-group">
-                                        <input type="text" id="id" class="form-control"></input>
-                                        <div class="input-group-append">
-                                            <button id="buscar_orcamento" class="btn btn-primary" type="button">Buscar Orçamentos</button>
-                                        </div>
+                          <div class="container-lg">
+                                <label for="id">ID Cliente:</label>
+                                <div class="input-group">
+                                    <input type="text" id="id" class="form-control"></input>
+                                    <div class="input-group-append">
+                                        <button id="buscar_orcamento" class="btn btn-primary" type="button">Buscar Orçamentos</button>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                    </form>
+                          </div>
                     <hr>
                     <form id="produto-form" method="POST" action="">
                         @csrf
