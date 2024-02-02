@@ -171,7 +171,7 @@
 
         <hr>
         
-        <h1>Tabela de Pedidos</h1>
+        <h1>Tabela de Pedidos Internos</h1>
         <table id="pedidosTable" class="dataTable">
             <thead>
                 <tr>
