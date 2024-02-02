@@ -58,6 +58,9 @@
 @endsection
 
 @section('content')
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+
 <div class="app container-lg">
     <h1>Tabela de Orçamentos</h1>
     
@@ -196,23 +199,6 @@
             }
         });
     }
-    document.addEventListener('DOMContentLoaded', function() {
-            // Seleciona o campo de entrada
-            var campoDeEntrada = document.getElementById('id');
-
-            // Adiciona um ouvinte de evento para o teclado pressionado
-            campoDeEntrada.addEventListener('keydown', function(event) {
-                // Verifica se a tecla pressionada é "Enter"
-                if (event.key === 'Enter') {
-                    // Cancela o comportamento padrão do pressionamento da tecla "Enter"
-                    event.preventDefault();
-
-                    // Seleciona o botão "buscar_orcamento" e aciona o evento de clique
-                    var botaoBuscar = document.getElementById('buscar_orcamento');
-                    botaoBuscar.click();
-                }
-            });
-        });
-
+    
 </script>
 @endsection
