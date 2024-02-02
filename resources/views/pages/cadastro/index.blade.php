@@ -30,7 +30,7 @@
                         <div id="pessoa_juridica_campos" style="display: none;">
                             <div class="form-group">
                                 <label for="razao_social">Razão Social:</label>
-                                <input type="text" name="razao_social" id="razao_social" class="form-control" required>
+                                <input type="text" name="razao_social" id="razao_social" class="form-control">
                             </div>
                             <div class="form-group">
                                 <label for="cnpj">CNPJ:</label>
@@ -77,7 +77,7 @@
                         <div id="pessoa_fisica_campos" style="display: none;">
                             <div class="form-group">
                                 <label for="nome_completo">Nome Completo:</label>
-                                <input type="text" name="nome_completo" id="nome_completo" class="form-control" required>
+                                <input type="text" name="nome_completo" id="nome_completo" class="form-control">
                             </div>
                             <div class="form-group">
                                 <label for="rg">RG:</label>
@@ -97,19 +97,19 @@
                             </div>
                             <div class="form-group">
                                 <label for="endereco_fisica">Endereço:</label>
-                                <input type="text" name="endereco_fisica" id="endereco_fisica" class="form-control" required>
+                                <input type="text" name="endereco_fisica" id="endereco_fisica" class="form-control">
                             </div>
                             <div class="form-group">
                                 <label for="numero_fisica">N°:</label>
-                                <input type="text" name="numero_fisica" id="numero_fisica" class="form-control" required>
+                                <input type="text" name="numero_fisica" id="numero_fisica" class="form-control">
                             </div>
                             <div class="form-group">
                                 <label for="bairro_fisica">Bairro:</label>
-                                <input type="text" name="bairro_fisica" id="bairro_fisica" class="form-control" required>
+                                <input type="text" name="bairro_fisica" id="bairro_fisica" class="form-control">
                             </div>
                             <div class="form-group">
                                 <label for="cidade_fisica">Cidade:</label>
-                                <input type="text" name="cidade_fisica" id="cidade_fisica" class="form-control" required>
+                                <input type="text" name="cidade_fisica" id="cidade_fisica" class="form-control">
                             </div>
                             <div class="form-group">
                                 <label for="fone_fixo_fisica">Fone fixo:</label>

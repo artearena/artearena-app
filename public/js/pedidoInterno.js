@@ -368,10 +368,10 @@ function salvarPedido(pedidoId, dataVenda, marcadorValue, dataEnvio, forma_pagam
                 .then(response => response.json())
                 .then(data => {
                   console.log('Resposta da API:', data);
-                  if (data.status === "OK" && data.registros.registro.status === "OK") {
+                  if (data.retorno.registros.registro.status === "OK") {
                     Swal.fire('Sucesso', 'Pedido salvo com sucesso!', 'success');
                   } else {
-                    throw new Error('Erro ao salvar o pedido. Por favor, tente novamente.');
+                    throw new Error(data.retorno.registros.registro.erros.erro);
                   }
                 })
                 .catch(error => {
