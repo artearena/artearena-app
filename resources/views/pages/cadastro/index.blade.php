@@ -129,23 +129,23 @@
                         <div id="endereco_cobranca_campos" style="display: none;">
                             <div class="form-group">
                                 <label for="cep_cobranca">CEP:</label>
-                                <input type="text" name="cep_cobranca" id="cep_cobranca" class="form-control cep" onblur="consultarCep('cobranca')" required>
+                                <input type="text" name="cep_cobranca" id="cep_cobranca" class="form-control cep" onblur="consultarCep('cobranca')">
                             </div>
                             <div class="form-group">
                                 <label for="endereco_cobranca">Endereço:</label>
-                                <input type="text" name="endereco_cobranca" id="endereco_cobranca" class="form-control" required>
+                                <input type="text" name="endereco_cobranca" id="endereco_cobranca" class="form-control">
                             </div>
                             <div class="form-group">
                                 <label for="numero_cobranca">N°:</label>
-                                <input type="text" name="numero_cobranca" id="numero_cobranca" class="form-control" required>
+                                <input type="text" name="numero_cobranca" id="numero_cobranca" class="form-control">
                             </div>
                             <div class="form-group">
                                 <label for="bairro_cobranca">Bairro:</label>
-                                <input type="text" name="bairro_cobranca" id="bairro_cobranca" class="form-control" required>
+                                <input type="text" name="bairro_cobranca" id="bairro_cobranca" class="form-control">
                             </div>
                             <div class="form-group">
                                 <label for="cidade_cobranca">Cidade:</label>
-                                <input type="text" name="cidade_cobranca" id="cidade_cobranca" class="form-control" required>
+                                <input type="text" name="cidade_cobranca" id="cidade_cobranca" class="form-control">
                             </div>
                         </div>
 
