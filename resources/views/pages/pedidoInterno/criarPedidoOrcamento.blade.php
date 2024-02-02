@@ -55,14 +55,17 @@ document.addEventListener("DOMContentLoaded", function() {
       data: JSON.stringify(pedido),
       contentType: "application/json",
       success: function(data) {
-        Swal.fire({
-          title: "Sucesso!",
-          text: "Pedido salvo com sucesso.",
-          icon: "success",
-          confirmButtonText: "OK"
-        });
-        console.log(data);
-        // Realizar outras ações após o sucesso da requisição
+          Swal.fire({
+              title: "Sucesso!",
+              text: "Pedido salvo com sucesso.",
+              icon: "success",
+              confirmButtonText: "OK"
+          }).then((result) => {
+              // Redirecionar para a rota 'pedidoInterno'
+              window.location.href = "{{ route('pedidoInterno') }}";
+          });
+          console.log(data);
+          // Realizar outras ações após o sucesso da requisição
       },
       error: function(error) {
         Swal.fire({
