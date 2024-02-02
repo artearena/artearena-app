@@ -261,5 +261,27 @@
             });
         }
     }
+    $(document).ready(function() {
+        // Função para verificar se pelo menos um dos campos está preenchido
+        function validarFormulario() {
+            var nomeCompleto = $("#nome_completo").val();
+            var razaoSocial = $("#razao_social").val();
+            var cpf = $("#cpf").val();
+            var cnpj = $("#cnpj").val();
+            
+            // Verifica se pelo menos um dos campos está preenchido
+            if ((!nomeCompleto && !razaoSocial) || (!cpf && !cnpj)) {
+                alert("Por favor, preencha pelo menos um dos campos: Nome Completo ou Razão Social, e CPF ou CNPJ.");
+                return false; // Impede a submissão do formulário
+            }
+            return true;
+        }
+        
+        // Intercepta a submissão do formulário e executa a validação
+        $("form").submit(function() {
+            return validarFormulario();
+        });
+    });
+
 </script>
 @endsection
