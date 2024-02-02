@@ -128,7 +128,7 @@ document.addEventListener("DOMContentLoaded", function() {
       </div>
       <div class="form-group">
         <label for="marcador">Marcador:</label>
-        <select class="form-control" id="marcador" name="marcador">
+        <select class="form-control" id="marcador" name="marcador" multiple>
           <option value="">Selecione um marcador</option>
           <option value="ADM - TERCEIRIZADO EM IMPRESSÃO">ADM - TERCEIRIZADO EM IMPRESSÃO</option>
           <option value="ADM - TERCEIRIZADO EM PRODUÇÃO">ADM - TERCEIRIZADO EM PRODUÇÃO</option>
