@@ -8,6 +8,12 @@ document.addEventListener('DOMContentLoaded', function() {
                     return response.json();
                 })
                 .then(function(produtos) {
+                    // Remove o modal anterior se existir
+                    var modalExistente = document.getElementById('produtoModal');
+                    if (modalExistente) {
+                        modalExistente.parentNode.removeChild(modalExistente);
+                    }
+                  
                     var modalContent = document.createElement('div');
                     modalContent.className = 'modal fade';
                     modalContent.id = 'produtoModal';
@@ -264,7 +270,7 @@ function formatarData(data) {
 
   return dia + '/' + mes + '/' + ano;
 }
-function salvarPedido(pedidoId, dataVenda, marcadorValue, dataEnvio) {
+function salvarPedido(pedidoId, dataVenda, marcadorValue, dataEnvio, forma_pagamento) {
   // Primeira requisição para obter produtos do pedido
   var dataVenda = formatarData(dataVenda);
   var dataEnvio = formatarData(dataEnvio);
@@ -345,6 +351,7 @@ function salvarPedido(pedidoId, dataVenda, marcadorValue, dataEnvio) {
                       },
                     },
                   ],
+                  forma_pagamento: forma_pagamento,
                   data_pedido: dataVenda,
                   data_prevista: dataEnvio,
                 },
@@ -393,6 +400,8 @@ function salvarPedido(pedidoId, dataVenda, marcadorValue, dataEnvio) {
         const pedidoId = $(this).closest(".pedido-row").data("pedido-id");
         const marcadorValue = $(this).closest(".pedido-row").find("td:nth-child(9)").text();
         const dataVenda = $(this).closest(".pedido-row").find("td:nth-child(10)").text();
+        const forma_pagamento = $(this).closest(".pedido-row").find("td:nth-child(6)").text();
+
         Swal.fire({
           title: 'Confirmar Pedido',
           html: '<label for="data-envio">Data prevista</label><input type="date" id="data-envio" class="swal2-input">',
@@ -410,7 +419,7 @@ function salvarPedido(pedidoId, dataVenda, marcadorValue, dataEnvio) {
         }).then((result) => {
           if (result.isConfirmed) {
             const dataEnvio = result.value;
-            salvarPedido(pedidoId, dataVenda, marcadorValue, dataEnvio);
+            salvarPedido(pedidoId, dataVenda, marcadorValue, dataEnvio, forma_pagamento);
           }
         });
       });
