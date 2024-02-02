@@ -271,7 +271,7 @@ function formatarData(data) {
   return dia + '/' + mes + '/' + ano;
 }
 function salvarPedido(pedidoId, dataVenda, marcadorValue, dataEnvio, forma_pagamento) {
-  // Primeira requisição para obter produtos do pedido
+  // Primeira requisição para obter pfrodutos do pedido
   var dataVenda = formatarData(dataVenda);
   var dataEnvio = formatarData(dataEnvio);
   fetch('/pedidoInterno/get-produtos-pedido/' + pedidoId)
