@@ -371,7 +371,7 @@ function salvarPedido(pedidoId, dataVenda, marcadorValue, dataEnvio, forma_pagam
                   if (data.retorno.registros.registro.status === "OK") {
                     Swal.fire('Sucesso', 'Pedido salvo com sucesso!', 'success');
                   } else {
-                    throw new Error(data.retorno.registros.registro.erros.erro);
+                    throw new Error(data.retorno.registros.registro.erros[0].erro);
                   }
                 })
                 .catch(error => {
