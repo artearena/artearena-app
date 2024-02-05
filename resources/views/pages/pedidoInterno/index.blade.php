@@ -206,10 +206,15 @@
                             <td class="expandir-observacoes" id="observacao" style="overflow: auto;" lang="pt">{{ $pedido->observacao }}</td>
                             <td>
                                 @php
-                                    $marcador = unserialize($pedido->marcador);
-                                    echo implode(', ', $marcador);
+                                    if (!empty($pedido->marcador)) {
+                                        $marcador = unserialize($pedido->marcador);
+                                        echo implode(', ', $marcador);
+                                    } else {
+                                        echo "Nenhum marcador";
+                                    }
                                 @endphp
-                            </td>                            
+                            </td>
+                       
                             <td>{{ date('Y-m-d', strtotime($pedido->data_venda)) }}</td>
                             <td>
                                 <div class="btn-group">
