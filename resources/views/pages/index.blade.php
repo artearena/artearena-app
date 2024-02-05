@@ -158,7 +158,7 @@ Inicio
                     </div>
                     <div class="form-group">
                         <label for="data-prevista">Data Prevista:</label>
-                        <input type="date" class="form-control" id="data-prevista" disabled>
+                        <input type="text" class="form-control" id="data-prevista" disabled>
                     </div>
                 </form>
             </div>
