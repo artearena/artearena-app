@@ -361,14 +361,7 @@ function salvarPedido(pedidoId, dataVenda, marcadorValue, dataEnvio, forma_pagam
                       },
                     };
                   }),
-                  marcadores: [
-                    {
-                      marcador: {
-                        id: 1, // ID do marcador
-                        descricao: marcadorValue, // Valor do marcador selecionado
-                      },
-                    },
-                  ],
+                  marcadores: marcadores,
                   nome_vendedor: nome_vendedor,
                   forma_pagamento: forma_pagamento,
                   valor_frete: valor_frete, 
