@@ -264,11 +264,14 @@ Inicio
                 }
             }
 
-            // Converter a data prevista de volta para uma string no formato apropriado
-            var dataPrevista = data.toLocaleDateString('pt-BR');
+            // Formatar a data prevista no formato "dd/MM/yyyy"
+            var dia = data.getDate().toString().padStart(2, '0');
+            var mes = (data.getMonth() + 1).toString().padStart(2, '0');
+            var ano = data.getFullYear();
+            var dataPrevistaFormatada = dia + '/' + mes + '/' + ano;
 
             // Preencher o campo de data prevista com a data calculada
-            $('#data-prevista').val(dataPrevista);
+            $('#data-prevista').val(dataPrevistaFormatada);
         });
 
 
