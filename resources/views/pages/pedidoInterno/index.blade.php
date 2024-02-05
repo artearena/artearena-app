@@ -232,11 +232,13 @@
                                         data-toggle="modal" data-target="#modalListaUniforme" data-pedido-id="{{ $pedido->id }}">
                                         <i class="fas fa-tshirt"></i>
                                     </button>
-                                    <button class="btn btn-warning btn-salvar-consultar-cliente
-                                        @if(\App\Models\AcessoTemporario::linkCriadoParaPedido($pedido->id))
-                                            btn-warning
+
+
+                                    <button class="btn btn-salvar-consultar-cliente
+                                        @if($pedido->cliente_id)
+                                            btn-success
                                         @else
-                                            btn-danger
+                                            btn-warning
                                         @endif"
                                         data-cliente-id="{{ $pedido->cliente_id }}">
                                         <i class="fas fa-link"></i>
