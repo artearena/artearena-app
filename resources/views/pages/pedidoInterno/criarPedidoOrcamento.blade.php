@@ -110,7 +110,7 @@ document.addEventListener("DOMContentLoaded", function() {
       </div>
       <div class="form-group">
         <label for="forma_pagamento">Forma de Pagamento:</label>
-        <select class="form-control" id="forma_pagamento" name="forma_pagamento" multiple>
+        <select class="form-control" id="forma_pagamento" name="forma_pagamento">
           <option value="Pix">Pix</option>
           <option value="Dinheiro">Dinherio</option>
           <option value="Boleto">Boleto</option>
