@@ -277,16 +277,18 @@ function salvarPedido(pedidoId, dataVenda, marcadorValue, dataEnvio, forma_pagam
 
   const marcadores = [];
   if (marcadorValue.trim() !== "") {
-    const marcadorArray = marcadorValue.split(',').map(m => m.trim());
-    marcadorArray.forEach(marcador => {
+    const marcadoresLimpos = marcadorValue.replace(/\n/g, "").trim(); // Remove \n e espaços extras
+    const marcadoresSeparados = marcadoresLimpos.split(",").map(m => m.trim()); // Separa os marcadores e remove espaços extras
+    marcadoresSeparados.forEach(marcador => {
       marcadores.push({
         marcador: {
           id: 1, // ID do marcador conforme necessário
-          descricao: marcador
+          descricao: marcador // Adiciona o marcador sem espaços extras
         }
       });
     });
   }
+
   
   
 
