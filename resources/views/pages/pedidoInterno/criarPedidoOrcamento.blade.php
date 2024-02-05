@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", function() {
     var transportadora = document.getElementById("transportadora").value;
     var valorFrete = document.getElementById("valor_frete").value;
     var observacao = document.getElementById("observacao").value;
-    var marcador = document.getElementById("marcador").value;
+    var marcador = Array.from(document.getElementById("marcador").selectedOptions).map(option => option.value);
     var dataVenda = document.getElementById("data_venda").value;
     var pedido = {
       cliente_id: clienteId,
