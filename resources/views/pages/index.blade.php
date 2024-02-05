@@ -74,7 +74,14 @@ Inicio
             </div>
         </div>
         <div class="col-md-4">
-            <h5>Produção</h5>
+            <h5>Produção</h5>~
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Calculadora de Data Prevista</h5>
+                    <p class="card-text">Descrição da Calculadora de Data Prevista</p>
+                    <button id="btn-abrir-modal-calculadora" class="btn btn-outline-primary">Abrir Calculadora</button>
+                </div>
+            </div>
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">Impressão</h5>
@@ -120,6 +127,44 @@ Inicio
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary" id="btn-encurtar">Encurtar</button>
                 <button type="button" class="btn btn-secondary" id="btn-fechar" data-dismiss="modal" aria-label="Fechar">Fechar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal Calculadora de Data Prevista -->
+<div class="modal fade" id="modal-calculadora-data-prevista" tabindex="-1" role="dialog" aria-labelledby="modal-calculadora-data-prevista-label" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modal-calculadora-data-prevista-label">Calculadora de Data Prevista</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!-- Formulário para a calculadora de data prevista -->
+                <form>
+                    <div class="form-group">
+                        <label for="data-venda">Data da Venda:</label>
+                        <input type="date" class="form-control" id="data-venda">
+                    </div>
+                    <div class="form-group">
+                        <label for="dias-confeccao">Dias de Confecção:</label>
+                        <input type="number" class="form-control" id="dias-confeccao">
+                    </div>
+                    <div class="form-group">
+                        <label for="dias-entrega">Dias de Entrega:</label>
+                        <input type="number" class="form-control" id="dias-entrega">
+                    </div>
+                    <div class="form-group">
+                        <label for="data-prevista">Data Prevista:</label>
+                        <input type="date" class="form-control" id="data-prevista" disabled>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="btn-calcular-data-prevista">Calcular</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
             </div>
         </div>
     </div>
@@ -171,6 +216,27 @@ Inicio
     closeButtons.forEach(button => {
         button.addEventListener('click', function() {
             $('#modal-encurtar-link').modal('hide');
+        });
+    });
+</script>
+<script>
+    $(document).ready(function() {
+        // Abrir o modal da calculadora de data prevista
+        $('#btn-abrir-modal-calculadora').on('click', function() {
+            $('#modal-calculadora-data-prevista').modal('show');
+        });
+
+        // Lógica para calcular a data prevista
+        $('#btn-calcular-data-prevista').on('click', function() {
+            var dataVenda = $('#data-venda').val();
+            var diasConfeccao = $('#dias-confeccao').val();
+            var diasEntrega = $('#dias-entrega').val();
+
+            // Aqui você pode adicionar a lógica para calcular a data prevista com base na data da venda, dias de confecção e dias de entrega
+            // Exemplo: $('#data-prevista').val(dataCalculada);
+
+            // Fechar o modal após calcular a data prevista
+            $('#modal-calculadora-data-prevista').modal('hide');
         });
     });
 </script>
