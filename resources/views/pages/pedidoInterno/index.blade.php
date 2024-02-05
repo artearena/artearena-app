@@ -233,7 +233,6 @@
                                         <i class="fas fa-tshirt"></i>
                                     </button>
 
-
                                     <button class="btn btn-salvar-consultar-cliente
                                         @if($pedido->cliente_id)
                                             btn-success
