@@ -270,7 +270,7 @@ function formatarData(data) {
 
   return dia + '/' + mes + '/' + ano;
 }
-function salvarPedido(pedidoId, dataVenda, marcadorValue, dataEnvio, forma_pagamento) {
+function salvarPedido(pedidoId, dataVenda, marcadorValue, dataEnvio, forma_pagamento, valor_frete, nome_vendedor, ) {
   // Primeira requisição para obter pfrodutos do pedido
   var dataVenda = formatarData(dataVenda);
   var dataEnvio = formatarData(dataEnvio);
@@ -321,7 +321,7 @@ function salvarPedido(pedidoId, dataVenda, marcadorValue, dataEnvio, forma_pagam
                 pedido: {
                   cliente: {
                     nome: clienteData.nome_completo || clienteData.razao_social || '',
-                    tipo_pessoa: clienteData.tipo_pessoa,
+                    tipo_pessoa: clienteData.tipo_pessoa === 'fisica' ? 'F' : 'J',
                     cpf_cnpj: clienteData.cpf || clienteData.cnpj || '',
                     rg: clienteData.rg,
                     email: clienteData.email,
@@ -352,6 +352,7 @@ function salvarPedido(pedidoId, dataVenda, marcadorValue, dataEnvio, forma_pagam
                     },
                   ],
                   forma_pagamento: forma_pagamento,
+                  valor_frete: valor_frete, 
                   data_pedido: dataVenda,
                   data_prevista: dataEnvio,
                 },
@@ -410,7 +411,8 @@ function salvarPedido(pedidoId, dataVenda, marcadorValue, dataEnvio, forma_pagam
         const marcadorValue = $(this).closest(".pedido-row").find("td:nth-child(9)").text();
         const dataVenda = $(this).closest(".pedido-row").find("td:nth-child(10)").text();
         const forma_pagamento = $(this).closest(".pedido-row").find("td:nth-child(6)").text();
-
+        const nome_vendedor = $(this).closest(".pedido-row").find("td:nth-child(4)").text();
+        const valor_frete = $(this).closest(".pedido-row").find("td:nth-child(8)").text();
         Swal.fire({
           title: 'Confirmar Pedido',
           html: '<label for="data-envio">Data prevista</label><input type="date" id="data-envio" class="swal2-input">',
@@ -428,7 +430,7 @@ function salvarPedido(pedidoId, dataVenda, marcadorValue, dataEnvio, forma_pagam
         }).then((result) => {
           if (result.isConfirmed) {
             const dataEnvio = result.value;
-            salvarPedido(pedidoId, dataVenda, marcadorValue, dataEnvio, forma_pagamento);
+            salvarPedido(pedidoId, dataVenda, marcadorValue, dataEnvio, forma_pagamento, valor_frete, nome_vendedor);
           }
         });
       });

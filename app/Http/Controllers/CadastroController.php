@@ -105,7 +105,6 @@ class CadastroController extends Controller
             else {
                 $rules = [
                     'nome_completo' => 'required|string|max:255',
-                    'rg' => 'required|string|max:255',
                     'cpf' => 'required|string|regex:/^\d{3}\.\d{3}\.\d{3}-\d{2}$/',
                     'email' => 'required|email|max:255',
                 ];
