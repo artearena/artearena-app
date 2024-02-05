@@ -32,5 +32,6 @@
             @endforeach
         </tbody>
     </table>
-    {{ $logs->links() }}
+    {{ $logs->links("pagination::bootstrap-4") }}
+
 @endsection
