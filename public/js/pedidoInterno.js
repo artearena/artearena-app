@@ -276,7 +276,7 @@ function salvarPedido(pedidoId, dataVenda, marcadorValue, dataEnvio, forma_pagam
   var dataEnvio = formatarData(dataEnvio);
 
   const marcadores = [];
-  if (marcadorValue !== "") {
+  if (marcadorValue.trim() !== "") {
     const marcadorArray = marcadorValue.split(',').map(m => m.trim());
     marcadorArray.forEach(marcador => {
       marcadores.push({
@@ -287,6 +287,7 @@ function salvarPedido(pedidoId, dataVenda, marcadorValue, dataEnvio, forma_pagam
       });
     });
   }
+  
   
 
   fetch('/pedidoInterno/get-produtos-pedido/' + pedidoId)
