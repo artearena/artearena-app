@@ -200,12 +200,7 @@
                                     Expandir
                                 </button>
                             </td>                            
-                            <td>
-                                @php
-                                    $forma_pagamento = unserialize($pedido->forma_pagamento);
-                                    echo implode(', ', $forma_pagamento);
-                                @endphp
-                            </td>
+                            <td>{{ $pedido->forma_pagamento }}</td>
                             <td>{{ $pedido->transportadora }}</td>
                             <td>{{ $pedido->valor_frete }}</td>
                             <td class="expandir-observacoes" id="observacao" style="overflow: auto;" lang="pt">{{ $pedido->observacao }}</td>
@@ -214,7 +209,7 @@
                                     $marcador = unserialize($pedido->marcador);
                                     echo implode(', ', $marcador);
                                 @endphp
-                            </td>
+                            </td>                            
                             <td>{{ date('Y-m-d', strtotime($pedido->data_venda)) }}</td>
                             <td>
                                 <div class="btn-group">
@@ -232,6 +227,8 @@
                                         data-toggle="modal" data-target="#modalListaUniforme" data-pedido-id="{{ $pedido->id }}">
                                         <i class="fas fa-tshirt"></i>
                                     </button>
+
+
                                     <button class="btn btn-warning btn-salvar-consultar-cliente" data-cliente-id="{{ $pedido->cliente_id }}">
                                         <i class="fas fa-link"></i>
                                     </button>
@@ -242,7 +239,6 @@
                 @endisset
             </tbody>
         </table>
-
     </div>
     <div class="modal fade" id="modalListasUniforme" tabindex="-1" role="dialog" aria-labelledby="modalListasUniformeLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl" role="document">
