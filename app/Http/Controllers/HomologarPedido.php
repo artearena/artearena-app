@@ -65,7 +65,7 @@ class HomologarPedido extends Controller
         // Validação dos dados do pedido
         $request->validate([
             'cliente_id' => 'nullable',
-            'vendedor' => 'nullable',
+            'Vendedor' => 'nullable',
             'forma_pagamento' => 'nullable',
             'transportadora' => 'nullable',
             'valor_frete' => 'nullable',

@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", function() {
     var dataVenda = document.getElementById("data_venda").value;
     var pedido = {
       cliente_id: clienteId,
-      vendedor: vendedor,
+      Vendedor: vendedor,
       forma_pagamento: formaPagamento,
       transportadora: transportadora,
       valor_frete: valorFrete,
