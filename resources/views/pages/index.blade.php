@@ -7,6 +7,7 @@ Inicio
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/date-holidays@3.23.7/+esm"></script>
 
 <div class="container">
     <div class="row">
@@ -227,44 +228,59 @@ Inicio
         });
 
         $('#btn-calcular-data-prevista').on('click', function() {
+            // Obter os valores dos inputs
             var dataVenda = $('#data-venda').val();
             var diasConfeccao = parseInt($('#dias-confeccao').val());
             var diasEntrega = parseInt($('#dias-entrega').val());
 
+            // Converter a data da venda para o formato esperado "yyyy-MM-dd"
             var partesData = dataVenda.split('/');
             var dataFormatada = partesData[2] + '-' + partesData[1] + '-' + partesData[0];
-            var data = new Date(dataFormatada);
-            
-            // Importação da biblioteca date-holidays utilizando ES6 import
-            import Holidays from 'date-holidays';
-            const holidays = new Holidays();
 
+            // Criar um objeto Date com a data formatada
+            var data = new Date(dataFormatada);
+
+            // Criar um objeto Holidays.js para o país desejado (por exemplo, Brasil)
+            var holidays = new DateHolidays('BR');
+
+            // Adicionar um dia para começar a contar a partir do dia seguinte à venda
             data.setDate(data.getDate() + 1);
 
+            // Função para verificar se a data é um feriado
             function isHoliday(date) {
                 return holidays.isHoliday(date);
             }
 
+            // Função para adicionar dias úteis (desconsiderando feriados e fins de semana)
             function addWorkdays(date, days) {
                 for (var i = 0; i < days; i++) {
+                    // Adiciona um dia à data
                     date.setDate(date.getDate() + 1);
 
+                    // Verifica se a data é um feriado ou fim de semana, e se for, adiciona mais um dia
                     while (isHoliday(date) || date.getDay() === 0 || date.getDay() === 6) {
                         date.setDate(date.getDate() + 1);
                     }
                 }
             }
 
+            // Adicionar os dias de confecção
             addWorkdays(data, diasConfeccao);
+
+            // Adicionar os dias de entrega
             addWorkdays(data, diasEntrega);
 
+            // Formatar a data prevista no formato "dd/MM/yyyy"
             var dia = data.getDate().toString().padStart(2, '0');
             var mes = (data.getMonth() + 1).toString().padStart(2, '0');
             var ano = data.getFullYear();
             var dataPrevistaFormatada = dia + '/' + mes + '/' + ano;
 
+            // Preencher o campo de data prevista com a data calculada
             $('#data-prevista').val(dataPrevistaFormatada);
         });
+
+
     });
 </script>
 @endsection
