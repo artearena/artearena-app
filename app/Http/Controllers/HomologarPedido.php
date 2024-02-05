@@ -78,8 +78,19 @@ class HomologarPedido extends Controller
             'produtos.*.preco_unitario' => 'nullable',
         ]);
 
-        // Criação do pedido interno
-        $pedidoInterno = PedidoInterno::create($request->all());
+        $marcador = $request->input('marcador') ? serialize($request->input('marcador')) : null;
+
+        // Criar um novo pedido interno com os dados do pedido
+        $pedidoInterno = PedidoInterno::create([
+            'cliente_id' => $request->input('cliente_id'),
+            'Vendedor' => $request->input('Vendedor'),
+            'forma_pagamento' => $request->input('forma_pagamento'),
+            'transportadora' => $request->input('transportadora'),
+            'valor_frete' => $request->input('valor_frete'),
+            'observacao' => $request->input('observacao'),
+            'marcador' => $marcador,
+            'data_venda' => $request->input('data_venda'),
+        ]);
 
         // Adicionar os produtos ao pedido interno
         if ($request->has('produtos')) {
@@ -91,13 +102,14 @@ class HomologarPedido extends Controller
         // Verificar os produtos
         if ($request->has('produtos')) {
             foreach ($request->produtos as $produto) {
-/*                 $this->verificarProduto($produto['produto_nome'], $pedidoInterno->id);
- */            }
+                // $this->verificarProduto($produto['produto_nome'], $pedidoInterno->id);
+            }
         }
 
         // Retornar uma resposta de sucesso
         return response()->json(['message' => 'Pedido interno criado com sucesso'], 201);
     }
+
 
     public function verificarProduto($produtoNome, $pedidoId)
     {
