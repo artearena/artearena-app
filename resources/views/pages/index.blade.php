@@ -7,6 +7,7 @@ Inicio
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/date-holidays/dist/date-holidays.js"></script>
 
 <div class="container">
     <div class="row">
@@ -239,30 +240,35 @@ Inicio
             // Criar um objeto Date com a data formatada
             var data = new Date(dataFormatada);
 
+            // Criar um objeto Holidays.js para o país desejado (por exemplo, Brasil)
+            var holidays = new DateHolidays('BR');
+
             // Adicionar um dia para começar a contar a partir do dia seguinte à venda
             data.setDate(data.getDate() + 1);
 
-            // Adicionar os dias de confecção
-            for (var i = 0; i < diasConfeccao; i++) {
-                // Adiciona um dia à data
-                data.setDate(data.getDate() + 1);
+            // Função para verificar se a data é um feriado
+            function isHoliday(date) {
+                return holidays.isHoliday(date);
+            }
 
-                // Se a data for sábado, adicione mais um dia para pular o sábado
-                if (data.getDay() === 6) {
-                    data.setDate(data.getDate() + 1);
+            // Função para adicionar dias úteis (desconsiderando feriados e fins de semana)
+            function addWorkdays(date, days) {
+                for (var i = 0; i < days; i++) {
+                    // Adiciona um dia à data
+                    date.setDate(date.getDate() + 1);
+
+                    // Verifica se a data é um feriado ou fim de semana, e se for, adiciona mais um dia
+                    while (isHoliday(date) || date.getDay() === 0 || date.getDay() === 6) {
+                        date.setDate(date.getDate() + 1);
+                    }
                 }
             }
+
+            // Adicionar os dias de confecção
+            addWorkdays(data, diasConfeccao);
 
             // Adicionar os dias de entrega
-            for (var i = 0; i < diasEntrega; i++) {
-                // Adiciona um dia à data
-                data.setDate(data.getDate() + 1);
-
-                // Se a data for sábado, adicione mais um dia para pular o sábado
-                if (data.getDay() === 6) {
-                    data.setDate(data.getDate() + 1);
-                }
-            }
+            addWorkdays(data, diasEntrega);
 
             // Formatar a data prevista no formato "dd/MM/yyyy"
             var dia = data.getDate().toString().padStart(2, '0');
