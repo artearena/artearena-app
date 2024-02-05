@@ -274,6 +274,21 @@ function salvarPedido(pedidoId, dataVenda, marcadorValue, dataEnvio, forma_pagam
   // Primeira requisição para obter pfrodutos do pedido
   var dataVenda = formatarData(dataVenda);
   var dataEnvio = formatarData(dataEnvio);
+
+  const marcadores = [];
+  if (marcadorValue !== "") {
+    const marcadorArray = marcadorValue.split(',').map(m => m.trim());
+    marcadorArray.forEach(marcador => {
+      marcadores.push({
+        marcador: {
+          id: 1, // ID do marcador conforme necessário
+          descricao: marcador
+        }
+      });
+    });
+  }
+  
+
   fetch('/pedidoInterno/get-produtos-pedido/' + pedidoId)
     .then(response => response.json())
     .then(data => {
