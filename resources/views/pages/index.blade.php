@@ -7,6 +7,7 @@ Inicio
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/date-holidays@3.23.7/+esm"></script>
 
 <div class="container">
     <div class="row">
@@ -219,16 +220,33 @@ Inicio
         });
     });
 </script>
-<script src="https://cdn.jsdelivr.net/npm/date-holidays@3.23.7/+esm"></script>
-
 <script>
-    const { DateHolidays } = require('date-holidays');
-
+    
     $(document).ready(function() {
         // Abrir o modal da calculadora de data prevista
         $('#btn-abrir-modal-calculadora').on('click', function() {
             $('#modal-calculadora-data-prevista').modal('show');
         });
+
+        // Função para verificar se a data é um feriado
+        function isHoliday(date) {
+            var day = date.getDate();
+            var month = date.getMonth() + 1; // Os meses em JavaScript começam do zero, então adicionamos 1
+            var year = date.getFullYear();
+            var dateString = day + '/' + month + '/' + year;
+
+            var url = "https://api.calendario.com.br/?json=true&ano=" + year + "&estado=SP&cidade=MOGI_GUACU&token=ZGdvLmRpZWdvY2FydmFsaG9AZ21haWwuY29tJmhhc2g9MTYzMjcxMDY3";
+
+            // Realizar requisição HTTP para a API de feriados
+            return $.getJSON(url).then(function(data) {
+                for (var i = 0; i < data.length; i++) {
+                    if (data[i].date === dateString) {
+                        return true;
+                    }
+                }
+                return false;
+            });
+        }
 
         $('#btn-calcular-data-prevista').on('click', function() {
             // Obter os valores dos inputs
@@ -243,16 +261,8 @@ Inicio
             // Criar um objeto Date com a data formatada
             var data = new Date(dataFormatada);
 
-            // Criar um objeto Holidays.js para o país desejado (por exemplo, Brasil)
-            var holidays = new DateHolidays('BR');
-
             // Adicionar um dia para começar a contar a partir do dia seguinte à venda
             data.setDate(data.getDate() + 1);
-
-            // Função para verificar se a data é um feriado
-            function isHoliday(date) {
-                return holidays.isHoliday(date);
-            }
 
             // Função para adicionar dias úteis (desconsiderando feriados e fins de semana)
             function addWorkdays(date, days) {
