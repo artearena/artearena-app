@@ -239,6 +239,9 @@ Inicio
             // Criar um objeto Date com a data formatada
             var data = new Date(dataFormatada);
 
+            // Adicionar um dia para começar a contar a partir do dia seguinte à venda
+            data.setDate(data.getDate() + 1);
+
             // Adicionar os dias de confecção
             for (var i = 0; i < diasConfeccao; i++) {
                 // Adiciona um dia à data
