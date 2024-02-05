@@ -74,7 +74,7 @@ Inicio
             </div>
         </div>
         <div class="col-md-4">
-            <h5>Produção</h5>~
+            <h5>Produção</h5>
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">Calculadora de Data Prevista</h5>
@@ -226,18 +226,44 @@ Inicio
             $('#modal-calculadora-data-prevista').modal('show');
         });
 
-        // Lógica para calcular a data prevista
         $('#btn-calcular-data-prevista').on('click', function() {
+            // Obter os valores dos inputs
             var dataVenda = $('#data-venda').val();
-            var diasConfeccao = $('#dias-confeccao').val();
-            var diasEntrega = $('#dias-entrega').val();
+            var diasConfeccao = parseInt($('#dias-confeccao').val());
+            var diasEntrega = parseInt($('#dias-entrega').val());
 
-            // Aqui você pode adicionar a lógica para calcular a data prevista com base na data da venda, dias de confecção e dias de entrega
-            // Exemplo: $('#data-prevista').val(dataCalculada);
+            // Converter a data da venda para um objeto Date
+            var data = new Date(dataVenda);
 
-            // Fechar o modal após calcular a data prevista
-            $('#modal-calculadora-data-prevista').modal('hide');
+            // Adicionar os dias de confecção
+            for (var i = 0; i < diasConfeccao; i++) {
+                // Adiciona um dia à data
+                data.setDate(data.getDate() + 1);
+
+                // Se a data for sábado, adicione mais um dia para pular o sábado
+                if (data.getDay() === 6) {
+                    data.setDate(data.getDate() + 1);
+                }
+            }
+
+            // Adicionar os dias de entrega
+            for (var i = 0; i < diasEntrega; i++) {
+                // Adiciona um dia à data
+                data.setDate(data.getDate() + 1);
+
+                // Se a data for sábado, adicione mais um dia para pular o sábado
+                if (data.getDay() === 6) {
+                    data.setDate(data.getDate() + 1);
+                }
+            }
+
+            // Converter a data prevista de volta para uma string no formato apropriado
+            var dataPrevista = data.toLocaleDateString('pt-BR');
+
+            // Preencher o campo de data prevista com a data calculada
+            $('#data-prevista').val(dataPrevista);
         });
+
     });
 </script>
 @endsection
