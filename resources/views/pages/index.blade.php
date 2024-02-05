@@ -232,8 +232,12 @@ Inicio
             var diasConfeccao = parseInt($('#dias-confeccao').val());
             var diasEntrega = parseInt($('#dias-entrega').val());
 
-            // Converter a data da venda para um objeto Date
-            var data = new Date(dataVenda);
+            // Converter a data da venda para o formato esperado "yyyy-MM-dd"
+            var partesData = dataVenda.split('/');
+            var dataFormatada = partesData[2] + '-' + partesData[1] + '-' + partesData[0];
+
+            // Criar um objeto Date com a data formatada
+            var data = new Date(dataFormatada);
 
             // Adicionar os dias de confecção
             for (var i = 0; i < diasConfeccao; i++) {
@@ -263,6 +267,7 @@ Inicio
             // Preencher o campo de data prevista com a data calculada
             $('#data-prevista').val(dataPrevista);
         });
+
 
     });
 </script>
