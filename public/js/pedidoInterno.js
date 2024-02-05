@@ -275,20 +275,21 @@ function salvarPedido(pedidoId, dataVenda, marcadorValue, dataEnvio, forma_pagam
   var dataVenda = formatarData(dataVenda);
   var dataEnvio = formatarData(dataEnvio);
 
+  // Define os marcadores processados
   const marcadores = [];
   if (marcadorValue.trim() !== "") {
     const marcadoresLimpos = marcadorValue.replace(/\n/g, "").trim(); // Remove \n e espaços extras
     const marcadoresSeparados = marcadoresLimpos.split(",").map(m => m.trim()); // Separa os marcadores e remove espaços extras
-    marcadoresSeparados.forEach(marcador => {
+    marcadoresSeparados.forEach((marcador, index) => { // Adiciona o índice como id
       marcadores.push({
         marcador: {
-          id: 1, // ID do marcador conforme necessário
+          id: index, // ID do marcador é definido como o índice
           descricao: marcador // Adiciona o marcador sem espaços extras
         }
       });
     });
   }
-
+    
   
   
 
