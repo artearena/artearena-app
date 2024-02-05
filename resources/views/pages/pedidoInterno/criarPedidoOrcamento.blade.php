@@ -11,7 +11,10 @@
 <script src="../../js/pedidoInterno.js"></script>
 <script>
 
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function() {,
+  $('.select2').select2({
+        multiple: true
+  });
   document.getElementById('btnCriarPedido').addEventListener('click', function(event) {
     event.preventDefault(); // Impede o comportamento padrão do botão
     var produtos = [];
