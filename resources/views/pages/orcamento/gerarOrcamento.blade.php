@@ -13,6 +13,7 @@
       padding: 20px; /* Adicione algum preenchimento interno */
       border-radius: 8px; /* Bordas arredondadas para o container */
       background-color: #fff; /* Cor de fundo do container */
+      flex-direction: column;
     }
     .btn-primary, .btn-secondary {
         transition: background-color 0.3s ease; /* Animação suave ao passar o mouse sobre botões */
