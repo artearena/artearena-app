@@ -275,15 +275,16 @@
                           </div>
                         </div>
                         <hr>
-                          <div class="container-lg">
-                                <label for="id">ID Cliente:</label>
-                                <div class="input-group">
-                                    <input type="text" id="id" class="form-control"></input>
-                                    <div class="input-group-append">
-                                        <button id="buscar_orcamento" class="btn btn-primary" type="button">Buscar Orçamentos</button>
-                                    </div>
-                                </div>
-                          </div>
+                        <div class="container-lg">
+                            <label for="id">ID Cliente:</label>
+                            <div class="input-group">
+                                <input type="text" id="id" class="form-control"></input>
+                            </div>
+                            <div class="input-group mt-3">
+                                <button id="buscar_orcamento" class="btn btn-primary" type="button">Buscar Orçamentos</button>
+                            </div>
+                        </div>
+
                     <hr>
                     <form id="produto-form" method="POST" action="">
                         @csrf
