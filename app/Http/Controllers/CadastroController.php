@@ -116,7 +116,7 @@ class CadastroController extends Controller
             // Valide os dados do formulário com base nas regras definidas
             $validatedData = $request->validate($rules);
             $validatedData['id_cliente_pedido'] = $request->id_cliente_pedido;
-
+            dd($validatedData); 
             // Crie um novo registro de cadastro com os dados validados
             Cadastro::create($validatedData);
 

@@ -343,6 +343,7 @@ function salvarPedido(pedidoId, dataVenda, marcadorValue, dataEnvio, forma_pagam
                     tipo_pessoa: clienteData.tipo_pessoa === 'fisica' ? 'F' : 'J',
                     cpf_cnpj: clienteData.cpf || clienteData.cnpj || '',
                     rg: clienteData.rg,
+                    ie: clienteData.ie,
                     email: clienteData.email,
                     endereco: clienteData.endereco,
                     cep: clienteData.cep,
