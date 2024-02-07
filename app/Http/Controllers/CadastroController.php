@@ -67,7 +67,8 @@ class CadastroController extends Controller
                 $request['numero'] = $request['numero_fisica'];
                 $request['bairro'] = $request['bairro_fisica'];
                 $request['cidade'] = $request['cidade_fisica'];
-                
+                $request['uf'] = $request['uf_fisica'];
+
 
                 $request['fone_fixo'] = $request['fone_fixo_fisica'];
                 $request['cell'] = $request['cell_fisica'];
@@ -79,6 +80,8 @@ class CadastroController extends Controller
                 unset($request['numero_fisica']);
                 unset($request['bairro_fisica']);
                 unset($request['cidade_fisica']);
+                unset($request['uf_fisica']);
+
                 unset($request['fone_fixo_fisica']);
                 unset($request['cell_fisica']);
                 unset($request['cep_fisica']);
