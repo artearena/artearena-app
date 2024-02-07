@@ -69,8 +69,10 @@
                                 <input type="text" name="uf_juridica" id="uf_juridica" class="form-control">
                             </div>
                             <div class="form-group">
-                                <label for="fone_fixo_juridica">Fone fixo:</label>
-                                <input type="text" name="fone_fixo_juridica" id="fone_fixo_juridica" class="form-control telefone">
+                                <label for="uf_juridica">UF:</label>
+                                <select name="uf_juridica" id="uf_juridica" class="form-control">
+                                    <option value="">Selecione a UF</option>
+                                </select>
                             </div>
                             <div class="form-group">
                                 <label for="cell_juridica">Cell:</label>
@@ -117,7 +119,9 @@
                             </div>
                             <div class="form-group">
                                 <label for="uf_fisica">UF:</label>
-                                <input type="text" name="uf_fisica" id="uf_fisica" class="form-control">
+                                <select name="uf_fisica" id="uf_fisica" class="form-control">
+                                    <option value="">Selecione a UF</option>
+                                </select>
                             </div>
                             <div class="form-group">
                                 <label for="fone_fixo_fisica">Fone fixo:</label>
@@ -301,6 +305,50 @@
             return validarFormulario();
         });
     });
+    $(document).ready(function() {
+        var estados = [
+            { sigla: '', nome: 'Selecione a UF' },
+            { sigla: 'AC', nome: 'Acre' },
+            { sigla: 'AL', nome: 'Alagoas' },
+            { sigla: 'AP', nome: 'Amapá' },
+            { sigla: 'AM', nome: 'Amazonas' },
+            { sigla: 'BA', nome: 'Bahia' },
+            { sigla: 'CE', nome: 'Ceará' },
+            { sigla: 'DF', nome: 'Distrito Federal' },
+            { sigla: 'ES', nome: 'Espírito Santo' },
+            { sigla: 'GO', nome: 'Goiás' },
+            { sigla: 'MA', nome: 'Maranhão' },
+            { sigla: 'MT', nome: 'Mato Grosso' },
+            { sigla: 'MS', nome: 'Mato Grosso do Sul' },
+            { sigla: 'MG', nome: 'Minas Gerais' },
+            { sigla: 'PA', nome: 'Pará' },
+            { sigla: 'PB', nome: 'Paraíba' },
+            { sigla: 'PR', nome: 'Paraná' },
+            { sigla: 'PE', nome: 'Pernambuco' },
+            { sigla: 'PI', nome: 'Piauí' },
+            { sigla: 'RJ', nome: 'Rio de Janeiro' },
+            { sigla: 'RN', nome: 'Rio Grande do Norte' },
+            { sigla: 'RS', nome: 'Rio Grande do Sul' },
+            { sigla: 'RO', nome: 'Rondônia' },
+            { sigla: 'RR', nome: 'Roraima' },
+            { sigla: 'SC', nome: 'Santa Catarina' },
+            { sigla: 'SP', nome: 'São Paulo' },
+            { sigla: 'SE', nome: 'Sergipe' },
+            { sigla: 'TO', nome: 'Tocantins' }
+        ];
 
+        // Popula os campos de UF
+        estados.forEach(function(estado) {
+            $('#uf_juridica').append($('<option>', {
+                value: estado.sigla,
+                text: estado.nome
+            }));
+
+            $('#uf_fisica').append($('<option>', {
+                value: estado.sigla,
+                text: estado.nome
+            }));
+        });
+    });
 </script>
 @endsection
