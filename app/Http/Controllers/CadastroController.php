@@ -76,49 +76,12 @@ class CadastroController extends Controller
                 unset($request['cell_fisica']);
                 unset($request['cep_fisica']);
             }
-
-            // Defina as regras de validação comuns para ambos os tipos de pessoa
-            $commonRules = [
-                'tipo_pessoa' => 'required|in:juridica,fisica',
-                'cep' => 'required|string|regex:/^\d{5}-\d{3}$/',
-                'endereco_cobranca' => 'nullable|string|max:255',
-                'cep_cobranca' => 'nullable|string|regex:/^\d{5}-\d{3}$/',
-                'endereco_entrega' => 'nullable|string|max:255',
-                'cep_entrega' => 'nullable|string|regex:/^\d{5}-\d{3}$/',
-                'numero' => 'nullable|string|max:255',
-                'bairro' => 'nullable|string|max:255',
-                'cidade' => 'nullable|string|max:255',
-                'fone_fixo' => 'nullable|string|max:255',
-                'cell' => 'nullable|string|max:255',
-            ];
-
-            // Validação para Pessoa Jurídica
-            if ($request->tipo_pessoa === 'juridica') {
-                $rules = [
-                    'razao_social' => 'required|string|max:255',
-                    'cnpj' => 'required|string|regex:/^\d{2}\.\d{3}\.\d{3}\/\d{4}-\d{2}$/',
-                    'ie' => 'required|string|max:255',
-                    'email' => 'required|email|max:255',
-                ];
-            }
-            // Validação para Pessoa Física
-            else {
-                $rules = [
-                    'nome_completo' => 'required|string|max:255',
-                    'cpf' => 'required|string|regex:/^\d{3}\.\d{3}\.\d{3}-\d{2}$/',
-                    'email' => 'required|email|max:255',
-                ];
-            }
-
-            // Mescla as regras comuns com as regras específicas
-            $rules = array_merge($commonRules, $rules);
-
+            
             // Valide os dados do formulário com base nas regras definidas
-            $validatedData = $request->validate($rules);
-            $validatedData['id_cliente_pedido'] = $request->id_cliente_pedido;
+            $request['id_cliente_pedido'] = $request->id_cliente_pedido;
             dd($validatedData); 
             // Crie um novo registro de cadastro com os dados validados
-            Cadastro::create($validatedData);
+            Cadastro::create($$request);
 
             $this->invalidateToken($request->token);
 
