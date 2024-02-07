@@ -75,6 +75,7 @@ class CadastroController extends Controller
                 unset($request['endereco_fisica']);
                 unset($request['numero_fisica']);
                 unset($request['bairro_fisica']);
+                unset($request['cidade_fisica']);
                 unset($request['fone_fixo_fisica']);
                 unset($request['cell_fisica']);
                 unset($request['cep_fisica']);
