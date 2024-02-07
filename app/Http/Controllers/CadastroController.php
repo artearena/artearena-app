@@ -81,11 +81,39 @@ class CadastroController extends Controller
                 unset($request['cep_fisica']);
             }
             
+            // Extrair os campos necessários da solicitação
+            $requestData = $request->only([
+                'tipo_pessoa',
+                'razao_social',
+                'cnpj',
+                'ie',
+                'nome_completo',
+                'rg',
+                'cpf',
+                'email',
+                'endereco',
+                'cep',
+                'numero',
+                'bairro',
+                'cidade',
+                'fone_fixo',
+                'cell',
+                'endereco_cobranca',
+                'cep_cobranca',
+                'endereco_entrega',
+                'cep_entrega',
+                'numero_entrega',
+                'bairro_entrega',
+                'cidade_entrega',
+                'responsavel_entrega',
+                'cpf_responsavel_entrega',
+                'id_cliente_pedido',
+            ]);
             // Valide os dados do formulário com base nas regras definidas
             $request['id_cliente_pedido'] = $request->id_cliente_pedido;
 
             // Crie um novo registro de cadastro com os dados validados
-            Cadastro::create($request);
+            Cadastro::create($requestData);
 
             $this->invalidateToken($request->token);
 
