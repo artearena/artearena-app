@@ -39,7 +39,6 @@ class CadastroController extends Controller
     public function store(Request $request)
     {
         try {
-            dd ($request);
         
             if ($request->tipo_pessoa === 'juridica') {
                 // Organize os campos para pessoa jurídica
