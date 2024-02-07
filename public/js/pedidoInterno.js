@@ -424,8 +424,8 @@ function salvarPedido(pedidoId, dataVenda, marcadorValue, dataEnvio, forma_pagam
     document.addEventListener("DOMContentLoaded", function() {
       $(".btn-confirmar-pedido").click(function() {
         const pedidoId = $(this).closest(".pedido-row").data("pedido-id");
-        const marcadorValue = $(this).closest(".pedido-row").find("td:nth-child(9)").text();
-        const dataVenda = $(this).closest(".pedido-row").find("td:nth-child(10)").text();
+        const marcadorValue = $(this).closest(".pedido-row").find("td:nth-child(10)").text();
+        const dataVenda = $(this).closest(".pedido-row").find("td:nth-child(11)").text();
         const forma_pagamento = $(this).closest(".pedido-row").find("td:nth-child(5)").text();
         const nome_vendedor = $(this).closest(".pedido-row").find("td:nth-child(3)").text();
         const valor_frete = $(this).closest(".pedido-row").find("td:nth-child(7)").text();
