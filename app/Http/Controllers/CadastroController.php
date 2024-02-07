@@ -45,6 +45,7 @@ class CadastroController extends Controller
                 $request['endereco'] = $request['endereco_juridica'];
                 $request['numero'] = $request['numero_juridica'];
                 $request['bairro'] = $request['bairro_juridica'];
+                $request['cidade'] = $request['cidade_juridica'];
                 $request['fone_fixo'] = $request['fone_fixo_juridica'];
                 $request['cell'] = $request['cell_juridica'];
                 $request['cep'] = $request['cep_juridica'];
@@ -63,6 +64,7 @@ class CadastroController extends Controller
                 $request['endereco'] = $request['endereco_fisica'];
                 $request['numero'] = $request['numero_fisica'];
                 $request['bairro'] = $request['bairro_fisica'];
+                $request['cidade'] = $request['cidade_fisica'];
                 $request['fone_fixo'] = $request['fone_fixo_fisica'];
                 $request['cell'] = $request['cell_fisica'];
                 $request['cep'] = $request['cep_fisica'];
