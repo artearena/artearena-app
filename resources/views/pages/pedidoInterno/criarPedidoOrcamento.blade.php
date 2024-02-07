@@ -39,7 +39,7 @@ document.addEventListener("DOMContentLoaded", function() {
     var formaPagamento = document.getElementById("forma_pagamento").value;
     var transportadora = document.getElementById("transportadora").value;
     var valorFrete = document.getElementById("valor_frete").value;
-    var valorDesconto = document.getElementById("valor_frete").value;
+    var valorDesconto = document.getElementById("valor_desconto").value;
 
     var observacao = document.getElementById("observacao").value;
     var marcador = Array.from(document.getElementById("marcador").selectedOptions).map(option => option.value);
