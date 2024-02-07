@@ -84,7 +84,7 @@ class CadastroController extends Controller
             $request['id_cliente_pedido'] = $request->id_cliente_pedido;
             dd($request); 
             // Crie um novo registro de cadastro com os dados validados
-            Cadastro::create($$request);
+            Cadastro::create($request);
 
             $this->invalidateToken($request->token);
 
