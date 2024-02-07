@@ -50,7 +50,7 @@ document.addEventListener("DOMContentLoaded", function() {
       forma_pagamento: formaPagamento,
       transportadora: transportadora,
       valor_frete: valorFrete,
-      valor_frete: valorDesconto,
+      valor_desconto: valorDesconto,
       observacao: observacao,
       marcador: marcador,
       data_venda: dataVenda,
