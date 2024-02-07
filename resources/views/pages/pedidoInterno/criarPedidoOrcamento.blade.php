@@ -112,7 +112,7 @@ document.addEventListener("DOMContentLoaded", function() {
         <label for="forma_pagamento">Forma de Pagamento:</label>
         <select class="form-control" id="forma_pagamento" name="forma_pagamento">
           <option value="Pix">Pix</option>
-          <option value="Dinheiro">Dinherio</option>
+          <option value="Dinheiro">Dinheiro</option>
           <option value="Boleto">Boleto</option>
           <option value="Cartão de Crédito">Cartão de Crédito</option>
           <option value="Cartão de Débito">Cartão de Débito</option>

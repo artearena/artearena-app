@@ -65,6 +65,10 @@
                                 <input type="text" name="cidade_juridica" id="cidade_juridica" class="form-control">
                             </div>
                             <div class="form-group">
+                                <label for="uf_juridica">UF:</label>
+                                <input type="text" name="uf_juridica" id="uf_juridica" class="form-control">
+                            </div>
+                            <div class="form-group">
                                 <label for="fone_fixo_juridica">Fone fixo:</label>
                                 <input type="text" name="fone_fixo_juridica" id="fone_fixo_juridica" class="form-control telefone">
                             </div>
@@ -112,6 +116,10 @@
                                 <input type="text" name="cidade_fisica" id="cidade_fisica" class="form-control">
                             </div>
                             <div class="form-group">
+                                <label for="uf_fisica">UF:</label>
+                                <input type="text" name="uf_fisica" id="uf_fisica" class="form-control">
+                            </div>
+                            <div class="form-group">
                                 <label for="fone_fixo_fisica">Fone fixo:</label>
                                 <input type="text" name="fone_fixo_fisica" id="fone_fixo_fisica" class="form-control telefone">
                             </div>
@@ -147,6 +155,10 @@
                                 <label for="cidade_cobranca">Cidade:</label>
                                 <input type="text" name="cidade_cobranca" id="cidade_cobranca" class="form-control">
                             </div>
+                            <div class="form-group">
+                                <label for="uf_cobranca">UF:</label>
+                                <input type="text" name="uf_cobranca" id="uf_cobranca" class="form-control">
+                            </div>
                         </div>
 
                         <button type="submit" class="btn btn-primary">Cadastrar</button>
@@ -177,6 +189,8 @@
                 $("#numero_juridica").val("");
                 $("#bairro_juridica").val("");
                 $("#cidade_juridica").val("");
+                $("#uf_juridica").val("");
+
                 $("#fone_fixo_juridica").val("");
                 $("#cell_juridica").val("");
     
@@ -185,6 +199,8 @@
                 $("#numero_cobranca").val("");
                 $("#bairro_cobranca").val("");
                 $("#cidade_cobranca").val("");
+                $("#uf_cobranca").val("");
+
 
                 $("#endereco_cobranca_diferente").prop("checked", false);
                 $("#pessoa_juridica_campos").show();
@@ -202,6 +218,8 @@
                 $("#numero_fisica").val("");
                 $("#bairro_fisica").val("");
                 $("#cidade_fisica").val("");
+                $("#uf_fisica").val("");
+
                 $("#fone_fixo_fisica").val("");
                 $("#cell_fisica").val("");
     
@@ -210,6 +228,7 @@
                 $("#numero_cobranca").val("");
                 $("#bairro_cobranca").val("");
                 $("#cidade_cobranca").val("");
+                $("#uf_cobranca").val("");
 
                 $("#endereco_cobranca_diferente").prop("checked", false);
                 $("#pessoa_juridica_campos").hide();

@@ -350,6 +350,7 @@ function salvarPedido(pedidoId, dataVenda, marcadorValue, dataEnvio, forma_pagam
                     numero: clienteData.numero,
                     bairro: clienteData.bairro,
                     cidade: clienteData.cidade,
+                    uf: clienteData.uf,
                     fone: clienteData.fone_fixo,
                   },
                   itens: produtosFiltrados.map(produto => {

@@ -25,6 +25,7 @@ class Cadastro extends Model
         'numero',
         'bairro',
         'cidade',
+        'uf',
         'fone_fixo',
         'cell',
         'endereco_cobranca',
