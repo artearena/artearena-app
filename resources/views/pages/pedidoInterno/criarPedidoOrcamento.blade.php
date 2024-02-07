@@ -39,6 +39,8 @@ document.addEventListener("DOMContentLoaded", function() {
     var formaPagamento = document.getElementById("forma_pagamento").value;
     var transportadora = document.getElementById("transportadora").value;
     var valorFrete = document.getElementById("valor_frete").value;
+    var valorDesconto = document.getElementById("valor_frete").value;
+
     var observacao = document.getElementById("observacao").value;
     var marcador = Array.from(document.getElementById("marcador").selectedOptions).map(option => option.value);
     var dataVenda = document.getElementById("data_venda").value;
@@ -48,6 +50,7 @@ document.addEventListener("DOMContentLoaded", function() {
       forma_pagamento: formaPagamento,
       transportadora: transportadora,
       valor_frete: valorFrete,
+      valor_frete: valorDesconto,
       observacao: observacao,
       marcador: marcador,
       data_venda: dataVenda,
@@ -129,6 +132,10 @@ document.addEventListener("DOMContentLoaded", function() {
       <div class="form-group">
         <label for="valor_frete">Valor do Frete:</label>
         <input type="text" class="form-control" id="valor_frete" name="valor_frete" value="{{ $orcamento->valor_frete }}">
+      </div>
+      <div class="form-group">
+        <label for="valor_desconto">Valor do desconto:</label>
+        <input type="text" class="form-control" id="valor_desconto" name="valor_desconto">
       </div>
       <div class="form-group">
         <label for="observacao">Observação:</label>

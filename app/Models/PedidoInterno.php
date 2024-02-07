@@ -16,6 +16,7 @@ class PedidoInterno extends Model
         'forma_pagamento',
         'transportadora',
         'valor_frete',
+        'valor_desconto',
         'observacao',
         'marcador',
         'data_venda',

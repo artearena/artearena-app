@@ -368,6 +368,7 @@ function salvarPedido(pedidoId, dataVenda, marcadorValue, dataEnvio, forma_pagam
                   nome_vendedor: nome_vendedor,
                   forma_pagamento: forma_pagamento,
                   valor_frete: valor_frete, 
+                  valor_desconto: 0,
                   data_pedido: dataVenda,
                   data_prevista: dataEnvio,
                 },
