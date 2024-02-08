@@ -103,21 +103,6 @@ document.addEventListener("DOMContentLoaded", function() {
         <input type="text" class="form-control" id="cliente_id" name="cliente_id" value="{{ $orcamento->id_octa }}">
       </div>
       <div class="form-group">
-        <label for="forma_pagamento">Forma de Pagamento:</label>
-        <select class="form-control" id="forma_pagamento" name="forma_pagamento">
-          <option value="">Selecione uma forma de pagamento</option>
-          <option value="Pix">Pix</option>
-          <option value="Dinheiro">Dinheiro</option>
-          <option value="Boleto">Boleto</option>
-          <option value="Cartão de Crédito">Cartão de Crédito</option>
-          <option value="Cartão de Débito">Cartão de Débito</option>
-          <option value="Transferência">Transferência</option>
-          <option value="Depósito">Depósito</option>
-          <option value="Duplicata Faturado">Duplicata Faturado</option>
-          <option value="Múltiplas">Múltiplas</option>
-        </select>
-      </div>
-      <div class="form-group">
         <label for="transportadora">Transportadora:</label>
         <input type="text" class="form-control" id="transportadora" name="transportadora" value="{{ $orcamento->nome_transportadora }}">
       </div>
@@ -176,6 +161,21 @@ document.addEventListener("DOMContentLoaded", function() {
           @foreach ($vendedores as $vendedor)
             <option value="{{ $vendedor }}">{{ $vendedor }}</option>
           @endforeach
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="forma_pagamento">Forma de Pagamento:</label>
+        <select class="form-control" id="forma_pagamento" name="forma_pagamento">
+          <option value="">Selecione uma forma de pagamento</option>
+          <option value="Pix">Pix</option>
+          <option value="Dinheiro">Dinheiro</option>
+          <option value="Boleto">Boleto</option>
+          <option value="Cartão de Crédito">Cartão de Crédito</option>
+          <option value="Cartão de Débito">Cartão de Débito</option>
+          <option value="Transferência">Transferência</option>
+          <option value="Depósito">Depósito</option>
+          <option value="Duplicata Faturado">Duplicata Faturado</option>
+          <option value="Múltiplas">Múltiplas</option>
         </select>
       </div>
       <!-- Tabela para exibir os produtos adicionados -->
