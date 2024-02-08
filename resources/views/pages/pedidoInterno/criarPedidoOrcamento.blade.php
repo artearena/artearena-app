@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", function() {
     var transportadora = document.getElementById("transportadora").value;
     var valorFrete = document.getElementById("valor_frete").value;
     var valorDesconto = document.getElementById("valor_desconto").value;
-
+    var valor_antecipacao = document.getElementById("valor_antecipacao").value;
     var observacao = document.getElementById("observacao").value;
     var marcador = Array.from(document.getElementById("marcador").selectedOptions).map(option => option.value);
     var dataVenda = document.getElementById("data_venda").value;
@@ -51,6 +51,7 @@ document.addEventListener("DOMContentLoaded", function() {
       transportadora: transportadora,
       valor_frete: valorFrete,
       valor_desconto: valorDesconto,
+      valor_antecipacao: valor_antecipacao,
       observacao: observacao,
       marcador: marcador,
       data_venda: dataVenda,
@@ -110,10 +111,7 @@ document.addEventListener("DOMContentLoaded", function() {
         <label for="valor_frete">Valor do Frete:</label>
         <input type="text" class="form-control" id="valor_frete" name="valor_frete" value="{{ $orcamento->valor_frete }}">
       </div>
-      <div class="form-group">
-        <label for="valor_desconto">Valor do desconto:</label>
-        <input type="text" class="form-control" id="valor_desconto" name="valor_desconto">
-      </div>
+      
       <div class="form-group">
         <label for="observacao">Observação:</label>
         <textarea class="form-control" id="observacao" name="observacao">{{ $orcamento->detalhes_orcamento }}</textarea>
@@ -177,6 +175,14 @@ document.addEventListener("DOMContentLoaded", function() {
           <option value="Duplicata Faturado">Duplicata Faturado</option>
           <option value="Múltiplas">Múltiplas</option>
         </select>
+      </div>
+      <div class="form-group">
+        <label for="valor_desconto">Valor do desconto:</label>
+        <input type="text" class="form-control" id="valor_desconto" name="valor_desconto">
+      </div>
+      <div class="form-group">
+        <label for="valor_antecipacao">Taxa de antecipação:</label>
+        <input type="text" class="form-control" id="valor_antecipacao" name="valor_antecipacao">
       </div>
       <!-- Tabela para exibir os produtos adicionados -->
       <table class="table mt-4">
