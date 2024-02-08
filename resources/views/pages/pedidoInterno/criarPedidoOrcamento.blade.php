@@ -105,6 +105,7 @@ document.addEventListener("DOMContentLoaded", function() {
       <div class="form-group">
         <label for="forma_pagamento">Forma de Pagamento:</label>
         <select class="form-control" id="forma_pagamento" name="forma_pagamento">
+          <option value="">Selecione uma forma de pagamento</option>
           <option value="Pix">Pix</option>
           <option value="Dinheiro">Dinheiro</option>
           <option value="Boleto">Boleto</option>
