@@ -128,8 +128,8 @@
             </div>
             <div class="modal-body">
                 <ul>
-                    <li><strong>Gabriel Felix</strong> - 201</li>
                     <li><strong>Telefone Fixo</strong> - 200</li>
+                    <li><strong>Gabriel</strong> - 201</li>
                     <li><strong>Administrativo</strong></li>
                     <ul>
                         <li><strong>João</strong>: 202</li>
@@ -137,18 +137,18 @@
                     <li><strong>Comercial</strong></li>
                     <ul>
                         <li><strong>Giovana</strong>: 203</li>
-                        <li><strong>Wagner</strong>: 204</li>
-                        <li><strong>Andreia</strong>: 205</li>
-                        <li><strong>Emily</strong>: 207</li>
+                        <li><strong>Ana</strong>: 204</li>
+                        <li><strong>Eli</strong>: 205</li>
+                        <li><strong>Michel</strong>: 206</li>
                         <li><strong>Comercial Fixo</strong>: 210</li>
                     </ul>
                     <li><strong>SAC</strong></li>
                     <ul>
-                        <li><strong>Luciane</strong>: 208</li>
+                        <li><strong>VAGO</strong>: 208</li>
                     </ul>
                     <li><strong>Recepção/BackOffice</strong></li>
                     <ul>
-                        <li><strong>Mariana</strong>: 206</li>
+                        <li><strong>Thayna</strong>: 209</li>
                     </ul>
                 </ul>
             </div>
@@ -158,6 +158,7 @@
         </div>
     </div>
 </div>
+
 
 <script>
     document.getElementById('btnConfirmar').addEventListener('click', function() {

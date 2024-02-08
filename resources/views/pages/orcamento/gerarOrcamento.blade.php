@@ -36,24 +36,29 @@
     .form-group {
         margin-bottom: 5px;
     }
+
     #cep-form {
     display: flex;
     flex-direction: column;
     align-items: center;
     }
+
     #transp-title {
         display: flex;
         justify-content: center;
-      }
+    }
+
     .form-group{
         width: 100%;
         height: auto;
     }
+
     #calcularFrete {
     width: 30%;
     height: auto;
     margin-top: 10px;
     }
+    
     .cards-container {
         display: flex;
         flex-wrap: wrap;

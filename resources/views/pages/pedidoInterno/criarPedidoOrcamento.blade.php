@@ -103,15 +103,6 @@ document.addEventListener("DOMContentLoaded", function() {
         <input type="text" class="form-control" id="cliente_id" name="cliente_id" value="{{ $orcamento->id_octa }}">
       </div>
       <div class="form-group">
-        <label for="vendedor">Vendedor:</label>
-        <select class="form-control" id="vendedor" name="vendedor">
-          <option value="">Selecione um vendedor</option>
-          @foreach ($vendedores as $vendedor)
-            <option value="{{ $vendedor }}">{{ $vendedor }}</option>
-          @endforeach
-        </select>
-      </div>
-      <div class="form-group">
         <label for="forma_pagamento">Forma de Pagamento:</label>
         <select class="form-control" id="forma_pagamento" name="forma_pagamento">
           <option value="Pix">Pix</option>
@@ -176,6 +167,15 @@ document.addEventListener("DOMContentLoaded", function() {
       <div class="form-group">
         <label for="data_venda">Data da Venda:</label>
         <input type="datetime-local" class="form-control" id="data_venda" name="data_venda" value="{{ date('Y-m-d\TH:i') }}">
+      </div>
+      <div class="form-group">
+        <label for="vendedor">Vendedor:</label>
+        <select class="form-control" id="vendedor" name="vendedor">
+          <option value="">Selecione um vendedor</option>
+          @foreach ($vendedores as $vendedor)
+            <option value="{{ $vendedor }}">{{ $vendedor }}</option>
+          @endforeach
+        </select>
       </div>
       <!-- Tabela para exibir os produtos adicionados -->
       <table class="table mt-4">
