@@ -8,9 +8,9 @@
       min-height: 200px;
     }
 </style>
-<script src="../../js/pedidoInterno.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-maskmoney/4.0.2/jquery.maskMoney.min.js"></script> <!-- Inclua o arquivo do jQuery MaskMoney -->
 
 <script>
 
@@ -38,9 +38,9 @@ document.addEventListener("DOMContentLoaded", function() {
     var vendedor = document.getElementById("vendedor").value;
     var formaPagamento = document.getElementById("forma_pagamento").value;
     var transportadora = document.getElementById("transportadora").value;
-    var valorFrete = document.getElementById("valor_frete").value;
-    var valorDesconto = document.getElementById("valor_desconto").value;
-    var valor_antecipacao = document.getElementById("valor_antecipacao").value;
+    var valorFrete = document.getElementById("valor_frete").val().replace("R$ ", "").replace(".", "").replace(",", "."); // Valor do frete sem a máscara
+    var valorDesconto = document.getElementById("valor_desconto").val().replace("R$ ", "").replace(".", "").replace(",", "."); // Valor do desconto sem a máscara
+    var valor_antecipacao = document.getElementById("valor_antecipacao").val().replace("R$ ", "").replace(".", "").replace(",", "."); // Valor da antecipação sem a máscara
     var observacao = document.getElementById("observacao").value;
     var marcador = Array.from(document.getElementById("marcador").selectedOptions).map(option => option.value);
     var dataVenda = document.getElementById("data_venda").value;
@@ -89,6 +89,13 @@ document.addEventListener("DOMContentLoaded", function() {
       }
     });
   });
+
+  // Aplicar a máscara monetária aos campos de frete, antecipação e desconto
+  $('#valor_frete, #valor_desconto, #valor_antecipacao').maskMoney({
+    prefix: 'R$ ', // Adiciona o símbolo de moeda
+    thousands: '.', // Usa ponto para milhares
+    decimal: ',' // Usa vírgula para decimais
+  });
 });
 </script>
 @endsection
@@ -109,7 +116,7 @@ document.addEventListener("DOMContentLoaded", function() {
       </div>
       <div class="form-group">
         <label for="valor_frete">Valor do Frete:</label>
-        <input type="text" class="form-control" id="valor_frete" name="valor_frete" value="{{ $orcamento->valor_frete }}">
+        <input type="text" class="form-control" id="valor_frete" name="valor_frete">
       </div>
       
       <div class="form-group">
