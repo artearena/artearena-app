@@ -369,7 +369,7 @@ function salvarPedido(pedidoId, dataVenda, marcadorValue, dataEnvio, forma_pagam
                   forma_pagamento: forma_pagamento,
                   valor_frete: valor_frete, 
                   valor_desconto: valor_desconto,
-                  valor_antecipacao: valor_antecipacao,
+                  outras_despesas: valor_antecipacao,
                   data_pedido: dataVenda,
                   data_prevista: dataEnvio,
                 },
@@ -425,13 +425,13 @@ function salvarPedido(pedidoId, dataVenda, marcadorValue, dataEnvio, forma_pagam
     document.addEventListener("DOMContentLoaded", function() {
       $(".btn-confirmar-pedido").click(function() {
         const pedidoId = $(this).closest(".pedido-row").data("pedido-id");
-        const marcadorValue = $(this).closest(".pedido-row").find("td:nth-child(10)").text();
-        const dataVenda = $(this).closest(".pedido-row").find("td:nth-child(11)").text();
+        const marcadorValue = $(this).closest(".pedido-row").find("td:nth-child(11)").text();
+        const dataVenda = $(this).closest(".pedido-row").find("td:nth-child(12)").text();
         const forma_pagamento = $(this).closest(".pedido-row").find("td:nth-child(5)").text();
         const nome_vendedor = $(this).closest(".pedido-row").find("td:nth-child(3)").text();
         const valor_frete = $(this).closest(".pedido-row").find("td:nth-child(7)").text();
         const valor_desconto = $(this).closest(".pedido-row").find("td:nth-child(8)").text();
-        const valor_antecipacao = $(this).closest(".pedido-row").find("td:nth-child(8)").text();
+        const valor_antecipacao = $(this).closest(".pedido-row").find("td:nth-child(9)").text();
 
         Swal.fire({
           title: 'Confirmar Pedido',

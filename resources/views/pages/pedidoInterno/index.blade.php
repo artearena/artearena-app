@@ -205,6 +205,7 @@
                             <td>{{ $pedido->transportadora }}</td>
                             <td>{{ $pedido->valor_frete }}</td>
                             <td>{{ $pedido->valor_desconto }}</td>
+                            <td>{{ $pedido->valor_antecipacao }}</td>
 
                             <td class="expandir-observacoes" id="observacao" style="overflow: auto;" lang="pt">{{ $pedido->observacao }}</td>
                             <td>
