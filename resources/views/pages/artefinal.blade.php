@@ -436,7 +436,7 @@ Consulta de Pedidos
                                     @elseif (in_array(auth()->user()->nome_usuario, $designers->toArray()))
                                         <!-- Se o usuário for um designer, exibe o botão "Ingressar no Card" -->
                                         <button class="btn btn-primary ingressar-no-card" data-pedido="{{ $pedido->id }}">Ingressar</button>
-                                    @elseif (in_array(auth()->user()->permissoes, 36))
+                                    @elseif (auth()->user()->permissoes, 36)
                                         <!-- Se o usuário for um designer, exibe o botão "Ingressar no Card" -->
                                         <button class="btn btn-primary ingressar-no-card" data-pedido="{{ $pedido->id }}">Ingressar</button>
                                     @else    
