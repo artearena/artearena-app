@@ -10,7 +10,6 @@
 </style>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-maskmoney/4.0.2/jquery.maskMoney.min.js"></script> <!-- Inclua o arquivo do jQuery MaskMoney -->
 
 <script>
 
@@ -90,12 +89,7 @@ document.addEventListener("DOMContentLoaded", function() {
     });
   });
 
-  // Aplicar a máscara monetária aos campos de frete, antecipação e desconto
-  $('#valor_frete, #valor_desconto, #valor_antecipacao').maskMoney({
-    prefix: 'R$ ', // Adiciona o símbolo de moeda
-    thousands: '.', // Usa ponto para milhares
-    decimal: ',' // Usa vírgula para decimais
-  });
+
 });
 </script>
 @endsection
