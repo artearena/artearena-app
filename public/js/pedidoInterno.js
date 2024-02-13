@@ -256,7 +256,7 @@ function confirmarLink(link) {
 }
 function formatarData(data) {
   var dataObjeto = new Date(data);
-  var dia = dataObjeto.getDate();
+  var dia = dataObjeto.getDate() + 1;
   var mes = dataObjeto.getMonth() + 1; // Lembrando que os meses em JavaScript são indexados a partir de 0
   var ano = dataObjeto.getFullYear();
 
