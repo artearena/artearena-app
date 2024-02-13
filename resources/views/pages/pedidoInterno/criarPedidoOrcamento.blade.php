@@ -38,9 +38,9 @@ document.addEventListener("DOMContentLoaded", function() {
     var vendedor = document.getElementById("vendedor").value;
     var formaPagamento = document.getElementById("forma_pagamento").value;
     var transportadora = document.getElementById("transportadora").value;
-    var valorFrete = $('#valor_frete').maskMoney('unmasked')[0]; // Valor do frete sem a máscara
-    var valorDesconto = $('#valor_desconto').maskMoney('unmasked')[0]; // Valor do desconto sem a máscara
-    var valorAntecipacao = $('#valor_antecipacao').maskMoney('unmasked')[0]; // Valor da antecipação sem a máscara
+    var valorFrete = document.getElementById("valor_frete").val().replace("R$ ", "").replace(".", "").replace(",", "."); // Valor do frete sem a máscara
+    var valorDesconto = document.getElementById("valor_desconto").val().replace("R$ ", "").replace(".", "").replace(",", "."); // Valor do desconto sem a máscara
+    var valor_antecipacao = document.getElementById("valor_antecipacao").val().replace("R$ ", "").replace(".", "").replace(",", "."); // Valor da antecipação sem a máscara
     var observacao = document.getElementById("observacao").value;
     var marcador = Array.from(document.getElementById("marcador").selectedOptions).map(option => option.value);
     var dataVenda = document.getElementById("data_venda").value;
@@ -51,7 +51,7 @@ document.addEventListener("DOMContentLoaded", function() {
       transportadora: transportadora,
       valor_frete: valorFrete,
       valor_desconto: valorDesconto,
-      valor_antecipacao: valorAntecipacao,
+      valor_antecipacao: valor_antecipacao,
       observacao: observacao,
       marcador: marcador,
       data_venda: dataVenda,
@@ -127,7 +127,6 @@ document.addEventListener("DOMContentLoaded", function() {
         <label for="marcador">Marcador:</label>
         <select class="form-control select2" id="marcador" name="marcador[]" multiple>
           <option value="">Selecione um marcador</option>
-          <option value="">Selecione um marcador</option>
           <option value="ADM - TERCEIRIZADO EM IMPRESSÃO">ADM - TERCEIRIZADO EM IMPRESSÃO</option>
           <option value="ADM - TERCEIRIZADO EM PRODUÇÃO">ADM - TERCEIRIZADO EM PRODUÇÃO</option>
           <option value="ADM - TERCEIRZADO">ADM - TERCEIRZADO</option>
@@ -153,7 +152,7 @@ document.addEventListener("DOMContentLoaded", function() {
           <option value="PRODUÇÃO - CALANDRA">PRODUÇÃO - CALANDRA</option>
           <option value="PRODUÇÃO - CONFERENCIA OK">PRODUÇÃO - CONFERENCIA OK</option>
           <option value="PRODUÇÃO - COSTURA">PRODUÇÃO - COSTURA</option>
-          <option value="PRODUÇÃO - PRENS">PRODUÇÃO - PRENS</option>        
+          <option value="PRODUÇÃO - PRENS">PRODUÇÃO - PRENS</option>
         </select>
       </div>
       <div class="form-group">
