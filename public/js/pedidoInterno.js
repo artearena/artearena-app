@@ -308,6 +308,8 @@ function salvarPedido(pedidoId, dataVenda, marcadorValue, dataEnvio, forma_pagam
             .then(produtoEncontrado => {
                 if (produtoEncontrado) {
                     // Retorna um objeto com as informações necessárias do produto
+                    console.error(`Produto encontrado: ${produtoEncontrado}`);
+
                     return {
                         codigo: produtoEncontrado.CODIGO,
                         descricao: produtoEncontrado.NOME,
