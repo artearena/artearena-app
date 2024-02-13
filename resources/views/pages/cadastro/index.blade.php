@@ -66,10 +66,6 @@
                             </div>
                             <div class="form-group">
                                 <label for="uf_juridica">UF:</label>
-                                <input type="text" name="uf_juridica" id="uf_juridica" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <label for="uf_juridica">UF:</label>
                                 <select name="uf_juridica" id="uf_juridica" class="form-control">
                                     <option value="">Selecione a UF</option>
                                 </select>

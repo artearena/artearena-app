@@ -301,32 +301,36 @@ function salvarPedido(pedidoId, dataVenda, marcadorValue, dataEnvio, forma_pagam
         Swal.fire('Erro', 'Nenhum produto encontrado no pedido. Por favor, adicione produtos ao pedido.', 'error');
         return;
       }
-      // Mapeia a lista de produtos do pedido para obter códigos de todos os produtos
       const promessasProdutos = data.map(produtoPedido => {
         // Segunda requisição para buscar produto pelo nome
         return fetch('/produto/buscar-por-nome/' + produtoPedido.produto_nome)
-          .then(response => response.json())
-          .then(produtoEncontrado => {
-            if (produtoEncontrado) {
-              // Retorna um objeto com as informações necessárias do produto
-              return {
-                codigo: produtoEncontrado.CODIGO, // Ajuste para usar o código do produto
-                descricao: produtoEncontrado.NOME, // Adicione outros campos do produto conforme necessário
-                valor_unitario: parseFloat(produtoEncontrado.PRECO), // Converta para número, se necessário
-                quantidade: produtoPedido.quantidade,
-              };
-            } else {
-              console.error(`Produto não encontrado: ${produtoPedido.produto_nome}`);
-              Swal.fire('Erro', `Produto não encontrado: ${produtoPedido.produto_nome}. Por favor, verifique o nome do produto.`, 'error');
-              return null;
-            }
-          })
-          .catch(error => {
-            console.error('Erro ao buscar produto por nome:', error);
-            Swal.fire('Erro', 'Erro ao buscar produto por nome. Por favor, tente novamente.', 'error');
-            return null;
-          });
-      });
+            .then(response => response.json())
+            .then(produtoEncontrado => {
+                if (produtoEncontrado) {
+                    // Retorna um objeto com as informações necessárias do produto
+                    return {
+                        codigo: produtoEncontrado.CODIGO,
+                        descricao: produtoEncontrado.NOME,
+                        valor_unitario: parseFloat(produtoEncontrado.PRECO),
+                        quantidade: produtoPedido.quantidade,
+                    };
+                } else {
+                    console.error(`Produto não encontrado: ${produtoPedido.produto_nome}`);
+                    Swal.fire('Erro', `Produto não encontrado: ${produtoPedido.produto_nome}. Por favor, verifique o nome do produto.`, 'error');
+                    // Defina a descrição como o nome do produto do pedido
+                    return {
+                        descricao: produtoPedido.produto_nome,
+                        quantidade: produtoPedido.quantidade,
+                    };
+                }
+            })
+            .catch(error => {
+                console.error('Erro ao buscar produto por nome:', error);
+                Swal.fire('Erro', 'Erro ao buscar produto por nome. Por favor, tente novamente.', 'error');
+                return null;
+            });
+    });
+    
       // Aguarda todas as promessas serem resolvidas
       Promise.all(promessasProdutos)
         .then(produtosValidos => {
