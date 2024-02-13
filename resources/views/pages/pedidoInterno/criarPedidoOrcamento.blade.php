@@ -37,9 +37,9 @@ document.addEventListener("DOMContentLoaded", function() {
     var vendedor = document.getElementById("vendedor").value;
     var formaPagamento = document.getElementById("forma_pagamento").value;
     var transportadora = document.getElementById("transportadora").value;
-    var valorFrete = document.getElementById("valor_frete").val().replace("R$ ", "").replace(".", "").replace(",", "."); // Valor do frete sem a máscara
-    var valorDesconto = document.getElementById("valor_desconto").val().replace("R$ ", "").replace(".", "").replace(",", "."); // Valor do desconto sem a máscara
-    var valor_antecipacao = document.getElementById("valor_antecipacao").val().replace("R$ ", "").replace(".", "").replace(",", "."); // Valor da antecipação sem a máscara
+    var valorFrete = document.getElementById("valor_frete").value;
+    var valorDesconto = document.getElementById("valor_desconto").value;
+    var valor_antecipacao = document.getElementById("valor_antecipacao").value;
     var observacao = document.getElementById("observacao").value;
     var marcador = Array.from(document.getElementById("marcador").selectedOptions).map(option => option.value);
     var dataVenda = document.getElementById("data_venda").value;
