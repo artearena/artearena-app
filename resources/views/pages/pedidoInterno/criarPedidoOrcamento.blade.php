@@ -127,7 +127,33 @@ document.addEventListener("DOMContentLoaded", function() {
         <label for="marcador">Marcador:</label>
         <select class="form-control select2" id="marcador" name="marcador[]" multiple>
           <option value="">Selecione um marcador</option>
-          <!-- Opções do marcador -->
+          <option value="">Selecione um marcador</option>
+          <option value="ADM - TERCEIRIZADO EM IMPRESSÃO">ADM - TERCEIRIZADO EM IMPRESSÃO</option>
+          <option value="ADM - TERCEIRIZADO EM PRODUÇÃO">ADM - TERCEIRIZADO EM PRODUÇÃO</option>
+          <option value="ADM - TERCEIRZADO">ADM - TERCEIRZADO</option>
+          <option value="BACKOFFICE">BACKOFFICE</option>
+          <option value="BACKOFFICE - AGUARDANDO APROVAÇÃO DE ESBOÇO">BACKOFFICE - AGUARDANDO APROVAÇÃO DE ESBOÇO</option>
+          <option value="BACKOFFICE - AGUARDANDO ENVIO DE ARTE">BACKOFFICE - AGUARDANDO ENVIO DE ARTE</option>
+          <option value="BACKOFFICE - AGUARDANDO RESTANTE DO PAGAMENTO">BACKOFFICE - AGUARDANDO RESTANTE DO PAGAMENTO</option>
+          <option value="BACKOFFICE - ANTECIPAÇÃO">BACKOFFICE - ANTECIPAÇÃO</option>
+          <option value="BACKOFFICE - CONFIRMAÇÃO DE PAGAMENTO">BACKOFFICE - CONFIRMAÇÃO DE PAGAMENTO</option>
+          <option value="BACKOFFICE - CONTRATAR FRETE">BACKOFFICE - CONTRATAR FRETE</option>
+          <option value="BACKOFFICE - FATURADO">BACKOFFICE - FATURADO</option>
+          <option value="BACKOFFICE - PENDENTE ARTE FINAL">BACKOFFICE - PENDENTE ARTE FINAL</option>
+          <option value="BACKOFFICE - PROBLEMA NO PAGAMENTO">BACKOFFICE - PROBLEMA NO PAGAMENTO</option>
+          <option value="Conflito de endereço">Conflito de endereço</option>
+          <option value="DESIGN - ARTE FINAL OK">DESIGN - ARTE FINAL OK</option>
+          <option value="Devolvido">Devolvido</option>
+          <option value="EXPEDIÇÃO - AGUARDANDO FINANCEIRO">EXPEDIÇÃO - AGUARDANDO FINANCEIRO</option>
+          <option value="EXPEDIÇÃO - RETIRADA DISPONÍVEL">EXPEDIÇÃO - RETIRADA DISPONÍVEL</option>
+          <option value="IMPRESSÃO - AGUARDANDO IMPRESSÃO">IMPRESSÃO - AGUARDANDO IMPRESSÃO</option>
+          <option value="IMPRESSÃO - EM IMPRESSÃO">IMPRESSÃO - EM IMPRESSÃO</option>
+          <option value="IMPRESSÃO - FICHA IMPRESSA">IMPRESSÃO - FICHA IMPRESSA</option>
+          <option value="IMPRESSÃO - OK">IMPRESSÃO - OK</option>
+          <option value="PRODUÇÃO - CALANDRA">PRODUÇÃO - CALANDRA</option>
+          <option value="PRODUÇÃO - CONFERENCIA OK">PRODUÇÃO - CONFERENCIA OK</option>
+          <option value="PRODUÇÃO - COSTURA">PRODUÇÃO - COSTURA</option>
+          <option value="PRODUÇÃO - PRENS">PRODUÇÃO - PRENS</option>        
         </select>
       </div>
       <div class="form-group">
@@ -138,14 +164,24 @@ document.addEventListener("DOMContentLoaded", function() {
         <label for="vendedor">Vendedor:</label>
         <select class="form-control" id="vendedor" name="vendedor">
           <option value="">Selecione um vendedor</option>
-          <!-- Opções do vendedor -->
+          @foreach ($vendedores as $vendedor)
+            <option value="{{ $vendedor }}">{{ $vendedor }}</option>
+          @endforeach
         </select>
       </div>
       <div class="form-group">
         <label for="forma_pagamento">Forma de Pagamento:</label>
         <select class="form-control" id="forma_pagamento" name="forma_pagamento">
           <option value="">Selecione uma forma de pagamento</option>
-          <!-- Opções de forma de pagamento -->
+          <option value="Pix">Pix</option>
+          <option value="Dinheiro">Dinheiro</option>
+          <option value="Boleto">Boleto</option>
+          <option value="Cartão de Crédito">Cartão de Crédito</option>
+          <option value="Cartão de Débito">Cartão de Débito</option>
+          <option value="Transferência">Transferência</option>
+          <option value="Depósito">Depósito</option>
+          <option value="Duplicata Faturado">Duplicata Faturado</option>
+          <option value="Múltiplas">Múltiplas</option>
         </select>
       </div>
       <div class="form-group">
