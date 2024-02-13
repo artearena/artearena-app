@@ -183,6 +183,7 @@
                     <th>Transportadora</th>
                     <th>Valor do Frete</th>
                     <th>Valor do Desconto</th>
+                    <th>Valor da Antecipacao</th>
                     <th class="col-lg-6">Observação</th>
                     <th>Marcador</th>
                     <th>Data da Venda</th>
