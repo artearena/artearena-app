@@ -367,7 +367,7 @@ function salvarPedido(pedidoId, dataVenda, marcadorValue, dataEnvio, forma_pagam
                   marcadores: marcadores,
                   nome_vendedor: nome_vendedor,
                   forma_pagamento: forma_pagamento,
-                  meio_pagamento: 'Banco Inter',
+                  meio_pagamento: 'Banco Banco Inter',
                   valor_frete: valor_frete, 
                   valor_desconto: valor_desconto,
                   outras_despesas: valor_antecipacao,
