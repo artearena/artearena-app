@@ -2,6 +2,14 @@
 @section('title')
     Cadastro pessoal
 @endsection
+@section('style')
+<style>
+    .cnpj-input-size {
+        width: 250px;
+    }
+</style>
+@endsection
+
 @section('content')
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
@@ -43,9 +51,10 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="cnpj">CNPJ:</label>
-                                            <input type="text" name="cnpj" id="cnpj" class="form-control cnpj">
+                                            <input type="text" name="cnpj" id="cnpj" class="form-control cnpj cnpj-input-size">
                                         </div>
                                     </div>
+
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="ie">Inscrição Estadual:</label>
