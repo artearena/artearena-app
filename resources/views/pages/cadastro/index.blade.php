@@ -17,35 +17,47 @@
                         <input type="hidden" name="token" value="{{ request()->token }}">
                         <input type="hidden" name="id_cliente_pedido" value="{{ request()->id_cliente_pedido }}">
 
-                         <!-- Seleção de Pessoa Jurídica ou Pessoa Física -->
-                        <div class="form-check">
+                        <div class="form-check form-check-inline">
                             <input type="radio" class="form-check-input" id="pessoa_juridica" name="tipo_pessoa" value="juridica">
                             <label class="form-check-label" for="pessoa_juridica">Pessoa Jurídica</label>
                         </div>
-                        <div class="form-check">
+                        <div class="form-check form-check-inline">
                             <input type="radio" class="form-check-input" id="pessoa_fisica" name="tipo_pessoa" value="fisica">
                             <label class="form-check-label" for="pessoa_fisica">Pessoa Física</label>
                         </div>
+
                         
                         <!-- Pessoa Jurídica -->
                         <div id="pessoa_juridica_campos" style="display: none;">
                             <!-- Container: Dados da Empresa -->
                             <div id="dados_empresa_container">
-                                <div class="form-group">
-                                    <label for="razao_social">Razão Social:</label>
-                                    <input type="text" name="razao_social" id="razao_social" class="form-control">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="razao_social">Razão Social:</label>
+                                            <input type="text" name="razao_social" id="razao_social" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="ie">Inscrição Estadual:</label>
+                                            <input type="text" name="ie" id="ie" class="form-control">
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="form-group">
-                                    <label for="cnpj">CNPJ:</label>
-                                    <input type="text" name="cnpj" id="cnpj" class="form-control cnpj">
-                                </div>
-                                <div class="form-group">
-                                    <label for="ie">Inscrição Estadual:</label>
-                                    <input type="text" name="ie" id="ie" class="form-control">
-                                </div>
-                                <div class="form-group">
-                                    <label for="email_juridica">Email:</label>
-                                    <input type="email" name="email_juridica" id="email_juridica" class="form-control">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="cnpj">CNPJ:</label>
+                                            <input type="text" name="cnpj" id="cnpj" class="form-control cnpj">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="email_juridica">Email:</label>
+                                            <input type="email" name="email_juridica" id="email_juridica" class="form-control">
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
 
