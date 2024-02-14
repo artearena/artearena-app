@@ -7,6 +7,9 @@
     .cnpj-input-size {
         width: 250px;
     }
+    .ie {
+        width: 250px;
+    }
 </style>
 @endsection
 
