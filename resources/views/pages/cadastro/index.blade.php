@@ -52,12 +52,6 @@
                                             <input type="text" name="cnpj" id="cnpj" class="form-control cnpj">
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="email_juridica">Email:</label>
-                                            <input type="email" name="email_juridica" id="email_juridica" class="form-control">
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
 
@@ -116,6 +110,12 @@
                                 <div class="form-group">
                                     <label for="cell_juridica">Cell:</label>
                                     <input type="text" name="cell_juridica" id="cell_juridica" class="form-control telefone_cel">
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="email_juridica">Email:</label>
+                                        <input type="email" name="email_juridica" id="email_juridica" class="form-control">
+                                    </div>
                                 </div>
                             </div>
                         </div>
