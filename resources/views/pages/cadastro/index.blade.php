@@ -12,74 +12,81 @@
             <div class="card">
                 <div class="card-header">Cadastro</div>
                 <div class="card-body">
-                 <!-- Seleção de Pessoa Jurídica ou Pessoa Física -->
-                <div class="form-check">
-                    <input type="radio" class="form-check-input" id="pessoa_juridica" name="tipo_pessoa" value="juridica">
-                    <label class="form-check-label" for="pessoa_juridica">Pessoa Jurídica</label>
-                </div>
-                <div class="form-check">
-                    <input type="radio" class="form-check-input" id="pessoa_fisica" name="tipo_pessoa" value="fisica">
-                    <label class="form-check-label" for="pessoa_fisica">Pessoa Física</label>
-                </div>
-                
-                <!-- Container: Dados da Empresa -->
-                <div id="dados_empresa_container" style="display: none;">
-                    <div class="form-group">
-                        <label for="razao_social">Razão Social:</label>
-                        <input type="text" name="razao_social" id="razao_social" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label for="cnpj">CNPJ:</label>
-                        <input type="text" name="cnpj" id="cnpj" class="form-control cnpj">
-                    </div>
-                    <div class="form-group">
-                        <label for="ie">Inscrição Estadual:</label>
-                        <input type="text" name="ie" id="ie" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label for="email_juridica">Email:</label>
-                        <input type="email" name="email_juridica" id="email_juridica" class="form-control">
-                    </div>
-                </div>
+                <form method="POST" action="{{ route('cadastro.store', ['token' => request()->token, 'id_cliente_pedido' => request()->id_cliente_pedido]) }}">
+                        @csrf
+                        <input type="hidden" name="token" value="{{ request()->token }}">
+                        <input type="hidden" name="id_cliente_pedido" value="{{ request()->id_cliente_pedido }}">
 
-                <!-- Container: Endereço -->
-                <div id="endereco_container" style="display: none;">
-                    <div class="form-group">
-                        <label for="cep_juridica">CEP:</label>
-                        <input type="text" name="cep_juridica" id="cep_juridica" class="form-control cep" onblur="consultarCep('juridica')">
-                    </div>
-                    <div class="form-group">
-                        <label for="endereco_juridica">Endereço:</label>
-                        <input type="text" name="endereco_juridica" id="endereco_juridica" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label for="numero_juridica">N°:</label>
-                        <input type="text" name="numero_juridica" id="numero_juridica" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label for="bairro_juridica">Bairro:</label>
-                        <input type="text" name="bairro_juridica" id="bairro_juridica" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label for="cidade_juridica">Cidade:</label>
-                        <input type="text" name="cidade_juridica" id="cidade_juridica" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label for="uf_juridica">UF:</label>
-                        <select name="uf_juridica" id="uf_juridica" class="form-control">
-                            <option value="">Selecione a UF</option>
-                        </select>
-                    </div>
-                </div>
+                         <!-- Seleção de Pessoa Jurídica ou Pessoa Física -->
+                        <div class="form-check">
+                            <input type="radio" class="form-check-input" id="pessoa_juridica" name="tipo_pessoa" value="juridica">
+                            <label class="form-check-label" for="pessoa_juridica">Pessoa Jurídica</label>
+                        </div>
+                        <div class="form-check">
+                            <input type="radio" class="form-check-input" id="pessoa_fisica" name="tipo_pessoa" value="fisica">
+                            <label class="form-check-label" for="pessoa_fisica">Pessoa Física</label>
+                        </div>
+                        
+                        <!-- Pessoa Jurídica -->
+                        <div id="pessoa_juridica_campos" style="display: none;">
+                            <!-- Container: Dados da Empresa -->
+                            <div id="dados_empresa_container" style="display: none;">
+                                <div class="form-group">
+                                    <label for="razao_social">Razão Social:</label>
+                                    <input type="text" name="razao_social" id="razao_social" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for="cnpj">CNPJ:</label>
+                                    <input type="text" name="cnpj" id="cnpj" class="form-control cnpj">
+                                </div>
+                                <div class="form-group">
+                                    <label for="ie">Inscrição Estadual:</label>
+                                    <input type="text" name="ie" id="ie" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for="email_juridica">Email:</label>
+                                    <input type="email" name="email_juridica" id="email_juridica" class="form-control">
+                                </div>
+                            </div>
 
-                <!-- Container: Contato -->
-                <div id="contato_container" style="display: none;">
-                    <div class="form-group">
-                        <label for="cell_juridica">Cell:</label>
-                        <input type="text" name="cell_juridica" id="cell_juridica" class="form-control telefone_cel">
-                    </div>
-                </div>
+                            <!-- Container: Endereço -->
+                            <div id="endereco_container" style="display: none;">
+                                <div class="form-group">
+                                    <label for="cep_juridica">CEP:</label>
+                                    <input type="text" name="cep_juridica" id="cep_juridica" class="form-control cep" onblur="consultarCep('juridica')">
+                                </div>
+                                <div class="form-group">
+                                    <label for="endereco_juridica">Endereço:</label>
+                                    <input type="text" name="endereco_juridica" id="endereco_juridica" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for="numero_juridica">N°:</label>
+                                    <input type="text" name="numero_juridica" id="numero_juridica" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for="bairro_juridica">Bairro:</label>
+                                    <input type="text" name="bairro_juridica" id="bairro_juridica" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for="cidade_juridica">Cidade:</label>
+                                    <input type="text" name="cidade_juridica" id="cidade_juridica" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for="uf_juridica">UF:</label>
+                                    <select name="uf_juridica" id="uf_juridica" class="form-control">
+                                        <option value="">Selecione a UF</option>
+                                    </select>
+                                </div>
+                            </div>
 
+                            <!-- Container: Contato -->
+                            <div id="contato_container" style="display: none;">
+                                <div class="form-group">
+                                    <label for="cell_juridica">Cell:</label>
+                                    <input type="text" name="cell_juridica" id="cell_juridica" class="form-control telefone_cel">
+                                </div>
+                            </div>
+                        </div>
                         <!-- Pessoa Física -->
                         <div id="pessoa_fisica_campos" style="display: none;">
                             <div class="form-group">
