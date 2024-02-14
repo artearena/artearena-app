@@ -326,10 +326,10 @@
                     if (data.erro) {
                         alert('CEP não encontrado.');
                     } else {
-                        $("#endereco_" + tipo).val(data.street);
-                        $("#bairro_" + tipo).val(data.district);
-                        $("#cidade_" + tipo).val(data.city);
-                        $("#uf_" + tipo).val(data.stateShortname);
+                        $("#endereco_" + tipo).value(data.street);
+                        $("#bairro_" + tipo).value(data.district);
+                        $("#cidade_" + tipo).value(data.city);
+                        $("#uf_" + tipo).value(data.stateShortname);
                     }
                 },
                 error: function() {
