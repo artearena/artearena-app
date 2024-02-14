@@ -10,6 +10,10 @@
     .ie {
         width: 250px;
     }
+    .razao_social{
+        width: 800px;
+    }
+
 </style>
 @endsection
 
