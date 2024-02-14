@@ -379,12 +379,12 @@
         estados.forEach(function(estado) {
             $('#uf_juridica').append($('<option>', {
                 value: estado.sigla,
-                text: estado.nome
+                text: estado.sigla
             }));
 
             $('#uf_fisica').append($('<option>', {
                 value: estado.sigla,
-                text: estado.nome
+                text: estado.sigla
             }));
         });
     });
