@@ -53,9 +53,6 @@
                                             <label for="cnpj">CNPJ:</label>
                                             <input type="text" name="cnpj" id="cnpj" class="form-control cnpj cnpj-input-size">
                                         </div>
-                                    </div>
-
-                                    <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="ie">Inscrição Estadual:</label>
                                             <input type="text" name="ie" id="ie" class="form-control ie">
