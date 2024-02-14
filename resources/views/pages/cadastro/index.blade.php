@@ -324,7 +324,7 @@
                         alert('CEP não encontrado.');
                     } else {
                         console.log('teste');
-                        $("#endereco_" + tipo).value(data.street);
+                        $("#endereco_" + tipo).val(data.street);
                         $("#bairro_" + tipo).val(data.district);
                         $("#cidade_" + tipo).val(data.city);
                         $("#uf_" + tipo).val(data.stateShortname);
