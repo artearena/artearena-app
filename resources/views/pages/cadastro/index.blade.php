@@ -323,7 +323,7 @@
                     if (data.erro) {
                         alert('CEP não encontrado.');
                     } else {
-                        console.log('teste');
+                        console.log(data);
                         $("#endereco_" + tipo).val(data.street);
                         $("#bairro_" + tipo).val(data.district);
                         $("#cidade_" + tipo).val(data.city);
