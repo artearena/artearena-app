@@ -30,7 +30,7 @@
                         <!-- Pessoa Jurídica -->
                         <div id="pessoa_juridica_campos" style="display: none;">
                             <!-- Container: Dados da Empresa -->
-                            <div id="dados_empresa_container" style="display: none;">
+                            <div id="dados_empresa_container">
                                 <div class="form-group">
                                     <label for="razao_social">Razão Social:</label>
                                     <input type="text" name="razao_social" id="razao_social" class="form-control">
@@ -50,7 +50,7 @@
                             </div>
 
                             <!-- Container: Endereço -->
-                            <div id="endereco_container" style="display: none;">
+                            <div id="endereco_container">
                                 <div class="form-group">
                                     <label for="cep_juridica">CEP:</label>
                                     <input type="text" name="cep_juridica" id="cep_juridica" class="form-control cep" onblur="consultarCep('juridica')">
@@ -80,7 +80,7 @@
                             </div>
 
                             <!-- Container: Contato -->
-                            <div id="contato_container" style="display: none;">
+                            <div id="contato_container">
                                 <div class="form-group">
                                     <label for="cell_juridica">Cell:</label>
                                     <input type="text" name="cell_juridica" id="cell_juridica" class="form-control telefone_cel">
