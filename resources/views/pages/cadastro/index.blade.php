@@ -90,11 +90,10 @@
                                             <input type="text" name="numero_juridica" id="numero_juridica" class="form-control" style="width: 70px;"> <!-- Defini uma largura específica para o campo número -->
                                         </div>
                                     </div>
-                                    <div class="col-md-3"> <!-- Nova div para o campo do bairro -->
-                                        <div class="form-group">
-                                            <label for="bairro_juridica">Bairro:</label>
-                                            <input type="text" name="bairro_juridica" id="bairro_juridica" class="form-control">
-                                        </div>
+
+                                    <div class="form-group">
+                                        <label for="bairro_juridica">Bairro:</label>
+                                        <input type="text" name="bairro_juridica" id="bairro_juridica" class="form-control">
                                     </div>
                                 </div>
                                 <div class="row">
