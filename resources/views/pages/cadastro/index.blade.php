@@ -319,17 +319,15 @@
                 url: 'https://brasilaberto.com/api/v1/zipcode/' + cep,
                 type: 'GET',
                 dataType: 'json',
-                headers: {
-                    'Authorization': 'Bearer SEU_TOKEN_AQUI'
-                },
                 success: function(data) {
                     if (data.erro) {
                         alert('CEP não encontrado.');
                     } else {
+                        console.log('teste');
                         $("#endereco_" + tipo).value(data.street);
-                        $("#bairro_" + tipo).value(data.district);
-                        $("#cidade_" + tipo).value(data.city);
-                        $("#uf_" + tipo).value(data.stateShortname);
+                        $("#bairro_" + tipo).val(data.district);
+                        $("#cidade_" + tipo).val(data.city);
+                        $("#uf_" + tipo).val(data.stateShortname);
                     }
                 },
                 error: function() {
