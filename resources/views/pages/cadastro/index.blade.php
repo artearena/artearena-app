@@ -103,17 +103,17 @@
                                             <input type="text" name="cidade_juridica" id="cidade_juridica" class="form-control">
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-3">
                                         <div class="form-group">
                                             <label for="uf_juridica">UF:</label>
-                                            <select name="uf_juridica" id="uf_juridica" class="form-control">
+                                            <select name="uf_juridica" id="uf_juridica" class="form-control" style="width: 70px;">
                                                 <option value="">Selecione a UF</option>
                                             </select>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-
+                            <hr>
 
                             <!-- Container: Contato -->
                             <div id="contato_container">
@@ -310,23 +310,26 @@
         $(".rg").mask("00.000.000-0");
     });
 
-    // Função para consultar o CEP e preencher os campos de endereço automaticamente
     function consultarCep(tipo) {
         var cep = $("#cep_" + tipo).val();
         cep = cep.replace(/\D/g, '');
 
         if (cep.length === 8) {
             $.ajax({
-                url: 'https://viacep.com.br/ws/' + cep + '/json/',
+                url: 'https://brasilaberto.com/api/v1/zipcode/' + cep,
                 type: 'GET',
                 dataType: 'json',
+                headers: {
+                    'Authorization': 'Bearer SEU_TOKEN_AQUI'
+                },
                 success: function(data) {
                     if (data.erro) {
                         alert('CEP não encontrado.');
                     } else {
-                        $("#endereco_" + tipo).val(data.logradouro);
-                        $("#bairro_" + tipo).val(data.bairro);
-                        $("#cidade_" + tipo).val(data.localidade);
+                        $("#endereco_" + tipo).val(data.street);
+                        $("#bairro_" + tipo).val(data.district);
+                        $("#cidade_" + tipo).val(data.city);
+                        $("#uf_" + tipo).val(data.stateShortname);
                     }
                 },
                 error: function() {
