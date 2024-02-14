@@ -84,19 +84,21 @@
                                             <input type="text" name="endereco_juridica" id="endereco_juridica" class="form-control">
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-3"> <!-- Reduzi a largura para 3 colunas (de 12) -->
                                         <div class="form-group">
                                             <label for="numero_juridica">N°:</label>
-                                            <input type="text" name="numero_juridica" id="numero_juridica" class="form-control">
+                                            <input type="text" name="numero_juridica" id="numero_juridica" class="form-control" style="width: 70px;"> <!-- Defini uma largura específica para o campo número -->
                                         </div>
-                                    <div>
-                                </div>
-                                <div class="row">
+                                    </div>
+                                    <div class="col-md-3"> <!-- Nova div para o campo do bairro -->
                                         <div class="form-group">
                                             <label for="bairro_juridica">Bairro:</label>
                                             <input type="text" name="bairro_juridica" id="bairro_juridica" class="form-control">
                                         </div>
-
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="cidade_juridica">Cidade:</label>
                                             <input type="text" name="cidade_juridica" id="cidade_juridica" class="form-control">
@@ -112,6 +114,7 @@
                                     </div>
                                 </div>
                             </div>
+
 
                             <!-- Container: Contato -->
                             <div id="contato_container">
