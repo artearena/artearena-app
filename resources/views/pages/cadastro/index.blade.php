@@ -83,7 +83,7 @@
                                             <label for="endereco_juridica">Endereço:</label>
                                             <input type="text" name="endereco_juridica" id="endereco_juridica" class="form-control">
                                         </div>
-                                    <div>
+                                    </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="numero_juridica">N°:</label>
