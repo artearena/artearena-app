@@ -51,15 +51,16 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="form-inline">
-                                        <label for="cnpj">CNPJ:</label>
-                                        <input type="text" name="cnpj" id="cnpj" class="form-control cnpj cnpj-input-size">
-                                    </div>
-                                    <div class="form-inline">
-                                        <label for="ie">Inscrição Estadual:</label>
-                                        <input type="text" name="ie" id="ie" class="form-control ie">
-                                    </div>
+                                <div class="col-md-6">
+                                    <label for="cnpj">CNPJ:</label>
+                                    <input type="text" name="cnpj" id="cnpj" class="form-control cnpj cnpj-input-size">
                                 </div>
+                                <div class="col-md-6">
+                                    <label for="ie">Inscrição Estadual:</label>
+                                    <input type="text" name="ie" id="ie" class="form-control ie">
+                                </div>
+                                </div>
+
                             </div>
                             <hr>
                             <!-- Container: Endereço -->
