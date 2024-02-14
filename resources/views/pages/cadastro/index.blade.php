@@ -38,12 +38,6 @@
                                             <input type="text" name="razao_social" id="razao_social" class="form-control">
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="ie">Inscrição Estadual:</label>
-                                            <input type="text" name="ie" id="ie" class="form-control">
-                                        </div>
-                                    </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6">
@@ -52,9 +46,15 @@
                                             <input type="text" name="cnpj" id="cnpj" class="form-control cnpj">
                                         </div>
                                     </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="ie">Inscrição Estadual:</label>
+                                            <input type="text" name="ie" id="ie" class="form-control">
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-
+                            <hr>
                             <!-- Container: Endereço -->
                             <div id="endereco_container">
                                 <div class="row">
@@ -92,8 +92,6 @@
                                             <input type="text" name="cidade_juridica" id="cidade_juridica" class="form-control">
                                         </div>
                                     </div>
-                                </div>
-                                <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="uf_juridica">UF:</label>
