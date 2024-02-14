@@ -323,11 +323,10 @@
                     if (data.erro) {
                         alert('CEP não encontrado.');
                     } else {
-                        console.log(data);
-                        $("#endereco_" + tipo).val(data.street);
-                        $("#bairro_" + tipo).val(data.district);
-                        $("#cidade_" + tipo).val(data.city);
-                        $("#uf_" + tipo).val(data.stateShortname);
+                        $("#endereco_" + tipo).val(data.result.street);
+                        $("#bairro_" + tipo).val(data.result.district);
+                        $("#cidade_" + tipo).val(data.result.city);
+                        $("#uf_" + tipo).val(data.result.stateShortname);
                     }
                 },
                 error: function() {
