@@ -129,7 +129,7 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- Pessoa Física -->
+                       <!-- Pessoa Física -->
                         <div id="pessoa_fisica_campos" style="display: none;">
                             <div class="form-group">
                                 <label for="nome_completo">Nome Completo:</label>
@@ -143,77 +143,64 @@
                                 <label for="cpf">CPF:</label>
                                 <input type="text" name="cpf" id="cpf" class="form-control cpf">
                             </div>
-                            <div class="form-group">
-                                <label for="email_fisica">Email:</label>
-                                <input type="email" name="email_fisica" id="email_fisica" class="form-control">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="email_fisica">Email:</label>
+                                        <input type="email" name="email_fisica" id="email_fisica" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="cell_fisica">Celular:</label>
+                                        <input type="text" name="cell_fisica" id="cell_fisica" class="form-control telefone_cel">
+                                    </div>
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label for="cep_fisica">CEP:</label>
-                                <input type="text" name="cep_fisica" id="cep_fisica" class="form-control cep" onblur="consultarCep('fisica')">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="cep_fisica">CEP:</label>
+                                        <input type="text" name="cep_fisica" id="cep_fisica" class="form-control cep" onblur="consultarCep('fisica')">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="endereco_fisica">Endereço:</label>
+                                        <input type="text" name="endereco_fisica" id="endereco_fisica" class="form-control">
+                                    </div>
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label for="endereco_fisica">Endereço:</label>
-                                <input type="text" name="endereco_fisica" id="endereco_fisica" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <label for="numero_fisica">N°:</label>
-                                <input type="text" name="numero_fisica" id="numero_fisica" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <label for="bairro_fisica">Bairro:</label>
-                                <input type="text" name="bairro_fisica" id="bairro_fisica" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <label for="cidade_fisica">Cidade:</label>
-                                <input type="text" name="cidade_fisica" id="cidade_fisica" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <label for="uf_fisica">UF:</label>
-                                <select name="uf_fisica" id="uf_fisica" class="form-control">
-                                    <option value="">Selecione a UF</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="fone_fixo_fisica">Fone fixo:</label>
-                                <input type="text" name="fone_fixo_fisica" id="fone_fixo_fisica" class="form-control telefone">
-                            </div>
-                            <div class="form-group">
-                                <label for="cell_fisica">Celular:</label>
-                                <input type="text" name="cell_fisica" id="cell_fisica" class="form-control telefone_cel">
-                            </div>
-                        </div>
-                        <!-- Checkbox para endereço de cobrança diferente -->
-                        <div id="divEnderecoCobranca" class="form-check" style="display: none;">
-                            <input type="checkbox" class="form-check-input" id="endereco_cobranca_diferente" name="endereco_cobranca_diferente">
-                            <label class="form-check-label" for="endereco_cobranca_diferente">Endereço de Cobrança diferente do Endereço de Entrega</label>
-                        </div>
-                        <!-- Campos de Endereço de Cobrança -->
-                        <div id="endereco_cobranca_campos" style="display: none;">
-                            <div class="form-group">
-                                <label for="cep_cobranca">CEP:</label>
-                                <input type="text" name="cep_cobranca" id="cep_cobranca" class="form-control cep" onblur="consultarCep('cobranca')">
-                            </div>
-                            <div class="form-group">
-                                <label for="endereco_cobranca">Endereço:</label>
-                                <input type="text" name="endereco_cobranca" id="endereco_cobranca" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <label for="numero_cobranca">N°:</label>
-                                <input type="text" name="numero_cobranca" id="numero_cobranca" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <label for="bairro_cobranca">Bairro:</label>
-                                <input type="text" name="bairro_cobranca" id="bairro_cobranca" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <label for="cidade_cobranca">Cidade:</label>
-                                <input type="text" name="cidade_cobranca" id="cidade_cobranca" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <label for="uf_cobranca">UF:</label>
-                                <input type="text" name="uf_cobranca" id="uf_cobranca" class="form-control">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="numero_fisica">N°:</label>
+                                        <input type="text" name="numero_fisica" id="numero_fisica" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="bairro_fisica">Bairro:</label>
+                                        <input type="text" name="bairro_fisica" id="bairro_fisica" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="cidade_fisica">Cidade:</label>
+                                        <input type="text" name="cidade_fisica" id="cidade_fisica" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="uf_fisica">UF:</label>
+                                        <select name="uf_fisica" id="uf_fisica" class="form-control">
+                                            <option value="">Selecione a UF</option>
+                                        </select>
+                                    </div>
+                                </div>
                             </div>
                         </div>
+
 
                         <button type="submit" class="btn btn-primary">Cadastrar</button>
                     </form>
