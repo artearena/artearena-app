@@ -715,7 +715,7 @@
                 prazoMenor = transportadora;
               }
             }
-          });
+          }); 
 
             data.forEach(transportadora => {
               if "PAC" in transportadora.transp_nome.upper() or "CORREIOS" in transportadora.transp_nome.upper():
