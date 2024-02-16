@@ -718,7 +718,7 @@
           });
 
             data.forEach(transportadora => {
-              if (transportadora.transp_nome !== "Retira") {
+              if "PAC" in transportadora.transp_nome.upper() or "CORREIOS" in transportadora.transp_nome.upper():
                 const cardElement = document.createElement("div");
                 cardElement.classList.add("card");
 
