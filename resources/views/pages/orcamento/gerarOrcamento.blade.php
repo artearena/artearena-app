@@ -718,7 +718,7 @@
           }); 
 
             data.forEach(transportadora => {
-              if "PAC" in transportadora.transp_nome.upper() or "CORREIOS" in transportadora.transp_nome.upper():
+              if (transportadora.transp_nome.toUpperCase().includes("PAC") || transportadora.transp_nome.toUpperCase().includes("CORREIOS")) {
                 const cardElement = document.createElement("div");
                 cardElement.classList.add("card");
 
