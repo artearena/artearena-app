@@ -21,8 +21,6 @@
                 <div class="form-group col-md-6">
                     <label for="numero_pedido">Número do pedido:</label>
                     <input type="text" class="form-control" id="numero_pedido" name="numero_pedido" style="width: 400px;" required>
-                </div>
-                <div class="form-group col-md-6 d-flex align-items-end justify-content-end">
                     <button type="submit" class="btn btn-primary">Consultar</button>
                 </div>
             </div>
