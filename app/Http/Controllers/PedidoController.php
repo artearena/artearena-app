@@ -166,7 +166,7 @@ class PedidoController extends Controller
     {
         return view('pages.pedido.consultaPedido', compact('etapa'));
     }
-    
+    /* 
     public function consultaEtapaPedido(Request $request)
     {
         $numeroPedido = $request->input('numero_pedido');
@@ -182,6 +182,6 @@ class PedidoController extends Controller
         }
 
         return view('consulta-etapa-pedido', compact('etapa'));
-    }
+    } */
 
 }
