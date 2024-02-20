@@ -17,11 +17,13 @@
         <h1 class="mt-4">Consulta de etapa do pedido</h1>
 
         <form action="/consulta-etapa-pedido" class="mt-4">
-            <div class="form-row">
-                <div class="form-group col-md-6">
+            <div class="form-row align-items-end">
+                <div class="form-group col-md-8">
                     <label for="numero_pedido">Número do pedido:</label>
-                    <input type="text" class="form-control" id="numero_pedido" name="numero_pedido" style="width: 400px;" required>
-                    <button type="submit" class="btn btn-primary">Consultar</button>
+                    <input type="text" class="form-control" id="numero_pedido" name="numero_pedido" required>
+                </div>
+                <div class="form-group col-md-4 d-flex justify-content-end">
+                    <button type="submit" class="btn btn-primary ml-2">Consultar</button>
                 </div>
             </div>
         </form>
@@ -35,12 +37,3 @@
         </div>
     </div>
 @endsection
-
-@push('scripts')
-<script>
-    // Mostra a parte de resultado quando há um resultado definido
-    @if(isset($etapa))
-        document.querySelector('.resultado').style.display = 'block';
-    @endif
-</script>
-@endpush
