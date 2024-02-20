@@ -10,16 +10,16 @@ use App\Models\CategoriaProduto;
 
 class PedidoController extends Controller
 {
-        public function artefinal()
-        {
-            $pedidos = Pedido::all();
-            $designers = Usuario::where('permissoes', 2)->pluck('nome_usuario');
-            $categoriasProduto = CategoriaProduto::all(); // Buscar todas as categorias de produto
-            $materiais = Material::all();
-            $pedidos = Pedido::orderBy('id', 'desc')->get();
+    public function artefinal()
+    {
+        $pedidos = Pedido::all();
+        $designers = Usuario::where('permissoes', 2)->pluck('nome_usuario');
+        $categoriasProduto = CategoriaProduto::all(); // Buscar todas as categorias de produto
+        $materiais = Material::all();
+        $pedidos = Pedido::orderBy('id', 'desc')->get();
 
-            return view('pages.artefinal', compact('pedidos', 'designers', 'categoriasProduto', 'materiais'));
-        }
+        return view('pages.artefinal', compact('pedidos', 'designers', 'categoriasProduto', 'materiais'));
+    }
     public function artefinal2()
     {
         $pedidos = Pedido::all();
@@ -161,6 +161,27 @@ class PedidoController extends Controller
         } catch (\Exception $e) {
             return response()->json(['message' => 'Erro ao excluir o pedido: ' . $pedido . $e->getMessage()], 500);
         }
+    }
+    public function etapaPedido(Request $request)
+    {
+        return view('pages.pedido.consultaPedido', compact('etapa'));
+    }
+    
+    public function consultaEtapaPedido(Request $request)
+    {
+        $numeroPedido = $request->input('numero_pedido');
+
+        // Validate the number format (optional)
+
+        // Query the database or external API to get the etapa
+        $etapa = // Your logic to retrieve etapa based on $numeroPedido
+
+        if (!$etapa) {
+            // Handle case where order is not found
+            return redirect()->back()->withErrors(['message' => 'Pedido não encontrado']);
+        }
+
+        return view('consulta-etapa-pedido', compact('etapa'));
     }
 
 }

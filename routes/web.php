@@ -58,6 +58,7 @@ Route::middleware(['auth'])->group(function () {
             Route::put('/mover/{id}', [PedidoController::class, 'moverPedido'])->name('pedido.mover');
             Route::post('/criar', [PedidoController::class, 'criarPedido'])->name('pedido.criar');
             Route::delete('/{id}', [PedidoController::class, 'excluirPedido'])->name('pedido.excluir');
+            Route::post('/consulta-etapa-pedido', [PedidoController::class, 'consultaEtapaPedido'])->name('pedido.etapaConsultar');
         });
 
         Route::prefix('producao')->group(function () {
@@ -167,6 +168,7 @@ Route::middleware(['auth'])->group(function () {
 
     });
 });
+Route::any('consultarEtapa', [PedidoController::class, 'etapaPedido']);
 
 Route::prefix('listaUniformes')->middleware('validar.token')->group(function () {
     //Route::any('/', [ListaUniformeController::class, 'index'])->name('index');

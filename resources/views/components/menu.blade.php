@@ -63,7 +63,7 @@
                             Administração
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="producaoDropdown">
-                            <li><a class="dropdown-item" href="{{ route('dev') }}">Etapa do pedido</a></li>
+                            <li><a class="dropdown-item" href="{{ route('etapaPedido') }}">Etapa do pedido</a></li>
                             <li><a class="dropdown-item" href="{{ route('erros.index') }}">Erros</a></li>
                             <li><a class="dropdown-item" href="{{ route('usuarios.index') }}">Administrar Usuários</a></li>
                             <li><a class="dropdown-item" href="{{ route('permissoes.index') }}">Configurar permissões</a></li>
