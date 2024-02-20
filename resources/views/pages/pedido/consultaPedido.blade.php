@@ -29,7 +29,11 @@
     </form>
 
     <div class="resultado">
-        <p>Etapa: {{ $etapa }}</p>
+        @if(isset($etapa))
+            <p>Etapa: {{ $etapa }}</p>
+        @else
+            <p>Etapa não definida</p>
+        @endif
     </div>
     </div>
 @endsection
