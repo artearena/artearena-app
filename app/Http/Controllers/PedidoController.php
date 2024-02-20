@@ -164,7 +164,7 @@ class PedidoController extends Controller
     }
     public function etapaPedido(Request $request)
     {
-        return view('pages.pedido.consultaPedido', compact('etapa'));
+        return view('pages.pedido.consultaPedido');
     }
     /* 
     public function consultaEtapaPedido(Request $request)
