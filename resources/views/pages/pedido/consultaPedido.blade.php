@@ -20,10 +20,12 @@
             <div class="form-row align-items-end">
                 <div class="form-group col-md-8">
                     <label for="numero_pedido">Número do pedido:</label>
-                    <input type="text" class="form-control" id="numero_pedido" name="numero_pedido" required>
-                </div>
-                <div class="form-group col-md-4 d-flex justify-content-end">
-                    <button type="submit" class="btn btn-primary ml-2">Consultar</button>
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="numero_pedido" name="numero_pedido" required>
+                        <div class="input-group-append">
+                            <button type="submit" class="btn btn-primary">Consultar</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </form>
@@ -37,3 +39,12 @@
         </div>
     </div>
 @endsection
+
+@push('scripts')
+<script>
+    // Mostra a parte de resultado quando há um resultado definido
+    @if(isset($etapa))
+        document.querySelector('.resultado').style.display = 'block';
+    @endif
+</script>
+@endpush
