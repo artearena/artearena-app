@@ -295,7 +295,7 @@
                             </div>
                             <!-- Segunda coluna -->
                             <div class="col-md-6">
-                                <label for="input1">Valor daantecipação</label>
+                                <label for="input1">Valor da antecipação</label>
                                 <div class="input-group">
                                     <input type="text" id="input1" class="form-control"></input>
                                 </div>
