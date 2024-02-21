@@ -1448,6 +1448,7 @@ const id_cliente = document.getElementById('id').value;
             let valorTotal = 0;
             for (const id in produtosSelecionados) {
               if (produtosSelecionados.hasOwnProperty(id)) {
+                console.log(produtosSelecionados[id].valor);
                 const valorProduto = produtosSelecionados[id].valor;
                 const quantidade = produtosSelecionados[id].quantidade;
                 valorTotal += valorProduto * quantidade;
