@@ -880,14 +880,14 @@
                   
                   // Adicionar desconto, se aplicável
                   if (desconto > 0) {
-                      total -= desconto;
+                      valorTotalFormatado -= desconto;
                       var descontoTxt = `Desconto: R$${desconto}\n`;
 
                   }
 
                   // Adicionar antecipação, se aplicável
                   if (antecipacao > 0) {
-                      total -= antecipacao;
+                      valorTotalFormatado -= antecipacao;
                       var antecipacaoTxt = `Antecipação: R$${antecipacao}\n`;
 
                   }
