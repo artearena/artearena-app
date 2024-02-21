@@ -301,11 +301,8 @@ Consulta de Pedidos
                                         <option value="Pendente">Pendente</option>
                                         <option value="Em andamento">Em andamento</option>
                                         <option value="Arte OK">Arte OK</option>
-                                        <option value="Em confirmação">Em confirmação</option>
                                         <option value="Em espera">Em espera</option>
                                         <option value="Cor teste">Cor teste</option>
-                                        <option value="Terceirizado">Terceirizado</option>
-                                        <option value="Análise pendente">Análise pendente</option>
                                         <option value="Aguardando Cliente">Aguardando Cliente</option>
 
                                     </select>
@@ -453,10 +450,9 @@ Consulta de Pedidos
                                         <option value="Em confirmação" {{ $pedido->status == 'Em confirmação' ? 'selected' : '' }}>Em confirmação</option>
                                         <option value="Em espera" {{ $pedido->status == 'Em espera' ? 'selected' : '' }}>Em espera</option>
                                         <option value="Cor teste" {{ $pedido->status == 'Cor teste' ? 'selected' : '' }}>Cor teste</option>
-                                        <option value="Terceirizado" {{ $pedido->status == 'Terceirizado' ? 'selected' : '' }}>Terceirizado</option>
                                         <option value="Análise pendente" {{ $pedido->status == 'Análise pendente' ? 'selected' : '' }}>Análise pendente</option>
                                         <option value="Aguardando Cliente" {{ $pedido->status == 'Aguardando Cliente' ? 'selected' : '' }}>Aguardando Cliente</option>
-                                        <option value="{{ $pedido->status }}" {{ !in_array($pedido->status, ['Pendente', 'Em andamento', 'Arte OK', 'Em confirmação', 'Em espera', 'Cor teste', 'Terceirizado', 'Análise pendente']) ? 'selected' : '' }}>
+                                        <option value="{{ $pedido->status }}" {{ !in_array($pedido->status, ['Pendente', 'Em andamento', 'Arte OK', 'Em confirmação', 'Em espera', 'Cor teste', 'Análise pendente']) ? 'selected' : '' }}>
                                             {{ $pedido->status }}
                                         </option>
                                     </select>
@@ -1560,8 +1556,6 @@ $.ajaxSetup({
                     element.attr("data-color", "pink");
                 } else if (value === "Cor teste") {
                     element.attr("data-color", "lightpink");
-                } else if (value === "Terceirizado") {
-                    element.attr("data-color", "purple");
                 } else if (value === "Análise pendente") {
                     element.attr("data-color", "gray");
                 } else {
