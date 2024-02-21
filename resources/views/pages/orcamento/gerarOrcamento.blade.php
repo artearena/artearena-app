@@ -876,7 +876,7 @@
                   // Adicionar desconto, se aplicável
                   if (desconto > 0 && desconto != undefined) {
                       valorTotal -= desconto;
-                      var descontoTxt = `Desconto: R$${desconto}\n`;
+                      var descontoTxt = `Desconto aplicado: R$${desconto}\n`;
 
                   }
 
