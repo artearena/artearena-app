@@ -447,12 +447,11 @@ Consulta de Pedidos
                                         <option value="Pendente" {{ $pedido->status == 'Pendente' ? 'selected' : '' }}>Pendente</option>
                                         <option value="Em andamento" {{ $pedido->status == 'Em andamento' ? 'selected' : '' }}>Em andamento</option>
                                         <option value="Arte OK" {{ $pedido->status == 'Arte OK' ? 'selected' : '' }}>Arte OK</option>
-                                        <option value="Em confirmação" {{ $pedido->status == 'Em confirmação' ? 'selected' : '' }}>Em confirmação</option>
                                         <option value="Em espera" {{ $pedido->status == 'Em espera' ? 'selected' : '' }}>Em espera</option>
                                         <option value="Cor teste" {{ $pedido->status == 'Cor teste' ? 'selected' : '' }}>Cor teste</option>
                                         <option value="Análise pendente" {{ $pedido->status == 'Análise pendente' ? 'selected' : '' }}>Análise pendente</option>
                                         <option value="Aguardando Cliente" {{ $pedido->status == 'Aguardando Cliente' ? 'selected' : '' }}>Aguardando Cliente</option>
-                                        <option value="{{ $pedido->status }}" {{ !in_array($pedido->status, ['Pendente', 'Em andamento', 'Arte OK', 'Em confirmação', 'Em espera', 'Cor teste', 'Análise pendente']) ? 'selected' : '' }}>
+                                        <option value="{{ $pedido->status }}" {{ !in_array($pedido->status, ['Pendente', 'Em andamento', 'Arte OK', 'Em espera', 'Cor teste', 'Análise pendente']) ? 'selected' : '' }}>
                                             {{ $pedido->status }}
                                         </option>
                                     </select>
@@ -1550,8 +1549,6 @@ $.ajaxSetup({
                     element.attr("data-color", "white");
                 } else if (value === "Arte OK") {
                     element.attr("data-color", "green");
-                } else if (value === "Em confirmação") {
-                    element.attr("data-color", "red");
                 } else if (value === "Em espera") {
                     element.attr("data-color", "pink");
                 } else if (value === "Cor teste") {
