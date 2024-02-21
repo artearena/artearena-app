@@ -899,7 +899,7 @@
                   produtosDescricao = produtosDescricao.replace(/\./g, ",");
 
                   const prazo = `Prazo para confecção é de ${prazoConfeccao} dias úteis + prazo de envio.\nPrazo inicia-se após aprovação da arte e pagamento confirmado\n\nOrçamento válido por 30 dias.`;
-                  campoTexto.value = `${produtosDescricao}${detalhesFrete}${total}\n${prazo}`;
+                  campoTexto.value = `${produtosDescricao}${detalhesFrete}${descontoTxt}${antecipacaoTxt}${total}\n${prazo}`;
                   carregarInfoCard();
                 
                 });
