@@ -874,14 +874,14 @@
                     }
                   }
                   // Adicionar desconto, se aplicável
-                  if (desconto > 0) {
+                  if (desconto > 0 && desconto != undefined) {
                       valorTotal -= desconto;
                       var descontoTxt = `Desconto: R$${desconto}\n`;
 
                   }
 
                   // Adicionar antecipação, se aplicável
-                  if (antecipacao > 0) {
+                  if (antecipacao > 0 && antecipacao != undefined) {
                       valorTotal += antecipacao;
                       var antecipacaoTxt = `Antecipação: R$${antecipacao}\n`;
 
