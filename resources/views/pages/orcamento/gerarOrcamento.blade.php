@@ -876,7 +876,7 @@
                   valorTotal += parseFloat(frete);
                   const valorTotalFormatado = valorTotal.toFixed(2);
                   const prazoConfeccao = prazoConfecaoMaisAlto;
-                  var detalhesFrete = `Frete: ${cepDestino} - R$${frete} - (Dia da postagem + ${prazoEntrega} dias úteis via ${titulo})\n`;
+                  var detalhesFrete = `Frete: ${cepDestino} - R$${frete} - (Dia da postagem + ${prazoEntrega} dias úteis via ${titulo})\n\n`;
                   
                   // Adicionar desconto, se aplicável
                   if (desconto > 0) {
