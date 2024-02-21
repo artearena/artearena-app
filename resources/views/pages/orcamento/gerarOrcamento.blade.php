@@ -295,13 +295,13 @@
                             </div>
                             <!-- Segunda coluna -->
                             <div class="col-md-6">
-                                <label for="vl_desconto">Valor da antecipação</label>
+                                <label for="vl_antecipacao">Valor da antecipação</label>
                                 <div class="input-group">
-                                    <input type="text" id="input1" class="form-control"></input>
+                                    <input type="text" id="vl_antecipacao" class="form-control"></input>
                                 </div>
                                 <label for="vl_desconto">Valor do desconto:</label>
                                 <div class="input-group">
-                                    <input type="text" id="input2" class="form-control"></input>
+                                    <input type="text" id="vl_desconto" class="form-control"></input>
                                 </div>
                             </div>
                         </div>
