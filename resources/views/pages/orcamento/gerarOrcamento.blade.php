@@ -882,7 +882,7 @@
 
                   // Adicionar antecipação, se aplicável
                   if (antecipacao > 0) {
-                      valorTotal -= antecipacao;
+                      valorTotal += antecipacao;
                       var antecipacaoTxt = `Antecipação: R$${antecipacao}\n`;
 
                   }
