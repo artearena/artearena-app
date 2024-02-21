@@ -696,7 +696,6 @@
         })
         .then(response => response.json())
         .then(data => {
-          console.log(data.error);
           if (data.error !== undefined) {
               Swal.fire({
                   icon: 'error',
