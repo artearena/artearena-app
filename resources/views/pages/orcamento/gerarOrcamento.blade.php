@@ -826,6 +826,8 @@
                       const nomeProduto = produtosSelecionados[id].nome;
                       const quantidade = produtosSelecionados[id].quantidade;
                       const valor = produtosSelecionados[id].valor;
+                      console.log(valor);
+                      console.log(produtosSelecionados[id].valor);
                       const produtoDescricao = `${quantidade} un - ${nomeProduto} - R$${valor}\n`;
                       produtosDescricao += produtoDescricao;
                     }
@@ -1438,6 +1440,7 @@ const id_cliente = document.getElementById('id').value;
                 const nomeProduto = produtosSelecionados[id].nome;
                 const quantidade = produtosSelecionados[id].quantidade;
                 const valor = produtosSelecionados[id].valor;
+                console.log(valor);
                 const produtoDescricao = `${quantidade} un - ${nomeProduto} - R$${valor}\n`;
                 produtosDescricao += produtoDescricao;
               }
@@ -1448,7 +1451,6 @@ const id_cliente = document.getElementById('id').value;
             let valorTotal = 0;
             for (const id in produtosSelecionados) {
               if (produtosSelecionados.hasOwnProperty(id)) {
-                console.log(produtosSelecionados[id].valor);
                 const valorProduto = produtosSelecionados[id].valor;
                 const quantidade = produtosSelecionados[id].quantidade;
                 valorTotal += valorProduto * quantidade;
