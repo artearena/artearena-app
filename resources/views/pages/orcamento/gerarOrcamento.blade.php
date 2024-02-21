@@ -876,7 +876,7 @@
                   valorTotal += parseFloat(frete);
                   const valorTotalFormatado = valorTotal.toFixed(2);
                   const prazoConfeccao = prazoConfecaoMaisAlto;
-                  var detalhesFrete = `Frete: ${cepDestino} - R$${frete} - (Dia da postagem + ${prazoEntrega} dias úteis via ${titulo})\n\n`;
+                  var detalhesFrete = `Frete: ${cepDestino} - R$${frete} - (Dia da postagem + ${prazoEntrega} dias úteis via ${titulo})\n`;
                   
                   // Adicionar desconto, se aplicável
                   if (desconto > 0) {
@@ -899,7 +899,7 @@
                   produtosDescricao = produtosDescricao.replace(/\./g, ",");
 
                   const prazo = `Prazo para confecção é de ${prazoConfeccao} dias úteis + prazo de envio.\nPrazo inicia-se após aprovação da arte e pagamento confirmado\n\nOrçamento válido por 30 dias.`;
-                  campoTexto.value = `${produtosDescricao}${detalhesFrete}${descontoTxt}${antecipacaoTxt}${total}\n${prazo}`;
+                  campoTexto.value = `${produtosDescricao}${detalhesFrete}${descontoTxt}${antecipacaoTxt}\n${total}\n${prazo}`;
                   carregarInfoCard();
                 
                 });
