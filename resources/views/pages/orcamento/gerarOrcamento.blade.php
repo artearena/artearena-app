@@ -878,6 +878,8 @@
                       valorTotal -= desconto;
                       var descontoTxt = `Desconto aplicado: R$${desconto}\n`;
 
+                  } else {
+                    descontoTxt = ""
                   }
 
                   // Adicionar antecipação, se aplicável
@@ -885,6 +887,8 @@
                       valorTotal += antecipacao;
                       var antecipacaoTxt = `Taxa de antecipação: R$${antecipacao}\n`;
 
+                  } else{
+                    antecipacaoTxt = ""
                   }
 
                   valorTotal += parseFloat(frete);
