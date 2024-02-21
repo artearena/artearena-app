@@ -282,14 +282,31 @@
                         </div>
                         <hr>
                         <div class="container-lg">
-                            <label for="id">ID Cliente:</label>
-                            <div class="input-group">
-                                <input type="text" id="id" class="form-control"></input>
+                        <div class="row">
+                            <!-- Primeira coluna -->
+                            <div class="col-md-6">
+                                <label for="id">ID Cliente:</label>
+                                <div class="input-group">
+                                    <input type="text" id="id" class="form-control"></input>
+                                </div>
+                                <div class="input-group mt-3">
+                                    <button id="buscar_orcamento" class="btn btn-primary" type="button">Buscar Orçamentos</button>
+                                </div>
                             </div>
-                            <div class="input-group mt-3">
-                                <button id="buscar_orcamento" class="btn btn-primary" type="button">Buscar Orçamentos</button>
+                            <!-- Segunda coluna -->
+                            <div class="col-md-6">
+                                <label for="input1">Input 1:</label>
+                                <div class="input-group">
+                                    <input type="text" id="input1" class="form-control"></input>
+                                </div>
+                                <label for="input2">Input 2:</label>
+                                <div class="input-group">
+                                    <input type="text" id="input2" class="form-control"></input>
+                                </div>
                             </div>
                         </div>
+                    </div>
+
 
                     <hr>
                     <form id="produto-form" method="POST" action="">
