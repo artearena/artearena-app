@@ -295,11 +295,11 @@
                             </div>
                             <!-- Segunda coluna -->
                             <div class="col-md-6">
-                                <label for="input1">Valor da antecipação</label>
+                                <label for="vl_desconto">Valor da antecipação</label>
                                 <div class="input-group">
                                     <input type="text" id="input1" class="form-control"></input>
                                 </div>
-                                <label for="input2">Valor do desconto:</label>
+                                <label for="vl_desconto">Valor do desconto:</label>
                                 <div class="input-group">
                                     <input type="text" id="input2" class="form-control"></input>
                                 </div>
@@ -826,6 +826,12 @@
                   this.classList.add("selected");
                   // Exibir detalhes do frete no campo de texto
                   const campoTexto = document.getElementById("campoTexto");
+                  const inputDesconto = document.getElementById("vl_desconto");
+                  const inputAntecipacao = document.getElementById("vl_antecipacao");
+
+                  const desconto = parseFloat(inputDesconto.value) || 0;
+                  const antecipacao = parseFloat(inputAntecipacao.value) || 0;
+
                   campoTexto.value = "";
                   let produtosSelecionados = {};
                   const tableRows = $("#produtoTableBody tr");
@@ -871,6 +877,21 @@
                   const valorTotalFormatado = valorTotal.toFixed(2);
                   const prazoConfeccao = prazoConfecaoMaisAlto;
                   var detalhesFrete = `Frete: ${cepDestino} - R$${frete} - (Dia da postagem + ${prazoEntrega} dias úteis via ${titulo})\n\n`;
+                  
+                  // Adicionar desconto, se aplicável
+                  if (desconto > 0) {
+                      valorTotal -= desconto;
+                      var descontoTxt = `Desconto: R$${desconto}\n`;
+
+                  }
+
+                  // Adicionar antecipação, se aplicável
+                  if (antecipacao > 0) {
+                      valorTotal -= antecipacao;
+                      var antecipacaoTxt = `Antecipação: R$${antecipacao}\n`;
+
+                  }
+
                   var total = `Total: R$${valorTotalFormatado}\n`;
 
                   total = total.replace(/\./g, ",");
