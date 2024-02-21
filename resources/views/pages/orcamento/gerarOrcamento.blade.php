@@ -873,24 +873,26 @@
                       valorTotal += valorProduto * quantidade;
                     }
                   }
-                  valorTotal += parseFloat(frete);
-                  const valorTotalFormatado = valorTotal.toFixed(2);
-                  const prazoConfeccao = prazoConfecaoMaisAlto;
-                  var detalhesFrete = `Frete: ${cepDestino} - R$${frete} - (Dia da postagem + ${prazoEntrega} dias úteis via ${titulo})\n\n`;
-                  
                   // Adicionar desconto, se aplicável
                   if (desconto > 0) {
-                      valorTotalFormatado -= desconto;
+                      valorTotal -= desconto;
                       var descontoTxt = `Desconto: R$${desconto}\n`;
 
                   }
 
                   // Adicionar antecipação, se aplicável
                   if (antecipacao > 0) {
-                      valorTotalFormatado -= antecipacao;
+                      valorTotal -= antecipacao;
                       var antecipacaoTxt = `Antecipação: R$${antecipacao}\n`;
 
                   }
+
+                  valorTotal += parseFloat(frete);
+                  const valorTotalFormatado = valorTotal.toFixed(2);
+                  const prazoConfeccao = prazoConfecaoMaisAlto;
+                  var detalhesFrete = `Frete: ${cepDestino} - R$${frete} - (Dia da postagem + ${prazoEntrega} dias úteis via ${titulo})\n\n`;
+                  
+                  
 
                   var total = `Total: R$${valorTotalFormatado}\n`;
 
