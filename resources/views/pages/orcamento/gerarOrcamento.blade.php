@@ -623,7 +623,7 @@
         // Consultar primeiro na API local
         $.get('https://artearena.kinghost.net/consultarCepArteArena', { cep: cep })
         .done(function(response) {
-            if (!response.erro) {
+            if (status === 'success') {
                 var endereco = response.street + ', ' + response.district + ', ' + response.city + ' - ' + response.stateShortname;
                 $('#endereco').val(endereco);
                 // Fechar o SweetAlert após encontrar o endereço
@@ -643,7 +643,7 @@
     function consultarViaCep(cep) {
         $.get('https://viacep.com.br/ws/' + cep + '/json/')
         .done(function(response) {
-            if (!response.erro) {
+            if (status === 'success') {
                 var endereco = response.logradouro + ', ' + response.bairro + ', ' + response.localidade + ' - ' + response.uf;
                 $('#endereco').val(endereco);
                 // Fechar o SweetAlert após encontrar o endereço
