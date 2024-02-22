@@ -1,5 +1,6 @@
 $(document).ready(function() {
     $(".oneAct").click(function() {
+        console.log('teste');
         $(this).addClass("active");
         $(".oneAct .two, .three, .four, .five").removeClass("active");
     });
