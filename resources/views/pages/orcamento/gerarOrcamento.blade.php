@@ -655,6 +655,7 @@
                     title: 'CEP inexistente',
                     text: 'O CEP inserido não foi encontrado.'
                 });
+                return;
             }
         })
         .fail(function(jqXHR) {
