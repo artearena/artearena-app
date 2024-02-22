@@ -681,13 +681,6 @@
           $(this).val($(this).val().replace(/\D/g, ''));
       });
 
-      $('#cep').on('keydown', function(event) {
-          if (event.keyCode === 13 || event.keyCode === 9) {
-              event.preventDefault();
-              consultarCep();
-          }
-      });
-
       $('#cep').on('blur', function() {
           consultarCep();
       });
