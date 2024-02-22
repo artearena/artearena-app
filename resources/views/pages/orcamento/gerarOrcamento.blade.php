@@ -642,24 +642,20 @@
     // Função para consultar via ViaCEP
     function consultarViaCep(cep) {
         $.get('https://viacep.com.br/ws/' + cep + '/json/', function(response, status) {
-            if (status === 'success') {
+            if (status === 'success' && !response.erro) {
                 var endereco = response.logradouro + ', ' + response.bairro + ', ' + response.localidade + ' - ' + response.uf;
                 $('#endereco').val(endereco);
                 // Fechar o SweetAlert após encontrar o endereço
                 Swal.close();
             } else if (status === 400) {
                 // Se o código de status for 400 (Bad Request), exibir mensagem de erro de CEP inexistente
-                Swal.close();
-
                 Swal.fire({
                     icon: 'error',
                     title: 'CEP inexistente',
                     text: 'O CEP inserido não foi encontrado.'
                 });
             } else {
-
-              Swal.close();
-              // Se ocorrer outro tipo de erro ou se o CEP não for encontrado em nenhuma fonte, exibir mensagem de erro genérica
+                // Se ocorrer outro tipo de erro ou se o CEP não for encontrado em nenhuma fonte, exibir mensagem de erro genérica
                 Swal.fire({
                     icon: 'error',
                     title: 'Erro ao consultar o CEP',
@@ -668,6 +664,8 @@
             }
         });
     }
+
+
 
 
 
