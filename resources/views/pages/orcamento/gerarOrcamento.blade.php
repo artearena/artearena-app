@@ -667,13 +667,6 @@
         });
     }
 
-
-
-
-
-
-
-
       var consultaCepOrcamento = '';
 
       $('#cep').on('input', function() {
