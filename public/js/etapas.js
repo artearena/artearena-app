@@ -1,7 +1,7 @@
 $(document).ready(function() {
     $(".one").click(function() {
         console.log('teste');
-        $("oneAct").addClass("active");
+        $("#oneAct").addClass("active");
         $(".two, .three, .four, .five").removeClass("active");
     });
 
