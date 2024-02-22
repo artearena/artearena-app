@@ -1,8 +1,8 @@
 $(document).ready(function() {
     $(".one").click(function() {
         console.log('teste');
-        $(this).addClass("active");
-        $(".oneAct, .two, .three, .four, .five").removeClass("active");
+        $("oneAct").addClass("active");
+        $(".two, .three, .four, .five").removeClass("active");
     });
 
     $(".two").click(function() {
