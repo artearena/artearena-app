@@ -120,17 +120,21 @@ src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"
     }
     function consultarCep() {
         var cep = $('#cep').val();
-
-        $.get('https://viacep.com.br/ws/' + cep + '/json/', function(response) {
+    
+        $.get('https://artearena.kinghost.net/consultarCepArteArena', { cep: cep }, function(response) {
             $('#endereco').val('');
-
-            if (!response.erro) {
-                var endereco = response.logradouro + ', ' + response.bairro + ', ' + response.localidade + ' - ' + response.uf;
+    
+            if (response.erro) {
+                alert('CEP não encontrado.');
+            } else {
+                var endereco = response.street + ', ' + response.district + ', ' + response.city + ' - ' + response.stateShortname;
                 $('#endereco').val(endereco);
             }
+        }).fail(function() {
+            alert('Erro ao consultar o CEP.');
         });
     }
-
+  
     $('#cep').on('input', function() {
         $(this).val($(this).val().replace(/\D/g, ''));
     });
