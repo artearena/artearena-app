@@ -861,98 +861,101 @@
 
                 // Adicionar evento de seleção ao card
                 cardElement.addEventListener("click", function () {
-                  const selectedCard = document.querySelector(".card.selected");
-                  if (selectedCard) {
-                    selectedCard.classList.remove("selected");
-                  }
-                  // Adicionar classe "selected" ao card selecionado
-                  this.classList.add("selected");
-                  // Exibir detalhes do frete no campo de texto
-                  const campoTexto = document.getElementById("campoTexto");
-                  const inputDesconto = document.getElementById("vl_desconto");
-                  const inputAntecipacao = document.getElementById("vl_antecipacao");
+                    const selectedCard = document.querySelector(".card.selected");
+                    if (selectedCard) {
+                        selectedCard.classList.remove("selected");
+                    }
+                    // Adicionar classe "selected" ao card selecionado
+                    this.classList.add("selected");
+                    // Exibir detalhes do frete no campo de texto
+                    const campoTexto = document.getElementById("campoTexto");
+                    const inputDesconto = document.getElementById("vl_desconto");
+                    const inputAntecipacao = document.getElementById("vl_antecipacao");
 
-                  const desconto = parseFloat(inputDesconto.value) || 0;
-                  const antecipacao = parseFloat(inputAntecipacao.value) || 0;
+                    const desconto = parseFloat(inputDesconto.value) || 0;
+                    const antecipacao = parseFloat(inputAntecipacao.value) || 0;
 
-                  campoTexto.value = "";
-                  let produtosSelecionados = {};
-                  const tableRows = $("#produtoTableBody tr");
-                  console.log(tableRows);
-                  tableRows.each(function () {
-                    const id = $(this).find("td:first-child").text();
-                    const nomeProduto = $(this).find("td:nth-child(2) input").val();
-                    const valorProduto = parseFloat($(this).find("td:nth-child(3) input").val());
-                    const quantidade = parseInt($(this).find("td:nth-child(5) input").val());
-                    if (!produtosSelecionados.hasOwnProperty(id)) {
-                      produtosSelecionados[id] = {
-                        nome: nomeProduto,
-                        valor: valorProduto,
-                        quantidade: quantidade
-                      };
+                    campoTexto.value = "";
+                    let produtosSelecionados = {};
+                    const tableRows = $("#produtoTableBody tr");
+                    console.log(tableRows);
+                    tableRows.each(function () {
+                        const id = $(this).find("td:first-child").text();
+                        const nomeProduto = $(this).find("td:nth-child(2) input").val();
+                        const valorProduto = parseFloat($(this).find("td:nth-child(3) input").val());
+                        const quantidade = parseInt($(this).find("td:nth-child(5) input").val());
+                        if (!produtosSelecionados.hasOwnProperty(id)) {
+                            produtosSelecionados[id] = {
+                                nome: nomeProduto,
+                                valor: valorProduto,
+                                quantidade: quantidade
+                            };
+                        } else {
+                            produtosSelecionados[id].quantidade += quantidade;
+                        }
+                    });
+                    var produtosDescricao = "";
+                    for (const id in produtosSelecionados) {
+                        if (produtosSelecionados.hasOwnProperty(id)) {
+                            const nomeProduto = produtosSelecionados[id].nome;
+                            const quantidade = produtosSelecionados[id].quantidade;
+                            const valor = produtosSelecionados[id].valor;
+                            console.log(valor);
+                            console.log(produtosSelecionados[id].valor);
+                            const produtoDescricao = `${quantidade} un - ${nomeProduto} - R$${valor}\n`;
+                            produtosDescricao += produtoDescricao;
+                        }
+                    }
+
+                    // Aqui você deve substituir 'transportadora.transp_nome', 'transportadora.vlrFrete' e 'transportadora.prazoEnt'
+                    // pelas variáveis ou valores reais correspondentes aos dados da transportadora selecionada
+                    const titulo = transportadora.transp_nome;
+                    const frete = transportadora.vlrFrete;
+                    const prazoEntrega = transportadora.prazoEnt;
+                    let valorTotal = 0;
+                    for (const id in produtosSelecionados) {
+                        if (produtosSelecionados.hasOwnProperty(id)) {
+                            const valorProduto = produtosSelecionados[id].valor;
+                            const quantidade = produtosSelecionados[id].quantidade;
+                            valorTotal += valorProduto * quantidade;
+                        }
+                    }
+                    // Adicionar desconto, se aplicável
+                    if (desconto > 0 && desconto != undefined) {
+                        valorTotal -= desconto;
+                        var descontoTxt = `Desconto aplicado: R$${desconto}\n`;
                     } else {
-                      produtosSelecionados[id].quantidade += quantidade;
+                        descontoTxt = "";
                     }
-                  });
-                  var produtosDescricao = "";
-                  for (const id in produtosSelecionados) {
-                    if (produtosSelecionados.hasOwnProperty(id)) {
-                      const nomeProduto = produtosSelecionados[id].nome;
-                      const quantidade = produtosSelecionados[id].quantidade;
-                      const valor = produtosSelecionados[id].valor;
-                      console.log(valor);
-                      console.log(produtosSelecionados[id].valor);
-                      const produtoDescricao = `${quantidade} un - ${nomeProduto} - R$${valor}\n`;
-                      produtosDescricao += produtoDescricao;
+
+                    // Adicionar antecipação, se aplicável
+                    if (antecipacao > 0 && antecipacao != undefined) {
+                        valorTotal += antecipacao;
+                        var antecipacaoTxt = `Taxa de antecipação: R$${antecipacao}\n`;
+                    } else {
+                        antecipacaoTxt = "";
                     }
-                  }
-                  const titulo = transportadora.transp_nome;
-                  const frete = transportadora.vlrFrete;
-                  const prazoEntrega = transportadora.prazoEnt;
-                  let valorTotal = 0;
-                  for (const id in produtosSelecionados) {
-                    if (produtosSelecionados.hasOwnProperty(id)) {
-                      const valorProduto = produtosSelecionados[id].valor;
-                      const quantidade = produtosSelecionados[id].quantidade;
-                      valorTotal += valorProduto * quantidade;
-                    }
-                  }
-                  // Adicionar desconto, se aplicável
-                  if (desconto > 0 && desconto != undefined) {
-                      valorTotal -= desconto;
-                      var descontoTxt = `Desconto aplicado: R$${desconto}\n`;
 
-                  } else {
-                    descontoTxt = ""
-                  }
+                    valorTotal += parseFloat(frete);
+                    const valorTotalFormatado = valorTotal.toFixed(2);
 
-                  // Adicionar antecipação, se aplicável
-                  if (antecipacao > 0 && antecipacao != undefined) {
-                      valorTotal += antecipacao;
-                      var antecipacaoTxt = `Taxa de antecipação: R$${antecipacao}\n`;
+                    // Aqui você deve substituir 'prazoConfecaoMaisAlto' pela variável ou valor real correspondente ao prazo de confecção mais alto
+                    const prazoConfeccao = prazoConfecaoMaisAlto;
 
-                  } else{
-                    antecipacaoTxt = ""
-                  }
+                    var detalhesFrete = `Frete: ${cepDestino} - R$${frete} - (Dia da postagem + ${prazoEntrega} dias úteis via ${titulo})\n\n`;
 
-                  valorTotal += parseFloat(frete);
-                  const valorTotalFormatado = valorTotal.toFixed(2);
-                  const prazoConfeccao = prazoConfecaoMaisAlto;
-                  var detalhesFrete = `Frete: ${cepDestino} - R$${frete} - (Dia da postagem + ${prazoEntrega} dias úteis via ${titulo})\n\n`;
-                  
-                  
+                    var total = `Total: R$${valorTotalFormatado}\n`;
 
-                  var total = `Total: R$${valorTotalFormatado}\n`;
+                    total = total.replace(/\./g, ",");
+                    detalhesFrete = detalhesFrete.replace(/\./g, ",");
+                    produtosDescricao = produtosDescricao.replace(/\./g, ",");
 
-                  total = total.replace(/\./g, ",");
-                  detalhesFrete = detalhesFrete.replace(/\./g, ",");
-                  produtosDescricao = produtosDescricao.replace(/\./g, ",");
+                    const prazo = `Prazo para confecção é de ${prazoConfeccao} dias úteis + prazo de envio.\nPrazo inicia-se após aprovação da arte e pagamento confirmado\n\nOrçamento válido por 30 dias.`;
+                    campoTexto.value = `${produtosDescricao}${detalhesFrete}${antecipacaoTxt}${descontoTxt}\n${total}\n${prazo}`;
+                    carregarInfoCard();
 
-                  const prazo = `Prazo para confecção é de ${prazoConfeccao} dias úteis + prazo de envio.\nPrazo inicia-se após aprovação da arte e pagamento confirmado\n\nOrçamento válido por 30 dias.`;
-                  campoTexto.value = `${produtosDescricao}${detalhesFrete}${antecipacaoTxt}${descontoTxt}\n${total}\n${prazo}`;
-                  carregarInfoCard();
-                
                 });
+
               }
           });
           
