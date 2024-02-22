@@ -655,7 +655,6 @@
                     title: 'CEP inexistente',
                     text: 'O CEP inserido não foi encontrado.'
                 });
-                return;
             }
         })
         .fail(function(jqXHR) {
@@ -665,7 +664,6 @@
                 title: 'Erro ao consultar o CEP',
                 text: 'Ocorreu um erro ao consultar o CEP. Por favor, tente novamente mais tarde.'
             });
-            return;
         });
     }
 
