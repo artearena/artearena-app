@@ -1540,7 +1540,6 @@ const id_cliente = document.getElementById('id').value;
                 const nomeProduto = produtosSelecionados[id].nome;
                 const quantidade = produtosSelecionados[id].quantidade;
                 const valor = produtosSelecionados[id].valor;
-                console.log(valor);
                 const produtoDescricao = `${quantidade} un - ${nomeProduto} - R$${valor}\n`;
                 produtosDescricao += produtoDescricao;
               }
@@ -1548,7 +1547,8 @@ const id_cliente = document.getElementById('id').value;
             const titulo = "Retirada";
             const frete = "Retirada"; // Substituir pelo texto desejado para "Retirada"
             const prazoEntrega = "Retirada"; // Substituir pelo texto desejado para "Retirada"
-            let valorTotal = 0;
+
+            var valorTotal = 0;
             for (const id in produtosSelecionados) {
               if (produtosSelecionados.hasOwnProperty(id)) {
                 const valorProduto = produtosSelecionados[id].valor;
@@ -1556,6 +1556,7 @@ const id_cliente = document.getElementById('id').value;
                 valorTotal += valorProduto * quantidade;
               }
             }
+
             // Adicionar desconto, se aplicável
             if (desconto > 0 && desconto != undefined) {
                 valorTotal -= desconto;
@@ -1573,6 +1574,7 @@ const id_cliente = document.getElementById('id').value;
             } else{
               antecipacaoTxt = ""
             }
+
             const valorTotalFormatado = valorTotal.toFixed(2);
             const detalhesFrete = `Frete: ${frete} \n\n`; // Ajustar o texto para "Retirada"
             var total = `Total: R$${valorTotalFormatado}\n`;
@@ -1581,7 +1583,7 @@ const id_cliente = document.getElementById('id').value;
             produtosDescricao = produtosDescricao.replace(/\./g, ",");
 
             const prazo = `Prazo para confecção é de ${prazoConfecao} dias úteis.\nPrazo inicia-se após aprovação da arte e pagamento confirmado`;
-            campoTexto.value = `${produtosDescricao}${total}\n${prazo}`;
+            campoTexto.value = `${produtosDescricao}\n${total}\n${prazo}`;
             carregarInfoCard();
           });
       }
