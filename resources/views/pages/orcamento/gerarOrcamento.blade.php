@@ -661,8 +661,8 @@
             // Se ocorrer um erro na requisição, exibir mensagem de erro genérica
             Swal.fire({
                 icon: 'error',
-                title: 'Erro ao consultar o CEP',
-                text: 'Ocorreu um erro ao consultar o CEP. Por favor, tente novamente mais tarde.'
+                title: 'CEP inexistente',
+                text: 'O CEP inserido não foi encontrado.'
             });
         });
     }
