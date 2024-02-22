@@ -617,10 +617,15 @@
                 var endereco = response.street + ', ' + response.district + ', ' + response.city + ' - ' + response.stateShortname;
                 $('#endereco').val(endereco);
             }
-        }).fail(function() {
-            alert('Erro ao consultar o CEP.');
+        }).fail(function(jqXHR) {
+            if (jqXHR.status === 404) {
+                alert('Cep inexistente, ou não encontrado');
+            } else {
+                alert('Erro ao consultar o CEP.');
+            }
         });
     }
+
 
       var consultaCepOrcamento = '';
 
