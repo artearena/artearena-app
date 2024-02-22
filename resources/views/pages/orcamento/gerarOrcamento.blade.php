@@ -879,16 +879,18 @@
                     let produtosSelecionados = {};
                     const tableRows = $("#produtoTableBody tr");
                     console.log(tableRows);
+                    var counter = 0; 
                     tableRows.each(function () {
                         const id = $(this).find("td:first-child").text();
                         const nomeProduto = $(this).find("td:nth-child(2) input").val();
                         const valorProduto = parseFloat($(this).find("td:nth-child(3) input").val());
                         const quantidade = parseInt($(this).find("td:nth-child(5) input").val());
-                        produtosSelecionados[id] = {
+                        produtosSelecionados[id + counter] = {
                             nome: nomeProduto,
                             valor: valorProduto,
                             quantidade: quantidade
                         };
+                        counter += 1;
                     });
                     console.log(produtosSelecionados);
                     var produtosDescricao = "";
