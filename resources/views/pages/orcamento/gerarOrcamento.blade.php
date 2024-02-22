@@ -608,6 +608,18 @@
       function consultarCep() {
         var cep = $('#cep').val();
 
+        // Exibir o SweetAlert de "Pesquisando CEP"
+        Swal.fire({
+            icon: 'info',
+            title: 'Pesquisando CEP',
+            text: 'Aguarde enquanto buscamos o CEP...',
+            allowOutsideClick: false,
+            showConfirmButton: false,
+            onBeforeOpen: () => {
+                Swal.showLoading();
+            }
+        });
+
         // Consultar primeiro na API local
         $.get('https://artearena.kinghost.net/consultarCepArteArena', { cep: cep })
         .done(function(response) {
@@ -619,6 +631,8 @@
             } else {
                 var endereco = response.street + ', ' + response.district + ', ' + response.city + ' - ' + response.stateShortname;
                 $('#endereco').val(endereco);
+                // Fechar o SweetAlert após encontrar o endereço
+                Swal.close();
             }
         })
         .fail(function() {
@@ -635,6 +649,8 @@
             if (!response.erro) {
                 var endereco = response.logradouro + ', ' + response.bairro + ', ' + response.localidade + ' - ' + response.uf;
                 $('#endereco').val(endereco);
+                // Fechar o SweetAlert após encontrar o endereço
+                Swal.close();
             } else {
                 // Se o CEP não for encontrado em nenhuma fonte, exibir mensagem de erro
                 Swal.fire({
@@ -645,7 +661,6 @@
             }
         });
     }
-
 
 
       var consultaCepOrcamento = '';
