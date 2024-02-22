@@ -1,16 +1,18 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Etapa do pedido</title>
-    <style>
-        .resultado {
-            display: none; /* Oculta a parte de resultado inicialmente */
-        }
-    </style>
-</head>
-<body>
+@extends('layout.main')
+
+@section('title')
+    Etapa do pedido
+@endsection
+
+@section('style')
+<style>
+    .resultado {
+        display: none; /* Oculta a parte de resultado inicialmente */
+    }
+</style>
+@endsection
+
+@section('content')
     <div class="container">
         <h1 class="mt-4">Consulta de etapa do pedido</h1>
 
@@ -47,5 +49,4 @@
             }
         });
     </script>
-</body>
-</html>
+@endsection
