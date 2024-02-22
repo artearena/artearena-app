@@ -1493,6 +1493,12 @@ const id_cliente = document.getElementById('id').value;
           const dataPrevEntregaRetiradaElement = document.createElement("p");
           dataPrevEntregaRetiradaElement.textContent = "Previsão: A combinar"; // Ajuste a previsão para a "Retirada"
 
+          const inputDesconto = document.getElementById("vl_desconto");
+          const inputAntecipacao = document.getElementById("vl_antecipacao");
+
+          const desconto = parseFloat(inputDesconto.value) || 0;
+          const antecipacao = parseFloat(inputAntecipacao.value) || 0;
+          
           retiradaCardElement.appendChild(logoRetiradaElement);
           retiradaCardElement.appendChild(tituloRetirada);
           retiradaCardElement.appendChild(valorFreteRetiradaElement);
@@ -1550,6 +1556,23 @@ const id_cliente = document.getElementById('id').value;
                 valorTotal += valorProduto * quantidade;
               }
             }
+            // Adicionar desconto, se aplicável
+            if (desconto > 0 && desconto != undefined) {
+                valorTotal -= desconto;
+                var descontoTxt = `Desconto aplicado: R$${desconto}\n`;
+
+            } else {
+              descontoTxt = ""
+            }
+
+            // Adicionar antecipação, se aplicável
+            if (antecipacao > 0 && antecipacao != undefined) {
+                valorTotal += antecipacao;
+                var antecipacaoTxt = `Taxa de antecipação: R$${antecipacao}\n`;
+
+            } else{
+              antecipacaoTxt = ""
+            }
             const valorTotalFormatado = valorTotal.toFixed(2);
             const detalhesFrete = `Frete: ${frete} \n\n`; // Ajustar o texto para "Retirada"
             var total = `Total: R$${valorTotalFormatado}\n`;
@@ -1559,6 +1582,7 @@ const id_cliente = document.getElementById('id').value;
 
             const prazo = `Prazo para confecção é de ${prazoConfecao} dias úteis.\nPrazo inicia-se após aprovação da arte e pagamento confirmado`;
             campoTexto.value = `${produtosDescricao}${total}\n${prazo}`;
+            carregarInfoCard();
           });
       }
       </script>
