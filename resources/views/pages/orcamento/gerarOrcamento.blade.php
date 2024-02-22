@@ -916,13 +916,24 @@
                       valorTotal += valorProduto * quantidade;
                     }
                   }
-                  // Adicionar desconto, se aplicável
-                  if (desconto > 0 && desconto != undefined) {
-                      valorTotal -= desconto;
-                      var descontoTxt = `Desconto aplicado: R$${desconto}\n`;
-
+                 // Verificar se o desconto é em porcentagem
+                  if (desconto.indexOf('%') !== -1) {
+                      // Remover o símbolo de porcentagem
+                      var percentual = parseFloat(desconto.replace('%', ''));
+                      // Calcular o valor do desconto em reais
+                      var descontoReais = (percentual / 100) * valorTotal;
+                      // Subtrair o valor do desconto do valor total
+                      valorTotal -= descontoReais;
+                      var descontoTxt = `Desconto aplicado: ${descontoReais.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}\n`;
                   } else {
-                    descontoTxt = ""
+                      // Caso o desconto seja em valor absoluto
+                      desconto = parseFloat(desconto);
+                      if (desconto > 0 && !isNaN(desconto)) {
+                          valorTotal -= desconto;
+                          var descontoTxt = `Desconto aplicado: ${desconto.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}\n`;
+                      } else {
+                          var descontoTxt = "";
+                      }
                   }
 
                   // Adicionar antecipação, se aplicável
