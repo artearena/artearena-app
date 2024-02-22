@@ -660,10 +660,11 @@
         .fail(function(jqXHR) {
             // Se ocorrer um erro na requisição, exibir mensagem de erro genérica
             Swal.fire({
-                icon: 'error',
-                title: 'Erro ao consultar o CEP',
-                text: 'Ocorreu um erro ao consultar o CEP. Por favor, tente novamente mais tarde.'
+              icon: 'error',
+              title: 'CEP inexistente',
+              text: 'O CEP inserido não foi encontrado.'
             });
+            return;
         });
     }
 
