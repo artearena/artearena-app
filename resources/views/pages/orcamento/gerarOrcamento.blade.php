@@ -515,68 +515,49 @@
       $('#produto').select2();
 
       function consultarProduto() {
-        var produto = $('#produto').val();
-        var produtoNome = $("#produto option:selected").text(); // Obtém o nome do produto selecionado para uso imediato.
-
-        // Gera um identificador único para cada produto adicionado.
-        var uniqueId = new Date().getTime(); // Utiliza o timestamp como ID único.
-
-        // Realizar requisição AJAX para obter dados do produto do Tiny API
-        $.get('https://artearena.kinghost.net/consultar-tiny', {
+          var produto = $('#produto').val();
+          // Realizar requisição AJAX para obter dados do produto do Tiny API
+          $.get('https://artearena.kinghost.net/consultar-tiny', {
             token: 'bc3cdea243d8687963fa642580057531456d34fa',
             id: produto,
             formato: 'json'
-        }, function(response) {
+          }, function(response) {
             var produtoData = response;
             console.log(response);
-            // Verificar se o produto possui prazo de confecção
-            var prazoConfeccao = produtoData.retorno.produto && produtoData.retorno.produto.dias_preparacao ? produtoData.retorno.produto.dias_preparacao : 0;
-            // Verificar se é um produto personalizado
-            var nomeProduto = produtoData.retorno.produto && produtoData.retorno.produto.nome ? produtoData.retorno.produto.nome : produtoNome; // Fallback para o nome obtido diretamente do select, se necessário.
-            // Se o produto for personalizado, pode-se definir valores padrão específicos
-            if (nomeProduto.toLowerCase().includes("personalizado")) {
-                // Definir valores padrão para produto personalizado
-                produtoData.retorno.produto.preco = 0;
-                produtoData.retorno.produto.peso_bruto = 0;
-                prazoConfeccao = 0;
-            }
             // Adicionar registro à tabela de produtos selecionados
             const tableBody = document.getElementById("produtoTableBody");
             const newRow = tableBody.insertRow();
             newRow.innerHTML = `
-                <td hidden>${produto}</td>
-                <td>
-                    <input type="text" class="form-control" value="${nomeProduto}" readonly style="width: 200px;">
-                </td>
-                <td>
-                    <input type="text" class="form-control" value="${produtoData.retorno.produto && produtoData.retorno.produto.preco ? produtoData.retorno.produto.preco : 0}" style="width: 70px;">
-                </td>
-                <td>
-                    <input type="number" class="form-control" value="${produtoData.retorno.produto && produtoData.retorno.produto.peso_bruto ? produtoData.retorno.produto.peso_bruto : 0}" style="width: 60px;">
-                </td>
-                <td>
-                    <input type="number" class="form-control" value="1" style="width: 60px;">
-                </td>
-                <td>
-                    <input type="number" class="form-control" value="${prazoConfeccao}" style="width: 60px;">
-                </td>
-                <td>
-                    <input type="checkbox" class="form-check-input">
-                </td>
-                <td>
-                    <input type="checkbox" class="form-check-input">
-                </td>
-                <td>
-                    <button class="btn btn-danger" onclick="var tableRow = this.closest('tr'); tableRow.remove();">Remover</button>
-                </td>
+              <td hidden>${produto}</td>
+              <td>
+                <input type="text" class="form-control" value="${produtoData.retorno.produto && produtoData.retorno.produto.nome ? produtoData.retorno.produto.nome : ''}" style="width: 200px;">
+              </td>
+              <td>
+                <input type="text" class="form-control" value="${produtoData.retorno.produto && produtoData.retorno.produto.preco ? produtoData.retorno.produto.preco : 0}" style="width: 70px;">
+              </td>
+              <td>
+                <input type="number" class="form-control" value="${produtoData.retorno.produto && produtoData.retorno.produto.peso_bruto ? produtoData.retorno.produto.peso_bruto : 0}" style="width: 60px;">
+              </td>
+              <td>
+                <input type="number" class="form-control" value="1" style="width: 60px;">
+              </td>
+              <td>
+                <input type="number" class="form-control prazo-confeccao" value="${produtoData.retorno.produto && produtoData.retorno.produto.dias_preparacao ? produtoData.retorno.produto.dias_preparacao : 0}" style="width: 60px;">
+              </td>
+              <td>
+                <input type="checkbox" class="form-check-input" id="ilhosesCheckbox">
+              </td>
+              <td>
+                <input type="checkbox" class="form-check-input" id="mastroCheckbox">
+              </td>
+              <td>
+                <button class="btn btn-danger" onclick="removeProduto(this)">Remover</button>
+              </td>
             `;
-            // Atribui o ID único ao newRow para identificação
-            newRow.id = `produto-${uniqueId}`;
-        }).fail(function() {
+          }).fail(function() {
             console.log("Erro ao consultar o produto. Verifique se o ID do produto é válido.");
-        });
-    }
-
+          });
+        }
 
 
       $('#produto').change(function() {
