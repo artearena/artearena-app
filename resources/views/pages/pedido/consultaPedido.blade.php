@@ -101,7 +101,6 @@
         background-color: rgba(68, 68, 68, 0.781);
         right: 30px;
     }
-
     .one::after {
         width: 0;
         height: 0;
@@ -202,7 +201,7 @@
         <ul>
             <li class="one">
                 <i class="icon uil uil-capture"></i>
-                <div class="progress one">
+                <div class="progress oneAct">
                     <p>1</p>
                     <i class="uil uil-check"></i>
                 </div>
@@ -252,7 +251,7 @@
     $(document).ready(function() {
         $(".one").click(function() {
             $(this).addClass("active");
-            $(".two, .three, .four, .five").removeClass("active");
+            $(".oneAct .two, .three, .four, .five").removeClass("active");
         });
 
         $(".two").click(function() {
