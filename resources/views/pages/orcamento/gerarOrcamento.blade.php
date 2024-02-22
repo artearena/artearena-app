@@ -608,23 +608,38 @@
       function consultarCep() {
         var cep = $('#cep').val();
 
-        $.get('https://artearena.kinghost.net/consultarCepArteArena', { cep: cep }, function(response) {
+        $.get('https://artearena.kinghost.net/consultarCepArteArena', { cep: cep })
+        .done(function(response) {
             $('#endereco').val('');
 
             if (response.erro) {
-                alert('CEP não encontrado.');
+                Swal.fire({
+                    icon: 'error',
+                    title: 'CEP não encontrado',
+                    text: 'O CEP inserido não foi encontrado.'
+                });
             } else {
                 var endereco = response.street + ', ' + response.district + ', ' + response.city + ' - ' + response.stateShortname;
                 $('#endereco').val(endereco);
             }
-        }).fail(function(jqXHR) {
+        })
+        .fail(function(jqXHR) {
             if (jqXHR.status === 404) {
-                alert('Cep inexistente, ou não encontrado');
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Cep inexistente, ou não encontrado',
+                    text: ''
+                });
             } else {
-                alert('Erro ao consultar o CEP.');
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Erro ao consultar o CEP',
+                    text: ''
+                });
             }
         });
     }
+
 
 
       var consultaCepOrcamento = '';
