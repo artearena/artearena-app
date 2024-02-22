@@ -614,7 +614,7 @@
             if (response.erro) {
                 alert('CEP não encontrado.');
             } else {
-                var endereco = response.result.street + ', ' + response.result.district + ', ' + response.result.city + ' - ' + response.result.stateShortname;
+                var endereco = response.street + ', ' + response.district + ', ' + response.city + ' - ' + response.stateShortname;
                 $('#endereco').val(endereco);
             }
         }).fail(function() {
