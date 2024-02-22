@@ -642,13 +642,13 @@
     // Função para consultar via ViaCEP
     function consultarViaCep(cep) {
         $.get('https://viacep.com.br/ws/' + cep + '/json/')
-        .done(function(response) {
+        .done(function(response, status) {
             if (status === 'success') {
                 var endereco = response.logradouro + ', ' + response.bairro + ', ' + response.localidade + ' - ' + response.uf;
                 $('#endereco').val(endereco);
                 // Fechar o SweetAlert após encontrar o endereço
                 Swal.close();
-            } else if (status ==='Bad Request'){
+            } else if (status === 'Bad Request' || jqXHR.status === 400) {
                 // Se o CEP não for encontrado em nenhuma fonte, exibir mensagem de erro
                 Swal.fire({
                     icon: 'error',
@@ -666,6 +666,7 @@
             });
         });
     }
+
 
 
 
