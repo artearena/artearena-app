@@ -164,7 +164,9 @@ class PedidoController extends Controller
     }
     public function etapaPedido(Request $request)
     {
-        return view('pages.pedido.consultaPedido');
+        $etapa = "Etapa do pedido obtida do banco de dados ou de outra fonte";
+
+        return view('pages.pedido.consultaPedido', compact('etapa'));
     }
     /* 
     public function consultaEtapaPedido(Request $request)
