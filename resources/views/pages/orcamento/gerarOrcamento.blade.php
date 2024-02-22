@@ -623,16 +623,14 @@
         // Consultar primeiro na API local
         $.get('https://artearena.kinghost.net/consultarCepArteArena', { cep: cep })
         .done(function(response) {
-            $('#endereco').val('');
-
-            if (response.erro) {
-                // Se o CEP não for encontrado localmente, tentar consultar via ViaCEP
-                consultarViaCep(cep);
-            } else {
+            if (!response.erro) {
                 var endereco = response.street + ', ' + response.district + ', ' + response.city + ' - ' + response.stateShortname;
                 $('#endereco').val(endereco);
                 // Fechar o SweetAlert após encontrar o endereço
                 Swal.close();
+            } else {
+                // Se o CEP não for encontrado localmente, tentar consultar via ViaCEP
+                consultarViaCep(cep);
             }
         })
         .fail(function() {
@@ -644,8 +642,6 @@
     // Função para consultar via ViaCEP
     function consultarViaCep(cep) {
         $.get('https://viacep.com.br/ws/' + cep + '/json/', function(response) {
-            $('#endereco').val('');
-
             if (!response.erro) {
                 var endereco = response.logradouro + ', ' + response.bairro + ', ' + response.localidade + ' - ' + response.uf;
                 $('#endereco').val(endereco);
@@ -661,6 +657,7 @@
             }
         });
     }
+
 
 
       var consultaCepOrcamento = '';
