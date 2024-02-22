@@ -606,17 +606,22 @@
           return `${dia}/${mes}/${ano}`;
       }
       function consultarCep() {
-          var cep = $('#cep').val();
+        var cep = $('#cep').val();
 
-          $.get('https://viacep.com.br/ws/' + cep + '/json/', function(response) {
-              $('#endereco').val('');
+        $.get('https://artearena.kinghost.net/consultarCepArteArena', { cep: cep }, function(response) {
+            $('#endereco').val('');
 
-              if (!response.erro) {
-                  var endereco = response.logradouro + ', ' + response.bairro + ', ' + response.localidade + ' - ' + response.uf;
-                  $('#endereco').val(endereco);
-              }
-          });
-      }
+            if (response.erro) {
+                alert('CEP não encontrado.');
+            } else {
+                var endereco = response.result.street + ', ' + response.result.district + ', ' + response.result.city + ' - ' + response.result.stateShortname;
+                $('#endereco').val(endereco);
+            }
+        }).fail(function() {
+            alert('Erro ao consultar o CEP.');
+        });
+    }
+
       var consultaCepOrcamento = '';
 
       $('#cep').on('input', function() {
