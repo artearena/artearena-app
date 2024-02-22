@@ -5,6 +5,8 @@
 @endsection
 
 @section('style')
+<link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+
 <style>
     .resultado {
         display: none; /* Oculta a parte de resultado inicialmente */
@@ -178,54 +180,6 @@
     }
 </style>
 @endsection
-@section('scripts')
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-    const one = document.querySelector(".one");
-    const two = document.querySelector(".two");
-    const three = document.querySelector(".three");
-    const four = document.querySelector(".four");
-    const five = document.querySelector(".five");
-
-    one.onclick = function() {
-        one.classList.add("active");
-        two.classList.remove("active");
-        three.classList.remove("active");
-        four.classList.remove("active");
-        five.classList.remove("active");
-    }
-
-    two.onclick = function() {
-        one.classList.add("active");
-        two.classList.add("active");
-        three.classList.remove("active");
-        four.classList.remove("active");
-        five.classList.remove("active");
-    }
-    three.onclick = function() {
-        one.classList.add("active");
-        two.classList.add("active");
-        three.classList.add("active");
-        four.classList.remove("active");
-        five.classList.remove("active");
-    }
-    four.onclick = function() {
-        one.classList.add("active");
-        two.classList.add("active");
-        three.classList.add("active");
-        four.classList.add("active");
-        five.classList.remove("active");
-    }
-    five.onclick = function() {
-        one.classList.add("active");
-        two.classList.add("active");
-        three.classList.add("active");
-        four.classList.add("active");
-        five.classList.add("active");
-    }
-
-</script>
-@endsection
 
 @section('content')
     <div class="container">
@@ -291,3 +245,34 @@
     </div>
 @endsection
 
+@section('scripts')
+<!-- Adicionando jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $(".one").click(function() {
+            $(this).addClass("active");
+            $(".two, .three, .four, .five").removeClass("active");
+        });
+
+        $(".two").click(function() {
+            $(".one, .two").addClass("active");
+            $(".three, .four, .five").removeClass("active");
+        });
+
+        $(".three").click(function() {
+            $(".one, .two, .three").addClass("active");
+            $(".four, .five").removeClass("active");
+        });
+
+        $(".four").click(function() {
+            $(".one, .two, .three, .four").addClass("active");
+            $(".five").removeClass("active");
+        });
+
+        $(".five").click(function() {
+            $(".one, .two, .three, .four, .five").addClass("active");
+        });
+    });
+</script>
+@endsection
