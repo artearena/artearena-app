@@ -890,6 +890,7 @@
                             quantidade: quantidade
                         };
                     });
+                    console.log(produtosSelecionados);
                     var produtosDescricao = "";
                     for (const id in produtosSelecionados) {
                         if (produtosSelecionados.hasOwnProperty(id)) {
