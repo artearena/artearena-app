@@ -201,7 +201,7 @@
         <ul>
             <li class="one">
                 <i class="icon uil uil-capture"></i>
-                <div class="progress oneAct">
+                <div class="progress" id="oneAct">
                     <p>1</p>
                     <i class="uil uil-check"></i>
                 </div>
