@@ -916,25 +916,32 @@
                       valorTotal += valorProduto * quantidade;
                     }
                   }
-                 // Verificar se o desconto é em porcentagem
-                  if (desconto.indexOf('%') !== -1) {
-                      // Remover o símbolo de porcentagem
-                      var percentual = parseFloat(desconto.replace('%', ''));
-                      // Calcular o valor do desconto em reais
-                      var descontoReais = (percentual / 100) * valorTotal;
-                      // Subtrair o valor do desconto do valor total
-                      valorTotal -= descontoReais;
-                      var descontoTxt = `Desconto aplicado: ${descontoReais.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}\n`;
-                  } else {
-                      // Caso o desconto seja em valor absoluto
-                      desconto = parseFloat(desconto);
-                      if (desconto > 0 && !isNaN(desconto)) {
-                          valorTotal -= desconto;
-                          var descontoTxt = `Desconto aplicado: ${desconto.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}\n`;
+                  console.log(desconto);
+                  // Verificar se o desconto é válido e não está vazio
+                  if (typeof desconto === 'string' && desconto.trim() !== '') {
+                      // Verificar se o desconto é em porcentagem
+                      if (desconto.indexOf('%') !== -1) {
+                          // Remover o símbolo de porcentagem
+                          var percentual = parseFloat(desconto.replace('%', ''));
+                          // Calcular o valor do desconto em reais
+                          var descontoReais = (percentual / 100) * valorTotal;
+                          // Subtrair o valor do desconto do valor total
+                          valorTotal -= descontoReais;
+                          var descontoTxt = `Desconto aplicado: ${descontoReais.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}\n`;
                       } else {
-                          var descontoTxt = "";
+                          // Caso o desconto seja em valor absoluto
+                          desconto = parseFloat(desconto);
+                          if (desconto > 0 && !isNaN(desconto)) {
+                              valorTotal -= desconto;
+                              var descontoTxt = `Desconto aplicado: ${desconto.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}\n`;
+                          } else {
+                              var descontoTxt = "";
+                          }
                       }
+                  } else {
+                      var descontoTxt = "";
                   }
+
 
                   // Adicionar antecipação, se aplicável
                   if (antecipacao > 0 && antecipacao != undefined) {
