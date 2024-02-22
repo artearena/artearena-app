@@ -878,6 +878,7 @@
                   campoTexto.value = "";
                   let produtosSelecionados = {};
                   const tableRows = $("#produtoTableBody tr");
+                  console.log(tablesRows);
                   tableRows.each(function () {
                     const id = $(this).find("td:first-child").text();
                     const nomeProduto = $(this).find("td:nth-child(2) input").val();
