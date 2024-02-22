@@ -303,7 +303,7 @@
 
         if (cep.length === 8) {
             $.ajax({
-                url: 'https://brasilaberto.com/api/v1/zipcode/' + cep,
+                url: 'https://artearena.kinghost.net/consultarCepArteArena?cep=' + cep,
                 type: 'GET',
                 dataType: 'json',
                 success: function(data) {
