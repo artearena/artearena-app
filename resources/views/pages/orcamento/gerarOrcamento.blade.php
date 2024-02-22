@@ -648,7 +648,7 @@
                 $('#endereco').val(endereco);
                 // Fechar o SweetAlert após encontrar o endereço
                 Swal.close();
-            } else {
+            } else if (status ==='Bad Request'){
                 // Se o CEP não for encontrado em nenhuma fonte, exibir mensagem de erro
                 Swal.fire({
                     icon: 'error',
@@ -660,9 +660,9 @@
         .fail(function(jqXHR) {
             // Se ocorrer um erro na requisição, exibir mensagem de erro genérica
             Swal.fire({
-              icon: 'error',
-              title: 'CEP inexistente',
-              text: 'O CEP inserido não foi encontrado.'
+                icon: 'error',
+                title: 'Erro ao consultar o CEP',
+                text: 'Ocorreu um erro ao consultar o CEP. Por favor, tente novamente mais tarde.'
             });
             return;
         });
