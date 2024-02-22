@@ -249,7 +249,7 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
     $(document).ready(function() {
-        $(".one").click(function() {
+        $(".oneAct").click(function() {
             $(this).addClass("active");
             $(".oneAct .two, .three, .four, .five").removeClass("active");
         });
