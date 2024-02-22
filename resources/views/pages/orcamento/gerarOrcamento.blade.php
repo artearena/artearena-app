@@ -884,15 +884,11 @@
                         const nomeProduto = $(this).find("td:nth-child(2) input").val();
                         const valorProduto = parseFloat($(this).find("td:nth-child(3) input").val());
                         const quantidade = parseInt($(this).find("td:nth-child(5) input").val());
-                        if (!produtosSelecionados.hasOwnProperty(id)) {
-                            produtosSelecionados[id] = {
-                                nome: nomeProduto,
-                                valor: valorProduto,
-                                quantidade: quantidade
-                            };
-                        } else {
-                            produtosSelecionados[id].quantidade += quantidade;
-                        }
+                        produtosSelecionados[id] = {
+                            nome: nomeProduto,
+                            valor: valorProduto,
+                            quantidade: quantidade
+                        };
                     });
                     var produtosDescricao = "";
                     for (const id in produtosSelecionados) {
