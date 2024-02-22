@@ -872,7 +872,7 @@
                   const inputDesconto = document.getElementById("vl_desconto");
                   const inputAntecipacao = document.getElementById("vl_antecipacao");
 
-                  const desconto = inputDesconto.value.trim(); // Remova espaços em branco
+                  const desconto = parseFloat(inputDesconto.value) || 0;
                   const antecipacao = parseFloat(inputAntecipacao.value) || 0;
 
                   campoTexto.value = "";
@@ -916,32 +916,14 @@
                       valorTotal += valorProduto * quantidade;
                     }
                   }
-                  console.log(desconto);
-                  // Verificar se o desconto é válido e não está vazio
-                  if (desconto !== '' && !isNaN(parseFloat(desconto))) {
-                      // Verificar se o desconto é em porcentagem
-                      if (desconto.indexOf('%') !== -1) {
-                          // Remover o símbolo de porcentagem e converter para número
-                          var percentual = parseFloat(desconto.replace('%', ''));
-                          // Calcular o valor do desconto em reais
-                          var descontoReais = (percentual / 100) * valorTotal;
-                          // Subtrair o valor do desconto do valor total
-                          valorTotal -= descontoReais;
-                          var descontoTxt = `Desconto aplicado: ${descontoReais.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}\n`;
-                      } else {
-                          // Caso o desconto seja em valor absoluto
-                          desconto = parseFloat(desconto);
-                          if (desconto > 0) {
-                              valorTotal -= desconto;
-                              var descontoTxt = `Desconto aplicado: ${desconto.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}\n`;
-                          } else {
-                              var descontoTxt = "";
-                          }
-                      }
-                  } else {
-                      var descontoTxt = "";
-                  }
+                  // Adicionar desconto, se aplicável
+                  if (desconto > 0 && desconto != undefined) {
+                      valorTotal -= desconto;
+                      var descontoTxt = `Desconto aplicado: R$${desconto}\n`;
 
+                  } else {
+                    descontoTxt = ""
+                  }
 
                   // Adicionar antecipação, se aplicável
                   if (antecipacao > 0 && antecipacao != undefined) {
