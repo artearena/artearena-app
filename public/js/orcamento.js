@@ -121,17 +121,41 @@ src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"
     function consultarCep() {
         var cep = $('#cep').val();
     
-        $.get('https://artearena.kinghost.net/consultarCepArteArena', { cep: cep }, function(response) {
+        // Consultar primeiro na API local
+        $.get('https://artearena.kinghost.net/consultarCepArteArena', { cep: cep })
+        .done(function(response) {
             $('#endereco').val('');
     
             if (response.erro) {
-                alert('CEP não encontrado.');
+                // Se o CEP não for encontrado localmente, tentar consultar via ViaCEP
+                consultarViaCep(cep);
             } else {
                 var endereco = response.street + ', ' + response.district + ', ' + response.city + ' - ' + response.stateShortname;
                 $('#endereco').val(endereco);
             }
-        }).fail(function() {
-            alert('Erro ao consultar o CEP.');
+        })
+        .fail(function() {
+            // Se ocorrer algum erro na consulta local, tentar consultar via ViaCEP
+            consultarViaCep(cep);
+        });
+    }
+    
+    // Função para consultar via ViaCEP
+    function consultarViaCep(cep) {
+        $.get('https://viacep.com.br/ws/' + cep + '/json/', function(response) {
+            $('#endereco').val('');
+    
+            if (!response.erro) {
+                var endereco = response.logradouro + ', ' + response.bairro + ', ' + response.localidade + ' - ' + response.uf;
+                $('#endereco').val(endereco);
+            } else {
+                // Se o CEP não for encontrado em nenhuma fonte, exibir mensagem de erro
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Erro',
+                    text: 'CEP inexistente.'
+                });
+            }
         });
     }
   

@@ -608,33 +608,39 @@
       function consultarCep() {
         var cep = $('#cep').val();
 
+        // Consultar primeiro na API local
         $.get('https://artearena.kinghost.net/consultarCepArteArena', { cep: cep })
         .done(function(response) {
             $('#endereco').val('');
 
             if (response.erro) {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'CEP não encontrado',
-                    text: 'O CEP inserido não foi encontrado.'
-                });
+                // Se o CEP não for encontrado localmente, tentar consultar via ViaCEP
+                consultarViaCep(cep);
             } else {
                 var endereco = response.street + ', ' + response.district + ', ' + response.city + ' - ' + response.stateShortname;
                 $('#endereco').val(endereco);
             }
         })
-        .fail(function(jqXHR) {
-            if (jqXHR.status === 404) {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Cep inexistente, ou não encontrado',
-                    text: ''
-                });
+        .fail(function() {
+            // Se ocorrer algum erro na consulta local, tentar consultar via ViaCEP
+            consultarViaCep(cep);
+        });
+    }
+
+    // Função para consultar via ViaCEP
+    function consultarViaCep(cep) {
+        $.get('https://viacep.com.br/ws/' + cep + '/json/', function(response) {
+            $('#endereco').val('');
+
+            if (!response.erro) {
+                var endereco = response.logradouro + ', ' + response.bairro + ', ' + response.localidade + ' - ' + response.uf;
+                $('#endereco').val(endereco);
             } else {
+                // Se o CEP não for encontrado em nenhuma fonte, exibir mensagem de erro
                 Swal.fire({
                     icon: 'error',
-                    title: 'Erro ao consultar o CEP',
-                    text: ''
+                    title: 'CEP inexistente',
+                    text: 'O CEP inserido não foi encontrado.'
                 });
             }
         });
