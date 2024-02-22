@@ -606,66 +606,66 @@
           return `${dia}/${mes}/${ano}`;
       }
       function consultarCep() {
-        var cep = $('#cep').val();
+          var cep = $('#cep').val();
 
-        // Exibir o SweetAlert de "Pesquisando CEP"
-        Swal.fire({
-            icon: 'info',
-            title: 'Pesquisando CEP',
-            text: 'Aguarde enquanto buscamos o CEP...',
-            allowOutsideClick: false,
-            showConfirmButton: false,
-            onBeforeOpen: () => {
-                Swal.showLoading();
-            }
-        });
+          // Exibir o SweetAlert de "Pesquisando CEP"
+          Swal.fire({
+              icon: 'info',
+              title: 'Pesquisando CEP',
+              text: 'Aguarde enquanto buscamos o CEP...',
+              allowOutsideClick: false,
+              showConfirmButton: false,
+              onBeforeOpen: () => {
+                  Swal.showLoading();
+              }
+          });
 
-        // Consultar primeiro na API local
-        $.get('https://artearena.kinghost.net/consultarCepArteArena', { cep: cep })
-        .done(function(response) {
-            if (status === 'success') {
-                var endereco = response.street + ', ' + response.district + ', ' + response.city + ' - ' + response.stateShortname;
-                $('#endereco').val(endereco);
-                // Fechar o SweetAlert após encontrar o endereço
-                Swal.close();
-            } else {
-                // Se o CEP não for encontrado localmente, tentar consultar via ViaCEP
-                consultarViaCep(cep);
-            }
-        })
-        .fail(function() {
-            // Se ocorrer algum erro na consulta local, tentar consultar via ViaCEP
-            consultarViaCep(cep);
-        });
-    }
+          // Consultar primeiro na API local
+          $.get('https://artearena.kinghost.net/consultarCepArteArena', { cep: cep })
+          .done(function(response) {
+              if (status === 'success') {
+                  var endereco = response.street + ', ' + response.district + ', ' + response.city + ' - ' + response.stateShortname;
+                  $('#endereco').val(endereco);
+                  // Fechar o SweetAlert após encontrar o endereço
+                  Swal.close();
+              } else {
+                  // Se o CEP não for encontrado localmente, tentar consultar via ViaCEP
+                  consultarViaCep(cep);
+              }
+          })
+          .fail(function() {
+              // Se ocorrer algum erro na consulta local, tentar consultar via ViaCEP
+              consultarViaCep(cep);
+          });
+      }
 
-    // Função para consultar via ViaCEP
-    function consultarViaCep(cep) {
-        $.get('https://viacep.com.br/ws/' + cep + '/json/')
-        .done(function(response, status) {
-            if (status === 'success') {
-                var endereco = response.logradouro + ', ' + response.bairro + ', ' + response.localidade + ' - ' + response.uf;
-                $('#endereco').val(endereco);
-                // Fechar o SweetAlert após encontrar o endereço
-                Swal.close();
-            } else if (status === 'Bad Request' || jqXHR.status === 400) {
-                // Se o CEP não for encontrado em nenhuma fonte, exibir mensagem de erro
-                Swal.fire({
-                    icon: 'error',
-                    title: 'CEP inexistente',
-                    text: 'O CEP inserido não foi encontrado.'
-                });
-            }
-        })
-        .fail(function(jqXHR) {
-            // Se ocorrer um erro na requisição, exibir mensagem de erro genérica
-            Swal.fire({
-                icon: 'error',
-                title: 'CEP inexistente',
-                text: 'O CEP inserido não foi encontrado.'
-            });
-        });
-    }
+      // Função para consultar via ViaCEP
+      function consultarViaCep(cep) {
+          $.get('https://viacep.com.br/ws/' + cep + '/json/')
+          .done(function(response, status) {
+              if (status === 'success') {
+                  var endereco = response.logradouro + ', ' + response.bairro + ', ' + response.localidade + ' - ' + response.uf;
+                  $('#endereco').val(endereco);
+                  // Fechar o SweetAlert após encontrar o endereço
+                  Swal.close();
+              } else if (status === 'Bad Request' || jqXHR.status === 400) {
+                  // Se o CEP não for encontrado em nenhuma fonte, exibir mensagem de erro
+                  Swal.fire({
+                      icon: 'error',
+                      title: 'CEP inexistente',
+                      text: 'O CEP inserido não foi encontrado.'
+                  });
+              }
+          })
+          .fail(function(jqXHR) {
+              // Se ocorrer um erro na requisição, exibir mensagem de erro genérica
+              Swal.fire({
+                  icon: 'error',
+                  title: 'CEP inexistente',
+                  text: 'O CEP inserido não foi encontrado.'
+              });
+          });
+      }
 
       var consultaCepOrcamento = '';
 
@@ -878,7 +878,7 @@
                   campoTexto.value = "";
                   let produtosSelecionados = {};
                   const tableRows = $("#produtoTableBody tr");
-                  console.log(tablesRows);
+                  console.log(tableRows);
                   tableRows.each(function () {
                     const id = $(this).find("td:first-child").text();
                     const nomeProduto = $(this).find("td:nth-child(2) input").val();
