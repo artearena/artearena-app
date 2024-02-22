@@ -178,6 +178,36 @@
     }
 </style>
 @endsection
+@section('scripts')
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $(".one").click(function() {
+            $(this).addClass("active");
+            $(".two, .three, .four, .five").removeClass("active");
+        });
+
+        $(".two").click(function() {
+            $(".one, .two").addClass("active");
+            $(".three, .four, .five").removeClass("active");
+        });
+
+        $(".three").click(function() {
+            $(".one, .two, .three").addClass("active");
+            $(".four, .five").removeClass("active");
+        });
+
+        $(".four").click(function() {
+            $(".one, .two, .three, .four").addClass("active");
+            $(".five").removeClass("active");
+        });
+
+        $(".five").click(function() {
+            $(".one, .two, .three, .four, .five").addClass("active");
+        });
+    });
+</script>
+@endsection
 
 @section('content')
     <div class="container">
@@ -243,33 +273,3 @@
     </div>
 @endsection
 
-@section('scripts')
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-    $(document).ready(function() {
-        $(".one").click(function() {
-            $(this).addClass("active");
-            $(".two, .three, .four, .five").removeClass("active");
-        });
-
-        $(".two").click(function() {
-            $(".one, .two").addClass("active");
-            $(".three, .four, .five").removeClass("active");
-        });
-
-        $(".three").click(function() {
-            $(".one, .two, .three").addClass("active");
-            $(".four, .five").removeClass("active");
-        });
-
-        $(".four").click(function() {
-            $(".one, .two, .three, .four").addClass("active");
-            $(".five").removeClass("active");
-        });
-
-        $(".five").click(function() {
-            $(".one, .two, .three, .four, .five").addClass("active");
-        });
-    });
-</script>
-@endsection
