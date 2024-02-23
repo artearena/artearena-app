@@ -1280,7 +1280,7 @@ const id_cliente = document.getElementById('id').value;
                   </td>                  
                   <td text-center>
                     <button class="btn btn-primary btn-carregar" onclick="carregarDados(this)">Carregar</button>
-                    <button class="btn btn-success btn-criar-pedido" onclick="criarPedido(${orcamento.id})">Cria Pedido</button>
+                    <button class="btn btn-success btn-aprovar-orcamento" onclick="x(${orcamento.id})">Aprovar Orçamento</button>
                   </td>
                   <td style="display:none;">${orcamento.cep_frete}</td>
                 </tr>
@@ -1521,21 +1521,19 @@ const id_cliente = document.getElementById('id').value;
             campoTexto.value = "";
             var produtosSelecionados = {};
             const tableRows = $("#produtoTableBody tr");
+            console.log(tableRows);
+            var counter = 0; 
             tableRows.each(function () {
-              const id = $(this).find("td:first-child").text();
-              const nomeProduto = $(this).find("td:nth-child(2) input").val();
-              const valorProduto = parseFloat($(this).find("td:nth-child(3) input").val());
-              const quantidade = parseInt($(this).find("td:nth-child(5) input").val());
-              if (!produtosSelecionados.hasOwnProperty(id)) {
-                produtosSelecionados[id] = {
-                  nome: nomeProduto,
-                  valor: valorProduto,
-                  quantidade: quantidade
+                const id = $(this).find("td:first-child").text();
+                const nomeProduto = $(this).find("td:nth-child(2) input").val();
+                const valorProduto = parseFloat($(this).find("td:nth-child(3) input").val());
+                const quantidade = parseInt($(this).find("td:nth-child(5) input").val());
+                produtosSelecionados[id + counter] = {
+                    nome: nomeProduto,
+                    valor: valorProduto,
+                    quantidade: quantidade
                 };
-              } else {
-                produtosSelecionados[id].quantidade += quantidade;
-              }
-              
+                counter += 1;
             });
             var produtosDescricao = "";
             for (const id in produtosSelecionados) {
