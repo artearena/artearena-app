@@ -243,7 +243,12 @@
         background-color: #0056b3; /* Cor mais escura ao passar o mouse sobre botões */
     }
 
-
+    .expandir-observacoes {
+        max-width: 200px; /* Defina a largura máxima que deseja */
+        white-space: nowrap; /* Evita que o texto quebre em várias linhas */
+        overflow: auto; /* Adiciona uma barra de rolagem horizontal quando necessário */
+        text-overflow: ellipsis; /* Adiciona reticências (...) quando o texto estiver além da largura máxima */
+    }
 
 </style>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.css">
@@ -1265,12 +1270,12 @@ const id_cliente = document.getElementById('id').value;
             `;
             data.forEach((orcamento) => {
                 // Limita o tamanho dos detalhes do frete a serem exibidos
-                let detalhesFreteResumo = orcamento.detalhes_orcamento.length > 30 ? orcamento.detalhes_orcamento.substring(0, 30) + '...' : orcamento.detalhes_orcamento;
+                let detalhesFreteResumo = orcamento.detalhes_orcamento
 
                 tabelaHtml += `
                     <tr>
                         <td style="display: none;">${orcamento.id}</td>
-                        <td>${detalhesFreteResumo}</td>
+                        <td class="expandir-observacoes" id="observacao" style="overflow: auto;" lang="pt">${detalhesFreteResumo}</td>
                         <td>${orcamento.endereco_frete}</td>
                         <td>${orcamento.nome_transportadora}</td>
                         <td>${orcamento.valor_frete}</td>
@@ -1326,7 +1331,14 @@ const id_cliente = document.getElementById('id').value;
           });
       }
 
-
+      
+      $(document).ready(function() {
+          $('#pedidosTable tbody').on('mouseenter', 'td.expandir-observacoes', function() {
+              var td = $(this);
+              var fullText = td.text();
+              td.attr('title', fullText);
+          });
+      });
       // Adicionar o evento de clique ao botão "Buscar Orçamentos"
       document.getElementById('buscar_orcamento').addEventListener('click', consultarOrcamentos);
       function fecharModal() {
