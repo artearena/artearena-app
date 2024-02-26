@@ -1265,12 +1265,12 @@ const id_cliente = document.getElementById('id').value;
             `;
             data.forEach((orcamento) => {
                 // Limita o tamanho dos detalhes do frete a serem exibidos
-                let detalhesFrete = orcamento.detalhes_orcamento.length > 30 ? orcamento.detalhes_orcamento.substring(0, 30) + '...' : orcamento.detalhes_orcamento;
+                let detalhesFreteResumo = orcamento.detalhes_orcamento.length > 30 ? orcamento.detalhes_orcamento.substring(0, 30) + '...' : orcamento.detalhes_orcamento;
 
                 tabelaHtml += `
                     <tr>
                         <td style="display: none;">${orcamento.id}</td>
-                        <td class="descricao-orcamento">${detalhesFrete}</td>
+                        <td>${detalhesFreteResumo}</td>
                         <td>${orcamento.endereco_frete}</td>
                         <td>${orcamento.nome_transportadora}</td>
                         <td>${orcamento.valor_frete}</td>
@@ -1284,6 +1284,8 @@ const id_cliente = document.getElementById('id').value;
                             <button class="btn btn-success btn-aprovar-orcamento" onclick="x(${orcamento.id})">Aprovar Orçamento</button>
                         </td>
                         <td style="display:none;">${orcamento.cep_frete}</td>
+                        <td style="display:none;" class="descricao-orcamento">${detalhesFrete}</td>
+
                     </tr>
                 `;
             });
