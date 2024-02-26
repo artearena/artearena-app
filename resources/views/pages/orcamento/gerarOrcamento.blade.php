@@ -1296,31 +1296,31 @@ const id_cliente = document.getElementById('id').value;
                 <tbody>
             `;
             data.forEach((orcamento) => {
-                // Limita o tamanho dos detalhes do frete a serem exibidos
-                let detalhesFreteResumo = orcamento.detalhes_orcamento
+            // Limita o tamanho dos detalhes do frete a serem exibidos
+            let detalhesFreteResumo = orcamento.detalhes_orcamento;
 
-                tabelaHtml += `
-                    <tr>
-                        <td style="display: none;">${orcamento.id}</td>
-                        <td class="expandir-observacoes" id="observacao" style="overflow: auto;" lang="pt">${detalhesFreteResumo}</td>
-                        <td>${orcamento.endereco_frete}</td>
-                        <td>${orcamento.nome_transportadora}</td>
-                        <td>${orcamento.valor_frete}</td>
-                        <td>${orcamento.prazo_entrega}</td>
-                        <td>${orcamento.data_prevista}</td>
-                        <td>
-                            <img src="${orcamento.logo_frete}" alt="${orcamento.nome_transportadora}" width="100px" height="100px" />
-                        </td>                  
-                        <td text-center>
-                            <button class="btn btn-primary btn-carregar" onclick="carregarDados(this)">Carregar</button>
-                            <button class="btn btn-success btn-aprovar-orcamento" onclick="x(${orcamento.id})"><i class="fas fa-check"></i></button>
-                        </td>
-                        <td style="display:none;">${orcamento.cep_frete}</td>
-                        <td style="display:none;" class="descricao-orcamento">${orcamento.detalhes_orcamento}</td>
+            tabelaHtml += `
+                <tr>
+                    <td style="display: none;">${orcamento.id}</td>
+                    <td class="expandir-observacoes" id="observacao" style="overflow: auto;" lang="pt">${detalhesFreteResumo}</td>
+                    <td>${orcamento.endereco_frete}</td>
+                    <td>${orcamento.nome_transportadora}</td>
+                    <td>${orcamento.valor_frete}</td>
+                    <td>${orcamento.prazo_entrega}</td>
+                    <td>${orcamento.data_prevista}</td>
+                    <td>
+                        <img src="${orcamento.logo_frete}" alt="${orcamento.nome_transportadora}" width="100px" height="100px" />
+                    </td>                  
+                    <td style="text-align: right;">
+                        <button class="btn btn-primary btn-carregar" onclick="carregarDados(this)">Carregar</button>
+                        <button class="btn btn-success btn-aprovar-orcamento" onclick="x(${orcamento.id})"><i class="fas fa-check"></i></button>
+                    </td>
+                    <td style="display:none;">${orcamento.cep_frete}</td>
+                    <td style="display:none;" class="descricao-orcamento">${orcamento.detalhes_orcamento}</td>
+                </tr>
+            `;
+        });
 
-                    </tr>
-                `;
-            });
             tabelaHtml += `
                 </tbody>
               </table>
