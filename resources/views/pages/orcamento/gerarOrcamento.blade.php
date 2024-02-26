@@ -244,8 +244,9 @@
     }
 
     .expandir-observacoes {
-        max-width: 200px; /* Defina a largura máxima que deseja */
+        max-width: 300px; /* Defina a largura máxima que deseja */
         white-space: nowrap; /* Evita que o texto quebre em várias linhas */
+        overflow: auto; /* Adiciona uma barra de rolagem horizontal quando necessário */
         text-overflow: ellipsis; /* Adiciona reticências (...) quando o texto estiver além da largura máxima */
     }
 
@@ -1274,7 +1275,7 @@ const id_cliente = document.getElementById('id').value;
                 tabelaHtml += `
                     <tr>
                         <td style="display: none;">${orcamento.id}</td>
-                        <td class="expandir-observacoes" id="observacao" lang="pt">${detalhesFreteResumo}</td>
+                        <td class="expandir-observacoes" id="observacao" style="overflow: auto;" lang="pt">${detalhesFreteResumo}</td>
                         <td>${orcamento.endereco_frete}</td>
                         <td>${orcamento.nome_transportadora}</td>
                         <td>${orcamento.valor_frete}</td>
