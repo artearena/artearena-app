@@ -1284,7 +1284,7 @@ const id_cliente = document.getElementById('id').value;
                             <button class="btn btn-success btn-aprovar-orcamento" onclick="x(${orcamento.id})">Aprovar Orçamento</button>
                         </td>
                         <td style="display:none;">${orcamento.cep_frete}</td>
-                        <td style="display:none;" class="descricao-orcamento">${detalhesFrete}</td>
+                        <td style="display:none;" class="descricao-orcamento">${orcamento.detalhes_orcamento}</td>
 
                     </tr>
                 `;
