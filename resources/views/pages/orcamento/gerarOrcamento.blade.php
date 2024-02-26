@@ -455,28 +455,29 @@
 @section('extraScript')
   <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
     <script>
-     $(document).ready(function() {
+    $(document).ready(function() {
       $(document).on('mouseenter', '.expandir-observacoes', function() {
           var td = $(this);
           var fullText = td.text();
+          td.attr('data-full-text', fullText); // Armazenar o texto completo em um atributo de dados
           td.css({
               'white-space': 'normal',
               'overflow': 'visible',
               'text-overflow': 'unset'
-          }).attr('title', ''); // Remover o atributo 'title' para evitar que as reticências apareçam
+          });
           td.text(fullText);
       }).on('mouseleave', '.expandir-observacoes', function() {
           var td = $(this);
           var resumoText = td.attr('title');
+          var fullText = td.attr('data-full-text'); // Recuperar o texto completo do atributo de dados
           td.css({
               'white-space': 'nowrap',
               'overflow': 'hidden',
-              'text-overflow': 'ellipsis' // Definir text-overflow de volta para ellipsis
-          }).attr('title', resumoText);
+              'text-overflow': 'ellipsis'
+          });
           td.text(resumoText);
       });
   });
-
 
   </script>
 
