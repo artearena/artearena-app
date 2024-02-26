@@ -455,27 +455,28 @@
 @section('extraScript')
   <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
     <script>
-      $(document).ready(function() {
-        $(document).on('mouseenter', '.expandir-observacoes', function() {
-            var td = $(this);
-            var fullText = td.text();
-            td.css({
-                'white-space': 'normal',
-                'overflow': 'visible',
-                'text-overflow': 'unset'
-            }).attr('title', ''); // Remover o atributo 'title' para evitar que as reticências apareçam
-            td.text(fullText);
-        }).on('mouseleave', '.expandir-observacoes', function() {
-            var td = $(this);
-            var resumoText = td.attr('title');
-            td.css({
-                'white-space': 'nowrap',
-                'overflow': 'hidden',
-                'text-overflow': 'ellipsis'
-            }).attr('title', resumoText);
-            td.text(resumoText);
-        });
-    });
+     $(document).ready(function() {
+      $(document).on('mouseenter', '.expandir-observacoes', function() {
+          var td = $(this);
+          var fullText = td.text();
+          td.css({
+              'white-space': 'normal',
+              'overflow': 'visible',
+              'text-overflow': 'unset'
+          }).attr('title', ''); // Remover o atributo 'title' para evitar que as reticências apareçam
+          td.text(fullText);
+      }).on('mouseleave', '.expandir-observacoes', function() {
+          var td = $(this);
+          var resumoText = td.attr('title');
+          td.css({
+              'white-space': 'nowrap',
+              'overflow': 'hidden',
+              'text-overflow': 'ellipsis' // Definir text-overflow de volta para ellipsis
+          }).attr('title', resumoText);
+          td.text(resumoText);
+      });
+  });
+
 
   </script>
 
