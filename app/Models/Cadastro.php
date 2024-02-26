@@ -51,4 +51,8 @@ class Cadastro extends Model
             }
         });
     }
+    public static function clienteCadastrado($pedidoId)
+    {
+        return self::where('id_cliente_pedido', $pedidoId)->exists();
+    }
 }

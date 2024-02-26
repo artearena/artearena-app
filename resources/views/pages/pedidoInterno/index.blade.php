@@ -239,10 +239,12 @@
                                     </button>
 
                                     <button class="btn btn-salvar-consultar-cliente
-                                        @if($pedido->cliente_id)
+                                        @if(\App\Models\Cadastro::clienteCadastrado($pedido->id))
                                             btn-success
-                                        @else
+                                        @elseif(\App\Models\AcessoTemporario::linkCriadoParaPedido($pedido->id))
                                             btn-warning
+                                        @else
+                                            btn-danger
                                         @endif"
                                         data-cliente-id="{{ $pedido->cliente_id }}">
                                         <i class="fas fa-link"></i>
