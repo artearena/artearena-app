@@ -83,7 +83,12 @@
             color: red;
         }
     }
-    
+    .expandir-observacoes {
+        max-width: 200px; /* Defina a largura máxima que deseja */
+        white-space: nowrap; /* Evita que o texto quebre em várias linhas */
+        overflow: auto; /* Adiciona uma barra de rolagem horizontal quando necessário */
+        text-overflow: ellipsis; /* Adiciona reticências (...) quando o texto estiver além da largura máxima */
+    }
 </style>
 <script>
     function observacoesChanged(event) {
@@ -203,7 +208,7 @@
                             <td>{{ $pedido->valor_desconto }}</td>
                             <td>{{ $pedido->valor_antecipacao }}</td>
 
-                            <td class="expandir-observacoes" id="observacao" lang="pt">{{ $pedido->observacao }}</td>
+                            <td class="expandir-observacoes" id="observacao" style="overflow: auto;" lang="pt">{{ $pedido->observacao }}</td>
                             <td>
                                 @php
                                     if (!empty($pedido->marcador)) {
