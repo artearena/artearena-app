@@ -246,7 +246,7 @@
     .expandir-observacoes {
         max-width: 300px; /* Defina a largura máxima que deseja */
         white-space: nowrap; /* Evita que o texto quebre em várias linhas */
-        overflow: auto; /* Adiciona uma barra de rolagem horizontal quando necessário */
+        overflow: hidden; /* Esconde qualquer texto que transborda */
         text-overflow: ellipsis; /* Adiciona reticências (...) quando o texto estiver além da largura máxima */
     }
 
@@ -454,6 +454,22 @@
 @endsection
 @section('extraScript')
   <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+    <script>
+      $(document).ready(function() {
+          $('#pedidosTable tbody').on('mouseenter', 'td.expandir-observacoes', function() {
+              var td = $(this);
+              var fullText = td.next('.descricao-orcamento').text(); // Obter o texto completo dos detalhes do frete
+              td.css('max-width', 'none'); // Remover a largura máxima para permitir que o texto completo seja exibido
+              td.text(fullText); // Exibir o texto completo
+          }).on('mouseleave', 'td.expandir-observacoes', function() {
+              var td = $(this);
+              var resumoText = td.attr('title'); // Obter o resumo do texto dos detalhes do frete
+              td.css('max-width', '300px'); // Restaurar a largura máxima
+              td.text(resumoText); // Exibir o resumo do texto
+          });
+      });
+  </script>
+
   <script>
     $(document).ready(function(){
         var arquivosAnexados = []; // Array para armazenar os arquivos anexados
@@ -1332,13 +1348,6 @@ const id_cliente = document.getElementById('id').value;
       }
 
       
-      $(document).ready(function() {
-          $('#pedidosTable tbody').on('mouseenter', 'td.expandir-observacoes', function() {
-              var td = $(this);
-              var fullText = td.text();
-              td.attr('title', fullText);
-          });
-      });
       // Adicionar o evento de clique ao botão "Buscar Orçamentos"
       document.getElementById('buscar_orcamento').addEventListener('click', consultarOrcamentos);
       function fecharModal() {
