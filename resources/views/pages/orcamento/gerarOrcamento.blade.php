@@ -1274,7 +1274,7 @@ const id_cliente = document.getElementById('id').value;
                 tabelaHtml += `
                     <tr>
                         <td style="display: none;">${orcamento.id}</td>
-                        <td class="expandir-observacoes" id="observacao" style="overflow: auto;" lang="pt">${detalhesFreteResumo}</td>
+                        <td class="expandir-observacoes" id="observacao" lang="pt">${detalhesFreteResumo}</td>
                         <td>${orcamento.endereco_frete}</td>
                         <td>${orcamento.nome_transportadora}</td>
                         <td>${orcamento.valor_frete}</td>
