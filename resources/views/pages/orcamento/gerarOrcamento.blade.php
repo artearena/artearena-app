@@ -1313,7 +1313,7 @@ const id_cliente = document.getElementById('id').value;
                         </td>                  
                         <td text-center>
                             <button class="btn btn-primary btn-carregar" onclick="carregarDados(this)">Carregar</button>
-                            <button class="btn btn-success btn-aprovar-orcamento" onclick="x(${orcamento.id})">Aprovar Orçamento</button>
+                            <button class="btn btn-success btn-aprovar-orcamento" onclick="x(${orcamento.id})"><i class="fas fa-check"></i></button>
                         </td>
                         <td style="display:none;">${orcamento.cep_frete}</td>
                         <td style="display:none;" class="descricao-orcamento">${orcamento.detalhes_orcamento}</td>
