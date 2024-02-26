@@ -456,18 +456,27 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
     <script>
       $(document).ready(function() {
-          $('#pedidosTable tbody').on('mouseenter', 'td.expandir-observacoes', function() {
-              var td = $(this);
-              var fullText = td.next('.descricao-orcamento').text(); // Obter o texto completo dos detalhes do frete
-              td.css('max-width', 'none'); // Remover a largura máxima para permitir que o texto completo seja exibido
-              td.text(fullText); // Exibir o texto completo
-          }).on('mouseleave', 'td.expandir-observacoes', function() {
-              var td = $(this);
-              var resumoText = td.attr('title'); // Obter o resumo do texto dos detalhes do frete
-              td.css('max-width', '300px'); // Restaurar a largura máxima
-              td.text(resumoText); // Exibir o resumo do texto
-          });
-      });
+        $(document).on('mouseenter', '.expandir-observacoes', function() {
+            var td = $(this);
+            var fullText = td.text();
+            td.css({
+                'white-space': 'normal',
+                'overflow': 'visible',
+                'text-overflow': 'unset'
+            }).attr('title', ''); // Remover o atributo 'title' para evitar que as reticências apareçam
+            td.text(fullText);
+        }).on('mouseleave', '.expandir-observacoes', function() {
+            var td = $(this);
+            var resumoText = td.attr('title');
+            td.css({
+                'white-space': 'nowrap',
+                'overflow': 'hidden',
+                'text-overflow': 'ellipsis'
+            }).attr('title', resumoText);
+            td.text(resumoText);
+        });
+    });
+
   </script>
 
   <script>
