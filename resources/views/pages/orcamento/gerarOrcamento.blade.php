@@ -450,6 +450,26 @@
       </div>
     </div>
   </div>
+  <!-- Modal de Pedido Interno -->
+  <div class="modal fade" id="modalPedidoInterno" tabindex="-1" aria-labelledby="modalPedidoInternoLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalPedidoInternoLabel">Detalhes do Pedido Interno</h5>
+          <button type="button" class="btn-close" data-dismiss="modal" aria-label="Fechar"></button>
+        </div>
+        <div class="modal-body">
+          <!-- Aqui você pode adicionar o conteúdo dos detalhes do pedido interno -->
+          <!-- Por exemplo, você pode exibir informações como número do pedido, data, produtos, etc. -->
+          <!-- Se o pedido interno estiver vazio, você pode adicionar uma mensagem indicando isso -->
+          <p>O pedido interno está vazio.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
 @endsection
 @section('extraScript')
