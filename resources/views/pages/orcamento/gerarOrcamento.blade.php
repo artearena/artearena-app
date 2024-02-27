@@ -650,6 +650,19 @@
           var tableRow = button.closest("tr");
           tableRow.remove();
       }
+      function abrirModalPedido(detalhesPedido) {
+          // Aqui você pode exibir as informações do pedido interno no modal
+          // Por exemplo, você pode preencher os campos do modal com os detalhes do pedido
+          
+          // Exemplo de como você pode preencher os campos do modal com os detalhes do pedido:
+          // document.getElementById('numeroPedido').innerText = detalhesPedido.numero;
+          // document.getElementById('dataPedido').innerText = detalhesPedido.data;
+          // document.getElementById('produtosPedido').innerText = detalhesPedido.produtos;
+
+          // Abra o modal de pedido interno
+          $('#modalPedidoInterno').modal('show');
+      }
+
       function formatarData(dataStr) {
           const data = new Date(dataStr);
           const dia = data.getDate().toString().padStart(2, '0');
