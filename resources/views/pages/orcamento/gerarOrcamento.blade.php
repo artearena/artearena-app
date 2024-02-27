@@ -650,18 +650,7 @@
           var tableRow = button.closest("tr");
           tableRow.remove();
       }
-      function abrirModalPedido(detalhesPedido) {
-          // Aqui você pode exibir as informações do pedido interno no modal
-          // Por exemplo, você pode preencher os campos do modal com os detalhes do pedido
-          
-          // Exemplo de como você pode preencher os campos do modal com os detalhes do pedido:
-          // document.getElementById('numeroPedido').innerText = detalhesPedido.numero;
-          // document.getElementById('dataPedido').innerText = detalhesPedido.data;
-          // document.getElementById('produtosPedido').innerText = detalhesPedido.produtos;
-
-          // Abra o modal de pedido interno
-          $('#modalPedidoInterno').modal('show');
-      }
+      
 
       function formatarData(dataStr) {
           const data = new Date(dataStr);
@@ -1519,7 +1508,18 @@ const id_cliente = document.getElementById('id').value;
             // E que você já tenha os detalhes do pedido em um objeto chamado detalhesPedido
             abrirModalPedido(detalhesPedido);
         }
+        function abrirModalPedido(detalhesPedido) {
+            // Aqui você pode exibir as informações do pedido interno no modal
+            // Por exemplo, você pode preencher os campos do modal com os detalhes do pedido
+            
+            // Exemplo de como você pode preencher os campos do modal com os detalhes do pedido:
+            // document.getElementById('numeroPedido').innerText = detalhesPedido.numero;
+            // document.getElementById('dataPedido').innerText = detalhesPedido.data;
+            // document.getElementById('produtosPedido').innerText = detalhesPedido.produtos;
 
+            // Abra o modal de pedido interno
+            $('#modalPedidoInterno').modal('show');
+        }
       function criarPedido(idOrcamento) {
       // Redirecionar p<ara a URL com o ID do orçamento
         window.location.href = `/pedidoInterno/criar-pedido/${idOrcamento}`;
