@@ -1314,7 +1314,7 @@ const id_cliente = document.getElementById('id').value;
                       <td style="text-align: right;">
                           <div style="display: flex; justify-content: flex-end;">
                               <button class="btn btn-primary btn-carregar" onclick="carregarDados(this)">Carregar</button>
-                              <button class="btn btn-success btn-aprovar-orcamento" onclick="x(${orcamento.id})"><i class="fas fa-check"></i></button>
+                              <button class="btn btn-success btn-aprovar-orcamento" onclick="aprovacaoOrcamento(${orcamento.id})"><i class="fas fa-check"></i></button>
                           </div>
                       </td>
                       <td style="display:none;">${orcamento.cep_frete}</td>
@@ -1473,6 +1473,18 @@ const id_cliente = document.getElementById('id').value;
 
             fecharModal();
 
+        }
+        function aprovacaoOrcamento(orcamentoId) {
+            // Fechar o modal atual
+            fecharModal();
+
+            // Aqui você pode fazer o que for necessário para obter as informações do pedido com base no ID do orçamento
+            // Por exemplo, você pode fazer outra solicitação fetch para obter os detalhes do pedido com base no ID do orçamento
+
+            // Após obter as informações do pedido, você pode abrir um novo modal com essas informações
+            // Suponha que você tenha uma função chamada abrirModalPedido que recebe os detalhes do pedido como parâmetro
+            // E que você já tenha os detalhes do pedido em um objeto chamado detalhesPedido
+            abrirModalPedido(detalhesPedido);
         }
 
       function criarPedido(idOrcamento) {
