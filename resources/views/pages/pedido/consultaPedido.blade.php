@@ -116,7 +116,11 @@
         background-color: rgba(68, 68, 68, 0.781);
         right: 30px;
     }
-    .one::after {
+    .one::after,
+    .two::after,
+    .three::after,
+    .four::after,
+    .five::after { /* Ajuste para todos os elementos */
         width: 0;
         height: 0;
     }
@@ -174,7 +178,11 @@
             z-index: -1;
         }
 
-        .one::after {
+        .one::after,
+        .two::after,
+        .three::after,
+        .four::after,
+        .five::after { /* Ajuste para todos os elementos */
             height: 0;
         }
 
