@@ -263,7 +263,6 @@
                 <p class="text">Pedido Chegou</p>
             </li>
         </ul>
-
     </div>
 @endsection
 
