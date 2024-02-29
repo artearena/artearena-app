@@ -114,30 +114,22 @@
                     const tableBody = document.getElementById('listaPedidosTableBody');
                     tableBody.innerHTML = '';
 
-                    // Adicione um identificador único para cada linha da tabela
-                    let rows = data.retorno.pedidos.map((pedido, index) => {
-                        return { ...pedido, index };
-                    });
-
-                    // Classifique as linhas com base na data do pedido (da mais antiga para a mais recente)
-                    rows.sort((a, b) => new Date(a.pedido.data_pedido) - new Date(b.pedido.data_pedido));
-
-                    // Itere sobre os pedidos classificados e adicione-os à tabela
-                    rows.forEach(row => {
-                        const newRow = document.createElement('tr');
-                        newRow.innerHTML = `
-                            <td>${row.pedido.id}</td>
-                            <td>${row.pedido.data_pedido}</td>
-                            <td>${row.pedido.valor}</td>
-                            <td>${row.pedido.situacao}</td>
-                            <td>${row.pedido.codigo_rastreamento}</td>
-                            <td><a href="${row.pedido.url_rastreamento}" target="_blank">Link do Rastreio</a></td>
-                            <td><button class="selecionarPedidoBtn btn btn-primary" data-id="${row.pedido.id}">Selecionar</button></td>
+                    // Itere sobre os pedidos retornados e adicione-os à tabela
+                    data.retorno.pedidos.forEach(pedido => {
+                        const row = document.createElement('tr');
+                        row.innerHTML = `
+                            <td>${pedido.pedido.id}</td>
+                            <td>${pedido.pedido.data_pedido}</td>
+                            <td>R$ ${pedido.pedido.valor}</td>
+                            <td>${pedido.pedido.situacao}</td>
+                            <td>${pedido.pedido.codigo_rastreamento}</td>
+                            <td><a href="${pedido.pedido.url_rastreamento}" target="_blank">Rastrear</a></td>
+                            <td><button class="selecionarPedidoBtn btn btn-primary" data-id="${pedido.pedido.id}">Mais detalhes</button></td>
                         `;
-                        tableBody.appendChild(newRow);
+                        tableBody.appendChild(row);
                     });
 
-                    // Exiba o modal com a tabela de pedidos
+                    // Exiba o modal com a lista de pedidos
                     $('#listaPedidosModal').modal('show');
                 })
                 .catch(error => {
@@ -155,6 +147,5 @@
                 }
             });
         });
-
     </script>
 @endsection
