@@ -68,19 +68,6 @@
         position: relative; /* Adiciona esta linha */
     }
 
-    /* Adicione este bloco de código */
-    ul li:not(:last-child)::after {
-        content: "";
-        position: absolute;
-        width: 125px;
-        height: 5px;
-        background-color: rgba(68, 68, 68, 0.781);
-        right: calc(50% + 35px); /* Ajuste conforme necessário */
-        top: 50%;
-        transform: translateY(-50%);
-        z-index: -1;
-    }
-
     ul li .icon {
         font-size: 35px;
         color: #ff4732;
