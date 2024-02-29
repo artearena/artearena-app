@@ -56,7 +56,7 @@
 
         <!-- Modal para exibir a lista de pedidos -->
         <div class="modal fade" id="listaPedidosModal" tabindex="-1" aria-labelledby="listaPedidosModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg">
+            <div class="modal-dialog modal-xl">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="listaPedidosModalLabel">Lista de Pedidos</h5>
