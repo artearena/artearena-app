@@ -327,7 +327,7 @@
                 data.retorno.pedidos.forEach(pedido => {
                     const li = document.createElement('li');
                     li.innerHTML = `
-                        ID: ${pedido.pedido.id}, Data: ${pedido.pedido.data_pedido}, Valor: ${pedido.pedido.valor}, Situação: ${pedido.pedido.situacao}
+                        ID: ${pedido.pedido.id}, Data: ${pedido.pedido.data_pedido}, Valor: ${pedido.pedido.valor}, Situação: ${pedido.pedido.situacao}, Codigo de Rastreio: ${pedido.pedido.codigo_rastreamento}, Link de rastreio: ${pedido.pedido.url_rastreamento}
                         <button class="selecionarPedidoBtn btn btn-primary" data-id="${pedido.pedido.id}">Selecionar</button>
                     `;
                     document.getElementById('listaPedidosUl').appendChild(li);
