@@ -301,47 +301,57 @@
     });
 </script>
 <script>
-        $(document).ready(function() {
-            $('#consultarPedidosBtn').click(function() {
-                const cpf_cnpj = $('#cpf_cnpj').val(); // Obtém o valor do CPF/CNPJ digitado pelo usuário
+    document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById('consultarPedidosBtn').addEventListener('click', function() {
+            const cpf_cnpj = document.getElementById('cpf_cnpj').value; // Obtém o valor do CPF/CNPJ digitado pelo usuário
 
-                // Faça a requisição AJAX para a rota do backend
-                $.ajax({
-                    url: '/consultar_pedido_cpf_cnpj',
-                    method: 'POST',
-                    contentType: 'application/json',
-                    data: JSON.stringify({ cpf_cnpj: cpf_cnpj }),
-                    success: function(response) {
-                        // Limpe a lista de pedidos antes de exibir os resultados
-                        $('#listaPedidosUl').empty();
+            // Faça a requisição usando fetch para a rota do backend
+            fetch('/consultar_pedido_cpf_cnpj', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ cpf_cnpj: cpf_cnpj })
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Erro ao consultar pedidos');
+                }
+                return response.json();
+            })
+            .then(data => {
+                // Limpe a lista de pedidos antes de exibir os resultados
+                document.getElementById('listaPedidosUl').innerHTML = '';
 
-                        // Itere sobre os pedidos retornados e adicione-os à lista
-                        response.retorno.pedidos.forEach(function(pedido) {
-                            $('#listaPedidosUl').append(`
-                                <li>
-                                    ID: ${pedido.pedido.id}, Data: ${pedido.pedido.data_pedido}, Valor: ${pedido.pedido.valor}, Situação: ${pedido.pedido.situacao}
-                                    <button class="selecionarPedidoBtn btn btn-primary" data-id="${pedido.pedido.id}">Selecionar</button>
-                                </li>
-                            `);
-                        });
-
-                        // Exiba o modal com a lista de pedidos
-                        $('#listaPedidosModal').modal('show');
-                    },
-                    error: function(xhr, status, error) {
-                        // Manipule erros, se houver
-                        console.error('Erro ao consultar pedidos:', error);
-                    }
+                // Itere sobre os pedidos retornados e adicione-os à lista
+                data.retorno.pedidos.forEach(pedido => {
+                    const li = document.createElement('li');
+                    li.innerHTML = `
+                        ID: ${pedido.pedido.id}, Data: ${pedido.pedido.data_pedido}, Valor: ${pedido.pedido.valor}, Situação: ${pedido.pedido.situacao}
+                        <button class="selecionarPedidoBtn btn btn-primary" data-id="${pedido.pedido.id}">Selecionar</button>
+                    `;
+                    document.getElementById('listaPedidosUl').appendChild(li);
                 });
-            });
 
-            // Manipula o evento de clique no botão "Selecionar"
-            $(document).on('click', '.selecionarPedidoBtn', function() {
-                const idPedido = $(this).data('id');
-                // Faça alguma ação com o ID do pedido selecionado, como redirecionar para outra página
-                console.log('Pedido selecionado:', idPedido);
+                // Exiba o modal com a lista de pedidos
+                $('#listaPedidosModal').modal('show');
+            })
+            .catch(error => {
+                // Manipule erros, se houver
+                console.error('Erro ao consultar pedidos:', error);
             });
         });
-    </script>
+
+        // Manipula o evento de clique no botão "Selecionar"
+        document.addEventListener('click', function(event) {
+            if (event.target.classList.contains('selecionarPedidoBtn')) {
+                const idPedido = event.target.getAttribute('data-id');
+                // Faça alguma ação com o ID do pedido selecionado, como redirecionar para outra página
+                console.log('Pedido selecionado:', idPedido);
+            }
+        });
+    });
+</script>
+
     
 @endsection
