@@ -119,8 +119,8 @@
                         return { ...pedido, index };
                     });
 
-                    // Classifique as linhas com base na data do pedido (da mais recente para a mais antiga)
-                    rows.sort((a, b) => new Date(b.pedido.data_pedido) - new Date(a.pedido.data_pedido));
+                    // Classifique as linhas com base na data do pedido (da mais antiga para a mais recente)
+                    rows.sort((a, b) => new Date(a.pedido.data_pedido) - new Date(b.pedido.data_pedido));
 
                     // Itere sobre os pedidos classificados e adicione-os à tabela
                     rows.forEach(row => {
