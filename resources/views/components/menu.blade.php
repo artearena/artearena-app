@@ -6,7 +6,7 @@
                 <img src="../../images/logo.png" alt="" class="logo-img" style="width: 15vh; margin-right: 10px;">
             </a>
         @endif
-        @if(!in_array(request()->path(), ['cadastro', 'acessonegado', 'sucessocadastro', '/', 'login']))
+        @if(!in_array(request()->path(), ['cadastro', 'acessonegado', 'sucessocadastro', '/', 'login', 'consultarEtapa']))
             <img src="../../images/logo.png" alt="" class="logo-img" style="width: 15vh; margin-right: 10px;">
         @endif
         @else
