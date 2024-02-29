@@ -110,26 +110,28 @@
                     return response.json();
                 })
                 .then(data => {
-                    // Limpe a tabela de pedidos antes de exibir os resultados
-                    const tableBody = document.getElementById('listaPedidosTableBody');
-                    tableBody.innerHTML = '';
+                    // Limpe a lista de pedidos antes de exibir os resultados
+                    document.getElementById('listaPedidosTableBody').innerHTML = '';
 
-                    // Itere sobre os pedidos retornados e adicione-os à tabela
+                    // Ordena os pedidos pela data do pedido (do mais recente para o mais antigo)
+                    data.retorno.pedidos.sort((a, b) => new Date(b.pedido.data_pedido) - new Date(a.pedido.data_pedido));
+
+                    // Itera sobre os pedidos ordenados e adiciona-os à tabela
                     data.retorno.pedidos.forEach(pedido => {
                         const row = document.createElement('tr');
                         row.innerHTML = `
                             <td>${pedido.pedido.id}</td>
                             <td>${pedido.pedido.data_pedido}</td>
-                            <td>R$ ${pedido.pedido.valor}</td>
+                            <td>${pedido.pedido.valor}</td>
                             <td>${pedido.pedido.situacao}</td>
                             <td>${pedido.pedido.codigo_rastreamento}</td>
-                            <td><a href="${pedido.pedido.url_rastreamento}" target="_blank">Rastrear</a></td>
-                            <td><button class="selecionarPedidoBtn btn btn-primary" data-id="${pedido.pedido.id}">Mais detalhes</button></td>
+                            <td><a href="${pedido.pedido.url_rastreamento}" target="_blank">Link do Rastreio</a></td>
+                            <td><button class="selecionarPedidoBtn btn btn-primary" data-id="${pedido.pedido.id}">Selecionar</button></td>
                         `;
-                        tableBody.appendChild(row);
+                        document.getElementById('listaPedidosTableBody').appendChild(row);
                     });
 
-                    // Exiba o modal com a lista de pedidos
+                    // Exibe o modal com a tabela de pedidos ordenada
                     $('#listaPedidosModal').modal('show');
                 })
                 .catch(error => {
