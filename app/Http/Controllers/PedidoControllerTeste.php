@@ -8,7 +8,7 @@ use App\Models\Usuario;
 use App\Models\Material;
 use App\Models\CategoriaProduto;
 
-class PedidoController extends Controller
+class PedidoControllerTeste extends Controller
 {
     public function artefinal()
     {
