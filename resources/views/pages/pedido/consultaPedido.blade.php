@@ -196,22 +196,6 @@
 
 @section('content')
     <div class="container">
-        <h1 class="mt-4">Consulta de etapa do pedido</h1>
-
-        <form action="/consulta-etapa-pedido" class="mt-4">
-            <div class="form-row align-items-end">
-                <div class="form-group col-md-8">
-                    <label for="numero_pedido">Número do pedido:</label>
-                    <div class="input-group">
-                        <input type="text" class="form-control" id="numero_pedido" name="numero_pedido" required>
-                        <div class="input-group-append">
-                            <button type="submit" class="btn btn-primary">Consultar</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </form>
-
         <div class="container mt-4">
         <h1>Consulta de Pedidos</h1>
         <div class="form-group">
