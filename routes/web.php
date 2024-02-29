@@ -169,7 +169,7 @@ Route::middleware(['auth'])->group(function () {
     });
 });
 Route::any('consultarEtapa', [PedidoController::class, 'etapaPedido'])->name('pedido.etapaPedido');
-Route::any('consultarEtapa1', [PedidoControllerTeste::class, 'etapaPedido1'])->name('pedido.etapaPedido1');
+Route::any('consultarEtapaTeste', [PedidoControllerTeste::class, 'etapaPedido'])->name('pedido.etapaPedido1');
 
 Route::prefix('listaUniformes')->middleware('validar.token')->group(function () {
     //Route::any('/', [ListaUniformeController::class, 'index'])->name('index');
