@@ -123,8 +123,8 @@
                             <td>${pedido.pedido.valor}</td>
                             <td>${pedido.pedido.situacao}</td>
                             <td>${pedido.pedido.codigo_rastreamento}</td>
-                            <td><a href="${pedido.pedido.url_rastreamento}" target="_blank">Link do Rastreio</a></td>
-                            <td><button class="selecionarPedidoBtn btn btn-primary" data-id="${pedido.pedido.id}">Selecionar</button></td>
+                            <td><a href="${pedido.pedido.url_rastreamento}" target="_blank">Rastrear</a></td>
+                            <td><button class="selecionarPedidoBtn btn btn-primary" data-id="${pedido.pedido.id}">Mais detalhes</button></td>
                         `;
                         tableBody.appendChild(row);
                     });
