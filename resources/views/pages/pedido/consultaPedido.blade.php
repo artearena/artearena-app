@@ -243,7 +243,7 @@
         <ul>
             <li class="one">
                 <i class="icon uil uil-capture"></i>
-                <div class="progress" id="oneAct">
+                <div class="progress" id="one">
                     <p>1</p>
                     <i class="uil uil-check"></i>
                 </div>
@@ -290,9 +290,9 @@
 <script src="../js/etapas.js"></script>
 <script>
     $(document).ready(function() {
-        $("#oneAct").click(function() {
+        $("#one").click(function() {
             console.log('teste');
-            $("#oneAct").addClass("active");
+            $("#one").addClass("active");
             $(".two, .three, .four, .five").removeClass("active");
         });
 
