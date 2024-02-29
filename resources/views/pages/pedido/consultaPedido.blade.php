@@ -120,7 +120,7 @@
                         row.innerHTML = `
                             <td>${pedido.pedido.id}</td>
                             <td>${pedido.pedido.data_pedido}</td>
-                            <td>${pedido.pedido.valor}</td>
+                            <td>R$ ${pedido.pedido.valor}</td>
                             <td>${pedido.pedido.situacao}</td>
                             <td>${pedido.pedido.codigo_rastreamento}</td>
                             <td><a href="${pedido.pedido.url_rastreamento}" target="_blank">Rastrear</a></td>
