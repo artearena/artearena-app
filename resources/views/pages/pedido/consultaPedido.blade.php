@@ -304,7 +304,7 @@
     document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('consultarPedidosBtn').addEventListener('click', function() {
             const cpf_cnpj = document.getElementById('cpf_cnpj').value; // Obtém o valor do CPF/CNPJ digitado pelo usuário
-
+            console.log('teste');
             // Faça a requisição usando fetch para a rota do backend
             fetch('https://artearena.kinghost.net/consultar_pedido_cpf_cnpj', {
                 method: 'POST',
