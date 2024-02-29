@@ -6,6 +6,10 @@
 
 @section('style')
 <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 <style>
     .resultado {
@@ -208,6 +212,34 @@
             </div>
         </form>
 
+        <div class="container mt-4">
+        <h1>Consulta de Pedidos</h1>
+        <div class="form-group">
+            <label for="cpf_cnpj">CPF/CNPJ:</label>
+            <input type="text" class="form-control" id="cpf_cnpj" placeholder="Digite o CPF/CNPJ">
+        </div>
+            <button id="consultarPedidosBtn" class="btn btn-primary">Consultar Pedidos</button>
+        </div>
+
+        <!-- Modal para exibir a lista de pedidos -->
+        <div class="modal fade" id="listaPedidosModal" tabindex="-1" aria-labelledby="listaPedidosModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="listaPedidosModalLabel">Lista de Pedidos</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <ul id="listaPedidosUl"></ul>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
         <ul>
             <li class="one">
                 <i class="icon uil uil-capture"></i>
@@ -284,4 +316,48 @@
         });
     });
 </script>
+<script>
+        $(document).ready(function() {
+            $('#consultarPedidosBtn').click(function() {
+                const cpf_cnpj = $('#cpf_cnpj').val(); // Obtém o valor do CPF/CNPJ digitado pelo usuário
+
+                // Faça a requisição AJAX para a rota do backend
+                $.ajax({
+                    url: '/consultar_pedido_cpf_cnpj',
+                    method: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify({ cpf_cnpj: cpf_cnpj }),
+                    success: function(response) {
+                        // Limpe a lista de pedidos antes de exibir os resultados
+                        $('#listaPedidosUl').empty();
+
+                        // Itere sobre os pedidos retornados e adicione-os à lista
+                        response.retorno.pedidos.forEach(function(pedido) {
+                            $('#listaPedidosUl').append(`
+                                <li>
+                                    ID: ${pedido.pedido.id}, Data: ${pedido.pedido.data_pedido}, Valor: ${pedido.pedido.valor}, Situação: ${pedido.pedido.situacao}
+                                    <button class="selecionarPedidoBtn btn btn-primary" data-id="${pedido.pedido.id}">Selecionar</button>
+                                </li>
+                            `);
+                        });
+
+                        // Exiba o modal com a lista de pedidos
+                        $('#listaPedidosModal').modal('show');
+                    },
+                    error: function(xhr, status, error) {
+                        // Manipule erros, se houver
+                        console.error('Erro ao consultar pedidos:', error);
+                    }
+                });
+            });
+
+            // Manipula o evento de clique no botão "Selecionar"
+            $(document).on('click', '.selecionarPedidoBtn', function() {
+                const idPedido = $(this).data('id');
+                // Faça alguma ação com o ID do pedido selecionado, como redirecionar para outra página
+                console.log('Pedido selecionado:', idPedido);
+            });
+        });
+    </script>
+    
 @endsection
