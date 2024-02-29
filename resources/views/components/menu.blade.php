@@ -76,7 +76,7 @@
             @endguest
             <span class="navbar-text" style="margin-right: 40px;">
             @guest
-                @if(request()->path() !== 'cadastro' && request()->path() !== 'acessonegado' && request()->path() !== 'sucessocadastro')
+                @if(request()->path() !== 'cadastro' && request()->path() !== 'acessonegado' && request()->path() !== 'sucessocadastro' && request()->path() !== 'consultarEtapa')
                     <a href="{{ route('login_page') }}">Login</a>
                 @endif
             @else
