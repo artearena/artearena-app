@@ -306,7 +306,7 @@
             const cpf_cnpj = document.getElementById('cpf_cnpj').value; // Obtém o valor do CPF/CNPJ digitado pelo usuário
 
             // Faça a requisição usando fetch para a rota do backend
-            fetch('/consultar_pedido_cpf_cnpj', {
+            fetch('https://artearena.kinghost.net/consultar_pedido_cpf_cnpj', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -319,7 +319,7 @@
                 }
                 return response.json();
             })
-            .then(data => {
+            .then(data => {-
                 // Limpe a lista de pedidos antes de exibir os resultados
                 document.getElementById('listaPedidosUl').innerHTML = '';
 
