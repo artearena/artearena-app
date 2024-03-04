@@ -162,7 +162,7 @@ class PedidoController extends Controller
             return response()->json(['message' => 'Erro ao excluir o pedido: ' . $pedido . $e->getMessage()], 500);
         }
     }
-    public function etapaPedido(Request $request)
+    public function etapaDoPedido(Request $request)
     {
         // Obtenha o número do pedido da solicitação
         $numeroPedido = $request->input('numero');
