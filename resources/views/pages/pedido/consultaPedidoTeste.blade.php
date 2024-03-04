@@ -151,6 +151,9 @@
                 if (event.target.classList.contains('selecionarPedidoBtn')) {
                     const idPedido = event.target.getAttribute('data-id');
 
+                    // Faça alguma ação com o ID do pedido selecionado, como redirecionar para outra página
+                    console.log('Pedido selecionado:', idPedido);
+
                     // Faz a requisição para obter os detalhes do pedido pelo ID
                     fetch(`https://artearena.kinghost.net/consultar-pedido-by-id?numeroPedido=${idPedido}`)
                         .then(response => {
