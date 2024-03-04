@@ -87,6 +87,14 @@
             </div>
         </div>
     </div>
+
+    <!-- Tabela para exibir detalhes do pedido -->
+    <div class="container mt-4" id="detalhesPedidoContainer" style="display: none;">
+        <h2>Detalhes do Pedido</h2>
+        <table class="table">
+            <tbody id="detalhesPedidoTableBody"></tbody>
+        </table>
+    </div>
 @endsection
 
 @section('extraScript')
@@ -152,9 +160,23 @@
                             return response.json();
                         })
                         .then(data => {
-                            console.log('Detalhes do pedido:', data);
+                            // Exibir a tabela de detalhes do pedido
+                            const detalhesContainer = document.getElementById('detalhesPedidoContainer');
+                            detalhesContainer.style.display = 'block';
 
-                            // Aqui você pode fazer algo com os detalhes do pedido, como exibi-los em um modal ou atualizar a página com as informações, etc.
+                            // Limpar a tabela de detalhes do pedido antes de adicionar os novos detalhes
+                            const detalhesTableBody = document.getElementById('detalhesPedidoTableBody');
+                            detalhesTableBody.innerHTML = '';
+
+                            // Adicionar os detalhes do pedido à tabela
+                            for (const key in data.retorno.pedido) {
+                                const row = document.createElement('tr');
+                                row.innerHTML = `
+                                    <td>${key}</td>
+                                    <td>${data.retorno.pedido[key]}</td>
+                                `;
+                                detalhesTableBody.appendChild(row);
+                            }
                         })
                         .catch(error => {
                             console.error('Erro ao consultar detalhes do pedido:', error);
