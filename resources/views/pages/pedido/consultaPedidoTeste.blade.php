@@ -138,12 +138,27 @@
                 });
             });
 
-            // Manipula o evento de clique no botão "Selecionar"
+           // Manipula o evento de clique no botão "Mais detalhes"
             document.addEventListener('click', function(event) {
                 if (event.target.classList.contains('selecionarPedidoBtn')) {
                     const idPedido = event.target.getAttribute('data-id');
-                    // Faça alguma ação com o ID do pedido selecionado, como redirecionar para outra página
-                    console.log('Pedido selecionado:', idPedido);
+
+                    // Faz a requisição para obter os detalhes do pedido pelo ID
+                    fetch(`https://artearena.kinghost.net/consultar-pedido-by-id?numeroPedido=${idPedido}`)
+                        .then(response => {
+                            if (!response.ok) {
+                                throw new Error('Erro ao consultar detalhes do pedido');
+                            }
+                            return response.json();
+                        })
+                        .then(data => {
+                            console.log('Detalhes do pedido:', data);
+
+                            // Aqui você pode fazer algo com os detalhes do pedido, como exibi-los em um modal ou atualizar a página com as informações, etc.
+                        })
+                        .catch(error => {
+                            console.error('Erro ao consultar detalhes do pedido:', error);
+                        });
                 }
             });
         });
