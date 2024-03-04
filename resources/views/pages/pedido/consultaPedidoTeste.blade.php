@@ -233,12 +233,12 @@
                 // Exemplo: Adicionando status de forma dinâmica
                 statusList.forEach(s => {
                     const statusElement = document.createElement('div');
-                    statusElement.classList.add('status-item');
+                    statusElement.classList.add('status-exemplo'); // Adiciona a classe CSS para os exemplos de status
                     statusElement.textContent = s;
-                    statusElement.style.padding = '10px'; // Exemplo de estilo
                     statusBar.appendChild(statusElement);
                 });
             }
+
 
             // Manipula o evento de clique no botão "Voltar"
             document.getElementById('voltarBtn').addEventListener('click', function() {
