@@ -165,8 +165,7 @@ class PedidoController extends Controller
     public function etapaDoPedido(Request $request)
     {
         // Obtenha o número do pedido da solicitação
-        $numeroPedido = $request->input('numero');
-        dd($request);
+        $numeroPedido = $request->query('numero');
         try {
             // Busque o pedido no banco de dados pelo número
             $pedido = Pedido::find($numeroPedido);
