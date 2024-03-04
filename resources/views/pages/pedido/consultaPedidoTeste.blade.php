@@ -53,6 +53,7 @@
             </div>
             <button id="consultarPedidosBtn" class="btn btn-primary">Consultar Pedidos</button>
         </div>
+        <button id="voltarBtn" class="btn btn-secondary mb-3">Voltar</button>
 
         <!-- Modal para exibir a lista de pedidos -->
         <div class="modal fade" id="listaPedidosModal" tabindex="-1" aria-labelledby="listaPedidosModalLabel" aria-hidden="true">
@@ -88,14 +89,6 @@
         </div>
     </div>
     <!-- Botão Voltar e Tabela para exibir detalhes do pedido -->
-    <div class="container mt-4" id="detalhesPedidoContainer" style="display: none;">
-        <button id="voltarBtn" class="btn btn-secondary mb-3">Voltar</button>
-        <h2>Detalhes do Pedido</h2>
-        <table class="table">
-            <tbody id="detalhesPedidoTableBody"></tbody>
-        </table>
-    </div>
-    <!-- Tabela para exibir detalhes do pedido -->
     <div class="container mt-4" id="detalhesPedidoContainer" style="display: none;">
         <h2>Detalhes do Pedido</h2>
         <table class="table">

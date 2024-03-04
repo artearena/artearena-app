@@ -164,9 +164,19 @@ class PedidoController extends Controller
     }
     public function etapaPedido(Request $request)
     {
-        $etapa = "Etapa do pedido obtida do banco de dados ou de outra fonte";
+        // Obtenha o número do pedido da solicitação
+        $numeroPedido = $request->input('numero');
 
-        return view('pages.pedido.consultaPedido', compact('etapa'));
+        try {
+            // Busque o pedido no banco de dados pelo número
+            $pedido = Pedido::findOrFail($numeroPedido);
+
+            // Faça o que for necessário com o pedido (por exemplo, retornar detalhes do pedido)
+            return response()->json(['status' => 'success', 'pedido' => $pedido]);
+        } catch (\Exception $e) {
+            // Se o pedido não for encontrado, retorne uma resposta de erro
+            return response()->json(['status' => 'error', 'message' => 'Pedido não encontrado'], 404);
+        }
     }
     /* 
     public function consultaEtapaPedido(Request $request)
