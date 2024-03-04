@@ -190,7 +190,8 @@
                                 .then(data => {
                                     console.log(data); // Verificar os dados retornados pela rota do Laravel
                                     // Manipular os dados do pedido retornado pela rota do Laravel
-                                    const statusList = data.retorno.statusList; // Supondo que os status estão em um array chamado statusList
+                                    var statusList = data.statusList; // Supondo que os status estão em um array chamado statusList
+                                    
                                     createStatusBar(statusList);
                                 })
 
