@@ -175,14 +175,21 @@ class PedidoController extends Controller
                 return response()->json(['status' => 'error', 'message' => 'Pedido não encontrado'], 404);
             }
 
-            // Obter exemplos de cada status único na tabela de pedidos
-            $statusExemplos = Pedido::select('status')
-                                    ->distinct()
-                                    ->get()
-                                    ->map(function($status) {
-                                        // Para cada status, obtenha o primeiro pedido encontrado com esse status
-                                        return Pedido::where('status', $status->status)->first();
-                                    });
+            // Valores fixos para os exemplos de status
+            $statusExemplos = [
+                'Costura / Confecção',
+                'Prateleira / Pendente',
+                'Renderizado',
+                'Impresso',
+                'Reposição',
+                'Em andamento',
+                'Pendente arte final',
+                'Pendente Impressão',
+                'Finalizado',
+                'Em Impressão',
+                'Em espera',
+                'Cor teste'
+            ];
 
             // Retornar detalhes do pedido solicitado e exemplos de cada status
             return response()->json([
