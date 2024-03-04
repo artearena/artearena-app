@@ -177,17 +177,19 @@ class PedidoController extends Controller
 
             // Valores fixos para os exemplos de status
             $statusExemplos = [
+                'Pendente arte final',
+                'Arte final em andamento',
+                'Em espera',
+
+                'Pendente Impressão',
+                'Em Impressão',
+                'Impresso',
+
                 'Costura / Confecção',
                 'Prateleira / Pendente',
-                'Renderizado',
-                'Impresso',
                 'Reposição',
-                'Em andamento',
-                'Pendente arte final',
-                'Pendente Impressão',
                 'Finalizado',
-                'Em Impressão',
-                'Em espera',
+                
                 'Cor teste'
             ];
 
