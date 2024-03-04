@@ -169,13 +169,13 @@ class PedidoController extends Controller
 
         try {
             // Busque o pedido no banco de dados pelo número
-            $pedido = Pedido::findOrFail($numeroPedido);
+            $pedido = Pedido::find($numeroPedido);
 
             // Faça o que for necessário com o pedido (por exemplo, retornar detalhes do pedido)
             return response()->json(['status' => 'success', 'pedido' => $pedido]);
         } catch (\Exception $e) {
             // Se o pedido não for encontrado, retorne uma resposta de erro
-            return response()->json(['status' => 'error', 'message' => 'Pedido não encontrado ' + $pedido], 4004);
+            return response()->json(['status' => 'error', 'message' => 'Pedido não encontrado'], 4004);
         }
     }
     /* 
