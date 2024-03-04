@@ -105,7 +105,7 @@
                 const cpf_cnpj = document.getElementById('cpf_cnpj').value; // Obtém o valor do CPF/CNPJ digitado pelo usuário
 
                 // Faça a requisição usando fetch para a rota do backend
-                fetch('https://artearena.kinghost.net/consultar_pedido_cpf_cnpj', {
+                fetch('https://artearena.kinghost.net/cons ultar_pedido_cpf_cnpj', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -147,7 +147,6 @@
                 });
             });
 
-            // Manipula o evento de clique no botão "Mais detalhes"
             document.addEventListener('click', function(event) {
                 if (event.target.classList.contains('selecionarPedidoBtn')) {
                     const idPedido = event.target.getAttribute('data-id');
@@ -161,16 +160,31 @@
                             return response.json();
                         })
                         .then(data => {
+                            // Obter o número do pedido
+                            const numeroPedido = data.retorno.pedido.numero;
+
+                            // Fazer uma nova requisição para consultar o pedido na rota do Laravel
+                            fetch(`/pedido/consultar-pedido/${numeroPedido}`)
+                                .then(response => {
+                                    if (!response.ok) {
+                                        throw new Error('Erro ao consultar o pedido');
+                                    }
+                                    console.log(response);
+                                })
+                                .then(data => {
+                                    // Manipular os dados do pedido retornado pela rota do Laravel
+                                    console.log(data);
+                                })
+                                .catch(error => {
+                                    console.error('Erro ao consultar o pedido:', error);
+                                });
+
                             // Esconder o modal de lista de pedidos
                             $('#listaPedidosModal').modal('hide');
 
                             // Exibir a tabela de detalhes do pedido
                             const detalhesContainer = document.getElementById('detalhesPedidoContainer');
                             detalhesContainer.style.display = 'block';
-
-                            // Exibir a tabela de detalhes do pedido
-                            const consultarContainer = document.getElementById('consultarPedidoContainer');
-                            consultarContainer.style.display = 'none';
 
                             // Limpar a tabela de detalhes do pedido antes de adicionar os novos detalhes
                             const detalhesTableBody = document.getElementById('detalhesPedidoTableBody');
@@ -192,6 +206,7 @@
                 }
             });
 
+
             // Manipula o evento de clique no botão "Voltar"
             document.getElementById('voltarBtn').addEventListener('click', function() {
                 // Esconder a tabela de detalhes do pedido
@@ -200,7 +215,7 @@
                 // Exibir a tabela de detalhes do pedido
                 const consultarContainer = document.getElementById('consultarPedidoContainer');
                 consultarContainer.style.display = 'block';
-                
+
                 // Exibir novamente o modal de lista de pedidos
                 $('#listaPedidosModal').modal('show');
             });
