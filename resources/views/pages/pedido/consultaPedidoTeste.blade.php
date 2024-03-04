@@ -39,7 +39,19 @@
             flex-direction: column;
         }
 
-        /* Outros estilos aqui */
+        .status-exemplo {
+            padding: 5px 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f0f0f0;
+            /* Adicione mais estilos conforme necessário */
+        }
+
+        #exemplosStatusContainer {
+            display: none; /* Oculta inicialmente, mostrado via JavaScript */
+            flex-wrap: wrap; /* Permite que os itens se ajustem em várias linhas conforme necessário */
+            gap: 10px; /* Espaço entre os itens */
+        }
     </style>
 @endsection
 
@@ -79,6 +91,9 @@
                             </thead>
                             <tbody id="listaPedidosTableBody"></tbody>
                         </table>
+                    </div>
+                    <div id="exemplosStatusContainer" style="display: flex; flex-direction: row; justify-content: center; gap: 10px; margin-bottom: 20px;">
+                        <!-- Exemplos de status serão inseridos aqui -->
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
