@@ -195,7 +195,7 @@ class PedidoController extends Controller
             return response()->json([
                 'status' => 'success',
                 'pedidoSolicitado' => $pedido,
-                'exemplosStatus' => $statusExemplos
+                'statusList' => $statusExemplos
             ]);
         } catch (\Exception $e) {
             // Se ocorrer algum erro, retorne uma resposta de erro
