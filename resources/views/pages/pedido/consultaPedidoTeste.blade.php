@@ -150,7 +150,7 @@
             document.addEventListener('click', function(event) {
                 if (event.target.classList.contains('selecionarPedidoBtn')) {
                     const idPedido = event.target.getAttribute('data-id');
-
+ 
                     // Faça alguma ação com o ID do pedido selecionado, como redirecionar para outra página
                     console.log('Pedido selecionado:', idPedido);
 
@@ -164,6 +164,7 @@
                         })
                         .then(data => {
                             // Exibir a tabela de detalhes do pedido
+                            console.log(data);
                             const detalhesContainer = document.getElementById('detalhesPedidoContainer');
                             detalhesContainer.style.display = 'block';
 
