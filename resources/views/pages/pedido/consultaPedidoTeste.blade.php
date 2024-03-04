@@ -185,11 +185,12 @@
                                     if (!response.ok) {
                                         throw new Error('Erro ao consultar o pedido');
                                     }
-                                    console.log(response);
+                                    return response.json();
                                 })
                                 .then(data => {
                                     // Manipular os dados do pedido retornado pela rota do Laravel
-                                    console.log(data);
+                                    const statusList = data.retorno.statusList; // Supondo que os status estão em um array chamado statusList
+                                    createStatusBar(statusList);
                                 })
                                 .catch(error => {
                                     console.error('Erro ao consultar o pedido:', error);
@@ -224,6 +225,21 @@
                         });
                 }
             });
+
+            function createStatusBar(statusList) {
+                const statusBar = document.getElementById('statusBar');
+                statusBar.innerHTML = ''; // Limpa a barra de status antes de adicionar novos status
+
+                // Exemplo: Adicionando status de forma dinâmica
+                statusList.forEach(s => {
+                    const statusElement = document.createElement('div');
+                    statusElement.classList.add('status-item');
+                    statusElement.textContent = s;
+                    statusElement.style.padding = '10px'; // Exemplo de estilo
+                    statusBar.appendChild(statusElement);
+                });
+            }
+
 
 
             // Manipula o evento de clique no botão "Voltar"
