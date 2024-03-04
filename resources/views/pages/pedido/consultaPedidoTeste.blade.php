@@ -45,7 +45,7 @@
 
 @section('content')
     <div class="container">
-        <div class="container mt-4">
+        <div class="container mt-4" id="consultarPedidoContainer">
             <h1>Consulta de Pedidos</h1>
             <div class="form-group">
                 <label for="cpf_cnpj">CPF/CNPJ:</label>
@@ -168,6 +168,10 @@
                             const detalhesContainer = document.getElementById('detalhesPedidoContainer');
                             detalhesContainer.style.display = 'block';
 
+                            // Exibir a tabela de detalhes do pedido
+                            const consultarContainer = document.getElementById('consultarPedidoContainer');
+                            consultarContainer.style.display = 'none';
+
                             // Limpar a tabela de detalhes do pedido antes de adicionar os novos detalhes
                             const detalhesTableBody = document.getElementById('detalhesPedidoTableBody');
                             detalhesTableBody.innerHTML = '';
@@ -193,7 +197,9 @@
                 // Esconder a tabela de detalhes do pedido
                 const detalhesContainer = document.getElementById('detalhesPedidoContainer');
                 detalhesContainer.style.display = 'none';
-
+                // Exibir a tabela de detalhes do pedido
+                const consultarContainer = document.getElementById('consultarPedidoContainer');
+                consultarContainer.style.display = 'block';
                 // Exibir novamente o modal de lista de pedidos
                 $('#listaPedidosModal').modal('show');
             });
