@@ -169,7 +169,7 @@ class PedidoController extends Controller
 
         try {
             // Busque o pedido no banco de dados pelo número
-            $pedido = Pedido::where('numero', $numeroPedido)->first();
+            $pedido = Pedido::where('id', $numeroPedido)->first();
 
             if (!$pedido) {
                 return response()->json(['status' => 'error', 'message' => 'Pedido não encontrado'], 404);
