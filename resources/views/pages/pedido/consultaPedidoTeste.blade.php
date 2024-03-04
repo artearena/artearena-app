@@ -200,6 +200,7 @@
                 // Exibir a tabela de detalhes do pedido
                 const consultarContainer = document.getElementById('consultarPedidoContainer');
                 consultarContainer.style.display = 'block';
+                
                 // Exibir novamente o modal de lista de pedidos
                 $('#listaPedidosModal').modal('show');
             });
