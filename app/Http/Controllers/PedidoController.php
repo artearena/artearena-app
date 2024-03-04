@@ -166,7 +166,7 @@ class PedidoController extends Controller
     {
         // Obtenha o número do pedido da solicitação
         $numeroPedido = $request->input('numero');
-
+        dd($request);
         try {
             // Busque o pedido no banco de dados pelo número
             $pedido = Pedido::find($numeroPedido);
