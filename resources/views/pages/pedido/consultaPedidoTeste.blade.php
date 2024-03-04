@@ -182,9 +182,12 @@
                             // Esconder o modal de lista de pedidos
                             $('#listaPedidosModal').modal('hide');
 
-                            // Exibir a tabela de detalhes do pedido
                             const detalhesContainer = document.getElementById('detalhesPedidoContainer');
                             detalhesContainer.style.display = 'block';
+                            // Exibir a tabela de detalhes do pedido
+                            const consultarContainer = document.getElementById('consultarPedidoContainer');
+                            consultarContainer.style.display = 'none';
+
 
                             // Limpar a tabela de detalhes do pedido antes de adicionar os novos detalhes
                             const detalhesTableBody = document.getElementById('detalhesPedidoTableBody');
