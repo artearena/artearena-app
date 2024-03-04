@@ -175,7 +175,7 @@ class PedidoController extends Controller
             return response()->json(['status' => 'success', 'pedido' => $pedido]);
         } catch (\Exception $e) {
             // Se o pedido não for encontrado, retorne uma resposta de erro
-            return response()->json(['status' => 'error', 'message' => 'Pedido não encontrado'], 404);
+            return response()->json(['status' => 'error', 'message' => 'Pedido não encontrado ' + $pedido], 4004);
         }
     }
     /* 
