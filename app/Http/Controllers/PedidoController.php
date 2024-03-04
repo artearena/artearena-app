@@ -166,17 +166,36 @@ class PedidoController extends Controller
     {
         // Obtenha o número do pedido da solicitação
         $numeroPedido = $request->query('numero');
+
         try {
             // Busque o pedido no banco de dados pelo número
-            $pedido = Pedido::find($numeroPedido);
+            $pedido = Pedido::where('numero', $numeroPedido)->first();
 
-            // Faça o que for necessário com o pedido (por exemplo, retornar detalhes do pedido)
-            return response()->json(['status' => 'success', 'pedido' => $pedido]);
+            if (!$pedido) {
+                return response()->json(['status' => 'error', 'message' => 'Pedido não encontrado'], 404);
+            }
+
+            // Obter exemplos de cada status único na tabela de pedidos
+            $statusExemplos = Pedido::select('status')
+                                    ->distinct()
+                                    ->get()
+                                    ->map(function($status) {
+                                        // Para cada status, obtenha o primeiro pedido encontrado com esse status
+                                        return Pedido::where('status', $status->status)->first();
+                                    });
+
+            // Retornar detalhes do pedido solicitado e exemplos de cada status
+            return response()->json([
+                'status' => 'success',
+                'pedidoSolicitado' => $pedido,
+                'exemplosStatus' => $statusExemplos
+            ]);
         } catch (\Exception $e) {
-            // Se o pedido não for encontrado, retorne uma resposta de erro
-            return response()->json(['status' => 'error', 'message' => 'Pedido não encontrado'], 4004);
+            // Se ocorrer algum erro, retorne uma resposta de erro
+            return response()->json(['status' => 'error', 'message' => 'Erro ao buscar pedido'], 500);
         }
     }
+
     /* 
     public function consultaEtapaPedido(Request $request)
     {
