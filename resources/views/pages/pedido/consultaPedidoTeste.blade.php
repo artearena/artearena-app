@@ -92,9 +92,7 @@
                             <tbody id="listaPedidosTableBody"></tbody>
                         </table>
                     </div>
-                    <div id="exemplosStatusContainer" style="display: flex; flex-direction: row; justify-content: center; gap: 10px; margin-bottom: 20px;">
-                        <!-- Exemplos de status serão inseridos aqui -->
-                    </div>
+
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
                     </div>
@@ -102,8 +100,11 @@
             </div>
         </div>
 
-        <!-- Tabela para exibir detalhes do pedido -->
         <div class="container mt-4" id="detalhesPedidoContainer" style="display: none;">
+            <!-- Barra de status aqui -->
+            <div id="statusBar" class="status-bar d-flex justify-content-around mb-3">
+                <!-- Exemplos de status serão inseridos aqui via JavaScript -->
+            </div>
             <button id="voltarBtn" class="btn btn-secondary mb-3">Voltar</button>
             <h2>Detalhes do Pedido</h2>
             <table class="table">
