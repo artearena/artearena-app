@@ -87,7 +87,14 @@
             </div>
         </div>
     </div>
-
+    <!-- Botão Voltar e Tabela para exibir detalhes do pedido -->
+    <div class="container mt-4" id="detalhesPedidoContainer" style="display: none;">
+        <button id="voltarBtn" class="btn btn-secondary mb-3">Voltar</button>
+        <h2>Detalhes do Pedido</h2>
+        <table class="table">
+            <tbody id="detalhesPedidoTableBody"></tbody>
+        </table>
+    </div>
     <!-- Tabela para exibir detalhes do pedido -->
     <div class="container mt-4" id="detalhesPedidoContainer" style="display: none;">
         <h2>Detalhes do Pedido</h2>
