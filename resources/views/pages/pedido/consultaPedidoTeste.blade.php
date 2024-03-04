@@ -146,13 +146,10 @@
                 });
             });
 
-           // Manipula o evento de clique no botão "Mais detalhes"
+            // Manipula o evento de clique no botão "Mais detalhes"
             document.addEventListener('click', function(event) {
                 if (event.target.classList.contains('selecionarPedidoBtn')) {
                     const idPedido = event.target.getAttribute('data-id');
- 
-                    // Faça alguma ação com o ID do pedido selecionado, como redirecionar para outra página
-                    console.log('Pedido selecionado:', idPedido);
 
                     // Faz a requisição para obter os detalhes do pedido pelo ID
                     fetch(`https://artearena.kinghost.net/consultar-pedido-by-id?numeroPedido=${idPedido}`)
@@ -163,8 +160,10 @@
                             return response.json();
                         })
                         .then(data => {
+                            // Esconder o modal de lista de pedidos
+                            $('#listaPedidosModal').modal('hide');
+
                             // Exibir a tabela de detalhes do pedido
-                            console.log(data);
                             const detalhesContainer = document.getElementById('detalhesPedidoContainer');
                             detalhesContainer.style.display = 'block';
 
@@ -186,6 +185,16 @@
                             console.error('Erro ao consultar detalhes do pedido:', error);
                         });
                 }
+            });
+
+            // Manipula o evento de clique no botão "Voltar"
+            document.getElementById('voltarBtn').addEventListener('click', function() {
+                // Esconder a tabela de detalhes do pedido
+                const detalhesContainer = document.getElementById('detalhesPedidoContainer');
+                detalhesContainer.style.display = 'none';
+
+                // Exibir novamente o modal de lista de pedidos
+                $('#listaPedidosModal').modal('show');
             });
         });
     </script>
