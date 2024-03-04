@@ -164,7 +164,7 @@
                             const numeroPedido = data.retorno.pedido.numero;
 
                             // Fazer uma nova requisição para consultar o pedido na rota do Laravel
-                            fetch(`/pedido/consultar-pedido/${numeroPedido}`)
+                            fetch(`/pedido/etapaPedido/${numeroPedido}`)
                                 .then(response => {
                                     if (!response.ok) {
                                         throw new Error('Erro ao consultar o pedido');

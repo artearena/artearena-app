@@ -59,7 +59,7 @@ Route::middleware(['auth'])->group(function () {
             Route::put('/mover/{id}', [PedidoController::class, 'moverPedido'])->name('pedido.mover');
             Route::post('/criar', [PedidoController::class, 'criarPedido'])->name('pedido.criar');
             Route::delete('/{id}', [PedidoController::class, 'excluirPedido'])->name('pedido.excluir');
-            Route::get('/consultar-pedido/{numero}', [PedidoController::class, 'etapaPedido'])->name('consultar-pedido');
+            Route::get('/etapaPedido/{numero}', [PedidoController::class, 'etapaPedido'])->name('consultar-pedido');
         });
 
         Route::prefix('producao')->group(function () {
