@@ -170,11 +170,11 @@ class PedidoController extends Controller
         try {
             // Busque o pedido no banco de dados pelo número
             $pedido = Pedido::where('numero', $numeroPedido)->first();
-
+        
             if (!$pedido) {
                 return response()->json(['status' => 'error', 'message' => 'Pedido não encontrado'], 404);
             }
-
+        
             // Obter um exemplo de cada status único na tabela de pedidos
             $statusExemplos = Pedido::select('status')
                                     ->distinct()
@@ -183,7 +183,7 @@ class PedidoController extends Controller
                                         // Para cada status, obtenha o primeiro pedido encontrado com esse status
                                         return Pedido::where('status', $status->status)->first();
                                     });
-
+        
             // Retornar detalhes do pedido solicitado e exemplos de cada status
             return response()->json([
                 'status' => 'success',
@@ -194,6 +194,7 @@ class PedidoController extends Controller
             // Se ocorrer algum erro, retorne uma resposta de erro
             return response()->json(['status' => 'error', 'message' => 'Erro ao buscar pedido'], 500);
         }
+        
     }
 
     /* 

@@ -240,8 +240,6 @@
                 });
             }
 
-
-
             // Manipula o evento de clique no botão "Voltar"
             document.getElementById('voltarBtn').addEventListener('click', function() {
                 // Esconder a tabela de detalhes do pedido
