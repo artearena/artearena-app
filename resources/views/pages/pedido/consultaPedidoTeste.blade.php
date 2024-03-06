@@ -223,7 +223,7 @@
                             // Quadro de Status da Nota Fiscal
                             const statusNotaFiscal = document.createElement('span');
                             statusNotaFiscal.classList.add('badge');
-                            if(data.retorno.pedido.id_nota_fiscal !== "0") {
+                            if (data.retorno.pedido.id_nota_fiscal !== "0") {
                                 statusNotaFiscal.classList.add('badge-success');
                                 statusNotaFiscal.innerText = 'Nota Fiscal Emitida';
                             } else {
@@ -239,7 +239,27 @@
                             btnConsultarNF.setAttribute('data-toggle', 'modal');
                             btnConsultarNF.setAttribute('data-target', '#modalNF');
                             btnConsultarNF.addEventListener('click', () => {
+                                // Exibir os dados da nota fiscal no modal
                                 document.getElementById('idNotaFiscal').innerText = `ID Nota Fiscal: ${data.retorno.pedido.id_nota_fiscal}`;
+                                // Realizar a requisição para obter os detalhes da nota fiscal e exibir no modal
+                                fetch(`https://artearena.kinghost.net/obter-nota-fiscal/${data.retorno.pedido.id_nota_fiscal}`)
+                                    .then(response => {
+                                        if (!response.ok) {
+                                            throw new Error('Erro ao consultar nota fiscal');
+                                        }
+                                        return response.json();
+                                    })
+                                    .then(notaFiscalData => {
+                                        // Adicionar os detalhes da nota fiscal ao modal
+                                        // Por exemplo, você pode exibir o número da nota, o valor total, etc.
+                                        // Substitua os campos de exemplo pelos dados reais da nota fiscal
+                                        document.getElementById('numeroNotaFiscal').innerText = `Número da Nota Fiscal: ${notaFiscalData.numero}`;
+                                        document.getElementById('valorNotaFiscal').innerText = `Valor da Nota Fiscal: ${notaFiscalData.valor}`;
+                                        // Adicione outros detalhes conforme necessário
+                                    })
+                                    .catch(error => {
+                                        console.error('Erro ao consultar nota fiscal:', error);
+                                    });
                             });
 
                             // Botão Detalhes do Pedido
@@ -254,7 +274,7 @@
                                 
                                 // Adicionar detalhes do pedido ao modal
                                 for (const key in data.retorno.pedido) {
-                                    if(data.retorno.pedido.hasOwnProperty(key)) {
+                                    if (data.retorno.pedido.hasOwnProperty(key)) {
                                         const p = document.createElement('p');
                                         p.textContent = `${key}: ${data.retorno.pedido[key]}`;
                                         corpoDetalhesPedido.appendChild(p);
@@ -275,9 +295,9 @@
                         .catch(error => {
                             console.error('Erro ao consultar detalhes do pedido:', error);
                         });
-
                 }
             });
+
 
             function createStatusBar(statusList) {
                 const statusBar = document.getElementById('statusBar');
