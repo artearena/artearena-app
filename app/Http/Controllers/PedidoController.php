@@ -180,16 +180,13 @@ class PedidoController extends Controller
                 'Pendente arte final',
                 'Arte final em andamento',
                 'Em espera',
-
                 'Pendente Impressão',
                 'Em Impressão',
                 'Impresso',
-
                 'Costura / Confecção',
                 'Prateleira / Pendente',
                 'Reposição',
                 'Finalizado',
-                
                 'Cor teste'
             ];
 

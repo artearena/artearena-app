@@ -84,6 +84,7 @@
                                     <th>Data do Pedido</th>
                                     <th>Valor</th>
                                     <th>Situação</th>
+                                    <th>Nota Fiscal</th>
                                     <th>Código de Rastreio</th>
                                     <th>Link do Rastreio</th>
                                     <th>Ações</th>
