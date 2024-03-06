@@ -220,10 +220,22 @@
                             const detalhesTableBody = document.getElementById('detalhesPedidoTableBody');
                             detalhesTableBody.innerHTML = '';
 
+                            // Quadro de Status da Nota Fiscal
+                            const statusNotaFiscal = document.createElement('span');
+                            statusNotaFiscal.classList.add('badge');
+                            if(data.retorno.pedido.id_nota_fiscal !== "0") {
+                                statusNotaFiscal.classList.add('badge-success');
+                                statusNotaFiscal.innerText = 'Nota Fiscal Emitida';
+                            } else {
+                                statusNotaFiscal.classList.add('badge-danger');
+                                statusNotaFiscal.innerText = 'Nota Fiscal Não Emitida';
+                            }
+                            statusNotaFiscal.style.marginRight = '10px'; // Adiciona um espaço à direita
+
                             // Botão Consultar NF
                             const btnConsultarNF = document.createElement('button');
                             btnConsultarNF.innerText = 'Consultar NF';
-                            btnConsultarNF.classList.add('btn', 'btn-info', 'float-right', 'ml-2'); // 'float-right' para alinhar à direita e 'ml-2' para margem à esquerda
+                            btnConsultarNF.classList.add('btn', 'btn-info', 'float-right', 'ml-2');
                             btnConsultarNF.setAttribute('data-toggle', 'modal');
                             btnConsultarNF.setAttribute('data-target', '#modalNF');
                             btnConsultarNF.addEventListener('click', () => {
@@ -238,20 +250,23 @@
                             btnDetalhesPedido.setAttribute('data-target', '#modalDetalhesPedido');
                             btnDetalhesPedido.addEventListener('click', () => {
                                 const corpoDetalhesPedido = document.getElementById('corpoDetalhesPedido');
-                                corpoDetalhesPedido.innerHTML = ''; // Limpar para novos detalhes
+                                corpoDetalhesPedido.innerHTML = '';
                                 
                                 // Adicionar detalhes do pedido ao modal
                                 for (const key in data.retorno.pedido) {
-                                    const p = document.createElement('p');
-                                    p.textContent = `${key}: ${data.retorno.pedido[key]}`;
-                                    corpoDetalhesPedido.appendChild(p);
+                                    if(data.retorno.pedido.hasOwnProperty(key)) {
+                                        const p = document.createElement('p');
+                                        p.textContent = `${key}: ${data.retorno.pedido[key]}`;
+                                        corpoDetalhesPedido.appendChild(p);
+                                    }
                                 }
                             });
 
-                            // Criar uma linha e célula na tabela para os botões
+                            // Criar uma linha e célula na tabela para os botões e o quadro de status
                             const row = document.createElement('tr');
                             const cell = document.createElement('td');
                             cell.colSpan = 2; // Ajuste conforme o número de colunas da sua tabela
+                            cell.appendChild(statusNotaFiscal); // Adiciona o quadro de status antes dos botões
                             cell.appendChild(btnConsultarNF);
                             cell.appendChild(btnDetalhesPedido);
                             row.appendChild(cell);
@@ -260,6 +275,7 @@
                         .catch(error => {
                             console.error('Erro ao consultar detalhes do pedido:', error);
                         });
+
                 }
             });
 
