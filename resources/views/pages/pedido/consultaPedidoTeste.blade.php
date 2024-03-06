@@ -253,7 +253,7 @@
                                         })
                                         .then(notaFiscalData => {
                                             // Adicionar os detalhes da nota fiscal ao modal
-                                            console.log(notaFiscalData.retorno);
+                                            console.log(notaFiscalData);
                                             // document.getElementById('numeroNotaFiscal').innerText = `Número da Nota Fiscal: ${notaFiscalData.retorno.nota_fiscal.numero}`;
                                             // document.getElementById('valorNotaFiscal').innerText = `Valor da Nota Fiscal: ${notaFiscalData.retorno.nota_fiscal.valor}`;
                                             // Adicione outros detalhes conforme necessário
