@@ -148,6 +148,7 @@
                             <td>${pedido.pedido.data_pedido}</td>
                             <td>R$ ${pedido.pedido.valor}</td>
                             <td>${pedido.pedido.situacao}</td>
+                            <td> - </td>
                             <td>${pedido.pedido.codigo_rastreamento}</td>
                             <td><a href="${pedido.pedido.url_rastreamento}" target="_blank">Rastrear</a></td>
                             <td><button class="selecionarPedidoBtn btn btn-primary" data-id="${pedido.pedido.id}">Mais detalhes</button></td>
