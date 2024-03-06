@@ -84,7 +84,6 @@
                                     <th>Data do Pedido</th>
                                     <th>Valor</th>
                                     <th>Situação</th>
-                                    <th>Nota Fiscal</th>
                                     <th>Código de Rastreio</th>
                                     <th>Link do Rastreio</th>
                                     <th>Ações</th>
@@ -112,6 +111,39 @@
                 <tbody id="detalhesPedidoTableBody"></tbody>
             </table>
         </div>
+    </div>
+    <!-- Modal Nota Fiscal -->
+    <div id="modalNF" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title">Nota Fiscal</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <p id="idNotaFiscal">ID Nota Fiscal: </p>
+        </div>
+        </div>
+    </div>
+    </div>
+
+    <!-- Modal Detalhes do Pedido -->
+    <div id="modalDetalhesPedido" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title">Detalhes do Pedido</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body" id="corpoDetalhesPedido">
+            <!-- Os detalhes do pedido serão adicionados aqui dinamicamente -->
+        </div>
+        </div>
+    </div>
     </div>
 @endsection
 
@@ -148,7 +180,6 @@
                             <td>${pedido.pedido.data_pedido}</td>
                             <td>R$ ${pedido.pedido.valor}</td>
                             <td>${pedido.pedido.situacao}</td>
-                            <td> - </td>
                             <td>${pedido.pedido.codigo_rastreamento}</td>
                             <td><a href="${pedido.pedido.url_rastreamento}" target="_blank">Rastrear</a></td>
                             <td><button class="selecionarPedidoBtn btn btn-primary" data-id="${pedido.pedido.id}">Mais detalhes</button></td>
@@ -178,52 +209,53 @@
                             return response.json();
                         })
                         .then(data => {
-                            // Obter o número do pedido
-                            const numeroPedido = data.retorno.pedido.numero;
-
-                            // Fazer uma nova requisição para consultar o pedido na rota do Laravel
-                            fetch(`/etapapedido?numero=${numeroPedido}`)
-                                .then(response => {
-                                    if (!response.ok) {
-                                        throw new Error('Erro ao consultar o pedido');
-                                    }
-                                    return response.json();
-                                })
-                                .then(data => {
-                                    console.log(data); // Verificar os dados retornados pela rota do Laravel
-                                    // Manipular os dados do pedido retornado pela rota do Laravel
-                                    var statusList = data.statusList; // Supondo que os status estão em um array chamado statusList
-                                    
-                                    createStatusBar(statusList);
-                                })
-
-                                .catch(error => {
-                                    console.error('Erro ao consultar o pedido:', error);
-                                });
-
-                            // Esconder o modal de lista de pedidos
+                            // Esconder o modal de lista de pedidos e preparar a exibição dos detalhes
                             $('#listaPedidosModal').modal('hide');
-
                             const detalhesContainer = document.getElementById('detalhesPedidoContainer');
                             detalhesContainer.style.display = 'block';
-                            // Exibir a tabela de detalhes do pedido
                             const consultarContainer = document.getElementById('consultarPedidoContainer');
                             consultarContainer.style.display = 'none';
 
-
-                            // Limpar a tabela de detalhes do pedido antes de adicionar os novos detalhes
+                            // Limpar a tabela de detalhes do pedido
                             const detalhesTableBody = document.getElementById('detalhesPedidoTableBody');
                             detalhesTableBody.innerHTML = '';
 
-                            // Adicionar os detalhes do pedido à tabela
-                            for (const key in data.retorno.pedido) {
-                                const row = document.createElement('tr');
-                                row.innerHTML = `
-                                    <td>${key}</td>
-                                    <td>${data.retorno.pedido[key]}</td>
-                                `;
-                                detalhesTableBody.appendChild(row);
-                            }
+                            // Botão Consultar NF
+                            const btnConsultarNF = document.createElement('button');
+                            btnConsultarNF.innerText = 'Consultar NF';
+                            btnConsultarNF.classList.add('btn', 'btn-info', 'float-right', 'ml-2'); // 'float-right' para alinhar à direita e 'ml-2' para margem à esquerda
+                            btnConsultarNF.setAttribute('data-toggle', 'modal');
+                            btnConsultarNF.setAttribute('data-target', '#modalNF');
+                            btnConsultarNF.addEventListener('click', () => {
+                                document.getElementById('idNotaFiscal').innerText = `ID Nota Fiscal: ${data.retorno.pedido.id_nota_fiscal}`;
+                            });
+
+                            // Botão Detalhes do Pedido
+                            const btnDetalhesPedido = document.createElement('button');
+                            btnDetalhesPedido.innerText = 'Detalhes do Pedido';
+                            btnDetalhesPedido.classList.add('btn', 'btn-secondary', 'float-right');
+                            btnDetalhesPedido.setAttribute('data-toggle', 'modal');
+                            btnDetalhesPedido.setAttribute('data-target', '#modalDetalhesPedido');
+                            btnDetalhesPedido.addEventListener('click', () => {
+                                const corpoDetalhesPedido = document.getElementById('corpoDetalhesPedido');
+                                corpoDetalhesPedido.innerHTML = ''; // Limpar para novos detalhes
+                                
+                                // Adicionar detalhes do pedido ao modal
+                                for (const key in data.retorno.pedido) {
+                                    const p = document.createElement('p');
+                                    p.textContent = `${key}: ${data.retorno.pedido[key]}`;
+                                    corpoDetalhesPedido.appendChild(p);
+                                }
+                            });
+
+                            // Criar uma linha e célula na tabela para os botões
+                            const row = document.createElement('tr');
+                            const cell = document.createElement('td');
+                            cell.colSpan = 2; // Ajuste conforme o número de colunas da sua tabela
+                            cell.appendChild(btnConsultarNF);
+                            cell.appendChild(btnDetalhesPedido);
+                            row.appendChild(cell);
+                            detalhesTableBody.appendChild(row);
                         })
                         .catch(error => {
                             console.error('Erro ao consultar detalhes do pedido:', error);
