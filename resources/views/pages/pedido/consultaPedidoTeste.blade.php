@@ -239,6 +239,8 @@
                             btnConsultarNF.setAttribute('data-toggle', 'modal');
                             btnConsultarNF.setAttribute('data-target', '#modalNF');
                             btnConsultarNF.addEventListener('click', () => {
+                            // Evento acionado quando o modal é totalmente exibido
+                            $('#modalNF').on('shown.bs.modal', function () {
                                 // Exibir os dados da nota fiscal no modal
                                 document.getElementById('idNotaFiscal').innerText = `ID Nota Fiscal: ${data.retorno.pedido.id_nota_fiscal}`;
                                 // Realizar a requisição para obter os detalhes da nota fiscal e exibir no modal
@@ -251,16 +253,15 @@
                                     })
                                     .then(notaFiscalData => {
                                         // Adicionar os detalhes da nota fiscal ao modal
-                                        // Por exemplo, você pode exibir o número da nota, o valor total, etc.
-                                        // Substitua os campos de exemplo pelos dados reais da nota fiscal
-                                        document.getElementById('numeroNotaFiscal').innerText = `Número da Nota Fiscal: ${notaFiscalData.numero}`;
-                                        document.getElementById('valorNotaFiscal').innerText = `Valor da Nota Fiscal: ${notaFiscalData.valor}`;
+                                        document.getElementById('numeroNotaFiscal').innerText = `Número da Nota Fiscal: ${notaFiscalData.retorno.nota_fiscal.numero}`;
+                                        document.getElementById('valorNotaFiscal').innerText = `Valor da Nota Fiscal: ${notaFiscalData.retorno.nota_fiscal.valor}`;
                                         // Adicione outros detalhes conforme necessário
                                     })
                                     .catch(error => {
                                         console.error('Erro ao consultar nota fiscal:', error);
                                     });
                             });
+
 
                             // Botão Detalhes do Pedido
                             const btnDetalhesPedido = document.createElement('button');
