@@ -260,6 +260,7 @@ Consulta de Pedidos
                                 <th data-filter="true">Medida Linear</th>
                                 <th data-filter="true">Observações</th>
                                 <th data-filter="true">Status</th>
+                                <th data-filter="true">Designer</th>
                                 <th data-filter="true">Tipo de Pedido</th>
                                 <th data-filter="true">Rolo</th>
                                 <th>Mover</th>
@@ -314,6 +315,21 @@ Consulta de Pedidos
                                         <option value="Separação" {{ $pedido->status == 'Separação' ? 'selected' : '' }}>Separação</option>
                                     </select>
 
+                                </td>
+                                <td>
+                                    @if ($pedido->designer)
+                                        <!-- Se já houver um designer atribuído ao pedido, mostrar o nome do designer -->
+                                        <span class="designer-name" data-pedido="{{ $pedido->id }}">{{ $pedido->designer }}</span>
+                                    @elseif (in_array(auth()->user()->nome_usuario, $designers->toArray()))
+                                        <!-- Se o usuário for um designer, exibe o botão "Ingressar no Card" -->
+                                        <button class="btn btn-primary ingressar-no-card" data-pedido="{{ $pedido->id }}">Ingressar</button>
+                                    @elseif (auth()->user()->permissoes == 36)
+                                        <!-- Se o usuário for um designer, exibe o botão "Ingressar no Card" -->
+                                        <button class="btn btn-primary ingressar-no-card" data-pedido="{{ $pedido->id }}">Ingressar</button>
+                                    @else    
+                                        <!-- Se o usuário não for um designer, exibe um botão desabilitado e um alerta -->
+                                        <button class="btn btn-secondary" disabled>Ingressar</button>
+                                    @endif
                                 </td>
                                 <td>
                                     <select class='form-control' name='tipo_pedido'>
