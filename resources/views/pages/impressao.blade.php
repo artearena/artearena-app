@@ -920,7 +920,7 @@ $('.mover-pedido').click(function () {
 
                 setStatusColor(status, $(this).find("td:nth-child(7)"));
                 setDataColor(data, $(this).find("td:nth-child(2)"));
-                setTipoPedidoColor(tipoPedido, $(this).find("td:nth-child(8)")); // Adicione essa linha
+                setTipoPedidoColor(tipoPedido, $(this).find("td:nth-child(9)")); // Adicione essa linha
 
             });
         }
