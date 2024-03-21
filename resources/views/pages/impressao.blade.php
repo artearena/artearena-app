@@ -320,7 +320,7 @@ Consulta de Pedidos
                                     @if ($pedido->designer)
                                         <!-- Se já houver um designer atribuído ao pedido, mostrar o nome do designer -->
                                         <span class="designer-name" data-pedido="{{ $pedido->id }}">{{ $pedido->designer }}</span>
-                                    @elseif (in_array(auth()->user()->nome_usuario, $designers->toArray()))
+                                    @elseif ($designers && in_array(auth()->user()->nome_usuario, $designers->toArray()))
                                         <!-- Se o usuário for um designer, exibe o botão "Ingressar no Card" -->
                                         <button class="btn btn-primary ingressar-no-card" data-pedido="{{ $pedido->id }}">Ingressar</button>
                                     @elseif (auth()->user()->permissoes == 36)
