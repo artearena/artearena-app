@@ -23,6 +23,7 @@ use App\Http\Controllers\ProdutoListaController;
 use App\Http\Controllers\PedidoExternoController;
 use App\Http\Controllers\PedidoControllerTeste;
 
+
 Route::middleware(['auth'])->group(function () {
     Route::middleware(['perm.rota'])->group(function () {
 
